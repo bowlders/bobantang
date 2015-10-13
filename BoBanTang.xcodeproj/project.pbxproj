@@ -162,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				395218991BCD4C39000C7B68 /* General */,
+				3952189A1BCD4C55000C7B68 /* First */,
 				3952189B1BCD4C59000C7B68 /* Second */,
 			);
 			name = Model;
@@ -170,7 +171,6 @@
 		395218991BCD4C39000C7B68 /* General */ = {
 			isa = PBXGroup;
 			children = (
-				3952189A1BCD4C55000C7B68 /* First */,
 			);
 			name = General;
 			sourceTree = "<group>";
