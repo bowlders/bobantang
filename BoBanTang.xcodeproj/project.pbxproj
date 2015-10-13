@@ -14,6 +14,7 @@
 		3952187D1BCD265D000C7B68 /* BoBanTang.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3952187B1BCD265D000C7B68 /* BoBanTang.xcdatamodeld */; };
 		3952187F1BCD265D000C7B68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3952187E1BCD265D000C7B68 /* Assets.xcassets */; };
 		395218821BCD265D000C7B68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218801BCD265D000C7B68 /* LaunchScreen.storyboard */; };
+		FCF06ED91BCD615C008514C0 /* Storyboard-XU.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCF06ED81BCD615C008514C0 /* Storyboard-XU.storyboard */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,8 @@
 		3952187E1BCD265D000C7B68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		395218811BCD265D000C7B68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		395218831BCD265D000C7B68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FCF06ED71BCD560D008514C0 /* BBTMarco.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBTMarco.h; sourceTree = "<group>"; };
+		FCF06ED81BCD615C008514C0 /* Storyboard-XU.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Storyboard-XU.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +63,7 @@
 		3952186E1BCD265D000C7B68 /* BoBanTang */ = {
 			isa = PBXGroup;
 			children = (
+				FCF06ED71BCD560D008514C0 /* BBTMarco.h */,
 				3952188A1BCD268A000C7B68 /* Controller */,
 				395218891BCD2684000C7B68 /* View */,
 				3952186F1BCD265D000C7B68 /* Supporting Files */,
@@ -118,6 +122,7 @@
 		395218911BCD2840000C7B68 /* Second */ = {
 			isa = PBXGroup;
 			children = (
+				FCF06ED81BCD615C008514C0 /* Storyboard-XU.storyboard */,
 			);
 			name = Second;
 			sourceTree = "<group>";
@@ -181,6 +186,7 @@
 			files = (
 				395218821BCD265D000C7B68 /* LaunchScreen.storyboard in Resources */,
 				3952187F1BCD265D000C7B68 /* Assets.xcassets in Resources */,
+				FCF06ED91BCD615C008514C0 /* Storyboard-XU.storyboard in Resources */,
 				3952187A1BCD265D000C7B68 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,6 +348,7 @@
 				395218881BCD265D000C7B68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
