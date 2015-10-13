@@ -14,6 +14,7 @@
 		3952187D1BCD265D000C7B68 /* BoBanTang.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3952187B1BCD265D000C7B68 /* BoBanTang.xcdatamodeld */; };
 		3952187F1BCD265D000C7B68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3952187E1BCD265D000C7B68 /* Assets.xcassets */; };
 		395218821BCD265D000C7B68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218801BCD265D000C7B68 /* LaunchScreen.storyboard */; };
+		395218941BCD49A4000C7B68 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218931BCD49A4000C7B68 /* More.storyboard */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		3952187E1BCD265D000C7B68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		395218811BCD265D000C7B68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		395218831BCD265D000C7B68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		395218931BCD49A4000C7B68 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +62,9 @@
 		3952186E1BCD265D000C7B68 /* BoBanTang */ = {
 			isa = PBXGroup;
 			children = (
-				3952188A1BCD268A000C7B68 /* Controller */,
+				395218981BCD4C33000C7B68 /* Model */,
 				395218891BCD2684000C7B68 /* View */,
+				3952188A1BCD268A000C7B68 /* Controller */,
 				3952186F1BCD265D000C7B68 /* Supporting Files */,
 			);
 			path = BoBanTang;
@@ -93,8 +96,9 @@
 		3952188A1BCD268A000C7B68 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				395218751BCD265D000C7B68 /* ViewController.h */,
-				395218761BCD265D000C7B68 /* ViewController.m */,
+				395218951BCD4C0F000C7B68 /* General */,
+				395218961BCD4C16000C7B68 /* First */,
+				395218971BCD4C1D000C7B68 /* Second */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -111,11 +115,74 @@
 		395218901BCD281F000C7B68 /* First */ = {
 			isa = PBXGroup;
 			children = (
+				395218921BCD4980000C7B68 /* More */,
 			);
 			name = First;
 			sourceTree = "<group>";
 		};
 		395218911BCD2840000C7B68 /* Second */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Second;
+			sourceTree = "<group>";
+		};
+		395218921BCD4980000C7B68 /* More */ = {
+			isa = PBXGroup;
+			children = (
+				395218931BCD49A4000C7B68 /* More.storyboard */,
+			);
+			name = More;
+			sourceTree = "<group>";
+		};
+		395218951BCD4C0F000C7B68 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				395218751BCD265D000C7B68 /* ViewController.h */,
+				395218761BCD265D000C7B68 /* ViewController.m */,
+			);
+			name = General;
+			sourceTree = "<group>";
+		};
+		395218961BCD4C16000C7B68 /* First */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = First;
+			sourceTree = "<group>";
+		};
+		395218971BCD4C1D000C7B68 /* Second */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Second;
+			sourceTree = "<group>";
+		};
+		395218981BCD4C33000C7B68 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				395218991BCD4C39000C7B68 /* General */,
+				3952189B1BCD4C59000C7B68 /* Second */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		395218991BCD4C39000C7B68 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				3952189A1BCD4C55000C7B68 /* First */,
+			);
+			name = General;
+			sourceTree = "<group>";
+		};
+		3952189A1BCD4C55000C7B68 /* First */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = First;
+			sourceTree = "<group>";
+		};
+		3952189B1BCD4C59000C7B68 /* Second */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -180,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				395218821BCD265D000C7B68 /* LaunchScreen.storyboard in Resources */,
+				395218941BCD49A4000C7B68 /* More.storyboard in Resources */,
 				3952187F1BCD265D000C7B68 /* Assets.xcassets in Resources */,
 				3952187A1BCD265D000C7B68 /* Main.storyboard in Resources */,
 			);
@@ -342,6 +410,7 @@
 				395218881BCD265D000C7B68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
