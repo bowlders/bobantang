@@ -14,7 +14,11 @@
 		3952187D1BCD265D000C7B68 /* BoBanTang.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3952187B1BCD265D000C7B68 /* BoBanTang.xcdatamodeld */; };
 		3952187F1BCD265D000C7B68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3952187E1BCD265D000C7B68 /* Assets.xcassets */; };
 		395218821BCD265D000C7B68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218801BCD265D000C7B68 /* LaunchScreen.storyboard */; };
-		395218941BCD49A4000C7B68 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218931BCD49A4000C7B68 /* More.storyboard */; settings = {ASSET_TAGS = (); }; };
+		3952189F1BCD4F14000C7B68 /* MeViewControllerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3952189E1BCD4F14000C7B68 /* MeViewControllerTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		395218AC1BCD6177000C7B68 /* Go.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218AA1BCD6177000C7B68 /* Go.storyboard */; settings = {ASSET_TAGS = (); }; };
+		395218AE1BCD61B4000C7B68 /* Information.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218AD1BCD61B4000C7B68 /* Information.storyboard */; settings = {ASSET_TAGS = (); }; };
+		395218B01BCD61CD000C7B68 /* Tools.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218AF1BCD61CD000C7B68 /* Tools.storyboard */; settings = {ASSET_TAGS = (); }; };
+		395218B31BCD61DE000C7B68 /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218B11BCD61DE000C7B68 /* Me.storyboard */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +33,12 @@
 		3952187E1BCD265D000C7B68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		395218811BCD265D000C7B68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		395218831BCD265D000C7B68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		395218931BCD49A4000C7B68 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
+		3952189D1BCD4F14000C7B68 /* MeViewControllerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeViewControllerTableViewController.h; sourceTree = "<group>"; };
+		3952189E1BCD4F14000C7B68 /* MeViewControllerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeViewControllerTableViewController.m; sourceTree = "<group>"; };
+		395218AB1BCD6177000C7B68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Go.storyboard; sourceTree = "<group>"; };
+		395218AD1BCD61B4000C7B68 /* Information.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Information.storyboard; sourceTree = "<group>"; };
+		395218AF1BCD61CD000C7B68 /* Tools.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tools.storyboard; sourceTree = "<group>"; };
+		395218B21BCD61DE000C7B68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Me.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +124,7 @@
 		395218901BCD281F000C7B68 /* First */ = {
 			isa = PBXGroup;
 			children = (
-				395218921BCD4980000C7B68 /* More */,
+				395218921BCD4980000C7B68 /* Me */,
 			);
 			name = First;
 			sourceTree = "<group>";
@@ -123,16 +132,19 @@
 		395218911BCD2840000C7B68 /* Second */ = {
 			isa = PBXGroup;
 			children = (
+				395218B41BCD62D9000C7B68 /* Tools */,
 			);
 			name = Second;
 			sourceTree = "<group>";
 		};
-		395218921BCD4980000C7B68 /* More */ = {
+		395218921BCD4980000C7B68 /* Me */ = {
 			isa = PBXGroup;
 			children = (
-				395218931BCD49A4000C7B68 /* More.storyboard */,
+				395218AA1BCD6177000C7B68 /* Go.storyboard */,
+				395218AD1BCD61B4000C7B68 /* Information.storyboard */,
+				395218B11BCD61DE000C7B68 /* Me.storyboard */,
 			);
-			name = More;
+			name = Me;
 			sourceTree = "<group>";
 		};
 		395218951BCD4C0F000C7B68 /* General */ = {
@@ -147,6 +159,7 @@
 		395218961BCD4C16000C7B68 /* First */ = {
 			isa = PBXGroup;
 			children = (
+				3952189C1BCD4EA3000C7B68 /* Me( Settings ) */,
 			);
 			name = First;
 			sourceTree = "<group>";
@@ -187,6 +200,23 @@
 			children = (
 			);
 			name = Second;
+			sourceTree = "<group>";
+		};
+		3952189C1BCD4EA3000C7B68 /* Me( Settings ) */ = {
+			isa = PBXGroup;
+			children = (
+				3952189D1BCD4F14000C7B68 /* MeViewControllerTableViewController.h */,
+				3952189E1BCD4F14000C7B68 /* MeViewControllerTableViewController.m */,
+			);
+			name = "Me( Settings )";
+			sourceTree = "<group>";
+		};
+		395218B41BCD62D9000C7B68 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				395218AF1BCD61CD000C7B68 /* Tools.storyboard */,
+			);
+			name = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,8 +277,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				395218821BCD265D000C7B68 /* LaunchScreen.storyboard in Resources */,
-				395218941BCD49A4000C7B68 /* More.storyboard in Resources */,
+				395218AC1BCD6177000C7B68 /* Go.storyboard in Resources */,
+				395218B01BCD61CD000C7B68 /* Tools.storyboard in Resources */,
+				395218AE1BCD61B4000C7B68 /* Information.storyboard in Resources */,
 				3952187F1BCD265D000C7B68 /* Assets.xcassets in Resources */,
+				395218B31BCD61DE000C7B68 /* Me.storyboard in Resources */,
 				3952187A1BCD265D000C7B68 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3952189F1BCD4F14000C7B68 /* MeViewControllerTableViewController.m in Sources */,
 				395218771BCD265D000C7B68 /* ViewController.m in Sources */,
 				395218741BCD265D000C7B68 /* AppDelegate.m in Sources */,
 				3952187D1BCD265D000C7B68 /* BoBanTang.xcdatamodeld in Sources */,
@@ -284,6 +318,22 @@
 				395218811BCD265D000C7B68 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		395218AA1BCD6177000C7B68 /* Go.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				395218AB1BCD6177000C7B68 /* Base */,
+			);
+			name = Go.storyboard;
+			sourceTree = "<group>";
+		};
+		395218B11BCD61DE000C7B68 /* Me.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				395218B21BCD61DE000C7B68 /* Base */,
+			);
+			name = Me.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
