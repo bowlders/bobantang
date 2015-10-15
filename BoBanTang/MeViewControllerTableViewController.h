@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AMWaveViewController.h>
 
-@interface MeViewControllerTableViewController : UITableViewController<UIAlertViewDelegate>
+@interface MeViewControllerTableViewController : UITableViewController<UIAlertViewDelegate, UINavigationControllerDelegate, AMWaveTransitioning>
 
 @end
     

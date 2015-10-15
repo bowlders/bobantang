@@ -10,6 +10,8 @@
 
 @interface MeViewControllerTableViewController ()
 
+@property (strong, nonatomic) IBOutlet AMWaveTransition *interactive;
+
 @end
 
 @implementation MeViewControllerTableViewController
@@ -23,6 +25,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.scrollEnabled = NO;
     
+    self.interactive = [[AMWaveTransition alloc] init];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -33,6 +36,58 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - AMWaveNavigationController Methods
+
+- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
+                                  animationControllerForOperation:(UINavigationControllerOperation)operation
+                                               fromViewController:(UIViewController*)fromVC
+                                                 toViewController:(UIViewController*)toVC
+{
+    
+    if (operation != UINavigationControllerOperationNone)
+    {
+        AMWaveTransition *transition = [AMWaveTransition transitionWithOperation:operation];
+        [transition setTransitionType:AMWaveTransitionTypeSubtle];
+        [transition setDuration:1.3];
+        [transition setMaxDelay:0.4];
+        return [AMWaveTransition transitionWithOperation:operation];
+    }
+    
+    return nil;
+
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    
+    [super viewDidAppear:animated];
+    [self.navigationController setDelegate:self];
+    [self.interactive attachInteractiveGestureToNavigationController:self.navigationController];
+    
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+
+    [super viewDidDisappear:animated];
+    [self.interactive detachInteractiveGesture];
+
+}
+
+- (void)dealloc
+{
+    
+    [self.navigationController setDelegate:nil];
+    
+}
+
+#pragma mark - AMWaveTransitioning Methods
+
+- (NSArray*)visibleCells
+{
+    return [self.tableView visibleCells];
 }
 
 #pragma mark - Table view data source
@@ -83,7 +138,6 @@
     return sectionTitle;
     
 }
-
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {

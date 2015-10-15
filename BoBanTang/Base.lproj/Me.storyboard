@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kOx-2o-ylt">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Table View Controller-->
@@ -44,7 +45,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="meCell" id="c6g-Jp-86t" customClass="meCell">
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
@@ -174,10 +174,10 @@
             </objects>
             <point key="canvasLocation" x="1386.5" y="1524.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Feed Back View Controller-->
         <scene sceneID="vMw-EP-lGX">
             <objects>
-                <viewController id="0Fb-wS-QHR" sceneMemberID="viewController">
+                <viewController id="0Fb-wS-QHR" customClass="FeedBackViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ppl-ix-PtK"/>
                         <viewControllerLayoutGuide type="bottom" id="4th-yk-HHL"/>
@@ -186,18 +186,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Xlx-W9-4Sq">
-                                <rect key="frame" x="20" y="96" width="335" height="173"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qpf-Hb-AkZ">
+                                <rect key="frame" x="14" y="91" width="341" height="213"/>
                                 <animations/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CYC-eT-CM3">
+                                <rect key="frame" x="109" y="311" width="151" height="46"/>
+                                <animations/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="sendFeedBack" destination="0Fb-wS-QHR" eventType="touchUpInside" id="KeJ-vo-rXZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="CYC-eT-CM3" firstAttribute="leading" secondItem="HLo-8Q-rKF" secondAttribute="leadingMargin" constant="93" id="BIu-94-Ni2"/>
+                            <constraint firstItem="CYC-eT-CM3" firstAttribute="centerY" secondItem="HLo-8Q-rKF" secondAttribute="centerY" id="Ffl-Cx-FL3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CYC-eT-CM3" secondAttribute="trailing" constant="99" id="Kcs-e5-OhL"/>
+                            <constraint firstItem="CYC-eT-CM3" firstAttribute="top" secondItem="qpf-Hb-AkZ" secondAttribute="bottom" constant="7" id="RQb-1l-TEy"/>
+                            <constraint firstItem="qpf-Hb-AkZ" firstAttribute="leading" secondItem="HLo-8Q-rKF" secondAttribute="leadingMargin" constant="-2" id="Ugh-nM-mqU"/>
+                            <constraint firstItem="CYC-eT-CM3" firstAttribute="top" secondItem="qpf-Hb-AkZ" secondAttribute="bottom" constant="7" id="eM7-nV-HvP"/>
+                            <constraint firstItem="qpf-Hb-AkZ" firstAttribute="height" secondItem="CYC-eT-CM3" secondAttribute="height" id="mLO-Pk-5Ky"/>
+                            <constraint firstItem="qpf-Hb-AkZ" firstAttribute="centerX" secondItem="CYC-eT-CM3" secondAttribute="centerX" id="qZK-Il-egB"/>
+                            <constraint firstItem="qpf-Hb-AkZ" firstAttribute="top" secondItem="ppl-ix-PtK" secondAttribute="bottom" constant="27" id="yOX-Qw-k3k"/>
+                            <constraint firstItem="4th-yk-HHL" firstAttribute="top" secondItem="CYC-eT-CM3" secondAttribute="bottom" constant="261" id="zde-4h-hRc"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="mLO-Pk-5Ky"/>
+                                <exclude reference="RQb-1l-TEy"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="submitButton" destination="CYC-eT-CM3" id="dt0-oV-yNb"/>
+                        <outlet property="textView" destination="qpf-Hb-AkZ" id="fgC-DS-Wov"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DmT-vt-mxL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

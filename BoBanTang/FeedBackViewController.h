@@ -1,5 +1,5 @@
 //
-//  settingsViewController.h
+//  FeedBackViewController.h
 //  BoBanTang
 //
 //  Created by Caesar on 15/10/15.
@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AYVibrantButton.h>
+#import <SZTextView.h>
 
-@interface settingsViewController : UITableViewController
+@interface FeedBackViewController : UIViewController
 
 @end
