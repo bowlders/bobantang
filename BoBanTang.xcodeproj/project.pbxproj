@@ -19,6 +19,10 @@
 		395218AE1BCD61B4000C7B68 /* Information.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218AD1BCD61B4000C7B68 /* Information.storyboard */; settings = {ASSET_TAGS = (); }; };
 		395218B01BCD61CD000C7B68 /* Tools.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218AF1BCD61CD000C7B68 /* Tools.storyboard */; settings = {ASSET_TAGS = (); }; };
 		395218B31BCD61DE000C7B68 /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218B11BCD61DE000C7B68 /* Me.storyboard */; settings = {ASSET_TAGS = (); }; };
+		E00255C274F1466994D1D8AC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FBAF7882CE2CEE9746B0D77 /* libPods.a */; };
+		FCF06EDD1BCEB378008514C0 /* BBTToolsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF06EDC1BCEB378008514C0 /* BBTToolsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		FCF06EDF1BCEB4A5008514C0 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF06EDE1BCEB4A5008514C0 /* CoreText.framework */; };
+		FCF06EE31BCF9830008514C0 /* BBTGradeLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF06EE21BCF9830008514C0 /* BBTGradeLoginViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +43,14 @@
 		395218AD1BCD61B4000C7B68 /* Information.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Information.storyboard; sourceTree = "<group>"; };
 		395218AF1BCD61CD000C7B68 /* Tools.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tools.storyboard; sourceTree = "<group>"; };
 		395218B21BCD61DE000C7B68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Me.storyboard; sourceTree = "<group>"; };
+		5FBAF7882CE2CEE9746B0D77 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E53C4577D39289BD3D0525A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		95EF4D4DBB83D553693BB4F2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		FCF06EDB1BCEB378008514C0 /* BBTToolsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTToolsViewController.h; sourceTree = "<group>"; };
+		FCF06EDC1BCEB378008514C0 /* BBTToolsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTToolsViewController.m; sourceTree = "<group>"; };
+		FCF06EDE1BCEB4A5008514C0 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		FCF06EE11BCF9830008514C0 /* BBTGradeLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTGradeLoginViewController.h; sourceTree = "<group>"; };
+		FCF06EE21BCF9830008514C0 /* BBTGradeLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTGradeLoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +58,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCF06EDF1BCEB4A5008514C0 /* CoreText.framework in Frameworks */,
+				E00255C274F1466994D1D8AC /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +71,8 @@
 			children = (
 				3952186E1BCD265D000C7B68 /* BoBanTang */,
 				3952186D1BCD265D000C7B68 /* Products */,
+				9EEAA34709DB17554AED9DD4 /* Pods */,
+				518E2208EFC99407F60AC346 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,7 +87,6 @@
 		3952186E1BCD265D000C7B68 /* BoBanTang */ = {
 			isa = PBXGroup;
 			children = (
-				FCF06ED71BCD560D008514C0 /* BBTMarco.h */,
 				395218981BCD4C33000C7B68 /* Model */,
 				395218891BCD2684000C7B68 /* View */,
 				3952188A1BCD268A000C7B68 /* Controller */,
@@ -168,6 +183,10 @@
 		395218971BCD4C1D000C7B68 /* Second */ = {
 			isa = PBXGroup;
 			children = (
+				FCF06EDB1BCEB378008514C0 /* BBTToolsViewController.h */,
+				FCF06EDC1BCEB378008514C0 /* BBTToolsViewController.m */,
+				FCF06EE11BCF9830008514C0 /* BBTGradeLoginViewController.h */,
+				FCF06EE21BCF9830008514C0 /* BBTGradeLoginViewController.m */,
 			);
 			name = Second;
 			sourceTree = "<group>";
@@ -220,6 +239,24 @@
 			name = Tools;
 			sourceTree = "<group>";
 		};
+		518E2208EFC99407F60AC346 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FCF06EDE1BCEB4A5008514C0 /* CoreText.framework */,
+				5FBAF7882CE2CEE9746B0D77 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9EEAA34709DB17554AED9DD4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7E53C4577D39289BD3D0525A /* Pods.debug.xcconfig */,
+				95EF4D4DBB83D553693BB4F2 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -227,9 +264,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 395218861BCD265D000C7B68 /* Build configuration list for PBXNativeTarget "BoBanTang" */;
 			buildPhases = (
+				9BA31C346F52244E5E1DCA6E /* Check Pods Manifest.lock */,
 				395218681BCD265D000C7B68 /* Sources */,
 				395218691BCD265D000C7B68 /* Frameworks */,
 				3952186A1BCD265D000C7B68 /* Resources */,
+				88C99856D53480939DFA9045 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -289,16 +328,51 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		88C99856D53480939DFA9045 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9BA31C346F52244E5E1DCA6E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		395218681BCD265D000C7B68 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCF06EE31BCF9830008514C0 /* BBTGradeLoginViewController.m in Sources */,
 				3952189F1BCD4F14000C7B68 /* MeViewControllerTableViewController.m in Sources */,
 				395218771BCD265D000C7B68 /* ViewController.m in Sources */,
 				395218741BCD265D000C7B68 /* AppDelegate.m in Sources */,
 				3952187D1BCD265D000C7B68 /* BoBanTang.xcdatamodeld in Sources */,
 				395218711BCD265D000C7B68 /* main.m in Sources */,
+				FCF06EDD1BCEB378008514C0 /* BBTToolsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +496,7 @@
 		};
 		395218871BCD265D000C7B68 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E53C4577D39289BD3D0525A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BoBanTang/Info.plist;
@@ -433,6 +508,7 @@
 		};
 		395218881BCD265D000C7B68 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 95EF4D4DBB83D553693BB4F2 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BoBanTang/Info.plist;
