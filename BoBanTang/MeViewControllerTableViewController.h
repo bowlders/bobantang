@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AMWaveViewController.h>
 
-//“更多”页面对应的viewController
-@interface MeViewControllerTableViewController : UITableViewController
+@interface MeViewControllerTableViewController : UITableViewController<UIAlertViewDelegate, UINavigationControllerDelegate, AMWaveTransitioning>
 
 @end
     

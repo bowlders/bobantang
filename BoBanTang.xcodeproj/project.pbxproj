@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00F422415A1C1B34A2CD5F28 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 263A8D84080296DDB6A53666 /* libPods.a */; };
+		3949B25A1BCF4CD000DB96F7 /* UIColor + BBTColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3949B2591BCF4CD000DB96F7 /* UIColor + BBTColor.m */; settings = {ASSET_TAGS = (); }; };
+		3949B25D1BCF5CF700DB96F7 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3949B25C1BCF5CF700DB96F7 /* SettingsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3949B2601BCF667500DB96F7 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3949B25F1BCF667500DB96F7 /* FeedBackViewController.m */; settings = {ASSET_TAGS = (); }; };
 		395218711BCD265D000C7B68 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 395218701BCD265D000C7B68 /* main.m */; };
 		395218741BCD265D000C7B68 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 395218731BCD265D000C7B68 /* AppDelegate.m */; };
 		395218771BCD265D000C7B68 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395218761BCD265D000C7B68 /* ViewController.m */; };
@@ -26,6 +30,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		263A8D84080296DDB6A53666 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3949B2581BCF4CD000DB96F7 /* UIColor + BBTColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor + BBTColor.h"; sourceTree = "<group>"; };
+		3949B2591BCF4CD000DB96F7 /* UIColor + BBTColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor + BBTColor.m"; sourceTree = "<group>"; };
+		3949B25B1BCF5CF700DB96F7 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		3949B25C1BCF5CF700DB96F7 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		3949B25E1BCF667500DB96F7 /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
+		3949B25F1BCF667500DB96F7 /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
 		3952186C1BCD265D000C7B68 /* BoBanTang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoBanTang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		395218701BCD265D000C7B68 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		395218721BCD265D000C7B68 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -87,6 +98,8 @@
 		3952186E1BCD265D000C7B68 /* BoBanTang */ = {
 			isa = PBXGroup;
 			children = (
+				3949B2581BCF4CD000DB96F7 /* UIColor + BBTColor.h */,
+				3949B2591BCF4CD000DB96F7 /* UIColor + BBTColor.m */,
 				395218981BCD4C33000C7B68 /* Model */,
 				395218891BCD2684000C7B68 /* View */,
 				3952188A1BCD268A000C7B68 /* Controller */,
@@ -227,6 +240,10 @@
 			children = (
 				3952189D1BCD4F14000C7B68 /* MeViewControllerTableViewController.h */,
 				3952189E1BCD4F14000C7B68 /* MeViewControllerTableViewController.m */,
+				3949B25B1BCF5CF700DB96F7 /* SettingsViewController.h */,
+				3949B25C1BCF5CF700DB96F7 /* SettingsViewController.m */,
+				3949B25E1BCF667500DB96F7 /* FeedBackViewController.h */,
+				3949B25F1BCF667500DB96F7 /* FeedBackViewController.m */,
 			);
 			name = "Me( Settings )";
 			sourceTree = "<group>";
@@ -368,9 +385,11 @@
 			files = (
 				FCF06EE31BCF9830008514C0 /* BBTGradeLoginViewController.m in Sources */,
 				3952189F1BCD4F14000C7B68 /* MeViewControllerTableViewController.m in Sources */,
+				3949B25D1BCF5CF700DB96F7 /* SettingsViewController.m in Sources */,
 				395218771BCD265D000C7B68 /* ViewController.m in Sources */,
 				395218741BCD265D000C7B68 /* AppDelegate.m in Sources */,
 				3952187D1BCD265D000C7B68 /* BoBanTang.xcdatamodeld in Sources */,
+				3949B25A1BCF4CD000DB96F7 /* UIColor + BBTColor.m in Sources */,
 				395218711BCD265D000C7B68 /* main.m in Sources */,
 				FCF06EDD1BCEB378008514C0 /* BBTToolsViewController.m in Sources */,
 			);
@@ -500,6 +519,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BoBanTang/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = BBT.BoBanTang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -512,6 +532,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BoBanTang/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = BBT.BoBanTang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
