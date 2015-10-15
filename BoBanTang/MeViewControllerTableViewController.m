@@ -17,6 +17,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"我";
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.scrollEnabled = NO;
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -32,11 +38,83 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    
+    NSInteger rowsNumber = 0;
+    
+    switch (section)
+    {
+        case 0:
+            rowsNumber = 2;
+            break;
+        case 1:
+            rowsNumber = 1;
+            break;
+        case 2:
+            rowsNumber = 2;
+            break;
+    }
+    
+    return rowsNumber;
+    
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    
+    NSString *sectionTitle;
+    
+    switch (section)
+    {
+        case 0:
+            sectionTitle = @"个人";
+            break;
+        case 1:
+            sectionTitle = @"设置";
+            break;
+        case 2:
+            sectionTitle = @"其他";
+            break;
+    }
+    
+    return sectionTitle;
+    
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+
+    return 50;
+    
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+
+    CGRect screenBound = self.view.bounds;
+    CGFloat screenHeight = screenBound.size.height;
+    CGFloat footerHeight = 0.1 * screenHeight;
+    return footerHeight;
+    
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    
+    ((UITableViewHeaderFooterView *)view).backgroundView.backgroundColor = [[UIColor brownColor] colorWithAlphaComponent:0.3f];
+
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section
+{
+    
+    ((UITableViewHeaderFooterView *)view).backgroundView.backgroundColor = [UIColor clearColor];
+    
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -51,30 +129,73 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:meCellIdentifier];
     }
     
-    if (indexPath.row == 0)
+    if (indexPath.section == 0)
     {
-        cell.textLabel.text = @"账户";
+        if (indexPath.row == 0)
+        {
+            cell.textLabel.text = @"账户管理";
+        }
+        else if (indexPath.row == 1)
+        {
+            cell.textLabel.text = @"收藏";
+        }
     }
-    else if (indexPath.row == 1)
-    {
-        cell.textLabel.text = @"收藏";
-    }
-    else if (indexPath.row == 2)
+    else if (indexPath.section == 1)
     {
         cell.textLabel.text = @"设置";
     }
-    else if (indexPath.row == 3)
+    else if (indexPath.section == 2)
     {
-        cell.textLabel.text = @"意见反馈";
+        if (indexPath.row == 0)
+        {
+            cell.textLabel.text = @"意见反馈";
+        }
+        else if (indexPath.row == 1)
+        {
+            cell.textLabel.text = @"关于";
+        }
+
     }
-    else if (indexPath.row == 4)
-    {
-        cell.textLabel.text = @"关于";
-    }
+
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
     
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    if (indexPath.section == 0)
+    {
+        if (indexPath.row == 0)
+        {
+            [self performSegueWithIdentifier:@"showAccountManage" sender:tableView];
+        }
+        else if (indexPath.row == 1)
+        {
+            [self performSegueWithIdentifier:@"showCollections" sender:tableView];
+        }
+    }
+    else if (indexPath.section == 1)
+    {
+        [self performSegueWithIdentifier:@"showSettings" sender:tableView];
+    }
+    else if (indexPath.section == 2)
+    {
+        if (indexPath.row == 0)
+        {
+            [self performSegueWithIdentifier:@"showFeedBack" sender:tableView];
+        }
+        else if (indexPath.row == 1)
+        {
+            [self performSegueWithIdentifier:@"showAbout" sender:tableView];
+        }
+    }
+        
+}
+
+
 
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

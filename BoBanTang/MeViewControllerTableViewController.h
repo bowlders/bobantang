@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-//“更多”页面对应的viewController
-@interface MeViewControllerTableViewController : UITableViewController
+@interface MeViewControllerTableViewController : UITableViewController<UIAlertViewDelegate>
 
 @end
     
