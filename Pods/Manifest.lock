@@ -30,7 +30,7 @@ PODS:
     - pop
 
 DEPENDENCIES:
-  - AFNetworking (~> 2.6.0)
+  - AFNetworking
   - AMWaveTransition
   - FlatUIKit
   - TSMessages
