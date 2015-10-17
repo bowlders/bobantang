@@ -57,6 +57,24 @@ install_resource()
       ;;
   esac
 }
+if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_add_image@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_back@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_bg_1@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_bg_2@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_btn@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_btn_new@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_warning@2x.png"
+fi
+if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_add_image@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_back@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_bg_1@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_bg_2@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_btn@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_btn_new@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_warning@2x.png"
+fi
 
 mkdir -p "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

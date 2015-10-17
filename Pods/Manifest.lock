@@ -1,16 +1,22 @@
 PODS:
   - AMWaveTransition (0.6.0)
+  - AVOSCloud (3.1.5.2)
   - AYVibrantButton (1.0.3)
+  - LeanCloudFeedback (0.0.7):
+    - AVOSCloud (~> 3.1)
   - SZTextView (1.2.1)
 
 DEPENDENCIES:
   - AMWaveTransition
   - AYVibrantButton
+  - LeanCloudFeedback
   - SZTextView
 
 SPEC CHECKSUMS:
   AMWaveTransition: a00588006f144d289a390aabcfa1fa1e16bb9296
+  AVOSCloud: 7b1305f61ac6cd3367c683deab3fc0700982f1c1
   AYVibrantButton: 7cc5b2c74f6f6a0a52d5b0db361a9d3b755bc448
+  LeanCloudFeedback: 35d2effa89e03e9a3ce2158874a6f127751f7257
   SZTextView: 906df45afd3c1b24fc5252088d5ef8061513c238
 
 COCOAPODS: 0.39.0

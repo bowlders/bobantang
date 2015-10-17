@@ -7,84 +7,185 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00B21544DD5C548048D8796956D16BD3 /* SZTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF34BF00CB798F89472F0440B5D538D1 /* SZTextView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		13939356A7759703B45390C0F7D256FE /* AYVibrantButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 6590410251FB7CE598E58F2FE2B59575 /* AYVibrantButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2E8209DB6CC7B4742B63675032C09403 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B7BDF5CE5CB8F095FE12DA55D9A9BB /* UIKit.framework */; };
-		3CA88ED42D62A415B5016AB76FC3FCD1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */; };
-		3F76A4DFA1ABD59AB5016759EDE540D6 /* SZTextView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F872C4530AE1978565008DDA5007E /* SZTextView-dummy.m */; };
-		428A09E3D81603F03279E19B57CAADC3 /* AMWaveViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C0C3A49A341F3683B8CAE9F6BE875C0 /* AMWaveViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		735A16456CB616E752A86BAD7529BCC3 /* AMWaveTransition-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F650D984AB59B6B3C2B57F4F97765 /* AMWaveTransition-dummy.m */; };
-		74818C85CED708311CBCBD18A5D142EF /* AMWaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B256E9F93CD480ABDD8BA616B36B0C4 /* AMWaveViewController.m */; };
-		895C426FC6381348E0338BCAC4022F46 /* AMWaveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 23DC626D4071B0FAB7CE7AD2F53A58FC /* AMWaveTransition.m */; };
-		92B6F74E2CD0B57DEAC666594F31286A /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 272643F56613CA0D336AE3DBF19DC404 /* Pods-dummy.m */; };
-		9E5DA402C23474464B0D1077544C5889 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */; };
-		A59A31518D13AC6D847D55BBD7603BCC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */; };
-		A75470C0157A9403D2BB043FE4A087F0 /* AYVibrantButton-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC66661A74930134B9886CE0ACC7C30 /* AYVibrantButton-dummy.m */; };
-		AA89AFCC128CCCDA8A2FAB9AD1896DE6 /* SZTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6009AD72B577CF88658690D6A7A85E58 /* SZTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B0F9D8D1E7680A896C3AF12AE95DF1D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */; };
-		E2097F717F1D1DE65C63ACEC6E318380 /* AYVibrantButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F7A0E6CB96BD0492E6DD5DBFFAE099 /* AYVibrantButton.m */; };
-		EA3EF5598BFEE191AAE38C337CFB0681 /* AMWaveTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C08B8FD8ED94C339165EDF35A090658 /* AMWaveTransition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B0A96BF5364C50C2D9B954A189ECF17 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DD25CA4A497622D5ABF4C433D79E4DE /* QuartzCore.framework */; };
+		0F48FA59B670153BE8F29ABCE55D25D9 /* LCUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 08AC67AA289F825F741A3052A39C4F02 /* LCUtils.m */; };
+		1088DA320CC1222C180D3EB935C24212 /* LCUserFeedbackViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D91B7F798A4D4667A27E9B69FA3951E /* LCUserFeedbackViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		110562B3CAF52D329E49A59D19F1A6FA /* LCUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 295C13358F7F7E823941D454C91E84B9 /* LCUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		13939356A7759703B45390C0F7D256FE /* AYVibrantButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 4ECF8868BE73383723B18BCD979BAF77 /* AYVibrantButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		25B34AD4643C070C134EF0FF3B49B262 /* LCHttpClient.h in Headers */ = {isa = PBXBuildFile; fileRef = EEA402FEBA27057A5F7B75910251BD83 /* LCHttpClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2E1F7F235C706A41C7B66EAB3DF7AC3B /* LCUserFeedbackImageViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DAFB7BDE6B7A1252744F5BEDCB826FE /* LCUserFeedbackImageViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2E8209DB6CC7B4742B63675032C09403 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED04AE2201316F6590E7AD9952706C7B /* UIKit.framework */; };
+		3B21F2A452C39F53EF29C6B652A373FD /* LCUserFeedbackReply_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = CB1C56FBD85E66C0B7D89B4E502D0D94 /* LCUserFeedbackReply_Internal.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3CA88ED42D62A415B5016AB76FC3FCD1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE437620300D81EED04DF8C0301AF9D9 /* Foundation.framework */; };
+		428A09E3D81603F03279E19B57CAADC3 /* AMWaveViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2690D4A1B33543D29859AED17873ADF0 /* AMWaveViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		499A8361ADAB41EA1A4D7A27C3C23AE5 /* LCUserFeedbackAgent.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F1281B3B160505A991055447256D7FA /* LCUserFeedbackAgent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		505A3E22B99C6AD9CA4E540240085BA5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE437620300D81EED04DF8C0301AF9D9 /* Foundation.framework */; };
+		5568ADFB7F55E65F3FBC82CF13881530 /* SZTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A402AA68EFC858F0F8508B6CF2700614 /* SZTextView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		5C01ADEAACEDB74DBF98060639303150 /* LCUserFeedbackReply.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FDF4F818C2A1AF816D54FF4B87CCC6 /* LCUserFeedbackReply.m */; };
+		732EEE84B579FDDF82574CC3B4C24EFB /* SZTextView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7F3220A6CBD55039960549648D9B21 /* SZTextView-dummy.m */; };
+		735A16456CB616E752A86BAD7529BCC3 /* AMWaveTransition-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 085C97478366478170628234AA0144CB /* AMWaveTransition-dummy.m */; };
+		74818C85CED708311CBCBD18A5D142EF /* AMWaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9DB7B8A43A79CFA41391A68C388DA41 /* AMWaveViewController.m */; };
+		760E403340BB4A520919094B6A108AB5 /* SZTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F7CDE6AEE0C634CE4DEB2B3E24C9799 /* SZTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		77A9DB2FB36BF844C52B390A18E61E38 /* LeanCloudFeedback-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A589274536CCC5D2F20C07A87CC36635 /* LeanCloudFeedback-dummy.m */; };
+		7D4C505D23204B7B2FA6315E30EC71E5 /* LCUserFeedbackThread_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2521ED5BA9EC1822F6F8E4DBC12C4517 /* LCUserFeedbackThread_Internal.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		88298A1399D6341CC230A1F0ECD1145F /* LCUserFeedbackThread.h in Headers */ = {isa = PBXBuildFile; fileRef = CAD2D0405A838F6833A60BDD30FB8F26 /* LCUserFeedbackThread.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		895C426FC6381348E0338BCAC4022F46 /* AMWaveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 005B4C78EFB29E7265BF0155A1381A92 /* AMWaveTransition.m */; };
+		8D65F5622DD9E8D6CA05170A5944C0B4 /* LCUserFeedbackReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E51923B384DCF1F1EE338F237CD21E /* LCUserFeedbackReplyCell.m */; };
+		9593FBD8B552D022A216B5AF98AC4862 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED04AE2201316F6590E7AD9952706C7B /* UIKit.framework */; };
+		9E5DA402C23474464B0D1077544C5889 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE437620300D81EED04DF8C0301AF9D9 /* Foundation.framework */; };
+		9EAFCF8C97C2AFE96E77CE4488CD4727 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 272643F56613CA0D336AE3DBF19DC404 /* Pods-dummy.m */; };
+		A614B03A39EE319FD2F28099D5C5FAEB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE437620300D81EED04DF8C0301AF9D9 /* Foundation.framework */; };
+		A75470C0157A9403D2BB043FE4A087F0 /* AYVibrantButton-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E189DC556752004D5331332FB25E16BA /* AYVibrantButton-dummy.m */; };
+		A7F10CFE8F18B557E993AFF2321EEBEE /* LeanCloudFeedback.h in Headers */ = {isa = PBXBuildFile; fileRef = 01D6B6FA7F03CBDE2563CA59558D8E71 /* LeanCloudFeedback.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B62F450627F6D6E5FD4E8F800F4425C8 /* LCUserFeedbackImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6F44655F5BBB4297318B871E43B0C1 /* LCUserFeedbackImageViewController.m */; };
+		BD8AA89293DF83BB7AB289028BBF7767 /* LCUserFeedbackReplyCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 2149A51A09D40AF8884839A9502AD36D /* LCUserFeedbackReplyCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C3F3F17AFA137739EB2842AB80F9075A /* LCUserFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C4210D44377B6FBD646F838366D81E /* LCUserFeedbackViewController.m */; };
+		DA89FF46BEFDC465B7430223E6421DD6 /* LCUserFeedbackReply.h in Headers */ = {isa = PBXBuildFile; fileRef = 1745E6BE937D9D55AF3481D6AA787D55 /* LCUserFeedbackReply.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DEA7845C08CD9EA51A35D8FFD5C15D15 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE437620300D81EED04DF8C0301AF9D9 /* Foundation.framework */; };
+		E2097F717F1D1DE65C63ACEC6E318380 /* AYVibrantButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0EA6E71461421DA2C51FC069CE698E /* AYVibrantButton.m */; };
+		E33AB7CE52CA07FF45BF867A1995BF03 /* LCUserFeedbackAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = E593073E762901DC0A628F3BCB3DC5C5 /* LCUserFeedbackAgent.m */; };
+		E8781334AA761D9592FF70FDEF525247 /* LCUserFeedbackThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F7F4749B16595DA306D3E6EF00317E /* LCUserFeedbackThread.m */; };
+		EA3EF5598BFEE191AAE38C337CFB0681 /* AMWaveTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = B6CF61D1A0107A38A78CA44A6C0343D7 /* AMWaveTransition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED63BB02EE80CB982ED4C7A9D370023B /* LCHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5ABE63CD136D5EEEC94BACA4C061BE /* LCHttpClient.m */; };
+		F55F7F0FEE7BA021C1D33EDA0C8C4B11 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE7FD0E16F3FACCFE19068F1E872D9F /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		7F4B6C75D8E0C7B8311C8899B49AE172 /* PBXContainerItemProxy */ = {
+		5F26A03952EF685682DCEF35246F9206 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1270E9FC7008E061331C787615680DC4;
-			remoteInfo = SZTextView;
+			remoteGlobalIDString = 2445D59777BB25D4208674679E4BCBCA;
+			remoteInfo = LeanCloudFeedback;
 		};
-		AB30FBCE5991F606513F7BEBF3979088 /* PBXContainerItemProxy */ = {
+		DB11E66AA02FA6EB0A3A12F9A6C60490 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 35B27995BAE6B272A102E3FA251DAE4E;
 			remoteInfo = AMWaveTransition;
 		};
-		E6B14C15A62DA062AF37DBFA7C59CED4 /* PBXContainerItemProxy */ = {
+		E511562E9F5EC4ECA810D4CA5931B217 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 5525DF0BE36122A1678E64299C4F22C2;
 			remoteInfo = AYVibrantButton;
 		};
+		EC76F390C390FA16B860C0386AA1489A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7830F7D5C6A30705696EE3388B1E9012;
+			remoteInfo = SZTextView;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		06EAAD5D98A6E89507F8C76F74BD53D8 /* AMWaveTransition.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AMWaveTransition.xcconfig; sourceTree = "<group>"; };
+		005B4C78EFB29E7265BF0155A1381A92 /* AMWaveTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AMWaveTransition.m; path = Source/AMWaveTransition.m; sourceTree = "<group>"; };
+		01D6B6FA7F03CBDE2563CA59558D8E71 /* LeanCloudFeedback.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LeanCloudFeedback.h; path = LeanCloudFeedback/LeanCloudFeedback.h; sourceTree = "<group>"; };
+		0699081376AA8E8125D6E9304AB83052 /* AVLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVLogger.h; sourceTree = "<group>"; };
+		085C97478366478170628234AA0144CB /* AMWaveTransition-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AMWaveTransition-dummy.m"; sourceTree = "<group>"; };
+		08AC67AA289F825F741A3052A39C4F02 /* LCUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCUtils.m; path = LeanCloudFeedback/LCUtils.m; sourceTree = "<group>"; };
+		0B34647398DEDC499F3ED7C43666E6EA /* AVSubclassing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVSubclassing.h; sourceTree = "<group>"; };
+		0DD25CA4A497622D5ABF4C433D79E4DE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		0F4FA3CF360EFB619C9B25AF7C1F67AB /* AVQuery.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVQuery.h; sourceTree = "<group>"; };
 		10834806BD7B412BC24F347361FA2C8E /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
-		1B256E9F93CD480ABDD8BA616B36B0C4 /* AMWaveViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AMWaveViewController.m; path = Source/AMWaveViewController.m; sourceTree = "<group>"; };
-		23DC626D4071B0FAB7CE7AD2F53A58FC /* AMWaveTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AMWaveTransition.m; path = Source/AMWaveTransition.m; sourceTree = "<group>"; };
-		2652A210F7CF17528EF40F585DF91D9B /* libSZTextView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSZTextView.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		11E51923B384DCF1F1EE338F237CD21E /* LCUserFeedbackReplyCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCUserFeedbackReplyCell.m; path = LeanCloudFeedback/LCUserFeedbackReplyCell.m; sourceTree = "<group>"; };
+		15FBCFC4B41AF6E2CFC7D66FA5314EC1 /* feedback_add_image@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedback_add_image@2x.png"; path = "LeanCloudFeedback/resources/feedback_add_image@2x.png"; sourceTree = "<group>"; };
+		1745E6BE937D9D55AF3481D6AA787D55 /* LCUserFeedbackReply.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUserFeedbackReply.h; path = LeanCloudFeedback/LCUserFeedbackReply.h; sourceTree = "<group>"; };
+		17F86052A3043998B5D1084331AC04CC /* AMWaveTransition.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AMWaveTransition.xcconfig; sourceTree = "<group>"; };
+		1874B2FF66C5C88C7AA7B3F335EF86BD /* feedback_btn@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedback_btn@2x.png"; path = "LeanCloudFeedback/resources/feedback_btn@2x.png"; sourceTree = "<group>"; };
+		18AB0439D90907F7333EE5696894B7F8 /* AVGeoPoint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVGeoPoint.h; sourceTree = "<group>"; };
+		1B1CE7B47BD149AC131506BE3DB00DED /* AVObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVObject.h; sourceTree = "<group>"; };
+		1F1281B3B160505A991055447256D7FA /* LCUserFeedbackAgent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUserFeedbackAgent.h; path = LeanCloudFeedback/LCUserFeedbackAgent.h; sourceTree = "<group>"; };
+		1F468B538F56839D0A1D54D427C73233 /* AVSearchQuery.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVSearchQuery.h; sourceTree = "<group>"; };
+		1F7F3220A6CBD55039960549648D9B21 /* SZTextView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SZTextView-dummy.m"; sourceTree = "<group>"; };
+		2149A51A09D40AF8884839A9502AD36D /* LCUserFeedbackReplyCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUserFeedbackReplyCell.h; path = LeanCloudFeedback/LCUserFeedbackReplyCell.h; sourceTree = "<group>"; };
+		2521ED5BA9EC1822F6F8E4DBC12C4517 /* LCUserFeedbackThread_Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUserFeedbackThread_Internal.h; path = LeanCloudFeedback/LCUserFeedbackThread_Internal.h; sourceTree = "<group>"; };
+		25F7F4749B16595DA306D3E6EF00317E /* LCUserFeedbackThread.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCUserFeedbackThread.m; path = LeanCloudFeedback/LCUserFeedbackThread.m; sourceTree = "<group>"; };
+		2690D4A1B33543D29859AED17873ADF0 /* AMWaveViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AMWaveViewController.h; path = Source/AMWaveViewController.h; sourceTree = "<group>"; };
 		272643F56613CA0D336AE3DBF19DC404 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
+		274D69C4AF6A2580281F2D6984FDC0A6 /* libAYVibrantButton.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAYVibrantButton.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		295C13358F7F7E823941D454C91E84B9 /* LCUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUtils.h; path = LeanCloudFeedback/LCUtils.h; sourceTree = "<group>"; };
+		2CE4AE6B1F67623939F4342A03304462 /* AYVibrantButton.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AYVibrantButton.xcconfig; sourceTree = "<group>"; };
+		30465759D6FB650CAB8DDB9A4D7B9178 /* libSZTextView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSZTextView.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		37DB56D75062CC75FCB0966E1C6E8A8E /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
+		3E74334F3655EAD401CD98F63E308765 /* SZTextView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SZTextView-prefix.pch"; sourceTree = "<group>"; };
+		49B47986BFD4B29E2862EE13C30A99DF /* libLeanCloudFeedback.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLeanCloudFeedback.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A9535A1F8C6585773BA3DAE34694252 /* LeanCloudFeedback-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LeanCloudFeedback-prefix.pch"; sourceTree = "<group>"; };
+		4AE7FD0E16F3FACCFE19068F1E872D9F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		4E762F23EC34ED4A6FF3312D84E33A40 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
-		59150E0B9D93D5E5CCBE280D91B3487B /* AMWaveTransition-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AMWaveTransition-prefix.pch"; sourceTree = "<group>"; };
-		5C0C3A49A341F3683B8CAE9F6BE875C0 /* AMWaveViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AMWaveViewController.h; path = Source/AMWaveViewController.h; sourceTree = "<group>"; };
-		5D5F872C4530AE1978565008DDA5007E /* SZTextView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SZTextView-dummy.m"; sourceTree = "<group>"; };
-		6009AD72B577CF88658690D6A7A85E58 /* SZTextView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SZTextView.h; path = Classes/SZTextView.h; sourceTree = "<group>"; };
-		6590410251FB7CE598E58F2FE2B59575 /* AYVibrantButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AYVibrantButton.h; path = AYVibrantButton/AYVibrantButton.h; sourceTree = "<group>"; };
+		4ECF8868BE73383723B18BCD979BAF77 /* AYVibrantButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AYVibrantButton.h; path = AYVibrantButton/AYVibrantButton.h; sourceTree = "<group>"; };
+		4F7CDE6AEE0C634CE4DEB2B3E24C9799 /* SZTextView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SZTextView.h; path = Classes/SZTextView.h; sourceTree = "<group>"; };
+		56C4210D44377B6FBD646F838366D81E /* LCUserFeedbackViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCUserFeedbackViewController.m; path = LeanCloudFeedback/LCUserFeedbackViewController.m; sourceTree = "<group>"; };
+		5DAFB7BDE6B7A1252744F5BEDCB826FE /* LCUserFeedbackImageViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUserFeedbackImageViewController.h; path = LeanCloudFeedback/LCUserFeedbackImageViewController.h; sourceTree = "<group>"; };
+		5EC4376C99CDF76DADDFFB90C8910118 /* AVPush.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVPush.h; sourceTree = "<group>"; };
+		667AE960D0FE713FF23D7D25AE690FB5 /* feedback_bg_2@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedback_bg_2@2x.png"; path = "LeanCloudFeedback/resources/feedback_bg_2@2x.png"; sourceTree = "<group>"; };
+		6729926B82C16763535F892A74AE313A /* AVCloud.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVCloud.h; sourceTree = "<group>"; };
 		6911BECA35E7518D864239B7E898EEF3 /* Pods-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-frameworks.sh"; sourceTree = "<group>"; };
-		6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		72C033E38795FDC0F91EE36414EA723E /* libAMWaveTransition.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAMWaveTransition.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		76ACC6C2D4ADC4566B59E358D0A8F52E /* AYVibrantButton-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AYVibrantButton-prefix.pch"; sourceTree = "<group>"; };
-		7E0F650D984AB59B6B3C2B57F4F97765 /* AMWaveTransition-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AMWaveTransition-dummy.m"; sourceTree = "<group>"; };
-		83F7DB6C616044A47CC6581A4308AB8E /* AYVibrantButton.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AYVibrantButton.xcconfig; sourceTree = "<group>"; };
-		920BA071C0DEFABDD585B0EF2124A21C /* SZTextView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SZTextView.xcconfig; sourceTree = "<group>"; };
+		6B010ECB94ECDDE860F2FD68BEB0B769 /* AVGroup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVGroup.h; sourceTree = "<group>"; };
+		6D91B7F798A4D4667A27E9B69FA3951E /* LCUserFeedbackViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUserFeedbackViewController.h; path = LeanCloudFeedback/LCUserFeedbackViewController.h; sourceTree = "<group>"; };
+		6E965367E419F4F20D1A4E9272B678F0 /* AVConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVConstants.h; sourceTree = "<group>"; };
+		6FB09140438FA078AA694F371A152AA3 /* AVACL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVACL.h; sourceTree = "<group>"; };
+		7027BA1023B5C7362E5C94D7CABD5A64 /* LeanCloudFeedback.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LeanCloudFeedback.xcconfig; sourceTree = "<group>"; };
+		7C40901F001DA0070181FE0C6078E5A7 /* AVObject+Subclass.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AVObject+Subclass.h"; sourceTree = "<group>"; };
+		7F2907B1528C1BC683D7598AA59F72C6 /* AVOSCloud.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVOSCloud.h; sourceTree = "<group>"; };
+		8C9249EC606B4204C4BF3C2E928E1C1B /* AVSession.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVSession.h; sourceTree = "<group>"; };
 		98C98CDFB3F20F2925F6CD1F141BB14F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
-		9C08B8FD8ED94C339165EDF35A090658 /* AMWaveTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AMWaveTransition.h; path = Source/AMWaveTransition.h; sourceTree = "<group>"; };
+		9C3F1CBA69D021869204A1BB79428F15 /* AVHistoryMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVHistoryMessage.h; sourceTree = "<group>"; };
+		A0B669ACA8BDE716E0E0905F5D3EF16E /* AVHistoryMessageQuery.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVHistoryMessageQuery.h; sourceTree = "<group>"; };
+		A1872A9F0093EF230857E6CA00D8FCDA /* AVMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVMessage.h; sourceTree = "<group>"; };
 		A1A36D34413696BE466E2CA0AFF194DA /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
-		A5F7A0E6CB96BD0492E6DD5DBFFAE099 /* AYVibrantButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AYVibrantButton.m; path = AYVibrantButton/AYVibrantButton.m; sourceTree = "<group>"; };
-		ACC66661A74930134B9886CE0ACC7C30 /* AYVibrantButton-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AYVibrantButton-dummy.m"; sourceTree = "<group>"; };
-		B44AA846BEA845F1FEE3B86C37469E62 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A20F182CF52560EF7721122BF39C3283 /* feedback_back@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedback_back@2x.png"; path = "LeanCloudFeedback/resources/feedback_back@2x.png"; sourceTree = "<group>"; };
+		A3FDF4F818C2A1AF816D54FF4B87CCC6 /* LCUserFeedbackReply.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCUserFeedbackReply.m; path = LeanCloudFeedback/LCUserFeedbackReply.m; sourceTree = "<group>"; };
+		A402AA68EFC858F0F8508B6CF2700614 /* SZTextView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SZTextView.m; path = Classes/SZTextView.m; sourceTree = "<group>"; };
+		A589274536CCC5D2F20C07A87CC36635 /* LeanCloudFeedback-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LeanCloudFeedback-dummy.m"; sourceTree = "<group>"; };
+		A61E4572687AE2CD0100B72F149BDAF8 /* feedback_btn_new@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedback_btn_new@2x.png"; path = "LeanCloudFeedback/resources/feedback_btn_new@2x.png"; sourceTree = "<group>"; };
+		A6DA56F20F7F2C197D67A79F6FE3E509 /* libAMWaveTransition.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAMWaveTransition.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9D33ACA6C029F9B6FC40DEDDE7D8080 /* AVSignature.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVSignature.h; sourceTree = "<group>"; };
+		A9DB7B8A43A79CFA41391A68C388DA41 /* AMWaveViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AMWaveViewController.m; path = Source/AMWaveViewController.m; sourceTree = "<group>"; };
+		ABC3A9379223841D94C7D1177479CF62 /* AVStatus.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVStatus.h; sourceTree = "<group>"; };
+		AEB25075F599A42302FB97E75AA44E3C /* AVRelation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVRelation.h; sourceTree = "<group>"; };
+		B36D434314E5CAD550B0949917543C69 /* feedback_warning@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedback_warning@2x.png"; path = "LeanCloudFeedback/resources/feedback_warning@2x.png"; sourceTree = "<group>"; };
+		B6CF61D1A0107A38A78CA44A6C0343D7 /* AMWaveTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AMWaveTransition.h; path = Source/AMWaveTransition.h; sourceTree = "<group>"; };
+		B72C07E70B3A1D13FFDA170C4EB7081E /* AVUser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVUser.h; sourceTree = "<group>"; };
+		B9B339837B51B9997E3933A723937C49 /* AVFileQuery.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVFileQuery.h; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		C3B7BDF5CE5CB8F095FE12DA55D9A9BB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		DBA00DF7786A584A1CCC3E3D4E039A1B /* libAYVibrantButton.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAYVibrantButton.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		DFE7DD768968EE0DA83BB6FE7551BD7D /* SZTextView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SZTextView-prefix.pch"; sourceTree = "<group>"; };
-		FF34BF00CB798F89472F0440B5D538D1 /* SZTextView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SZTextView.m; path = Classes/SZTextView.m; sourceTree = "<group>"; };
+		CA33FAEA2D887745436EFEEA44CD6A02 /* AYVibrantButton-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AYVibrantButton-prefix.pch"; sourceTree = "<group>"; };
+		CAD2D0405A838F6833A60BDD30FB8F26 /* LCUserFeedbackThread.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUserFeedbackThread.h; path = LeanCloudFeedback/LCUserFeedbackThread.h; sourceTree = "<group>"; };
+		CB1C56FBD85E66C0B7D89B4E502D0D94 /* LCUserFeedbackReply_Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUserFeedbackReply_Internal.h; path = LeanCloudFeedback/LCUserFeedbackReply_Internal.h; sourceTree = "<group>"; };
+		CC34091BD631720A9C6D4BEF373E4734 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC5D025C24BCA4D532F40CEEFDA397CD /* AVFile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVFile.h; sourceTree = "<group>"; };
+		CCF8BB64557AA196DB0164898E6F4165 /* AVRole.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVRole.h; sourceTree = "<group>"; };
+		CE437620300D81EED04DF8C0301AF9D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		D21ECDE17F7583CC46284B62FDA27AD4 /* AVAnonymousUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVAnonymousUtils.h; sourceTree = "<group>"; };
+		DB0EA6E71461421DA2C51FC069CE698E /* AYVibrantButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AYVibrantButton.m; path = AYVibrantButton/AYVibrantButton.m; sourceTree = "<group>"; };
+		DC5ABE63CD136D5EEEC94BACA4C061BE /* LCHttpClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCHttpClient.m; path = LeanCloudFeedback/LCHttpClient.m; sourceTree = "<group>"; };
+		DDEB1850C5F34F24471FBCB95C8D4CF9 /* libAVOSCloud.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = libAVOSCloud.a; sourceTree = "<group>"; };
+		E189DC556752004D5331332FB25E16BA /* AYVibrantButton-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AYVibrantButton-dummy.m"; sourceTree = "<group>"; };
+		E199C8372FEEA3F4DAC431D94A37DF3B /* AMWaveTransition-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AMWaveTransition-prefix.pch"; sourceTree = "<group>"; };
+		E3CAC10AAE6E4A260BC91688451A9685 /* AVCloudQueryResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVCloudQueryResult.h; sourceTree = "<group>"; };
+		E593073E762901DC0A628F3BCB3DC5C5 /* LCUserFeedbackAgent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCUserFeedbackAgent.m; path = LeanCloudFeedback/LCUserFeedbackAgent.m; sourceTree = "<group>"; };
+		E5991C507BEF52815DD496E521F02625 /* AVAnalytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVAnalytics.h; sourceTree = "<group>"; };
+		E829161B2B309E1CEAA5D8DF42F12350 /* AVInstallation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVInstallation.h; sourceTree = "<group>"; };
+		E94492C9130CF48A4898EEC5AB120E4C /* SZTextView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SZTextView.xcconfig; sourceTree = "<group>"; };
+		ECAED2AAC4060425BFE388E4463436F1 /* AVSearchSortBuilder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVSearchSortBuilder.h; sourceTree = "<group>"; };
+		ED04AE2201316F6590E7AD9952706C7B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		ED5CBE6A435DB8ECFA7433593765BA14 /* feedback_bg_1@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedback_bg_1@2x.png"; path = "LeanCloudFeedback/resources/feedback_bg_1@2x.png"; sourceTree = "<group>"; };
+		EEA402FEBA27057A5F7B75910251BD83 /* LCHttpClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCHttpClient.h; path = LeanCloudFeedback/LCHttpClient.h; sourceTree = "<group>"; };
+		FA6F44655F5BBB4297318B871E43B0C1 /* LCUserFeedbackImageViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCUserFeedbackImageViewController.m; path = LeanCloudFeedback/LCUserFeedbackImageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1735216F14598F268943C3BB9E06E657 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A614B03A39EE319FD2F28099D5C5FAEB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		37D98AFC90B42A4254E0CC33404AE95E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -93,19 +194,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		49EA1BB66B09004914E243B1BFD5E2A3 /* Frameworks */ = {
+		A38CEBC27E346E41DC95188B0E34C1A2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0F9D8D1E7680A896C3AF12AE95DF1D5 /* Foundation.framework in Frameworks */,
+				DEA7845C08CD9EA51A35D8FFD5C15D15 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A025CB729BFBA0930904CDDB1B430B6E /* Frameworks */ = {
+		FB2CFFE6C677E21164C523F28EB108E8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A59A31518D13AC6D847D55BBD7603BCC /* Foundation.framework in Frameworks */,
+				F55F7F0FEE7BA021C1D33EDA0C8C4B11 /* CoreGraphics.framework in Frameworks */,
+				505A3E22B99C6AD9CA4E540240085BA5 /* Foundation.framework in Frameworks */,
+				0B0A96BF5364C50C2D9B954A189ECF17 /* QuartzCore.framework in Frameworks */,
+				9593FBD8B552D022A216B5AF98AC4862 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,107 +233,173 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		079F0459CBA216D046D43CD38E480CD8 /* AMWaveTransition */ = {
+		14B8B9B15ECBE87983FF987239AB2D7B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9C08B8FD8ED94C339165EDF35A090658 /* AMWaveTransition.h */,
-				23DC626D4071B0FAB7CE7AD2F53A58FC /* AMWaveTransition.m */,
-				5C0C3A49A341F3683B8CAE9F6BE875C0 /* AMWaveViewController.h */,
-				1B256E9F93CD480ABDD8BA616B36B0C4 /* AMWaveViewController.m */,
-				732D0FA8B498FC1151009966B47CD72A /* Support Files */,
-			);
-			path = AMWaveTransition;
-			sourceTree = "<group>";
-		};
-		17313DA4C662927B950B184DFCA69D71 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				079F0459CBA216D046D43CD38E480CD8 /* AMWaveTransition */,
-				4A0A42CECFBCB78D70D3B6D195C6FF22 /* AYVibrantButton */,
-				1C8CCA668EF3DE1EB31958F830E5EA7B /* SZTextView */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		18340F12838DEE43507667CC74401EB1 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */,
-				C3B7BDF5CE5CB8F095FE12DA55D9A9BB /* UIKit.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		1C8CCA668EF3DE1EB31958F830E5EA7B /* SZTextView */ = {
-			isa = PBXGroup;
-			children = (
-				6009AD72B577CF88658690D6A7A85E58 /* SZTextView.h */,
-				FF34BF00CB798F89472F0440B5D538D1 /* SZTextView.m */,
-				7CDEAD0B459C253CCD0F32F7DC4A75AA /* Support Files */,
-			);
-			path = SZTextView;
-			sourceTree = "<group>";
-		};
-		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				18340F12838DEE43507667CC74401EB1 /* iOS */,
+				A9203A0FF197B8764CD853B6EE3A159E /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4A0A42CECFBCB78D70D3B6D195C6FF22 /* AYVibrantButton */ = {
+		1A5DBA49F6F500EFAF32397EE49ED750 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				6590410251FB7CE598E58F2FE2B59575 /* AYVibrantButton.h */,
-				A5F7A0E6CB96BD0492E6DD5DBFFAE099 /* AYVibrantButton.m */,
-				BF85AAF2207EB06B5C3001D1310983CD /* Support Files */,
+				2CE4AE6B1F67623939F4342A03304462 /* AYVibrantButton.xcconfig */,
+				E189DC556752004D5331332FB25E16BA /* AYVibrantButton-dummy.m */,
+				CA33FAEA2D887745436EFEEA44CD6A02 /* AYVibrantButton-prefix.pch */,
 			);
-			path = AYVibrantButton;
+			name = "Support Files";
+			path = "../Target Support Files/AYVibrantButton";
 			sourceTree = "<group>";
 		};
-		732D0FA8B498FC1151009966B47CD72A /* Support Files */ = {
+		440A7DE40172D2A9BF53082C0A4B26EA /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				06EAAD5D98A6E89507F8C76F74BD53D8 /* AMWaveTransition.xcconfig */,
-				7E0F650D984AB59B6B3C2B57F4F97765 /* AMWaveTransition-dummy.m */,
-				59150E0B9D93D5E5CCBE280D91B3487B /* AMWaveTransition-prefix.pch */,
+				17F86052A3043998B5D1084331AC04CC /* AMWaveTransition.xcconfig */,
+				085C97478366478170628234AA0144CB /* AMWaveTransition-dummy.m */,
+				E199C8372FEEA3F4DAC431D94A37DF3B /* AMWaveTransition-prefix.pch */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/AMWaveTransition";
 			sourceTree = "<group>";
 		};
-		7CDEAD0B459C253CCD0F32F7DC4A75AA /* Support Files */ = {
+		484F5AA75C157552E9B745F2D1933F5F /* SZTextView */ = {
 			isa = PBXGroup;
 			children = (
-				920BA071C0DEFABDD585B0EF2124A21C /* SZTextView.xcconfig */,
-				5D5F872C4530AE1978565008DDA5007E /* SZTextView-dummy.m */,
-				DFE7DD768968EE0DA83BB6FE7551BD7D /* SZTextView-prefix.pch */,
+				4F7CDE6AEE0C634CE4DEB2B3E24C9799 /* SZTextView.h */,
+				A402AA68EFC858F0F8508B6CF2700614 /* SZTextView.m */,
+				833A3CB4599FD14BD696140A5EA3642A /* Support Files */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/SZTextView";
+			path = SZTextView;
+			sourceTree = "<group>";
+		};
+		512435930207D744BBDEEA373B031B9A /* AMWaveTransition */ = {
+			isa = PBXGroup;
+			children = (
+				B6CF61D1A0107A38A78CA44A6C0343D7 /* AMWaveTransition.h */,
+				005B4C78EFB29E7265BF0155A1381A92 /* AMWaveTransition.m */,
+				2690D4A1B33543D29859AED17873ADF0 /* AMWaveViewController.h */,
+				A9DB7B8A43A79CFA41391A68C388DA41 /* AMWaveViewController.m */,
+				440A7DE40172D2A9BF53082C0A4B26EA /* Support Files */,
+			);
+			path = AMWaveTransition;
+			sourceTree = "<group>";
+		};
+		5476E2D30063C0539E3128CAC3FD21CC /* AYVibrantButton */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF8868BE73383723B18BCD979BAF77 /* AYVibrantButton.h */,
+				DB0EA6E71461421DA2C51FC069CE698E /* AYVibrantButton.m */,
+				1A5DBA49F6F500EFAF32397EE49ED750 /* Support Files */,
+			);
+			path = AYVibrantButton;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
-				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
-				17313DA4C662927B950B184DFCA69D71 /* Pods */,
-				912C3C3B480D04CAAAD61502BB00D160 /* Products */,
+				14B8B9B15ECBE87983FF987239AB2D7B /* Frameworks */,
+				DEECD5B4FE7CFF9163A72D86B2D19A9E /* Pods */,
+				7E766C1120564F05982E6E4AEF6B978C /* Products */,
 				037C0CA694176A3C0915F62C9D20B3E6 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		912C3C3B480D04CAAAD61502BB00D160 /* Products */ = {
+		7E766C1120564F05982E6E4AEF6B978C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				72C033E38795FDC0F91EE36414EA723E /* libAMWaveTransition.a */,
-				DBA00DF7786A584A1CCC3E3D4E039A1B /* libAYVibrantButton.a */,
-				B44AA846BEA845F1FEE3B86C37469E62 /* libPods.a */,
-				2652A210F7CF17528EF40F585DF91D9B /* libSZTextView.a */,
+				A6DA56F20F7F2C197D67A79F6FE3E509 /* libAMWaveTransition.a */,
+				274D69C4AF6A2580281F2D6984FDC0A6 /* libAYVibrantButton.a */,
+				49B47986BFD4B29E2862EE13C30A99DF /* libLeanCloudFeedback.a */,
+				CC34091BD631720A9C6D4BEF373E4734 /* libPods.a */,
+				30465759D6FB650CAB8DDB9A4D7B9178 /* libSZTextView.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		833A3CB4599FD14BD696140A5EA3642A /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				E94492C9130CF48A4898EEC5AB120E4C /* SZTextView.xcconfig */,
+				1F7F3220A6CBD55039960549648D9B21 /* SZTextView-dummy.m */,
+				3E74334F3655EAD401CD98F63E308765 /* SZTextView-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SZTextView";
+			sourceTree = "<group>";
+		};
+		840FAB5788676E3790E6C406F18DAA97 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7027BA1023B5C7362E5C94D7CABD5A64 /* LeanCloudFeedback.xcconfig */,
+				A589274536CCC5D2F20C07A87CC36635 /* LeanCloudFeedback-dummy.m */,
+				4A9535A1F8C6585773BA3DAE34694252 /* LeanCloudFeedback-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/LeanCloudFeedback";
+			sourceTree = "<group>";
+		};
+		9CCA82020F295C5ECD96A922167925F1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				15FBCFC4B41AF6E2CFC7D66FA5314EC1 /* feedback_add_image@2x.png */,
+				A20F182CF52560EF7721122BF39C3283 /* feedback_back@2x.png */,
+				ED5CBE6A435DB8ECFA7433593765BA14 /* feedback_bg_1@2x.png */,
+				667AE960D0FE713FF23D7D25AE690FB5 /* feedback_bg_2@2x.png */,
+				1874B2FF66C5C88C7AA7B3F335EF86BD /* feedback_btn@2x.png */,
+				A61E4572687AE2CD0100B72F149BDAF8 /* feedback_btn_new@2x.png */,
+				B36D434314E5CAD550B0949917543C69 /* feedback_warning@2x.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		9F8FDE941F665128DFBE1AE2C811A016 /* AVOSCloud */ = {
+			isa = PBXGroup;
+			children = (
+				6FB09140438FA078AA694F371A152AA3 /* AVACL.h */,
+				E5991C507BEF52815DD496E521F02625 /* AVAnalytics.h */,
+				D21ECDE17F7583CC46284B62FDA27AD4 /* AVAnonymousUtils.h */,
+				6729926B82C16763535F892A74AE313A /* AVCloud.h */,
+				E3CAC10AAE6E4A260BC91688451A9685 /* AVCloudQueryResult.h */,
+				6E965367E419F4F20D1A4E9272B678F0 /* AVConstants.h */,
+				CC5D025C24BCA4D532F40CEEFDA397CD /* AVFile.h */,
+				B9B339837B51B9997E3933A723937C49 /* AVFileQuery.h */,
+				18AB0439D90907F7333EE5696894B7F8 /* AVGeoPoint.h */,
+				6B010ECB94ECDDE860F2FD68BEB0B769 /* AVGroup.h */,
+				9C3F1CBA69D021869204A1BB79428F15 /* AVHistoryMessage.h */,
+				A0B669ACA8BDE716E0E0905F5D3EF16E /* AVHistoryMessageQuery.h */,
+				E829161B2B309E1CEAA5D8DF42F12350 /* AVInstallation.h */,
+				0699081376AA8E8125D6E9304AB83052 /* AVLogger.h */,
+				A1872A9F0093EF230857E6CA00D8FCDA /* AVMessage.h */,
+				1B1CE7B47BD149AC131506BE3DB00DED /* AVObject.h */,
+				7C40901F001DA0070181FE0C6078E5A7 /* AVObject+Subclass.h */,
+				7F2907B1528C1BC683D7598AA59F72C6 /* AVOSCloud.h */,
+				5EC4376C99CDF76DADDFFB90C8910118 /* AVPush.h */,
+				0F4FA3CF360EFB619C9B25AF7C1F67AB /* AVQuery.h */,
+				AEB25075F599A42302FB97E75AA44E3C /* AVRelation.h */,
+				CCF8BB64557AA196DB0164898E6F4165 /* AVRole.h */,
+				1F468B538F56839D0A1D54D427C73233 /* AVSearchQuery.h */,
+				ECAED2AAC4060425BFE388E4463436F1 /* AVSearchSortBuilder.h */,
+				8C9249EC606B4204C4BF3C2E928E1C1B /* AVSession.h */,
+				A9D33ACA6C029F9B6FC40DEDDE7D8080 /* AVSignature.h */,
+				ABC3A9379223841D94C7D1177479CF62 /* AVStatus.h */,
+				0B34647398DEDC499F3ED7C43666E6EA /* AVSubclassing.h */,
+				B72C07E70B3A1D13FFDA170C4EB7081E /* AVUser.h */,
+				DCC65D003C59497AD244F95DD408A463 /* Frameworks */,
+			);
+			path = AVOSCloud;
+			sourceTree = "<group>";
+		};
+		A9203A0FF197B8764CD853B6EE3A159E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				4AE7FD0E16F3FACCFE19068F1E872D9F /* CoreGraphics.framework */,
+				CE437620300D81EED04DF8C0301AF9D9 /* Foundation.framework */,
+				0DD25CA4A497622D5ABF4C433D79E4DE /* QuartzCore.framework */,
+				ED04AE2201316F6590E7AD9952706C7B /* UIKit.framework */,
+			);
+			name = iOS;
 			sourceTree = "<group>";
 		};
 		B3D1D13E0C6553800746CB8FD61CF946 /* Pods */ = {
@@ -247,15 +417,52 @@
 			path = "Target Support Files/Pods";
 			sourceTree = "<group>";
 		};
-		BF85AAF2207EB06B5C3001D1310983CD /* Support Files */ = {
+		DCC65D003C59497AD244F95DD408A463 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				83F7DB6C616044A47CC6581A4308AB8E /* AYVibrantButton.xcconfig */,
-				ACC66661A74930134B9886CE0ACC7C30 /* AYVibrantButton-dummy.m */,
-				76ACC6C2D4ADC4566B59E358D0A8F52E /* AYVibrantButton-prefix.pch */,
+				DDEB1850C5F34F24471FBCB95C8D4CF9 /* libAVOSCloud.a */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/AYVibrantButton";
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DEECD5B4FE7CFF9163A72D86B2D19A9E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				512435930207D744BBDEEA373B031B9A /* AMWaveTransition */,
+				9F8FDE941F665128DFBE1AE2C811A016 /* AVOSCloud */,
+				5476E2D30063C0539E3128CAC3FD21CC /* AYVibrantButton */,
+				FFDABCE9E57C0A115E5092B6605395EE /* LeanCloudFeedback */,
+				484F5AA75C157552E9B745F2D1933F5F /* SZTextView */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FFDABCE9E57C0A115E5092B6605395EE /* LeanCloudFeedback */ = {
+			isa = PBXGroup;
+			children = (
+				EEA402FEBA27057A5F7B75910251BD83 /* LCHttpClient.h */,
+				DC5ABE63CD136D5EEEC94BACA4C061BE /* LCHttpClient.m */,
+				1F1281B3B160505A991055447256D7FA /* LCUserFeedbackAgent.h */,
+				E593073E762901DC0A628F3BCB3DC5C5 /* LCUserFeedbackAgent.m */,
+				5DAFB7BDE6B7A1252744F5BEDCB826FE /* LCUserFeedbackImageViewController.h */,
+				FA6F44655F5BBB4297318B871E43B0C1 /* LCUserFeedbackImageViewController.m */,
+				1745E6BE937D9D55AF3481D6AA787D55 /* LCUserFeedbackReply.h */,
+				A3FDF4F818C2A1AF816D54FF4B87CCC6 /* LCUserFeedbackReply.m */,
+				CB1C56FBD85E66C0B7D89B4E502D0D94 /* LCUserFeedbackReply_Internal.h */,
+				2149A51A09D40AF8884839A9502AD36D /* LCUserFeedbackReplyCell.h */,
+				11E51923B384DCF1F1EE338F237CD21E /* LCUserFeedbackReplyCell.m */,
+				CAD2D0405A838F6833A60BDD30FB8F26 /* LCUserFeedbackThread.h */,
+				25F7F4749B16595DA306D3E6EF00317E /* LCUserFeedbackThread.m */,
+				2521ED5BA9EC1822F6F8E4DBC12C4517 /* LCUserFeedbackThread_Internal.h */,
+				6D91B7F798A4D4667A27E9B69FA3951E /* LCUserFeedbackViewController.h */,
+				56C4210D44377B6FBD646F838366D81E /* LCUserFeedbackViewController.m */,
+				295C13358F7F7E823941D454C91E84B9 /* LCUtils.h */,
+				08AC67AA289F825F741A3052A39C4F02 /* LCUtils.m */,
+				01D6B6FA7F03CBDE2563CA59558D8E71 /* LeanCloudFeedback.h */,
+				9CCA82020F295C5ECD96A922167925F1 /* Resources */,
+				840FAB5788676E3790E6C406F18DAA97 /* Support Files */,
+			);
+			path = LeanCloudFeedback;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,6 +476,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7921FE1E54A652E89C1F223DDE1F0A91 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				760E403340BB4A520919094B6A108AB5 /* SZTextView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8149B362AC35902766D2895E41230297 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -278,32 +493,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E8C53D9D5947AC662FA86D81B1D08DAF /* Headers */ = {
+		D036E0D427E50AFA0ADFAA4ECF2DA4F1 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA89AFCC128CCCDA8A2FAB9AD1896DE6 /* SZTextView.h in Headers */,
+				25B34AD4643C070C134EF0FF3B49B262 /* LCHttpClient.h in Headers */,
+				499A8361ADAB41EA1A4D7A27C3C23AE5 /* LCUserFeedbackAgent.h in Headers */,
+				2E1F7F235C706A41C7B66EAB3DF7AC3B /* LCUserFeedbackImageViewController.h in Headers */,
+				DA89FF46BEFDC465B7430223E6421DD6 /* LCUserFeedbackReply.h in Headers */,
+				3B21F2A452C39F53EF29C6B652A373FD /* LCUserFeedbackReply_Internal.h in Headers */,
+				BD8AA89293DF83BB7AB289028BBF7767 /* LCUserFeedbackReplyCell.h in Headers */,
+				88298A1399D6341CC230A1F0ECD1145F /* LCUserFeedbackThread.h in Headers */,
+				7D4C505D23204B7B2FA6315E30EC71E5 /* LCUserFeedbackThread_Internal.h in Headers */,
+				1088DA320CC1222C180D3EB935C24212 /* LCUserFeedbackViewController.h in Headers */,
+				110562B3CAF52D329E49A59D19F1A6FA /* LCUtils.h in Headers */,
+				A7F10CFE8F18B557E993AFF2321EEBEE /* LeanCloudFeedback.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		1270E9FC7008E061331C787615680DC4 /* SZTextView */ = {
+		2445D59777BB25D4208674679E4BCBCA /* LeanCloudFeedback */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ABF6587ED4CB299B171286243A5407F5 /* Build configuration list for PBXNativeTarget "SZTextView" */;
+			buildConfigurationList = 7CB7336BE71557E80882C71F0A923C0D /* Build configuration list for PBXNativeTarget "LeanCloudFeedback" */;
 			buildPhases = (
-				30BEB63BB9D33FF4789A5A09D78301B0 /* Sources */,
-				49EA1BB66B09004914E243B1BFD5E2A3 /* Frameworks */,
-				E8C53D9D5947AC662FA86D81B1D08DAF /* Headers */,
+				B1BF74AB04562397D05FECACB1FF868C /* Sources */,
+				FB2CFFE6C677E21164C523F28EB108E8 /* Frameworks */,
+				D036E0D427E50AFA0ADFAA4ECF2DA4F1 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = SZTextView;
-			productName = SZTextView;
-			productReference = 2652A210F7CF17528EF40F585DF91D9B /* libSZTextView.a */;
+			name = LeanCloudFeedback;
+			productName = LeanCloudFeedback;
+			productReference = 49B47986BFD4B29E2862EE13C30A99DF /* libLeanCloudFeedback.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		35B27995BAE6B272A102E3FA251DAE4E /* AMWaveTransition */ = {
@@ -320,26 +545,7 @@
 			);
 			name = AMWaveTransition;
 			productName = AMWaveTransition;
-			productReference = 72C033E38795FDC0F91EE36414EA723E /* libAMWaveTransition.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		4EED304CF23A438399C5C702FFF3E3E5 /* Pods */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5B9A72AD1EA781BB1CDF296FBEA1C19E /* Build configuration list for PBXNativeTarget "Pods" */;
-			buildPhases = (
-				707541DFA94C7353B79E03C8FE6F0853 /* Sources */,
-				A025CB729BFBA0930904CDDB1B430B6E /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FF4E67DD6B4836FD1B65C2EACE2566D9 /* PBXTargetDependency */,
-				C9D202B28CAC7564B0290E8FE39C0C09 /* PBXTargetDependency */,
-				AA186B7EFB41AE9BBB4D6C640312D9B1 /* PBXTargetDependency */,
-			);
-			name = Pods;
-			productName = Pods;
-			productReference = B44AA846BEA845F1FEE3B86C37469E62 /* libPods.a */;
+			productReference = A6DA56F20F7F2C197D67A79F6FE3E509 /* libAMWaveTransition.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		5525DF0BE36122A1678E64299C4F22C2 /* AYVibrantButton */ = {
@@ -356,7 +562,44 @@
 			);
 			name = AYVibrantButton;
 			productName = AYVibrantButton;
-			productReference = DBA00DF7786A584A1CCC3E3D4E039A1B /* libAYVibrantButton.a */;
+			productReference = 274D69C4AF6A2580281F2D6984FDC0A6 /* libAYVibrantButton.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		7830F7D5C6A30705696EE3388B1E9012 /* SZTextView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBE88033DF7EC5A86BDB97F35D52B0DD /* Build configuration list for PBXNativeTarget "SZTextView" */;
+			buildPhases = (
+				03D4A9DCE5C2C357A4FD25FC2DEE80B3 /* Sources */,
+				1735216F14598F268943C3BB9E06E657 /* Frameworks */,
+				7921FE1E54A652E89C1F223DDE1F0A91 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SZTextView;
+			productName = SZTextView;
+			productReference = 30465759D6FB650CAB8DDB9A4D7B9178 /* libSZTextView.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		B0112D98417981EA281AF80FA3EA5BA2 /* Pods */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8B6A70C164A983C7B93A6A86C93A379 /* Build configuration list for PBXNativeTarget "Pods" */;
+			buildPhases = (
+				C9305E3575ADE5D1001996F1167E3D40 /* Sources */,
+				A38CEBC27E346E41DC95188B0E34C1A2 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				431DA79C2A5907A7AA3D013B8FE85B68 /* PBXTargetDependency */,
+				FFB2D9B85CE62C34070B25971880D346 /* PBXTargetDependency */,
+				39BC17D13451D0886BE45CE7201F1394 /* PBXTargetDependency */,
+				061974A14D43A34734410BF111C1520E /* PBXTargetDependency */,
+			);
+			name = Pods;
+			productName = Pods;
+			productReference = CC34091BD631720A9C6D4BEF373E4734 /* libPods.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -376,25 +619,26 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 912C3C3B480D04CAAAD61502BB00D160 /* Products */;
+			productRefGroup = 7E766C1120564F05982E6E4AEF6B978C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				35B27995BAE6B272A102E3FA251DAE4E /* AMWaveTransition */,
 				5525DF0BE36122A1678E64299C4F22C2 /* AYVibrantButton */,
-				4EED304CF23A438399C5C702FFF3E3E5 /* Pods */,
-				1270E9FC7008E061331C787615680DC4 /* SZTextView */,
+				2445D59777BB25D4208674679E4BCBCA /* LeanCloudFeedback */,
+				B0112D98417981EA281AF80FA3EA5BA2 /* Pods */,
+				7830F7D5C6A30705696EE3388B1E9012 /* SZTextView */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		30BEB63BB9D33FF4789A5A09D78301B0 /* Sources */ = {
+		03D4A9DCE5C2C357A4FD25FC2DEE80B3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F76A4DFA1ABD59AB5016759EDE540D6 /* SZTextView-dummy.m in Sources */,
-				00B21544DD5C548048D8796956D16BD3 /* SZTextView.m in Sources */,
+				732EEE84B579FDDF82574CC3B4C24EFB /* SZTextView-dummy.m in Sources */,
+				5568ADFB7F55E65F3FBC82CF13881530 /* SZTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,11 +652,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		707541DFA94C7353B79E03C8FE6F0853 /* Sources */ = {
+		B1BF74AB04562397D05FECACB1FF868C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92B6F74E2CD0B57DEAC666594F31286A /* Pods-dummy.m in Sources */,
+				ED63BB02EE80CB982ED4C7A9D370023B /* LCHttpClient.m in Sources */,
+				E33AB7CE52CA07FF45BF867A1995BF03 /* LCUserFeedbackAgent.m in Sources */,
+				B62F450627F6D6E5FD4E8F800F4425C8 /* LCUserFeedbackImageViewController.m in Sources */,
+				5C01ADEAACEDB74DBF98060639303150 /* LCUserFeedbackReply.m in Sources */,
+				8D65F5622DD9E8D6CA05170A5944C0B4 /* LCUserFeedbackReplyCell.m in Sources */,
+				E8781334AA761D9592FF70FDEF525247 /* LCUserFeedbackThread.m in Sources */,
+				C3F3F17AFA137739EB2842AB80F9075A /* LCUserFeedbackViewController.m in Sources */,
+				0F48FA59B670153BE8F29ABCE55D25D9 /* LCUtils.m in Sources */,
+				77A9DB2FB36BF844C52B390A18E61E38 /* LeanCloudFeedback-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,33 +677,47 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C9305E3575ADE5D1001996F1167E3D40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9EAFCF8C97C2AFE96E77CE4488CD4727 /* Pods-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		AA186B7EFB41AE9BBB4D6C640312D9B1 /* PBXTargetDependency */ = {
+		061974A14D43A34734410BF111C1520E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SZTextView;
-			target = 1270E9FC7008E061331C787615680DC4 /* SZTextView */;
-			targetProxy = 7F4B6C75D8E0C7B8311C8899B49AE172 /* PBXContainerItemProxy */;
+			target = 7830F7D5C6A30705696EE3388B1E9012 /* SZTextView */;
+			targetProxy = EC76F390C390FA16B860C0386AA1489A /* PBXContainerItemProxy */;
 		};
-		C9D202B28CAC7564B0290E8FE39C0C09 /* PBXTargetDependency */ = {
+		39BC17D13451D0886BE45CE7201F1394 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = AYVibrantButton;
-			target = 5525DF0BE36122A1678E64299C4F22C2 /* AYVibrantButton */;
-			targetProxy = E6B14C15A62DA062AF37DBFA7C59CED4 /* PBXContainerItemProxy */;
+			name = LeanCloudFeedback;
+			target = 2445D59777BB25D4208674679E4BCBCA /* LeanCloudFeedback */;
+			targetProxy = 5F26A03952EF685682DCEF35246F9206 /* PBXContainerItemProxy */;
 		};
-		FF4E67DD6B4836FD1B65C2EACE2566D9 /* PBXTargetDependency */ = {
+		431DA79C2A5907A7AA3D013B8FE85B68 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = AMWaveTransition;
 			target = 35B27995BAE6B272A102E3FA251DAE4E /* AMWaveTransition */;
-			targetProxy = AB30FBCE5991F606513F7BEBF3979088 /* PBXContainerItemProxy */;
+			targetProxy = DB11E66AA02FA6EB0A3A12F9A6C60490 /* PBXContainerItemProxy */;
+		};
+		FFB2D9B85CE62C34070B25971880D346 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AYVibrantButton;
+			target = 5525DF0BE36122A1678E64299C4F22C2 /* AYVibrantButton */;
+			targetProxy = E511562E9F5EC4ECA810D4CA5931B217 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		089B937F6CA07DC3BC8B856F28D84021 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 06EAAD5D98A6E89507F8C76F74BD53D8 /* AMWaveTransition.xcconfig */;
+			baseConfigurationReference = 17F86052A3043998B5D1084331AC04CC /* AMWaveTransition.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/AMWaveTransition/AMWaveTransition-prefix.pch";
@@ -467,7 +733,43 @@
 			};
 			name = Debug;
 		};
-		178BD3314B082400BAAD7600838417C2 /* Release */ = {
+		1992867CD4F0E7E9A97C41C75AA288EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7027BA1023B5C7362E5C94D7CABD5A64 /* LeanCloudFeedback.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/LeanCloudFeedback/LeanCloudFeedback-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		3D4AEC13093B60108A9DA6EC942D856D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2CE4AE6B1F67623939F4342A03304462 /* AYVibrantButton.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/AYVibrantButton/AYVibrantButton-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		421875F289F4C6352375799F18C5F2B8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 98C98CDFB3F20F2925F6CD1F141BB14F /* Pods.release.xcconfig */;
 			buildSettings = {
@@ -484,7 +786,7 @@
 			};
 			name = Release;
 		};
-		391DDAF33EC5B98F459FAFA40B2B879F /* Debug */ = {
+		51B027C077A624C032D0395055EF244F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4E762F23EC34ED4A6FF3312D84E33A40 /* Pods.debug.xcconfig */;
 			buildSettings = {
@@ -496,42 +798,6 @@
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		3D4AEC13093B60108A9DA6EC942D856D /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83F7DB6C616044A47CC6581A4308AB8E /* AYVibrantButton.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/AYVibrantButton/AYVibrantButton-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		5C8753FD3DFB8253C9BB1BACAB154523 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 920BA071C0DEFABDD585B0EF2124A21C /* SZTextView.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SZTextView/SZTextView-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
@@ -576,6 +842,24 @@
 			};
 			name = Debug;
 		};
+		64DFA4D612DD045CD723927BD2401A69 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E94492C9130CF48A4898EEC5AB120E4C /* SZTextView.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SZTextView/SZTextView-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
 		74857149DC1E0D599B8A01A78349A926 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -610,9 +894,9 @@
 			};
 			name = Release;
 		};
-		8A16F686E3E6EAF5BAD28B6E68A626B7 /* Release */ = {
+		BD16CE644161691EE4DEABA8178B9A13 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 920BA071C0DEFABDD585B0EF2124A21C /* SZTextView.xcconfig */;
+			baseConfigurationReference = E94492C9130CF48A4898EEC5AB120E4C /* SZTextView.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/SZTextView/SZTextView-prefix.pch";
@@ -630,7 +914,7 @@
 		};
 		C63D562D2903964C06A4ED68F3AFC3D1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 06EAAD5D98A6E89507F8C76F74BD53D8 /* AMWaveTransition.xcconfig */;
+			baseConfigurationReference = 17F86052A3043998B5D1084331AC04CC /* AMWaveTransition.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/AMWaveTransition/AMWaveTransition-prefix.pch";
@@ -646,9 +930,27 @@
 			};
 			name = Release;
 		};
+		F12B1177B6A4D412143ED92C79282EE5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7027BA1023B5C7362E5C94D7CABD5A64 /* LeanCloudFeedback.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/LeanCloudFeedback/LeanCloudFeedback-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		F5904BA5909F20C7F7B367F0ED9078FA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83F7DB6C616044A47CC6581A4308AB8E /* AYVibrantButton.xcconfig */;
+			baseConfigurationReference = 2CE4AE6B1F67623939F4342A03304462 /* AYVibrantButton.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/AYVibrantButton/AYVibrantButton-prefix.pch";
@@ -676,11 +978,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5B9A72AD1EA781BB1CDF296FBEA1C19E /* Build configuration list for PBXNativeTarget "Pods" */ = {
+		7CB7336BE71557E80882C71F0A923C0D /* Build configuration list for PBXNativeTarget "LeanCloudFeedback" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				391DDAF33EC5B98F459FAFA40B2B879F /* Debug */,
-				178BD3314B082400BAAD7600838417C2 /* Release */,
+				1992867CD4F0E7E9A97C41C75AA288EB /* Debug */,
+				F12B1177B6A4D412143ED92C79282EE5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -694,20 +996,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ABF6587ED4CB299B171286243A5407F5 /* Build configuration list for PBXNativeTarget "SZTextView" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5C8753FD3DFB8253C9BB1BACAB154523 /* Debug */,
-				8A16F686E3E6EAF5BAD28B6E68A626B7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		E23BB00035B9EC3B14F651FB73281FC7 /* Build configuration list for PBXNativeTarget "AYVibrantButton" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F5904BA5909F20C7F7B367F0ED9078FA /* Debug */,
 				3D4AEC13093B60108A9DA6EC942D856D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8B6A70C164A983C7B93A6A86C93A379 /* Build configuration list for PBXNativeTarget "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				51B027C077A624C032D0395055EF244F /* Debug */,
+				421875F289F4C6352375799F18C5F2B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FBE88033DF7EC5A86BDB97F35D52B0DD /* Build configuration list for PBXNativeTarget "SZTextView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64DFA4D612DD045CD723927BD2401A69 /* Debug */,
+				BD16CE644161691EE4DEABA8178B9A13 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

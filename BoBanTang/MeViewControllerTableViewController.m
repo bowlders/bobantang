@@ -239,6 +239,7 @@
     {
         if (indexPath.row == 0)
         {
+            //[self presentViewController:[[FeedBackViewController1ViewController alloc] init] animated:YES completion:nil];
             [self performSegueWithIdentifier:@"showFeedBack" sender:tableView];
         }
         else if (indexPath.row == 1)

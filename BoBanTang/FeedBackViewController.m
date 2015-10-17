@@ -2,7 +2,7 @@
 //  FeedBackViewController.m
 //  BoBanTang
 //
-//  Created by Caesar on 15/10/15.
+//  Created by Caesar on 15/10/17.
 //  Copyright © 2015年 BBT. All rights reserved.
 //
 
@@ -10,45 +10,28 @@
 
 @interface FeedBackViewController ()
 
-@property (strong, nonatomic) IBOutlet UITextView *textView;
-@property (strong, nonatomic) IBOutlet UIButton *submitButton;
-
 @end
 
 @implementation FeedBackViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.hidden = YES;
+    LCUserFeedbackViewController *feedbackViewController = [[LCUserFeedbackViewController alloc] init];
+    feedbackViewController.navigationBarStyle = LCUserFeedbackNavigationBarStyleNone;
+    LCUserFeedbackAgent *agent = [LCUserFeedbackAgent sharedInstance];
+    /* title 传 nil 表示将第一条消息作为反馈的标题。 contact 也可以传入 nil，由用户来填写联系方式。*/
+    [agent showConversations:feedbackViewController title:nil contact:@"goodman@leancloud.cn"];
+    [self presentViewController:feedbackViewController animated:YES completion:nil];
     
-    self.view.backgroundColor = [[UIColor brownColor] colorWithAlphaComponent:0.5f];
-    
-    SZTextView *textView = [SZTextView new];
-    textView.frame = self.textView.frame;
-    textView.placeholder = @"请在这里输入您的建议，谢谢您的反馈！";
-    textView.placeholderTextColor = [UIColor lightGrayColor];
-    textView.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18.0];
-    
-    UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
-    effectView.frame = self.view.bounds;
-    [self.view addSubview:effectView];
-    
-    AYVibrantButton *invertButton = [[AYVibrantButton alloc] initWithFrame:self.submitButton.frame style:AYVibrantButtonStyleInvert];
-    invertButton.vibrancyEffect = [UIVibrancyEffect effectForBlurEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
-    invertButton.text = @"提交反馈";
-    invertButton.font = [UIFont systemFontOfSize:18.0];
-    self.submitButton = invertButton;
 
-    [effectView.contentView addSubview:textView];
-    [effectView.contentView addSubview:self.submitButton];
-    
     // Do any additional setup after loading the view.
 }
 
-- (IBAction)sendFeedBack
+- (void)viewDidAppear:(BOOL)animated
 {
-    
+    self.view.hidden = YES;
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

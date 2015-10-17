@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>LeanCloudFeedback.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,7 +32,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1270E9FC7008E061331C787615680DC4</key>
+		<key>2445D59777BB25D4208674679E4BCBCA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -37,12 +42,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4EED304CF23A438399C5C702FFF3E3E5</key>
+		<key>5525DF0BE36122A1678E64299C4F22C2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5525DF0BE36122A1678E64299C4F22C2</key>
+		<key>7830F7D5C6A30705696EE3388B1E9012</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B0112D98417981EA281AF80FA3EA5BA2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

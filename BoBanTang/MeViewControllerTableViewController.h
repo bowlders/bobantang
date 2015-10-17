@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AMWaveViewController.h>
+#import "FeedBackViewController1ViewController.h"
 
 @interface MeViewControllerTableViewController : UITableViewController<UIAlertViewDelegate, UINavigationControllerDelegate, AMWaveTransitioning>
 

@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kOx-2o-ylt">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Table View Controller-->
@@ -70,8 +69,8 @@
                         <segue destination="kz9-KR-2kO" kind="show" identifier="showAccountManage" id="lkV-BP-s6z"/>
                         <segue destination="VX2-4b-vkh" kind="show" identifier="showCollections" id="6Hi-UA-tbI"/>
                         <segue destination="j4h-ii-S4h" kind="show" identifier="showSettings" id="G2h-ad-h4Q"/>
-                        <segue destination="0Fb-wS-QHR" kind="show" identifier="showFeedBack" id="DQI-Sl-t8q"/>
                         <segue destination="SEC-3u-IhO" kind="show" identifier="showAbout" id="pXR-u2-tc2"/>
+                        <segue destination="xwK-Hd-hzA" kind="show" identifier="showFeedBack" id="Eib-2W-Oel"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2T8-BY-yiw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -142,6 +141,26 @@
             </objects>
             <point key="canvasLocation" x="1386.5" y="651.5"/>
         </scene>
+        <!--Feed Back View Controller1 View Controller-->
+        <scene sceneID="KYe-Ue-clO">
+            <objects>
+                <viewController id="xwK-Hd-hzA" customClass="FeedBackViewController1ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ddN-yx-m1c"/>
+                        <viewControllerLayoutGuide type="bottom" id="dwr-Ow-bQK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6NU-3g-mVd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pos-UK-kez" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="756.5" y="1524.5"/>
+        </scene>
         <!--Table View Controller-->
         <scene sceneID="LRf-ub-IqX">
             <objects>
@@ -173,81 +192,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Twq-PW-nlU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1386.5" y="1524.5"/>
-        </scene>
-        <!--Feed Back View Controller-->
-        <scene sceneID="vMw-EP-lGX">
-            <objects>
-                <viewController id="0Fb-wS-QHR" customClass="FeedBackViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ppl-ix-PtK"/>
-                        <viewControllerLayoutGuide type="bottom" id="4th-yk-HHL"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="HLo-8Q-rKF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qpf-Hb-AkZ">
-                                <rect key="frame" x="20" y="91" width="335" height="214"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="206" id="bUu-cD-aOC"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="bUu-cD-aOC"/>
-                                    </mask>
-                                </variation>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CYC-eT-CM3">
-                                <rect key="frame" x="112" y="319" width="151" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="sendFeedBack" destination="0Fb-wS-QHR" eventType="touchUpInside" id="KeJ-vo-rXZ"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <animations/>
-                        <constraints>
-                            <constraint firstItem="CYC-eT-CM3" firstAttribute="top" secondItem="qpf-Hb-AkZ" secondAttribute="bottom" constant="14" id="1ta-vg-Dyd"/>
-                            <constraint firstItem="CYC-eT-CM3" firstAttribute="centerY" secondItem="HLo-8Q-rKF" secondAttribute="centerY" id="8Rb-Dt-tHU"/>
-                            <constraint firstItem="qpf-Hb-AkZ" firstAttribute="top" secondItem="ppl-ix-PtK" secondAttribute="bottom" constant="27" id="Dv7-sA-pBB"/>
-                            <constraint firstItem="qpf-Hb-AkZ" firstAttribute="top" secondItem="ppl-ix-PtK" secondAttribute="bottom" constant="27" id="Hly-fb-fbg"/>
-                            <constraint firstItem="CYC-eT-CM3" firstAttribute="top" secondItem="qpf-Hb-AkZ" secondAttribute="bottom" constant="7" id="RQb-1l-TEy"/>
-                            <constraint firstItem="qpf-Hb-AkZ" firstAttribute="centerX" secondItem="HLo-8Q-rKF" secondAttribute="centerX" id="SGk-M6-hYN"/>
-                            <constraint firstItem="qpf-Hb-AkZ" firstAttribute="leading" secondItem="HLo-8Q-rKF" secondAttribute="leadingMargin" constant="4" id="SuE-dl-VRz"/>
-                            <constraint firstItem="CYC-eT-CM3" firstAttribute="leading" secondItem="HLo-8Q-rKF" secondAttribute="leadingMargin" constant="96" id="VNq-ae-rjx"/>
-                            <constraint firstItem="CYC-eT-CM3" firstAttribute="centerX" secondItem="qpf-Hb-AkZ" secondAttribute="centerX" id="c0h-G5-6H8"/>
-                            <constraint firstItem="qpf-Hb-AkZ" firstAttribute="leading" secondItem="HLo-8Q-rKF" secondAttribute="leadingMargin" constant="-5" id="fcb-b5-JYk"/>
-                            <constraint firstItem="CYC-eT-CM3" firstAttribute="top" secondItem="qpf-Hb-AkZ" secondAttribute="bottom" constant="14" id="i7P-oc-Dhi"/>
-                            <constraint firstItem="qpf-Hb-AkZ" firstAttribute="height" secondItem="CYC-eT-CM3" secondAttribute="height" id="mLO-Pk-5Ky"/>
-                            <constraint firstItem="qpf-Hb-AkZ" firstAttribute="leading" secondItem="HLo-8Q-rKF" secondAttribute="leadingMargin" constant="4" id="s4p-Yb-O5a"/>
-                            <constraint firstItem="qpf-Hb-AkZ" firstAttribute="centerX" secondItem="HLo-8Q-rKF" secondAttribute="centerX" id="wSH-nQ-YaW"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="Hly-fb-fbg"/>
-                                <exclude reference="SGk-M6-hYN"/>
-                                <exclude reference="fcb-b5-JYk"/>
-                                <exclude reference="mLO-Pk-5Ky"/>
-                                <exclude reference="s4p-Yb-O5a"/>
-                                <exclude reference="RQb-1l-TEy"/>
-                                <exclude reference="i7P-oc-Dhi"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <connections>
-                        <outlet property="submitButton" destination="CYC-eT-CM3" id="dt0-oV-yNb"/>
-                        <outlet property="textView" destination="qpf-Hb-AkZ" id="fgC-DS-Wov"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DmT-vt-mxL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="756.5" y="1524.5"/>
         </scene>
         <!--我-->
         <scene sceneID="Ebz-Is-aRp">

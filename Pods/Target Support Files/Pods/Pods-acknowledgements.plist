@@ -42,6 +42,14 @@ SOFTWARE.</string>
 		</dict>
 		<dict>
 			<key>FooterText</key>
+			<string>Copyright 2015 LeanCloud, Inc. See https://leancloud.cn/terms.html</string>
+			<key>Title</key>
+			<string>AVOSCloud</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
 			<string>The MIT License (MIT)
 
 Copyright (c) 2014 Alan Yip
@@ -65,6 +73,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</string>
 			<key>Title</key>
 			<string>AYVibrantButton</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
+			<string>Copyright 2015 LeanCloud, Inc. See https://leancloud.cn/terms.html</string>
+			<key>Title</key>
+			<string>LeanCloudFeedback</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
