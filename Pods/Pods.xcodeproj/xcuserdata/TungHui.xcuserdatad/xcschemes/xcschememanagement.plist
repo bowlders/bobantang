@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>AMWaveTransition.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>FlatUIKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -25,6 +20,26 @@
 			<false/>
 		</dict>
 		<key>Pods.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>REFormattedNumberField.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RETableViewManager-RETableViewManager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RETableViewManager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>REValidation.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -47,12 +62,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0D331490445FCCF9073A8139C6E116C6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>13CDD3B64CFB3E41D7EC8E9CC31B7418</key>
+		<key>16866E2BDD583B773B2AF9DC32F9F953</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -62,17 +72,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>3EACD1612069FC5DD47E06B0B0E9223C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>47C800E42623009B7192B025B3DD25A1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5B03023139E61C0001B2E3F87BE7BC46</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7F0E4309D162DDBBA391514912AC569E</key>
+		<key>5C8FE6842E0B47F9090761C208D188FB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,7 +92,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A1DAE4A2C1ADA7EC4585A27109E4EED4</key>
+		<key>C9E0A2F331CFFB6AFFB5AE5321DE2E79</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CC523E0F8A89B69C9EF42A1BCAB6BDBB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EDAF046233F0B2F9A1C665B52E32E4F8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EFD5C8CD330A116B7BDC550B526E0B41</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F11A43A26908BD9BE898D3786B801D35</key>
 		<dict>
 			<key>primary</key>
 			<true/>

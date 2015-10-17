@@ -20,6 +20,8 @@
 		E00255C274F1466994D1D8AC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FBAF7882CE2CEE9746B0D77 /* libPods.a */; };
 		FC010C951BD06CA000D4E9DB /* Information.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC010C941BD06CA000D4E9DB /* Information.storyboard */; settings = {ASSET_TAGS = (); }; };
 		FC010C971BD06DC400D4E9DB /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC010C961BD06DC400D4E9DB /* Me.storyboard */; settings = {ASSET_TAGS = (); }; };
+		FC6FFE821BD109A30062A209 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC6FFE811BD109A30062A209 /* CoreGraphics.framework */; };
+		FC6FFECC1BD246F80062A209 /* BBTSelfStudyRoomRequestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6FFECB1BD246F80062A209 /* BBTSelfStudyRoomRequestTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FCF06EDD1BCEB378008514C0 /* BBTToolsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF06EDC1BCEB378008514C0 /* BBTToolsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FCF06EDF1BCEB4A5008514C0 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF06EDE1BCEB4A5008514C0 /* CoreText.framework */; };
 		FCF06EE31BCF9830008514C0 /* BBTGradeLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF06EE21BCF9830008514C0 /* BBTGradeLoginViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -46,6 +48,9 @@
 		95EF4D4DBB83D553693BB4F2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FC010C941BD06CA000D4E9DB /* Information.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Information.storyboard; sourceTree = "<group>"; };
 		FC010C961BD06DC400D4E9DB /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
+		FC6FFE811BD109A30062A209 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		FC6FFECA1BD246F80062A209 /* BBTSelfStudyRoomRequestTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSelfStudyRoomRequestTableViewController.h; sourceTree = "<group>"; };
+		FC6FFECB1BD246F80062A209 /* BBTSelfStudyRoomRequestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSelfStudyRoomRequestTableViewController.m; sourceTree = "<group>"; };
 		FCF06EDB1BCEB378008514C0 /* BBTToolsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTToolsViewController.h; sourceTree = "<group>"; };
 		FCF06EDC1BCEB378008514C0 /* BBTToolsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTToolsViewController.m; sourceTree = "<group>"; };
 		FCF06EDE1BCEB4A5008514C0 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -58,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC6FFE821BD109A30062A209 /* CoreGraphics.framework in Frameworks */,
 				FCF06EDF1BCEB4A5008514C0 /* CoreText.framework in Frameworks */,
 				E00255C274F1466994D1D8AC /* libPods.a in Frameworks */,
 			);
@@ -189,6 +195,8 @@
 				FCF06EDC1BCEB378008514C0 /* BBTToolsViewController.m */,
 				FCF06EE11BCF9830008514C0 /* BBTGradeLoginViewController.h */,
 				FCF06EE21BCF9830008514C0 /* BBTGradeLoginViewController.m */,
+				FC6FFECA1BD246F80062A209 /* BBTSelfStudyRoomRequestTableViewController.h */,
+				FC6FFECB1BD246F80062A209 /* BBTSelfStudyRoomRequestTableViewController.m */,
 			);
 			name = Second;
 			sourceTree = "<group>";
@@ -242,6 +250,7 @@
 		518E2208EFC99407F60AC346 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FC6FFE811BD109A30062A209 /* CoreGraphics.framework */,
 				FCF06EDE1BCEB4A5008514C0 /* CoreText.framework */,
 				5FBAF7882CE2CEE9746B0D77 /* libPods.a */,
 			);
@@ -290,6 +299,7 @@
 				TargetAttributes = {
 					3952186B1BCD265D000C7B68 = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = CCJ77XX2MW;
 					};
 				};
 			};
@@ -373,6 +383,7 @@
 				3949B25A1BCF4CD000DB96F7 /* UIColor + BBTColor.m in Sources */,
 				395218711BCD265D000C7B68 /* main.m in Sources */,
 				FCF06EDD1BCEB378008514C0 /* BBTToolsViewController.m in Sources */,
+				FC6FFECC1BD246F80062A209 /* BBTSelfStudyRoomRequestTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,11 +502,14 @@
 			baseConfigurationReference = 7E53C4577D39289BD3D0525A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BoBanTang/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = BBT.BoBanTang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -504,11 +518,14 @@
 			baseConfigurationReference = 95EF4D4DBB83D553693BB4F2 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BoBanTang/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = BBT.BoBanTang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

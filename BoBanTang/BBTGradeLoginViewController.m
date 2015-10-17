@@ -7,6 +7,7 @@
 //
 
 #import "BBTGradeLoginViewController.h"
+#import "UIColor + BBTColor.h"
 
 @interface BBTGradeLoginViewController ()
 
@@ -14,9 +15,12 @@
 
 @implementation BBTGradeLoginViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning {
