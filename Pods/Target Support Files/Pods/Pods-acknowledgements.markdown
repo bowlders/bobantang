@@ -29,6 +29,10 @@ SOFTWARE.
 
 Copyright 2015 LeanCloud, Inc. See https://leancloud.cn/terms.html
 
+## AVOSCloudCrashReporting
+
+Copyright 2015 LeanCloud, Inc. See https://leancloud.cn/terms.html
+
 ## AYVibrantButton
 
 The MIT License (MIT)

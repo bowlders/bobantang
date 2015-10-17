@@ -33,9 +33,9 @@
     LCUserFeedbackViewController *feedbackViewController = [[LCUserFeedbackViewController alloc] init];
     feedbackViewController.feedbackTitle = title;
     feedbackViewController.contact = contact;
-    //[viewController presentViewController:viewController.navigationController animated:YES completion:^{}];
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:feedbackViewController];
+    feedbackViewController.navigationBarStyle = LCUserFeedbackNavigationBarStyleNone;
     [viewController presentViewController:navigationController animated:YES completion:^{
     }];
     

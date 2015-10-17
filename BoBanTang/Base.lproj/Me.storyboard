@@ -36,10 +36,10 @@
             </objects>
             <point key="canvasLocation" x="750.5" y="-253.5"/>
         </scene>
-        <!--Me View Controller Table View Controller-->
+        <!--Me View Controller-->
         <scene sceneID="XDg-7P-SuS">
             <objects>
-                <tableViewController id="sES-Vu-8es" customClass="MeViewControllerTableViewController" sceneMemberID="viewController">
+                <tableViewController id="sES-Vu-8es" customClass="MeViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="P5q-I0-1c0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -141,10 +141,10 @@
             </objects>
             <point key="canvasLocation" x="1386.5" y="651.5"/>
         </scene>
-        <!--Feed Back View Controller1 View Controller-->
+        <!--View Controller-->
         <scene sceneID="KYe-Ue-clO">
             <objects>
-                <viewController id="xwK-Hd-hzA" customClass="FeedBackViewController1ViewController" sceneMemberID="viewController">
+                <viewController id="xwK-Hd-hzA" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ddN-yx-m1c"/>
                         <viewControllerLayoutGuide type="bottom" id="dwr-Ow-bQK"/>

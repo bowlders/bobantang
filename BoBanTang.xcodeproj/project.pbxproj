@@ -10,8 +10,6 @@
 		00F422415A1C1B34A2CD5F28 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 263A8D84080296DDB6A53666 /* libPods.a */; };
 		3949B25A1BCF4CD000DB96F7 /* UIColor + BBTColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3949B2591BCF4CD000DB96F7 /* UIColor + BBTColor.m */; settings = {ASSET_TAGS = (); }; };
 		3949B25D1BCF5CF700DB96F7 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3949B25C1BCF5CF700DB96F7 /* SettingsViewController.m */; settings = {ASSET_TAGS = (); }; };
-		3949B26B1BD247AA00DB96F7 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3949B26A1BD247AA00DB96F7 /* FeedBackViewController.m */; settings = {ASSET_TAGS = (); }; };
-		3949B26E1BD24C3600DB96F7 /* FeedBackViewController1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3949B26D1BD24C3600DB96F7 /* FeedBackViewController1ViewController.m */; settings = {ASSET_TAGS = (); }; };
 		395218711BCD265D000C7B68 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 395218701BCD265D000C7B68 /* main.m */; };
 		395218741BCD265D000C7B68 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 395218731BCD265D000C7B68 /* AppDelegate.m */; };
 		395218771BCD265D000C7B68 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395218761BCD265D000C7B68 /* ViewController.m */; };
@@ -19,7 +17,7 @@
 		3952187D1BCD265D000C7B68 /* BoBanTang.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3952187B1BCD265D000C7B68 /* BoBanTang.xcdatamodeld */; };
 		3952187F1BCD265D000C7B68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3952187E1BCD265D000C7B68 /* Assets.xcassets */; };
 		395218821BCD265D000C7B68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218801BCD265D000C7B68 /* LaunchScreen.storyboard */; };
-		3952189F1BCD4F14000C7B68 /* MeViewControllerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3952189E1BCD4F14000C7B68 /* MeViewControllerTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3952189F1BCD4F14000C7B68 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3952189E1BCD4F14000C7B68 /* MeViewController.m */; settings = {ASSET_TAGS = (); }; };
 		395218AC1BCD6177000C7B68 /* Go.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218AA1BCD6177000C7B68 /* Go.storyboard */; settings = {ASSET_TAGS = (); }; };
 		395218AE1BCD61B4000C7B68 /* Information.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218AD1BCD61B4000C7B68 /* Information.storyboard */; settings = {ASSET_TAGS = (); }; };
 		395218B01BCD61CD000C7B68 /* Tools.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218AF1BCD61CD000C7B68 /* Tools.storyboard */; settings = {ASSET_TAGS = (); }; };
@@ -32,10 +30,6 @@
 		3949B2591BCF4CD000DB96F7 /* UIColor + BBTColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor + BBTColor.m"; sourceTree = "<group>"; };
 		3949B25B1BCF5CF700DB96F7 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		3949B25C1BCF5CF700DB96F7 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		3949B2691BD247AA00DB96F7 /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
-		3949B26A1BD247AA00DB96F7 /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
-		3949B26C1BD24C3600DB96F7 /* FeedBackViewController1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController1ViewController.h; sourceTree = "<group>"; };
-		3949B26D1BD24C3600DB96F7 /* FeedBackViewController1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController1ViewController.m; sourceTree = "<group>"; };
 		3952186C1BCD265D000C7B68 /* BoBanTang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoBanTang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		395218701BCD265D000C7B68 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		395218721BCD265D000C7B68 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -47,8 +41,8 @@
 		3952187E1BCD265D000C7B68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		395218811BCD265D000C7B68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		395218831BCD265D000C7B68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3952189D1BCD4F14000C7B68 /* MeViewControllerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeViewControllerTableViewController.h; sourceTree = "<group>"; };
-		3952189E1BCD4F14000C7B68 /* MeViewControllerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeViewControllerTableViewController.m; sourceTree = "<group>"; };
+		3952189D1BCD4F14000C7B68 /* MeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeViewController.h; sourceTree = "<group>"; };
+		3952189E1BCD4F14000C7B68 /* MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
 		395218AB1BCD6177000C7B68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Go.storyboard; sourceTree = "<group>"; };
 		395218AD1BCD61B4000C7B68 /* Information.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Information.storyboard; sourceTree = "<group>"; };
 		395218AF1BCD61CD000C7B68 /* Tools.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tools.storyboard; sourceTree = "<group>"; };
@@ -226,14 +220,10 @@
 		3952189C1BCD4EA3000C7B68 /* Me( Settings ) */ = {
 			isa = PBXGroup;
 			children = (
-				3952189D1BCD4F14000C7B68 /* MeViewControllerTableViewController.h */,
-				3952189E1BCD4F14000C7B68 /* MeViewControllerTableViewController.m */,
+				3952189D1BCD4F14000C7B68 /* MeViewController.h */,
+				3952189E1BCD4F14000C7B68 /* MeViewController.m */,
 				3949B25B1BCF5CF700DB96F7 /* SettingsViewController.h */,
 				3949B25C1BCF5CF700DB96F7 /* SettingsViewController.m */,
-				3949B2691BD247AA00DB96F7 /* FeedBackViewController.h */,
-				3949B26A1BD247AA00DB96F7 /* FeedBackViewController.m */,
-				3949B26C1BD24C3600DB96F7 /* FeedBackViewController1ViewController.h */,
-				3949B26D1BD24C3600DB96F7 /* FeedBackViewController1ViewController.m */,
 			);
 			name = "Me( Settings )";
 			sourceTree = "<group>";
@@ -388,15 +378,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3952189F1BCD4F14000C7B68 /* MeViewControllerTableViewController.m in Sources */,
+				3952189F1BCD4F14000C7B68 /* MeViewController.m in Sources */,
 				3949B25D1BCF5CF700DB96F7 /* SettingsViewController.m in Sources */,
-				3949B26E1BD24C3600DB96F7 /* FeedBackViewController1ViewController.m in Sources */,
 				395218771BCD265D000C7B68 /* ViewController.m in Sources */,
 				395218741BCD265D000C7B68 /* AppDelegate.m in Sources */,
 				3952187D1BCD265D000C7B68 /* BoBanTang.xcdatamodeld in Sources */,
 				3949B25A1BCF4CD000DB96F7 /* UIColor + BBTColor.m in Sources */,
 				395218711BCD265D000C7B68 /* main.m in Sources */,
-				3949B26B1BD247AA00DB96F7 /* FeedBackViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
