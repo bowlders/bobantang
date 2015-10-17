@@ -161,10 +161,10 @@
             </objects>
             <point key="canvasLocation" x="756.5" y="1524.5"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Settings View Controller-->
         <scene sceneID="LRf-ub-IqX">
             <objects>
-                <tableViewController id="j4h-ii-S4h" sceneMemberID="viewController">
+                <tableViewController id="j4h-ii-S4h" customClass="SettingsViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="DNv-y7-W3w">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
