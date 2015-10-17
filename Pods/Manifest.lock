@@ -1,0 +1,16 @@
+PODS:
+  - AMWaveTransition (0.6.0)
+  - AYVibrantButton (1.0.3)
+  - SZTextView (1.2.1)
+
+DEPENDENCIES:
+  - AMWaveTransition
+  - AYVibrantButton
+  - SZTextView
+
+SPEC CHECKSUMS:
+  AMWaveTransition: a00588006f144d289a390aabcfa1fa1e16bb9296
+  AYVibrantButton: 7cc5b2c74f6f6a0a52d5b0db361a9d3b755bc448
+  SZTextView: 906df45afd3c1b24fc5252088d5ef8061513c238
+
+COCOAPODS: 0.39.0

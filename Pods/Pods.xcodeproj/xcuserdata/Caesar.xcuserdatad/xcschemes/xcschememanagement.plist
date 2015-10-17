@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>AMWaveTransition.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>AYVibrantButton.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SZTextView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>1270E9FC7008E061331C787615680DC4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>35B27995BAE6B272A102E3FA251DAE4E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4EED304CF23A438399C5C702FFF3E3E5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5525DF0BE36122A1678E64299C4F22C2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
