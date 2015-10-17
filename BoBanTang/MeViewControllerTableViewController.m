@@ -240,7 +240,14 @@
         if (indexPath.row == 0)
         {
             //[self presentViewController:[[FeedBackViewController1ViewController alloc] init] animated:YES completion:nil];
-            [self performSegueWithIdentifier:@"showFeedBack" sender:tableView];
+            //[self performSegueWithIdentifier:@"showFeedBack" sender:tableView];
+            
+//            LCUserFeedbackViewController *feedbackViewController = [[LCUserFeedbackViewController alloc] init];
+//            feedbackViewController.navigationBarStyle = LCUserFeedbackNavigationBarStyleNone;
+            LCUserFeedbackAgent *agent = [LCUserFeedbackAgent sharedInstance];
+            /* title 传 nil 表示将第一条消息作为反馈的标题。 contact 也可以传入 nil，由用户来填写联系方式。*/
+            [agent showConversations:self title:nil contact:@"goodman@leancloud.cn"];
+//            [self presentViewController:feedbackViewController animated:YES completion:nil];
         }
         else if (indexPath.row == 1)
         {
