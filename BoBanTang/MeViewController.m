@@ -108,7 +108,7 @@
     switch (section)
     {
         case 0:
-            rowsNumber = 2;
+            rowsNumber = 1;
             break;
         case 1:
             rowsNumber = 1;
@@ -190,14 +190,7 @@
     
     if (indexPath.section == 0)
     {
-        if (indexPath.row == 0)
-        {
-            cell.textLabel.text = @"账户管理";
-        }
-        else if (indexPath.row == 1)
-        {
-            cell.textLabel.text = @"收藏";
-        }
+        cell.textLabel.text = @"账户管理";
     }
     else if (indexPath.section == 1)
     {
@@ -227,14 +220,7 @@
 
     if (indexPath.section == 0)
     {
-        if (indexPath.row == 0)
-        {
-            [self performSegueWithIdentifier:@"showAccountManage" sender:tableView];
-        }
-        else if (indexPath.row == 1)
-        {
-            [self performSegueWithIdentifier:@"showCollections" sender:tableView];
-        }
+        [self performSegueWithIdentifier:@"showAccountManage" sender:tableView];
     }
     else if (indexPath.section == 1)
     {

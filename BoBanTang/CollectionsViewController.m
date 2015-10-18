@@ -6,23 +6,19 @@
 //  Copyright © 2015年 BBT. All rights reserved.
 //
 
-#import "CollectionsTableViewController.h"
+#import "CollectionsViewController.h"
 
-@interface CollectionsTableViewController ()
+@interface CollectionsViewController ()
 
 @end
 
-@implementation CollectionsTableViewController
+@implementation CollectionsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = @"我的收藏";
     
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.scrollEnabled = NO;
-
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
