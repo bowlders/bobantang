@@ -14,8 +14,6 @@
 		3952187A1BCD265D000C7B68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218781BCD265D000C7B68 /* Main.storyboard */; };
 		3952187D1BCD265D000C7B68 /* BoBanTang.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3952187B1BCD265D000C7B68 /* BoBanTang.xcdatamodeld */; };
 		3952187F1BCD265D000C7B68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3952187E1BCD265D000C7B68 /* Assets.xcassets */; };
-		395218821BCD265D000C7B68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218801BCD265D000C7B68 /* LaunchScreen.storyboard */; };
-		395218AC1BCD6177000C7B68 /* Go.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218AA1BCD6177000C7B68 /* Go.storyboard */; settings = {ASSET_TAGS = (); }; };
 		395218B01BCD61CD000C7B68 /* Tools.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218AF1BCD61CD000C7B68 /* Tools.storyboard */; settings = {ASSET_TAGS = (); }; };
 		E00255C274F1466994D1D8AC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FBAF7882CE2CEE9746B0D77 /* libPods.a */; };
 		FC010C951BD06CA000D4E9DB /* Information.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC010C941BD06CA000D4E9DB /* Information.storyboard */; settings = {ASSET_TAGS = (); }; };
@@ -28,6 +26,7 @@
 		FC6FFEDD1BD66F770062A209 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC6FFEDC1BD66F770062A209 /* MobileCoreServices.framework */; };
 		FC6FFEDF1BD66FB50062A209 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC6FFEDE1BD66FB50062A209 /* UIKit.framework */; };
 		FC6FFEE21BD69D8B0062A209 /* BBTScores.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6FFEE11BD69D8B0062A209 /* BBTScores.m */; settings = {ASSET_TAGS = (); }; };
+		FC6FFEEA1BD6AB090062A209 /* Go.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC6FFEE91BD6AB090062A209 /* Go.storyboard */; settings = {ASSET_TAGS = (); }; };
 		FCF06EDD1BCEB378008514C0 /* BBTToolsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF06EDC1BCEB378008514C0 /* BBTToolsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FCF06EDF1BCEB4A5008514C0 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF06EDE1BCEB4A5008514C0 /* CoreText.framework */; };
 /* End PBXBuildFile section */
@@ -44,9 +43,7 @@
 		395218791BCD265D000C7B68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3952187C1BCD265D000C7B68 /* BoBanTang.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BoBanTang.xcdatamodel; sourceTree = "<group>"; };
 		3952187E1BCD265D000C7B68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		395218811BCD265D000C7B68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		395218831BCD265D000C7B68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		395218AB1BCD6177000C7B68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Go.storyboard; sourceTree = "<group>"; };
 		395218AF1BCD61CD000C7B68 /* Tools.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tools.storyboard; sourceTree = "<group>"; };
 		5FBAF7882CE2CEE9746B0D77 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E53C4577D39289BD3D0525A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -64,6 +61,7 @@
 		FC6FFEDE1BD66FB50062A209 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FC6FFEE01BD69D8B0062A209 /* BBTScores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTScores.h; sourceTree = "<group>"; };
 		FC6FFEE11BD69D8B0062A209 /* BBTScores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTScores.m; sourceTree = "<group>"; };
+		FC6FFEE91BD6AB090062A209 /* Go.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Go.storyboard; sourceTree = "<group>"; };
 		FCF06EDB1BCEB378008514C0 /* BBTToolsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTToolsViewController.h; sourceTree = "<group>"; };
 		FCF06EDC1BCEB378008514C0 /* BBTToolsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTToolsViewController.m; sourceTree = "<group>"; };
 		FCF06EDE1BCEB4A5008514C0 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -134,9 +132,11 @@
 		395218891BCD2684000C7B68 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3952188F1BCD26C4000C7B68 /* General */,
-				395218901BCD281F000C7B68 /* First */,
-				395218911BCD2840000C7B68 /* Second */,
+				FC010C961BD06DC400D4E9DB /* Me.storyboard */,
+				FC6FFEE91BD6AB090062A209 /* Go.storyboard */,
+				FC010C941BD06CA000D4E9DB /* Information.storyboard */,
+				395218781BCD265D000C7B68 /* Main.storyboard */,
+				395218AF1BCD61CD000C7B68 /* Tools.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -144,46 +144,11 @@
 		3952188A1BCD268A000C7B68 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FC6FFEE31BD6A8730062A209 /* Tools */,
 				395218951BCD4C0F000C7B68 /* General */,
-				395218961BCD4C16000C7B68 /* First */,
-				395218971BCD4C1D000C7B68 /* Second */,
+				3952189C1BCD4EA3000C7B68 /* Me */,
 			);
 			name = Controller;
-			sourceTree = "<group>";
-		};
-		3952188F1BCD26C4000C7B68 /* General */ = {
-			isa = PBXGroup;
-			children = (
-				395218781BCD265D000C7B68 /* Main.storyboard */,
-				395218801BCD265D000C7B68 /* LaunchScreen.storyboard */,
-			);
-			name = General;
-			sourceTree = "<group>";
-		};
-		395218901BCD281F000C7B68 /* First */ = {
-			isa = PBXGroup;
-			children = (
-				395218921BCD4980000C7B68 /* Me */,
-			);
-			name = First;
-			sourceTree = "<group>";
-		};
-		395218911BCD2840000C7B68 /* Second */ = {
-			isa = PBXGroup;
-			children = (
-				395218B41BCD62D9000C7B68 /* Tools */,
-			);
-			name = Second;
-			sourceTree = "<group>";
-		};
-		395218921BCD4980000C7B68 /* Me */ = {
-			isa = PBXGroup;
-			children = (
-				395218AA1BCD6177000C7B68 /* Go.storyboard */,
-				FC010C961BD06DC400D4E9DB /* Me.storyboard */,
-				FC010C941BD06CA000D4E9DB /* Information.storyboard */,
-			);
-			name = Me;
 			sourceTree = "<group>";
 		};
 		395218951BCD4C0F000C7B68 /* General */ = {
@@ -195,73 +160,19 @@
 			name = General;
 			sourceTree = "<group>";
 		};
-		395218961BCD4C16000C7B68 /* First */ = {
-			isa = PBXGroup;
-			children = (
-				3952189C1BCD4EA3000C7B68 /* Me( Settings ) */,
-			);
-			name = First;
-			sourceTree = "<group>";
-		};
-		395218971BCD4C1D000C7B68 /* Second */ = {
-			isa = PBXGroup;
-			children = (
-				FCF06EDB1BCEB378008514C0 /* BBTToolsViewController.h */,
-				FCF06EDC1BCEB378008514C0 /* BBTToolsViewController.m */,
-				FC6FFED21BD2AF3D0062A209 /* BBTSelfStudyRoomSearchVC.h */,
-				FC6FFED31BD2AF3D0062A209 /* BBTSelfStudyRoomSearchVC.m */,
-				FC6FFED51BD5DE970062A209 /* BBTGradeLoginViewController.h */,
-				FC6FFED61BD5DE970062A209 /* BBTGradeLoginViewController.m */,
-			);
-			name = Second;
-			sourceTree = "<group>";
-		};
 		395218981BCD4C33000C7B68 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				395218991BCD4C39000C7B68 /* General */,
-				3952189A1BCD4C55000C7B68 /* First */,
-				3952189B1BCD4C59000C7B68 /* Second */,
+				FC6FFEE61BD6A9520062A209 /* Scores */,
 			);
 			name = Model;
 			sourceTree = "<group>";
 		};
-		395218991BCD4C39000C7B68 /* General */ = {
+		3952189C1BCD4EA3000C7B68 /* Me */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = General;
-			sourceTree = "<group>";
-		};
-		3952189A1BCD4C55000C7B68 /* First */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = First;
-			sourceTree = "<group>";
-		};
-		3952189B1BCD4C59000C7B68 /* Second */ = {
-			isa = PBXGroup;
-			children = (
-				FC6FFEE01BD69D8B0062A209 /* BBTScores.h */,
-				FC6FFEE11BD69D8B0062A209 /* BBTScores.m */,
-			);
-			name = Second;
-			sourceTree = "<group>";
-		};
-		3952189C1BCD4EA3000C7B68 /* Me( Settings ) */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Me( Settings )";
-			sourceTree = "<group>";
-		};
-		395218B41BCD62D9000C7B68 /* Tools */ = {
-			isa = PBXGroup;
-			children = (
-				395218AF1BCD61CD000C7B68 /* Tools.storyboard */,
-			);
-			name = Tools;
+			name = Me;
 			sourceTree = "<group>";
 		};
 		518E2208EFC99407F60AC346 /* Frameworks */ = {
@@ -285,6 +196,44 @@
 				95EF4D4DBB83D553693BB4F2 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		FC6FFEE31BD6A8730062A209 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				FCF06EDB1BCEB378008514C0 /* BBTToolsViewController.h */,
+				FCF06EDC1BCEB378008514C0 /* BBTToolsViewController.m */,
+				FC6FFEE51BD6A91A0062A209 /* SelfStudyRoom */,
+				FC6FFEE41BD6A9030062A209 /* Scores */,
+			);
+			name = Tools;
+			sourceTree = "<group>";
+		};
+		FC6FFEE41BD6A9030062A209 /* Scores */ = {
+			isa = PBXGroup;
+			children = (
+				FC6FFED51BD5DE970062A209 /* BBTGradeLoginViewController.h */,
+				FC6FFED61BD5DE970062A209 /* BBTGradeLoginViewController.m */,
+			);
+			name = Scores;
+			sourceTree = "<group>";
+		};
+		FC6FFEE51BD6A91A0062A209 /* SelfStudyRoom */ = {
+			isa = PBXGroup;
+			children = (
+				FC6FFED21BD2AF3D0062A209 /* BBTSelfStudyRoomSearchVC.h */,
+				FC6FFED31BD2AF3D0062A209 /* BBTSelfStudyRoomSearchVC.m */,
+			);
+			name = SelfStudyRoom;
+			sourceTree = "<group>";
+		};
+		FC6FFEE61BD6A9520062A209 /* Scores */ = {
+			isa = PBXGroup;
+			children = (
+				FC6FFEE01BD69D8B0062A209 /* BBTScores.h */,
+				FC6FFEE11BD69D8B0062A209 /* BBTScores.m */,
+			);
+			name = Scores;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,12 +296,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				395218821BCD265D000C7B68 /* LaunchScreen.storyboard in Resources */,
-				395218AC1BCD6177000C7B68 /* Go.storyboard in Resources */,
 				395218B01BCD61CD000C7B68 /* Tools.storyboard in Resources */,
 				FC010C951BD06CA000D4E9DB /* Information.storyboard in Resources */,
 				3952187F1BCD265D000C7B68 /* Assets.xcassets in Resources */,
 				FC010C971BD06DC400D4E9DB /* Me.storyboard in Resources */,
+				FC6FFEEA1BD6AB090062A209 /* Go.storyboard in Resources */,
 				3952187A1BCD265D000C7B68 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -418,22 +366,6 @@
 				395218791BCD265D000C7B68 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		395218801BCD265D000C7B68 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				395218811BCD265D000C7B68 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		395218AA1BCD6177000C7B68 /* Go.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				395218AB1BCD6177000C7B68 /* Base */,
-			);
-			name = Go.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -20,23 +20,9 @@ PODS:
   - AFNetworking/UIKit (2.6.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - ASIHTTPRequest (1.8.2):
-    - ASIHTTPRequest/ASIWebPageRequest (= 1.8.2)
-    - ASIHTTPRequest/CloudFiles (= 1.8.2)
-    - ASIHTTPRequest/Core (= 1.8.2)
-    - ASIHTTPRequest/S3 (= 1.8.2)
-  - ASIHTTPRequest/ASIWebPageRequest (1.8.2):
-    - ASIHTTPRequest/Core
-  - ASIHTTPRequest/CloudFiles (1.8.2):
-    - ASIHTTPRequest/Core
-  - ASIHTTPRequest/Core (1.8.2):
-    - Reachability
-  - ASIHTTPRequest/S3 (1.8.2):
-    - ASIHTTPRequest/Core
   - FlatUIKit (1.6.2)
   - HexColors (2.2.1)
   - pop (1.0.8)
-  - Reachability (3.2)
   - TSMessages (0.9.12):
     - HexColors (~> 2.2.0)
   - VBFPopFlatButton (0.0.6):
@@ -44,18 +30,15 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
-  - ASIHTTPRequest (~> 1.8.2)
   - FlatUIKit
   - TSMessages
   - VBFPopFlatButton
 
 SPEC CHECKSUMS:
   AFNetworking: 8e4e60500beb8bec644cf575beee72990a76d399
-  ASIHTTPRequest: ec013992946676b7978dcbde6396d57312d21db4
   FlatUIKit: 1b41f0d4952ce8d970d8479ce79df54a960242c4
   HexColors: abfd172e329dab59888614ccba6f216cec59289d
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
-  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   TSMessages: c8cc7b80f2a833af533872cd02010cac061532cc
   VBFPopFlatButton: 782344da63f104c279a857d806e065117a7e1196
 

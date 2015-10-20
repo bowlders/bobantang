@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
-        <!--更多-->
+        <!--我-->
         <scene sceneID="5RE-xD-ZTB">
             <objects>
                 <viewController id="foE-uf-IPj" sceneMemberID="viewController">
@@ -18,7 +18,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="更多" id="jbc-uk-qKe"/>
+                    <tabBarItem key="tabBarItem" title="我" id="jbc-uk-qKe"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>

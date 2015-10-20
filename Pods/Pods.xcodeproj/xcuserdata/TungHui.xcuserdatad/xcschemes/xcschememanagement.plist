@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>ASIHTTPRequest.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>FlatUIKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -25,11 +20,6 @@
 			<false/>
 		</dict>
 		<key>Pods.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Reachability.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -52,7 +42,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1893DE70459B9C5430E1E53597BF9817</key>
+		<key>0DB48A3B92121F0D9C112F53EC588A4A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -62,27 +52,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>37EC2414F317FD4D6DB037B0B082378F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>47C800E42623009B7192B025B3DD25A1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4F858D6779A2841E10B0325EBF499985</key>
+		<key>51782C3BE87BF23629CD06552FE0D49B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>86D56AC27E34E3809B848EBD6AFF2EC7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>96565FF632206E7F229E8FBB0BFBC5E1</key>
+		<key>644E5F8B61F0703D3A3FF9912A3ADBF5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,7 +72,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A8232C9B871835E6EAE9A931B236B117</key>
+		<key>B9A62FFE470226323A1A0EBFEDADDA0E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
