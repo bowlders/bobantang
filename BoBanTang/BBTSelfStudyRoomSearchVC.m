@@ -1,33 +1,49 @@
 //
-//  BBTSelfStudyRoomRequestTableViewController.m
+//  BBTSelfStudyRoomSearchVC.m
 //  BoBanTang
 //
-//  Created by Hsu Tung Hui on 17/10/15.
+//  Created by Hsu Tung Hui on 18/10/15.
 //  Copyright © 2015年 BBT. All rights reserved.
 //
 
-#import "BBTSelfStudyRoomRequestTableViewController.h"
+#import "BBTSelfStudyRoomSearchVC.h"
 
-@interface BBTSelfStudyRoomRequestTableViewController ()
+@interface BBTSelfStudyRoomSearchVC ()
 
 @end
 
-@implementation BBTSelfStudyRoomRequestTableViewController
+@implementation BBTSelfStudyRoomSearchVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
     
-    //Creat a manager
-    self.manager = [[RETableViewManager alloc] initWithTableView:self.tableView delegate:self];
-    [self.manager addSection:self.settingsSection];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // if the local changes while in the background, we need to be notified so we can update the date
+    // format in the table view cells
+    //
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(localeChanged:)
+                                                 name:NSCurrentLocaleDidChangeNotification
+                                               object:nil];
+
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:NSCurrentLocaleDidChangeNotification
+                                                  object:nil];
+}
+
+//Responds to region format or locale changes.
+- (void)localeChanged:(NSNotification *)notif
+{
+    // the user changed the locale (region format) in Settings, so we are notified here to
+    // update the date format in the table view cells
+    //
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,18 +51,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-
 /*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
-    // Configure the cell...
-    
-    return cell;
 }
 */
+
+#pragma mark - Table view data source
 
 /*
 // Override to support conditional editing of the table view.
