@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ver-b3-QB4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9Ku-3b-FdS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
-        <!--出行-->
+        <!--Bus View Controller-->
         <scene sceneID="dsu-eV-zwn">
             <objects>
-                <viewController id="ver-b3-QB4" sceneMemberID="viewController">
+                <viewController id="ver-b3-QB4" customClass="BBTBusViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OUz-Ja-Hs5"/>
                         <viewControllerLayoutGuide type="bottom" id="n1Q-rd-iYd"/>
@@ -18,13 +18,33 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="出行" id="bLq-vd-78k"/>
+                    <navigationItem key="navigationItem" id="58T-gc-WfN"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lHz-iH-xqK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-867.5" y="-162.5"/>
+            <point key="canvasLocation" x="264.5" y="-164.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="o2V-7b-LU1">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9Ku-3b-FdS" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mzS-6f-FTd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ver-b3-QB4" kind="relationship" relationship="rootViewController" id="3Gb-qO-Fgn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uII-dM-BnP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-328" y="-164"/>
         </scene>
     </scenes>
 </document>
