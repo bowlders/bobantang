@@ -6,10 +6,8 @@
 //  Copyright © 2015年 BBT. All rights reserved.
 //
 
-<<<<<<< HEAD:BoBanTang/AppDelegate.m
-#import "AppDelegate.h"
+#import "BBTAppDelegate.h"
 #import "APService.h"
->>>>>>> 373bff47f01923c4418f67b90202b81bc7ed2c9e:BoBanTang/BBTAppDelegate.m
 
 #import <AVOSCloud/AVOSCloud.h>
 
