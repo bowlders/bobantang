@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 //即“个人”（账户管理）页面
-@interface AccountManageViewController : UITableViewController
+@interface BBTAccountManageViewController : UITableViewController
 
 @end

@@ -1,23 +1,28 @@
 //
-//  CollectionsTableViewController.m
+//  settingsViewController.m
 //  BoBanTang
 //
-//  Created by Caesar on 15/10/18.
+//  Created by Caesar on 15/10/15.
 //  Copyright © 2015年 BBT. All rights reserved.
 //
 
-#import "CollectionsViewController.h"
+#import "BBTSettingsViewController.h"
 
-@interface CollectionsViewController ()
+@interface BBTSettingsViewController ()
 
 @end
 
-@implementation CollectionsViewController
+@implementation BBTSettingsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"我的收藏";
+    self.title = @"设置";
+
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.scrollEnabled = NO;
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -25,6 +30,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -35,17 +41,66 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of rows
-    return 0;
+    return 2;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *meCellIdentifier = @"settingCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:meCellIdentifier];
+    
+    if (!cell)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:meCellIdentifier];
+    }
+    
+    if (indexPath.row == 0)
+    {
+        cell.textLabel.text = @"清除缓存";
+    }
+    else if (indexPath.row == 1)
+    {
+        cell.textLabel.text = @"退出当前账号";
+    }
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    return cell;
+
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if (indexPath.row == 0)
+    {
+        [self clearCache];
+    }
+    else if (indexPath.row == 1)
+    {
+        [self logOut];
+    }
+
+}
+
+- (void)clearCache
+{
+    //TO DO : Clear cache here.
+}
+
+- (void)logOut
+{
+    //TO DO : Log out here.
 }
 
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:forIndexPath:indexPath];
     
     // Configure the cell...
     

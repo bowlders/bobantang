@@ -6,9 +6,9 @@
 //  Copyright © 2015年 BBT. All rights reserved.
 //
 
-#import "MeViewController.h"
+#import "BBTMeViewController.h"
 
-@interface MeViewController ()
+@interface BBTMeViewController ()
 
 @property (strong, nonatomic) IBOutlet AMWaveTransition *interactive;
 
