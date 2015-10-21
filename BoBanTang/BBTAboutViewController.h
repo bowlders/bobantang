@@ -1,5 +1,5 @@
 //
-//  PersonalInfoEditViewController.h
+//  AboutViewController.h
 //  BoBanTang
 //
 //  Created by Caesar on 15/10/18.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PersonalInfoEditViewController : UITableViewController
+@interface BBTAboutViewController : UIViewController
 
 @end

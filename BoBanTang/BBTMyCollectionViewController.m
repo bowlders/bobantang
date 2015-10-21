@@ -1,28 +1,24 @@
 //
-//  AccountManageTableViewController.m
+//  CollectionsTableViewController.m
 //  BoBanTang
 //
 //  Created by Caesar on 15/10/18.
 //  Copyright © 2015年 BBT. All rights reserved.
 //
 
-#import "AccountManageViewController.h"
+#import "BBTMyCollectionViewController.h"
 
-@interface AccountManageViewController ()
+@interface BBTMyCollectionViewController ()
 
 @end
 
-@implementation AccountManageViewController
+@implementation BBTMyCollectionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"个人";
+    self.title = @"我的收藏";
     
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.scrollEnabled = NO;
-
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -39,67 +35,23 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Incomplete implementation, return the number of sections
-    return 1;
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of rows
-    return 3;
+    return 0;
 }
 
-
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    static NSString *meCellIdentifier = @"accountManageCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:meCellIdentifier];
+    // Configure the cell...
     
-    if (!cell)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:meCellIdentifier];
-    }
-    
-    if (indexPath.row == 0)
-    {
-        cell.textLabel.text = @"登录";
-    }
-    else if (indexPath.row == 1)
-    {
-        cell.textLabel.text = @"个人信息修改";
-    }
-    else if (indexPath.row == 2)
-    {
-        cell.textLabel.text = @"收藏";
-    }
-    
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
     return cell;
-    
 }
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row == 0)
-    {
-        [self logIn];
-    }
-    else if (indexPath.row == 1)
-    {
-        [self performSegueWithIdentifier:@"showPersonalInfoEdit" sender:tableView];
-    }
-    else if (indexPath.row == 2)
-    {
-        [self performSegueWithIdentifier:@"showCollections" sender:tableView];
-    }
-    
-}
-
-- (void)logIn
-{
-    //TO DO : Handle login logic here
-}
-
+*/
 
 /*
 // Override to support conditional editing of the table view.

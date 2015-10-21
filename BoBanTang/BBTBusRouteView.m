@@ -7,6 +7,7 @@
 //
 
 #import "BBTBusRouteView.h"
+#import <Masonry.h>
 
 @interface BBTBusRouteView()
 
@@ -34,34 +35,29 @@
     self = [super initWithFrame:frame];
     if (!self) return nil;
 
-    const CGFloat width = frame.size.width;
-    const CGFloat elementHeight = frame.size.height / count;
     self.count = count;
     
     UIView *routeWrapper = [[UIView alloc] initWithFrame:self.bounds];
     routeWrapper.tag = ROUTE_VIEW_TAG;
     UIImage *routeElement = [UIImage imageNamed:@"route-element"];
     for (NSUInteger i = 0; i < count; i++) {
-        CGFloat y = i * elementHeight;
-        CGRect frame = CGRectMake(0.0, y, width, elementHeight);
         if (i == 0) {
             UIImage *routeHead = [UIImage imageNamed:@"route-head"];
             UIImageView *routeHeadView = [[UIImageView alloc] initWithImage:routeHead];
-            routeHeadView.frame = frame;
             [routeWrapper addSubview:routeHeadView];
         } else if (i == count - 1) {
             UIImage *routeTail = [UIImage imageNamed:@"route-tail"];
             UIImageView *routeTailView = [[UIImageView alloc] initWithImage:routeTail];
-            routeTailView.frame = frame;
             [routeWrapper addSubview:routeTailView];
         } else {
             UIImageView *routeElementView = [[UIImageView alloc] initWithImage:routeElement];
-            routeElementView.frame = frame;
             [routeWrapper addSubview:routeElementView];
         }
     }
     [self addSubview:routeWrapper];
-    
+    [self setNeedsUpdateConstraints];
+    [self updateConstraintsIfNeeded];
+
     return self;
 }
 
@@ -83,9 +79,6 @@
             [(NSNumber *)dotIndex integerValue] <= self.count
             ) {
             UIImageView *circle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"greenCircle"]];
-            CGFloat y = ( self.count - [(NSNumber*)dotIndex integerValue]) * elementHeight + upPadding;
-            CGRect frame = CGRectMake(0.0, y , circleWidth, circleWidth);
-            circle.frame = frame;
             [self addSubview:circle];
         }
     }
@@ -94,12 +87,15 @@
         if ([dotIndex isKindOfClass:[NSNumber class]] &&
             [(NSNumber *)dotIndex integerValue] <= self.count) {
             UIImageView *circle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"violetCircle"]];
-            CGFloat y = (self.count - [(NSNumber*)dotIndex integerValue]) * elementHeight + upPadding;
-            CGRect frame = CGRectMake(0.0, y , circleWidth, circleWidth);
-            circle.frame = frame;
             [self addSubview:circle];
         }
     }
+    
+}
+
+- (void)updateConstraints
+{
+    
 }
 
 /*

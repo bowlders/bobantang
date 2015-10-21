@@ -1,5 +1,5 @@
 //
-//  AboutViewController.h
+//  CollectionsTableViewController.h
 //  BoBanTang
 //
 //  Created by Caesar on 15/10/18.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AboutViewController : UIViewController
+@interface BBTMyCollectionViewController : UITableViewController
 
 @end
