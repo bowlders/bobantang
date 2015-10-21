@@ -6,13 +6,16 @@
 //  Copyright © 2015年 BBT. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "BBTAppDelegate.h"
 
-@interface AppDelegate ()
+#import <AVOSCloud/AVOSCloud.h>
+
+
+@interface BBTAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation BBTAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

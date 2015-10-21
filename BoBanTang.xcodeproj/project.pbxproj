@@ -11,7 +11,7 @@
 		3949B25A1BCF4CD000DB96F7 /* UIColor + BBTColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3949B2591BCF4CD000DB96F7 /* UIColor + BBTColor.m */; settings = {ASSET_TAGS = (); }; };
 		3949B25D1BCF5CF700DB96F7 /* BBTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3949B25C1BCF5CF700DB96F7 /* BBTSettingsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		395218711BCD265D000C7B68 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 395218701BCD265D000C7B68 /* main.m */; };
-		395218741BCD265D000C7B68 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 395218731BCD265D000C7B68 /* AppDelegate.m */; };
+		395218741BCD265D000C7B68 /* BBTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 395218731BCD265D000C7B68 /* BBTAppDelegate.m */; };
 		395218771BCD265D000C7B68 /* BBTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395218761BCD265D000C7B68 /* BBTBaseViewController.m */; };
 		3952187A1BCD265D000C7B68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218781BCD265D000C7B68 /* Main.storyboard */; };
 		3952187D1BCD265D000C7B68 /* BoBanTang.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3952187B1BCD265D000C7B68 /* BoBanTang.xcdatamodeld */; };
@@ -36,8 +36,8 @@
 		3949B25C1BCF5CF700DB96F7 /* BBTSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSettingsViewController.m; sourceTree = "<group>"; };
 		3952186C1BCD265D000C7B68 /* BoBanTang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoBanTang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		395218701BCD265D000C7B68 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		395218721BCD265D000C7B68 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		395218731BCD265D000C7B68 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		395218721BCD265D000C7B68 /* BBTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBTAppDelegate.h; sourceTree = "<group>"; };
+		395218731BCD265D000C7B68 /* BBTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBTAppDelegate.m; sourceTree = "<group>"; };
 		395218751BCD265D000C7B68 /* BBTBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBTBaseViewController.h; sourceTree = "<group>"; };
 		395218761BCD265D000C7B68 /* BBTBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBTBaseViewController.m; sourceTree = "<group>"; };
 		395218791BCD265D000C7B68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -112,8 +112,8 @@
 				3952187B1BCD265D000C7B68 /* BoBanTang.xcdatamodeld */,
 				3952187E1BCD265D000C7B68 /* Assets.xcassets */,
 				395218831BCD265D000C7B68 /* Info.plist */,
-				395218721BCD265D000C7B68 /* AppDelegate.h */,
-				395218731BCD265D000C7B68 /* AppDelegate.m */,
+				395218721BCD265D000C7B68 /* BBTAppDelegate.h */,
+				395218731BCD265D000C7B68 /* BBTAppDelegate.m */,
 				395218701BCD265D000C7B68 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -333,7 +333,7 @@
 				39B716C51BD2B33B00C12DA3 /* BBTMyCollectionViewController.m in Sources */,
 				39B716D21BD3EFAF00C12DA3 /* BBTPersonalInfoEditViewController.m in Sources */,
 				395218771BCD265D000C7B68 /* BBTBaseViewController.m in Sources */,
-				395218741BCD265D000C7B68 /* AppDelegate.m in Sources */,
+				395218741BCD265D000C7B68 /* BBTAppDelegate.m in Sources */,
 				3952187D1BCD265D000C7B68 /* BoBanTang.xcdatamodeld in Sources */,
 				3949B25A1BCF4CD000DB96F7 /* UIColor + BBTColor.m in Sources */,
 				395218711BCD265D000C7B68 /* main.m in Sources */,
