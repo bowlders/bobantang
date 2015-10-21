@@ -8,13 +8,21 @@
 
 #import "BBTMeViewController.h"
 
+static const NSInteger kBBTMeSectionIndex         = 0;
+static const NSInteger kBBTSettingSectionIndex    = 1;
+static const NSInteger kBBTOtherSectionIndex      = 2;
+
+static const NSInteger kBBTMeSectionRowCount      = 1;
+static const NSInteger kBBTSettingSectionRowCount = 1;
+static const NSInteger kBBTOtherSectionRowCount   = 2;
+
 @interface BBTMeViewController ()
 
 @property (strong, nonatomic) IBOutlet AMWaveTransition *interactive;
 
 @end
 
-@implementation MeViewController
+@implementation BBTMeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,6 +63,7 @@
     {
         AMWaveTransition *transition = [AMWaveTransition transitionWithOperation:operation];
         [transition setTransitionType:AMWaveTransitionTypeSubtle];
+        // FIXME: 不要出现 magic number，定义 const
         [transition setDuration:1.3];
         [transition setMaxDelay:0.4];
         return [AMWaveTransition transitionWithOperation:operation];
@@ -97,7 +106,8 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 3;
 }
 
@@ -105,17 +115,18 @@
     
     NSInteger rowsNumber = 0;
     
-    switch (section)
-    {
-        case 0:
-            rowsNumber = 1;
+    switch (section) {
+        case kBBTMeSectionIndex:
+            rowsNumber = kBBTMeSectionRowCount;
             break;
-        case 1:
-            rowsNumber = 1;
+        case kBBTSettingSectionIndex:
+            rowsNumber = kBBTSettingSectionRowCount;
             break;
-        case 2:
-            rowsNumber = 2;
+        case kBBTOtherSectionIndex:
+            rowsNumber = kBBTOtherSectionRowCount;
             break;
+        default:
+            NSAssert(NO, @"Invalid section index");
     }
     
     return rowsNumber;
@@ -127,17 +138,18 @@
     
     NSString *sectionTitle;
     
-    switch (section)
-    {
-        case 0:
+    switch (section) {
+        case kBBTMeSectionIndex:
             sectionTitle = @"个人";
             break;
-        case 1:
+        case kBBTSettingSectionIndex:
             sectionTitle = @"设置";
             break;
-        case 2:
+        case kBBTOtherSectionIndex:
             sectionTitle = @"其他";
             break;
+        default:
+            NSAssert(NO, @"Invalid section index");
     }
     
     return sectionTitle;
@@ -146,9 +158,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-
     return 50;
-    
 }
 
 
@@ -188,6 +198,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:meCellIdentifier];
     }
     
+    // FIXME: 使用 const
     if (indexPath.section == 0)
     {
         cell.textLabel.text = @"账户管理";
@@ -217,7 +228,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    // FIXME: 使用 const
     if (indexPath.section == 0)
     {
         [self performSegueWithIdentifier:@"showAccountManage" sender:tableView];
