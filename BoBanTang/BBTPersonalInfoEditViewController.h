@@ -1,5 +1,5 @@
 //
-//  CollectionsTableViewController.h
+//  PersonalInfoEditViewController.h
 //  BoBanTang
 //
 //  Created by Caesar on 15/10/18.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CollectionsViewController : UITableViewController
+@interface BBTPersonalInfoEditViewController : UITableViewController
 
 @end

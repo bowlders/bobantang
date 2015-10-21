@@ -6,13 +6,13 @@
 //  Copyright © 2015年 BBT. All rights reserved.
 //
 
-#import "AboutViewController.h"
+#import "BBTAboutViewController.h"
 
-@interface AboutViewController ()
+@interface BBTAboutViewController ()
 
 @end
 
-@implementation AboutViewController
+@implementation BBTAboutViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -10,7 +10,7 @@
 #import <AMWaveViewController.h>
 #import <LeanCloudFeedback.h>
 
-@interface MeViewController : UITableViewController<UIAlertViewDelegate, UINavigationControllerDelegate, AMWaveTransitioning>
+@interface BBTMeViewController : UITableViewController<UIAlertViewDelegate, UINavigationControllerDelegate, AMWaveTransitioning>
 
 @end
     

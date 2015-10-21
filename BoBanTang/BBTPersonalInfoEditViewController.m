@@ -6,13 +6,13 @@
 //  Copyright © 2015年 BBT. All rights reserved.
 //
 
-#import "PersonalInfoEditViewController.h"
+#import "BBTPersonalInfoEditViewController.h"
 
-@interface PersonalInfoEditViewController ()
+@interface BBTPersonalInfoEditViewController ()
 
 @end
 
-@implementation PersonalInfoEditViewController
+@implementation BBTPersonalInfoEditViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
