@@ -8,18 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		00F422415A1C1B34A2CD5F28 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 263A8D84080296DDB6A53666 /* libPods.a */; };
-		3949B25D1BCF5CF700DB96F7 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3949B25C1BCF5CF700DB96F7 /* SettingsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		395218711BCD265D000C7B68 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 395218701BCD265D000C7B68 /* main.m */; };
-		395218741BCD265D000C7B68 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 395218731BCD265D000C7B68 /* AppDelegate.m */; };
-		3949B25A1BCF4CD000DB96F7 /* UIColor + BBTColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3949B2591BCF4CD000DB96F7 /* UIColor + BBTColor.m */; settings = {ASSET_TAGS = (); }; };
-		3949B25D1BCF5CF700DB96F7 /* BBTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3949B25C1BCF5CF700DB96F7 /* BBTSettingsViewController.m */; settings = {ASSET_TAGS = (); }; };
-		395218711BCD265D000C7B68 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 395218701BCD265D000C7B68 /* main.m */; };
-		395218741BCD265D000C7B68 /* BBTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 395218731BCD265D000C7B68 /* BBTAppDelegate.m */; };
 		395218771BCD265D000C7B68 /* BBTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395218761BCD265D000C7B68 /* BBTBaseViewController.m */; };
 		3952187A1BCD265D000C7B68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218781BCD265D000C7B68 /* Main.storyboard */; };
 		3952187D1BCD265D000C7B68 /* BoBanTang.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3952187B1BCD265D000C7B68 /* BoBanTang.xcdatamodeld */; };
 		395218821BCD265D000C7B68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218801BCD265D000C7B68 /* LaunchScreen.storyboard */; };
-		3952189F1BCD4F14000C7B68 /* BBTMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3952189E1BCD4F14000C7B68 /* BBTMeViewController.m */; settings = {ASSET_TAGS = (); }; };
 		395218AC1BCD6177000C7B68 /* Go.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218AA1BCD6177000C7B68 /* Go.storyboard */; settings = {ASSET_TAGS = (); }; };
 		395218AE1BCD61B4000C7B68 /* Information.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218AD1BCD61B4000C7B68 /* Information.storyboard */; settings = {ASSET_TAGS = (); }; };
 		395218B01BCD61CD000C7B68 /* Tools.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218AF1BCD61CD000C7B68 /* Tools.storyboard */; settings = {ASSET_TAGS = (); }; };
@@ -45,27 +38,13 @@
 		3982317C1BD496AB0043E544 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3982317B1BD496AB0043E544 /* CoreLocation.framework */; };
 		3982317F1BD496F70043E544 /* UIColor+BBTColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3982317E1BD496F70043E544 /* UIColor+BBTColor.m */; settings = {ASSET_TAGS = (); }; };
 		398231831BD4E7FC0043E544 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398231821BD4E7FC0043E544 /* Images.xcassets */; settings = {ASSET_TAGS = (); }; };
-		3982318B1BD667A00043E544 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3982318A1BD667A00043E544 /* MainViewController.m */; settings = {ASSET_TAGS = (); }; };
-		39B716C51BD2B33B00C12DA3 /* CollectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B716C41BD2B33B00C12DA3 /* CollectionsViewController.m */; settings = {ASSET_TAGS = (); }; };
-		39B716C91BD3E94B00C12DA3 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B716C81BD3E94B00C12DA3 /* AboutViewController.m */; settings = {ASSET_TAGS = (); }; };
-		39B716CF1BD3E99000C12DA3 /* AccountManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B716CE1BD3E99000C12DA3 /* AccountManageViewController.m */; settings = {ASSET_TAGS = (); }; };
-		39B716D21BD3EFAF00C12DA3 /* PersonalInfoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B716D11BD3EFAF00C12DA3 /* PersonalInfoEditViewController.m */; settings = {ASSET_TAGS = (); }; };
-		39B716C51BD2B33B00C12DA3 /* BBTMyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B716C41BD2B33B00C12DA3 /* BBTMyCollectionViewController.m */; settings = {ASSET_TAGS = (); }; };
-		39B716C91BD3E94B00C12DA3 /* BBTAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B716C81BD3E94B00C12DA3 /* BBTAboutViewController.m */; settings = {ASSET_TAGS = (); }; };
-		39B716CF1BD3E99000C12DA3 /* BBTAccountManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B716CE1BD3E99000C12DA3 /* BBTAccountManageViewController.m */; settings = {ASSET_TAGS = (); }; };
-		39B716D21BD3EFAF00C12DA3 /* BBTPersonalInfoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B716D11BD3EFAF00C12DA3 /* BBTPersonalInfoEditViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3982318C1BD7EF890043E544 /* BBTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 395218731BCD265D000C7B68 /* BBTAppDelegate.m */; };
+		3982318D1BD7EFF50043E544 /* BBTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3982318A1BD667A00043E544 /* BBTMainViewController.m */; };
+		3982318E1BD7F0840043E544 /* BBTMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3952189E1BCD4F14000C7B68 /* BBTMeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		263A8D84080296DDB6A53666 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		3949B25B1BCF5CF700DB96F7 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		3949B25C1BCF5CF700DB96F7 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		3952186C1BCD265D000C7B68 /* BoBanTang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoBanTang.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		395218701BCD265D000C7B68 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		395218721BCD265D000C7B68 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		395218731BCD265D000C7B68 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		3949B2581BCF4CD000DB96F7 /* UIColor + BBTColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor + BBTColor.h"; sourceTree = "<group>"; };
-		3949B2591BCF4CD000DB96F7 /* UIColor + BBTColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor + BBTColor.m"; sourceTree = "<group>"; };
 		3949B25B1BCF5CF700DB96F7 /* BBTSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSettingsViewController.h; sourceTree = "<group>"; };
 		3949B25C1BCF5CF700DB96F7 /* BBTSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSettingsViewController.m; sourceTree = "<group>"; };
 		3952186C1BCD265D000C7B68 /* BoBanTang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoBanTang.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,16 +104,8 @@
 		3982317D1BD496F70043E544 /* UIColor+BBTColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BBTColor.h"; sourceTree = "<group>"; };
 		3982317E1BD496F70043E544 /* UIColor+BBTColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BBTColor.m"; sourceTree = "<group>"; };
 		398231821BD4E7FC0043E544 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		398231891BD667A00043E544 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		3982318A1BD667A00043E544 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		39B716C31BD2B33B00C12DA3 /* CollectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionsViewController.h; sourceTree = "<group>"; };
-		39B716C41BD2B33B00C12DA3 /* CollectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionsViewController.m; sourceTree = "<group>"; };
-		39B716C71BD3E94B00C12DA3 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
-		39B716C81BD3E94B00C12DA3 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
-		39B716CD1BD3E99000C12DA3 /* AccountManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManageViewController.h; sourceTree = "<group>"; };
-		39B716CE1BD3E99000C12DA3 /* AccountManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManageViewController.m; sourceTree = "<group>"; };
-		39B716D01BD3EFAF00C12DA3 /* PersonalInfoEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInfoEditViewController.h; sourceTree = "<group>"; };
-		39B716D11BD3EFAF00C12DA3 /* PersonalInfoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfoEditViewController.m; sourceTree = "<group>"; };
+		398231891BD667A00043E544 /* BBTMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMainViewController.h; sourceTree = "<group>"; };
+		3982318A1BD667A00043E544 /* BBTMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTMainViewController.m; sourceTree = "<group>"; };
 		39B716C31BD2B33B00C12DA3 /* BBTMyCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMyCollectionViewController.h; sourceTree = "<group>"; };
 		39B716C41BD2B33B00C12DA3 /* BBTMyCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTMyCollectionViewController.m; sourceTree = "<group>"; };
 		39B716C71BD3E94B00C12DA3 /* BBTAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTAboutViewController.h; sourceTree = "<group>"; };
@@ -247,8 +218,8 @@
 		395218951BCD4C0F000C7B68 /* General */ = {
 			isa = PBXGroup;
 			children = (
-				398231891BD667A00043E544 /* MainViewController.h */,
-				3982318A1BD667A00043E544 /* MainViewController.m */,
+				398231891BD667A00043E544 /* BBTMainViewController.h */,
+				3982318A1BD667A00043E544 /* BBTMainViewController.m */,
 				395218751BCD265D000C7B68 /* BBTBaseViewController.h */,
 				395218761BCD265D000C7B68 /* BBTBaseViewController.m */,
 			);
@@ -508,35 +479,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3982318E1BD7F0840043E544 /* BBTMeViewController.m in Sources */,
+				3982318D1BD7EFF50043E544 /* BBTMainViewController.m in Sources */,
+				3982318C1BD7EF890043E544 /* BBTAppDelegate.m in Sources */,
 				398231771BD496040043E544 /* UIView+BBTBusTimeTable.m in Sources */,
 				398231411BD3F6950043E544 /* GmailLikeLoadingView.m in Sources */,
 				3982317F1BD496F70043E544 /* UIColor+BBTColor.m in Sources */,
 				398231541BD3FC560043E544 /* PAPropertyDescriptor.m in Sources */,
-				39B716CF1BD3E99000C12DA3 /* AccountManageViewController.m in Sources */,
 				3982316E1BD496040043E544 /* BBTBus.m in Sources */,
 				398231741BD496040043E544 /* BBTCountView.m in Sources */,
-				39B716C91BD3E94B00C12DA3 /* AboutViewController.m in Sources */,
-				3952189F1BCD4F14000C7B68 /* MeViewController.m in Sources */,
 				398231531BD3FC560043E544 /* PAPreferences.m in Sources */,
-				3949B25D1BCF5CF700DB96F7 /* SettingsViewController.m in Sources */,
-				3982318B1BD667A00043E544 /* MainViewController.m in Sources */,
-				39B716C51BD2B33B00C12DA3 /* CollectionsViewController.m in Sources */,
 				3982316F1BD496040043E544 /* BBTBusClusterView.m in Sources */,
-				39B716D21BD3EFAF00C12DA3 /* PersonalInfoEditViewController.m in Sources */,
 				398231781BD496040043E544 /* UIView+BBTStationInfo.m in Sources */,
 				398231721BD496040043E544 /* BBTBusView.m in Sources */,
 				398231711BD496040043E544 /* BBTBusRouteView.m in Sources */,
-				395218741BCD265D000C7B68 /* AppDelegate.m in Sources */,
 				3982314D1BD3FC1B0043E544 /* BBTPreferences.m in Sources */,
 				398231751BD496040043E544 /* UIButton+BBTStationButton.m in Sources */,
-				39B716CF1BD3E99000C12DA3 /* BBTAccountManageViewController.m in Sources */,
-				39B716C91BD3E94B00C12DA3 /* BBTAboutViewController.m in Sources */,
-				3952189F1BCD4F14000C7B68 /* BBTMeViewController.m in Sources */,
-				3949B25D1BCF5CF700DB96F7 /* BBTSettingsViewController.m in Sources */,
-				39B716C51BD2B33B00C12DA3 /* BBTMyCollectionViewController.m in Sources */,
-				39B716D21BD3EFAF00C12DA3 /* BBTPersonalInfoEditViewController.m in Sources */,
 				395218771BCD265D000C7B68 /* BBTBaseViewController.m in Sources */,
-				395218741BCD265D000C7B68 /* BBTAppDelegate.m in Sources */,
 				3952187D1BCD265D000C7B68 /* BoBanTang.xcdatamodeld in Sources */,
 				398231701BD496040043E544 /* BBTBusManager.m in Sources */,
 				398231451BD3F6B60043E544 /* KGModal.m in Sources */,

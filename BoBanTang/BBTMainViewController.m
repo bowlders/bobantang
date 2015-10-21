@@ -6,13 +6,13 @@
 //  Copyright © 2015年 BBT. All rights reserved.
 //
 
-#import "MainViewController.h"
+#import "BBTMainViewController.h"
 
-@interface MainViewController ()
+@interface BBTMainViewController ()
 
 @end
 
-@implementation MainViewController
+@implementation BBTMainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

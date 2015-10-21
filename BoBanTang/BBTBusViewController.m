@@ -36,7 +36,7 @@
 #define LOADING_VIEW_SIZE 24.0f
 - (void)loadView
 {
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     UIView *view = [[UIView alloc] initWithFrame:applicationFrame];
     self.view = view;
     self.view.backgroundColor = [UIColor whiteColor];
