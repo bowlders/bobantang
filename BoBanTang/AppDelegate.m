@@ -17,6 +17,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    //Lean Cloud Settings
+    [AVOSCloud setApplicationId:@"Bfwj1TJ6hcSFBPgMRzGYQOr3"
+                      clientKey:@"HRAIPGFlzSurUky1YcoYBYS5"];
+    [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     return YES;
 }
 

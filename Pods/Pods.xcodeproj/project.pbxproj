@@ -8,45 +8,45 @@
 
 /* Begin PBXBuildFile section */
 		0B0A96BF5364C50C2D9B954A189ECF17 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DD25CA4A497622D5ABF4C433D79E4DE /* QuartzCore.framework */; };
-		0F48FA59B670153BE8F29ABCE55D25D9 /* LCUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 08AC67AA289F825F741A3052A39C4F02 /* LCUtils.m */; };
-		1088DA320CC1222C180D3EB935C24212 /* LCUserFeedbackViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D91B7F798A4D4667A27E9B69FA3951E /* LCUserFeedbackViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		110562B3CAF52D329E49A59D19F1A6FA /* LCUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 295C13358F7F7E823941D454C91E84B9 /* LCUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		13939356A7759703B45390C0F7D256FE /* AYVibrantButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 4ECF8868BE73383723B18BCD979BAF77 /* AYVibrantButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		25B34AD4643C070C134EF0FF3B49B262 /* LCHttpClient.h in Headers */ = {isa = PBXBuildFile; fileRef = EEA402FEBA27057A5F7B75910251BD83 /* LCHttpClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2E1F7F235C706A41C7B66EAB3DF7AC3B /* LCUserFeedbackImageViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DAFB7BDE6B7A1252744F5BEDCB826FE /* LCUserFeedbackImageViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0F48FA59B670153BE8F29ABCE55D25D9 /* LCUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4707F801CE93871A9ABA94521B3E20C1 /* LCUtils.m */; };
+		1088DA320CC1222C180D3EB935C24212 /* LCUserFeedbackViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = C1F65CBD6873A619920516D91E1EC2A0 /* LCUserFeedbackViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		110562B3CAF52D329E49A59D19F1A6FA /* LCUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 9324407F4A84D9DB4AD38F914071FE88 /* LCUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		13939356A7759703B45390C0F7D256FE /* AYVibrantButton.h in Headers */ = {isa = PBXBuildFile; fileRef = EED20DFEDEF68EE0A33E3BA651C80FC4 /* AYVibrantButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		25B34AD4643C070C134EF0FF3B49B262 /* LCHttpClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 05D10365C50D707EE4F28394E6A5B380 /* LCHttpClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2E1F7F235C706A41C7B66EAB3DF7AC3B /* LCUserFeedbackImageViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A5B394008F0D0580BC234AC94166E72 /* LCUserFeedbackImageViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2E8209DB6CC7B4742B63675032C09403 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED04AE2201316F6590E7AD9952706C7B /* UIKit.framework */; };
-		3B21F2A452C39F53EF29C6B652A373FD /* LCUserFeedbackReply_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = CB1C56FBD85E66C0B7D89B4E502D0D94 /* LCUserFeedbackReply_Internal.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3B21F2A452C39F53EF29C6B652A373FD /* LCUserFeedbackReply_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = BE3FAA79ED20682EA3155B9372B7D6E6 /* LCUserFeedbackReply_Internal.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3CA88ED42D62A415B5016AB76FC3FCD1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE437620300D81EED04DF8C0301AF9D9 /* Foundation.framework */; };
-		428A09E3D81603F03279E19B57CAADC3 /* AMWaveViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2690D4A1B33543D29859AED17873ADF0 /* AMWaveViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		499A8361ADAB41EA1A4D7A27C3C23AE5 /* LCUserFeedbackAgent.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F1281B3B160505A991055447256D7FA /* LCUserFeedbackAgent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		428A09E3D81603F03279E19B57CAADC3 /* AMWaveViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 64B0DAE777EA6095679398FCACDD2291 /* AMWaveViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		499A8361ADAB41EA1A4D7A27C3C23AE5 /* LCUserFeedbackAgent.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AA7D3D069B91AD6B01ED9002951A36A /* LCUserFeedbackAgent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		505A3E22B99C6AD9CA4E540240085BA5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE437620300D81EED04DF8C0301AF9D9 /* Foundation.framework */; };
-		5568ADFB7F55E65F3FBC82CF13881530 /* SZTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A402AA68EFC858F0F8508B6CF2700614 /* SZTextView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		5C01ADEAACEDB74DBF98060639303150 /* LCUserFeedbackReply.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FDF4F818C2A1AF816D54FF4B87CCC6 /* LCUserFeedbackReply.m */; };
-		732EEE84B579FDDF82574CC3B4C24EFB /* SZTextView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7F3220A6CBD55039960549648D9B21 /* SZTextView-dummy.m */; };
-		735A16456CB616E752A86BAD7529BCC3 /* AMWaveTransition-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 085C97478366478170628234AA0144CB /* AMWaveTransition-dummy.m */; };
-		74818C85CED708311CBCBD18A5D142EF /* AMWaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9DB7B8A43A79CFA41391A68C388DA41 /* AMWaveViewController.m */; };
-		760E403340BB4A520919094B6A108AB5 /* SZTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F7CDE6AEE0C634CE4DEB2B3E24C9799 /* SZTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		77A9DB2FB36BF844C52B390A18E61E38 /* LeanCloudFeedback-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A589274536CCC5D2F20C07A87CC36635 /* LeanCloudFeedback-dummy.m */; };
-		7D4C505D23204B7B2FA6315E30EC71E5 /* LCUserFeedbackThread_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2521ED5BA9EC1822F6F8E4DBC12C4517 /* LCUserFeedbackThread_Internal.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		88298A1399D6341CC230A1F0ECD1145F /* LCUserFeedbackThread.h in Headers */ = {isa = PBXBuildFile; fileRef = CAD2D0405A838F6833A60BDD30FB8F26 /* LCUserFeedbackThread.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		895C426FC6381348E0338BCAC4022F46 /* AMWaveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 005B4C78EFB29E7265BF0155A1381A92 /* AMWaveTransition.m */; };
-		8D65F5622DD9E8D6CA05170A5944C0B4 /* LCUserFeedbackReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E51923B384DCF1F1EE338F237CD21E /* LCUserFeedbackReplyCell.m */; };
+		5568ADFB7F55E65F3FBC82CF13881530 /* SZTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB50CF27AD58A22510522CB99143A67 /* SZTextView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		5C01ADEAACEDB74DBF98060639303150 /* LCUserFeedbackReply.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7CE2AB0FA2E0999ECE3B4BCAC9732F /* LCUserFeedbackReply.m */; };
+		732EEE84B579FDDF82574CC3B4C24EFB /* SZTextView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E14DF67AA01B18AF1CD776F8D20EF3B3 /* SZTextView-dummy.m */; };
+		735A16456CB616E752A86BAD7529BCC3 /* AMWaveTransition-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B0807561BE59B33273D2728C4BB86D44 /* AMWaveTransition-dummy.m */; };
+		74818C85CED708311CBCBD18A5D142EF /* AMWaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 728CF05A71451E8D80F24D6B289AFA02 /* AMWaveViewController.m */; };
+		760E403340BB4A520919094B6A108AB5 /* SZTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = D92EF129F92DD1ADAD1BE9233A9BAF61 /* SZTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		77A9DB2FB36BF844C52B390A18E61E38 /* LeanCloudFeedback-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AF30F963128D0159C2AE2D347A4FDD3D /* LeanCloudFeedback-dummy.m */; };
+		7D4C505D23204B7B2FA6315E30EC71E5 /* LCUserFeedbackThread_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BE0F7D2BC21E965E562981C31EC5EED /* LCUserFeedbackThread_Internal.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		88298A1399D6341CC230A1F0ECD1145F /* LCUserFeedbackThread.h in Headers */ = {isa = PBXBuildFile; fileRef = BD066354CB94438F9F5AB15D1B70F46E /* LCUserFeedbackThread.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		895C426FC6381348E0338BCAC4022F46 /* AMWaveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DCF8F4E3BD0E6BCEF20B2FC49F5274 /* AMWaveTransition.m */; };
+		8D65F5622DD9E8D6CA05170A5944C0B4 /* LCUserFeedbackReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C338BF906E43FA96576598E430E88BD9 /* LCUserFeedbackReplyCell.m */; };
 		9593FBD8B552D022A216B5AF98AC4862 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED04AE2201316F6590E7AD9952706C7B /* UIKit.framework */; };
 		9E5DA402C23474464B0D1077544C5889 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE437620300D81EED04DF8C0301AF9D9 /* Foundation.framework */; };
 		9EAFCF8C97C2AFE96E77CE4488CD4727 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 272643F56613CA0D336AE3DBF19DC404 /* Pods-dummy.m */; };
 		A614B03A39EE319FD2F28099D5C5FAEB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE437620300D81EED04DF8C0301AF9D9 /* Foundation.framework */; };
-		A75470C0157A9403D2BB043FE4A087F0 /* AYVibrantButton-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E189DC556752004D5331332FB25E16BA /* AYVibrantButton-dummy.m */; };
-		A7F10CFE8F18B557E993AFF2321EEBEE /* LeanCloudFeedback.h in Headers */ = {isa = PBXBuildFile; fileRef = 01D6B6FA7F03CBDE2563CA59558D8E71 /* LeanCloudFeedback.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B62F450627F6D6E5FD4E8F800F4425C8 /* LCUserFeedbackImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6F44655F5BBB4297318B871E43B0C1 /* LCUserFeedbackImageViewController.m */; };
-		BD8AA89293DF83BB7AB289028BBF7767 /* LCUserFeedbackReplyCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 2149A51A09D40AF8884839A9502AD36D /* LCUserFeedbackReplyCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C3F3F17AFA137739EB2842AB80F9075A /* LCUserFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C4210D44377B6FBD646F838366D81E /* LCUserFeedbackViewController.m */; };
-		DA89FF46BEFDC465B7430223E6421DD6 /* LCUserFeedbackReply.h in Headers */ = {isa = PBXBuildFile; fileRef = 1745E6BE937D9D55AF3481D6AA787D55 /* LCUserFeedbackReply.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A75470C0157A9403D2BB043FE4A087F0 /* AYVibrantButton-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1BE3D1F1B7D0988C6A613856337569 /* AYVibrantButton-dummy.m */; };
+		A7F10CFE8F18B557E993AFF2321EEBEE /* LeanCloudFeedback.h in Headers */ = {isa = PBXBuildFile; fileRef = D6C391A75A6B08F625D8AD068EA37455 /* LeanCloudFeedback.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B62F450627F6D6E5FD4E8F800F4425C8 /* LCUserFeedbackImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5797F96ECB11530701971D3D7C23DD29 /* LCUserFeedbackImageViewController.m */; };
+		BD8AA89293DF83BB7AB289028BBF7767 /* LCUserFeedbackReplyCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 99D015FB6C0C019D3C908E8DD8F8EA21 /* LCUserFeedbackReplyCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C3F3F17AFA137739EB2842AB80F9075A /* LCUserFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 251F0E550A4B29778F2CC75AC1E8E0EC /* LCUserFeedbackViewController.m */; };
+		DA89FF46BEFDC465B7430223E6421DD6 /* LCUserFeedbackReply.h in Headers */ = {isa = PBXBuildFile; fileRef = B4DA68A4792BE10DA3BECD9001B60F6E /* LCUserFeedbackReply.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DEA7845C08CD9EA51A35D8FFD5C15D15 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE437620300D81EED04DF8C0301AF9D9 /* Foundation.framework */; };
-		E2097F717F1D1DE65C63ACEC6E318380 /* AYVibrantButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0EA6E71461421DA2C51FC069CE698E /* AYVibrantButton.m */; };
-		E33AB7CE52CA07FF45BF867A1995BF03 /* LCUserFeedbackAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = E593073E762901DC0A628F3BCB3DC5C5 /* LCUserFeedbackAgent.m */; };
-		E8781334AA761D9592FF70FDEF525247 /* LCUserFeedbackThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F7F4749B16595DA306D3E6EF00317E /* LCUserFeedbackThread.m */; };
-		EA3EF5598BFEE191AAE38C337CFB0681 /* AMWaveTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = B6CF61D1A0107A38A78CA44A6C0343D7 /* AMWaveTransition.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ED63BB02EE80CB982ED4C7A9D370023B /* LCHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5ABE63CD136D5EEEC94BACA4C061BE /* LCHttpClient.m */; };
+		E2097F717F1D1DE65C63ACEC6E318380 /* AYVibrantButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B082B90A1F98CD7D556D154741EE80FD /* AYVibrantButton.m */; };
+		E33AB7CE52CA07FF45BF867A1995BF03 /* LCUserFeedbackAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C372D503138C93778A7550DF6C0D212 /* LCUserFeedbackAgent.m */; };
+		E8781334AA761D9592FF70FDEF525247 /* LCUserFeedbackThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FFB43141F69B12099526016F165D703 /* LCUserFeedbackThread.m */; };
+		EA3EF5598BFEE191AAE38C337CFB0681 /* AMWaveTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = B71847B6232EDAA0BE7EA7C1A413BB62 /* AMWaveTransition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED63BB02EE80CB982ED4C7A9D370023B /* LCHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6E0CB168409B17B6CCBC4479F31FB1 /* LCHttpClient.m */; };
 		F55F7F0FEE7BA021C1D33EDA0C8C4B11 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE7FD0E16F3FACCFE19068F1E872D9F /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,99 +82,101 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		005B4C78EFB29E7265BF0155A1381A92 /* AMWaveTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AMWaveTransition.m; path = Source/AMWaveTransition.m; sourceTree = "<group>"; };
-		01D6B6FA7F03CBDE2563CA59558D8E71 /* LeanCloudFeedback.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LeanCloudFeedback.h; path = LeanCloudFeedback/LeanCloudFeedback.h; sourceTree = "<group>"; };
-		0699081376AA8E8125D6E9304AB83052 /* AVLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVLogger.h; sourceTree = "<group>"; };
-		085C97478366478170628234AA0144CB /* AMWaveTransition-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AMWaveTransition-dummy.m"; sourceTree = "<group>"; };
-		08AC67AA289F825F741A3052A39C4F02 /* LCUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCUtils.m; path = LeanCloudFeedback/LCUtils.m; sourceTree = "<group>"; };
-		0B34647398DEDC499F3ED7C43666E6EA /* AVSubclassing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVSubclassing.h; sourceTree = "<group>"; };
+		0303E92EF15380205F62EE90A3817751 /* AVCloudQueryResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVCloudQueryResult.h; sourceTree = "<group>"; };
+		05D10365C50D707EE4F28394E6A5B380 /* LCHttpClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCHttpClient.h; path = LeanCloudFeedback/LCHttpClient.h; sourceTree = "<group>"; };
 		0DD25CA4A497622D5ABF4C433D79E4DE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
-		0F4FA3CF360EFB619C9B25AF7C1F67AB /* AVQuery.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVQuery.h; sourceTree = "<group>"; };
 		10834806BD7B412BC24F347361FA2C8E /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
-		11E51923B384DCF1F1EE338F237CD21E /* LCUserFeedbackReplyCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCUserFeedbackReplyCell.m; path = LeanCloudFeedback/LCUserFeedbackReplyCell.m; sourceTree = "<group>"; };
-		15FBCFC4B41AF6E2CFC7D66FA5314EC1 /* feedback_add_image@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedback_add_image@2x.png"; path = "LeanCloudFeedback/resources/feedback_add_image@2x.png"; sourceTree = "<group>"; };
-		1745E6BE937D9D55AF3481D6AA787D55 /* LCUserFeedbackReply.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUserFeedbackReply.h; path = LeanCloudFeedback/LCUserFeedbackReply.h; sourceTree = "<group>"; };
-		17F86052A3043998B5D1084331AC04CC /* AMWaveTransition.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AMWaveTransition.xcconfig; sourceTree = "<group>"; };
-		1874B2FF66C5C88C7AA7B3F335EF86BD /* feedback_btn@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedback_btn@2x.png"; path = "LeanCloudFeedback/resources/feedback_btn@2x.png"; sourceTree = "<group>"; };
-		18AB0439D90907F7333EE5696894B7F8 /* AVGeoPoint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVGeoPoint.h; sourceTree = "<group>"; };
-		1B1CE7B47BD149AC131506BE3DB00DED /* AVObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVObject.h; sourceTree = "<group>"; };
-		1F1281B3B160505A991055447256D7FA /* LCUserFeedbackAgent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUserFeedbackAgent.h; path = LeanCloudFeedback/LCUserFeedbackAgent.h; sourceTree = "<group>"; };
-		1F468B538F56839D0A1D54D427C73233 /* AVSearchQuery.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVSearchQuery.h; sourceTree = "<group>"; };
-		1F7F3220A6CBD55039960549648D9B21 /* SZTextView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SZTextView-dummy.m"; sourceTree = "<group>"; };
-		2149A51A09D40AF8884839A9502AD36D /* LCUserFeedbackReplyCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUserFeedbackReplyCell.h; path = LeanCloudFeedback/LCUserFeedbackReplyCell.h; sourceTree = "<group>"; };
-		2521ED5BA9EC1822F6F8E4DBC12C4517 /* LCUserFeedbackThread_Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUserFeedbackThread_Internal.h; path = LeanCloudFeedback/LCUserFeedbackThread_Internal.h; sourceTree = "<group>"; };
-		25F7F4749B16595DA306D3E6EF00317E /* LCUserFeedbackThread.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCUserFeedbackThread.m; path = LeanCloudFeedback/LCUserFeedbackThread.m; sourceTree = "<group>"; };
-		2690D4A1B33543D29859AED17873ADF0 /* AMWaveViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AMWaveViewController.h; path = Source/AMWaveViewController.h; sourceTree = "<group>"; };
+		1CB8DA8F8193AB0863E563053EBFC4BF /* AVACL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVACL.h; sourceTree = "<group>"; };
+		1DE2633469AB51C67C79B23A09C4E8B4 /* AVFileQuery.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVFileQuery.h; sourceTree = "<group>"; };
+		22405636C4759D30D9DB46A58C54A87D /* AVLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVLogger.h; sourceTree = "<group>"; };
+		232BB6C1537570418E0EADDDB2B138C0 /* AVAnonymousUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVAnonymousUtils.h; sourceTree = "<group>"; };
+		23AC308C91AEA87D5339BA338E578B84 /* AVFile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVFile.h; sourceTree = "<group>"; };
+		24598667E9C030ACADB1B5898286D505 /* feedback_back@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedback_back@2x.png"; path = "LeanCloudFeedback/resources/feedback_back@2x.png"; sourceTree = "<group>"; };
+		24E55C87F52470D126081D78BC848F4B /* AVSearchQuery.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVSearchQuery.h; sourceTree = "<group>"; };
+		251F0E550A4B29778F2CC75AC1E8E0EC /* LCUserFeedbackViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCUserFeedbackViewController.m; path = LeanCloudFeedback/LCUserFeedbackViewController.m; sourceTree = "<group>"; };
 		272643F56613CA0D336AE3DBF19DC404 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
 		274D69C4AF6A2580281F2D6984FDC0A6 /* libAYVibrantButton.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAYVibrantButton.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		295C13358F7F7E823941D454C91E84B9 /* LCUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUtils.h; path = LeanCloudFeedback/LCUtils.h; sourceTree = "<group>"; };
-		2CE4AE6B1F67623939F4342A03304462 /* AYVibrantButton.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AYVibrantButton.xcconfig; sourceTree = "<group>"; };
+		2DA6A02FCC8BC17AEB7EC2264076B7FA /* AVGroup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVGroup.h; sourceTree = "<group>"; };
 		30465759D6FB650CAB8DDB9A4D7B9178 /* libSZTextView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSZTextView.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		36EDAF802EE9C799E8DC3D9989613CF6 /* AVStatus.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVStatus.h; sourceTree = "<group>"; };
 		37DB56D75062CC75FCB0966E1C6E8A8E /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
-		3E74334F3655EAD401CD98F63E308765 /* SZTextView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SZTextView-prefix.pch"; sourceTree = "<group>"; };
+		3A961CE1B2C8A8BDDC3D20EA2521FED0 /* AMWaveTransition.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AMWaveTransition.xcconfig; sourceTree = "<group>"; };
+		3AB8704BAA5001209951387756E1D525 /* AVAnalytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVAnalytics.h; sourceTree = "<group>"; };
+		3C372D503138C93778A7550DF6C0D212 /* LCUserFeedbackAgent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCUserFeedbackAgent.m; path = LeanCloudFeedback/LCUserFeedbackAgent.m; sourceTree = "<group>"; };
+		41D3E2BC40879BE932306227B771D456 /* AVOSCloudCrashReporting.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVOSCloudCrashReporting.h; sourceTree = "<group>"; };
+		44F28937CC134FC39A42A82D139EFF44 /* AVRole.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVRole.h; sourceTree = "<group>"; };
+		4578D21F4C080B63C934E39D8728FFE6 /* feedback_btn_new@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedback_btn_new@2x.png"; path = "LeanCloudFeedback/resources/feedback_btn_new@2x.png"; sourceTree = "<group>"; };
+		4707F801CE93871A9ABA94521B3E20C1 /* LCUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCUtils.m; path = LeanCloudFeedback/LCUtils.m; sourceTree = "<group>"; };
 		49B47986BFD4B29E2862EE13C30A99DF /* libLeanCloudFeedback.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLeanCloudFeedback.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		4A9535A1F8C6585773BA3DAE34694252 /* LeanCloudFeedback-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LeanCloudFeedback-prefix.pch"; sourceTree = "<group>"; };
+		4AA7D3D069B91AD6B01ED9002951A36A /* LCUserFeedbackAgent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUserFeedbackAgent.h; path = LeanCloudFeedback/LCUserFeedbackAgent.h; sourceTree = "<group>"; };
 		4AE7FD0E16F3FACCFE19068F1E872D9F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		4BE0F7D2BC21E965E562981C31EC5EED /* LCUserFeedbackThread_Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUserFeedbackThread_Internal.h; path = LeanCloudFeedback/LCUserFeedbackThread_Internal.h; sourceTree = "<group>"; };
 		4E762F23EC34ED4A6FF3312D84E33A40 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
-		4ECF8868BE73383723B18BCD979BAF77 /* AYVibrantButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AYVibrantButton.h; path = AYVibrantButton/AYVibrantButton.h; sourceTree = "<group>"; };
-		4F7CDE6AEE0C634CE4DEB2B3E24C9799 /* SZTextView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SZTextView.h; path = Classes/SZTextView.h; sourceTree = "<group>"; };
-		56C4210D44377B6FBD646F838366D81E /* LCUserFeedbackViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCUserFeedbackViewController.m; path = LeanCloudFeedback/LCUserFeedbackViewController.m; sourceTree = "<group>"; };
-		5DAFB7BDE6B7A1252744F5BEDCB826FE /* LCUserFeedbackImageViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUserFeedbackImageViewController.h; path = LeanCloudFeedback/LCUserFeedbackImageViewController.h; sourceTree = "<group>"; };
-		5EC4376C99CDF76DADDFFB90C8910118 /* AVPush.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVPush.h; sourceTree = "<group>"; };
-		667AE960D0FE713FF23D7D25AE690FB5 /* feedback_bg_2@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedback_bg_2@2x.png"; path = "LeanCloudFeedback/resources/feedback_bg_2@2x.png"; sourceTree = "<group>"; };
-		6729926B82C16763535F892A74AE313A /* AVCloud.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVCloud.h; sourceTree = "<group>"; };
+		4F8786422E73791111C14E47226E4406 /* AVQuery.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVQuery.h; sourceTree = "<group>"; };
+		540EC68C4C5F202607FE4630B1262418 /* SZTextView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SZTextView-prefix.pch"; sourceTree = "<group>"; };
+		5797F96ECB11530701971D3D7C23DD29 /* LCUserFeedbackImageViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCUserFeedbackImageViewController.m; path = LeanCloudFeedback/LCUserFeedbackImageViewController.m; sourceTree = "<group>"; };
+		57EE94D6ACA04E33961968D811295C9B /* feedback_bg_1@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedback_bg_1@2x.png"; path = "LeanCloudFeedback/resources/feedback_bg_1@2x.png"; sourceTree = "<group>"; };
+		5CE45D31F21291D44F9333F3A4679E19 /* AVObject+Subclass.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AVObject+Subclass.h"; sourceTree = "<group>"; };
+		5F6E0CB168409B17B6CCBC4479F31FB1 /* LCHttpClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCHttpClient.m; path = LeanCloudFeedback/LCHttpClient.m; sourceTree = "<group>"; };
+		645F6E730EB644E2508DFE1DA86E9BA6 /* AVSignature.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVSignature.h; sourceTree = "<group>"; };
+		64B0DAE777EA6095679398FCACDD2291 /* AMWaveViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AMWaveViewController.h; path = Source/AMWaveViewController.h; sourceTree = "<group>"; };
+		66E26AA0BBA9B3D323C5895B8B3647BC /* AVPush.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVPush.h; sourceTree = "<group>"; };
 		6911BECA35E7518D864239B7E898EEF3 /* Pods-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-frameworks.sh"; sourceTree = "<group>"; };
-		6B010ECB94ECDDE860F2FD68BEB0B769 /* AVGroup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVGroup.h; sourceTree = "<group>"; };
-		6D91B7F798A4D4667A27E9B69FA3951E /* LCUserFeedbackViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUserFeedbackViewController.h; path = LeanCloudFeedback/LCUserFeedbackViewController.h; sourceTree = "<group>"; };
-		6E965367E419F4F20D1A4E9272B678F0 /* AVConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVConstants.h; sourceTree = "<group>"; };
-		6FB09140438FA078AA694F371A152AA3 /* AVACL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVACL.h; sourceTree = "<group>"; };
-		7027BA1023B5C7362E5C94D7CABD5A64 /* LeanCloudFeedback.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LeanCloudFeedback.xcconfig; sourceTree = "<group>"; };
-		7C40901F001DA0070181FE0C6078E5A7 /* AVObject+Subclass.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AVObject+Subclass.h"; sourceTree = "<group>"; };
-		7F2907B1528C1BC683D7598AA59F72C6 /* AVOSCloud.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVOSCloud.h; sourceTree = "<group>"; };
-		8C9249EC606B4204C4BF3C2E928E1C1B /* AVSession.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVSession.h; sourceTree = "<group>"; };
+		6B2A210F258529C69B9C2AEEC1A0CA8E /* AVHistoryMessageQuery.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVHistoryMessageQuery.h; sourceTree = "<group>"; };
+		6C9DDBC83B26EF5B955A4FE9F82B5858 /* feedback_bg_2@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedback_bg_2@2x.png"; path = "LeanCloudFeedback/resources/feedback_bg_2@2x.png"; sourceTree = "<group>"; };
+		6D3023DFBD38FC8B2B2E282A5D1E6AB5 /* AVConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVConstants.h; sourceTree = "<group>"; };
+		6E5B2336CE4C6B0C372E176745523A98 /* AVCloud.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVCloud.h; sourceTree = "<group>"; };
+		6F1A7E6EC8AC5F98C28A2E0C495192C0 /* feedback_warning@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedback_warning@2x.png"; path = "LeanCloudFeedback/resources/feedback_warning@2x.png"; sourceTree = "<group>"; };
+		6FFB43141F69B12099526016F165D703 /* LCUserFeedbackThread.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCUserFeedbackThread.m; path = LeanCloudFeedback/LCUserFeedbackThread.m; sourceTree = "<group>"; };
+		728CF05A71451E8D80F24D6B289AFA02 /* AMWaveViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AMWaveViewController.m; path = Source/AMWaveViewController.m; sourceTree = "<group>"; };
+		77D50A9B6C4EC88C39A02B26E2648746 /* AYVibrantButton-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AYVibrantButton-prefix.pch"; sourceTree = "<group>"; };
+		7AB0708ECA07682E777438DC5B30A4D6 /* SZTextView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SZTextView.xcconfig; sourceTree = "<group>"; };
+		7AF85CDA7B1FCB8AFD76FA58EF585A94 /* LeanCloudFeedback-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LeanCloudFeedback-prefix.pch"; sourceTree = "<group>"; };
+		8A5B394008F0D0580BC234AC94166E72 /* LCUserFeedbackImageViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUserFeedbackImageViewController.h; path = LeanCloudFeedback/LCUserFeedbackImageViewController.h; sourceTree = "<group>"; };
+		8ECAB79909EAB6956D96A5C864C1DED9 /* AVSearchSortBuilder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVSearchSortBuilder.h; sourceTree = "<group>"; };
+		906E42474C31B1D4B1BDCDC57C429898 /* AVSubclassing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVSubclassing.h; sourceTree = "<group>"; };
+		92EC61E50E498BCB6BE2328FB082A9FE /* LeanCloudFeedback.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LeanCloudFeedback.xcconfig; sourceTree = "<group>"; };
+		9324407F4A84D9DB4AD38F914071FE88 /* LCUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUtils.h; path = LeanCloudFeedback/LCUtils.h; sourceTree = "<group>"; };
 		98C98CDFB3F20F2925F6CD1F141BB14F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
-		9C3F1CBA69D021869204A1BB79428F15 /* AVHistoryMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVHistoryMessage.h; sourceTree = "<group>"; };
-		A0B669ACA8BDE716E0E0905F5D3EF16E /* AVHistoryMessageQuery.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVHistoryMessageQuery.h; sourceTree = "<group>"; };
-		A1872A9F0093EF230857E6CA00D8FCDA /* AVMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVMessage.h; sourceTree = "<group>"; };
+		99D015FB6C0C019D3C908E8DD8F8EA21 /* LCUserFeedbackReplyCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUserFeedbackReplyCell.h; path = LeanCloudFeedback/LCUserFeedbackReplyCell.h; sourceTree = "<group>"; };
 		A1A36D34413696BE466E2CA0AFF194DA /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
-		A20F182CF52560EF7721122BF39C3283 /* feedback_back@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedback_back@2x.png"; path = "LeanCloudFeedback/resources/feedback_back@2x.png"; sourceTree = "<group>"; };
-		A3FDF4F818C2A1AF816D54FF4B87CCC6 /* LCUserFeedbackReply.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCUserFeedbackReply.m; path = LeanCloudFeedback/LCUserFeedbackReply.m; sourceTree = "<group>"; };
-		A402AA68EFC858F0F8508B6CF2700614 /* SZTextView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SZTextView.m; path = Classes/SZTextView.m; sourceTree = "<group>"; };
-		A589274536CCC5D2F20C07A87CC36635 /* LeanCloudFeedback-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LeanCloudFeedback-dummy.m"; sourceTree = "<group>"; };
-		A61E4572687AE2CD0100B72F149BDAF8 /* feedback_btn_new@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedback_btn_new@2x.png"; path = "LeanCloudFeedback/resources/feedback_btn_new@2x.png"; sourceTree = "<group>"; };
+		A3DCF8F4E3BD0E6BCEF20B2FC49F5274 /* AMWaveTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AMWaveTransition.m; path = Source/AMWaveTransition.m; sourceTree = "<group>"; };
 		A6DA56F20F7F2C197D67A79F6FE3E509 /* libAMWaveTransition.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAMWaveTransition.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		A9D33ACA6C029F9B6FC40DEDDE7D8080 /* AVSignature.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVSignature.h; sourceTree = "<group>"; };
-		A9DB7B8A43A79CFA41391A68C388DA41 /* AMWaveViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AMWaveViewController.m; path = Source/AMWaveViewController.m; sourceTree = "<group>"; };
-		ABC3A9379223841D94C7D1177479CF62 /* AVStatus.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVStatus.h; sourceTree = "<group>"; };
-		AEB25075F599A42302FB97E75AA44E3C /* AVRelation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVRelation.h; sourceTree = "<group>"; };
-		B36D434314E5CAD550B0949917543C69 /* feedback_warning@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedback_warning@2x.png"; path = "LeanCloudFeedback/resources/feedback_warning@2x.png"; sourceTree = "<group>"; };
-		B6CF61D1A0107A38A78CA44A6C0343D7 /* AMWaveTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AMWaveTransition.h; path = Source/AMWaveTransition.h; sourceTree = "<group>"; };
-		B72C07E70B3A1D13FFDA170C4EB7081E /* AVUser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVUser.h; sourceTree = "<group>"; };
-		B9B339837B51B9997E3933A723937C49 /* AVFileQuery.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVFileQuery.h; sourceTree = "<group>"; };
+		A8764DF0B41ADB82D2F79C3C2C5D1BE1 /* AVGeoPoint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVGeoPoint.h; sourceTree = "<group>"; };
+		A8EAE732D225CE03DFFB223E9E454957 /* AVSession.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVSession.h; sourceTree = "<group>"; };
+		AC7CE2AB0FA2E0999ECE3B4BCAC9732F /* LCUserFeedbackReply.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCUserFeedbackReply.m; path = LeanCloudFeedback/LCUserFeedbackReply.m; sourceTree = "<group>"; };
+		AC80BDD5C75EF0C613853DBFE1FD16F6 /* AVUser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVUser.h; sourceTree = "<group>"; };
+		AE175A43B419418B564DA269AB74D9A7 /* feedback_add_image@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedback_add_image@2x.png"; path = "LeanCloudFeedback/resources/feedback_add_image@2x.png"; sourceTree = "<group>"; };
+		AF30F963128D0159C2AE2D347A4FDD3D /* LeanCloudFeedback-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LeanCloudFeedback-dummy.m"; sourceTree = "<group>"; };
+		AFD319CE1725782FFA7F591BDAA40538 /* libAVOSCloud.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = libAVOSCloud.a; sourceTree = "<group>"; };
+		B0807561BE59B33273D2728C4BB86D44 /* AMWaveTransition-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AMWaveTransition-dummy.m"; sourceTree = "<group>"; };
+		B082B90A1F98CD7D556D154741EE80FD /* AYVibrantButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AYVibrantButton.m; path = AYVibrantButton/AYVibrantButton.m; sourceTree = "<group>"; };
+		B4DA68A4792BE10DA3BECD9001B60F6E /* LCUserFeedbackReply.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUserFeedbackReply.h; path = LeanCloudFeedback/LCUserFeedbackReply.h; sourceTree = "<group>"; };
+		B71847B6232EDAA0BE7EA7C1A413BB62 /* AMWaveTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AMWaveTransition.h; path = Source/AMWaveTransition.h; sourceTree = "<group>"; };
+		B8FBF5C776F6043A3AC19BFAED5B1135 /* AVInstallation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVInstallation.h; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		CA33FAEA2D887745436EFEEA44CD6A02 /* AYVibrantButton-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AYVibrantButton-prefix.pch"; sourceTree = "<group>"; };
-		CAD2D0405A838F6833A60BDD30FB8F26 /* LCUserFeedbackThread.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUserFeedbackThread.h; path = LeanCloudFeedback/LCUserFeedbackThread.h; sourceTree = "<group>"; };
-		CB1C56FBD85E66C0B7D89B4E502D0D94 /* LCUserFeedbackReply_Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUserFeedbackReply_Internal.h; path = LeanCloudFeedback/LCUserFeedbackReply_Internal.h; sourceTree = "<group>"; };
+		BD066354CB94438F9F5AB15D1B70F46E /* LCUserFeedbackThread.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUserFeedbackThread.h; path = LeanCloudFeedback/LCUserFeedbackThread.h; sourceTree = "<group>"; };
+		BE3FAA79ED20682EA3155B9372B7D6E6 /* LCUserFeedbackReply_Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUserFeedbackReply_Internal.h; path = LeanCloudFeedback/LCUserFeedbackReply_Internal.h; sourceTree = "<group>"; };
+		C1F65CBD6873A619920516D91E1EC2A0 /* LCUserFeedbackViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCUserFeedbackViewController.h; path = LeanCloudFeedback/LCUserFeedbackViewController.h; sourceTree = "<group>"; };
+		C338BF906E43FA96576598E430E88BD9 /* LCUserFeedbackReplyCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCUserFeedbackReplyCell.m; path = LeanCloudFeedback/LCUserFeedbackReplyCell.m; sourceTree = "<group>"; };
+		C451938D51A76B27733D512689D83061 /* AVHistoryMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVHistoryMessage.h; sourceTree = "<group>"; };
+		C652C0821F04DAB69E992CFEF8941122 /* AMWaveTransition-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AMWaveTransition-prefix.pch"; sourceTree = "<group>"; };
+		C6DCF6909CDD5B9A5090D39BC6CF91C5 /* AVOSCloud.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVOSCloud.h; sourceTree = "<group>"; };
 		CC34091BD631720A9C6D4BEF373E4734 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		CC5D025C24BCA4D532F40CEEFDA397CD /* AVFile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVFile.h; sourceTree = "<group>"; };
-		CCF8BB64557AA196DB0164898E6F4165 /* AVRole.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVRole.h; sourceTree = "<group>"; };
+		CC51B23802843A5BBD6DAE9DB384804A /* feedback_btn@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedback_btn@2x.png"; path = "LeanCloudFeedback/resources/feedback_btn@2x.png"; sourceTree = "<group>"; };
 		CE437620300D81EED04DF8C0301AF9D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		D21ECDE17F7583CC46284B62FDA27AD4 /* AVAnonymousUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVAnonymousUtils.h; sourceTree = "<group>"; };
-		DB0EA6E71461421DA2C51FC069CE698E /* AYVibrantButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AYVibrantButton.m; path = AYVibrantButton/AYVibrantButton.m; sourceTree = "<group>"; };
-		DC5ABE63CD136D5EEEC94BACA4C061BE /* LCHttpClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCHttpClient.m; path = LeanCloudFeedback/LCHttpClient.m; sourceTree = "<group>"; };
-		DDEB1850C5F34F24471FBCB95C8D4CF9 /* libAVOSCloud.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = libAVOSCloud.a; sourceTree = "<group>"; };
-		E189DC556752004D5331332FB25E16BA /* AYVibrantButton-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AYVibrantButton-dummy.m"; sourceTree = "<group>"; };
-		E199C8372FEEA3F4DAC431D94A37DF3B /* AMWaveTransition-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AMWaveTransition-prefix.pch"; sourceTree = "<group>"; };
-		E3CAC10AAE6E4A260BC91688451A9685 /* AVCloudQueryResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVCloudQueryResult.h; sourceTree = "<group>"; };
-		E593073E762901DC0A628F3BCB3DC5C5 /* LCUserFeedbackAgent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCUserFeedbackAgent.m; path = LeanCloudFeedback/LCUserFeedbackAgent.m; sourceTree = "<group>"; };
-		E5991C507BEF52815DD496E521F02625 /* AVAnalytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVAnalytics.h; sourceTree = "<group>"; };
-		E829161B2B309E1CEAA5D8DF42F12350 /* AVInstallation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVInstallation.h; sourceTree = "<group>"; };
-		E94492C9130CF48A4898EEC5AB120E4C /* SZTextView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SZTextView.xcconfig; sourceTree = "<group>"; };
-		ECAED2AAC4060425BFE388E4463436F1 /* AVSearchSortBuilder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVSearchSortBuilder.h; sourceTree = "<group>"; };
+		D6C391A75A6B08F625D8AD068EA37455 /* LeanCloudFeedback.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LeanCloudFeedback.h; path = LeanCloudFeedback/LeanCloudFeedback.h; sourceTree = "<group>"; };
+		D92EF129F92DD1ADAD1BE9233A9BAF61 /* SZTextView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SZTextView.h; path = Classes/SZTextView.h; sourceTree = "<group>"; };
+		DC1BE3D1F1B7D0988C6A613856337569 /* AYVibrantButton-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AYVibrantButton-dummy.m"; sourceTree = "<group>"; };
+		DED6EFD0AC60298B601A8241969625E5 /* AVRelation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVRelation.h; sourceTree = "<group>"; };
+		E14DF67AA01B18AF1CD776F8D20EF3B3 /* SZTextView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SZTextView-dummy.m"; sourceTree = "<group>"; };
+		E7AFAE92F1C4EAB3B1DA33605665975B /* AYVibrantButton.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AYVibrantButton.xcconfig; sourceTree = "<group>"; };
+		EAB50CF27AD58A22510522CB99143A67 /* SZTextView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SZTextView.m; path = Classes/SZTextView.m; sourceTree = "<group>"; };
 		ED04AE2201316F6590E7AD9952706C7B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		ED5CBE6A435DB8ECFA7433593765BA14 /* feedback_bg_1@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedback_bg_1@2x.png"; path = "LeanCloudFeedback/resources/feedback_bg_1@2x.png"; sourceTree = "<group>"; };
-		EEA402FEBA27057A5F7B75910251BD83 /* LCHttpClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCHttpClient.h; path = LeanCloudFeedback/LCHttpClient.h; sourceTree = "<group>"; };
-		FA6F44655F5BBB4297318B871E43B0C1 /* LCUserFeedbackImageViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCUserFeedbackImageViewController.m; path = LeanCloudFeedback/LCUserFeedbackImageViewController.m; sourceTree = "<group>"; };
+		EE7F0FC31A30CC2446E548F5B8BF59D5 /* libAVOSCloudCrashReporting.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = libAVOSCloudCrashReporting.a; sourceTree = "<group>"; };
+		EED20DFEDEF68EE0A33E3BA651C80FC4 /* AYVibrantButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AYVibrantButton.h; path = AYVibrantButton/AYVibrantButton.h; sourceTree = "<group>"; };
+		FDA30D546A36FEF2A7D11163908576C1 /* AVObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVObject.h; sourceTree = "<group>"; };
+		FEA351F5C454805E6FCA8C2B561F82C2 /* AVMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVMessage.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,58 +243,135 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1A5DBA49F6F500EFAF32397EE49ED750 /* Support Files */ = {
+		191BED2930B7B430CF26CEA7BB3ED592 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2CE4AE6B1F67623939F4342A03304462 /* AYVibrantButton.xcconfig */,
-				E189DC556752004D5331332FB25E16BA /* AYVibrantButton-dummy.m */,
-				CA33FAEA2D887745436EFEEA44CD6A02 /* AYVibrantButton-prefix.pch */,
+				AFD319CE1725782FFA7F591BDAA40538 /* libAVOSCloud.a */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/AYVibrantButton";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		440A7DE40172D2A9BF53082C0A4B26EA /* Support Files */ = {
+		38D48C3A7C79948796F16D2960439A46 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				17F86052A3043998B5D1084331AC04CC /* AMWaveTransition.xcconfig */,
-				085C97478366478170628234AA0144CB /* AMWaveTransition-dummy.m */,
-				E199C8372FEEA3F4DAC431D94A37DF3B /* AMWaveTransition-prefix.pch */,
+				90B9AB5E612080717367023BB3D99B45 /* AMWaveTransition */,
+				7B86C4320A2ADA431DC05CFF73F52817 /* AVOSCloud */,
+				7BBF2CE24F42EA2FC79F27D3BAAFAA61 /* AVOSCloudCrashReporting */,
+				BA135D755A8050E8D851988A8A749640 /* AYVibrantButton */,
+				4DB62EAE44F3707E2CA59079FEF6A5ED /* LeanCloudFeedback */,
+				F975D36ADF9C1504DA6336891F11B636 /* SZTextView */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		3D8C4D93090E755DA5E7E01C466DEEC6 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				3A961CE1B2C8A8BDDC3D20EA2521FED0 /* AMWaveTransition.xcconfig */,
+				B0807561BE59B33273D2728C4BB86D44 /* AMWaveTransition-dummy.m */,
+				C652C0821F04DAB69E992CFEF8941122 /* AMWaveTransition-prefix.pch */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/AMWaveTransition";
 			sourceTree = "<group>";
 		};
-		484F5AA75C157552E9B745F2D1933F5F /* SZTextView */ = {
+		41EC5C66071E09160CA1B4BBC186A759 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				4F7CDE6AEE0C634CE4DEB2B3E24C9799 /* SZTextView.h */,
-				A402AA68EFC858F0F8508B6CF2700614 /* SZTextView.m */,
-				833A3CB4599FD14BD696140A5EA3642A /* Support Files */,
+				E7AFAE92F1C4EAB3B1DA33605665975B /* AYVibrantButton.xcconfig */,
+				DC1BE3D1F1B7D0988C6A613856337569 /* AYVibrantButton-dummy.m */,
+				77D50A9B6C4EC88C39A02B26E2648746 /* AYVibrantButton-prefix.pch */,
 			);
-			path = SZTextView;
+			name = "Support Files";
+			path = "../Target Support Files/AYVibrantButton";
 			sourceTree = "<group>";
 		};
-		512435930207D744BBDEEA373B031B9A /* AMWaveTransition */ = {
+		4DB62EAE44F3707E2CA59079FEF6A5ED /* LeanCloudFeedback */ = {
 			isa = PBXGroup;
 			children = (
-				B6CF61D1A0107A38A78CA44A6C0343D7 /* AMWaveTransition.h */,
-				005B4C78EFB29E7265BF0155A1381A92 /* AMWaveTransition.m */,
-				2690D4A1B33543D29859AED17873ADF0 /* AMWaveViewController.h */,
-				A9DB7B8A43A79CFA41391A68C388DA41 /* AMWaveViewController.m */,
-				440A7DE40172D2A9BF53082C0A4B26EA /* Support Files */,
+				05D10365C50D707EE4F28394E6A5B380 /* LCHttpClient.h */,
+				5F6E0CB168409B17B6CCBC4479F31FB1 /* LCHttpClient.m */,
+				4AA7D3D069B91AD6B01ED9002951A36A /* LCUserFeedbackAgent.h */,
+				3C372D503138C93778A7550DF6C0D212 /* LCUserFeedbackAgent.m */,
+				8A5B394008F0D0580BC234AC94166E72 /* LCUserFeedbackImageViewController.h */,
+				5797F96ECB11530701971D3D7C23DD29 /* LCUserFeedbackImageViewController.m */,
+				B4DA68A4792BE10DA3BECD9001B60F6E /* LCUserFeedbackReply.h */,
+				AC7CE2AB0FA2E0999ECE3B4BCAC9732F /* LCUserFeedbackReply.m */,
+				BE3FAA79ED20682EA3155B9372B7D6E6 /* LCUserFeedbackReply_Internal.h */,
+				99D015FB6C0C019D3C908E8DD8F8EA21 /* LCUserFeedbackReplyCell.h */,
+				C338BF906E43FA96576598E430E88BD9 /* LCUserFeedbackReplyCell.m */,
+				BD066354CB94438F9F5AB15D1B70F46E /* LCUserFeedbackThread.h */,
+				6FFB43141F69B12099526016F165D703 /* LCUserFeedbackThread.m */,
+				4BE0F7D2BC21E965E562981C31EC5EED /* LCUserFeedbackThread_Internal.h */,
+				C1F65CBD6873A619920516D91E1EC2A0 /* LCUserFeedbackViewController.h */,
+				251F0E550A4B29778F2CC75AC1E8E0EC /* LCUserFeedbackViewController.m */,
+				9324407F4A84D9DB4AD38F914071FE88 /* LCUtils.h */,
+				4707F801CE93871A9ABA94521B3E20C1 /* LCUtils.m */,
+				D6C391A75A6B08F625D8AD068EA37455 /* LeanCloudFeedback.h */,
+				5AF49B605D0ABDFAD887587DEA6A8FFD /* Resources */,
+				A615BC100C4C20725EEDDC8F85C33E47 /* Support Files */,
 			);
-			path = AMWaveTransition;
+			path = LeanCloudFeedback;
 			sourceTree = "<group>";
 		};
-		5476E2D30063C0539E3128CAC3FD21CC /* AYVibrantButton */ = {
+		5AF49B605D0ABDFAD887587DEA6A8FFD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4ECF8868BE73383723B18BCD979BAF77 /* AYVibrantButton.h */,
-				DB0EA6E71461421DA2C51FC069CE698E /* AYVibrantButton.m */,
-				1A5DBA49F6F500EFAF32397EE49ED750 /* Support Files */,
+				AE175A43B419418B564DA269AB74D9A7 /* feedback_add_image@2x.png */,
+				24598667E9C030ACADB1B5898286D505 /* feedback_back@2x.png */,
+				57EE94D6ACA04E33961968D811295C9B /* feedback_bg_1@2x.png */,
+				6C9DDBC83B26EF5B955A4FE9F82B5858 /* feedback_bg_2@2x.png */,
+				CC51B23802843A5BBD6DAE9DB384804A /* feedback_btn@2x.png */,
+				4578D21F4C080B63C934E39D8728FFE6 /* feedback_btn_new@2x.png */,
+				6F1A7E6EC8AC5F98C28A2E0C495192C0 /* feedback_warning@2x.png */,
 			);
-			path = AYVibrantButton;
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		7B86C4320A2ADA431DC05CFF73F52817 /* AVOSCloud */ = {
+			isa = PBXGroup;
+			children = (
+				1CB8DA8F8193AB0863E563053EBFC4BF /* AVACL.h */,
+				3AB8704BAA5001209951387756E1D525 /* AVAnalytics.h */,
+				232BB6C1537570418E0EADDDB2B138C0 /* AVAnonymousUtils.h */,
+				6E5B2336CE4C6B0C372E176745523A98 /* AVCloud.h */,
+				0303E92EF15380205F62EE90A3817751 /* AVCloudQueryResult.h */,
+				6D3023DFBD38FC8B2B2E282A5D1E6AB5 /* AVConstants.h */,
+				23AC308C91AEA87D5339BA338E578B84 /* AVFile.h */,
+				1DE2633469AB51C67C79B23A09C4E8B4 /* AVFileQuery.h */,
+				A8764DF0B41ADB82D2F79C3C2C5D1BE1 /* AVGeoPoint.h */,
+				2DA6A02FCC8BC17AEB7EC2264076B7FA /* AVGroup.h */,
+				C451938D51A76B27733D512689D83061 /* AVHistoryMessage.h */,
+				6B2A210F258529C69B9C2AEEC1A0CA8E /* AVHistoryMessageQuery.h */,
+				B8FBF5C776F6043A3AC19BFAED5B1135 /* AVInstallation.h */,
+				22405636C4759D30D9DB46A58C54A87D /* AVLogger.h */,
+				FEA351F5C454805E6FCA8C2B561F82C2 /* AVMessage.h */,
+				FDA30D546A36FEF2A7D11163908576C1 /* AVObject.h */,
+				5CE45D31F21291D44F9333F3A4679E19 /* AVObject+Subclass.h */,
+				C6DCF6909CDD5B9A5090D39BC6CF91C5 /* AVOSCloud.h */,
+				66E26AA0BBA9B3D323C5895B8B3647BC /* AVPush.h */,
+				4F8786422E73791111C14E47226E4406 /* AVQuery.h */,
+				DED6EFD0AC60298B601A8241969625E5 /* AVRelation.h */,
+				44F28937CC134FC39A42A82D139EFF44 /* AVRole.h */,
+				24E55C87F52470D126081D78BC848F4B /* AVSearchQuery.h */,
+				8ECAB79909EAB6956D96A5C864C1DED9 /* AVSearchSortBuilder.h */,
+				A8EAE732D225CE03DFFB223E9E454957 /* AVSession.h */,
+				645F6E730EB644E2508DFE1DA86E9BA6 /* AVSignature.h */,
+				36EDAF802EE9C799E8DC3D9989613CF6 /* AVStatus.h */,
+				906E42474C31B1D4B1BDCDC57C429898 /* AVSubclassing.h */,
+				AC80BDD5C75EF0C613853DBFE1FD16F6 /* AVUser.h */,
+				191BED2930B7B430CF26CEA7BB3ED592 /* Frameworks */,
+			);
+			path = AVOSCloud;
+			sourceTree = "<group>";
+		};
+		7BBF2CE24F42EA2FC79F27D3BAAFAA61 /* AVOSCloudCrashReporting */ = {
+			isa = PBXGroup;
+			children = (
+				41D3E2BC40879BE932306227B771D456 /* AVOSCloudCrashReporting.h */,
+				CC33E4670CE3D0C69688E0D482DBB247 /* Frameworks */,
+			);
+			path = AVOSCloudCrashReporting;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -300,7 +379,7 @@
 			children = (
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
 				14B8B9B15ECBE87983FF987239AB2D7B /* Frameworks */,
-				DEECD5B4FE7CFF9163A72D86B2D19A9E /* Pods */,
+				38D48C3A7C79948796F16D2960439A46 /* Pods */,
 				7E766C1120564F05982E6E4AEF6B978C /* Products */,
 				037C0CA694176A3C0915F62C9D20B3E6 /* Targets Support Files */,
 			);
@@ -318,77 +397,27 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		833A3CB4599FD14BD696140A5EA3642A /* Support Files */ = {
+		90B9AB5E612080717367023BB3D99B45 /* AMWaveTransition */ = {
 			isa = PBXGroup;
 			children = (
-				E94492C9130CF48A4898EEC5AB120E4C /* SZTextView.xcconfig */,
-				1F7F3220A6CBD55039960549648D9B21 /* SZTextView-dummy.m */,
-				3E74334F3655EAD401CD98F63E308765 /* SZTextView-prefix.pch */,
+				B71847B6232EDAA0BE7EA7C1A413BB62 /* AMWaveTransition.h */,
+				A3DCF8F4E3BD0E6BCEF20B2FC49F5274 /* AMWaveTransition.m */,
+				64B0DAE777EA6095679398FCACDD2291 /* AMWaveViewController.h */,
+				728CF05A71451E8D80F24D6B289AFA02 /* AMWaveViewController.m */,
+				3D8C4D93090E755DA5E7E01C466DEEC6 /* Support Files */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/SZTextView";
+			path = AMWaveTransition;
 			sourceTree = "<group>";
 		};
-		840FAB5788676E3790E6C406F18DAA97 /* Support Files */ = {
+		A615BC100C4C20725EEDDC8F85C33E47 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				7027BA1023B5C7362E5C94D7CABD5A64 /* LeanCloudFeedback.xcconfig */,
-				A589274536CCC5D2F20C07A87CC36635 /* LeanCloudFeedback-dummy.m */,
-				4A9535A1F8C6585773BA3DAE34694252 /* LeanCloudFeedback-prefix.pch */,
+				92EC61E50E498BCB6BE2328FB082A9FE /* LeanCloudFeedback.xcconfig */,
+				AF30F963128D0159C2AE2D347A4FDD3D /* LeanCloudFeedback-dummy.m */,
+				7AF85CDA7B1FCB8AFD76FA58EF585A94 /* LeanCloudFeedback-prefix.pch */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/LeanCloudFeedback";
-			sourceTree = "<group>";
-		};
-		9CCA82020F295C5ECD96A922167925F1 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				15FBCFC4B41AF6E2CFC7D66FA5314EC1 /* feedback_add_image@2x.png */,
-				A20F182CF52560EF7721122BF39C3283 /* feedback_back@2x.png */,
-				ED5CBE6A435DB8ECFA7433593765BA14 /* feedback_bg_1@2x.png */,
-				667AE960D0FE713FF23D7D25AE690FB5 /* feedback_bg_2@2x.png */,
-				1874B2FF66C5C88C7AA7B3F335EF86BD /* feedback_btn@2x.png */,
-				A61E4572687AE2CD0100B72F149BDAF8 /* feedback_btn_new@2x.png */,
-				B36D434314E5CAD550B0949917543C69 /* feedback_warning@2x.png */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		9F8FDE941F665128DFBE1AE2C811A016 /* AVOSCloud */ = {
-			isa = PBXGroup;
-			children = (
-				6FB09140438FA078AA694F371A152AA3 /* AVACL.h */,
-				E5991C507BEF52815DD496E521F02625 /* AVAnalytics.h */,
-				D21ECDE17F7583CC46284B62FDA27AD4 /* AVAnonymousUtils.h */,
-				6729926B82C16763535F892A74AE313A /* AVCloud.h */,
-				E3CAC10AAE6E4A260BC91688451A9685 /* AVCloudQueryResult.h */,
-				6E965367E419F4F20D1A4E9272B678F0 /* AVConstants.h */,
-				CC5D025C24BCA4D532F40CEEFDA397CD /* AVFile.h */,
-				B9B339837B51B9997E3933A723937C49 /* AVFileQuery.h */,
-				18AB0439D90907F7333EE5696894B7F8 /* AVGeoPoint.h */,
-				6B010ECB94ECDDE860F2FD68BEB0B769 /* AVGroup.h */,
-				9C3F1CBA69D021869204A1BB79428F15 /* AVHistoryMessage.h */,
-				A0B669ACA8BDE716E0E0905F5D3EF16E /* AVHistoryMessageQuery.h */,
-				E829161B2B309E1CEAA5D8DF42F12350 /* AVInstallation.h */,
-				0699081376AA8E8125D6E9304AB83052 /* AVLogger.h */,
-				A1872A9F0093EF230857E6CA00D8FCDA /* AVMessage.h */,
-				1B1CE7B47BD149AC131506BE3DB00DED /* AVObject.h */,
-				7C40901F001DA0070181FE0C6078E5A7 /* AVObject+Subclass.h */,
-				7F2907B1528C1BC683D7598AA59F72C6 /* AVOSCloud.h */,
-				5EC4376C99CDF76DADDFFB90C8910118 /* AVPush.h */,
-				0F4FA3CF360EFB619C9B25AF7C1F67AB /* AVQuery.h */,
-				AEB25075F599A42302FB97E75AA44E3C /* AVRelation.h */,
-				CCF8BB64557AA196DB0164898E6F4165 /* AVRole.h */,
-				1F468B538F56839D0A1D54D427C73233 /* AVSearchQuery.h */,
-				ECAED2AAC4060425BFE388E4463436F1 /* AVSearchSortBuilder.h */,
-				8C9249EC606B4204C4BF3C2E928E1C1B /* AVSession.h */,
-				A9D33ACA6C029F9B6FC40DEDDE7D8080 /* AVSignature.h */,
-				ABC3A9379223841D94C7D1177479CF62 /* AVStatus.h */,
-				0B34647398DEDC499F3ED7C43666E6EA /* AVSubclassing.h */,
-				B72C07E70B3A1D13FFDA170C4EB7081E /* AVUser.h */,
-				DCC65D003C59497AD244F95DD408A463 /* Frameworks */,
-			);
-			path = AVOSCloud;
 			sourceTree = "<group>";
 		};
 		A9203A0FF197B8764CD853B6EE3A159E /* iOS */ = {
@@ -417,52 +446,43 @@
 			path = "Target Support Files/Pods";
 			sourceTree = "<group>";
 		};
-		DCC65D003C59497AD244F95DD408A463 /* Frameworks */ = {
+		BA135D755A8050E8D851988A8A749640 /* AYVibrantButton */ = {
 			isa = PBXGroup;
 			children = (
-				DDEB1850C5F34F24471FBCB95C8D4CF9 /* libAVOSCloud.a */,
+				EED20DFEDEF68EE0A33E3BA651C80FC4 /* AYVibrantButton.h */,
+				B082B90A1F98CD7D556D154741EE80FD /* AYVibrantButton.m */,
+				41EC5C66071E09160CA1B4BBC186A759 /* Support Files */,
+			);
+			path = AYVibrantButton;
+			sourceTree = "<group>";
+		};
+		C476CFBB1C317AD95AEAC8C8184B3471 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7AB0708ECA07682E777438DC5B30A4D6 /* SZTextView.xcconfig */,
+				E14DF67AA01B18AF1CD776F8D20EF3B3 /* SZTextView-dummy.m */,
+				540EC68C4C5F202607FE4630B1262418 /* SZTextView-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SZTextView";
+			sourceTree = "<group>";
+		};
+		CC33E4670CE3D0C69688E0D482DBB247 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EE7F0FC31A30CC2446E548F5B8BF59D5 /* libAVOSCloudCrashReporting.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DEECD5B4FE7CFF9163A72D86B2D19A9E /* Pods */ = {
+		F975D36ADF9C1504DA6336891F11B636 /* SZTextView */ = {
 			isa = PBXGroup;
 			children = (
-				512435930207D744BBDEEA373B031B9A /* AMWaveTransition */,
-				9F8FDE941F665128DFBE1AE2C811A016 /* AVOSCloud */,
-				5476E2D30063C0539E3128CAC3FD21CC /* AYVibrantButton */,
-				FFDABCE9E57C0A115E5092B6605395EE /* LeanCloudFeedback */,
-				484F5AA75C157552E9B745F2D1933F5F /* SZTextView */,
+				D92EF129F92DD1ADAD1BE9233A9BAF61 /* SZTextView.h */,
+				EAB50CF27AD58A22510522CB99143A67 /* SZTextView.m */,
+				C476CFBB1C317AD95AEAC8C8184B3471 /* Support Files */,
 			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		FFDABCE9E57C0A115E5092B6605395EE /* LeanCloudFeedback */ = {
-			isa = PBXGroup;
-			children = (
-				EEA402FEBA27057A5F7B75910251BD83 /* LCHttpClient.h */,
-				DC5ABE63CD136D5EEEC94BACA4C061BE /* LCHttpClient.m */,
-				1F1281B3B160505A991055447256D7FA /* LCUserFeedbackAgent.h */,
-				E593073E762901DC0A628F3BCB3DC5C5 /* LCUserFeedbackAgent.m */,
-				5DAFB7BDE6B7A1252744F5BEDCB826FE /* LCUserFeedbackImageViewController.h */,
-				FA6F44655F5BBB4297318B871E43B0C1 /* LCUserFeedbackImageViewController.m */,
-				1745E6BE937D9D55AF3481D6AA787D55 /* LCUserFeedbackReply.h */,
-				A3FDF4F818C2A1AF816D54FF4B87CCC6 /* LCUserFeedbackReply.m */,
-				CB1C56FBD85E66C0B7D89B4E502D0D94 /* LCUserFeedbackReply_Internal.h */,
-				2149A51A09D40AF8884839A9502AD36D /* LCUserFeedbackReplyCell.h */,
-				11E51923B384DCF1F1EE338F237CD21E /* LCUserFeedbackReplyCell.m */,
-				CAD2D0405A838F6833A60BDD30FB8F26 /* LCUserFeedbackThread.h */,
-				25F7F4749B16595DA306D3E6EF00317E /* LCUserFeedbackThread.m */,
-				2521ED5BA9EC1822F6F8E4DBC12C4517 /* LCUserFeedbackThread_Internal.h */,
-				6D91B7F798A4D4667A27E9B69FA3951E /* LCUserFeedbackViewController.h */,
-				56C4210D44377B6FBD646F838366D81E /* LCUserFeedbackViewController.m */,
-				295C13358F7F7E823941D454C91E84B9 /* LCUtils.h */,
-				08AC67AA289F825F741A3052A39C4F02 /* LCUtils.m */,
-				01D6B6FA7F03CBDE2563CA59558D8E71 /* LeanCloudFeedback.h */,
-				9CCA82020F295C5ECD96A922167925F1 /* Resources */,
-				840FAB5788676E3790E6C406F18DAA97 /* Support Files */,
-			);
-			path = LeanCloudFeedback;
+			path = SZTextView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -717,7 +737,7 @@
 /* Begin XCBuildConfiguration section */
 		089B937F6CA07DC3BC8B856F28D84021 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 17F86052A3043998B5D1084331AC04CC /* AMWaveTransition.xcconfig */;
+			baseConfigurationReference = 3A961CE1B2C8A8BDDC3D20EA2521FED0 /* AMWaveTransition.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/AMWaveTransition/AMWaveTransition-prefix.pch";
@@ -735,7 +755,7 @@
 		};
 		1992867CD4F0E7E9A97C41C75AA288EB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7027BA1023B5C7362E5C94D7CABD5A64 /* LeanCloudFeedback.xcconfig */;
+			baseConfigurationReference = 92EC61E50E498BCB6BE2328FB082A9FE /* LeanCloudFeedback.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/LeanCloudFeedback/LeanCloudFeedback-prefix.pch";
@@ -753,7 +773,7 @@
 		};
 		3D4AEC13093B60108A9DA6EC942D856D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2CE4AE6B1F67623939F4342A03304462 /* AYVibrantButton.xcconfig */;
+			baseConfigurationReference = E7AFAE92F1C4EAB3B1DA33605665975B /* AYVibrantButton.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/AYVibrantButton/AYVibrantButton-prefix.pch";
@@ -844,7 +864,7 @@
 		};
 		64DFA4D612DD045CD723927BD2401A69 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E94492C9130CF48A4898EEC5AB120E4C /* SZTextView.xcconfig */;
+			baseConfigurationReference = 7AB0708ECA07682E777438DC5B30A4D6 /* SZTextView.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/SZTextView/SZTextView-prefix.pch";
@@ -896,7 +916,7 @@
 		};
 		BD16CE644161691EE4DEABA8178B9A13 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E94492C9130CF48A4898EEC5AB120E4C /* SZTextView.xcconfig */;
+			baseConfigurationReference = 7AB0708ECA07682E777438DC5B30A4D6 /* SZTextView.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/SZTextView/SZTextView-prefix.pch";
@@ -914,7 +934,7 @@
 		};
 		C63D562D2903964C06A4ED68F3AFC3D1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 17F86052A3043998B5D1084331AC04CC /* AMWaveTransition.xcconfig */;
+			baseConfigurationReference = 3A961CE1B2C8A8BDDC3D20EA2521FED0 /* AMWaveTransition.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/AMWaveTransition/AMWaveTransition-prefix.pch";
@@ -932,7 +952,7 @@
 		};
 		F12B1177B6A4D412143ED92C79282EE5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7027BA1023B5C7362E5C94D7CABD5A64 /* LeanCloudFeedback.xcconfig */;
+			baseConfigurationReference = 92EC61E50E498BCB6BE2328FB082A9FE /* LeanCloudFeedback.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/LeanCloudFeedback/LeanCloudFeedback-prefix.pch";
@@ -950,7 +970,7 @@
 		};
 		F5904BA5909F20C7F7B367F0ED9078FA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2CE4AE6B1F67623939F4342A03304462 /* AYVibrantButton.xcconfig */;
+			baseConfigurationReference = E7AFAE92F1C4EAB3B1DA33605665975B /* AYVibrantButton.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/AYVibrantButton/AYVibrantButton-prefix.pch";

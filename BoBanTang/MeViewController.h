@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <AMWaveViewController.h>
-#import "FeedBackViewController1ViewController.h"
+#import <LeanCloudFeedback.h>
 
-@interface MeViewControllerTableViewController : UITableViewController<UIAlertViewDelegate, UINavigationControllerDelegate, AMWaveTransitioning>
+@interface MeViewController : UITableViewController<UIAlertViewDelegate, UINavigationControllerDelegate, AMWaveTransitioning>
 
 @end
     

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '109720970FAE79FBB3C3D767'
+               BlueprintIdentifier = '84018F566A318E8493C39AEF'
                BlueprintName = 'AYVibrantButton'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libAYVibrantButton.a'>

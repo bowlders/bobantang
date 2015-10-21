@@ -6,18 +6,23 @@
 //  Copyright © 2015年 BBT. All rights reserved.
 //
 
-#import "MeViewControllerTableViewController.h"
+#import "MeViewController.h"
 
-@interface MeViewControllerTableViewController ()
+@interface MeViewController ()
 
 @property (strong, nonatomic) IBOutlet AMWaveTransition *interactive;
 
 @end
 
-@implementation MeViewControllerTableViewController
+@implementation MeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //Lean Cloud Settings
+    AVObject *testObject = [AVObject objectWithClassName:@"TestObject"];
+    [testObject setObject:@"bar" forKey:@"foo"];
+    [testObject save];
     
     self.title = @"我";
     
@@ -103,7 +108,7 @@
     switch (section)
     {
         case 0:
-            rowsNumber = 2;
+            rowsNumber = 1;
             break;
         case 1:
             rowsNumber = 1;
@@ -185,14 +190,7 @@
     
     if (indexPath.section == 0)
     {
-        if (indexPath.row == 0)
-        {
-            cell.textLabel.text = @"账户管理";
-        }
-        else if (indexPath.row == 1)
-        {
-            cell.textLabel.text = @"收藏";
-        }
+        cell.textLabel.text = @"账户管理";
     }
     else if (indexPath.section == 1)
     {
@@ -222,14 +220,7 @@
 
     if (indexPath.section == 0)
     {
-        if (indexPath.row == 0)
-        {
-            [self performSegueWithIdentifier:@"showAccountManage" sender:tableView];
-        }
-        else if (indexPath.row == 1)
-        {
-            [self performSegueWithIdentifier:@"showCollections" sender:tableView];
-        }
+        [self performSegueWithIdentifier:@"showAccountManage" sender:tableView];
     }
     else if (indexPath.section == 1)
     {
@@ -239,15 +230,9 @@
     {
         if (indexPath.row == 0)
         {
-            //[self presentViewController:[[FeedBackViewController1ViewController alloc] init] animated:YES completion:nil];
-            //[self performSegueWithIdentifier:@"showFeedBack" sender:tableView];
-            
-//            LCUserFeedbackViewController *feedbackViewController = [[LCUserFeedbackViewController alloc] init];
-//            feedbackViewController.navigationBarStyle = LCUserFeedbackNavigationBarStyleNone;
             LCUserFeedbackAgent *agent = [LCUserFeedbackAgent sharedInstance];
             /* title 传 nil 表示将第一条消息作为反馈的标题。 contact 也可以传入 nil，由用户来填写联系方式。*/
-            [agent showConversations:self title:nil contact:@"goodman@leancloud.cn"];
-//            [self presentViewController:feedbackViewController animated:YES completion:nil];
+            [agent showConversations:self title:nil contact:@"pankobe24@vip.qq.com"];
         }
         else if (indexPath.row == 1)
         {
