@@ -58,6 +58,7 @@ install_resource()
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+<<<<<<< HEAD
   install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_add_image@2x.png"
   install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_back@2x.png"
   install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_bg_1@2x.png"
@@ -74,11 +75,63 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_btn@2x.png"
   install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_btn_new@2x.png"
   install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_warning@2x.png"
+=======
+  install_resource "FlatUIKit/Resources/flat-ui-icons-regular.ttf"
+  install_resource "FlatUIKit/Resources/Lato-Bold.ttf"
+  install_resource "FlatUIKit/Resources/Lato-Italic.ttf"
+  install_resource "FlatUIKit/Resources/Lato-Light.ttf"
+  install_resource "FlatUIKit/Resources/Lato-Regular.ttf"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundError.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundError@2x.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundErrorIcon.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundErrorIcon@2x.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundMessage.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundMessage@2x.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundSuccess.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundSuccess@2x.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundSuccessIcon.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundSuccessIcon@2x.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundWarning.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundWarning@2x.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundWarningIcon.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundWarningIcon@2x.png"
+  install_resource "TSMessages/Pod/Assets/NotificationButtonBackground.png"
+  install_resource "TSMessages/Pod/Assets/NotificationButtonBackground@2x.png"
+  install_resource "TSMessages/Pod/Assets/TSMessagesDefaultDesign.json"
+fi
+if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "FlatUIKit/Resources/flat-ui-icons-regular.ttf"
+  install_resource "FlatUIKit/Resources/Lato-Bold.ttf"
+  install_resource "FlatUIKit/Resources/Lato-Italic.ttf"
+  install_resource "FlatUIKit/Resources/Lato-Light.ttf"
+  install_resource "FlatUIKit/Resources/Lato-Regular.ttf"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundError.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundError@2x.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundErrorIcon.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundErrorIcon@2x.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundMessage.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundMessage@2x.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundSuccess.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundSuccess@2x.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundSuccessIcon.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundSuccessIcon@2x.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundWarning.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundWarning@2x.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundWarningIcon.png"
+  install_resource "TSMessages/Pod/Assets/NotificationBackgroundWarningIcon@2x.png"
+  install_resource "TSMessages/Pod/Assets/NotificationButtonBackground.png"
+  install_resource "TSMessages/Pod/Assets/NotificationButtonBackground@2x.png"
+  install_resource "TSMessages/Pod/Assets/TSMessagesDefaultDesign.json"
+>>>>>>> origin/Tools
 fi
 
 mkdir -p "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
+<<<<<<< HEAD
 if [[ "${ACTION}" == "install" ]] && [[ "${SKIP_INSTALL}" == "NO" ]]; then
+=======
+if [[ "${ACTION}" == "install" ]]; then
+>>>>>>> origin/Tools
   mkdir -p "${INSTALL_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
   rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${INSTALL_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 fi

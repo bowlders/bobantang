@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.6.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+<<<<<<< HEAD
   - AMWaveTransition (0.6.0)
   - AVOSCloud (3.1.5.2)
   - AVOSCloudCrashReporting (3.1.5.2):
@@ -57,3 +58,28 @@ SPEC CHECKSUMS:
   SZTextView: 906df45afd3c1b24fc5252088d5ef8061513c238
 
 COCOAPODS: 0.39.0
+=======
+  - FlatUIKit (1.6.2)
+  - HexColors (2.2.1)
+  - pop (1.0.8)
+  - TSMessages (0.9.12):
+    - HexColors (~> 2.2.0)
+  - VBFPopFlatButton (0.0.6):
+    - pop
+
+DEPENDENCIES:
+  - AFNetworking
+  - FlatUIKit
+  - TSMessages
+  - VBFPopFlatButton
+
+SPEC CHECKSUMS:
+  AFNetworking: 8e4e60500beb8bec644cf575beee72990a76d399
+  FlatUIKit: 1b41f0d4952ce8d970d8479ce79df54a960242c4
+  HexColors: abfd172e329dab59888614ccba6f216cec59289d
+  pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
+  TSMessages: c8cc7b80f2a833af533872cd02010cac061532cc
+  VBFPopFlatButton: 782344da63f104c279a857d806e065117a7e1196
+
+COCOAPODS: 0.38.2
+>>>>>>> origin/Tools

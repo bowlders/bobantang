@@ -7,7 +7,11 @@
         <!--Main View Controller-->
         <scene sceneID="Mj5-mN-qir">
             <objects>
+<<<<<<< HEAD
                 <tabBarController id="s9t-p5-CJI" customClass="BBTMainViewController" sceneMemberID="viewController">
+=======
+                <tabBarController id="s9t-p5-CJI" sceneMemberID="viewController">
+>>>>>>> origin/Tools
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="DJx-pI-ODc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
