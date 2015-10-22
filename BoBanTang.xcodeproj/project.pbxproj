@@ -7,16 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-<<<<<<< HEAD
 		00F422415A1C1B34A2CD5F28 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 263A8D84080296DDB6A53666 /* libPods.a */; };
-=======
 		3949B25A1BCF4CD000DB96F7 /* UIColor + BBTColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3949B2591BCF4CD000DB96F7 /* UIColor + BBTColor.m */; settings = {ASSET_TAGS = (); }; };
->>>>>>> origin/Tools
 		395218711BCD265D000C7B68 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 395218701BCD265D000C7B68 /* main.m */; };
 		395218771BCD265D000C7B68 /* BBTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395218761BCD265D000C7B68 /* BBTBaseViewController.m */; };
 		3952187A1BCD265D000C7B68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218781BCD265D000C7B68 /* Main.storyboard */; };
 		3952187D1BCD265D000C7B68 /* BoBanTang.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3952187B1BCD265D000C7B68 /* BoBanTang.xcdatamodeld */; };
-<<<<<<< HEAD
 		395218821BCD265D000C7B68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218801BCD265D000C7B68 /* LaunchScreen.storyboard */; };
 		395218AC1BCD6177000C7B68 /* Go.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218AA1BCD6177000C7B68 /* Go.storyboard */; settings = {ASSET_TAGS = (); }; };
 		395218AE1BCD61B4000C7B68 /* Information.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218AD1BCD61B4000C7B68 /* Information.storyboard */; settings = {ASSET_TAGS = (); }; };
@@ -52,7 +48,6 @@
 		263A8D84080296DDB6A53666 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3949B25B1BCF5CF700DB96F7 /* BBTSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSettingsViewController.h; sourceTree = "<group>"; };
 		3949B25C1BCF5CF700DB96F7 /* BBTSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSettingsViewController.m; sourceTree = "<group>"; };
-=======
 		3952187F1BCD265D000C7B68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3952187E1BCD265D000C7B68 /* Assets.xcassets */; };
 		395218B01BCD61CD000C7B68 /* Tools.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395218AF1BCD61CD000C7B68 /* Tools.storyboard */; settings = {ASSET_TAGS = (); }; };
 		E00255C274F1466994D1D8AC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FBAF7882CE2CEE9746B0D77 /* libPods.a */; };
@@ -74,7 +69,6 @@
 /* Begin PBXFileReference section */
 		3949B2581BCF4CD000DB96F7 /* UIColor + BBTColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor + BBTColor.h"; sourceTree = "<group>"; };
 		3949B2591BCF4CD000DB96F7 /* UIColor + BBTColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor + BBTColor.m"; sourceTree = "<group>"; };
->>>>>>> origin/Tools
 		3952186C1BCD265D000C7B68 /* BoBanTang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoBanTang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		395218701BCD265D000C7B68 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		395218721BCD265D000C7B68 /* BBTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBTAppDelegate.h; sourceTree = "<group>"; };
@@ -83,7 +77,6 @@
 		395218761BCD265D000C7B68 /* BBTBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBTBaseViewController.m; sourceTree = "<group>"; };
 		395218791BCD265D000C7B68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3952187C1BCD265D000C7B68 /* BoBanTang.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BoBanTang.xcdatamodel; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		395218811BCD265D000C7B68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		395218831BCD265D000C7B68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3952189D1BCD4F14000C7B68 /* BBTMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMeViewController.h; sourceTree = "<group>"; };
@@ -145,7 +138,6 @@
 		39B716D11BD3EFAF00C12DA3 /* BBTPersonalInfoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTPersonalInfoEditViewController.m; sourceTree = "<group>"; };
 		5834369575422EDE73CB6903 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		EA41AE7EFF927BD1932B0A82 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-=======
 		3952187E1BCD265D000C7B68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		395218831BCD265D000C7B68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		395218AF1BCD61CD000C7B68 /* Tools.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tools.storyboard; sourceTree = "<group>"; };
@@ -169,7 +161,6 @@
 		FCF06EDB1BCEB378008514C0 /* BBTToolsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTToolsViewController.h; sourceTree = "<group>"; };
 		FCF06EDC1BCEB378008514C0 /* BBTToolsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTToolsViewController.m; sourceTree = "<group>"; };
 		FCF06EDE1BCEB4A5008514C0 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
->>>>>>> origin/Tools
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,11 +168,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				3982317C1BD496AB0043E544 /* CoreLocation.framework in Frameworks */,
 				3982314A1BD3FBF60043E544 /* libPushSDK.a in Frameworks */,
 				00F422415A1C1B34A2CD5F28 /* libPods.a in Frameworks */,
-=======
 				FC6FFEDF1BD66FB50062A209 /* UIKit.framework in Frameworks */,
 				FC6FFEDD1BD66F770062A209 /* MobileCoreServices.framework in Frameworks */,
 				FC6FFEDB1BD66F6E0062A209 /* SystemConfiguration.framework in Frameworks */,
@@ -189,7 +178,6 @@
 				FC6FFE821BD109A30062A209 /* CoreGraphics.framework in Frameworks */,
 				FCF06EDF1BCEB4A5008514C0 /* CoreText.framework in Frameworks */,
 				E00255C274F1466994D1D8AC /* libPods.a in Frameworks */,
->>>>>>> origin/Tools
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,20 +238,17 @@
 		395218891BCD2684000C7B68 /* View */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				3952188F1BCD26C4000C7B68 /* General */,
 				398231861BD4E9F20043E544 /* CampusBus */,
 				395218AA1BCD6177000C7B68 /* Go.storyboard */,
 				395218AF1BCD61CD000C7B68 /* Tools.storyboard */,
 				395218AD1BCD61B4000C7B68 /* Information.storyboard */,
 				395218B11BCD61DE000C7B68 /* Me.storyboard */,
-=======
 				FC010C961BD06DC400D4E9DB /* Me.storyboard */,
 				FC6FFEE91BD6AB090062A209 /* Go.storyboard */,
 				FC010C941BD06CA000D4E9DB /* Information.storyboard */,
 				395218781BCD265D000C7B68 /* Main.storyboard */,
 				395218AF1BCD61CD000C7B68 /* Tools.storyboard */,
->>>>>>> origin/Tools
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -273,16 +258,12 @@
 			children = (
 				FC6FFEE31BD6A8730062A209 /* Tools */,
 				395218951BCD4C0F000C7B68 /* General */,
-<<<<<<< HEAD
 				398231851BD4E9E50043E544 /* CampusBus */,
-=======
->>>>>>> origin/Tools
 				3952189C1BCD4EA3000C7B68 /* Me */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
 		3952188F1BCD26C4000C7B68 /* General */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,9 +312,7 @@
 			sourceTree = "<group>";
 		};
 		3982313E1BD3F6950043E544 /* GMailLikeLoadingView */ = {
-=======
 		395218951BCD4C0F000C7B68 /* General */ = {
->>>>>>> origin/Tools
 			isa = PBXGroup;
 			children = (
 				3982313F1BD3F6950043E544 /* GmailLikeLoadingView.h */,
@@ -342,7 +321,6 @@
 			path = GMailLikeLoadingView;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
 		398231421BD3F6B60043E544 /* KGModal */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,21 +346,16 @@
 				398231501BD3FC560043E544 /* PAPreferences.m */,
 				398231511BD3FC560043E544 /* PAPropertyDescriptor.h */,
 				398231521BD3FC560043E544 /* PAPropertyDescriptor.m */,
-=======
 		395218981BCD4C33000C7B68 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				FC6FFEE61BD6A9520062A209 /* Scores */,
->>>>>>> origin/Tools
 			);
 			path = PAPreferences;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
 		398231841BD4E9CD0043E544 /* CampusBus */ = {
-=======
 		3952189C1BCD4EA3000C7B68 /* Me */ = {
->>>>>>> origin/Tools
 			isa = PBXGroup;
 			children = (
 				398231561BD496040043E544 /* BBTBus.h */,
@@ -390,7 +363,6 @@
 				3982315A1BD496040043E544 /* BBTBusManager.h */,
 				3982315B1BD496040043E544 /* BBTBusManager.m */,
 			);
-<<<<<<< HEAD
 			name = CampusBus;
 			sourceTree = "<group>";
 		};
@@ -426,7 +398,6 @@
 				3982316D1BD496040043E544 /* UIView+BBTWaterMark.m */,
 			);
 			name = CampusBus;
-=======
 			name = Me;
 			sourceTree = "<group>";
 		};
@@ -471,19 +442,15 @@
 				FC6FFED61BD5DE970062A209 /* BBTGradeLoginViewController.m */,
 			);
 			name = Scores;
->>>>>>> origin/Tools
 			sourceTree = "<group>";
 		};
 		FC6FFEE51BD6A91A0062A209 /* SelfStudyRoom */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				3982317B1BD496AB0043E544 /* CoreLocation.framework */,
 				263A8D84080296DDB6A53666 /* libPods.a */,
-=======
 				FC6FFED21BD2AF3D0062A209 /* BBTSelfStudyRoomSearchVC.h */,
 				FC6FFED31BD2AF3D0062A209 /* BBTSelfStudyRoomSearchVC.m */,
->>>>>>> origin/Tools
 			);
 			name = SelfStudyRoom;
 			sourceTree = "<group>";
@@ -557,20 +524,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				395218821BCD265D000C7B68 /* LaunchScreen.storyboard in Resources */,
 				398231831BD4E7FC0043E544 /* Images.xcassets in Resources */,
 				395218AC1BCD6177000C7B68 /* Go.storyboard in Resources */,
 				395218B01BCD61CD000C7B68 /* Tools.storyboard in Resources */,
 				395218AE1BCD61B4000C7B68 /* Information.storyboard in Resources */,
 				395218B31BCD61DE000C7B68 /* Me.storyboard in Resources */,
-=======
 				395218B01BCD61CD000C7B68 /* Tools.storyboard in Resources */,
 				FC010C951BD06CA000D4E9DB /* Information.storyboard in Resources */,
 				3952187F1BCD265D000C7B68 /* Assets.xcassets in Resources */,
 				FC010C971BD06DC400D4E9DB /* Me.storyboard in Resources */,
 				FC6FFEEA1BD6AB090062A209 /* Go.storyboard in Resources */,
->>>>>>> origin/Tools
 				3952187A1BCD265D000C7B68 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -615,7 +579,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				3982318E1BD7F0840043E544 /* BBTMeViewController.m in Sources */,
 				3982318D1BD7EFF50043E544 /* BBTMainViewController.m in Sources */,
 				3982318C1BD7EF890043E544 /* BBTAppDelegate.m in Sources */,
@@ -640,7 +603,6 @@
 				395218711BCD265D000C7B68 /* main.m in Sources */,
 				398231791BD496040043E544 /* UIView+BBTWaterMark.m in Sources */,
 				398231761BD496040043E544 /* UILabel+BBTBusMessageLabel.m in Sources */,
-=======
 				FC6FFEE21BD69D8B0062A209 /* BBTScores.m in Sources */,
 				395218771BCD265D000C7B68 /* ViewController.m in Sources */,
 				395218741BCD265D000C7B68 /* AppDelegate.m in Sources */,
@@ -650,7 +612,6 @@
 				3949B25A1BCF4CD000DB96F7 /* UIColor + BBTColor.m in Sources */,
 				395218711BCD265D000C7B68 /* main.m in Sources */,
 				FCF06EDD1BCEB378008514C0 /* BBTToolsViewController.m in Sources */,
->>>>>>> origin/Tools
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -753,12 +714,9 @@
 			baseConfigurationReference = 7E53C4577D39289BD3D0525A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-<<<<<<< HEAD
 				ENABLE_BITCODE = NO;
-=======
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
->>>>>>> origin/Tools
 				INFOPLIST_FILE = BoBanTang/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -777,12 +735,9 @@
 			baseConfigurationReference = 95EF4D4DBB83D553693BB4F2 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-<<<<<<< HEAD
 				ENABLE_BITCODE = NO;
-=======
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
->>>>>>> origin/Tools
 				INFOPLIST_FILE = BoBanTang/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
