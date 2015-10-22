@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 platform :ios, '7.0'
 
 pod "AFNetworking", "~> 2.0"
@@ -11,10 +10,6 @@ pod 'LeanCloudFeedback'
 pod 'CRToast', '~> 0.0.7'
 pod 'JSONModel'
 pod 'Masonry'
-=======
-
-pod ‘AFNetworking’
-pod ‘TSMessages’
-pod ‘VBFPopFlatButton’
-pod ‘FlatUIKit’
->>>>>>> origin/Tools
+pod 'TSMessages'
+pod 'VBFPopFlatButton'
+pod 'FlatUIKit'

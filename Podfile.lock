@@ -20,18 +20,24 @@ PODS:
   - AFNetworking/UIKit (2.6.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-<<<<<<< HEAD
   - AMWaveTransition (0.6.0)
   - AVOSCloud (3.1.5.2)
   - AVOSCloudCrashReporting (3.1.5.2):
     - AVOSCloud
   - AYVibrantButton (1.0.3)
-  - CRToast (0.0.8)
-  - JSONModel (1.1.0)
+  - CRToast (0.0.9)
+  - FlatUIKit (1.6.2)
+  - HexColors (2.2.1)
+  - JSONModel (1.1.2)
   - LeanCloudFeedback (0.0.7):
     - AVOSCloud (~> 3.1)
   - Masonry (0.6.3)
+  - pop (1.0.8)
   - SZTextView (1.2.1)
+  - TSMessages (0.9.12):
+    - HexColors (~> 2.2.0)
+  - VBFPopFlatButton (0.0.6):
+    - pop
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
@@ -40,10 +46,13 @@ DEPENDENCIES:
   - AVOSCloudCrashReporting
   - AYVibrantButton
   - CRToast (~> 0.0.7)
+  - FlatUIKit
   - JSONModel
   - LeanCloudFeedback
   - Masonry
   - SZTextView
+  - TSMessages
+  - VBFPopFlatButton
 
 SPEC CHECKSUMS:
   AFNetworking: 8e4e60500beb8bec644cf575beee72990a76d399
@@ -51,35 +60,15 @@ SPEC CHECKSUMS:
   AVOSCloud: 7b1305f61ac6cd3367c683deab3fc0700982f1c1
   AVOSCloudCrashReporting: fcb742ab282df06575bfb22678891b19102e66f2
   AYVibrantButton: 7cc5b2c74f6f6a0a52d5b0db361a9d3b755bc448
-  CRToast: b087127369b4c603726ef6249d74d0d737629ab8
-  JSONModel: ec77e9865236a7a09d9cf7668df6b4b328d9ec1d
-  LeanCloudFeedback: 35d2effa89e03e9a3ce2158874a6f127751f7257
-  Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
-  SZTextView: 906df45afd3c1b24fc5252088d5ef8061513c238
-
-COCOAPODS: 0.39.0
-=======
-  - FlatUIKit (1.6.2)
-  - HexColors (2.2.1)
-  - pop (1.0.8)
-  - TSMessages (0.9.12):
-    - HexColors (~> 2.2.0)
-  - VBFPopFlatButton (0.0.6):
-    - pop
-
-DEPENDENCIES:
-  - AFNetworking
-  - FlatUIKit
-  - TSMessages
-  - VBFPopFlatButton
-
-SPEC CHECKSUMS:
-  AFNetworking: 8e4e60500beb8bec644cf575beee72990a76d399
+  CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
   FlatUIKit: 1b41f0d4952ce8d970d8479ce79df54a960242c4
   HexColors: abfd172e329dab59888614ccba6f216cec59289d
+  JSONModel: 216584d0311b053ff714f1d6cb700dbf890847bc
+  LeanCloudFeedback: 35d2effa89e03e9a3ce2158874a6f127751f7257
+  Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
+  SZTextView: 906df45afd3c1b24fc5252088d5ef8061513c238
   TSMessages: c8cc7b80f2a833af533872cd02010cac061532cc
   VBFPopFlatButton: 782344da63f104c279a857d806e065117a7e1196
 
-COCOAPODS: 0.38.2
->>>>>>> origin/Tools
+COCOAPODS: 0.39.0
