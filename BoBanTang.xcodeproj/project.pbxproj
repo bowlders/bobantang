@@ -372,12 +372,12 @@
 				A947D9791BD8DC0F000F071B /* BBTPreferences.h */,
 				A947D99E1BD8DC34000F071B /* BBTPreferences.m */,
 				A947D92A1BD8DADA000F071B /* BoBanTang.xcdatamodeld */,
+				398231B71BD8ED300043E544 /* Model */,
+				398231B91BD8ED3F0043E544 /* View */,
 				398231B81BD8ED360043E544 /* Controller */,
 				A947D9321BD8DADA000F071B /* Info.plist */,
-				398231B71BD8ED300043E544 /* Model */,
 				A947D91E1BD8DADA000F071B /* Supporting Files */,
 				A947D9541BD8DBEA000F071B /* Vendor */,
-				398231B91BD8ED3F0043E544 /* View */,
 			);
 			path = BoBanTang;
 			sourceTree = "<group>";
