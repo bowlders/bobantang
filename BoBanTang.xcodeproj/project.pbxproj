@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		398231B61BD8ED230043E544 /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 398231B51BD8ED230043E544 /* Me.storyboard */; settings = {ASSET_TAGS = (); }; };
+		398430CA1BDBD4B0008CA6DC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398430C91BDBD4B0008CA6DC /* Images.xcassets */; settings = {ASSET_TAGS = (); }; };
 		99BCEEF76C0A51F53BF45309 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA2627D2286FFB656F82101 /* libPods.a */; };
 		A947D9291BD8DADA000F071B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A947D9271BD8DADA000F071B /* Main.storyboard */; };
 		A947D92C1BD8DADA000F071B /* BoBanTang.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A947D92A1BD8DADA000F071B /* BoBanTang.xcdatamodeld */; };
-		A947D92E1BD8DADA000F071B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A947D92D1BD8DADA000F071B /* Assets.xcassets */; };
 		A947D93C1BD8DADA000F071B /* BoBanTangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D93B1BD8DADA000F071B /* BoBanTangTests.m */; };
 		A947D9471BD8DADA000F071B /* BoBanTangUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9461BD8DADA000F071B /* BoBanTangUITests.m */; };
 		A947D9631BD8DBEA000F071B /* GmailLikeLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9571BD8DBEA000F071B /* GmailLikeLoadingView.m */; settings = {ASSET_TAGS = (); }; };
@@ -70,12 +70,12 @@
 
 /* Begin PBXFileReference section */
 		398231B51BD8ED230043E544 /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
+		398430C91BDBD4B0008CA6DC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		48D6888DD2A267EA93C8D8BC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A947D91B1BD8DADA000F071B /* BoBanTang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoBanTang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A947D91F1BD8DADA000F071B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A947D9281BD8DADA000F071B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A947D92B1BD8DADA000F071B /* BoBanTang.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BoBanTang.xcdatamodel; sourceTree = "<group>"; };
-		A947D92D1BD8DADA000F071B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A947D9321BD8DADA000F071B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A947D9371BD8DADA000F071B /* BoBanTangTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BoBanTangTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A947D93B1BD8DADA000F071B /* BoBanTangTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoBanTangTests.m; sourceTree = "<group>"; };
@@ -367,17 +367,16 @@
 		A947D91D1BD8DADA000F071B /* BoBanTang */ = {
 			isa = PBXGroup;
 			children = (
-				A947D92D1BD8DADA000F071B /* Assets.xcassets */,
 				A947D9751BD8DC0F000F071B /* BBTMarco.h */,
 				A947D9791BD8DC0F000F071B /* BBTPreferences.h */,
 				A947D99E1BD8DC34000F071B /* BBTPreferences.m */,
 				A947D92A1BD8DADA000F071B /* BoBanTang.xcdatamodeld */,
+				398231B71BD8ED300043E544 /* Model */,
+				398231B91BD8ED3F0043E544 /* View */,
 				398231B81BD8ED360043E544 /* Controller */,
 				A947D9321BD8DADA000F071B /* Info.plist */,
-				398231B71BD8ED300043E544 /* Model */,
 				A947D91E1BD8DADA000F071B /* Supporting Files */,
 				A947D9541BD8DBEA000F071B /* Vendor */,
-				398231B91BD8ED3F0043E544 /* View */,
 			);
 			path = BoBanTang;
 			sourceTree = "<group>";
@@ -385,6 +384,7 @@
 		A947D91E1BD8DADA000F071B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				398430C91BDBD4B0008CA6DC /* Images.xcassets */,
 				A947D9901BD8DC34000F071B /* BBTAppDelegate.m */,
 				A947D96A1BD8DC0F000F071B /* BBTAppDelegate.h */,
 				A947D91F1BD8DADA000F071B /* main.m */,
@@ -575,7 +575,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A947D98D1BD8DC24000F071B /* Tools.storyboard in Resources */,
-				A947D92E1BD8DADA000F071B /* Assets.xcassets in Resources */,
+				398430CA1BDBD4B0008CA6DC /* Images.xcassets in Resources */,
 				A947D98A1BD8DC24000F071B /* Information.storyboard in Resources */,
 				A947D9891BD8DC24000F071B /* Go.storyboard in Resources */,
 				398231B61BD8ED230043E544 /* Me.storyboard in Resources */,

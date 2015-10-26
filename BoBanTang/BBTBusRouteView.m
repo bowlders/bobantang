@@ -7,11 +7,11 @@
 //
 
 #import "BBTBusRouteView.h"
-#import <Masonry.h>
 
 @interface BBTBusRouteView()
 
 @property (nonatomic) NSUInteger count;
+
 @end
 
 
@@ -23,7 +23,7 @@
     [self setNeedsLayout];
 }
 
-- (void)setVioetDots:(NSMutableArray *)violetDots
+- (void)setVioletDots:(NSMutableArray *)violetDots
 {
     _violetCircles = violetDots;
     [self setNeedsLayout];
@@ -34,30 +34,42 @@
 {
     self = [super initWithFrame:frame];
     if (!self) return nil;
-
+    
+    self.circlesOriginYArray = [NSMutableArray array];
+    self.circlesHeightArray = [NSMutableArray array];
+    
+    const CGFloat width = frame.size.width;
+    const CGFloat elementHeight = frame.size.height / count;
     self.count = count;
     
-    UIView *routeWrapper = [[UIView alloc] initWithFrame:self.bounds];
-    routeWrapper.tag = ROUTE_VIEW_TAG;
+    UIView *routeWarpper = [[UIView alloc] initWithFrame:self.bounds];
+    routeWarpper.tag = ROUTE_VIEW_TAG;
     UIImage *routeElement = [UIImage imageNamed:@"route-element"];
     for (NSUInteger i = 0; i < count; i++) {
+        CGFloat y = i * elementHeight;
+        CGRect frame = CGRectMake(0.0, y, width, elementHeight);
+        
+        [self.circlesOriginYArray insertObject:@(y) atIndex:i];
+        [self.circlesHeightArray insertObject:@(elementHeight) atIndex:i];
+        
         if (i == 0) {
             UIImage *routeHead = [UIImage imageNamed:@"route-head"];
             UIImageView *routeHeadView = [[UIImageView alloc] initWithImage:routeHead];
-            [routeWrapper addSubview:routeHeadView];
+            routeHeadView.frame = frame;
+            [routeWarpper addSubview:routeHeadView];
         } else if (i == count - 1) {
             UIImage *routeTail = [UIImage imageNamed:@"route-tail"];
             UIImageView *routeTailView = [[UIImageView alloc] initWithImage:routeTail];
-            [routeWrapper addSubview:routeTailView];
+            routeTailView.frame = frame;
+            [routeWarpper addSubview:routeTailView];
         } else {
             UIImageView *routeElementView = [[UIImageView alloc] initWithImage:routeElement];
-            [routeWrapper addSubview:routeElementView];
+            routeElementView.frame = frame;
+            [routeWarpper addSubview:routeElementView];
         }
     }
-    [self addSubview:routeWrapper];
-    [self setNeedsUpdateConstraints];
-    [self updateConstraintsIfNeeded];
-
+    [self addSubview:routeWarpper];
+    
     return self;
 }
 
@@ -79,6 +91,9 @@
             [(NSNumber *)dotIndex integerValue] <= self.count
             ) {
             UIImageView *circle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"greenCircle"]];
+            CGFloat y = ( self.count - [(NSNumber*)dotIndex integerValue]) * elementHeight + upPadding;
+            CGRect frame = CGRectMake(0.0, y , circleWidth, circleWidth);
+            circle.frame = frame;
             [self addSubview:circle];
         }
     }
@@ -87,23 +102,20 @@
         if ([dotIndex isKindOfClass:[NSNumber class]] &&
             [(NSNumber *)dotIndex integerValue] <= self.count) {
             UIImageView *circle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"violetCircle"]];
+            CGFloat y = (self.count - [(NSNumber*)dotIndex integerValue]) * elementHeight + upPadding;
+            CGRect frame = CGRectMake(0.0, y , circleWidth, circleWidth);
+            circle.frame = frame;
             [self addSubview:circle];
         }
     }
-    
 }
-
-//- (void)updateConstraints
-//{
-//    
-//}
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect {
+ // Drawing code
+ }
+ */
 
 @end

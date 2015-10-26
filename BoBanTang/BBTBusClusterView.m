@@ -30,6 +30,7 @@
 #define UP_PADDING 6.0f
 #define STATION_BUTTON_WIDTH 67.f
 #define STATION_BUTTON_HEIGHT 20.0f
+
 - (instancetype)initWithFrame:(CGRect)frame stationNames:(NSArray *)stationNames
 {
     self = [super initWithFrame:frame];
@@ -45,7 +46,9 @@
     /* add route view */
     CGFloat routeViewFactor = self.frame.size.height / ROUTE_VIEW_INIT_HEIGHT;
     CGFloat routeViewWidth = ROUTE_VIEW_INIT_WIDTH * routeViewFactor;
-    CGRect routeViewFrame = CGRectMake(ROUTE_VIEW_X, 0.0f, routeViewWidth, self.frame.size.height);
+    CGFloat routeViewOriginX = self.bounds.size.width/2;
+    
+    CGRect routeViewFrame = CGRectMake(routeViewOriginX, 0.0f, routeViewWidth, self.frame.size.height);
     self.routeView = [[BBTBusRouteView alloc] initWithFrame:routeViewFrame Count:count];
     [self addSubview:self.routeView];
     [self bringSubviewToFront:self.routeView];
@@ -55,8 +58,8 @@
         UIButton *stationButton = [UIButton stationButtonWithName:self.stationNames[i]];
         stationButton.tag = i;
         [stationButton addTarget:self action:@selector(stationButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-        CGFloat y = i * elementHeight + UP_PADDING;
-        stationButton.frame = CGRectMake(STATION_BUTTON_X, y, STATION_BUTTON_WIDTH, STATION_BUTTON_HEIGHT);
+        CGFloat buttonY = ((NSNumber *)(self.routeView.circlesOriginYArray[i])).floatValue + ((NSNumber *)(self.routeView.circlesHeightArray[i])).floatValue * 0.3;
+        stationButton.frame = CGRectMake(routeViewOriginX - STATION_BUTTON_WIDTH - 15, buttonY, STATION_BUTTON_WIDTH, STATION_BUTTON_HEIGHT);
         [self addSubview:stationButton];
     }
 
