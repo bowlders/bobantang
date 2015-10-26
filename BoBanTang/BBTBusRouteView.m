@@ -12,6 +12,14 @@
 @interface BBTBusRouteView()
 
 @property (nonatomic) NSUInteger count;
+@property (nonatomic) BOOL didSetupConstrains;
+
+@property (strong, nonatomic) UIImageView    * routeHeadView;
+@property (strong, nonatomic) UIImageView    * routeTailView;
+@property (strong, nonatomic) NSMutableArray * routeElementViewArray;               //用于储存routeElementView
+@property (strong, nonatomic) NSMutableArray * greenCircleViewArray;                //用于储存greenCircle的views
+@property (strong, nonatomic) NSMutableArray * violetCircleViewArray;               //用于储存violetCircle的views
+
 @end
 
 
@@ -23,87 +31,193 @@
     [self setNeedsLayout];
 }
 
-- (void)setVioetDots:(NSMutableArray *)violetDots
+- (void)setVioletDots:(NSMutableArray *)violetDots
 {
     _violetCircles = violetDots;
     [self setNeedsLayout];
 }
 
 #define ROUTE_VIEW_TAG 42
-- (instancetype)initWithFrame:(CGRect)frame Count:(NSUInteger)count
+
+- (instancetype)initWithCount:(NSUInteger)count
 {
-    self = [super initWithFrame:frame];
-    if (!self) return nil;
-
-    self.count = count;
-    
-    UIView *routeWrapper = [[UIView alloc] initWithFrame:self.bounds];
-    routeWrapper.tag = ROUTE_VIEW_TAG;
-    UIImage *routeElement = [UIImage imageNamed:@"route-element"];
-    for (NSUInteger i = 0; i < count; i++) {
-        if (i == 0) {
-            UIImage *routeHead = [UIImage imageNamed:@"route-head"];
-            UIImageView *routeHeadView = [[UIImageView alloc] initWithImage:routeHead];
-            [routeWrapper addSubview:routeHeadView];
-        } else if (i == count - 1) {
-            UIImage *routeTail = [UIImage imageNamed:@"route-tail"];
-            UIImageView *routeTailView = [[UIImageView alloc] initWithImage:routeTail];
-            [routeWrapper addSubview:routeTailView];
-        } else {
-            UIImageView *routeElementView = [[UIImageView alloc] initWithImage:routeElement];
-            [routeWrapper addSubview:routeElementView];
-        }
-    }
-    [self addSubview:routeWrapper];
-    [self setNeedsUpdateConstraints];
-    [self updateConstraintsIfNeeded];
-
-    return self;
+    return [self initWithFrame:CGRectZero Count:count];
 }
 
+- (instancetype)initWithFrame:(CGRect)frame Count:(NSUInteger)count
+{
+    
+    self = [super initWithFrame:frame];
+
+    if (self)
+    {
+        self.count = count;
+        [self addSubview:self.routeHeadView];
+        [self addSubview:self.routeTailView];
+        for (UIImageView * routeElement in self.routeElementViewArray)
+        {
+            [self addSubview:routeElement];
+        }
+
+        for (UIImageView * greenCircle in self.greenCircleViewArray)
+        {
+            [self addSubview:greenCircle];
+        }
+        for (UIImageView * violetCircle in self.violetCircleViewArray)
+        {
+            [self addSubview:violetCircle];
+        }
+
+        [self setNeedsUpdateConstraints];
+        [self updateConstraintsIfNeeded];
+    }
+
+    return self;
+
+}
+
+- (UIImageView *)routeHeadView
+{
+    if (!_routeHeadView)
+    {
+        UIImage * routeHead = [UIImage imageNamed:@"route-head"];
+        _routeHeadView = [[UIImageView alloc] initWithImage:routeHead];
+    }
+    return _routeHeadView;
+}
+
+- (UIImageView *)routeTailView
+{
+    if (!_routeTailView)
+    {
+        UIImage * routeTail = [UIImage imageNamed:@"route-tail"];
+        _routeTailView = [[UIImageView alloc] initWithImage:routeTail];
+    }
+    return _routeTailView;
+}
+
+- (NSMutableArray *)routeElementViewArray
+{
+    if (!_routeElementViewArray)
+    {
+        for (int i = 1;i < self.count - 1;i++)
+        {
+            UIImage * routeElement = [UIImage imageNamed:@"route-element"];
+            UIImageView * routeElementView = [[UIImageView alloc] initWithImage:routeElement];
+            [_routeElementViewArray insertObject:routeElementView atIndex:i];
+        }
+    }
+    return _routeElementViewArray;
+}
+
+- (NSMutableArray *)greenCircleViewArray
+{
+    if (!_greenCircleViewArray)
+    {
+        int i = 0;
+        for (id dotIndex in _greenCircleViewArray)
+        {
+            if ([dotIndex isKindOfClass:[NSNumber class]] && [(NSNumber *)dotIndex integerValue] <= self.count)
+            {
+                UIImageView * greenCircle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"greenCircle"]];
+                [_greenCircleViewArray insertObject:greenCircle atIndex:i];
+                i++;
+            }
+        }
+    }
+    return _greenCircleViewArray;
+}
+
+- (NSMutableArray *)violetCircleViewArray
+{
+    if (!_violetCircleViewArray)
+    {
+        int i = 0;
+        for (id dotIndex in _violetCircleViewArray) {
+            if ([dotIndex isKindOfClass:[NSNumber class]] && [(NSNumber *)dotIndex integerValue] <= self.count)
+            {
+                UIImageView * violetCircle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"violetCircle"]];
+                [_violetCircleViewArray insertObject:violetCircle atIndex:i];
+                i++;
+            }
+        }
+    }
+    return _violetCircleViewArray;
+}
 
 #define CIRCLE_INIT_WIDTH 25.0f
 - (void)layoutSubviews
 {
-    const CGFloat circleWidth = self.frame.size.width;
-    const CGFloat elementHeight = self.frame.size.height / self.count;
-    const CGFloat upPadding = 5.0f * (circleWidth / CIRCLE_INIT_WIDTH);
-    for (UIView *thisView in self.subviews) {
-        if (thisView.tag != ROUTE_VIEW_TAG) {
-            [thisView removeFromSuperview];
-        }
-    }
+    [super layoutSubviews];
     
-    for (id dotIndex in self.greenCircles) {
-        if ([dotIndex isKindOfClass:[NSNumber class]] &&
-            [(NSNumber *)dotIndex integerValue] <= self.count
-            ) {
-            UIImageView *circle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"greenCircle"]];
-            [self addSubview:circle];
-        }
-    }
-    
-    for (id dotIndex in self.violetCircles) {
-        if ([dotIndex isKindOfClass:[NSNumber class]] &&
-            [(NSNumber *)dotIndex integerValue] <= self.count) {
-            UIImageView *circle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"violetCircle"]];
-            [self addSubview:circle];
-        }
-    }
-    
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
 }
 
-//- (void)updateConstraints
-//{
-//    
-//}
+- (void)updateConstraints
+{
+    if (!self.didSetupConstrains)
+    {
+        [self setupConstrains];
+    }
+    [super updateConstraints];
+}
+
+- (void)setupConstrains
+{
+    [self.routeHeadView mas_makeConstraints:^(MASConstraintMaker * make){
+        make.centerX.equalTo(self);
+    }];
+    [self.routeTailView mas_makeConstraints:^(MASConstraintMaker * make){
+        make.centerX.equalTo(self);
+    }];
+
+}
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+ - (void)updateConstraints
+ {
+ 
+ for (UIImageView *greenCircle in self.greenCircleViewArray)
+ {
+ [greenCircle mas_makeConstraints:^(MASConstraintMaker *make) {
+ 
+ }]
+ }
+ 
+ 
+ for (UIImageView *routeHead in self.routeHeadViewArray)
+ {
+ [routeHead mas_makeConstraints:^(MASConstraintMaker *make) {
+ make.center.equalTo(self);
+ }];
+ }
+ 
+ for (UIImageView *routeTail in self.routeTailViewArray)
+ {
+ [routeTail mas_makeConstraints:^(MASConstraintMaker *make) {
+ make.center.equalTo(self);
+ }];
+ }
+ 
+ for (UIImageView *routeElement in self.routeElementViewArray)
+ {
+ [routeElement mas_makeConstraints:^(MASConstraintMaker *make) {
+ make.center.equalTo(self);
+ }];
+ }
+ 
+ [super updateConstraints];
+ 
+ }
+ */
+
+/*
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect {
+ // Drawing code
+ }
+ */
 
 @end
