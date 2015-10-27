@@ -9,6 +9,17 @@
 #import "BBTMarco.h"
 #import <JSONModel.h>
 
+typedef enum : NSUInteger {
+    BBTBusDirectionNorth,
+    BBTBusDirectionSourth
+} BBTBusDirection;
+
+typedef struct {
+    BBTBusDirection direction;
+    NSUInteger stationIndex;
+    double percent;
+} BBTBusViewPosition;
+
 @interface BBTBus : JSONModel
 
 /* bus info */

@@ -9,27 +9,10 @@
 #ifndef bobantang_BBTMarco_h
 #define bobantang_BBTMarco_h
 
-
-typedef enum : NSUInteger {
-    BBTBusManagerStateNormal,
-    BBTBusManagerStateAllStop,
-    BBTBusManagerStateNetWorkError
-} BBTBusManagerState;
-
-typedef enum : NSUInteger {
-    BBTBusDirectionNorth,
-    BBTBusDirectionSourth
-} BBTBusDirection;
-
+// TODO: move this to your map related .m file
 typedef NS_ENUM(NSInteger, SCUTCampus) {
     SCUTCampusNorth,
     SCUTCampusHEMC
 };
-
-typedef struct {
-    BBTBusDirection direction;
-    NSUInteger stationIndex;
-    double percent;
-} BBTBusViewPosition;
 
 #endif /* bobantang_BBTMarco_h */
