@@ -9,7 +9,7 @@
 #ifndef bobantang_BBTMarco_h
 #define bobantang_BBTMarco_h
 
-// TODO: move this to your map related .m file
+// TODO: move this to your map related .h file
 typedef NS_ENUM(NSInteger, SCUTCampus) {
     SCUTCampusNorth,
     SCUTCampusHEMC
