@@ -17,6 +17,7 @@
 
 @property (strong, nonatomic) NSMutableArray    *   stickViewArray;                      //用于储存stick的views
 @property (strong, nonatomic) NSMutableArray    *   circleViewArray;                     //用于储存circle的views
+@property (strong, nonatomic) NSMutableArray    *   circleStickArray;                    //储存circle和stick的views
 
 
 - (instancetype)initWithCount:(NSUInteger)count;

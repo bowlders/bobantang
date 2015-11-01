@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		392A0DE01BDE94FF001F7D45 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 392A0DDF1BDE94FF001F7D45 /* Images.xcassets */; settings = {ASSET_TAGS = (); }; };
+		392A0DE41BE63F37001F7D45 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 392A0DE31BE63F37001F7D45 /* Images.xcassets */; settings = {ASSET_TAGS = (); }; };
 		398231B61BD8ED230043E544 /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 398231B51BD8ED230043E544 /* Me.storyboard */; settings = {ASSET_TAGS = (); }; };
 		99BCEEF76C0A51F53BF45309 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA2627D2286FFB656F82101 /* libPods.a */; };
 		A947D9291BD8DADA000F071B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A947D9271BD8DADA000F071B /* Main.storyboard */; };
@@ -69,7 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		392A0DDF1BDE94FF001F7D45 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		392A0DE31BE63F37001F7D45 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		398231B51BD8ED230043E544 /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
 		48D6888DD2A267EA93C8D8BC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A947D91B1BD8DADA000F071B /* BoBanTang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoBanTang.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -367,11 +367,11 @@
 		A947D91D1BD8DADA000F071B /* BoBanTang */ = {
 			isa = PBXGroup;
 			children = (
-				392A0DDF1BDE94FF001F7D45 /* Images.xcassets */,
 				A947D9751BD8DC0F000F071B /* BBTMarco.h */,
 				A947D9791BD8DC0F000F071B /* BBTPreferences.h */,
 				A947D99E1BD8DC34000F071B /* BBTPreferences.m */,
 				A947D92A1BD8DADA000F071B /* BoBanTang.xcdatamodeld */,
+				392A0DE31BE63F37001F7D45 /* Images.xcassets */,
 				398231B71BD8ED300043E544 /* Model */,
 				398231B91BD8ED3F0043E544 /* View */,
 				398231B81BD8ED360043E544 /* Controller */,
@@ -575,9 +575,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A947D98D1BD8DC24000F071B /* Tools.storyboard in Resources */,
-				392A0DE01BDE94FF001F7D45 /* Images.xcassets in Resources */,
 				A947D98A1BD8DC24000F071B /* Information.storyboard in Resources */,
 				A947D9891BD8DC24000F071B /* Go.storyboard in Resources */,
+				392A0DE41BE63F37001F7D45 /* Images.xcassets in Resources */,
 				398231B61BD8ED230043E544 /* Me.storyboard in Resources */,
 				A947D9291BD8DADA000F071B /* Main.storyboard in Resources */,
 			);

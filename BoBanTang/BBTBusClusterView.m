@@ -52,7 +52,7 @@
         self.stationNames = stationNames;
         self.count = [self.stationNames count];
         
-        const float offsetBetweenButtonAndCircle = 15;
+        const float offsetBetweenButtonAndCircle = 60;
         
         [self addSubview:self.routeView];
         [self bringSubviewToFront:self.routeView];
@@ -63,17 +63,17 @@
         
         [self.routeView mas_makeConstraints:^(MASConstraintMaker *make){
             make.center.equalTo(self);
-            make.width.equalTo(self).multipliedBy((float)1/15);
+            make.width.equalTo(self).multipliedBy((float)1/11);
             make.height.equalTo(self);
         }];
         
         for (int i = 0;i < self.count;i++)
         {
             [self.buttonArray[i] mas_makeConstraints:^(MASConstraintMaker *make){
-                //make.bottom.equalTo(self.routeView.circleViewArray[i]).with.offset(-0.5 * ((UIImageView *)[self.routeView.circleViewArray firstObject]).bounds.size.height);
-                make.centerX.equalTo(self.routeView).with.offset(-offsetBetweenButtonAndCircle);
+                make.centerX.equalTo(self.routeView).offset(-offsetBetweenButtonAndCircle);
                 make.centerY.equalTo(self.routeView.circleViewArray[i]);
-                make.size.equalTo([self.routeView.circleViewArray firstObject]);
+                make.height.equalTo(self.routeView.circleStickArray[0]);
+                make.width.equalTo(@100);
             }];
         }
 
@@ -138,8 +138,8 @@
         _buttonArray = [NSMutableArray array];
         for (int i = 0;i < self.count;i++)
         {
-            UIButton *stationButton = [UIButton stationButtonWithName:self.stationNames[i]];
-            stationButton.tag = i;
+            UIButton *stationButton = [UIButton stationButtonWithName:self.stationNames[self.count - i - 1]];
+            stationButton.tag = self.count - i - 1;
             [stationButton addTarget:self action:@selector(stationButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
             [self.buttonArray insertObject:stationButton atIndex:i];
         }

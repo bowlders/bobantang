@@ -58,19 +58,21 @@
     CGFloat clusterY = naviBarHeight + statusBarHeight + messageLabelHeight;
     CGFloat clusterHeight = screenHeight - clusterY - tabBarHeight;
     
-    /*
+    
     CGRect frame = CGRectMake(0.0f, clusterY, screenWidth, clusterHeight);
     self.busClusterView = [[BBTBusClusterView alloc] initWithFrame:frame stationNames:[BBTBusManager sharedBusManager].stationNames];
     //NSLog(@"clusterHeight - %f", self.busClusterView.bounds.size.height);
-     */
+    
     [self.view addSubview:self.busClusterView];
     
+    /*
     [self.busClusterView mas_makeConstraints:^(MASConstraintMaker *make){
         make.top.equalTo(self).offset(- statusBarHeight - messageLabelHeight);
         make.centerX.equalTo(self);
         make.width.equalTo(self);
         make.height.equalTo(self).offset(- clusterY - tabBarHeight);
     }];
+     */ 
     
     /* add bus count view and loading view */
     CGFloat loadingViewY = clusterY + LOADING_VIEW_SIZE / 2.0f;        // same y position with bus cluster
@@ -80,7 +82,7 @@
     self.loadingView = [[GmailLikeLoadingView alloc] initWithFrame:loadingViewFrame];
     [self.view addSubview:self.busCountView];
     [self.view addSubview:self.loadingView];
-    
+
     /* add bus message label */
     CGFloat messageLabelY = naviBarHeight + statusBarHeight;
     CGRect messageLabelFrame = CGRectMake(0.0f, messageLabelY, screenWidth, messageLabelHeight);
@@ -124,8 +126,7 @@
     //adjust the gap between these two buttons
     self.navigationItem.rightBarButtonItems = @[timeTableButton, refreshButton];
     
-    self.busClusterView.delegate = self;
-    
+    self.busClusterView.delegate = self;    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -151,7 +152,6 @@
     if (!self.loadingView.isAnimating) {
         [self.loadingView startAnimating];
     }
-    NSLog(@"%f - routeheight`",self.busClusterView.routeView.bounds.size.width);
 }
 
 - (void)viewDidDisappear:(BOOL)animated

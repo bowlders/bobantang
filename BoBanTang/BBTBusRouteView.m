@@ -31,40 +31,50 @@
 
 - (instancetype)initWithFrame:(CGRect)frame Count:(NSUInteger)count
 {
-    
     self = [super initWithFrame:frame];
 
     if (self)
     {
         self.count = count;
+        self.circleStickArray = [NSMutableArray array];
         
-        for (UIImageView * stick in self.stickViewArray)
-        {
-            [self addSubview:stick];
-        }
-
-        for (UIImageView * circle in self.circleViewArray)
-        {
-            [self addSubview:circle];
-        }
-
         for (int i = 0;i < self.count;i++)
         {
-            [self.circleViewArray[i] mas_makeConstraints:^(MASConstraintMaker * make){
-                make.width.equalTo(self);
-                make.height.equalTo(self).multipliedBy((float)4 / (5 * self.count - 1));
-                make.centerX.equalTo(self);
-                make.bottom.equalTo(self).with.offset(-i * (((UIImageView *)[self.circleViewArray firstObject]).bounds.size.height + ((UIImageView *)[self.stickViewArray firstObject]).bounds.size.height));
-            }];
+            [self addSubview:self.circleViewArray[i]];
+            [self.circleStickArray insertObject:self.circleViewArray[i] atIndex:2 * i];
+            if (i < self.count - 1)
+            {
+                [self addSubview:self.stickViewArray[i]];
+                [self.circleStickArray insertObject:self.stickViewArray[i] atIndex:2 * i + 1];
+            }
         }
-        
-        for (int i = 0;i < self.count - 1;i++)
+    
+        for (int i = 0;i < 2 * self.count - 1;i++)
         {
-            [self.stickViewArray[i] mas_makeConstraints:^(MASConstraintMaker * make){
-                make.width.equalTo(self);
-                make.height.equalTo([self.circleViewArray firstObject]).multipliedBy(0.25);
+            [self.circleStickArray[i] mas_makeConstraints:^(MASConstraintMaker * make){
+                //This time it's a circle
+                if (i % 2 == 0)
+                {
+                    make.width.equalTo(((UIImageView *)self.circleStickArray[0]).mas_height);
+                    make.height.equalTo(self).multipliedBy((float)4 / (5 * self.count - 1));
+                }
+                //This time it's a stick
+                else
+                {
+                    make.width.equalTo(self).multipliedBy(0.3);
+                    make.height.equalTo(self).multipliedBy(0.25 * (float)4 / (5 * self.count - 1));
+                }
+                
                 make.centerX.equalTo(self);
-                make.bottom.equalTo(self.circleViewArray[i]).with.offset(-((UIImageView *)[self.circleViewArray firstObject]).bounds.size.height);
+                
+                if (i == 0)
+                {
+                    make.bottom.equalTo(self).offset(-15);
+                }
+                else
+                {
+                    make.bottom.equalTo(((UIImageView *)self.circleStickArray[i-1]).mas_top).offset(1);
+                }
             }];
         }
         
