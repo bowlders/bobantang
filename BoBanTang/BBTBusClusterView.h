@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+<<<<<<< HEAD
 #import "BBTMarco.h"
 #import "BBTBusRouteView.h"
 
+=======
+#import "BBTBusView.h"
+>>>>>>> adb86443ec6d5f8074dd0209532a65cfb9fcfa3f
 
 @protocol BBTBusClusterViewDelegate;
 
