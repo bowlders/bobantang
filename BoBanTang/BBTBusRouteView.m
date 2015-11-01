@@ -11,31 +11,16 @@
 
 @interface BBTBusRouteView()
 
-@property (nonatomic) NSUInteger count;
-@property (nonatomic) BOOL didSetupConstrains;
+@property (nonatomic)         NSUInteger            count;
+@property (nonatomic)         BOOL                  didSetupConstrains;
 
-@property (strong, nonatomic) UIImageView    * routeHeadView;
-@property (strong, nonatomic) UIImageView    * routeTailView;
-@property (strong, nonatomic) NSMutableArray * routeElementViewArray;               //用于储存routeElementView
-@property (strong, nonatomic) NSMutableArray * greenCircleViewArray;                //用于储存greenCircle的views
-@property (strong, nonatomic) NSMutableArray * violetCircleViewArray;               //用于储存violetCircle的views
+@property (strong, nonatomic) NSMutableArray    *   greenCircleViewArray;                //用于储存greenCircle的views
+@property (strong, nonatomic) NSMutableArray    *   violetCircleViewArray;               //用于储存violetCircle的views
 
 @end
 
 
 @implementation BBTBusRouteView
-
-- (void)setGreenCircles:(NSMutableArray *)greenDots
-{
-    _greenCircles = greenDots;
-    [self setNeedsLayout];
-}
-
-- (void)setVioletDots:(NSMutableArray *)violetDots
-{
-    _violetCircles = violetDots;
-    [self setNeedsLayout];
-}
 
 #define ROUTE_VIEW_TAG 42
 
@@ -52,106 +37,152 @@
     if (self)
     {
         self.count = count;
-        [self addSubview:self.routeHeadView];
-        [self addSubview:self.routeTailView];
-        for (UIImageView * routeElement in self.routeElementViewArray)
+        
+        for (UIImageView * stick in self.stickViewArray)
         {
-            [self addSubview:routeElement];
+            [self addSubview:stick];
         }
 
-        for (UIImageView * greenCircle in self.greenCircleViewArray)
+        for (UIImageView * circle in self.circleViewArray)
         {
-            [self addSubview:greenCircle];
-        }
-        for (UIImageView * violetCircle in self.violetCircleViewArray)
-        {
-            [self addSubview:violetCircle];
+            [self addSubview:circle];
         }
 
-        [self setNeedsUpdateConstraints];
-        [self updateConstraintsIfNeeded];
+        for (int i = 0;i < self.count;i++)
+        {
+            [self.circleViewArray[i] mas_makeConstraints:^(MASConstraintMaker * make){
+                make.width.equalTo(self);
+                make.height.equalTo(self).multipliedBy((float)4 / (5 * self.count - 1));
+                make.centerX.equalTo(self);
+                make.bottom.equalTo(self).with.offset(-i * (((UIImageView *)[self.circleViewArray firstObject]).bounds.size.height + ((UIImageView *)[self.stickViewArray firstObject]).bounds.size.height));
+            }];
+        }
+        
+        for (int i = 0;i < self.count - 1;i++)
+        {
+            [self.stickViewArray[i] mas_makeConstraints:^(MASConstraintMaker * make){
+                make.width.equalTo(self);
+                make.height.equalTo([self.circleViewArray firstObject]).multipliedBy(0.25);
+                make.centerX.equalTo(self);
+                make.bottom.equalTo(self.circleViewArray[i]).with.offset(-((UIImageView *)[self.circleViewArray firstObject]).bounds.size.height);
+            }];
+        }
+        
+        for (id dotIndex in self.greenCircles)
+        {
+            if ([dotIndex isKindOfClass:[NSNumber class]] && [(NSNumber *)dotIndex integerValue] <= self.count)
+            {
+                [self.greenCircleViewArray[((NSNumber *)dotIndex).integerValue] mas_makeConstraints:^(MASConstraintMaker * make){
+                    make.size.equalTo([self.circleViewArray firstObject]);
+                    make.centerX.equalTo(self);
+                    make.bottom.equalTo(self.circleViewArray[((NSNumber *)dotIndex).integerValue]);
+                }];
+            }
+        }
+        
+        for (id dotIndex in self.violetCircles)
+        {
+            if ([dotIndex isKindOfClass:[NSNumber class]] && [(NSNumber *)dotIndex integerValue] <= self.count)
+            {
+                [self.violetCircleViewArray[((NSNumber *)dotIndex).integerValue] mas_makeConstraints:^(MASConstraintMaker * make){
+                    make.size.equalTo([self.circleViewArray firstObject]);
+                    make.centerX.equalTo(self);
+                    make.bottom.equalTo(self.circleViewArray[((NSNumber *)dotIndex).integerValue]);
+                }];
+            }
+        }
     }
 
     return self;
 
 }
 
-- (UIImageView *)routeHeadView
+- (void)setGreenCircles:(NSMutableArray *)greenDots
 {
-    if (!_routeHeadView)
-    {
-        UIImage * routeHead = [UIImage imageNamed:@"route-head"];
-        _routeHeadView = [[UIImageView alloc] initWithImage:routeHead];
-    }
-    return _routeHeadView;
+    _greenCircles = greenDots;
+    //[self setNeedsLayout];
 }
 
-- (UIImageView *)routeTailView
+- (void)setVioletDots:(NSMutableArray *)violetDots
 {
-    if (!_routeTailView)
-    {
-        UIImage * routeTail = [UIImage imageNamed:@"route-tail"];
-        _routeTailView = [[UIImageView alloc] initWithImage:routeTail];
-    }
-    return _routeTailView;
+    _violetCircles = violetDots;
+    //[self setNeedsLayout];
 }
 
-- (NSMutableArray *)routeElementViewArray
+- (NSMutableArray *)stickViewArray
 {
-    if (!_routeElementViewArray)
+    if (!_stickViewArray)
     {
-        for (int i = 1;i < self.count - 1;i++)
+        _stickViewArray = [NSMutableArray array];
+        for (int i = 0;i < self.count - 1;i++)
         {
-            UIImage * routeElement = [UIImage imageNamed:@"route-element"];
-            UIImageView * routeElementView = [[UIImageView alloc] initWithImage:routeElement];
-            [_routeElementViewArray insertObject:routeElementView atIndex:i];
+            UIImage * stick = [UIImage imageNamed:@"stick"];
+            UIImageView * stickView = [[UIImageView alloc] initWithImage:stick];
+            [_stickViewArray insertObject:stickView atIndex:i];
         }
     }
-    return _routeElementViewArray;
+    return _stickViewArray;
 }
 
-- (NSMutableArray *)greenCircleViewArray
+- (NSMutableArray *)circleViewArray
 {
-    if (!_greenCircleViewArray)
+    if (!_circleViewArray)
     {
-        int i = 0;
-        for (id dotIndex in _greenCircleViewArray)
+        _circleViewArray = [NSMutableArray array];
+        //NSLog(@"%d",self.count);
+        for (int i = 0;i < self.count;i++)
         {
-            if ([dotIndex isKindOfClass:[NSNumber class]] && [(NSNumber *)dotIndex integerValue] <= self.count)
-            {
-                UIImageView * greenCircle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"greenCircle"]];
-                [_greenCircleViewArray insertObject:greenCircle atIndex:i];
-                i++;
-            }
+            UIImage * circle = [UIImage imageNamed:@"circle"];
+            UIImageView * circleView = [[UIImageView alloc] initWithImage:circle];
+            [_circleViewArray insertObject:circleView atIndex:i];
         }
     }
-    return _greenCircleViewArray;
+    return _circleViewArray;
 }
+
 
 - (NSMutableArray *)violetCircleViewArray
 {
     if (!_violetCircleViewArray)
     {
-        int i = 0;
-        for (id dotIndex in _violetCircleViewArray) {
+        _violetCircleViewArray = [NSMutableArray array];
+        for (id dotIndex in _violetCircles)
+        {
             if ([dotIndex isKindOfClass:[NSNumber class]] && [(NSNumber *)dotIndex integerValue] <= self.count)
             {
                 UIImageView * violetCircle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"violetCircle"]];
-                [_violetCircleViewArray insertObject:violetCircle atIndex:i];
-                i++;
+                [_violetCircleViewArray insertObject:violetCircle atIndex:((NSNumber *)dotIndex).integerValue];
             }
         }
     }
     return _violetCircleViewArray;
 }
 
+- (NSMutableArray *)greenCircleViewArray
+{
+    if (!_greenCircleViewArray)
+    {
+        _greenCircleViewArray = [NSMutableArray array];
+        for (id dotIndex in _greenCircles)
+        {
+            if ([dotIndex isKindOfClass:[NSNumber class]] && [(NSNumber *)dotIndex integerValue] <= self.count)
+            {
+                UIImageView * greenCircle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"greenCircle"]];
+                [_greenCircleViewArray insertObject:greenCircle atIndex:((NSNumber *)dotIndex).integerValue];
+            }
+        }
+    }
+    return _greenCircleViewArray;
+}
+
 #define CIRCLE_INIT_WIDTH 25.0f
+
+/*
+#pragma mark - autolayout methods
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
     [self setNeedsLayout];
-    [self layoutIfNeeded];
 }
 
 - (void)updateConstraints
@@ -165,14 +196,11 @@
 
 - (void)setupConstrains
 {
-    [self.routeHeadView mas_makeConstraints:^(MASConstraintMaker * make){
-        make.centerX.equalTo(self);
-    }];
-    [self.routeTailView mas_makeConstraints:^(MASConstraintMaker * make){
-        make.centerX.equalTo(self);
-    }];
+    //CGFloat circleHeight = (4 * self.bounds.size.height) / (5 * self.count - 1);
 
+    
 }
+ */
 
 /*
  - (void)updateConstraints

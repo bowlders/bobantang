@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "BBTMarco.h"
+#import "BBTBusRouteView.h"
+
 
 @protocol BBTBusClusterViewDelegate;
 
 @interface BBTBusClusterView : UIView
 
 @property (weak, nonatomic) id<BBTBusClusterViewDelegate> delegate;
+@property (strong, nonatomic) BBTBusRouteView       *       routeView;
 
 - (instancetype)initWithFrame:(CGRect)frame stationNames:(NSArray *)stationNames;
 - (void)updateBusPosition;

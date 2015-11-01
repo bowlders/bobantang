@@ -5,6 +5,7 @@
 //  Created by Bill Bai on 8/19/14.
 //  Copyright (c) 2014 Bill Bai. All rights reserved.
 //
+#import <Masonry.h>
 #import "GmailLikeLoadingView.h"
 #import "KGModal.h"
 
@@ -53,11 +54,23 @@
     [self.view addSubview:self.waterMark];
     
     /* add bus cluster view */
+    
     CGFloat clusterY = naviBarHeight + statusBarHeight + messageLabelHeight;
     CGFloat clusterHeight = screenHeight - clusterY - tabBarHeight;
+    
+    /*
     CGRect frame = CGRectMake(0.0f, clusterY, screenWidth, clusterHeight);
     self.busClusterView = [[BBTBusClusterView alloc] initWithFrame:frame stationNames:[BBTBusManager sharedBusManager].stationNames];
+    //NSLog(@"clusterHeight - %f", self.busClusterView.bounds.size.height);
+     */
     [self.view addSubview:self.busClusterView];
+    
+    [self.busClusterView mas_makeConstraints:^(MASConstraintMaker *make){
+        make.top.equalTo(self).offset(- statusBarHeight - messageLabelHeight);
+        make.centerX.equalTo(self);
+        make.width.equalTo(self);
+        make.height.equalTo(self).offset(- clusterY - tabBarHeight);
+    }];
     
     /* add bus count view and loading view */
     CGFloat loadingViewY = clusterY + LOADING_VIEW_SIZE / 2.0f;        // same y position with bus cluster
@@ -73,6 +86,14 @@
     CGRect messageLabelFrame = CGRectMake(0.0f, messageLabelY, screenWidth, messageLabelHeight);
     self.busMessageLabel = [UILabel BBTBusMessageLabelWithFrame:messageLabelFrame];
     [self.view addSubview:self.busMessageLabel];
+    
+
+    /*
+    NSLog(@"%f",self.busClusterView.bounds.origin.x);
+    NSLog(@"%f",self.busClusterView.bounds.origin.y);
+    NSLog(@"%f",self.busClusterView.bounds.size.height);
+    NSLog(@"%f",self.busClusterView.bounds.size.width);
+     */
     
 //    self.stationSlider = ({
 //        UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(42.0f - (clusterHeight / 2.0f), clusterY + clusterHeight / 2.0f, clusterHeight, 42.0f)];
@@ -104,6 +125,7 @@
     self.navigationItem.rightBarButtonItems = @[timeTableButton, refreshButton];
     
     self.busClusterView.delegate = self;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -129,6 +151,7 @@
     if (!self.loadingView.isAnimating) {
         [self.loadingView startAnimating];
     }
+    NSLog(@"%f - routeheight`",self.busClusterView.routeView.bounds.size.width);
 }
 
 - (void)viewDidDisappear:(BOOL)animated
