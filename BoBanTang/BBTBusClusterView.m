@@ -12,16 +12,15 @@
 #import "BBTBusView.h"
 
 @interface BBTBusClusterView()
-//@property (nonatomic)         CGFloat                       elementHeight;
-//@property (nonatomic)         CGFloat                       elementY;
+
+@property (nonatomic)         CGFloat                       elementHeight;
+@property (nonatomic)         CGFloat                       elementY;
 @property (nonatomic)         NSUInteger                    count;
 @property (nonatomic)         BOOL                          didSetupConstrains;
 @property (strong, nonatomic) NSArray               *       stationNames;
 
 @property (strong, nonatomic) NSMutableDictionary   *       busViews;
 @property (strong, nonatomic) NSMutableArray        *       buttonArray;
-
-@property (strong, nonatomic) NSMutableArray        *       busViewArray;
 
 @end
 
@@ -54,9 +53,9 @@
         self.stationNames = stationNames;
         self.count = [self.stationNames count];
         
-        //CGFloat elementHeight = self.frame.size.height / self.count;
-        //self.elementHeight = elementHeight;
-        //self.elementY = 0.0f;
+        CGFloat elementHeight = self.frame.size.height / self.count;
+        self.elementHeight = elementHeight;
+        self.elementY = 0.0f;
         
         const float offsetBetweenButtonAndCircle = 60;
         
@@ -105,15 +104,6 @@
     return _routeView;
 }
 
-- (NSMutableArray *)busViewArray
-{
-    if (!_busViewArray)
-    {
-        _busViewArray = [NSMutableArray array];
-    }
-    return _busViewArray;
-}
-
 - (NSMutableArray *)buttonArray
 {
     if (!_buttonArray)
@@ -137,12 +127,10 @@
         return;
     }
     
-    //int i = 0;
-    
     for (NSString *key in busKeys) {
         BBTBusView *busView = self.busViews[key];
         if (!busView) {
-            busView = [[BBTBusView alloc] initWithFrame:CGRectZero direction:YES];//CGRectMake(BUS_INIT_X, BUS_INIT_Y, BUS_WIDTH, BUS_HEIGHT) direction:YES];
+            busView = [[BBTBusView alloc] initWithFrame:CGRectMake(BUS_INIT_X, BUS_INIT_Y, BUS_WIDTH, BUS_HEIGHT) direction:YES];
             busView.hidden = YES;
             [self.busViews setObject:busView forKey:key];
             [self addSubview:busView];
@@ -163,10 +151,7 @@
             busView.hidden = NO;
             busView.direction = position.direction;
             [UIView animateWithDuration:BUS_MOVE_ANIMATION_DURATION animations:^(void) {
-                //busView.frame = [self frameForBusPosition:position];
-                [self setNeedsUpdateConstraints];
-                [self updateConstraintsIfNeeded];
-                [self layoutIfNeeded];
+                busView.frame = [self frameForBusPosition:position];
             }];
         } else {
             busView.hidden = YES;
@@ -179,81 +164,23 @@
 
 - (void)restartBusAnimation
 {
-    /*
-    for (NSString *key in [self.busViews allKeys])
-    {
+    for (NSString *key in [self.busViews allKeys]) {
         BBTBusView *busView = self.busViews[key];
-
+        [busView setNeedsLayout];
     }
-     */
-    [self setNeedsUpdateConstraints];
-    [self updateConstraintsIfNeeded];
-    [self layoutIfNeeded];
 }
 
-/*
 - (CGRect)frameForBusPosition:(BBTBusViewPosition)position
 {
     CGFloat directionFactor = position.direction == BBTBusDirectionSourth ? -1.0f : 1.0f;
-    //CGFloat y = self.frame.size.height - self.elementY - (position.stationIndex * self.elementHeight + directionFactor * position.percent * self.elementHeight);
-    //CGFloat y = self.frame.size.height - self.elementY - (position.stationIndex * self.elementHeight + directionFactor * position.percent * self.elementHeight);
-    
-    //NSLog(@"elementY = %f",self.elementY);
-    //NSLog(@"elementH = %f",self.elementHeight);
-    
-    return CGRectMake(BUS_INIT_X, y, BUS_WIDTH, BUS_HEIGHT);
+    CGFloat y = self.frame.size.height - self.elementY - (position.stationIndex * self.elementHeight + directionFactor * position.percent * self.elementHeight);
+    CGFloat busX = 30 + self.bounds.size.width / 2;
+    return CGRectMake(busX, y, BUS_WIDTH, BUS_HEIGHT);
 }
-*/
 
 - (void)stationButtonTapped:(UIButton *)button
 {
     [self.delegate BBTBusClusterView:self didTapButtonAtIndex:button.tag];
 }
-
-- (void)updateConstraints
-{
-    for (NSString *key in [self.busViews allKeys])
-    {
-        BBTBusView *busView = self.busViews[key];
-        BBTBusViewPosition position = [self.delegate BBTBusClusterView:self locationForBus:key];
-        CGFloat directionFactor = position.direction == BBTBusDirectionSourth ? -1.0f : 1.0f;
-        CGFloat elementHeight = self.frame.size.height / self.count;
-        [busView mas_makeConstraints:^(MASConstraintMaker *make) {
-           if (!busView.hidden)
-           {
-               //make.top.lessThanOrEqualTo(self.routeView);
-               //make.bottom.lessThanOrEqualTo(self.routeView);
-               make.size.equalTo(self.routeView.circleStickArray[0]);
-               make.centerX.equalTo(self.routeView).offset(50);
-               make.bottom.equalTo(self.routeView).offset(- (float)position.stationIndex * elementHeight - directionFactor * position.percent * elementHeight);
-           }
-        }];
-    }
-    [super updateConstraints];
-}
-
-/*
-#pragma mark - autolayout methods
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    [self setNeedsLayout];
-}
-
-- (void)updateConstraints
-{
-    if (!self.didSetupConstrains)
-    {
-        [self setupConstrains];
-    }
-    [super updateConstraints];
-}
-
-- (void)setupConstrains
-{
-    
-}
-*/
  
 @end
