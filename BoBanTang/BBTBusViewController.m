@@ -126,7 +126,7 @@
     //adjust the gap between these two buttons
     self.navigationItem.rightBarButtonItems = @[timeTableButton, refreshButton];
     
-    self.busClusterView.delegate = self;    
+    self.busClusterView.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated

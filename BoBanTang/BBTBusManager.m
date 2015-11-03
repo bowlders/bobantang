@@ -30,8 +30,8 @@
 @implementation BBTBusManager
 @synthesize buses = _buses;
 
-static NSString * const baseURLString = @"http://bbt.100steps.net/go/data/";
-//static NSString * const baseURLString = @"http://218.192.166.167:6767";
+//static NSString * const baseURLString = @"http://bbt.100steps.net/go/data/";
+static NSString * const baseURLString = @"http://127.0.0.1:6767";
 static NSString * const kFAKE_BUS1 = @"AAA";
 static NSString * const kFAKE_BUS2 = @"BUSd";
 
