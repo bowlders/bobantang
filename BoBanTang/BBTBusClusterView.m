@@ -57,7 +57,7 @@
         self.elementHeight = elementHeight;
         self.elementY = 0.0f;
         
-        const float offsetBetweenButtonAndCircle = 60;
+        const float offsetBetweenButtonAndCircle = 65;
         
         [self addSubview:self.routeView];
         [self bringSubviewToFront:self.routeView];
@@ -112,6 +112,7 @@
         for (int i = 0;i < self.count;i++)
         {
             UIButton *stationButton = [UIButton stationButtonWithName:self.stationNames[self.count - i - 1]];
+            stationButton.titleLabel.font = [UIFont systemFontOfSize:18];
             stationButton.tag = self.count - i - 1;
             [stationButton addTarget:self action:@selector(stationButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
             [self.buttonArray insertObject:stationButton atIndex:i];
@@ -137,17 +138,25 @@
         }
     }
     
-    NSMutableArray *greenCircles = [NSMutableArray array];
-    NSMutableArray *violetCircles = [NSMutableArray array];
+    for (UIImageView *greenCircle in self.routeView.greenCircleViewArray)
+    {
+        greenCircle.hidden = YES;
+    }
+    
+    for (UIImageView *violetCircle in self.routeView.violetCircleViewArray)
+    {
+        violetCircle.hidden = YES;
+    }
+
     for (NSString *key in busKeys) {
         BBTBusView *busView = self.busViews[key];
         if ([self.delegate BBTBusClusterView:self shouldDisplayBus:key]) {
             BBTBusViewPosition position = [self.delegate BBTBusClusterView:self locationForBus:key];
             if (position.direction == BBTBusDirectionSourth) {
-                [violetCircles addObject:@(position.stationIndex)];
+                ((UIImageView *)self.routeView.violetCircleViewArray[position.stationIndex - 1]).hidden = NO;
             } else {
-                [greenCircles addObject:@(position.stationIndex)];
-            }
+                ((UIImageView *)self.routeView.greenCircleViewArray[position.stationIndex - 1]).hidden = NO;
+                }
             busView.hidden = NO;
             busView.direction = position.direction;
             [UIView animateWithDuration:BUS_MOVE_ANIMATION_DURATION animations:^(void) {
@@ -158,8 +167,6 @@
             continue;
         }
     }
-    self.routeView.greenCircles = greenCircles;
-    self.routeView.violetCircles = violetCircles;
 }
 
 - (void)restartBusAnimation

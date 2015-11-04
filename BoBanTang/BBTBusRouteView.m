@@ -14,9 +14,6 @@
 @property (nonatomic)         NSUInteger            count;
 @property (nonatomic)         BOOL                  didSetupConstrains;
 
-@property (strong, nonatomic) NSMutableArray    *   greenCircleViewArray;                //用于储存greenCircle的views
-@property (strong, nonatomic) NSMutableArray    *   violetCircleViewArray;               //用于储存violetCircle的views
-
 @end
 
 
@@ -48,6 +45,16 @@
                 [self.circleStickArray insertObject:self.stickViewArray[i] atIndex:2 * i + 1];
             }
         }
+        
+        for (UIImageView *greenCircle in self.greenCircleViewArray)
+        {
+            [self addSubview:greenCircle];
+        }
+        
+        for (UIImageView *violetCircle in self.violetCircleViewArray)
+        {
+            [self addSubview:violetCircle];
+        }
     
         for (int i = 0;i < 2 * self.count - 1;i++)
         {
@@ -78,45 +85,28 @@
             }];
         }
         
-        for (id dotIndex in self.greenCircles)
+        for (int i = 0;i < self.count;i++)
         {
-            if ([dotIndex isKindOfClass:[NSNumber class]] && [(NSNumber *)dotIndex integerValue] <= self.count)
-            {
-                [self.greenCircleViewArray[((NSNumber *)dotIndex).integerValue] mas_makeConstraints:^(MASConstraintMaker * make){
-                    make.size.equalTo([self.circleViewArray firstObject]);
-                    make.centerX.equalTo(self);
-                    make.bottom.equalTo(self.circleViewArray[((NSNumber *)dotIndex).integerValue]);
-                }];
-            }
+            [self.greenCircleViewArray[i] mas_makeConstraints:^(MASConstraintMaker * make){
+                make.size.equalTo([self.circleStickArray firstObject]);
+                make.centerX.equalTo(self);
+                make.bottom.equalTo(self.circleStickArray[i * 2]);
+            }];
+            
         }
         
-        for (id dotIndex in self.violetCircles)
+        for (int i = 0;i < self.count;i++)
         {
-            if ([dotIndex isKindOfClass:[NSNumber class]] && [(NSNumber *)dotIndex integerValue] <= self.count)
-            {
-                [self.violetCircleViewArray[((NSNumber *)dotIndex).integerValue] mas_makeConstraints:^(MASConstraintMaker * make){
-                    make.size.equalTo([self.circleViewArray firstObject]);
-                    make.centerX.equalTo(self);
-                    make.bottom.equalTo(self.circleViewArray[((NSNumber *)dotIndex).integerValue]);
-                }];
-            }
+            [self.violetCircleViewArray[i] mas_makeConstraints:^(MASConstraintMaker * make){
+                make.size.equalTo([self.circleStickArray firstObject]);
+                make.centerX.equalTo(self);
+                make.bottom.equalTo(self.circleStickArray[i * 2]);
+            }];
         }
     }
 
     return self;
 
-}
-
-- (void)setGreenCircles:(NSMutableArray *)greenDots
-{
-    _greenCircles = greenDots;
-    //[self setNeedsLayout];
-}
-
-- (void)setVioletDots:(NSMutableArray *)violetDots
-{
-    _violetCircles = violetDots;
-    //[self setNeedsLayout];
 }
 
 - (NSMutableArray *)stickViewArray
@@ -156,14 +146,14 @@
     if (!_violetCircleViewArray)
     {
         _violetCircleViewArray = [NSMutableArray array];
-        for (id dotIndex in _violetCircles)
+
+        for (int i = 0;i < self.count;i++)
         {
-            if ([dotIndex isKindOfClass:[NSNumber class]] && [(NSNumber *)dotIndex integerValue] <= self.count)
-            {
-                UIImageView * violetCircle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"violetCircle"]];
-                [_violetCircleViewArray insertObject:violetCircle atIndex:((NSNumber *)dotIndex).integerValue];
-            }
+            UIImageView * violetCircle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"violetCircle"]];
+            violetCircle.hidden = YES;
+            [_violetCircleViewArray addObject:violetCircle];
         }
+
     }
     return _violetCircleViewArray;
 }
@@ -173,13 +163,12 @@
     if (!_greenCircleViewArray)
     {
         _greenCircleViewArray = [NSMutableArray array];
-        for (id dotIndex in _greenCircles)
+
+        for (int i = 0;i < self.count;i++)
         {
-            if ([dotIndex isKindOfClass:[NSNumber class]] && [(NSNumber *)dotIndex integerValue] <= self.count)
-            {
-                UIImageView * greenCircle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"greenCircle"]];
-                [_greenCircleViewArray insertObject:greenCircle atIndex:((NSNumber *)dotIndex).integerValue];
-            }
+            UIImageView * greenCircle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"greenCircle"]];
+            greenCircle.hidden = YES;
+            [_greenCircleViewArray addObject:greenCircle];
         }
     }
     return _greenCircleViewArray;

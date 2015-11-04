@@ -10,15 +10,14 @@
 
 @interface BBTBusRouteView : UIView
 
-@property (strong, nonatomic) NSMutableArray    *   greenCircles;
-@property (strong, nonatomic) NSMutableArray    *   violetCircles;
 @property (strong, nonatomic) NSMutableArray    *   circlesOriginYArray;                 //储存圆圈纵坐标的值
 @property (strong, nonatomic) NSMutableArray    *   circlesHeightArray;                  //储存圆圈高度的值
 
 @property (strong, nonatomic) NSMutableArray    *   stickViewArray;                      //用于储存stick的views
 @property (strong, nonatomic) NSMutableArray    *   circleViewArray;                     //用于储存circle的views
 @property (strong, nonatomic) NSMutableArray    *   circleStickArray;                    //储存circle和stick的views
-
+@property (strong, nonatomic) NSMutableArray    *   greenCircleViewArray;                //用于储存greenCircle的views
+@property (strong, nonatomic) NSMutableArray    *   violetCircleViewArray;               //用于储存violetCircle的views
 
 - (instancetype)initWithCount:(NSUInteger)count;
 - (instancetype)initWithFrame:(CGRect)frame Count:(NSUInteger)count;

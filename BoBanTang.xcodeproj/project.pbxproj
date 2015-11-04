@@ -7,47 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		392A0DE41BE63F37001F7D45 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 392A0DE31BE63F37001F7D45 /* Images.xcassets */; settings = {ASSET_TAGS = (); }; };
-		398231B61BD8ED230043E544 /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 398231B51BD8ED230043E544 /* Me.storyboard */; settings = {ASSET_TAGS = (); }; };
+		392A0DE41BE63F37001F7D45 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 392A0DE31BE63F37001F7D45 /* Images.xcassets */; };
+		398231B61BD8ED230043E544 /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 398231B51BD8ED230043E544 /* Me.storyboard */; };
 		99BCEEF76C0A51F53BF45309 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA2627D2286FFB656F82101 /* libPods.a */; };
 		A947D9291BD8DADA000F071B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A947D9271BD8DADA000F071B /* Main.storyboard */; };
 		A947D92C1BD8DADA000F071B /* BoBanTang.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A947D92A1BD8DADA000F071B /* BoBanTang.xcdatamodeld */; };
 		A947D93C1BD8DADA000F071B /* BoBanTangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D93B1BD8DADA000F071B /* BoBanTangTests.m */; };
 		A947D9471BD8DADA000F071B /* BoBanTangUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9461BD8DADA000F071B /* BoBanTangUITests.m */; };
-		A947D9631BD8DBEA000F071B /* GmailLikeLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9571BD8DBEA000F071B /* GmailLikeLoadingView.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9641BD8DBEA000F071B /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A947D95A1BD8DBEA000F071B /* libPushSDK.a */; settings = {ASSET_TAGS = (); }; };
-		A947D9651BD8DBEA000F071B /* KGModal.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D95D1BD8DBEA000F071B /* KGModal.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9661BD8DBEA000F071B /* PAPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9601BD8DBEA000F071B /* PAPreferences.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9671BD8DBEA000F071B /* PAPropertyDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9621BD8DBEA000F071B /* PAPropertyDescriptor.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9891BD8DC24000F071B /* Go.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A947D9841BD8DC24000F071B /* Go.storyboard */; settings = {ASSET_TAGS = (); }; };
-		A947D98A1BD8DC24000F071B /* Information.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A947D9851BD8DC24000F071B /* Information.storyboard */; settings = {ASSET_TAGS = (); }; };
-		A947D98D1BD8DC24000F071B /* Tools.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A947D9881BD8DC24000F071B /* Tools.storyboard */; settings = {ASSET_TAGS = (); }; };
-		A947D9AA1BD8DC34000F071B /* BBTAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D98E1BD8DC34000F071B /* BBTAboutViewController.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9AB1BD8DC34000F071B /* BBTAccountManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D98F1BD8DC34000F071B /* BBTAccountManageViewController.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9AC1BD8DC34000F071B /* BBTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9901BD8DC34000F071B /* BBTAppDelegate.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9AE1BD8DC34000F071B /* BBTBus.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9921BD8DC34000F071B /* BBTBus.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9AF1BD8DC34000F071B /* BBTBusClusterView.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9931BD8DC34000F071B /* BBTBusClusterView.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9B01BD8DC34000F071B /* BBTBusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9941BD8DC34000F071B /* BBTBusManager.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9B11BD8DC34000F071B /* BBTBusRouteView.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9951BD8DC34000F071B /* BBTBusRouteView.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9B21BD8DC34000F071B /* BBTBusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9961BD8DC34000F071B /* BBTBusView.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9B31BD8DC34000F071B /* BBTBusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9971BD8DC34000F071B /* BBTBusViewController.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9B41BD8DC34000F071B /* BBTCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9981BD8DC34000F071B /* BBTCountView.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9B51BD8DC34000F071B /* BBTGradeLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9991BD8DC34000F071B /* BBTGradeLoginViewController.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9B61BD8DC34000F071B /* BBTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99A1BD8DC34000F071B /* BBTMainViewController.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9B71BD8DC34000F071B /* BBTMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99B1BD8DC34000F071B /* BBTMeViewController.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9B81BD8DC34000F071B /* BBTMyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99C1BD8DC34000F071B /* BBTMyCollectionViewController.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9B91BD8DC34000F071B /* BBTPersonalInfoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99D1BD8DC34000F071B /* BBTPersonalInfoEditViewController.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9BA1BD8DC34000F071B /* BBTPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99E1BD8DC34000F071B /* BBTPreferences.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9BB1BD8DC34000F071B /* BBTScores.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99F1BD8DC34000F071B /* BBTScores.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9BC1BD8DC34000F071B /* BBTSelfStudyRoomSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A01BD8DC34000F071B /* BBTSelfStudyRoomSearchVC.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9BD1BD8DC34000F071B /* BBTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A11BD8DC34000F071B /* BBTSettingsViewController.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9BE1BD8DC34000F071B /* BBTToolsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A21BD8DC34000F071B /* BBTToolsViewController.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9C01BD8DC34000F071B /* UIButton+BBTStationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A41BD8DC34000F071B /* UIButton+BBTStationButton.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9C11BD8DC34000F071B /* UIColor+BBTColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A51BD8DC34000F071B /* UIColor+BBTColor.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9C21BD8DC34000F071B /* UILabel+BBTBusMessageLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A61BD8DC34000F071B /* UILabel+BBTBusMessageLabel.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9C31BD8DC34000F071B /* UIView+BBTBusTimeTable.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A71BD8DC34000F071B /* UIView+BBTBusTimeTable.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9C41BD8DC34000F071B /* UIView+BBTStationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A81BD8DC34000F071B /* UIView+BBTStationInfo.m */; settings = {ASSET_TAGS = (); }; };
-		A947D9C51BD8DC34000F071B /* UIView+BBTWaterMark.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A91BD8DC34000F071B /* UIView+BBTWaterMark.m */; settings = {ASSET_TAGS = (); }; };
+		A947D9631BD8DBEA000F071B /* GmailLikeLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9571BD8DBEA000F071B /* GmailLikeLoadingView.m */; };
+		A947D9641BD8DBEA000F071B /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A947D95A1BD8DBEA000F071B /* libPushSDK.a */; };
+		A947D9651BD8DBEA000F071B /* KGModal.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D95D1BD8DBEA000F071B /* KGModal.m */; };
+		A947D9661BD8DBEA000F071B /* PAPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9601BD8DBEA000F071B /* PAPreferences.m */; };
+		A947D9671BD8DBEA000F071B /* PAPropertyDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9621BD8DBEA000F071B /* PAPropertyDescriptor.m */; };
+		A947D9891BD8DC24000F071B /* Go.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A947D9841BD8DC24000F071B /* Go.storyboard */; };
+		A947D98A1BD8DC24000F071B /* Information.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A947D9851BD8DC24000F071B /* Information.storyboard */; };
+		A947D98D1BD8DC24000F071B /* Tools.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A947D9881BD8DC24000F071B /* Tools.storyboard */; };
+		A947D9AA1BD8DC34000F071B /* BBTAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D98E1BD8DC34000F071B /* BBTAboutViewController.m */; };
+		A947D9AB1BD8DC34000F071B /* BBTAccountManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D98F1BD8DC34000F071B /* BBTAccountManageViewController.m */; };
+		A947D9AC1BD8DC34000F071B /* BBTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9901BD8DC34000F071B /* BBTAppDelegate.m */; };
+		A947D9AE1BD8DC34000F071B /* BBTBus.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9921BD8DC34000F071B /* BBTBus.m */; };
+		A947D9AF1BD8DC34000F071B /* BBTBusClusterView.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9931BD8DC34000F071B /* BBTBusClusterView.m */; };
+		A947D9B01BD8DC34000F071B /* BBTBusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9941BD8DC34000F071B /* BBTBusManager.m */; };
+		A947D9B11BD8DC34000F071B /* BBTBusRouteView.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9951BD8DC34000F071B /* BBTBusRouteView.m */; };
+		A947D9B21BD8DC34000F071B /* BBTBusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9961BD8DC34000F071B /* BBTBusView.m */; };
+		A947D9B31BD8DC34000F071B /* BBTBusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9971BD8DC34000F071B /* BBTBusViewController.m */; };
+		A947D9B41BD8DC34000F071B /* BBTCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9981BD8DC34000F071B /* BBTCountView.m */; };
+		A947D9B51BD8DC34000F071B /* BBTGradeLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9991BD8DC34000F071B /* BBTGradeLoginViewController.m */; };
+		A947D9B61BD8DC34000F071B /* BBTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99A1BD8DC34000F071B /* BBTMainViewController.m */; };
+		A947D9B71BD8DC34000F071B /* BBTMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99B1BD8DC34000F071B /* BBTMeViewController.m */; };
+		A947D9B81BD8DC34000F071B /* BBTMyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99C1BD8DC34000F071B /* BBTMyCollectionViewController.m */; };
+		A947D9B91BD8DC34000F071B /* BBTPersonalInfoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99D1BD8DC34000F071B /* BBTPersonalInfoEditViewController.m */; };
+		A947D9BA1BD8DC34000F071B /* BBTPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99E1BD8DC34000F071B /* BBTPreferences.m */; };
+		A947D9BB1BD8DC34000F071B /* BBTScores.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99F1BD8DC34000F071B /* BBTScores.m */; };
+		A947D9BC1BD8DC34000F071B /* BBTSelfStudyRoomSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A01BD8DC34000F071B /* BBTSelfStudyRoomSearchVC.m */; };
+		A947D9BD1BD8DC34000F071B /* BBTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A11BD8DC34000F071B /* BBTSettingsViewController.m */; };
+		A947D9BE1BD8DC34000F071B /* BBTToolsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A21BD8DC34000F071B /* BBTToolsViewController.m */; };
+		A947D9C01BD8DC34000F071B /* UIButton+BBTStationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A41BD8DC34000F071B /* UIButton+BBTStationButton.m */; };
+		A947D9C11BD8DC34000F071B /* UIColor+BBTColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A51BD8DC34000F071B /* UIColor+BBTColor.m */; };
+		A947D9C21BD8DC34000F071B /* UILabel+BBTBusMessageLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A61BD8DC34000F071B /* UILabel+BBTBusMessageLabel.m */; };
+		A947D9C31BD8DC34000F071B /* UIView+BBTBusTimeTable.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A71BD8DC34000F071B /* UIView+BBTBusTimeTable.m */; };
+		A947D9C41BD8DC34000F071B /* UIView+BBTStationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A81BD8DC34000F071B /* UIView+BBTStationInfo.m */; };
+		A947D9C51BD8DC34000F071B /* UIView+BBTWaterMark.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A91BD8DC34000F071B /* UIView+BBTWaterMark.m */; };
 		A947D9C61BD8E03A000F071B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D91F1BD8DADA000F071B /* main.m */; };
 /* End PBXBuildFile section */
 
@@ -816,6 +816,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = BoBanTang/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -834,6 +835,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = BoBanTang/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
