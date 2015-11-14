@@ -35,12 +35,18 @@
 @implementation BBTBusViewController
 
 #define LOADING_VIEW_SIZE 24.0f
-- (void)loadView
-{
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    /* set up */
+    self.title = @"校巴";
+
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
-    UIView *view = [[UIView alloc] initWithFrame:applicationFrame];
-    self.view = view;
-    self.view.backgroundColor = [UIColor whiteColor];
+
+    /* add water mark */
+    self.waterMark = [UIView BBTwaterMarkViewWithFrame:applicationFrame];
+
+    [self.view addSubview:self.waterMark];
     
     CGFloat screenWidth = applicationFrame.size.width;
     CGFloat screenHeight = applicationFrame.size.height;
@@ -48,31 +54,20 @@
     CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
     CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
     CGFloat messageLabelHeight = 23.0f;
-
-    /* add water mark */
-    self.waterMark = [UIView BBTwaterMarkViewWithFrame:applicationFrame];
-    [self.view addSubview:self.waterMark];
+    
+    
+    
     
     /* add bus cluster view */
     
     CGFloat clusterY = naviBarHeight + statusBarHeight + messageLabelHeight;
     CGFloat clusterHeight = screenHeight - clusterY - tabBarHeight;
     
-    
     CGRect frame = CGRectMake(0.0f, clusterY, screenWidth, clusterHeight);
+    
     self.busClusterView = [[BBTBusClusterView alloc] initWithFrame:frame stationNames:[BBTBusManager sharedBusManager].stationNames];
-    //NSLog(@"clusterHeight - %f", self.busClusterView.bounds.size.height);
-    
+
     [self.view addSubview:self.busClusterView];
-    
-    /*
-    [self.busClusterView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.top.equalTo(self).offset(- statusBarHeight - messageLabelHeight);
-        make.centerX.equalTo(self);
-        make.width.equalTo(self);
-        make.height.equalTo(self).offset(- clusterY - tabBarHeight);
-    }];
-     */ 
     
     /* add bus count view and loading view */
     CGFloat loadingViewY = clusterY + LOADING_VIEW_SIZE / 2.0f;        // same y position with bus cluster
@@ -82,34 +77,13 @@
     self.loadingView = [[GmailLikeLoadingView alloc] initWithFrame:loadingViewFrame];
     [self.view addSubview:self.busCountView];
     [self.view addSubview:self.loadingView];
-
+    
     /* add bus message label */
     CGFloat messageLabelY = naviBarHeight + statusBarHeight;
     CGRect messageLabelFrame = CGRectMake(0.0f, messageLabelY, screenWidth, messageLabelHeight);
     self.busMessageLabel = [UILabel BBTBusMessageLabelWithFrame:messageLabelFrame];
     [self.view addSubview:self.busMessageLabel];
     
-
-    /*
-    NSLog(@"%f",self.busClusterView.bounds.origin.x);
-    NSLog(@"%f",self.busClusterView.bounds.origin.y);
-    NSLog(@"%f",self.busClusterView.bounds.size.height);
-    NSLog(@"%f",self.busClusterView.bounds.size.width);
-     */
-    
-//    self.stationSlider = ({
-//        UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(42.0f - (clusterHeight / 2.0f), clusterY + clusterHeight / 2.0f, clusterHeight, 42.0f)];
-//        slider.transform = CGAffineTransformMakeRotation(M_PI * 0.5);
-//        slider.continuous = NO;
-//        slider;
-//    });
-//    [self.view addSubview:self.stationSlider];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    /* set up */
-    self.title = @"校巴";
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]
                                        initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
                                        target:nil action:nil];

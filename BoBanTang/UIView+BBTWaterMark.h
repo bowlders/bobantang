@@ -11,4 +11,5 @@
 @interface UIView (BBTWaterMark)
 
 + (UIView *)BBTwaterMarkViewWithFrame:(CGRect) frame;
+
 @end

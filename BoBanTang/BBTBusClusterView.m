@@ -17,7 +17,6 @@
 @property (nonatomic)         CGFloat                       elementY;
 @property (nonatomic)         NSUInteger                    count;
 @property (nonatomic)         BOOL                          didSetupConstrains;
-@property (strong, nonatomic) NSArray               *       stationNames;
 
 @property (strong, nonatomic) NSMutableDictionary   *       busViews;
 @property (strong, nonatomic) NSMutableArray        *       buttonArray;

@@ -12,9 +12,9 @@
 
 + (UIView *)BBTwaterMarkViewWithFrame:(CGRect)frame
 {
-    UIView *view = [[UIView alloc] initWithFrame:frame];
+    //UIView *view = [[UIView alloc] initWithFrame:frame];
     UIImageView *waterMarkImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"waterMark"]];
-    [view addSubview:waterMarkImageView];
-    return view;
+    //[view addSubview:waterMarkImageView];
+    return waterMarkImageView;
 }
 @end

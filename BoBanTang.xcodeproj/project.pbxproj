@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		392A0DE41BE63F37001F7D45 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 392A0DE31BE63F37001F7D45 /* Images.xcassets */; };
+		393E3EBD1BF234210045DE6E /* BBTSegmentedControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 393E3EBC1BF234210045DE6E /* BBTSegmentedControlViewController.m */; };
+		393E3EC01BF234540045DE6E /* BBTSpecialRailwayLineTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 393E3EBF1BF234540045DE6E /* BBTSpecialRailwayLineTwoViewController.m */; };
+		393E3EC41BF4C81F0045DE6E /* Go.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 393E3EC31BF4C81F0045DE6E /* Go.storyboard */; };
 		398231B61BD8ED230043E544 /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 398231B51BD8ED230043E544 /* Me.storyboard */; };
 		99BCEEF76C0A51F53BF45309 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA2627D2286FFB656F82101 /* libPods.a */; };
 		A947D9291BD8DADA000F071B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A947D9271BD8DADA000F071B /* Main.storyboard */; };
@@ -19,7 +22,6 @@
 		A947D9651BD8DBEA000F071B /* KGModal.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D95D1BD8DBEA000F071B /* KGModal.m */; };
 		A947D9661BD8DBEA000F071B /* PAPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9601BD8DBEA000F071B /* PAPreferences.m */; };
 		A947D9671BD8DBEA000F071B /* PAPropertyDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9621BD8DBEA000F071B /* PAPropertyDescriptor.m */; };
-		A947D9891BD8DC24000F071B /* Go.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A947D9841BD8DC24000F071B /* Go.storyboard */; };
 		A947D98A1BD8DC24000F071B /* Information.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A947D9851BD8DC24000F071B /* Information.storyboard */; };
 		A947D98D1BD8DC24000F071B /* Tools.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A947D9881BD8DC24000F071B /* Tools.storyboard */; };
 		A947D9AA1BD8DC34000F071B /* BBTAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D98E1BD8DC34000F071B /* BBTAboutViewController.m */; };
@@ -70,6 +72,11 @@
 
 /* Begin PBXFileReference section */
 		392A0DE31BE63F37001F7D45 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		393E3EBB1BF234210045DE6E /* BBTSegmentedControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSegmentedControlViewController.h; sourceTree = "<group>"; };
+		393E3EBC1BF234210045DE6E /* BBTSegmentedControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSegmentedControlViewController.m; sourceTree = "<group>"; };
+		393E3EBE1BF234540045DE6E /* BBTSpecialRailwayLineTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSpecialRailwayLineTwoViewController.h; sourceTree = "<group>"; };
+		393E3EBF1BF234540045DE6E /* BBTSpecialRailwayLineTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSpecialRailwayLineTwoViewController.m; sourceTree = "<group>"; };
+		393E3EC31BF4C81F0045DE6E /* Go.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Go.storyboard; sourceTree = "<group>"; };
 		398231B51BD8ED230043E544 /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
 		48D6888DD2A267EA93C8D8BC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A947D91B1BD8DADA000F071B /* BoBanTang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoBanTang.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,7 +127,6 @@
 		A947D9811BD8DC0F000F071B /* UIView+BBTBusTimeTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BBTBusTimeTable.h"; sourceTree = "<group>"; };
 		A947D9821BD8DC0F000F071B /* UIView+BBTStationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BBTStationInfo.h"; sourceTree = "<group>"; };
 		A947D9831BD8DC0F000F071B /* UIView+BBTWaterMark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BBTWaterMark.h"; sourceTree = "<group>"; };
-		A947D9841BD8DC24000F071B /* Go.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Go.storyboard; sourceTree = "<group>"; };
 		A947D9851BD8DC24000F071B /* Information.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Information.storyboard; sourceTree = "<group>"; };
 		A947D9881BD8DC24000F071B /* Tools.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tools.storyboard; sourceTree = "<group>"; };
 		A947D98E1BD8DC34000F071B /* BBTAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTAboutViewController.m; sourceTree = "<group>"; };
@@ -180,6 +186,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		393E3EC11BF4801B0045DE6E /* CampusBus */ = {
+			isa = PBXGroup;
+			children = (
+				A947D9711BD8DC0F000F071B /* BBTBusViewController.h */,
+				A947D9971BD8DC34000F071B /* BBTBusViewController.m */,
+			);
+			name = CampusBus;
+			sourceTree = "<group>";
+		};
+		393E3EC21BF4802A0045DE6E /* SpecialRailway2 */ = {
+			isa = PBXGroup;
+			children = (
+				393E3EBE1BF234540045DE6E /* BBTSpecialRailwayLineTwoViewController.h */,
+				393E3EBF1BF234540045DE6E /* BBTSpecialRailwayLineTwoViewController.m */,
+			);
+			name = SpecialRailway2;
+			sourceTree = "<group>";
+		};
 		398231B71BD8ED300043E544 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,7 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				398231C11BD8EEF60043E544 /* General */,
-				398231C31BD8EF490043E544 /* CampusBus */,
+				398231C31BD8EF490043E544 /* Go */,
 				398231C21BD8EF350043E544 /* Me */,
 				398231BE1BD8EEBF0043E544 /* Tools */,
 			);
@@ -205,7 +229,7 @@
 			children = (
 				398231BD1BD8EE960043E544 /* General */,
 				398231BC1BD8EE8C0043E544 /* CampusBus */,
-				A947D9841BD8DC24000F071B /* Go.storyboard */,
+				393E3EC31BF4C81F0045DE6E /* Go.storyboard */,
 				A947D9851BD8DC24000F071B /* Information.storyboard */,
 				A947D9881BD8DC24000F071B /* Tools.storyboard */,
 				398231B51BD8ED230043E544 /* Me.storyboard */,
@@ -325,13 +349,15 @@
 			name = Me;
 			sourceTree = "<group>";
 		};
-		398231C31BD8EF490043E544 /* CampusBus */ = {
+		398231C31BD8EF490043E544 /* Go */ = {
 			isa = PBXGroup;
 			children = (
-				A947D9711BD8DC0F000F071B /* BBTBusViewController.h */,
-				A947D9971BD8DC34000F071B /* BBTBusViewController.m */,
+				393E3EBB1BF234210045DE6E /* BBTSegmentedControlViewController.h */,
+				393E3EBC1BF234210045DE6E /* BBTSegmentedControlViewController.m */,
+				393E3EC11BF4801B0045DE6E /* CampusBus */,
+				393E3EC21BF4802A0045DE6E /* SpecialRailway2 */,
 			);
-			name = CampusBus;
+			name = Go;
 			sourceTree = "<group>";
 		};
 		4EA28AD388E43D96D5F54ADA /* Frameworks */ = {
@@ -576,9 +602,9 @@
 			files = (
 				A947D98D1BD8DC24000F071B /* Tools.storyboard in Resources */,
 				A947D98A1BD8DC24000F071B /* Information.storyboard in Resources */,
-				A947D9891BD8DC24000F071B /* Go.storyboard in Resources */,
 				392A0DE41BE63F37001F7D45 /* Images.xcassets in Resources */,
 				398231B61BD8ED230043E544 /* Me.storyboard in Resources */,
+				393E3EC41BF4C81F0045DE6E /* Go.storyboard in Resources */,
 				A947D9291BD8DADA000F071B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -657,6 +683,7 @@
 				A947D9B71BD8DC34000F071B /* BBTMeViewController.m in Sources */,
 				A947D9AB1BD8DC34000F071B /* BBTAccountManageViewController.m in Sources */,
 				A947D9B31BD8DC34000F071B /* BBTBusViewController.m in Sources */,
+				393E3EBD1BF234210045DE6E /* BBTSegmentedControlViewController.m in Sources */,
 				A947D92C1BD8DADA000F071B /* BoBanTang.xcdatamodeld in Sources */,
 				A947D9631BD8DBEA000F071B /* GmailLikeLoadingView.m in Sources */,
 				A947D9671BD8DBEA000F071B /* PAPropertyDescriptor.m in Sources */,
@@ -666,6 +693,7 @@
 				A947D9661BD8DBEA000F071B /* PAPreferences.m in Sources */,
 				A947D9B21BD8DC34000F071B /* BBTBusView.m in Sources */,
 				A947D9AA1BD8DC34000F071B /* BBTAboutViewController.m in Sources */,
+				393E3EC01BF234540045DE6E /* BBTSpecialRailwayLineTwoViewController.m in Sources */,
 				A947D9B41BD8DC34000F071B /* BBTCountView.m in Sources */,
 				A947D9B01BD8DC34000F071B /* BBTBusManager.m in Sources */,
 				A947D9C31BD8DC34000F071B /* UIView+BBTBusTimeTable.m in Sources */,

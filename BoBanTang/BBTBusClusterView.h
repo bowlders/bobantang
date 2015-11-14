@@ -17,6 +17,7 @@
 
 @property (weak, nonatomic) id<BBTBusClusterViewDelegate> delegate;
 @property (strong, nonatomic) BBTBusRouteView       *       routeView;
+@property (strong, nonatomic) NSArray               *       stationNames;
 
 - (instancetype)initWithFrame:(CGRect)frame stationNames:(NSArray *)stationNames;
 - (void)updateBusPosition;
