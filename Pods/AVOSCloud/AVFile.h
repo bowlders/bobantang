@@ -75,7 +75,7 @@ The name of the file.
 /*!
  The Qiniu bucket of the file.
  */
-@property (readonly) NSString *bucket;
+@property (nonatomic, readonly, copy) NSString *bucket;
 
 /** @name Storing Data with LeanCloud */
 

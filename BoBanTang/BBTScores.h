@@ -10,4 +10,13 @@
 
 @interface BBTScores : NSObject
 
+@property (nonatomic, copy) NSString *studentName;
+@property (nonatomic, copy) NSString *account;
+@property (nonatomic, copy) NSString *password;
+
+@property (nonatomic, copy) NSString *courseName;
+@property (nonatomic, copy) NSString *score;
+@property (nonatomic, copy) NSString *gradepoint;
+@property (nonatomic, copy) NSString *ranking;
+
 @end
