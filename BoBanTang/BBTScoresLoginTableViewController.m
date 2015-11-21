@@ -125,9 +125,9 @@ static NSString *checkAutenticationURL = @"http://218.192.166.167/api/jw2005/che
 {
     UIAlertController *alertController = [[UIAlertController alloc] init];
     if ([errorType isEqualToString:@"1"]) {
-        alertController = [UIAlertController alertControllerWithTitle:@"请输全用户名和密码" message:@"冬辉好帅！" preferredStyle:UIAlertControllerStyleAlert];
+        alertController = [UIAlertController alertControllerWithTitle:@"请输全用户名和密码" message:nil preferredStyle:UIAlertControllerStyleAlert];
     } else if ([errorType isEqualToString:@"2"]) {
-        alertController = [UIAlertController alertControllerWithTitle:@"用户名或密码错误" message:@"冬辉好帅！" preferredStyle:UIAlertControllerStyleAlert];
+        alertController = [UIAlertController alertControllerWithTitle:@"用户名或密码错误" message:nil preferredStyle:UIAlertControllerStyleAlert];
     } else if ([errorType isEqualToString:@"3"]) {
         alertController = [UIAlertController alertControllerWithTitle:@"连接错误" message:@"请稍后再试" preferredStyle:UIAlertControllerStyleAlert];
     }
