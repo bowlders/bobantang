@@ -171,7 +171,7 @@ static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php"
     }];
 }
 
-- (void)parse:(NSArray *)responseObject //还没调用过滤
+- (void)parse:(NSArray *)responseObject
 {
     BBTLectureRooms *lectureRooms = [[BBTLectureRooms alloc] init];
     
