@@ -59,6 +59,7 @@
 		FCD0A27E1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A27B1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.m */; };
 		FCD0A2811C0009F10024D78F /* BBTScores.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2801C0009F10024D78F /* BBTScores.m */; };
 		FCD0A2841C003ABC0024D78F /* BBTScoresFilterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2831C003ABC0024D78F /* BBTScoresFilterTableViewController.m */; };
+		FCD0A2941C023B930024D78F /* BBTHudView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2931C023B930024D78F /* BBTHudView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -179,6 +180,8 @@
 		FCD0A2801C0009F10024D78F /* BBTScores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTScores.m; sourceTree = "<group>"; };
 		FCD0A2821C003ABC0024D78F /* BBTScoresFilterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTScoresFilterTableViewController.h; sourceTree = "<group>"; };
 		FCD0A2831C003ABC0024D78F /* BBTScoresFilterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTScoresFilterTableViewController.m; sourceTree = "<group>"; };
+		FCD0A2921C023B930024D78F /* BBTHudView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTHudView.h; sourceTree = "<group>"; };
+		FCD0A2931C023B930024D78F /* BBTHudView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTHudView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -565,6 +568,8 @@
 				FCD0A26C1C00062D0024D78F /* BBTScoresCell.h */,
 				FCD0A26D1C00062D0024D78F /* BBTScoresCell.m */,
 				FCD0A26E1C00062D0024D78F /* BBTScoresCell.xib */,
+				FCD0A2921C023B930024D78F /* BBTHudView.h */,
+				FCD0A2931C023B930024D78F /* BBTHudView.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -783,6 +788,7 @@
 				FCD0A2681C0005D80024D78F /* BBTScoresLoginTableViewController.m in Sources */,
 				A947D9C21BD8DC34000F071B /* UILabel+BBTBusMessageLabel.m in Sources */,
 				A947D9AF1BD8DC34000F071B /* BBTBusClusterView.m in Sources */,
+				FCD0A2941C023B930024D78F /* BBTHudView.m in Sources */,
 				A947D9AE1BD8DC34000F071B /* BBTBus.m in Sources */,
 				FCD0A2841C003ABC0024D78F /* BBTScoresFilterTableViewController.m in Sources */,
 				A947D9BD1BD8DC34000F071B /* BBTSettingsViewController.m in Sources */,

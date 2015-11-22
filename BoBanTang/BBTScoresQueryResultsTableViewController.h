@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BBTScores.h"
 #import "BBTScoresCell.h"
+#import "BBTHudView.h"
 
 @interface BBTScoresQueryResultsTableViewController : UITableViewController
 
