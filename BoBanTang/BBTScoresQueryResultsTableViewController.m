@@ -53,8 +53,15 @@ static NSString * const ScoresCellIdentifire = @"BBTScoresCell";
     
     _results = [[NSMutableArray alloc] init];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    //manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
     NSDictionary *parameters = @{@"account":self.scores.account,
-                                 @"password":self.scores.password};
+                                 @"password":self.scores.password,
+                                 //@"year":self.scores.year,
+                                 //@"term":self.scores.semester
+                                 };
+
     [manager POST:getScoreURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
         [self parseDictionary:responseObject];

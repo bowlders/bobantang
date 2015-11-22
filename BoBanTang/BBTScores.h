@@ -13,6 +13,8 @@
 @property (nonatomic, copy) NSString *studentName;
 @property (nonatomic, copy) NSString *account;
 @property (nonatomic, copy) NSString *password;
+@property (nonatomic, copy) NSNumber *year;
+@property (nonatomic, copy) NSNumber *semester;
 
 @property (nonatomic, copy) NSString *courseName;
 @property (nonatomic, copy) NSString *score;

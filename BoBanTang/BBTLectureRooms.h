@@ -12,8 +12,12 @@
 
 @property (nonatomic, copy) NSString *date;
 @property (nonatomic, copy) NSArray *time;
+@property (nonatomic, copy) NSString *period;
 @property (nonatomic, copy) NSString *campus;
-@property (nonatomic, copy) NSArray *buildings;
-@property (nonatomic, copy) NSArray *lectureRooms;
+@property (nonatomic, copy) NSString *buildings;
+@property (nonatomic, copy) NSArray *seletedBulidings;
+@property (nonatomic, copy) NSString *lectureRooms;
+
+- (NSArray *)filterLectureRooms:(NSMutableArray *)parseResults withFilterConditions:(BBTLectureRooms *)filterConditions;
 
 @end

@@ -50,10 +50,10 @@
     NSMutableArray *selectedTime = [[NSMutableArray alloc] init];
     
     if (self.morningCell.accessoryType == UITableViewCellAccessoryCheckmark) {
-        [selectedTime addObject:@"上午 "];
+        [selectedTime addObject:@"上午"];
     }
     if (self.afternoonCell.accessoryType == UITableViewCellAccessoryCheckmark) {
-        [selectedTime addObject:@"下午 "];
+        [selectedTime addObject:@"下午"];
     }
     if (self.eveningCell.accessoryType == UITableViewCellAccessoryCheckmark) {
         [selectedTime addObject:@"晚上"];

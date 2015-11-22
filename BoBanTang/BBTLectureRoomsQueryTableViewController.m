@@ -18,6 +18,9 @@ static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php"
 {
     NSArray *_selectedTime;
     NSArray *_selectedBuildings;
+    BOOL _isLoading;
+    NSMutableArray *_parseResults;
+    BBTLectureRooms *_filterConditions;
 }
 
 - (void)viewDidLoad {
@@ -26,7 +29,8 @@ static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php"
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
     
     self.lectureRoomsFilter = [[BBTLectureRooms alloc] init];
-    
+    _filterConditions = [[BBTLectureRooms alloc] init];
+    _parseResults = [[NSMutableArray alloc] init];
     
     // if the local changes while in the background, we need to be notified so we can update the date
     // format in the table view cells
@@ -35,7 +39,6 @@ static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php"
                                              selector:@selector(localeChanged:)
                                                  name:NSCurrentLocaleDidChangeNotification
                                                object:nil];
-    [self getJson];
 }
 
 - (void)dealloc
@@ -68,16 +71,16 @@ static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php"
 #pragma delegate methods
 - (void)BBTLectureRoomsTime:(BBTLectureRoomsTimeTableViewController *)controller didFinishSelectTime:(NSArray *)selectedTime
 {
-    _selectedTime = selectedTime;
+    _filterConditions.time = selectedTime;
     
-    if ([_selectedTime count] == 3)
+    if ([_filterConditions.time count] == 3)
     {
         self.time.text = @"全天";
     }
     else
     {
         NSMutableString *tempString = [[NSMutableString alloc] init];
-        for (NSString *chosenTime in _selectedTime) {
+        for (NSString *chosenTime in _filterConditions.time) {
             [tempString appendString:chosenTime];
         }
         self.time.text = tempString;
@@ -89,11 +92,17 @@ static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php"
 
 - (void)BBTBuildings:(BBTBuildingsTableViewController *)controller didFinishSelectBuildings:(NSMutableArray *)selectedBuildings
 {
-    _selectedBuildings = selectedBuildings;
+    _filterConditions.seletedBulidings = selectedBuildings;
     
-    if ([_selectedBuildings count] == 5)
+    if (self.campus.selectedSegmentIndex == 0)
     {
-        self.buildings.text = @"全部";
+        if ([_filterConditions.seletedBulidings count] == 5) {
+            self.buildings.text = @"全部";
+        }
+    } else if (self.campus.selectedSegmentIndex == 1) {
+        if ([_filterConditions.seletedBulidings count] == 3) {
+            self.buildings.text = @"全部";
+        }
     }
     else
     {
@@ -108,6 +117,29 @@ static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php"
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - Set Filter Conditions
+- (void)configureFilterConditions
+{
+    _filterConditions.date = [self getDateString];
+    if (self.campus.selectedSegmentIndex == 0) {
+        _filterConditions.campus = @"N";
+    } else {
+        _filterConditions.campus = @"S";
+    }
+    
+    //The rest conditions has been configured in Delegate Method.
+}
+
+- (NSString *)getDateString
+{
+    NSDate *date = self.datePicker.date;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+    NSString *dateString = [dateFormatter stringFromDate:date];
+
+    return dateString;
+}
+
 #pragma mark - Table view data source
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -115,13 +147,48 @@ static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php"
     
     if (indexPath.section == 1)
     {
-        UIAlertController *alertController = [[UIAlertController alloc] init];
-        alertController = [UIAlertController alertControllerWithTitle:@"尽请期待" message:@"等接口 ＝＝" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
-        [alertController addAction:okAction];
-        
-        [self presentViewController:alertController animated:YES completion:nil];
+        [self performGetEmptyRooms];
     }
+}
+
+- (void)performGetEmptyRooms
+{
+    _isLoading = YES;
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    NSDictionary *parameters = @{@"table":@"emptyroom",
+                                 @"method":@"get"};
+    
+    [manager POST:emptyRoomURL parameters:parameters success:^(AFHTTPRequestOperation * operation, NSArray *responseObject) {
+        NSLog(@" %lu", (unsigned long)[responseObject count]);
+        [self parse:responseObject];
+        _isLoading = NO;
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        _isLoading = NO;
+    }];
+}
+
+- (void)parse:(NSArray *)responseObject //还没调用过滤
+{
+    BBTLectureRooms *lectureRooms = [[BBTLectureRooms alloc] init];
+    
+    for (NSDictionary *resultDic in responseObject) {
+        lectureRooms.date = resultDic[@"date"];
+        lectureRooms.period = resultDic[@"period"];
+        lectureRooms.campus = resultDic[@"campus"];
+        lectureRooms.buildings = resultDic[@"building"];
+        lectureRooms.lectureRooms = resultDic[@"room"];
+        
+        [_parseResults addObject:resultDic];
+    }
+    
+    [self configureFilterConditions];
+    NSArray *filterResults = [[NSArray alloc] init];
+    filterResults = [_filterConditions filterLectureRooms:_parseResults withFilterConditions:_filterConditions];
+    NSLog(@"The number of empty rooms is %lu and they are %@", (unsigned long)[filterResults count], filterResults);
 }
 
 #pragma mark - Navigation
@@ -142,7 +209,7 @@ static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php"
                 controller.buildingsToChoose = [[NSArray alloc] initWithObjects:@"31 ",@"32 ",@"33 ",@"34 ",@"35", nil];
                 break;
             case 1:
-                controller.buildingsToChoose = [[NSArray alloc] initWithObjects:@"A1 ",@"A2 ",@"A3 ",@"A4 ",@"A5 ", nil];
+                controller.buildingsToChoose = [[NSArray alloc] initWithObjects:@"A1 ",@"A2 ",@"A3 ", nil];
                 break;
         }
         
@@ -150,13 +217,4 @@ static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php"
     }
 }
 
-- (void)getJson
-{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:emptyRoomURL parameters:nil success:^(AFHTTPRequestOperation * operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
-}
 @end

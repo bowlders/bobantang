@@ -89,14 +89,17 @@ static NSString *checkAutenticationURL = @"http://218.192.166.167/api/jw2005/che
 #pragma Deal with network stuff
 - (void)isAuthenticaionConfirmed
 {
+    self.userInfo.account = self.studentsNumber.text;
+    self.userInfo.password = self.passwordToJW.text;
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"account":self.studentsNumber.text,
                                  @"password":self.passwordToJW.text};
-    [manager POST:checkAutenticationURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:checkAutenticationURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
+    {
         NSLog(@"JSON: %@", responseObject);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self parseDictionary:responseObject];
-        });
+        [self parseDictionary:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
         [self showAlert:@"3"];
@@ -114,10 +117,8 @@ static NSString *checkAutenticationURL = @"http://218.192.166.167/api/jw2005/che
         
         //when getting the name, it means the account and password is correct and then perform segue.
         self.userInfo.studentName = dictionary[@"name"];
-        self.userInfo.account = self.studentsNumber.text;
-        self.userInfo.password = self.passwordToJW.text;
         
-        [self performSegueWithIdentifier:@"showScores" sender:self];
+        [self performSegueWithIdentifier:@"showFilters" sender:self];
     }
 }
 
@@ -154,12 +155,8 @@ static NSString *checkAutenticationURL = @"http://218.192.166.167/api/jw2005/che
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
-    BBTScoresQueryResultsTableViewController *controller = segue.destinationViewController;
+    BBTScoresFilterTableViewController *controller = segue.destinationViewController;
     controller.scores = [[BBTScores alloc] init];
-    controller.scores.studentName = self.userInfo.studentName;
-    controller.scores.account = self.userInfo.account;
-    controller.scores.password = self.userInfo.password;
-    
+    controller.scores = self.userInfo;
 }
 @end

@@ -11,7 +11,7 @@
 #import "BBTScores.h"
 #import <Security/Security.h>
 #import "JNKeychain.h"
-#import "BBTScoresQueryResultsTableViewController.h"
+#import "BBTScoresFilterTableViewController.h"
 
 @interface BBTScoresLoginTableViewController : UITableViewController
 
