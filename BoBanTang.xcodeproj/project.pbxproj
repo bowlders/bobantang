@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		391F32431BFB5D4A004843C3 /* BBTSpecialRailwayLineTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F32421BFB5D4A004843C3 /* BBTSpecialRailwayLineTwoViewController.m */; };
+		391F32461BFDC66B004843C3 /* BBTSpecRailway2Bus.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F32451BFDC66B004843C3 /* BBTSpecRailway2Bus.m */; };
+		391F32491BFDD42B004843C3 /* BBTSpecRailway2BusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F32481BFDD42B004843C3 /* BBTSpecRailway2BusManager.m */; };
+		391F324C1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F324B1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m */; };
 		392A0DE41BE63F37001F7D45 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 392A0DE31BE63F37001F7D45 /* Images.xcassets */; };
 		393E3EBD1BF234210045DE6E /* BBTSegmentedControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 393E3EBC1BF234210045DE6E /* BBTSegmentedControlViewController.m */; };
-		393E3EC01BF234540045DE6E /* BBTSpecialRailwayLineTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 393E3EBF1BF234540045DE6E /* BBTSpecialRailwayLineTwoViewController.m */; };
 		393E3EC41BF4C81F0045DE6E /* Go.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 393E3EC31BF4C81F0045DE6E /* Go.storyboard */; };
+		3974452B1C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3974452A1C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.m */; };
 		398231B61BD8ED230043E544 /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 398231B51BD8ED230043E544 /* Me.storyboard */; };
 		99BCEEF76C0A51F53BF45309 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA2627D2286FFB656F82101 /* libPods.a */; };
 		A947D9291BD8DADA000F071B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A947D9271BD8DADA000F071B /* Main.storyboard */; };
@@ -71,12 +75,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		391F32411BFB5D4A004843C3 /* BBTSpecialRailwayLineTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSpecialRailwayLineTwoViewController.h; sourceTree = "<group>"; };
+		391F32421BFB5D4A004843C3 /* BBTSpecialRailwayLineTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BBTSpecialRailwayLineTwoViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		391F32441BFDC66B004843C3 /* BBTSpecRailway2Bus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BBTSpecRailway2Bus.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		391F32451BFDC66B004843C3 /* BBTSpecRailway2Bus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSpecRailway2Bus.m; sourceTree = "<group>"; };
+		391F32471BFDD42B004843C3 /* BBTSpecRailway2BusManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSpecRailway2BusManager.h; sourceTree = "<group>"; };
+		391F32481BFDD42B004843C3 /* BBTSpecRailway2BusManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BBTSpecRailway2BusManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		391F324A1BFE07AE004843C3 /* NSDictionary+BBTDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+BBTDictionary.h"; sourceTree = "<group>"; };
+		391F324B1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+BBTDictionary.m"; sourceTree = "<group>"; };
 		392A0DE31BE63F37001F7D45 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		393E3EBB1BF234210045DE6E /* BBTSegmentedControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSegmentedControlViewController.h; sourceTree = "<group>"; };
 		393E3EBC1BF234210045DE6E /* BBTSegmentedControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSegmentedControlViewController.m; sourceTree = "<group>"; };
-		393E3EBE1BF234540045DE6E /* BBTSpecialRailwayLineTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSpecialRailwayLineTwoViewController.h; sourceTree = "<group>"; };
-		393E3EBF1BF234540045DE6E /* BBTSpecialRailwayLineTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSpecialRailwayLineTwoViewController.m; sourceTree = "<group>"; };
 		393E3EC31BF4C81F0045DE6E /* Go.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Go.storyboard; sourceTree = "<group>"; };
+		397445291C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSpecRailway2TableViewCell.h; sourceTree = "<group>"; };
+		3974452A1C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSpecRailway2TableViewCell.m; sourceTree = "<group>"; };
 		398231B51BD8ED230043E544 /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
 		48D6888DD2A267EA93C8D8BC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A947D91B1BD8DADA000F071B /* BoBanTang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoBanTang.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,7 +115,7 @@
 		A947D9681BD8DC0F000F071B /* BBTAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTAboutViewController.h; sourceTree = "<group>"; };
 		A947D9691BD8DC0F000F071B /* BBTAccountManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTAccountManageViewController.h; sourceTree = "<group>"; };
 		A947D96A1BD8DC0F000F071B /* BBTAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTAppDelegate.h; sourceTree = "<group>"; };
-		A947D96C1BD8DC0F000F071B /* BBTBus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTBus.h; sourceTree = "<group>"; };
+		A947D96C1BD8DC0F000F071B /* BBTBus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BBTBus.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		A947D96D1BD8DC0F000F071B /* BBTBusClusterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTBusClusterView.h; sourceTree = "<group>"; };
 		A947D96E1BD8DC0F000F071B /* BBTBusManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTBusManager.h; sourceTree = "<group>"; };
 		A947D96F1BD8DC0F000F071B /* BBTBusRouteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTBusRouteView.h; sourceTree = "<group>"; };
@@ -116,7 +128,7 @@
 		A947D9761BD8DC0F000F071B /* BBTMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMeViewController.h; sourceTree = "<group>"; };
 		A947D9771BD8DC0F000F071B /* BBTMyCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMyCollectionViewController.h; sourceTree = "<group>"; };
 		A947D9781BD8DC0F000F071B /* BBTPersonalInfoEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTPersonalInfoEditViewController.h; sourceTree = "<group>"; };
-		A947D9791BD8DC0F000F071B /* BBTPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTPreferences.h; sourceTree = "<group>"; };
+		A947D9791BD8DC0F000F071B /* BBTPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BBTPreferences.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		A947D97A1BD8DC0F000F071B /* BBTScores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTScores.h; sourceTree = "<group>"; };
 		A947D97B1BD8DC0F000F071B /* BBTSelfStudyRoomSearchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSelfStudyRoomSearchVC.h; sourceTree = "<group>"; };
 		A947D97C1BD8DC0F000F071B /* BBTSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSettingsViewController.h; sourceTree = "<group>"; };
@@ -132,19 +144,19 @@
 		A947D98E1BD8DC34000F071B /* BBTAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTAboutViewController.m; sourceTree = "<group>"; };
 		A947D98F1BD8DC34000F071B /* BBTAccountManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTAccountManageViewController.m; sourceTree = "<group>"; };
 		A947D9901BD8DC34000F071B /* BBTAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTAppDelegate.m; sourceTree = "<group>"; };
-		A947D9921BD8DC34000F071B /* BBTBus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTBus.m; sourceTree = "<group>"; };
-		A947D9931BD8DC34000F071B /* BBTBusClusterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTBusClusterView.m; sourceTree = "<group>"; };
-		A947D9941BD8DC34000F071B /* BBTBusManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTBusManager.m; sourceTree = "<group>"; };
+		A947D9921BD8DC34000F071B /* BBTBus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BBTBus.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		A947D9931BD8DC34000F071B /* BBTBusClusterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BBTBusClusterView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		A947D9941BD8DC34000F071B /* BBTBusManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BBTBusManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A947D9951BD8DC34000F071B /* BBTBusRouteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTBusRouteView.m; sourceTree = "<group>"; };
 		A947D9961BD8DC34000F071B /* BBTBusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTBusView.m; sourceTree = "<group>"; };
-		A947D9971BD8DC34000F071B /* BBTBusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTBusViewController.m; sourceTree = "<group>"; };
+		A947D9971BD8DC34000F071B /* BBTBusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BBTBusViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A947D9981BD8DC34000F071B /* BBTCountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCountView.m; sourceTree = "<group>"; };
 		A947D9991BD8DC34000F071B /* BBTGradeLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTGradeLoginViewController.m; sourceTree = "<group>"; };
 		A947D99A1BD8DC34000F071B /* BBTMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTMainViewController.m; sourceTree = "<group>"; };
 		A947D99B1BD8DC34000F071B /* BBTMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTMeViewController.m; sourceTree = "<group>"; };
 		A947D99C1BD8DC34000F071B /* BBTMyCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTMyCollectionViewController.m; sourceTree = "<group>"; };
 		A947D99D1BD8DC34000F071B /* BBTPersonalInfoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTPersonalInfoEditViewController.m; sourceTree = "<group>"; };
-		A947D99E1BD8DC34000F071B /* BBTPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTPreferences.m; sourceTree = "<group>"; };
+		A947D99E1BD8DC34000F071B /* BBTPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BBTPreferences.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A947D99F1BD8DC34000F071B /* BBTScores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTScores.m; sourceTree = "<group>"; };
 		A947D9A01BD8DC34000F071B /* BBTSelfStudyRoomSearchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSelfStudyRoomSearchVC.m; sourceTree = "<group>"; };
 		A947D9A11BD8DC34000F071B /* BBTSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSettingsViewController.m; sourceTree = "<group>"; };
@@ -189,6 +201,8 @@
 		391F323D1BF72154004843C3 /* SpecialRailway2 */ = {
 			isa = PBXGroup;
 			children = (
+				397445291C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.h */,
+				3974452A1C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.m */,
 			);
 			name = SpecialRailway2;
 			sourceTree = "<group>";
@@ -196,6 +210,10 @@
 		391F323E1BF7216E004843C3 /* SpecialRailway2 */ = {
 			isa = PBXGroup;
 			children = (
+				391F32441BFDC66B004843C3 /* BBTSpecRailway2Bus.h */,
+				391F32451BFDC66B004843C3 /* BBTSpecRailway2Bus.m */,
+				391F32471BFDD42B004843C3 /* BBTSpecRailway2BusManager.h */,
+				391F32481BFDD42B004843C3 /* BBTSpecRailway2BusManager.m */,
 			);
 			name = SpecialRailway2;
 			sourceTree = "<group>";
@@ -230,8 +248,8 @@
 		393E3EC21BF4802A0045DE6E /* SpecialRailway2 */ = {
 			isa = PBXGroup;
 			children = (
-				393E3EBE1BF234540045DE6E /* BBTSpecialRailwayLineTwoViewController.h */,
-				393E3EBF1BF234540045DE6E /* BBTSpecialRailwayLineTwoViewController.m */,
+				391F32411BFB5D4A004843C3 /* BBTSpecialRailwayLineTwoViewController.h */,
+				391F32421BFB5D4A004843C3 /* BBTSpecialRailwayLineTwoViewController.m */,
 			);
 			name = SpecialRailway2;
 			sourceTree = "<group>";
@@ -428,6 +446,8 @@
 				A947D9751BD8DC0F000F071B /* BBTMarco.h */,
 				A947D9791BD8DC0F000F071B /* BBTPreferences.h */,
 				A947D99E1BD8DC34000F071B /* BBTPreferences.m */,
+				391F324A1BFE07AE004843C3 /* NSDictionary+BBTDictionary.h */,
+				391F324B1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m */,
 				A947D92A1BD8DADA000F071B /* BoBanTang.xcdatamodeld */,
 				392A0DE31BE63F37001F7D45 /* Images.xcassets */,
 				398231B71BD8ED300043E544 /* Model */,
@@ -717,28 +737,32 @@
 				A947D9B31BD8DC34000F071B /* BBTBusViewController.m in Sources */,
 				393E3EBD1BF234210045DE6E /* BBTSegmentedControlViewController.m in Sources */,
 				A947D92C1BD8DADA000F071B /* BoBanTang.xcdatamodeld in Sources */,
+				391F32461BFDC66B004843C3 /* BBTSpecRailway2Bus.m in Sources */,
 				A947D9631BD8DBEA000F071B /* GmailLikeLoadingView.m in Sources */,
 				A947D9671BD8DBEA000F071B /* PAPropertyDescriptor.m in Sources */,
 				A947D9AC1BD8DC34000F071B /* BBTAppDelegate.m in Sources */,
 				A947D9C51BD8DC34000F071B /* UIView+BBTWaterMark.m in Sources */,
+				391F324C1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m in Sources */,
 				A947D9C01BD8DC34000F071B /* UIButton+BBTStationButton.m in Sources */,
 				A947D9661BD8DBEA000F071B /* PAPreferences.m in Sources */,
 				A947D9B21BD8DC34000F071B /* BBTBusView.m in Sources */,
 				A947D9AA1BD8DC34000F071B /* BBTAboutViewController.m in Sources */,
-				393E3EC01BF234540045DE6E /* BBTSpecialRailwayLineTwoViewController.m in Sources */,
 				A947D9B41BD8DC34000F071B /* BBTCountView.m in Sources */,
 				A947D9B01BD8DC34000F071B /* BBTBusManager.m in Sources */,
 				A947D9C31BD8DC34000F071B /* UIView+BBTBusTimeTable.m in Sources */,
 				A947D9C21BD8DC34000F071B /* UILabel+BBTBusMessageLabel.m in Sources */,
 				A947D9AF1BD8DC34000F071B /* BBTBusClusterView.m in Sources */,
+				391F32491BFDD42B004843C3 /* BBTSpecRailway2BusManager.m in Sources */,
 				A947D9AE1BD8DC34000F071B /* BBTBus.m in Sources */,
 				A947D9BC1BD8DC34000F071B /* BBTSelfStudyRoomSearchVC.m in Sources */,
+				391F32431BFB5D4A004843C3 /* BBTSpecialRailwayLineTwoViewController.m in Sources */,
 				A947D9BD1BD8DC34000F071B /* BBTSettingsViewController.m in Sources */,
 				A947D9C41BD8DC34000F071B /* UIView+BBTStationInfo.m in Sources */,
 				A947D9B51BD8DC34000F071B /* BBTGradeLoginViewController.m in Sources */,
 				A947D9BE1BD8DC34000F071B /* BBTToolsViewController.m in Sources */,
 				A947D9B61BD8DC34000F071B /* BBTMainViewController.m in Sources */,
 				A947D9BA1BD8DC34000F071B /* BBTPreferences.m in Sources */,
+				3974452B1C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.m in Sources */,
 				A947D9C11BD8DC34000F071B /* UIColor+BBTColor.m in Sources */,
 				A947D9B91BD8DC34000F071B /* BBTPersonalInfoEditViewController.m in Sources */,
 				A947D9BB1BD8DC34000F071B /* BBTScores.m in Sources */,
@@ -884,6 +908,50 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor/JPush",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-l\"AFNetworking\"",
+					"-l\"AMWaveTransition\"",
+					"-l\"AVOSCloud\"",
+					"-l\"AVOSCloudCrashReporting\"",
+					"-l\"AYVibrantButton\"",
+					"-l\"CRToast\"",
+					"-l\"FlatUIKit\"",
+					"-l\"HexColors\"",
+					"-l\"JSONModel\"",
+					"-l\"LeanCloudFeedback\"",
+					"-l\"Masonry\"",
+					"-l\"SZTextView\"",
+					"-l\"TSMessages\"",
+					"-l\"VBFPopFlatButton\"",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"pop\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bbt.BoBanTang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -902,6 +970,50 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor/JPush",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-l\"AFNetworking\"",
+					"-l\"AMWaveTransition\"",
+					"-l\"AVOSCloud\"",
+					"-l\"AVOSCloudCrashReporting\"",
+					"-l\"AYVibrantButton\"",
+					"-l\"CRToast\"",
+					"-l\"FlatUIKit\"",
+					"-l\"HexColors\"",
+					"-l\"JSONModel\"",
+					"-l\"LeanCloudFeedback\"",
+					"-l\"Masonry\"",
+					"-l\"SZTextView\"",
+					"-l\"TSMessages\"",
+					"-l\"VBFPopFlatButton\"",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"pop\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bbt.BoBanTang;
 				PRODUCT_NAME = "$(TARGET_NAME)";

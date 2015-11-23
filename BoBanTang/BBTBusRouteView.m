@@ -129,7 +129,6 @@
     if (!_circleViewArray)
     {
         _circleViewArray = [NSMutableArray array];
-        //NSLog(@"%d",self.count);
         for (int i = 0;i < self.count;i++)
         {
             UIImage * circle = [UIImage imageNamed:@"circle"];
