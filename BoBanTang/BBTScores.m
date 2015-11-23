@@ -10,4 +10,16 @@
 
 @implementation BBTScores
 
+- (id)init
+{
+    if ((self = [super init])) {
+        self.studentName = [[NSString alloc] init];
+        self.account = [[NSString alloc] init];
+        self.password = [[NSString alloc] init];
+        self.year = [[NSNumber alloc] init];
+        self.semester = [[NSNumber alloc] init];
+    }
+    return self;
+}
+
 @end

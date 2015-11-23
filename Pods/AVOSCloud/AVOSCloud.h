@@ -7,47 +7,82 @@
 //
 
 #import <Foundation/Foundation.h>
+
+// Public headers
+
 #import "AVConstants.h"
-#import "AVGeoPoint.h"
+#import "AVLogger.h"
+
+// Object
 #import "AVObject.h"
 #import "AVObject+Subclass.h"
+#import "AVSubclassing.h"
+#import "AVRelation.h"
+
+// Query
 #import "AVQuery.h"
-#import "AVSearchQuery.h"
-#import "AVSearchSortBuilder.h"
-#import "AVUser.h"
-#import "AVRole.h"
+
+// File
 #import "AVFile.h"
 #import "AVFileQuery.h"
-#import "AVAnonymousUtils.h"
-#import "AVACL.h"
+
+// Geo
+#import "AVGeoPoint.h"
+
+// Status
+#import "AVStatus.h"
+
+// Push
 #import "AVInstallation.h"
 #import "AVPush.h"
+
+// User
+#import "AVUser.h"
+#import "AVAnonymousUtils.h"
+
+// CloudCode
 #import "AVCloud.h"
-#import "AVRelation.h"
-#import "AVSubclassing.h"
-#import "AVStatus.h"
+#import "AVCloudQueryResult.h"
+
+// Search
+#import "AVSearchQuery.h"
+#import "AVSearchSortBuilder.h"
+
+// ACL
+#import "AVACL.h"
+#import "AVRole.h"
+
+#if AVOS_IOS_ONLY
+// IM 1.0
 #import "AVSession.h"
 #import "AVSignature.h"
-#import "AVLogger.h"
+#import "AVMessage.h"
+#import "AVGroup.h"
+#import "AVHistoryMessage.h"
 #import "AVHistoryMessageQuery.h"
+#endif
 
-#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
+#if AVOS_IOS_ONLY
+// Analytics
 #import "AVAnalytics.h"
 #endif
+
+FOUNDATION_EXPORT NSString *const LCDefaultRESTAPIHost;
+FOUNDATION_EXPORT NSString *const LCFoundationCertificate;
 
 /**
  *  Storage Type
  */
 typedef NS_ENUM(int, AVStorageType) {
-    /// QiNiu
+    /// Qiniu
     AVStorageTypeQiniu = 0,
     
-    /* Parse */
+    /// Parse
     AVStorageTypeParse,
     
-    /* AWS S3 */
+    /// AWS S3
     AVStorageTypeS3,
-    
+
 } ;
 
 typedef enum AVLogLevel : NSUInteger {
@@ -67,7 +102,7 @@ typedef enum AVLogLevel : NSUInteger {
 @interface AVOSCloud : NSObject
 
 /*!
- * Enable logs of all levels and domains.
+ * Enable logs of all levels and domains. When define DEBUG macro, it's enabled, otherwise, it's not enabled. This is recommended. But you can set it NO, and call AVLogger's methods to control which domains' log should be output.
  */
 + (void)setAllLogsEnabled:(BOOL)enabled;
 
@@ -103,7 +138,7 @@ typedef enum AVLogLevel : NSUInteger {
 
 
 /**
- *  开启LastModify支持, 减少流量消耗
+ *  开启LastModify支持, 减少流量消耗。默认关闭。
  *
  *  @param enabled 开启
  */
@@ -120,29 +155,34 @@ typedef enum AVLogLevel : NSUInteger {
 +(void)clearLastModifyCache;
 
 + (void)useAVCloud AVDeprecated("2.3.3以后废除");
+
+/**
+ *  Set third party file storage service. If uses China server, the default is Qiniu, if uses US server, the default is AWS S3.
+ *  @param type Qiniu or AWS S3
+ */
 + (void)setStorageType:(AVStorageType)type;
 
 /**
- *  Use AVOS US data center
+ *  Use LeanCloud US server.
  */
 + (void)useAVCloudUS;
 
 /**
- *  Use AVOS China data center. the default option is China
+ *  Use LeanCloud China Sever. Default option.
  */
 + (void)useAVCloudCN;
 
 /**
- *  *  get the timeout interval for AVOS request
+ *  Get the timeout interval for network requests. Default is kAVDefaultNetworkTimeoutInterval (10 seconds)
  *
  *  @return timeout interval
  */
 + (NSTimeInterval)networkTimeoutInterval;
 
 /**
- *  set the timeout interval for AVOS request
+ *  Set the timeout interval for network request.
  *
- *  @param time  timeout interval
+ *  @param time  timeout interval(seconds)
  */
 + (void)setNetworkTimeoutInterval:(NSTimeInterval)time;
 
