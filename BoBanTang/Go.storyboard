@@ -35,10 +35,46 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="mzG-NW-wg6" kind="show" id="Tcj-g4-g7r"/>
+                        <segue destination="ane-3G-Qqb" kind="show" id="RBL-bU-t22"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lHz-iH-xqK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="193.5" y="-164.5"/>
+        </scene>
+        <!--Special Railway Line Two View Controller-->
+        <scene sceneID="6jj-RW-P7h">
+            <objects>
+                <tableViewController id="mzG-NW-wg6" customClass="BBTSpecialRailwayLineTwoViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="m5Z-Yc-cnl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="IWJ-ee-ALV">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IWJ-ee-ALV" id="D36-mq-svc">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="mzG-NW-wg6" id="Q4p-XH-lrD"/>
+                            <outlet property="delegate" destination="mzG-NW-wg6" id="dt5-Nd-ZQ4"/>
+                        </connections>
+                    </tableView>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Is-lA-82b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="825.5" y="289.5"/>
         </scene>
         <!--出行-->
         <scene sceneID="o2V-7b-LU1">
@@ -61,6 +97,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uII-dM-BnP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-328" y="-164"/>
+        </scene>
+        <!--Bus View Controller-->
+        <scene sceneID="8zx-vl-cn5">
+            <objects>
+                <viewController id="ane-3G-Qqb" customClass="BBTBusViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LKJ-8K-bIo"/>
+                        <viewControllerLayoutGuide type="bottom" id="LFr-pd-AhE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kBI-66-SIS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e9j-Mn-dqT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="825.5" y="-498.5"/>
         </scene>
     </scenes>
 </document>

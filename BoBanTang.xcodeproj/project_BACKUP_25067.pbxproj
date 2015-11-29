@@ -38,11 +38,14 @@
 		A947D9B21BD8DC34000F071B /* BBTBusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9961BD8DC34000F071B /* BBTBusView.m */; };
 		A947D9B31BD8DC34000F071B /* BBTBusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9971BD8DC34000F071B /* BBTBusViewController.m */; };
 		A947D9B41BD8DC34000F071B /* BBTCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9981BD8DC34000F071B /* BBTCountView.m */; };
+		A947D9B51BD8DC34000F071B /* BBTGradeLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9991BD8DC34000F071B /* BBTGradeLoginViewController.m */; };
 		A947D9B61BD8DC34000F071B /* BBTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99A1BD8DC34000F071B /* BBTMainViewController.m */; };
 		A947D9B71BD8DC34000F071B /* BBTMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99B1BD8DC34000F071B /* BBTMeViewController.m */; };
 		A947D9B81BD8DC34000F071B /* BBTMyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99C1BD8DC34000F071B /* BBTMyCollectionViewController.m */; };
 		A947D9B91BD8DC34000F071B /* BBTPersonalInfoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99D1BD8DC34000F071B /* BBTPersonalInfoEditViewController.m */; };
 		A947D9BA1BD8DC34000F071B /* BBTPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99E1BD8DC34000F071B /* BBTPreferences.m */; };
+		A947D9BB1BD8DC34000F071B /* BBTScores.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99F1BD8DC34000F071B /* BBTScores.m */; };
+		A947D9BC1BD8DC34000F071B /* BBTSelfStudyRoomSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A01BD8DC34000F071B /* BBTSelfStudyRoomSearchVC.m */; };
 		A947D9BD1BD8DC34000F071B /* BBTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A11BD8DC34000F071B /* BBTSettingsViewController.m */; };
 		A947D9BE1BD8DC34000F071B /* BBTToolsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A21BD8DC34000F071B /* BBTToolsViewController.m */; };
 		A947D9C01BD8DC34000F071B /* UIButton+BBTStationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A41BD8DC34000F071B /* UIButton+BBTStationButton.m */; };
@@ -52,20 +55,6 @@
 		A947D9C41BD8DC34000F071B /* UIView+BBTStationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A81BD8DC34000F071B /* UIView+BBTStationInfo.m */; };
 		A947D9C51BD8DC34000F071B /* UIView+BBTWaterMark.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A91BD8DC34000F071B /* UIView+BBTWaterMark.m */; };
 		A947D9C61BD8E03A000F071B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D91F1BD8DADA000F071B /* main.m */; };
-		FC69A3F81C035E81000EF949 /* BBTPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC69A3F71C035E81000EF949 /* BBTPickerView.xib */; };
-		FC69A3FB1C035F35000EF949 /* BBTPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC69A3FA1C035F35000EF949 /* BBTPickerView.m */; };
-		FC69A3FE1C038340000EF949 /* BBTLectureRoomsResultTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC69A3FD1C038340000EF949 /* BBTLectureRoomsResultTableViewController.m */; };
-		FCD0A2631C0005A00024D78F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCD0A2621C00059F0024D78F /* Security.framework */; };
-		FCD0A2681C0005D80024D78F /* BBTScoresLoginTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2651C0005D80024D78F /* BBTScoresLoginTableViewController.m */; };
-		FCD0A2691C0005D80024D78F /* BBTScoresQueryResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2671C0005D80024D78F /* BBTScoresQueryResultsTableViewController.m */; };
-		FCD0A26F1C00062D0024D78F /* BBTScoresCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A26D1C00062D0024D78F /* BBTScoresCell.m */; };
-		FCD0A2701C00062D0024D78F /* BBTScoresCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCD0A26E1C00062D0024D78F /* BBTScoresCell.xib */; };
-		FCD0A2751C0006940024D78F /* BBTLectureRooms.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2741C0006940024D78F /* BBTLectureRooms.m */; };
-		FCD0A27D1C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2791C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.m */; };
-		FCD0A27E1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A27B1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.m */; };
-		FCD0A2811C0009F10024D78F /* BBTScores.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2801C0009F10024D78F /* BBTScores.m */; };
-		FCD0A2841C003ABC0024D78F /* BBTScoresFilterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2831C003ABC0024D78F /* BBTScoresFilterTableViewController.m */; };
-		FCD0A2941C023B930024D78F /* BBTHudView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2931C023B930024D78F /* BBTHudView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,12 +122,15 @@
 		A947D9701BD8DC0F000F071B /* BBTBusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTBusView.h; sourceTree = "<group>"; };
 		A947D9711BD8DC0F000F071B /* BBTBusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTBusViewController.h; sourceTree = "<group>"; };
 		A947D9721BD8DC0F000F071B /* BBTCountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCountView.h; sourceTree = "<group>"; };
+		A947D9731BD8DC0F000F071B /* BBTGradeLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTGradeLoginViewController.h; sourceTree = "<group>"; };
 		A947D9741BD8DC0F000F071B /* BBTMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMainViewController.h; sourceTree = "<group>"; };
 		A947D9751BD8DC0F000F071B /* BBTMarco.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMarco.h; sourceTree = "<group>"; };
 		A947D9761BD8DC0F000F071B /* BBTMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMeViewController.h; sourceTree = "<group>"; };
 		A947D9771BD8DC0F000F071B /* BBTMyCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMyCollectionViewController.h; sourceTree = "<group>"; };
 		A947D9781BD8DC0F000F071B /* BBTPersonalInfoEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTPersonalInfoEditViewController.h; sourceTree = "<group>"; };
 		A947D9791BD8DC0F000F071B /* BBTPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BBTPreferences.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		A947D97A1BD8DC0F000F071B /* BBTScores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTScores.h; sourceTree = "<group>"; };
+		A947D97B1BD8DC0F000F071B /* BBTSelfStudyRoomSearchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSelfStudyRoomSearchVC.h; sourceTree = "<group>"; };
 		A947D97C1BD8DC0F000F071B /* BBTSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSettingsViewController.h; sourceTree = "<group>"; };
 		A947D97D1BD8DC0F000F071B /* BBTToolsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTToolsViewController.h; sourceTree = "<group>"; };
 		A947D97E1BD8DC0F000F071B /* UIButton+BBTStationButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+BBTStationButton.h"; sourceTree = "<group>"; };
@@ -159,11 +151,14 @@
 		A947D9961BD8DC34000F071B /* BBTBusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTBusView.m; sourceTree = "<group>"; };
 		A947D9971BD8DC34000F071B /* BBTBusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BBTBusViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A947D9981BD8DC34000F071B /* BBTCountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCountView.m; sourceTree = "<group>"; };
+		A947D9991BD8DC34000F071B /* BBTGradeLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTGradeLoginViewController.m; sourceTree = "<group>"; };
 		A947D99A1BD8DC34000F071B /* BBTMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTMainViewController.m; sourceTree = "<group>"; };
 		A947D99B1BD8DC34000F071B /* BBTMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTMeViewController.m; sourceTree = "<group>"; };
 		A947D99C1BD8DC34000F071B /* BBTMyCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTMyCollectionViewController.m; sourceTree = "<group>"; };
 		A947D99D1BD8DC34000F071B /* BBTPersonalInfoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTPersonalInfoEditViewController.m; sourceTree = "<group>"; };
 		A947D99E1BD8DC34000F071B /* BBTPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BBTPreferences.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		A947D99F1BD8DC34000F071B /* BBTScores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTScores.m; sourceTree = "<group>"; };
+		A947D9A01BD8DC34000F071B /* BBTSelfStudyRoomSearchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSelfStudyRoomSearchVC.m; sourceTree = "<group>"; };
 		A947D9A11BD8DC34000F071B /* BBTSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSettingsViewController.m; sourceTree = "<group>"; };
 		A947D9A21BD8DC34000F071B /* BBTToolsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTToolsViewController.m; sourceTree = "<group>"; };
 		A947D9A41BD8DC34000F071B /* UIButton+BBTStationButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+BBTStationButton.m"; sourceTree = "<group>"; };
@@ -174,31 +169,6 @@
 		A947D9A91BD8DC34000F071B /* UIView+BBTWaterMark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BBTWaterMark.m"; sourceTree = "<group>"; };
 		ABA2627D2286FFB656F82101 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAAC1D9BE8366224C1757CE5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		FC69A3F71C035E81000EF949 /* BBTPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBTPickerView.xib; sourceTree = "<group>"; };
-		FC69A3F91C035F35000EF949 /* BBTPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTPickerView.h; sourceTree = "<group>"; };
-		FC69A3FA1C035F35000EF949 /* BBTPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTPickerView.m; sourceTree = "<group>"; };
-		FC69A3FC1C038340000EF949 /* BBTLectureRoomsResultTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTLectureRoomsResultTableViewController.h; sourceTree = "<group>"; };
-		FC69A3FD1C038340000EF949 /* BBTLectureRoomsResultTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLectureRoomsResultTableViewController.m; sourceTree = "<group>"; };
-		FCD0A2621C00059F0024D78F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		FCD0A2641C0005D80024D78F /* BBTScoresLoginTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTScoresLoginTableViewController.h; sourceTree = "<group>"; };
-		FCD0A2651C0005D80024D78F /* BBTScoresLoginTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTScoresLoginTableViewController.m; sourceTree = "<group>"; };
-		FCD0A2661C0005D80024D78F /* BBTScoresQueryResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTScoresQueryResultsTableViewController.h; sourceTree = "<group>"; };
-		FCD0A2671C0005D80024D78F /* BBTScoresQueryResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTScoresQueryResultsTableViewController.m; sourceTree = "<group>"; };
-		FCD0A26C1C00062D0024D78F /* BBTScoresCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTScoresCell.h; sourceTree = "<group>"; };
-		FCD0A26D1C00062D0024D78F /* BBTScoresCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTScoresCell.m; sourceTree = "<group>"; };
-		FCD0A26E1C00062D0024D78F /* BBTScoresCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBTScoresCell.xib; sourceTree = "<group>"; };
-		FCD0A2731C0006940024D78F /* BBTLectureRooms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTLectureRooms.h; sourceTree = "<group>"; };
-		FCD0A2741C0006940024D78F /* BBTLectureRooms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLectureRooms.m; sourceTree = "<group>"; };
-		FCD0A2781C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTLectureRoomsQueryTableViewController.h; sourceTree = "<group>"; };
-		FCD0A2791C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLectureRoomsQueryTableViewController.m; sourceTree = "<group>"; };
-		FCD0A27A1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTLectureRoomsTimeTableViewController.h; sourceTree = "<group>"; };
-		FCD0A27B1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLectureRoomsTimeTableViewController.m; sourceTree = "<group>"; };
-		FCD0A27F1C0009F10024D78F /* BBTScores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTScores.h; sourceTree = "<group>"; };
-		FCD0A2801C0009F10024D78F /* BBTScores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTScores.m; sourceTree = "<group>"; };
-		FCD0A2821C003ABC0024D78F /* BBTScoresFilterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTScoresFilterTableViewController.h; sourceTree = "<group>"; };
-		FCD0A2831C003ABC0024D78F /* BBTScoresFilterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTScoresFilterTableViewController.m; sourceTree = "<group>"; };
-		FCD0A2921C023B930024D78F /* BBTHudView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTHudView.h; sourceTree = "<group>"; };
-		FCD0A2931C023B930024D78F /* BBTHudView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTHudView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,7 +176,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCD0A2631C0005A00024D78F /* Security.framework in Frameworks */,
 				A947D9641BD8DBEA000F071B /* libPushSDK.a in Frameworks */,
 				99BCEEF76C0A51F53BF45309 /* libPods.a in Frameworks */,
 			);
@@ -288,7 +257,7 @@
 		398231B71BD8ED300043E544 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FCD0A2711C00066F0024D78F /* Tools */,
+				398231BA1BD8EE700043E544 /* ScoreInquire */,
 				391F32401BF72194004843C3 /* Go */,
 			);
 			name = Model;
@@ -308,7 +277,6 @@
 		398231B91BD8ED3F0043E544 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FCD0A26B1C00060F0024D78F /* Tools */,
 				398231BD1BD8EE960043E544 /* General */,
 				391F323F1BF7218F004843C3 /* Go */,
 				393E3EC31BF4C81F0045DE6E /* Go.storyboard */,
@@ -322,8 +290,8 @@
 		398231BA1BD8EE700043E544 /* ScoreInquire */ = {
 			isa = PBXGroup;
 			children = (
-				FCD0A27F1C0009F10024D78F /* BBTScores.h */,
-				FCD0A2801C0009F10024D78F /* BBTScores.m */,
+				A947D97A1BD8DC0F000F071B /* BBTScores.h */,
+				A947D99F1BD8DC34000F071B /* BBTScores.m */,
 			);
 			name = ScoreInquire;
 			sourceTree = "<group>";
@@ -380,7 +348,7 @@
 				A947D97D1BD8DC0F000F071B /* BBTToolsViewController.h */,
 				A947D9A21BD8DC34000F071B /* BBTToolsViewController.m */,
 				398231BF1BD8EECD0043E544 /* ScoreInquire */,
-				398231C01BD8EEDD0043E544 /* LectureRoomsInquire */,
+				398231C01BD8EEDD0043E544 /* SelfStudyRoomInquire */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -388,27 +356,19 @@
 		398231BF1BD8EECD0043E544 /* ScoreInquire */ = {
 			isa = PBXGroup;
 			children = (
-				FCD0A2641C0005D80024D78F /* BBTScoresLoginTableViewController.h */,
-				FCD0A2651C0005D80024D78F /* BBTScoresLoginTableViewController.m */,
-				FCD0A2821C003ABC0024D78F /* BBTScoresFilterTableViewController.h */,
-				FCD0A2831C003ABC0024D78F /* BBTScoresFilterTableViewController.m */,
-				FCD0A2661C0005D80024D78F /* BBTScoresQueryResultsTableViewController.h */,
-				FCD0A2671C0005D80024D78F /* BBTScoresQueryResultsTableViewController.m */,
+				A947D9731BD8DC0F000F071B /* BBTGradeLoginViewController.h */,
+				A947D9991BD8DC34000F071B /* BBTGradeLoginViewController.m */,
 			);
 			name = ScoreInquire;
 			sourceTree = "<group>";
 		};
-		398231C01BD8EEDD0043E544 /* LectureRoomsInquire */ = {
+		398231C01BD8EEDD0043E544 /* SelfStudyRoomInquire */ = {
 			isa = PBXGroup;
 			children = (
-				FCD0A2781C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.h */,
-				FCD0A2791C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.m */,
-				FCD0A27A1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.h */,
-				FCD0A27B1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.m */,
-				FC69A3FC1C038340000EF949 /* BBTLectureRoomsResultTableViewController.h */,
-				FC69A3FD1C038340000EF949 /* BBTLectureRoomsResultTableViewController.m */,
+				A947D97B1BD8DC0F000F071B /* BBTSelfStudyRoomSearchVC.h */,
+				A947D9A01BD8DC34000F071B /* BBTSelfStudyRoomSearchVC.m */,
 			);
-			name = LectureRoomsInquire;
+			name = SelfStudyRoomInquire;
 			sourceTree = "<group>";
 		};
 		398231C11BD8EEF60043E544 /* General */ = {
@@ -453,7 +413,6 @@
 		4EA28AD388E43D96D5F54ADA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FCD0A2621C00059F0024D78F /* Security.framework */,
 				ABA2627D2286FFB656F82101 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -587,39 +546,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		FCD0A26B1C00060F0024D78F /* Tools */ = {
-			isa = PBXGroup;
-			children = (
-				FCD0A26C1C00062D0024D78F /* BBTScoresCell.h */,
-				FCD0A26D1C00062D0024D78F /* BBTScoresCell.m */,
-				FCD0A26E1C00062D0024D78F /* BBTScoresCell.xib */,
-				FCD0A2921C023B930024D78F /* BBTHudView.h */,
-				FCD0A2931C023B930024D78F /* BBTHudView.m */,
-				FC69A3F71C035E81000EF949 /* BBTPickerView.xib */,
-				FC69A3F91C035F35000EF949 /* BBTPickerView.h */,
-				FC69A3FA1C035F35000EF949 /* BBTPickerView.m */,
-			);
-			name = Tools;
-			sourceTree = "<group>";
-		};
-		FCD0A2711C00066F0024D78F /* Tools */ = {
-			isa = PBXGroup;
-			children = (
-				FCD0A2721C0006800024D78F /* RoomsInquire */,
-				398231BA1BD8EE700043E544 /* ScoreInquire */,
-			);
-			name = Tools;
-			sourceTree = "<group>";
-		};
-		FCD0A2721C0006800024D78F /* RoomsInquire */ = {
-			isa = PBXGroup;
-			children = (
-				FCD0A2731C0006940024D78F /* BBTLectureRooms.h */,
-				FCD0A2741C0006940024D78F /* BBTLectureRooms.m */,
-			);
-			name = RoomsInquire;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -631,8 +557,8 @@
 				A947D9171BD8DADA000F071B /* Sources */,
 				A947D9181BD8DADA000F071B /* Frameworks */,
 				A947D9191BD8DADA000F071B /* Resources */,
+				95B3278BD6A6EAF7513109D8 /* Embed Pods Frameworks */,
 				95AE79024FB4C7F0E6B35B55 /* Copy Pods Resources */,
-				D9E3E3036C6021085CCB5D23 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -690,7 +616,6 @@
 				TargetAttributes = {
 					A947D91A1BD8DADA000F071B = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = CCJ77XX2MW;
 					};
 					A947D9361BD8DADA000F071B = {
 						CreatedOnToolsVersion = 7.0;
@@ -728,9 +653,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A947D98D1BD8DC24000F071B /* Tools.storyboard in Resources */,
-				FCD0A2701C00062D0024D78F /* BBTScoresCell.xib in Resources */,
 				A947D98A1BD8DC24000F071B /* Information.storyboard in Resources */,
-				FC69A3F81C035E81000EF949 /* BBTPickerView.xib in Resources */,
 				392A0DE41BE63F37001F7D45 /* Images.xcassets in Resources */,
 				398231B61BD8ED230043E544 /* Me.storyboard in Resources */,
 				393E3EC41BF4C81F0045DE6E /* Go.storyboard in Resources */,
@@ -770,7 +693,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D9E3E3036C6021085CCB5D23 /* Embed Pods Frameworks */ = {
+		95B3278BD6A6EAF7513109D8 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -811,46 +734,38 @@
 				A947D9B81BD8DC34000F071B /* BBTMyCollectionViewController.m in Sources */,
 				A947D9B71BD8DC34000F071B /* BBTMeViewController.m in Sources */,
 				A947D9AB1BD8DC34000F071B /* BBTAccountManageViewController.m in Sources */,
-				FCD0A27E1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.m in Sources */,
 				A947D9B31BD8DC34000F071B /* BBTBusViewController.m in Sources */,
 				393E3EBD1BF234210045DE6E /* BBTSegmentedControlViewController.m in Sources */,
 				A947D92C1BD8DADA000F071B /* BoBanTang.xcdatamodeld in Sources */,
 				391F32461BFDC66B004843C3 /* BBTSpecRailway2Bus.m in Sources */,
 				A947D9631BD8DBEA000F071B /* GmailLikeLoadingView.m in Sources */,
 				A947D9671BD8DBEA000F071B /* PAPropertyDescriptor.m in Sources */,
-				FCD0A2691C0005D80024D78F /* BBTScoresQueryResultsTableViewController.m in Sources */,
 				A947D9AC1BD8DC34000F071B /* BBTAppDelegate.m in Sources */,
 				A947D9C51BD8DC34000F071B /* UIView+BBTWaterMark.m in Sources */,
 				391F324C1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m in Sources */,
 				A947D9C01BD8DC34000F071B /* UIButton+BBTStationButton.m in Sources */,
-				FCD0A2811C0009F10024D78F /* BBTScores.m in Sources */,
 				A947D9661BD8DBEA000F071B /* PAPreferences.m in Sources */,
 				A947D9B21BD8DC34000F071B /* BBTBusView.m in Sources */,
 				A947D9AA1BD8DC34000F071B /* BBTAboutViewController.m in Sources */,
 				A947D9B41BD8DC34000F071B /* BBTCountView.m in Sources */,
 				A947D9B01BD8DC34000F071B /* BBTBusManager.m in Sources */,
 				A947D9C31BD8DC34000F071B /* UIView+BBTBusTimeTable.m in Sources */,
-				FCD0A2681C0005D80024D78F /* BBTScoresLoginTableViewController.m in Sources */,
 				A947D9C21BD8DC34000F071B /* UILabel+BBTBusMessageLabel.m in Sources */,
 				A947D9AF1BD8DC34000F071B /* BBTBusClusterView.m in Sources */,
 				391F32491BFDD42B004843C3 /* BBTSpecRailway2BusManager.m in Sources */,
-				FCD0A2941C023B930024D78F /* BBTHudView.m in Sources */,
 				A947D9AE1BD8DC34000F071B /* BBTBus.m in Sources */,
-				FC69A3FE1C038340000EF949 /* BBTLectureRoomsResultTableViewController.m in Sources */,
+				A947D9BC1BD8DC34000F071B /* BBTSelfStudyRoomSearchVC.m in Sources */,
 				391F32431BFB5D4A004843C3 /* BBTSpecialRailwayLineTwoViewController.m in Sources */,
-				FCD0A2841C003ABC0024D78F /* BBTScoresFilterTableViewController.m in Sources */,
 				A947D9BD1BD8DC34000F071B /* BBTSettingsViewController.m in Sources */,
 				A947D9C41BD8DC34000F071B /* UIView+BBTStationInfo.m in Sources */,
-				FCD0A26F1C00062D0024D78F /* BBTScoresCell.m in Sources */,
+				A947D9B51BD8DC34000F071B /* BBTGradeLoginViewController.m in Sources */,
 				A947D9BE1BD8DC34000F071B /* BBTToolsViewController.m in Sources */,
-				FC69A3FB1C035F35000EF949 /* BBTPickerView.m in Sources */,
-				FCD0A2751C0006940024D78F /* BBTLectureRooms.m in Sources */,
 				A947D9B61BD8DC34000F071B /* BBTMainViewController.m in Sources */,
 				A947D9BA1BD8DC34000F071B /* BBTPreferences.m in Sources */,
 				3974452B1C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.m in Sources */,
 				A947D9C11BD8DC34000F071B /* UIColor+BBTColor.m in Sources */,
 				A947D9B91BD8DC34000F071B /* BBTPersonalInfoEditViewController.m in Sources */,
-				FCD0A27D1C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.m in Sources */,
+				A947D9BB1BD8DC34000F071B /* BBTScores.m in Sources */,
 				A947D9B11BD8DC34000F071B /* BBTBusRouteView.m in Sources */,
 				A947D9651BD8DBEA000F071B /* KGModal.m in Sources */,
 			);
@@ -936,7 +851,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
+                 		MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -985,8 +900,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = BoBanTang/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1041,7 +954,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bbt.BoBanTang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1051,8 +963,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = BoBanTang/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1061,9 +971,52 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor/JPush",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = BBT.BoBanTang;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-l\"AFNetworking\"",
+					"-l\"AMWaveTransition\"",
+					"-l\"AVOSCloud\"",
+					"-l\"AVOSCloudCrashReporting\"",
+					"-l\"AYVibrantButton\"",
+					"-l\"CRToast\"",
+					"-l\"FlatUIKit\"",
+					"-l\"HexColors\"",
+					"-l\"JSONModel\"",
+					"-l\"LeanCloudFeedback\"",
+					"-l\"Masonry\"",
+					"-l\"SZTextView\"",
+					"-l\"TSMessages\"",
+					"-l\"VBFPopFlatButton\"",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"pop\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bbt.BoBanTang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
