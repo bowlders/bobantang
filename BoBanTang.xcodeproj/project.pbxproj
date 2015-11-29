@@ -48,13 +48,15 @@
 		A947D9C41BD8DC34000F071B /* UIView+BBTStationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A81BD8DC34000F071B /* UIView+BBTStationInfo.m */; };
 		A947D9C51BD8DC34000F071B /* UIView+BBTWaterMark.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A91BD8DC34000F071B /* UIView+BBTWaterMark.m */; };
 		A947D9C61BD8E03A000F071B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D91F1BD8DADA000F071B /* main.m */; };
+		FC69A3F81C035E81000EF949 /* BBTPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC69A3F71C035E81000EF949 /* BBTPickerView.xib */; };
+		FC69A3FB1C035F35000EF949 /* BBTPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC69A3FA1C035F35000EF949 /* BBTPickerView.m */; };
+		FC69A3FE1C038340000EF949 /* BBTLectureRoomsResultTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC69A3FD1C038340000EF949 /* BBTLectureRoomsResultTableViewController.m */; };
 		FCD0A2631C0005A00024D78F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCD0A2621C00059F0024D78F /* Security.framework */; };
 		FCD0A2681C0005D80024D78F /* BBTScoresLoginTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2651C0005D80024D78F /* BBTScoresLoginTableViewController.m */; };
 		FCD0A2691C0005D80024D78F /* BBTScoresQueryResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2671C0005D80024D78F /* BBTScoresQueryResultsTableViewController.m */; };
 		FCD0A26F1C00062D0024D78F /* BBTScoresCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A26D1C00062D0024D78F /* BBTScoresCell.m */; };
 		FCD0A2701C00062D0024D78F /* BBTScoresCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCD0A26E1C00062D0024D78F /* BBTScoresCell.xib */; };
 		FCD0A2751C0006940024D78F /* BBTLectureRooms.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2741C0006940024D78F /* BBTLectureRooms.m */; };
-		FCD0A27C1C0006AB0024D78F /* BBTBuildingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2771C0006AB0024D78F /* BBTBuildingsTableViewController.m */; };
 		FCD0A27D1C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2791C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.m */; };
 		FCD0A27E1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A27B1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.m */; };
 		FCD0A2811C0009F10024D78F /* BBTScores.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2801C0009F10024D78F /* BBTScores.m */; };
@@ -160,6 +162,11 @@
 		A947D9A91BD8DC34000F071B /* UIView+BBTWaterMark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BBTWaterMark.m"; sourceTree = "<group>"; };
 		ABA2627D2286FFB656F82101 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAAC1D9BE8366224C1757CE5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		FC69A3F71C035E81000EF949 /* BBTPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBTPickerView.xib; sourceTree = "<group>"; };
+		FC69A3F91C035F35000EF949 /* BBTPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTPickerView.h; sourceTree = "<group>"; };
+		FC69A3FA1C035F35000EF949 /* BBTPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTPickerView.m; sourceTree = "<group>"; };
+		FC69A3FC1C038340000EF949 /* BBTLectureRoomsResultTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTLectureRoomsResultTableViewController.h; sourceTree = "<group>"; };
+		FC69A3FD1C038340000EF949 /* BBTLectureRoomsResultTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLectureRoomsResultTableViewController.m; sourceTree = "<group>"; };
 		FCD0A2621C00059F0024D78F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		FCD0A2641C0005D80024D78F /* BBTScoresLoginTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTScoresLoginTableViewController.h; sourceTree = "<group>"; };
 		FCD0A2651C0005D80024D78F /* BBTScoresLoginTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTScoresLoginTableViewController.m; sourceTree = "<group>"; };
@@ -170,8 +177,6 @@
 		FCD0A26E1C00062D0024D78F /* BBTScoresCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBTScoresCell.xib; sourceTree = "<group>"; };
 		FCD0A2731C0006940024D78F /* BBTLectureRooms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTLectureRooms.h; sourceTree = "<group>"; };
 		FCD0A2741C0006940024D78F /* BBTLectureRooms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLectureRooms.m; sourceTree = "<group>"; };
-		FCD0A2761C0006AB0024D78F /* BBTBuildingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTBuildingsTableViewController.h; sourceTree = "<group>"; };
-		FCD0A2771C0006AB0024D78F /* BBTBuildingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTBuildingsTableViewController.m; sourceTree = "<group>"; };
 		FCD0A2781C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTLectureRoomsQueryTableViewController.h; sourceTree = "<group>"; };
 		FCD0A2791C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLectureRoomsQueryTableViewController.m; sourceTree = "<group>"; };
 		FCD0A27A1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTLectureRoomsTimeTableViewController.h; sourceTree = "<group>"; };
@@ -378,12 +383,12 @@
 		398231C01BD8EEDD0043E544 /* LectureRoomsInquire */ = {
 			isa = PBXGroup;
 			children = (
-				FCD0A2761C0006AB0024D78F /* BBTBuildingsTableViewController.h */,
-				FCD0A2771C0006AB0024D78F /* BBTBuildingsTableViewController.m */,
 				FCD0A2781C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.h */,
 				FCD0A2791C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.m */,
 				FCD0A27A1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.h */,
 				FCD0A27B1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.m */,
+				FC69A3FC1C038340000EF949 /* BBTLectureRoomsResultTableViewController.h */,
+				FC69A3FD1C038340000EF949 /* BBTLectureRoomsResultTableViewController.m */,
 			);
 			name = LectureRoomsInquire;
 			sourceTree = "<group>";
@@ -570,6 +575,9 @@
 				FCD0A26E1C00062D0024D78F /* BBTScoresCell.xib */,
 				FCD0A2921C023B930024D78F /* BBTHudView.h */,
 				FCD0A2931C023B930024D78F /* BBTHudView.m */,
+				FC69A3F71C035E81000EF949 /* BBTPickerView.xib */,
+				FC69A3F91C035F35000EF949 /* BBTPickerView.h */,
+				FC69A3FA1C035F35000EF949 /* BBTPickerView.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -701,6 +709,7 @@
 				A947D98D1BD8DC24000F071B /* Tools.storyboard in Resources */,
 				FCD0A2701C00062D0024D78F /* BBTScoresCell.xib in Resources */,
 				A947D98A1BD8DC24000F071B /* Information.storyboard in Resources */,
+				FC69A3F81C035E81000EF949 /* BBTPickerView.xib in Resources */,
 				392A0DE41BE63F37001F7D45 /* Images.xcassets in Resources */,
 				398231B61BD8ED230043E544 /* Me.storyboard in Resources */,
 				393E3EC41BF4C81F0045DE6E /* Go.storyboard in Resources */,
@@ -776,7 +785,6 @@
 				A947D9AC1BD8DC34000F071B /* BBTAppDelegate.m in Sources */,
 				A947D9C51BD8DC34000F071B /* UIView+BBTWaterMark.m in Sources */,
 				A947D9C01BD8DC34000F071B /* UIButton+BBTStationButton.m in Sources */,
-				FCD0A27C1C0006AB0024D78F /* BBTBuildingsTableViewController.m in Sources */,
 				FCD0A2811C0009F10024D78F /* BBTScores.m in Sources */,
 				A947D9661BD8DBEA000F071B /* PAPreferences.m in Sources */,
 				A947D9B21BD8DC34000F071B /* BBTBusView.m in Sources */,
@@ -790,11 +798,13 @@
 				A947D9AF1BD8DC34000F071B /* BBTBusClusterView.m in Sources */,
 				FCD0A2941C023B930024D78F /* BBTHudView.m in Sources */,
 				A947D9AE1BD8DC34000F071B /* BBTBus.m in Sources */,
+				FC69A3FE1C038340000EF949 /* BBTLectureRoomsResultTableViewController.m in Sources */,
 				FCD0A2841C003ABC0024D78F /* BBTScoresFilterTableViewController.m in Sources */,
 				A947D9BD1BD8DC34000F071B /* BBTSettingsViewController.m in Sources */,
 				A947D9C41BD8DC34000F071B /* UIView+BBTStationInfo.m in Sources */,
 				FCD0A26F1C00062D0024D78F /* BBTScoresCell.m in Sources */,
 				A947D9BE1BD8DC34000F071B /* BBTToolsViewController.m in Sources */,
+				FC69A3FB1C035F35000EF949 /* BBTPickerView.m in Sources */,
 				FCD0A2751C0006940024D78F /* BBTLectureRooms.m in Sources */,
 				A947D9B61BD8DC34000F071B /* BBTMainViewController.m in Sources */,
 				A947D9BA1BD8DC34000F071B /* BBTPreferences.m in Sources */,

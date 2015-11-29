@@ -16,11 +16,20 @@ static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php"
 
 @implementation BBTLectureRoomsQueryTableViewController
 {
-    NSArray *_selectedTime;
-    NSArray *_selectedBuildings;
-    BOOL _isLoading;
     NSMutableArray *_parseResults;
     BBTLectureRooms *_filterConditions;
+    NSArray *_rawData; //Not exactly raw data. Just without building filter.
+    NSArray *_filterResults; //After filter buiding.
+    BBTHudView *_hudView;
+}
+
+- (void)configureDefaultBuilings
+{
+    if (self.campus.selectedSegmentIndex == 0) {
+        self.buildings.text = @"31";
+    } else if (self.campus.selectedSegmentIndex == 1) {
+        self.buildings.text = @"A1";
+    }
 }
 
 - (void)viewDidLoad {
@@ -28,9 +37,14 @@ static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php"
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
     
-    self.lectureRoomsFilter = [[BBTLectureRooms alloc] init];
     _filterConditions = [[BBTLectureRooms alloc] init];
     _parseResults = [[NSMutableArray alloc] init];
+    _rawData = [[NSArray alloc] init];
+    _filterResults = [[NSArray alloc] init];
+    
+    _filterConditions.time = @[@"上午", @"下午", @"晚上"];
+    
+    [self configureDefaultBuilings];
     
     // if the local changes while in the background, we need to be notified so we can update the date
     // format in the table view cells
@@ -65,7 +79,7 @@ static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php"
 
 - (IBAction)campusChanged:(id)sender
 {
-    self.buildings.text = @"全部";
+    [self configureDefaultBuilings];
 }
 
 #pragma delegate methods
@@ -90,37 +104,12 @@ static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php"
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)BBTBuildings:(BBTBuildingsTableViewController *)controller didFinishSelectBuildings:(NSMutableArray *)selectedBuildings
-{
-    _filterConditions.seletedBulidings = selectedBuildings;
-    
-    if (self.campus.selectedSegmentIndex == 0)
-    {
-        if ([_filterConditions.seletedBulidings count] == 5) {
-            self.buildings.text = @"全部";
-        }
-    } else if (self.campus.selectedSegmentIndex == 1) {
-        if ([_filterConditions.seletedBulidings count] == 3) {
-            self.buildings.text = @"全部";
-        }
-    }
-    else
-    {
-        NSMutableString *tempString = [[NSMutableString alloc] init];
-        for (NSString *chosenBuildings in _selectedBuildings) {
-            [tempString appendString:chosenBuildings];
-        }
-        self.buildings.text = tempString;
-    }
-    
-    [self.tableView reloadData];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 #pragma mark - Set Filter Conditions
 - (void)configureFilterConditions
 {
     _filterConditions.date = [self getDateString];
+    _filterConditions.buildings = self.buildings.text;
+    
     if (self.campus.selectedSegmentIndex == 0) {
         _filterConditions.campus = @"N";
     } else {
@@ -145,15 +134,50 @@ static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php"
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    if (indexPath.section == 0) {
+        if (indexPath.row == 4) {
+            [self choseBuilding];
+        }
+    }
+    
     if (indexPath.section == 1)
     {
+        _hudView = [BBTHudView hudInView:self.navigationController.view animated:YES];
         [self performGetEmptyRooms];
     }
 }
 
+- (void)choseBuilding
+{
+    UIAlertController *alertController = [[UIAlertController alloc] init];
+    alertController = [UIAlertController alertControllerWithTitle:@"请选择楼栋"
+                                                          message:nil
+                                                   preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    if (self.campus.selectedSegmentIndex == 0) {
+        NSArray *array = [[NSArray alloc] initWithObjects:@"31", @"32", @"33", @"34", @"35", nil];
+        for (int number = 0; number < 5; ++number) {
+            UIAlertAction *act = [UIAlertAction actionWithTitle:array[number] style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                self.buildings.text = array[number];
+            }];
+            [alertController addAction:act];
+        }
+    } else if (self.campus.selectedSegmentIndex == 1) {
+        NSArray *array = [[NSArray alloc] initWithObjects:@"A1", @"A2", @"A3", nil];
+        for (int number = 0; number < 3; ++number) {
+            UIAlertAction *act = [UIAlertAction actionWithTitle:array[number] style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                self.buildings.text = array[number];
+            }];
+            [alertController addAction:act];
+        }
+    }
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+}
+
 - (void)performGetEmptyRooms
 {
-    _isLoading = YES;
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
@@ -163,11 +187,11 @@ static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php"
     
     [manager POST:emptyRoomURL parameters:parameters success:^(AFHTTPRequestOperation * operation, NSArray *responseObject) {
         NSLog(@" %lu", (unsigned long)[responseObject count]);
+        _hudView = [BBTHudView removeHudInView:self.navigationController.view withHudView:_hudView];
         [self parse:responseObject];
-        _isLoading = NO;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
-        _isLoading = NO;
+        _hudView = [BBTHudView removeHudInView:self.navigationController.view withHudView:_hudView];
     }];
 }
 
@@ -186,34 +210,43 @@ static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php"
     }
     
     [self configureFilterConditions];
-    NSArray *filterResults = [[NSArray alloc] init];
-    filterResults = [_filterConditions filterLectureRooms:_parseResults withFilterConditions:_filterConditions];
-    NSLog(@"The number of empty rooms is %lu and they are %@", (unsigned long)[filterResults count], filterResults);
+
+    _rawData = [_filterConditions filterCampusWithParseResults:_parseResults withFilterConditions:_filterConditions];
+    NSLog(@"The number of empty rooms is %lu in one campus and they are", (unsigned long)[_rawData count]);
+    
+    _filterResults = [_filterConditions filterLectureRoomsWithFilterResults:_rawData withFilterConditions:_filterConditions];
+    NSLog(@"The number of empty rooms is %lu and they are", (unsigned long)[_filterResults count]);
+    
+    [self performSegueWithIdentifier:@"ShowResult" sender:self];
 }
 
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if ([identifier isEqualToString:@"TimePicker"]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"TimePicker"]) {
         UINavigationController *navigationController = segue.destinationViewController;
         BBTLectureRoomsTimeTableViewController *controller = (BBTLectureRoomsTimeTableViewController *)navigationController.topViewController;
         controller.delegate = self;
-    } else if ([segue.identifier isEqualToString:@"BuildingsPicker"]) {
-        UINavigationController *navigationController = segue.destinationViewController;
-        BBTBuildingsTableViewController *controller = (BBTBuildingsTableViewController *)navigationController.topViewController;
+    } else {
+        BBTLectureRoomsResultTableViewController *controller = segue.destinationViewController;
+        controller.rawData = [[NSArray alloc] initWithArray:_rawData];
+        controller.resultRooms = [[NSMutableArray alloc] initWithArray:_filterResults];
+        controller.filterConditions = [[BBTLectureRooms alloc] init];
+        controller.filterConditions = _filterConditions;
         
-        switch (self.campus.selectedSegmentIndex) {
-            case 0:
-                controller.buildingsToChoose = [[NSArray alloc] initWithObjects:@"31 ",@"32 ",@"33 ",@"34 ",@"35", nil];
-                break;
-            case 1:
-                controller.buildingsToChoose = [[NSArray alloc] initWithObjects:@"A1 ",@"A2 ",@"A3 ", nil];
-                break;
-        }
-        
-        controller.delegate = self;
+        _parseResults = [[NSMutableArray alloc] init];
     }
 }
 
