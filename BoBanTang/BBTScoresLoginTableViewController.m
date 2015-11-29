@@ -45,13 +45,22 @@ static NSString *checkAutenticationURL = @"http://218.192.166.167/api/jw2005/che
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [self isSaveAccountInfo];
+}
+
+- (void)isSaveAccountInfo
+{
     if (self.isSavePassword.on) {
         [JNKeychain saveValue:self.userInfo.account forKey:@"account"];
         [JNKeychain saveValue:self.userInfo.password forKey:@"password"];
     } else if (!self.isSavePassword.on) {
         [JNKeychain deleteValueForKey:@"account"];
         [JNKeychain deleteValueForKey:@"password"];
+        
+        self.studentsNumber.text = nil;
+        self.passwordToJW.text = nil;
     }
+
 }
 
 - (void)fetchUserAccountInfo
@@ -162,6 +171,8 @@ static NSString *checkAutenticationURL = @"http://218.192.166.167/api/jw2005/che
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    [self isSaveAccountInfo];
+    
     BBTScoresFilterTableViewController *controller = segue.destinationViewController;
     controller.scores = [[BBTScores alloc] init];
     controller.scores = self.userInfo;

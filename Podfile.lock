@@ -21,8 +21,8 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - AMWaveTransition (0.6.1)
-  - AVOSCloud (3.1.6.4)
-  - AVOSCloudCrashReporting (3.1.6.4):
+  - AVOSCloud (3.1.6.7)
+  - AVOSCloudCrashReporting (3.1.6.7):
     - AVOSCloud
   - AYVibrantButton (1.0.3)
   - CRToast (0.0.9)
@@ -61,8 +61,8 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   AMWaveTransition: 2d158213b0148980dfe7ce34f48a6b29eb3ff5bc
-  AVOSCloud: cb800543837fd747cc4621dc64e1384f3e5135a4
-  AVOSCloudCrashReporting: a0a22867d24feadf340ff4f97f74d088b234a56d
+  AVOSCloud: 7af6267747894eadfd14560db08ea99a51b57fc0
+  AVOSCloudCrashReporting: dae5c2506d9ad2f6e2c7e2eace82a8c163159b6c
   AYVibrantButton: 7cc5b2c74f6f6a0a52d5b0db361a9d3b755bc448
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
   FlatUIKit: 1b41f0d4952ce8d970d8479ce79df54a960242c4
@@ -77,4 +77,4 @@ SPEC CHECKSUMS:
   TSMessages: c8cc7b80f2a833af533872cd02010cac061532cc
   VBFPopFlatButton: 782344da63f104c279a857d806e065117a7e1196
 
-COCOAPODS: 0.39.0
+COCOAPODS: 0.38.2

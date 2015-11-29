@@ -13,17 +13,12 @@
 - (id)init
 {
     if ((self = [super init])) {
-        self.date = [[NSString alloc] init];
-        self.time = [[NSArray alloc] init];
-        self.campus = [[NSString alloc] init];
-        self.buildings = [[NSString alloc] init];
-        self.seletedBulidings = [[NSArray alloc] init];
-        self.lectureRooms = [[NSString alloc] init];
+       
     }
     return self;
 }
 
-- (NSArray *)filterLectureRooms:(NSMutableArray *)parseResults withFilterConditions:(BBTLectureRooms *)filterConditions
+- (NSArray *)filterCampusWithParseResults:(NSMutableArray *)parseResults withFilterConditions:(BBTLectureRooms *)filterConditions
 {
     //Filter date
     NSMutableArray *dateFiltered = [[NSMutableArray alloc] init];
@@ -81,6 +76,20 @@
     }
     
     return seletedPeriod;
+}
+
+- (NSArray *)filterLectureRoomsWithFilterResults:(NSArray *)parseResults withFilterConditions:(BBTLectureRooms *)filterConditions
+{
+    NSMutableArray *buildingFiltered = [[NSMutableArray alloc] init];
+    for (NSDictionary *resultsDic in parseResults) {
+        NSString *buildingFilter = [resultsDic objectForKey:@"building"];
+        
+        if ([buildingFilter isEqualToString:filterConditions.buildings]) {
+            [buildingFiltered addObject:resultsDic];
+        }
+    }
+    
+    return buildingFiltered;
 }
 
 @end
