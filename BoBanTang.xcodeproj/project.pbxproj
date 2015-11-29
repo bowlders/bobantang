@@ -744,6 +744,7 @@
 				A947D9181BD8DADA000F071B /* Frameworks */,
 				A947D9191BD8DADA000F071B /* Resources */,
 				95AE79024FB4C7F0E6B35B55 /* Copy Pods Resources */,
+				88ECB1CB5801A4230952E2E4 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -866,6 +867,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		88ECB1CB5801A4230952E2E4 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		95AE79024FB4C7F0E6B35B55 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -921,7 +937,6 @@
 				391F324C1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m in Sources */,
 				A947D9C01BD8DC34000F071B /* UIButton+BBTStationButton.m in Sources */,
 				39B595401C0AF0400015B673 /* BBTDailyArticleTableViewController.m in Sources */,
-				FCD0A27C1C0006AB0024D78F /* BBTBuildingsTableViewController.m in Sources */,
 				FCD0A2811C0009F10024D78F /* BBTScores.m in Sources */,
 				397445671C0A8D78004B89BA /* BBTCampusInfo.m in Sources */,
 				39B595431C0AF0500015B673 /* BBTCampusInfoViewController.m in Sources */,
