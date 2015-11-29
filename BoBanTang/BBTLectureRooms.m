@@ -13,12 +13,7 @@
 - (id)init
 {
     if ((self = [super init])) {
-        self.date = [[NSString alloc] init];
-        self.time = [[NSArray alloc] init];
-        self.campus = [[NSString alloc] init];
-        self.buildings = [[NSString alloc] init];
-        self.seletedBulidings = [[NSArray alloc] init];
-        self.lectureRooms = [[NSString alloc] init];
+       
     }
     return self;
 }

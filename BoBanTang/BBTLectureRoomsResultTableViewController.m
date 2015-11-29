@@ -29,6 +29,7 @@ static NSString *resultCellIdentifier = @"resultsCell";
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
     
     _selectedPeriod = [[NSArray alloc] initWithArray:[self.filterConditions configurePeriod:self.filterConditions]];
+
 }
 
 - (void)didReceiveMemoryWarning {

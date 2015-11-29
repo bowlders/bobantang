@@ -379,6 +379,7 @@
 			children = (
 				A947D97D1BD8DC0F000F071B /* BBTToolsViewController.h */,
 				A947D9A21BD8DC34000F071B /* BBTToolsViewController.m */,
+				FC69A3FF1C0AECA7000EF949 /* Lost&Found */,
 				398231BF1BD8EECD0043E544 /* ScoreInquire */,
 				398231C01BD8EEDD0043E544 /* LectureRoomsInquire */,
 			);
@@ -585,6 +586,13 @@
 				48D6888DD2A267EA93C8D8BC /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		FC69A3FF1C0AECA7000EF949 /* Lost&Found */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Lost&Found";
 			sourceTree = "<group>";
 		};
 		FCD0A26B1C00060F0024D78F /* Tools */ = {
@@ -1023,7 +1031,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bbt.BoBanTang;
+				PRODUCT_BUNDLE_IDENTIFIER = BBT.BoBanTang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

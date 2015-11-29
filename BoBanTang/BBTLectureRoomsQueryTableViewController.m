@@ -23,6 +23,19 @@ static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php"
     BBTHudView *_hudView;
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if ((self = [super initWithCoder:aDecoder])) {
+        _filterConditions = [[BBTLectureRooms alloc] init];
+        _parseResults = [[NSMutableArray alloc] init];
+        _rawData = [[NSArray alloc] init];
+        _filterResults = [[NSArray alloc] init];
+        
+        _filterConditions.time = @[@"上午", @"下午", @"晚上"];
+    }
+    return self;
+}
+
 - (void)configureDefaultBuilings
 {
     if (self.campus.selectedSegmentIndex == 0) {
@@ -36,13 +49,6 @@ static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php"
     [super viewDidLoad];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
-    
-    _filterConditions = [[BBTLectureRooms alloc] init];
-    _parseResults = [[NSMutableArray alloc] init];
-    _rawData = [[NSArray alloc] init];
-    _filterResults = [[NSArray alloc] init];
-    
-    _filterConditions.time = @[@"上午", @"下午", @"晚上"];
     
     [self configureDefaultBuilings];
     
@@ -192,7 +198,18 @@ static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php"
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
         _hudView = [BBTHudView removeHudInView:self.navigationController.view withHudView:_hudView];
+        [self showAlert];
     }];
+}
+
+- (void)showAlert
+{
+    UIAlertController *alertController = [[UIAlertController alloc] init];
+    alertController = [UIAlertController alertControllerWithTitle:@"连接错误" message:@"请稍后再试" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:okAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+    
 }
 
 - (void)parse:(NSArray *)responseObject

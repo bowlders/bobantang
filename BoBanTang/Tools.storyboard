@@ -38,6 +38,9 @@
                                 <rect key="frame" x="20" y="345" width="335" height="129"/>
                                 <animations/>
                                 <state key="normal" title="失物招领"/>
+                                <connections>
+                                    <segue destination="yBi-GZ-Dq9" kind="show" id="85n-MF-FWH"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtM-Aj-b00">
                                 <rect key="frame" x="20" y="482" width="335" height="129"/>
@@ -100,6 +103,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Uw-gE-gUk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1787.5" y="-154.5"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="Qoc-eE-paL">
+            <objects>
+                <tableViewController id="yBi-GZ-Dq9" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="qD5-KH-fPd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="6Ln-Ag-cHi">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Ln-Ag-cHi" id="dRc-5J-k3U">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="yBi-GZ-Dq9" id="elQ-Ix-Gfd"/>
+                            <outlet property="delegate" destination="yBi-GZ-Dq9" id="f4i-AI-43q"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="gQl-fX-LtY">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Eex-aO-MDl">
+                            <rect key="frame" x="112.5" y="7" width="150" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <animations/>
+                            <segments>
+                                <segment title="找失主"/>
+                                <segment title="找失物"/>
+                            </segments>
+                        </segmentedControl>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KGS-Kd-lds" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2282.5" y="-1072.5"/>
         </scene>
         <!--自习室查询-->
         <scene sceneID="6Kl-MF-51X">
