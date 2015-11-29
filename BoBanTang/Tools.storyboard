@@ -9,7 +9,6 @@
         <!--工具-->
         <scene sceneID="3u2-t7-Rw8">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XfJ-20-HpQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Lwp-gM-msE" customClass="BBTToolsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3on-Uy-fIY"/>
@@ -77,6 +76,7 @@
                         <outlet property="information" destination="Tq2-6i-Pef" id="L4B-iH-cQA"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XfJ-20-HpQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2282.5" y="-154.5"/>
         </scene>
@@ -661,7 +661,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r6F-xg-ocd">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="147.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="148"/>
                                                     <animations/>
                                                 </pickerView>
                                             </subviews>

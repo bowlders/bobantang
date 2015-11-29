@@ -29,8 +29,7 @@ NSString * busDataNotificationName = @"specBusNotification";
     CGFloat naviBarHeight = self.navigationController.navigationBar.frame.size.height;
     CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
     CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
-    //NSLog(@"navi - %f", naviBarHeight);
-    //NSLog(@"tab - %f", tabBarHeight);
+
     CGRect tableViewRect = CGRectMake(0.0f, naviBarHeight + statusBarHeight, screenWidth, screenHeight - naviBarHeight - statusBarHeight - tabBarHeight);
     
     self.tableView.frame = tableViewRect;
@@ -65,7 +64,6 @@ NSString * busDataNotificationName = @"specBusNotification";
 {
     NSLog(@"Did receive special railway data notification");
     [self.tableView reloadData];
-    //NSLog(@"count - %lu",(unsigned long)[[BBTSpecRailway2BusManager sharedBusManager].directionNorthBuses count]);
 }
 
 - (void)didReceiveMemoryWarning {

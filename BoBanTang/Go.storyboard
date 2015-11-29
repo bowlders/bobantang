@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <scenes>
-        <!--Segmented Control View Controller-->
+        <!--Go Segmented Control View Controller-->
         <scene sceneID="dsu-eV-zwn">
             <objects>
-                <viewController id="ver-b3-QB4" customClass="BBTSegmentedControlViewController" sceneMemberID="viewController">
+                <viewController id="ver-b3-QB4" customClass="BBTGoSegmentedControlViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OUz-Ja-Hs5"/>
                         <viewControllerLayoutGuide type="bottom" id="n1Q-rd-iYd"/>
@@ -21,7 +21,7 @@
                     <navigationItem key="navigationItem" id="58T-gc-WfN">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="zsr-aP-Epm">
-                            <rect key="frame" x="112.5" y="7" width="150" height="30"/>
+                            <rect key="frame" x="113" y="7" width="150" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <segments>

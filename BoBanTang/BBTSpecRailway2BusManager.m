@@ -13,10 +13,10 @@
 
 @implementation BBTSpecRailway2BusManager
 
-static NSString *directionSouthURLString = @"http://api.100steps.net/bus.php?dir=0";
-static NSString *directionNorthURLString = @"http://api.100steps.net/bus.php?dir=1";
-extern NSString *busDataNotificationName;                                                  //The name of the notification when retriving bus data
-static float dataRequestInterval = 5.0;                                                    //The time interval between two data requests
+static NSString * directionSouthURLString = @"http://api.100steps.net/bus.php?dir=0";
+static NSString * directionNorthURLString = @"http://api.100steps.net/bus.php?dir=1";
+extern NSString * busDataNotificationName;                                                  //The name of the notification when retriving bus data
+static float dataRequestInterval = 5.0;                                                     //The time interval between two data requests
 
 + (instancetype)sharedBusManager
 {
@@ -96,14 +96,12 @@ static float dataRequestInterval = 5.0;                                         
     AFHTTPRequestOperationManager *southManager = [AFHTTPRequestOperationManager manager];
     southManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     [southManager GET:directionSouthURLString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //NSLog(@"JSON: %@", responseObject);
         if ([responseObject currentSpecRailwayBusArray])
         {
             for (int i = 0;i < [[responseObject currentSpecRailwayBusArray] count];i++)
             {
                 BBTSpecRailway2Bus *currentBus = [[BBTSpecRailway2Bus alloc] initWithDictionary:[responseObject currentSpecRailwayBusArray][i] error:nil];
                 NSLog(@"%@",[responseObject currentSpecRailwayBusArray][i]);
-                //NSLog(@"dataIndex - %lu", (unsigned long)((BBTSpecRailway2Bus *)[responseObject currentSpecRailwayBusArray][i]).stationSeq);
                 NSLog(@"busIndex - %lu", (unsigned long)currentBus.stationSeq);
                 [self.directionSouthBuses addObject:currentBus];
             }
@@ -117,7 +115,6 @@ static float dataRequestInterval = 5.0;                                         
     AFHTTPRequestOperationManager *northManager = [AFHTTPRequestOperationManager manager];
     northManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     [northManager GET:directionNorthURLString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //NSLog(@"JSON: %@", responseObject);
         if ([responseObject currentSpecRailwayBusArray])
         {
             for (int i = 0;i < [[responseObject currentSpecRailwayBusArray] count];i++)

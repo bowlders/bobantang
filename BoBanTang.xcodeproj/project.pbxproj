@@ -12,10 +12,16 @@
 		391F32491BFDD42B004843C3 /* BBTSpecRailway2BusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F32481BFDD42B004843C3 /* BBTSpecRailway2BusManager.m */; };
 		391F324C1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F324B1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m */; };
 		392A0DE41BE63F37001F7D45 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 392A0DE31BE63F37001F7D45 /* Images.xcassets */; };
-		393E3EBD1BF234210045DE6E /* BBTSegmentedControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 393E3EBC1BF234210045DE6E /* BBTSegmentedControlViewController.m */; };
+		393E3EBD1BF234210045DE6E /* BBTGoSegmentedControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 393E3EBC1BF234210045DE6E /* BBTGoSegmentedControlViewController.m */; };
 		393E3EC41BF4C81F0045DE6E /* Go.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 393E3EC31BF4C81F0045DE6E /* Go.storyboard */; };
 		3974452B1C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3974452A1C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.m */; };
+		397445671C0A8D78004B89BA /* BBTCampusInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 397445661C0A8D78004B89BA /* BBTCampusInfo.m */; };
+		3974456A1C0A8E75004B89BA /* BBTCampusInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 397445691C0A8E75004B89BA /* BBTCampusInfoManager.m */; };
+		397445701C0AAD60004B89BA /* BBTCampusInfoCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3974456F1C0AAD60004B89BA /* BBTCampusInfoCellTableViewCell.m */; };
 		398231B61BD8ED230043E544 /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 398231B51BD8ED230043E544 /* Me.storyboard */; };
+		39B5953D1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B5953C1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m */; };
+		39B595401C0AF0400015B673 /* BBTDailyArticleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B5953F1C0AF0400015B673 /* BBTDailyArticleTableViewController.m */; };
+		39B595431C0AF0500015B673 /* BBTCampusInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B595421C0AF0500015B673 /* BBTCampusInfoViewController.m */; };
 		99BCEEF76C0A51F53BF45309 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA2627D2286FFB656F82101 /* libPods.a */; };
 		A947D9291BD8DADA000F071B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A947D9271BD8DADA000F071B /* Main.storyboard */; };
 		A947D92C1BD8DADA000F071B /* BoBanTang.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A947D92A1BD8DADA000F071B /* BoBanTang.xcdatamodeld */; };
@@ -93,12 +99,25 @@
 		391F324A1BFE07AE004843C3 /* NSDictionary+BBTDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+BBTDictionary.h"; sourceTree = "<group>"; };
 		391F324B1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+BBTDictionary.m"; sourceTree = "<group>"; };
 		392A0DE31BE63F37001F7D45 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		393E3EBB1BF234210045DE6E /* BBTSegmentedControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSegmentedControlViewController.h; sourceTree = "<group>"; };
-		393E3EBC1BF234210045DE6E /* BBTSegmentedControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSegmentedControlViewController.m; sourceTree = "<group>"; };
+		393E3EBB1BF234210045DE6E /* BBTGoSegmentedControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTGoSegmentedControlViewController.h; sourceTree = "<group>"; };
+		393E3EBC1BF234210045DE6E /* BBTGoSegmentedControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTGoSegmentedControlViewController.m; sourceTree = "<group>"; };
 		393E3EC31BF4C81F0045DE6E /* Go.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Go.storyboard; sourceTree = "<group>"; };
 		397445291C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSpecRailway2TableViewCell.h; sourceTree = "<group>"; };
 		3974452A1C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSpecRailway2TableViewCell.m; sourceTree = "<group>"; };
+		397445651C0A8D78004B89BA /* BBTCampusInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusInfo.h; sourceTree = "<group>"; };
+		397445661C0A8D78004B89BA /* BBTCampusInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCampusInfo.m; sourceTree = "<group>"; };
+		397445681C0A8E75004B89BA /* BBTCampusInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusInfoManager.h; sourceTree = "<group>"; };
+		397445691C0A8E75004B89BA /* BBTCampusInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCampusInfoManager.m; sourceTree = "<group>"; };
+		3974456E1C0AAD60004B89BA /* BBTCampusInfoCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusInfoCellTableViewCell.h; sourceTree = "<group>"; };
+		3974456F1C0AAD60004B89BA /* BBTCampusInfoCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCampusInfoCellTableViewCell.m; sourceTree = "<group>"; };
 		398231B51BD8ED230043E544 /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
+		39B5953B1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTInfoSegmentedControllerViewController.h; sourceTree = "<group>"; };
+		39B5953C1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTInfoSegmentedControllerViewController.m; sourceTree = "<group>"; };
+		39B5953E1C0AF0400015B673 /* BBTDailyArticleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTDailyArticleTableViewController.h; sourceTree = "<group>"; };
+		39B5953F1C0AF0400015B673 /* BBTDailyArticleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTDailyArticleTableViewController.m; sourceTree = "<group>"; };
+		39B595411C0AF0500015B673 /* BBTCampusInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusInfoViewController.h; sourceTree = "<group>"; };
+		39B595421C0AF0500015B673 /* BBTCampusInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCampusInfoViewController.m; sourceTree = "<group>"; };
+		39B595441C0AF9D90015B673 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		48D6888DD2A267EA93C8D8BC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A947D91B1BD8DADA000F071B /* BoBanTang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoBanTang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A947D91F1BD8DADA000F071B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -239,6 +258,7 @@
 				391F32441BFDC66B004843C3 /* BBTSpecRailway2Bus.h */,
 				391F32451BFDC66B004843C3 /* BBTSpecRailway2Bus.m */,
 				391F32471BFDD42B004843C3 /* BBTSpecRailway2BusManager.h */,
+				A947D96D1BD8DC0F000F071B /* BBTBusClusterView.h */,
 				391F32481BFDD42B004843C3 /* BBTSpecRailway2BusManager.m */,
 			);
 			name = SpecialRailway2;
@@ -280,9 +300,91 @@
 			name = SpecialRailway2;
 			sourceTree = "<group>";
 		};
+		397445621C0816FE004B89BA /* Information */ = {
+			isa = PBXGroup;
+			children = (
+				397445631C081721004B89BA /* CampusInfo */,
+				397445641C081762004B89BA /* DailyArticle */,
+			);
+			name = Information;
+			sourceTree = "<group>";
+		};
+		397445631C081721004B89BA /* CampusInfo */ = {
+			isa = PBXGroup;
+			children = (
+				397445651C0A8D78004B89BA /* BBTCampusInfo.h */,
+				397445661C0A8D78004B89BA /* BBTCampusInfo.m */,
+				397445681C0A8E75004B89BA /* BBTCampusInfoManager.h */,
+				397445691C0A8E75004B89BA /* BBTCampusInfoManager.m */,
+			);
+			name = CampusInfo;
+			sourceTree = "<group>";
+		};
+		397445641C081762004B89BA /* DailyArticle */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = DailyArticle;
+			sourceTree = "<group>";
+		};
+		3974456B1C0AA791004B89BA /* Information */ = {
+			isa = PBXGroup;
+			children = (
+				3974456D1C0AA7AA004B89BA /* DailyArticle */,
+				3974456C1C0AA79D004B89BA /* CampusInfo */,
+			);
+			name = Information;
+			sourceTree = "<group>";
+		};
+		3974456C1C0AA79D004B89BA /* CampusInfo */ = {
+			isa = PBXGroup;
+			children = (
+				3974456E1C0AAD60004B89BA /* BBTCampusInfoCellTableViewCell.h */,
+				3974456F1C0AAD60004B89BA /* BBTCampusInfoCellTableViewCell.m */,
+			);
+			name = CampusInfo;
+			sourceTree = "<group>";
+		};
+		3974456D1C0AA7AA004B89BA /* DailyArticle */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = DailyArticle;
+			sourceTree = "<group>";
+		};
+		397445711C0AE874004B89BA /* Information */ = {
+			isa = PBXGroup;
+			children = (
+				39B5953B1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.h */,
+				39B5953C1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m */,
+				397445731C0AE881004B89BA /* DailyArticle */,
+				397445721C0AE87C004B89BA /* CampusInfo */,
+			);
+			name = Information;
+			sourceTree = "<group>";
+		};
+		397445721C0AE87C004B89BA /* CampusInfo */ = {
+			isa = PBXGroup;
+			children = (
+				39B595411C0AF0500015B673 /* BBTCampusInfoViewController.h */,
+				39B595421C0AF0500015B673 /* BBTCampusInfoViewController.m */,
+			);
+			name = CampusInfo;
+			sourceTree = "<group>";
+		};
+		397445731C0AE881004B89BA /* DailyArticle */ = {
+			isa = PBXGroup;
+			children = (
+				39B5953E1C0AF0400015B673 /* BBTDailyArticleTableViewController.h */,
+				39B5953F1C0AF0400015B673 /* BBTDailyArticleTableViewController.m */,
+			);
+			name = DailyArticle;
+			sourceTree = "<group>";
+		};
 		398231B71BD8ED300043E544 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				397445621C0816FE004B89BA /* Information */,
 				FCD0A2711C00066F0024D78F /* Tools */,
 				391F32401BF72194004843C3 /* Go */,
 			);
@@ -292,6 +394,7 @@
 		398231B81BD8ED360043E544 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				397445711C0AE874004B89BA /* Information */,
 				398231C11BD8EEF60043E544 /* General */,
 				398231C31BD8EF490043E544 /* Go */,
 				398231C21BD8EF350043E544 /* Me */,
@@ -303,6 +406,7 @@
 		398231B91BD8ED3F0043E544 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3974456B1C0AA791004B89BA /* Information */,
 				FCD0A26B1C00060F0024D78F /* Tools */,
 				398231BD1BD8EE960043E544 /* General */,
 				391F323F1BF7218F004843C3 /* Go */,
@@ -337,7 +441,6 @@
 		398231BC1BD8EE8C0043E544 /* CampusBus */ = {
 			isa = PBXGroup;
 			children = (
-				A947D96D1BD8DC0F000F071B /* BBTBusClusterView.h */,
 				A947D9931BD8DC34000F071B /* BBTBusClusterView.m */,
 				A947D96F1BD8DC0F000F071B /* BBTBusRouteView.h */,
 				A947D9951BD8DC34000F071B /* BBTBusRouteView.m */,
@@ -347,8 +450,6 @@
 				A947D9981BD8DC34000F071B /* BBTCountView.m */,
 				A947D97E1BD8DC0F000F071B /* UIButton+BBTStationButton.h */,
 				A947D9A41BD8DC34000F071B /* UIButton+BBTStationButton.m */,
-				A947D97F1BD8DC0F000F071B /* UIColor+BBTColor.h */,
-				A947D9A51BD8DC34000F071B /* UIColor+BBTColor.m */,
 				A947D9801BD8DC0F000F071B /* UILabel+BBTBusMessageLabel.h */,
 				A947D9A61BD8DC34000F071B /* UILabel+BBTBusMessageLabel.m */,
 				A947D9811BD8DC0F000F071B /* UIView+BBTBusTimeTable.h */,
@@ -437,8 +538,8 @@
 		398231C31BD8EF490043E544 /* Go */ = {
 			isa = PBXGroup;
 			children = (
-				393E3EBB1BF234210045DE6E /* BBTSegmentedControlViewController.h */,
-				393E3EBC1BF234210045DE6E /* BBTSegmentedControlViewController.m */,
+				393E3EBB1BF234210045DE6E /* BBTGoSegmentedControlViewController.h */,
+				393E3EBC1BF234210045DE6E /* BBTGoSegmentedControlViewController.m */,
 				393E3EC11BF4801B0045DE6E /* CampusBus */,
 				393E3EC21BF4802A0045DE6E /* SpecialRailway2 */,
 			);
@@ -450,6 +551,7 @@
 			children = (
 				FCD0A2621C00059F0024D78F /* Security.framework */,
 				ABA2627D2286FFB656F82101 /* libPods.a */,
+				39B595441C0AF9D90015B673 /* Reveal.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -484,6 +586,8 @@
 				A947D99E1BD8DC34000F071B /* BBTPreferences.m */,
 				391F324A1BFE07AE004843C3 /* NSDictionary+BBTDictionary.h */,
 				391F324B1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m */,
+				A947D97F1BD8DC0F000F071B /* UIColor+BBTColor.h */,
+				A947D9A51BD8DC34000F071B /* UIColor+BBTColor.m */,
 				A947D92A1BD8DADA000F071B /* BoBanTang.xcdatamodeld */,
 				392A0DE31BE63F37001F7D45 /* Images.xcassets */,
 				398231B71BD8ED300043E544 /* Model */,
@@ -682,7 +786,7 @@
 				TargetAttributes = {
 					A947D91A1BD8DADA000F071B = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = CCJ77XX2MW;
+						DevelopmentTeam = V6W7TS6VZ8;
 					};
 					A947D9361BD8DADA000F071B = {
 						CreatedOnToolsVersion = 7.0;
@@ -804,9 +908,10 @@
 				A947D9AB1BD8DC34000F071B /* BBTAccountManageViewController.m in Sources */,
 				FCD0A27E1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.m in Sources */,
 				A947D9B31BD8DC34000F071B /* BBTBusViewController.m in Sources */,
-				393E3EBD1BF234210045DE6E /* BBTSegmentedControlViewController.m in Sources */,
+				393E3EBD1BF234210045DE6E /* BBTGoSegmentedControlViewController.m in Sources */,
 				A947D92C1BD8DADA000F071B /* BoBanTang.xcdatamodeld in Sources */,
 				391F32461BFDC66B004843C3 /* BBTSpecRailway2Bus.m in Sources */,
+				3974456A1C0A8E75004B89BA /* BBTCampusInfoManager.m in Sources */,
 				A947D9631BD8DBEA000F071B /* GmailLikeLoadingView.m in Sources */,
 				A947D9671BD8DBEA000F071B /* PAPropertyDescriptor.m in Sources */,
 				FCD0A2691C0005D80024D78F /* BBTScoresQueryResultsTableViewController.m in Sources */,
@@ -814,9 +919,13 @@
 				A947D9C51BD8DC34000F071B /* UIView+BBTWaterMark.m in Sources */,
 				391F324C1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m in Sources */,
 				A947D9C01BD8DC34000F071B /* UIButton+BBTStationButton.m in Sources */,
+				39B595401C0AF0400015B673 /* BBTDailyArticleTableViewController.m in Sources */,
 				FCD0A27C1C0006AB0024D78F /* BBTBuildingsTableViewController.m in Sources */,
 				FCD0A2811C0009F10024D78F /* BBTScores.m in Sources */,
+				397445671C0A8D78004B89BA /* BBTCampusInfo.m in Sources */,
+				39B595431C0AF0500015B673 /* BBTCampusInfoViewController.m in Sources */,
 				A947D9661BD8DBEA000F071B /* PAPreferences.m in Sources */,
+				39B5953D1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m in Sources */,
 				A947D9B21BD8DC34000F071B /* BBTBusView.m in Sources */,
 				A947D9AA1BD8DC34000F071B /* BBTAboutViewController.m in Sources */,
 				A947D9B41BD8DC34000F071B /* BBTCountView.m in Sources */,
@@ -839,6 +948,7 @@
 				A947D9BA1BD8DC34000F071B /* BBTPreferences.m in Sources */,
 				3974452B1C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.m in Sources */,
 				A947D9C11BD8DC34000F071B /* UIColor+BBTColor.m in Sources */,
+				397445701C0AAD60004B89BA /* BBTCampusInfoCellTableViewCell.m in Sources */,
 				A947D9B91BD8DC34000F071B /* BBTPersonalInfoEditViewController.m in Sources */,
 				FCD0A27D1C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.m in Sources */,
 				A947D9B11BD8DC34000F071B /* BBTBusRouteView.m in Sources */,
@@ -978,6 +1088,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = BoBanTang/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1028,6 +1142,10 @@
 					"\"SystemConfiguration\"",
 					"-framework",
 					"\"UIKit\"",
+					"-ObjC",
+					"-lz",
+					"-framework",
+					Reveal,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bbt.BoBanTang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1044,6 +1162,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = BoBanTang/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
