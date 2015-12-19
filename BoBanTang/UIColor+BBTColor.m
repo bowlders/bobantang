@@ -22,7 +22,7 @@
 
 + (UIColor *)BBTInfoSegmentedControlIndicatorBlue
 {
-    return [UIColor colorWithRed:0.0f green:0.2f blue:0.4f alpha:1.0f];
+    return [UIColor colorWithRed:0.0f green:221/255.0 blue:1.0f alpha:0.3f];
 }
 
 @end

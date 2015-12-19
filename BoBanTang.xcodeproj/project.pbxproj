@@ -263,7 +263,6 @@
 				391F32441BFDC66B004843C3 /* BBTSpecRailway2Bus.h */,
 				391F32451BFDC66B004843C3 /* BBTSpecRailway2Bus.m */,
 				391F32471BFDD42B004843C3 /* BBTSpecRailway2BusManager.h */,
-				A947D96D1BD8DC0F000F071B /* BBTBusClusterView.h */,
 				391F32481BFDD42B004843C3 /* BBTSpecRailway2BusManager.m */,
 			);
 			name = SpecialRailway2;
@@ -446,6 +445,7 @@
 		398231BC1BD8EE8C0043E544 /* CampusBus */ = {
 			isa = PBXGroup;
 			children = (
+				A947D96D1BD8DC0F000F071B /* BBTBusClusterView.h */,
 				A947D9931BD8DC34000F071B /* BBTBusClusterView.m */,
 				A947D96F1BD8DC0F000F071B /* BBTBusRouteView.h */,
 				A947D9951BD8DC34000F071B /* BBTBusRouteView.m */,
@@ -1165,7 +1165,7 @@
 					"-framework",
 					Reveal,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = BBT.BoBanTang;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bbt.bobantang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1191,7 +1191,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor/JPush",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = BBT.BoBanTang;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bbt.bobantang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

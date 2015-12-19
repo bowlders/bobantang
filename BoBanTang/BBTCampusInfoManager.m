@@ -7,9 +7,10 @@
 //
 
 #import "BBTCampusInfoManager.h"
+#import <AFNetworking.h>
 
-static NSString * getUrl = @"";                                     //Url used to get data
-static NSString * insertUrl = @"";                                  //Url used to insert data
+static NSString * getBaseUrl = @"http://218.192.166.167/api/protype.php?table=schoolInformation&method=get&data=";                                  //Url used to get data
+static NSString * insertBaseUrl = @"http://218.192.166.167/api/protype.php?table=schoolInformation&method=save&data=";                              //Url used to insert data
 
 @implementation BBTCampusInfoManager
 
@@ -23,17 +24,23 @@ static NSString * insertUrl = @"";                                  //Url used t
     return _manager;
 }
 
-- (void)retriveData
+- (void)retriveData:(NSString *)appendingString
+{
+    NSString *getUrlString = [getBaseUrl stringByAppendingString:appendingString];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:getUrlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
+- (void)addReadNumber:(NSUInteger)infoID
 {
     
 }
 
-- (void)addReadNumber:(NSUInteger)infoIndex
-{
-
-}
-
-- (void)addCollectionNumber:(NSUInteger)infoIndex
+- (void)addCollectionNumber:(NSUInteger)infoID
 {
     
 }
