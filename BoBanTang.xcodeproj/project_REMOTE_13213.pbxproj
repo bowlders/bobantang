@@ -263,6 +263,7 @@
 				391F32441BFDC66B004843C3 /* BBTSpecRailway2Bus.h */,
 				391F32451BFDC66B004843C3 /* BBTSpecRailway2Bus.m */,
 				391F32471BFDD42B004843C3 /* BBTSpecRailway2BusManager.h */,
+				A947D96D1BD8DC0F000F071B /* BBTBusClusterView.h */,
 				391F32481BFDD42B004843C3 /* BBTSpecRailway2BusManager.m */,
 			);
 			name = SpecialRailway2;
@@ -445,7 +446,6 @@
 		398231BC1BD8EE8C0043E544 /* CampusBus */ = {
 			isa = PBXGroup;
 			children = (
-				A947D96D1BD8DC0F000F071B /* BBTBusClusterView.h */,
 				A947D9931BD8DC34000F071B /* BBTBusClusterView.m */,
 				A947D96F1BD8DC0F000F071B /* BBTBusRouteView.h */,
 				A947D9951BD8DC34000F071B /* BBTBusRouteView.m */,
@@ -1102,9 +1102,9 @@
 			baseConfigurationReference = DAAC1D9BE8366224C1757CE5 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Liyang Wu (V6W7TS6VZ8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Liyang Wu (V6W7TS6VZ8)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1176,9 +1176,9 @@
 			baseConfigurationReference = 48D6888DD2A267EA93C8D8BC /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Liyang Wu (V6W7TS6VZ8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Liyang Wu (V6W7TS6VZ8)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
