@@ -14,8 +14,8 @@
 @property NSMutableArray * infoArray;                       //Stores a list of infos
 
 + (instancetype)sharedInfoManager;                          //Singleton method
-- (void)retriveData:(NSString *)appendingString;
-- (void)addReadNumber:(NSUInteger)infoID;                   //Add an info's read number by 1
-- (void)addCollectionNumber:(NSUInteger)infoID;             //Add an info's collection number by 1
+- (void)retriveData : (NSString *)appendingUrl;
+- (void)addReadNumber:(NSUInteger)infoIndex;                //Add an info's read number by 1
+- (void)addCollectionNumber:(NSUInteger)infoIndex;          //Add an info's collection number by 1
 
 @end

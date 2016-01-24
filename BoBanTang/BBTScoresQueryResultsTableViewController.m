@@ -7,7 +7,7 @@
 //
 
 #import "BBTScoresQueryResultsTableViewController.h"
-#import <AFNetworking/AFNetworking.h>
+#import <AFNetworking.h>
 #import "BBTScoresCell.h"
 
 static NSString * const getScoreURL = @"http://218.192.166.167/api/jw2005/getScore.php";
@@ -56,8 +56,8 @@ static NSString * const LoadingCellIdentifier = @"BBTLoadingCell";
     _isLoading = YES;
     
     _results = [[NSMutableArray alloc] init];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
@@ -75,17 +75,15 @@ static NSString * const LoadingCellIdentifier = @"BBTLoadingCell";
                        };
     }
     
-    [manager POST:getScoreURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:getScoreURL parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
-        
         _hudView = [BBTHudView removeHudInView:self.navigationController.view withHudView:_hudView];
-
-        [self parseDictionary:responseObject];
-         _isLoading = NO;
-        [self.tableView reloadData];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
         
+        [self parseDictionary:responseObject];
+        _isLoading = NO;
+        [self.tableView reloadData];
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
         _hudView = [BBTHudView removeHudInView:self.navigationController.view withHudView:_hudView];
         
         _isLoading = NO;

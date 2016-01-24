@@ -7,7 +7,7 @@
 //
 
 #import "BBTInfoSegmentedControllerViewController.h"
-#import "BBTCampusInfoViewController.h"
+#import "BBTCampusInfoTableViewController.h"
 #import "BBTDailyArticleTableViewController.h"
 #import "UIColor+BBTColor.h"
 #import <HMSegmentedControl.h>
@@ -15,10 +15,10 @@
 
 @interface BBTInfoSegmentedControllerViewController ()
 
-@property (strong, nonatomic) HMSegmentedControl    *          segmentedControl;
-@property (strong, nonatomic) UIView                *          contentViewContainer;
-@property (strong, nonatomic) NSArray               *          contentViewControllers;
-@property (assign, nonatomic) NSUInteger                       currentControllerIndex;
+@property (strong, nonatomic) IBOutlet UISegmentedControl   *          segmentedControl;
+@property (strong, nonatomic) UIView                        *          contentViewContainer;
+@property (strong, nonatomic) NSArray                       *          contentViewControllers;
+@property (assign, nonatomic) NSUInteger                               currentControllerIndex;
 
 @end
 
@@ -29,8 +29,9 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
+    /*
     //Add segmented Controller
-    self.segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"校内资讯", @"每日一文"]];
+    self.segmentedControl = [[UISegmentedControl alloc] initWithSectionTitles:@[@"校内资讯", @"每日一文"]];
     CGFloat navigationBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
     CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
     CGFloat segmentedControlHeight = 44.0;
@@ -45,8 +46,9 @@
     [self.segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
 
     [self.view addSubview:self.segmentedControl];
+     */
     
-    BBTCampusInfoViewController * campusInfoVC = [[BBTCampusInfoViewController alloc] init];
+    BBTCampusInfoTableViewController * campusInfoVC = [[BBTCampusInfoTableViewController alloc] init];
     BBTDailyArticleTableViewController * dailyArticleVC = [[BBTDailyArticleTableViewController alloc] init];
     
     self.contentViewControllers = @[
@@ -57,6 +59,10 @@
     self.contentViewContainer = [UIView new];
     self.contentViewContainer.backgroundColor = [UIColor whiteColor];
     
+    CGFloat navigationBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
+    CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
+    CGFloat segmentedControlY = self.segmentedControl.frame.origin.y;
+    CGFloat segmentedControlHeight = CGRectGetHeight(self.segmentedControl.frame);
     CGFloat containerY = segmentedControlY + segmentedControlHeight;
     CGFloat containerWidth = CGRectGetWidth(self.view.frame);
     CGFloat containerHeight = CGRectGetHeight(self.view.frame) - navigationBarHeight - statusBarHeight - segmentedControlHeight;
@@ -74,14 +80,20 @@
     
     // Do any additional setup after loading the view.
 }
+- (IBAction)valueChanged:(UISegmentedControl *)sender
+{
+    NSLog(@"Index %ld is selected", (long)sender.selectedSegmentIndex);
+    [self changeToViewControllerAtIndex:sender.selectedSegmentIndex animated:NO];
+}
 
+/*
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl
 {
-    NSLog(@"1");
     NSLog(@"Index %ld is selected", (long)segmentedControl.selectedSegmentIndex);
     [self changeToViewControllerAtIndex:segmentedControl.selectedSegmentIndex animated:NO];
 }
-
+*/
+ 
 - (void)changeToViewControllerAtIndex:(NSUInteger)index animated:(BOOL)animated
 {
     UIViewController *currentVC = self.contentViewControllers[self.currentControllerIndex];

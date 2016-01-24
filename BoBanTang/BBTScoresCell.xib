@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -16,7 +16,6 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cL8-8r-dlI">
                         <rect key="frame" x="8" y="11" width="169" height="21"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="169" id="tBK-GS-Abn"/>
                         </constraints>
@@ -26,7 +25,6 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NzE-Vv-tWv">
                         <rect key="frame" x="235" y="10" width="49" height="22"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="49" id="FfU-Kb-rrM"/>
                         </constraints>
@@ -36,7 +34,6 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBl-eh-Nvv">
                         <rect key="frame" x="285" y="11" width="35" height="21"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="35" id="Ozb-UE-g4H"/>
                         </constraints>
@@ -46,13 +43,11 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5q-ek-oVT">
                         <rect key="frame" x="185" y="11" width="42" height="21"/>
-                        <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <animations/>
                 <constraints>
                     <constraint firstItem="cL8-8r-dlI" firstAttribute="centerY" secondItem="NzE-Vv-tWv" secondAttribute="centerY" id="0fb-Xx-tpY"/>
                     <constraint firstItem="cL8-8r-dlI" firstAttribute="leading" secondItem="ORl-Nx-sCO" secondAttribute="leadingMargin" id="3dP-u6-1f0"/>
@@ -69,7 +64,6 @@
                     <constraint firstItem="cL8-8r-dlI" firstAttribute="bottom" secondItem="NzE-Vv-tWv" secondAttribute="bottom" id="vXR-Mi-eYT"/>
                 </constraints>
             </tableViewCellContentView>
-            <animations/>
             <connections>
                 <outlet property="courseName" destination="cL8-8r-dlI" id="FkJ-Mj-Yef"/>
                 <outlet property="gradePoint" destination="NzE-Vv-tWv" id="lll-wy-Qet"/>
