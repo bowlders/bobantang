@@ -1,5 +1,5 @@
 //
-//  BBTCampusInfoTableViewController.h
+//  BBTCampusInfoTableTableViewController.h
 //  BoBanTang
 //
 //  Created by Caesar on 16/1/24.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BBTCampusInfoTableViewController : UITableViewController
+@interface BBTCampusInfoTableTableViewController : UITableViewController
 
 @end

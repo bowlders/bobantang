@@ -13,7 +13,9 @@
 		391F324C1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F324B1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m */; };
 		392A0DE41BE63F37001F7D45 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 392A0DE31BE63F37001F7D45 /* Images.xcassets */; };
 		393E3EBD1BF234210045DE6E /* BBTGoSegmentedControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 393E3EBC1BF234210045DE6E /* BBTGoSegmentedControlViewController.m */; };
-		393E3EC41BF4C81F0045DE6E /* Go.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 393E3EC31BF4C81F0045DE6E /* Go.storyboard */; };
+		395B10C71C55252600772A38 /* Go.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395B10C61C55252600772A38 /* Go.storyboard */; };
+		395B10CD1C5525CD00772A38 /* BBTDailyArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395B10CC1C5525CD00772A38 /* BBTDailyArticleViewController.m */; };
+		395B10D31C55271B00772A38 /* BBTCampusInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395B10D21C55271B00772A38 /* BBTCampusInfoTableViewController.m */; };
 		3974452B1C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3974452A1C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.m */; };
 		397445671C0A8D78004B89BA /* BBTCampusInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 397445661C0A8D78004B89BA /* BBTCampusInfo.m */; };
 		3974456A1C0A8E75004B89BA /* BBTCampusInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 397445691C0A8E75004B89BA /* BBTCampusInfoManager.m */; };
@@ -103,7 +105,11 @@
 		392A0DE31BE63F37001F7D45 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		393E3EBB1BF234210045DE6E /* BBTGoSegmentedControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTGoSegmentedControlViewController.h; sourceTree = "<group>"; };
 		393E3EBC1BF234210045DE6E /* BBTGoSegmentedControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTGoSegmentedControlViewController.m; sourceTree = "<group>"; };
-		393E3EC31BF4C81F0045DE6E /* Go.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Go.storyboard; sourceTree = "<group>"; };
+		395B10C61C55252600772A38 /* Go.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Go.storyboard; sourceTree = "<group>"; };
+		395B10CB1C5525CD00772A38 /* BBTDailyArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTDailyArticleViewController.h; sourceTree = "<group>"; };
+		395B10CC1C5525CD00772A38 /* BBTDailyArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTDailyArticleViewController.m; sourceTree = "<group>"; };
+		395B10D11C55271B00772A38 /* BBTCampusInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusInfoTableViewController.h; sourceTree = "<group>"; };
+		395B10D21C55271B00772A38 /* BBTCampusInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCampusInfoTableViewController.m; sourceTree = "<group>"; };
 		397445291C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSpecRailway2TableViewCell.h; sourceTree = "<group>"; };
 		3974452A1C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSpecRailway2TableViewCell.m; sourceTree = "<group>"; };
 		397445651C0A8D78004B89BA /* BBTCampusInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusInfo.h; sourceTree = "<group>"; };
@@ -372,6 +378,8 @@
 			children = (
 				39B595411C0AF0500015B673 /* BBTCampusInfoViewController.h */,
 				39B595421C0AF0500015B673 /* BBTCampusInfoViewController.m */,
+				395B10D11C55271B00772A38 /* BBTCampusInfoTableViewController.h */,
+				395B10D21C55271B00772A38 /* BBTCampusInfoTableViewController.m */,
 			);
 			name = CampusInfo;
 			sourceTree = "<group>";
@@ -381,6 +389,8 @@
 			children = (
 				39B5953E1C0AF0400015B673 /* BBTDailyArticleTableViewController.h */,
 				39B5953F1C0AF0400015B673 /* BBTDailyArticleTableViewController.m */,
+				395B10CB1C5525CD00772A38 /* BBTDailyArticleViewController.h */,
+				395B10CC1C5525CD00772A38 /* BBTDailyArticleViewController.m */,
 			);
 			name = DailyArticle;
 			sourceTree = "<group>";
@@ -414,7 +424,7 @@
 				FCD0A26B1C00060F0024D78F /* Tools */,
 				398231BD1BD8EE960043E544 /* General */,
 				391F323F1BF7218F004843C3 /* Go */,
-				393E3EC31BF4C81F0045DE6E /* Go.storyboard */,
+				395B10C61C55252600772A38 /* Go.storyboard */,
 				A947D9851BD8DC24000F071B /* Information.storyboard */,
 				A947D9881BD8DC24000F071B /* Tools.storyboard */,
 				398231B51BD8ED230043E544 /* Me.storyboard */,
@@ -841,11 +851,11 @@
 			files = (
 				A947D98D1BD8DC24000F071B /* Tools.storyboard in Resources */,
 				FCD0A2701C00062D0024D78F /* BBTScoresCell.xib in Resources */,
+				395B10C71C55252600772A38 /* Go.storyboard in Resources */,
 				A947D98A1BD8DC24000F071B /* Information.storyboard in Resources */,
 				FC69A3F81C035E81000EF949 /* BBTPickerView.xib in Resources */,
 				392A0DE41BE63F37001F7D45 /* Images.xcassets in Resources */,
 				398231B61BD8ED230043E544 /* Me.storyboard in Resources */,
-				393E3EC41BF4C81F0045DE6E /* Go.storyboard in Resources */,
 				A947D9291BD8DADA000F071B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -961,6 +971,7 @@
 				FCD0A26F1C00062D0024D78F /* BBTScoresCell.m in Sources */,
 				A947D9BE1BD8DC34000F071B /* BBTToolsViewController.m in Sources */,
 				FC69A3FB1C035F35000EF949 /* BBTPickerView.m in Sources */,
+				395B10CD1C5525CD00772A38 /* BBTDailyArticleViewController.m in Sources */,
 				FCD0A2751C0006940024D78F /* BBTLectureRooms.m in Sources */,
 				A947D9B61BD8DC34000F071B /* BBTMainViewController.m in Sources */,
 				A947D9BA1BD8DC34000F071B /* BBTPreferences.m in Sources */,
@@ -971,6 +982,7 @@
 				FCD0A27D1C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.m in Sources */,
 				A947D9B11BD8DC34000F071B /* BBTBusRouteView.m in Sources */,
 				A947D9651BD8DBEA000F071B /* KGModal.m in Sources */,
+				395B10D31C55271B00772A38 /* BBTCampusInfoTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1102,7 +1114,7 @@
 			baseConfigurationReference = DAAC1D9BE8366224C1757CE5 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -1176,7 +1188,7 @@
 			baseConfigurationReference = 48D6888DD2A267EA93C8D8BC /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;

@@ -1,25 +1,22 @@
 //
-//  BBTCampusInfoTableViewController.m
+//  BBTCampusInfoTableTableViewController.m
 //  BoBanTang
 //
 //  Created by Caesar on 16/1/24.
 //  Copyright © 2016年 100steps. All rights reserved.
 //
 
-#import "BBTCampusInfoTableViewController.h"
-#import "BBTCampusInfoManager.h"
+#import "BBTCampusInfoTableTableViewController.h"
 
-@interface BBTCampusInfoTableViewController ()
+@interface BBTCampusInfoTableTableViewController ()
 
 @end
 
-@implementation BBTCampusInfoTableViewController
+@implementation BBTCampusInfoTableTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [BBTCampusInfoManager sharedInfoManager];
-    [[BBTCampusInfoManager sharedInfoManager] retriveData:@""];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
