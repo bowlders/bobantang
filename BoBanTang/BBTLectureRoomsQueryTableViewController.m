@@ -185,17 +185,17 @@ static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php"
 - (void)performGetEmptyRooms
 {
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
     NSDictionary *parameters = @{@"table":@"emptyroom",
                                  @"method":@"get"};
     
-    [manager POST:emptyRoomURL parameters:parameters success:^(AFHTTPRequestOperation * operation, NSArray *responseObject) {
+    [manager POST:emptyRoomURL parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSLog(@" %lu", (unsigned long)[responseObject count]);
         _hudView = [BBTHudView removeHudInView:self.navigationController.view withHudView:_hudView];
         [self parse:responseObject];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
         _hudView = [BBTHudView removeHudInView:self.navigationController.view withHudView:_hudView];
         [self showAlert];

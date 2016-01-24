@@ -14,6 +14,8 @@
 		392A0DE41BE63F37001F7D45 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 392A0DE31BE63F37001F7D45 /* Images.xcassets */; };
 		393E3EBD1BF234210045DE6E /* BBTGoSegmentedControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 393E3EBC1BF234210045DE6E /* BBTGoSegmentedControlViewController.m */; };
 		393E3EC41BF4C81F0045DE6E /* Go.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 393E3EC31BF4C81F0045DE6E /* Go.storyboard */; };
+		395B10C21C54CC3800772A38 /* BBTCampusInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395B10C11C54CC3800772A38 /* BBTCampusInfoViewController.m */; };
+		395B10C51C551A4F00772A38 /* BBTDailyArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395B10C41C551A4F00772A38 /* BBTDailyArticleViewController.m */; };
 		3974452B1C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3974452A1C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.m */; };
 		397445671C0A8D78004B89BA /* BBTCampusInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 397445661C0A8D78004B89BA /* BBTCampusInfo.m */; };
 		3974456A1C0A8E75004B89BA /* BBTCampusInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 397445691C0A8E75004B89BA /* BBTCampusInfoManager.m */; };
@@ -21,7 +23,7 @@
 		398231B61BD8ED230043E544 /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 398231B51BD8ED230043E544 /* Me.storyboard */; };
 		39B5953D1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B5953C1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m */; };
 		39B595401C0AF0400015B673 /* BBTDailyArticleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B5953F1C0AF0400015B673 /* BBTDailyArticleTableViewController.m */; };
-		39B595431C0AF0500015B673 /* BBTCampusInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B595421C0AF0500015B673 /* BBTCampusInfoViewController.m */; };
+		39B595431C0AF0500015B673 /* BBTCampusInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B595421C0AF0500015B673 /* BBTCampusInfoTableViewController.m */; };
 		99BCEEF76C0A51F53BF45309 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA2627D2286FFB656F82101 /* libPods.a */; };
 		A947D9291BD8DADA000F071B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A947D9271BD8DADA000F071B /* Main.storyboard */; };
 		A947D92C1BD8DADA000F071B /* BoBanTang.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A947D92A1BD8DADA000F071B /* BoBanTang.xcdatamodeld */; };
@@ -104,6 +106,10 @@
 		393E3EBB1BF234210045DE6E /* BBTGoSegmentedControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTGoSegmentedControlViewController.h; sourceTree = "<group>"; };
 		393E3EBC1BF234210045DE6E /* BBTGoSegmentedControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTGoSegmentedControlViewController.m; sourceTree = "<group>"; };
 		393E3EC31BF4C81F0045DE6E /* Go.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Go.storyboard; sourceTree = "<group>"; };
+		395B10C01C54CC3800772A38 /* BBTCampusInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusInfoViewController.h; sourceTree = "<group>"; };
+		395B10C11C54CC3800772A38 /* BBTCampusInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCampusInfoViewController.m; sourceTree = "<group>"; };
+		395B10C31C551A4F00772A38 /* BBTDailyArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTDailyArticleViewController.h; sourceTree = "<group>"; };
+		395B10C41C551A4F00772A38 /* BBTDailyArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTDailyArticleViewController.m; sourceTree = "<group>"; };
 		397445291C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSpecRailway2TableViewCell.h; sourceTree = "<group>"; };
 		3974452A1C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSpecRailway2TableViewCell.m; sourceTree = "<group>"; };
 		397445651C0A8D78004B89BA /* BBTCampusInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusInfo.h; sourceTree = "<group>"; };
@@ -117,8 +123,8 @@
 		39B5953C1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTInfoSegmentedControllerViewController.m; sourceTree = "<group>"; };
 		39B5953E1C0AF0400015B673 /* BBTDailyArticleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTDailyArticleTableViewController.h; sourceTree = "<group>"; };
 		39B5953F1C0AF0400015B673 /* BBTDailyArticleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTDailyArticleTableViewController.m; sourceTree = "<group>"; };
-		39B595411C0AF0500015B673 /* BBTCampusInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusInfoViewController.h; sourceTree = "<group>"; };
-		39B595421C0AF0500015B673 /* BBTCampusInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCampusInfoViewController.m; sourceTree = "<group>"; };
+		39B595411C0AF0500015B673 /* BBTCampusInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusInfoTableViewController.h; sourceTree = "<group>"; };
+		39B595421C0AF0500015B673 /* BBTCampusInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCampusInfoTableViewController.m; sourceTree = "<group>"; };
 		39B595441C0AF9D90015B673 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		48D6888DD2A267EA93C8D8BC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A947D91B1BD8DADA000F071B /* BoBanTang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoBanTang.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -263,7 +269,6 @@
 				391F32441BFDC66B004843C3 /* BBTSpecRailway2Bus.h */,
 				391F32451BFDC66B004843C3 /* BBTSpecRailway2Bus.m */,
 				391F32471BFDD42B004843C3 /* BBTSpecRailway2BusManager.h */,
-				A947D96D1BD8DC0F000F071B /* BBTBusClusterView.h */,
 				391F32481BFDD42B004843C3 /* BBTSpecRailway2BusManager.m */,
 			);
 			name = SpecialRailway2;
@@ -362,8 +367,8 @@
 			children = (
 				39B5953B1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.h */,
 				39B5953C1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m */,
-				397445731C0AE881004B89BA /* DailyArticle */,
 				397445721C0AE87C004B89BA /* CampusInfo */,
+				397445731C0AE881004B89BA /* DailyArticle */,
 			);
 			name = Information;
 			sourceTree = "<group>";
@@ -371,8 +376,10 @@
 		397445721C0AE87C004B89BA /* CampusInfo */ = {
 			isa = PBXGroup;
 			children = (
-				39B595411C0AF0500015B673 /* BBTCampusInfoViewController.h */,
-				39B595421C0AF0500015B673 /* BBTCampusInfoViewController.m */,
+				39B595411C0AF0500015B673 /* BBTCampusInfoTableViewController.h */,
+				39B595421C0AF0500015B673 /* BBTCampusInfoTableViewController.m */,
+				395B10C01C54CC3800772A38 /* BBTCampusInfoViewController.h */,
+				395B10C11C54CC3800772A38 /* BBTCampusInfoViewController.m */,
 			);
 			name = CampusInfo;
 			sourceTree = "<group>";
@@ -380,6 +387,8 @@
 		397445731C0AE881004B89BA /* DailyArticle */ = {
 			isa = PBXGroup;
 			children = (
+				395B10C31C551A4F00772A38 /* BBTDailyArticleViewController.h */,
+				395B10C41C551A4F00772A38 /* BBTDailyArticleViewController.m */,
 				39B5953E1C0AF0400015B673 /* BBTDailyArticleTableViewController.h */,
 				39B5953F1C0AF0400015B673 /* BBTDailyArticleTableViewController.m */,
 			);
@@ -446,6 +455,7 @@
 		398231BC1BD8EE8C0043E544 /* CampusBus */ = {
 			isa = PBXGroup;
 			children = (
+				A947D96D1BD8DC0F000F071B /* BBTBusClusterView.h */,
 				A947D9931BD8DC34000F071B /* BBTBusClusterView.m */,
 				A947D96F1BD8DC0F000F071B /* BBTBusRouteView.h */,
 				A947D9951BD8DC34000F071B /* BBTBusRouteView.m */,
@@ -927,6 +937,7 @@
 				A947D9B31BD8DC34000F071B /* BBTBusViewController.m in Sources */,
 				393E3EBD1BF234210045DE6E /* BBTGoSegmentedControlViewController.m in Sources */,
 				A947D92C1BD8DADA000F071B /* BoBanTang.xcdatamodeld in Sources */,
+				395B10C21C54CC3800772A38 /* BBTCampusInfoViewController.m in Sources */,
 				391F32461BFDC66B004843C3 /* BBTSpecRailway2Bus.m in Sources */,
 				3974456A1C0A8E75004B89BA /* BBTCampusInfoManager.m in Sources */,
 				A947D9631BD8DBEA000F071B /* GmailLikeLoadingView.m in Sources */,
@@ -939,7 +950,7 @@
 				39B595401C0AF0400015B673 /* BBTDailyArticleTableViewController.m in Sources */,
 				FCD0A2811C0009F10024D78F /* BBTScores.m in Sources */,
 				397445671C0A8D78004B89BA /* BBTCampusInfo.m in Sources */,
-				39B595431C0AF0500015B673 /* BBTCampusInfoViewController.m in Sources */,
+				39B595431C0AF0500015B673 /* BBTCampusInfoTableViewController.m in Sources */,
 				A947D9661BD8DBEA000F071B /* PAPreferences.m in Sources */,
 				39B5953D1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m in Sources */,
 				A947D9B21BD8DC34000F071B /* BBTBusView.m in Sources */,
@@ -960,6 +971,7 @@
 				A947D9C41BD8DC34000F071B /* UIView+BBTStationInfo.m in Sources */,
 				FCD0A26F1C00062D0024D78F /* BBTScoresCell.m in Sources */,
 				A947D9BE1BD8DC34000F071B /* BBTToolsViewController.m in Sources */,
+				395B10C51C551A4F00772A38 /* BBTDailyArticleViewController.m in Sources */,
 				FC69A3FB1C035F35000EF949 /* BBTPickerView.m in Sources */,
 				FCD0A2751C0006940024D78F /* BBTLectureRooms.m in Sources */,
 				A947D9B61BD8DC34000F071B /* BBTMainViewController.m in Sources */,

@@ -93,9 +93,10 @@ static float dataRequestInterval = 5.0;                                         
     self.directionNorthBuses = [NSMutableArray array];
     
     //Retrive buses whose direction is south
-    AFHTTPRequestOperationManager *southManager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *southManager = [AFHTTPSessionManager manager];
     southManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [southManager GET:directionSouthURLString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [southManager POST:directionSouthURLString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+        //NSLog(@"JSON: %@", responseObject);
         if ([responseObject currentSpecRailwayBusArray])
         {
             for (int i = 0;i < [[responseObject currentSpecRailwayBusArray] count];i++)
@@ -107,14 +108,15 @@ static float dataRequestInterval = 5.0;                                         
             }
             [self postBusDataNotification];
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
     
     //Retrive buses whose direction is north
-    AFHTTPRequestOperationManager *northManager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *northManager = [AFHTTPSessionManager manager];
     northManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [northManager GET:directionNorthURLString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [northManager POST:directionNorthURLString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+        //NSLog(@"JSON: %@", responseObject);
         if ([responseObject currentSpecRailwayBusArray])
         {
             for (int i = 0;i < [[responseObject currentSpecRailwayBusArray] count];i++)
@@ -124,7 +126,7 @@ static float dataRequestInterval = 5.0;                                         
             }
             [self postBusDataNotification];
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
 }

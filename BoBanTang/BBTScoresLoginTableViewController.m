@@ -103,21 +103,17 @@ static NSString *checkAutenticationURL = @"http://218.192.166.167/api/jw2005/che
     self.userInfo.account = self.studentsNumber.text;
     self.userInfo.password = self.passwordToJW.text;
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"account":self.studentsNumber.text,
                                  @"password":self.passwordToJW.text};
-    [manager POST:checkAutenticationURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject){
+    [manager POST:checkAutenticationURL parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
-        
         _hudView = [BBTHudView removeHudInView:self.navigationController.view withHudView:_hudView];
         
         [self parseDictionary:responseObject];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
-        
-        _hudView = [BBTHudView removeHudInView:self.navigationController.view withHudView:_hudView];
-        
         [self showAlert:@"3"];
     }];
 }
