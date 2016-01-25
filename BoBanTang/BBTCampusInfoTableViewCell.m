@@ -6,10 +6,11 @@
 //  Copyright © 2015年 100steps. All rights reserved.
 //
 
-#import "BBTCampusInfoCellTableViewCell.h"
+#import "BBTCampusInfoTableViewCell.h"
 #import <Masonry.h>
+#import <UIImageView+WebCache.h>
 
-@interface BBTCampusInfoCellTableViewCell ()
+@interface BBTCampusInfoTableViewCell ()
 
 @property (strong, nonatomic) UILabel       *       titleLabel;
 @property (strong, nonatomic) UILabel       *       authorLabel;
@@ -21,7 +22,7 @@
 
 @end
 
-@implementation BBTCampusInfoCellTableViewCell
+@implementation BBTCampusInfoTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -29,7 +30,6 @@
     
     if (self)
     {
-        
         self.titleLabel = ({
             UILabel * label = [UILabel new];
             label.translatesAutoresizingMaskIntoConstraints = NO;
@@ -84,7 +84,12 @@
         [self.contentView addSubview:self.dateLabel];
         [self.contentView addSubview:self.thumbImage];
         
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.titleLabel.numberOfLines = 2;
+        [self.titleLabel setLineBreakMode:NSLineBreakByTruncatingTail];
+        [self.authorLabel setLineBreakMode:NSLineBreakByTruncatingTail];
+        [self.abstractLabel setLineBreakMode:NSLineBreakByTruncatingTail];
+        
+        //self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     return self;
@@ -102,30 +107,28 @@
 {
     if (!self.didSetupConstraints)
     {
-        static const CGFloat topOffset = 5.0;
-        static const CGFloat bottomOffset = 5.0;
-        static const CGFloat imageLeftOffset = 3.0;
-        static const CGFloat horizontalInnerSpacing = 5.0;
-        static const CGFloat verticalInnerSpacing = 3.0;
-        static const CGFloat rightOffset = 3.0;
+        static const CGFloat topOffset = 5.0f;
+        static const CGFloat bottomOffset = 5.0f;
+        static const CGFloat imageLeftOffset = 5.0f;
+        static const CGFloat horizontalInnerSpacing = 3.0f;
+        static const CGFloat verticalInnerSpacing = 3.0f;
+        static const CGFloat rightOffset = 5.0f;
         
         [self.contentView mas_makeConstraints:^(MASConstraintMaker *make){
             make.size.equalTo(self);
             make.center.equalTo(self);
         }];
-        
+
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make){
             make.top.equalTo(self.contentView.mas_top).offset(topOffset);
-            make.bottom.equalTo(self.abstractLabel.mas_top).offset(-verticalInnerSpacing);
-            make.left.equalTo(self.thumbImage.mas_right).offset(horizontalInnerSpacing);
+            make.bottom.equalTo(self.thumbImage.mas_top).offset(-verticalInnerSpacing);
+            make.left.equalTo(self.contentView).offset(imageLeftOffset);
             make.right.equalTo(self.contentView.mas_right).offset(-rightOffset);
         }];
         
         [self.authorLabel mas_makeConstraints:^(MASConstraintMaker *make){
-            make.top.equalTo(self.abstractLabel.mas_bottom).offset(verticalInnerSpacing);
             make.bottom.equalTo(self.contentView.mas_bottom).offset(-bottomOffset);
-            make.left.equalTo(self.thumbImage.mas_right).offset(horizontalInnerSpacing);
-            make.width.equalTo(self.abstractLabel.mas_width).multipliedBy(0.5);
+            make.right.equalTo(self.contentView.mas_right).offset(-rightOffset);
         }];
         
         [self.abstractLabel mas_makeConstraints:^(MASConstraintMaker *make){
@@ -138,20 +141,28 @@
         [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make){
             make.top.equalTo(self.abstractLabel.mas_bottom).offset(verticalInnerSpacing);
             make.bottom.equalTo(self.contentView.mas_bottom).offset(-bottomOffset);
-            make.right.equalTo(self.contentView.mas_right).offset(-rightOffset);
-            make.width.equalTo(self.abstractLabel.mas_width).multipliedBy(0.5);
+            make.right.equalTo(self.authorLabel.mas_left).offset(-rightOffset);
         }];
-        
+                
         [self.thumbImage mas_makeConstraints:^(MASConstraintMaker *make){
-            make.top.equalTo(self.contentView.mas_top).offset(topOffset);
-            make.bottom.equalTo(self.contentView.mas_bottom).offset(-bottomOffset);
             make.left.equalTo(self.contentView.mas_left).offset(imageLeftOffset);
-            make.right.equalTo(self.abstractLabel.mas_left).offset(-horizontalInnerSpacing);
+            make.bottom.equalTo(self.contentView.mas_bottom).offset(-bottomOffset);
+            make.width.equalTo(@(60.f));
+            make.height.equalTo(@(60.f));
         }];
-        
+
         self.didSetupConstraints = YES;
     }
     [super updateConstraints];
+}
+
+- (void)setCellContentDictionary:(NSDictionary *)content
+{
+    self.titleLabel.text = content[@"title"];
+    self.authorLabel.text = content[@"author"];
+    self.abstractLabel.text = content[@"summary"];
+    self.dateLabel.text = content[@"date"];
+    [self.thumbImage sd_setImageWithURL:content[@"picture"] placeholderImage:[UIImage imageNamed:@"violetBell"]];
 }
 
 - (void)awakeFromNib {

@@ -34,8 +34,8 @@ NSString * busDataNotificationName = @"specBusNotification";
     
     self.tableView.frame = tableViewRect;
 
-    NSLog(@"originY - %f",tableViewRect.origin.y);
-    NSLog(@"height - %f",CGRectGetHeight(tableViewRect));
+    //NSLog(@"originY - %f",tableViewRect.origin.y);
+    //NSLog(@"height - %f",CGRectGetHeight(tableViewRect));
     
     //Add self to bus data notification
     [[NSNotificationCenter defaultCenter] addObserver:self

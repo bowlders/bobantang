@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BBTCampusInfoCellTableViewCell : UITableViewCell
+@interface BBTCampusInfoTableViewCell : UITableViewCell
+
+- (void)setCellContentDictionary : (NSDictionary *)content;
 
 @end

@@ -8,6 +8,8 @@
 
 #import "BBTCampusInfoTableViewController.h"
 #import "BBTCampusInfoManager.h"
+#import "BBTCampusInfoTableViewCell.h"
+#import <UIImageView+WebCache.h>
 
 @interface BBTCampusInfoTableViewController ()
 
@@ -15,44 +17,66 @@
 
 @implementation BBTCampusInfoTableViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    [BBTCampusInfoManager sharedInfoManager];
-    [[BBTCampusInfoManager sharedInfoManager] retriveData:@""];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+extern NSString * campusInfoNotificationName;
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveCampusInfoNotification) name:campusInfoNotificationName object:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    self.automaticallyAdjustsScrollViewInsets = YES;
+    //Retrive all campus infos
+    [[BBTCampusInfoManager sharedInfoManager] retriveData:@""];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return [[BBTCampusInfoManager sharedInfoManager].infoArray count];
 }
 
-/*
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100.0f;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    NSString *cellIdentifier = @"infoCell";
+    BBTCampusInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    // Configure the cell...
+    if (!cell)
+    {
+        cell = [[BBTCampusInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    NSArray *infoArray = [BBTCampusInfoManager sharedInfoManager].infoArray;
+    
+    [cell setCellContentDictionary:infoArray[indexPath.row]];
+    
+    [cell setNeedsUpdateConstraints];
+    [cell updateConstraintsIfNeeded];
     
     return cell;
 }
-*/
+
+- (void)didReceiveCampusInfoNotification
+{
+    NSLog(@"Did receive campus info notification");
+    [self.tableView reloadData];
+}
 
 /*
 // Override to support conditional editing of the table view.

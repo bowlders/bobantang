@@ -29,9 +29,15 @@ PODS:
     - AVOSCloud
   - Masonry (0.6.4)
   - pop (1.0.8)
+  - PureLayout (3.0.1)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
   - SZTextView (1.2.1)
   - TSMessages (0.9.12):
     - HexColors (~> 2.2.0)
+  - UIActivityIndicator-for-SDWebImage (1.2):
+    - SDWebImage (~> 3.7)
   - VBFPopFlatButton (0.0.6):
     - pop
 
@@ -48,8 +54,11 @@ DEPENDENCIES:
   - JSONModel
   - LeanCloudFeedback
   - Masonry
+  - PureLayout
+  - SDWebImage (~> 3.7)
   - SZTextView
   - TSMessages
+  - UIActivityIndicator-for-SDWebImage
   - VBFPopFlatButton
 
 SPEC CHECKSUMS:
@@ -67,8 +76,11 @@ SPEC CHECKSUMS:
   LeanCloudFeedback: 011993aef4d90ad52279339f607a0850787493dc
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
+  PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SZTextView: 906df45afd3c1b24fc5252088d5ef8061513c238
   TSMessages: c8cc7b80f2a833af533872cd02010cac061532cc
+  UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
   VBFPopFlatButton: 782344da63f104c279a857d806e065117a7e1196
 
 COCOAPODS: 0.39.0

@@ -10,8 +10,9 @@
 #import <AFNetworking.h>
 #import "BBTCampusInfo.h"
 
-static NSString * getUrl = @"http://218.192.166.167/api/protype.php?table=schoolInformation&method=get";                                     //Url used to get data
-static NSString * insertUrl = @"";                                  //Url used to insert data
+static NSString * baseGetCampusInfoUrl = @"http://218.192.166.167/api/protype.php?table=schoolInformation&method=get";                                          //Url used to get data
+static NSString * baseInsertCampusInfoUrl = @"";                                  //Url used to insert data
+NSString * campusInfoNotificationName = @"infoNotification";
 
 @implementation BBTCampusInfoManager
 
@@ -30,7 +31,7 @@ static NSString * insertUrl = @"";                                  //Url used t
     self.infoArray = [NSMutableArray array];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSString *url = [getUrl stringByAppendingString:appendingUrl];
+    NSString *url = [baseGetCampusInfoUrl stringByAppendingString:appendingUrl];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     [manager GET:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         //NSLog(@"JSON: %@", responseObject);
@@ -40,12 +41,18 @@ static NSString * insertUrl = @"";                                  //Url used t
             {
                 BBTCampusInfo *newInfo = ((NSArray *)responseObject)[i];
                 [[[BBTCampusInfoManager sharedInfoManager] infoArray] insertObject:newInfo atIndex:i];
-                NSLog(@"%d - %@", i, [[BBTCampusInfoManager sharedInfoManager] infoArray][i]);
+                //NSLog(@"%d - %@", i, [[BBTCampusInfoManager sharedInfoManager] infoArray][i]);
             }
+            [self pushCampusInfoNotification];
         }
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
+}
+
+-(void)pushCampusInfoNotification
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:campusInfoNotificationName object:self];
 }
 
 - (void)addReadNumber:(NSUInteger)infoID

@@ -102,8 +102,8 @@ static float dataRequestInterval = 5.0;                                         
             for (int i = 0;i < [[responseObject currentSpecRailwayBusArray] count];i++)
             {
                 BBTSpecRailway2Bus *currentBus = [[BBTSpecRailway2Bus alloc] initWithDictionary:[responseObject currentSpecRailwayBusArray][i] error:nil];
-                NSLog(@"%@",[responseObject currentSpecRailwayBusArray][i]);
-                NSLog(@"busIndex - %lu", (unsigned long)currentBus.stationSeq);
+                //NSLog(@"%@",[responseObject currentSpecRailwayBusArray][i]);
+                //NSLog(@"busIndex - %lu", (unsigned long)currentBus.stationSeq);
                 [self.directionSouthBuses addObject:currentBus];
             }
             [self postBusDataNotification];
