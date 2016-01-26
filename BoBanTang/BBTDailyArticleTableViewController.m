@@ -26,7 +26,7 @@ extern NSString * dailyArticleNotificationName;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.automaticallyAdjustsScrollViewInsets = YES;
+    self.automaticallyAdjustsScrollViewInsets = NO;
 
     [[BBTDailyArticleManager sharedArticleManager] retriveData:@""];
     // Uncomment the following line to preserve selection between presentations.

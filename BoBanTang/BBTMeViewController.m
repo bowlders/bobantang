@@ -27,6 +27,9 @@ static const NSInteger kBBTOtherSectionRowCount   = 2;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIBarButtonItem * shareButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
+    self.navigationItem.rightBarButtonItem = shareButton;
+
     //Lean Cloud Settings
     AVObject *testObject = [AVObject objectWithClassName:@"TestObject"];
     [testObject setObject:@"bar" forKey:@"foo"];

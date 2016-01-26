@@ -169,7 +169,7 @@
     self.authorLabel.text = content[@"author"];
     self.abstractLabel.text = content[@"summary"];
     self.dateLabel.text = content[@"date"];
-    [self.thumbImage sd_setImageWithURL:content[@"picture"] placeholderImage:[UIImage imageNamed:@"violetBell"]];
+    [self.thumbImage sd_setImageWithURL:content[@"picture"] placeholderImage:[UIImage imageNamed:@"trashcanButton"]];
 }
 
 - (void)awakeFromNib {

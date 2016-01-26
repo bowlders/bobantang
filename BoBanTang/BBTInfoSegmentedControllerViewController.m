@@ -8,7 +8,7 @@
 
 #import "BBTInfoSegmentedControllerViewController.h"
 #import "BBTCampusInfoTableViewController.h"
-#import "BBTDailyArticleTableViewController.h"
+#import "BBTDailyArticleViewController.h"
 #import "UIColor+BBTColor.h"
 #import <HMSegmentedControl.h>
 #import <Masonry.h>
@@ -29,27 +29,8 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    /*
-    //Add segmented Controller
-    self.segmentedControl = [[UISegmentedControl alloc] initWithSectionTitles:@[@"校内资讯", @"每日一文"]];
-    CGFloat navigationBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
-    CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
-    CGFloat segmentedControlHeight = 44.0;
-    CGFloat segmentedControlY = navigationBarHeight + statusBarHeight;
-    CGFloat segmentedControlWidth = CGRectGetWidth(self.view.frame);
-    CGRect segmentedFrame = CGRectMake(0.0, segmentedControlY, segmentedControlWidth, segmentedControlHeight);
-    self.segmentedControl.frame = segmentedFrame;
-    self.segmentedControl.backgroundColor = [UIColor clearColor];
-    self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
-    self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-    self.segmentedControl.selectionIndicatorColor = [UIColor BBTInfoSegmentedControlIndicatorBlue];
-    [self.segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
-
-    [self.view addSubview:self.segmentedControl];
-     */
-    
     BBTCampusInfoTableViewController * campusInfoVC = [[BBTCampusInfoTableViewController alloc] init];
-    BBTDailyArticleTableViewController * dailyArticleVC = [[BBTDailyArticleTableViewController alloc] init];
+    BBTDailyArticleViewController * dailyArticleVC = [[BBTDailyArticleViewController alloc] init];
     
     self.contentViewControllers = @[
                                     campusInfoVC,

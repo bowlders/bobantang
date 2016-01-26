@@ -50,6 +50,7 @@ NSString * busDataNotificationName = @"specBusNotification";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.automaticallyAdjustsScrollViewInsets = NO;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
