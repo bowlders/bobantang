@@ -27,7 +27,8 @@ extern NSString * campusInfoNotificationName;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.automaticallyAdjustsScrollViewInsets = YES;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    //self.tableView.contentInset = UIEdgeInsetsZero;
     //Retrive all campus infos
     [[BBTCampusInfoManager sharedInfoManager] retriveData:@""];
 }
@@ -50,7 +51,7 @@ extern NSString * campusInfoNotificationName;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100.0f;
+    return 140.0f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

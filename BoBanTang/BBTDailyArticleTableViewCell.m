@@ -1,29 +1,27 @@
 //
-//  BBTCampusInfoCellTableViewCell.m
+//  BBTDailyArticleTableViewCell.m
 //  BoBanTang
 //
-//  Created by Caesar on 15/11/29.
-//  Copyright © 2015年 100steps. All rights reserved.
+//  Created by Caesar on 16/1/26.
+//  Copyright © 2016年 100steps. All rights reserved.
 //
 
-#import "BBTCampusInfoTableViewCell.h"
+#import "BBTDailyArticleTableViewCell.h"
 #import "UIFont+BBTFont.h"
 #import <Masonry.h>
-#import <UIImageView+WebCache.h>
 
-@interface BBTCampusInfoTableViewCell ()
+@interface BBTDailyArticleTableViewCell ()
 
-@property (strong, nonatomic) UILabel       *       titleLabel;
-@property (strong, nonatomic) UILabel       *       authorLabel;
-@property (strong, nonatomic) UILabel       *       abstractLabel;
-@property (strong, nonatomic) UILabel       *       dateLabel;
-@property (strong, nonatomic) UIImageView   *       thumbImage;
+@property (strong, nonatomic) UILabel * titleLabel;
+@property (strong, nonatomic) UILabel * abstractLabel;
+@property (strong, nonatomic) UILabel * dateLabel;
+@property (strong, nonatomic) UILabel * authorLabel;
 
 @property (nonatomic) BOOL didSetupConstraints;
 
 @end
 
-@implementation BBTCampusInfoTableViewCell
+@implementation BBTDailyArticleTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -70,20 +68,11 @@
             label.adjustsFontSizeToFitWidth = YES;
             label;
         });
-        
-        self.thumbImage = ({
-            UIImageView * imageView = [UIImageView new];
-            imageView.translatesAutoresizingMaskIntoConstraints = NO;
-            imageView.contentMode = UIViewContentModeScaleAspectFill;
-            imageView.clipsToBounds = YES;
-            imageView;
-        });
-        
+                
         [self.contentView addSubview:self.titleLabel];
         [self.contentView addSubview:self.authorLabel];
         [self.contentView addSubview:self.abstractLabel];
         [self.contentView addSubview:self.dateLabel];
-        [self.contentView addSubview:self.thumbImage];
         
         self.titleLabel.font = [UIFont BBTInformationTableViewTitleFont];
         self.abstractLabel.font = [UIFont BBTInformationTableViewAbstractFont];
@@ -96,7 +85,7 @@
         [self.titleLabel setLineBreakMode:NSLineBreakByTruncatingTail];
         [self.authorLabel setLineBreakMode:NSLineBreakByTruncatingTail];
         [self.abstractLabel setLineBreakMode:NSLineBreakByTruncatingTail];
-    
+        
     }
     
     return self;
@@ -125,10 +114,10 @@
             make.size.equalTo(self);
             make.center.equalTo(self);
         }];
-
+        
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make){
             make.top.equalTo(self.contentView.mas_top).offset(topOffset);
-            make.bottom.equalTo(self.thumbImage.mas_top).offset(-verticalInnerSpacing);
+            make.bottom.equalTo(self.abstractLabel.mas_top).offset(verticalInnerSpacing);
             make.left.equalTo(self.contentView).offset(imageLeftOffset);
             make.right.equalTo(self.contentView.mas_right).offset(-rightOffset);
         }];
@@ -141,7 +130,7 @@
         [self.abstractLabel mas_makeConstraints:^(MASConstraintMaker *make){
             make.top.equalTo(self.titleLabel.mas_bottom).offset(verticalInnerSpacing);
             make.bottom.equalTo(self.authorLabel.mas_top).offset(-verticalInnerSpacing);
-            make.left.equalTo(self.thumbImage.mas_right).offset(horizontalInnerSpacing);
+            make.left.equalTo(self.titleLabel.mas_left);
             make.right.equalTo(self.contentView.mas_right).offset(-rightOffset);
         }];
         
@@ -150,14 +139,7 @@
             make.bottom.equalTo(self.contentView.mas_bottom).offset(-bottomOffset);
             make.right.equalTo(self.authorLabel.mas_left).offset(-horizontalInnerSpacing);
         }];
-                
-        [self.thumbImage mas_makeConstraints:^(MASConstraintMaker *make){
-            make.left.equalTo(self.contentView.mas_left).offset(imageLeftOffset);
-            make.bottom.equalTo(self.contentView.mas_bottom).offset(-bottomOffset);
-            make.width.equalTo(@(80.f));
-            make.height.equalTo(@(80.f));
-        }];
-
+        
         self.didSetupConstraints = YES;
     }
     [super updateConstraints];
@@ -167,19 +149,8 @@
 {
     self.titleLabel.text = content[@"title"];
     self.authorLabel.text = content[@"author"];
-    self.abstractLabel.text = content[@"summary"];
+    self.abstractLabel.text = content[@"article"];
     self.dateLabel.text = content[@"date"];
-    [self.thumbImage sd_setImageWithURL:content[@"picture"] placeholderImage:[UIImage imageNamed:@"violetBell"]];
-}
-
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "BBTDailyArticleTableViewController.h"
+#import "BBTDailyArticleManager.h"
+#import "BBTDailyArticleTableViewCell.h"
 
 @interface BBTDailyArticleTableViewController ()
 
@@ -14,9 +16,19 @@
 
 @implementation BBTDailyArticleTableViewController
 
+extern NSString * dailyArticleNotificationName;
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDailyArticleNotification) name:dailyArticleNotificationName object:nil];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.automaticallyAdjustsScrollViewInsets = YES;
+
+    [[BBTDailyArticleManager sharedArticleManager] retriveData:@""];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -24,32 +36,52 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)didReceiveDailyArticleNotification
+{
+    NSLog(@"Did receive daily article notification");
+    [self.tableView reloadData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80.0f;
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return [[BBTDailyArticleManager sharedArticleManager].articleArray count];
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    NSString *cellIdentifier = @"articleCell";
+    BBTDailyArticleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    // Configure the cell...
+    if (!cell)
+    {
+        cell = [[BBTDailyArticleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    NSArray *infoArray = [BBTDailyArticleManager sharedArticleManager].articleArray;
+    
+    [cell setCellContentDictionary:infoArray[indexPath.row]];
+    
+    [cell setNeedsUpdateConstraints];
+    [cell updateConstraintsIfNeeded];
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
