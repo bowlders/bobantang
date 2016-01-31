@@ -33,14 +33,14 @@ NSString * campusInfoNotificationName = @"infoNotification";
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSString *url = [baseGetCampusInfoUrl stringByAppendingString:appendingUrl];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [manager GET:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+    [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         //NSLog(@"JSON: %@", responseObject);
         if (responseObject)
         {
             for (int i = 0;i < [(NSArray *)responseObject count];i++)
             {
                 BBTCampusInfo *newInfo = ((NSArray *)responseObject)[i];
-                [[[BBTCampusInfoManager sharedInfoManager] infoArray] insertObject:newInfo atIndex:i];
+                [self.infoArray insertObject:newInfo atIndex:i];
                 //NSLog(@"%d - %@", i, [[BBTCampusInfoManager sharedInfoManager] infoArray][i]);
             }
             [self pushCampusInfoNotification];

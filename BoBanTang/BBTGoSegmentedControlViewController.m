@@ -8,7 +8,8 @@
 
 #import <Masonry.h>
 #import "BBTGoSegmentedControlViewController.h"
-#import "BBTBusViewController.h"
+#import "BBTCampusBusViewController.h"
+#import "BBTCampusBusTableViewController.h"
 #import "BBTSpecialRailwayLineTwoViewController.h"
 
 @interface BBTGoSegmentedControlViewController ()
@@ -27,7 +28,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    BBTBusViewController *campusBusVC = [[BBTBusViewController alloc] init];
+    BBTCampusBusTableViewController *campusBusVC = [[BBTCampusBusTableViewController alloc] init];
     BBTSpecialRailwayLineTwoViewController *specRailVC = [[BBTSpecialRailwayLineTwoViewController alloc] init];
     
     self.contentViewControllers = @[

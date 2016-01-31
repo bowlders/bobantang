@@ -51,7 +51,15 @@ extern NSString * campusInfoNotificationName;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 140.0f;
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
+    CGFloat screenHeight = applicationFrame.size.height;
+    return screenHeight / 4.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
+    return view;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

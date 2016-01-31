@@ -34,8 +34,11 @@
             label.translatesAutoresizingMaskIntoConstraints = NO;
             label.lineBreakMode = NSLineBreakByTruncatingTail;
             label.textAlignment = NSTextAlignmentLeft;
-            label.numberOfLines = 1;
-            label.adjustsFontSizeToFitWidth = YES;
+            label.numberOfLines = 2;
+            label.adjustsFontSizeToFitWidth = NO;
+            label.font = [UIFont BBTInformationTableViewTitleFont];
+            label.lineBreakMode = NSLineBreakByTruncatingTail;
+            label.clipsToBounds = YES;
             label;
         });
         
@@ -43,9 +46,11 @@
             UILabel * label = [UILabel new];
             label.translatesAutoresizingMaskIntoConstraints = NO;
             label.lineBreakMode = NSLineBreakByTruncatingTail;
-            label.textAlignment = NSTextAlignmentLeft;
+            label.textAlignment = NSTextAlignmentRight;
             label.numberOfLines = 1;
-            label.adjustsFontSizeToFitWidth = YES;
+            label.font = [UIFont BBTInformationTableViewAuthorandDateFont];
+            label.lineBreakMode = NSLineBreakByTruncatingTail;
+            label.clipsToBounds = YES;
             label;
         });
         
@@ -54,8 +59,11 @@
             label.translatesAutoresizingMaskIntoConstraints = NO;
             label.lineBreakMode = NSLineBreakByTruncatingTail;
             label.textAlignment = NSTextAlignmentLeft;
-            label.numberOfLines = 1;
-            label.adjustsFontSizeToFitWidth = YES;
+            label.numberOfLines = 3;
+            label.adjustsFontSizeToFitWidth = NO;
+            label.font = [UIFont BBTInformationTableViewAbstractFont];
+            label.lineBreakMode = NSLineBreakByTruncatingTail;
+            label.clipsToBounds = YES;
             label;
         });
         
@@ -65,38 +73,20 @@
             label.lineBreakMode = NSLineBreakByTruncatingTail;
             label.textAlignment = NSTextAlignmentRight;
             label.numberOfLines = 1;
-            label.adjustsFontSizeToFitWidth = YES;
+            label.font = [UIFont BBTInformationTableViewAuthorandDateFont];
+            label.lineBreakMode = NSLineBreakByTruncatingTail;
+            label.clipsToBounds = YES;
             label;
         });
-                
+        
         [self.contentView addSubview:self.titleLabel];
         [self.contentView addSubview:self.authorLabel];
         [self.contentView addSubview:self.abstractLabel];
         [self.contentView addSubview:self.dateLabel];
-        
-        self.titleLabel.font = [UIFont BBTInformationTableViewTitleFont];
-        self.abstractLabel.font = [UIFont BBTInformationTableViewAbstractFont];
-        self.authorLabel.font = [UIFont BBTInformationTableViewAuthorandDateFont];
-        self.dateLabel.font = [UIFont BBTInformationTableViewAuthorandDateFont];
-        self.abstractLabel.adjustsFontSizeToFitWidth = NO;
-        self.titleLabel.adjustsFontSizeToFitWidth = NO;
-        self.titleLabel.numberOfLines = 2;
-        self.abstractLabel.numberOfLines = 3;
-        [self.titleLabel setLineBreakMode:NSLineBreakByTruncatingTail];
-        [self.authorLabel setLineBreakMode:NSLineBreakByTruncatingTail];
-        [self.abstractLabel setLineBreakMode:NSLineBreakByTruncatingTail];
-        
+                
     }
     
     return self;
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    
-    [self.contentView setNeedsLayout];
-    [self.contentView layoutIfNeeded];
 }
 
 - (void)updateConstraints

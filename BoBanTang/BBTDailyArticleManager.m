@@ -33,14 +33,14 @@ NSString * dailyArticleNotificationName = @"articleNotification";
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSString *url = [baseGetDailyArticleUrl stringByAppendingString:appendingUrl];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [manager GET:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+    [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         //NSLog(@"JSON: %@", responseObject);
         if (responseObject)
         {
             for (int i = 0;i < [(NSArray *)responseObject count];i++)
             {
                 BBTDailyArticle *newInfo = ((NSArray *)responseObject)[i];
-                [[[BBTDailyArticleManager sharedArticleManager] articleArray] insertObject:newInfo atIndex:i];
+                [self.articleArray insertObject:newInfo atIndex:i];
                 //NSLog(@"%d - %@", i, [[BBTCampusInfoManager sharedInfoManager] infoArray][i]);
             }
             [self pushDailyArticleNotification];

@@ -35,12 +35,83 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <segue destination="mzG-NW-wg6" kind="show" id="Tcj-g4-g7r"/>
-                        <segue destination="ane-3G-Qqb" kind="show" id="RBL-bU-t22"/>
+                        <segue destination="wJp-z2-T1o" kind="show" id="pQy-W8-6OM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lHz-iH-xqK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="193.5" y="-164.5"/>
+        </scene>
+        <!--Campus Bus Table View Controller-->
+        <scene sceneID="aUv-Lr-gtM">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Lg-0d-Ols" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="maj-ck-OVf" customClass="BBTCampusBusTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bqo-i0-wKd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="campusBusCell" id="cJ5-86-opn">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cJ5-86-opn" id="ipZ-dC-hCg">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="maj-ck-OVf" id="Drs-Da-5rR"/>
+                            <outlet property="delegate" destination="maj-ck-OVf" id="iTj-Vb-uxI"/>
+                        </connections>
+                    </tableView>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="379.5" y="-839.5"/>
+        </scene>
+        <!--Campus Bus View Controller-->
+        <scene sceneID="Jt9-Ub-7y9">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="wJp-z2-T1o" customClass="BBTCampusBusViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OWM-ez-MBL"/>
+                        <viewControllerLayoutGuide type="bottom" id="qaI-hf-3Qv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SMG-BM-RgY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="39" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lJO-ho-LLB">
+                                <rect key="frame" x="0.0" y="63" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="campusBusCell" rowHeight="39" id="ogP-lW-njK">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="39"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ogP-lW-njK" id="9XB-Yw-TYl">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="38.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="wJp-z2-T1o" id="brY-cw-OpJ"/>
+                                    <outlet property="delegate" destination="wJp-z2-T1o" id="tM0-mz-se8"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="tableView" destination="lJO-ho-LLB" id="vHu-kF-5lN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="flM-GL-0gL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="825.5" y="-620.5"/>
         </scene>
         <!--Special Railway Line Two View Controller-->
         <scene sceneID="6jj-RW-P7h">
@@ -91,25 +162,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uII-dM-BnP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-328" y="-164"/>
-        </scene>
-        <!--Bus View Controller-->
-        <scene sceneID="8zx-vl-cn5">
-            <objects>
-                <viewController id="ane-3G-Qqb" customClass="BBTBusViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="LKJ-8K-bIo"/>
-                        <viewControllerLayoutGuide type="bottom" id="LFr-pd-AhE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kBI-66-SIS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e9j-Mn-dqT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="825.5" y="-498.5"/>
         </scene>
     </scenes>
 </document>

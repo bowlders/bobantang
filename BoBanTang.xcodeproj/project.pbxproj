@@ -20,6 +20,7 @@
 		395B10D91C5646ED00772A38 /* BBTDailyArticleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 395B10D81C5646ED00772A38 /* BBTDailyArticleManager.m */; };
 		395B10DC1C5713EF00772A38 /* UIFont+BBTFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 395B10DB1C5713EF00772A38 /* UIFont+BBTFont.m */; };
 		395B10E01C5737AB00772A38 /* BBTDailyArticleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 395B10DF1C5737AB00772A38 /* BBTDailyArticleTableViewCell.m */; };
+		395B10E41C585EA200772A38 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 395B10E31C585EA200772A38 /* UIImageView+UIActivityIndicatorForSDWebImage.m */; };
 		3974452B1C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3974452A1C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.m */; };
 		397445671C0A8D78004B89BA /* BBTCampusInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 397445661C0A8D78004B89BA /* BBTCampusInfo.m */; };
 		3974456A1C0A8E75004B89BA /* BBTCampusInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 397445691C0A8E75004B89BA /* BBTCampusInfoManager.m */; };
@@ -28,6 +29,11 @@
 		39B5953D1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B5953C1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m */; };
 		39B595401C0AF0400015B673 /* BBTDailyArticleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B5953F1C0AF0400015B673 /* BBTDailyArticleTableViewController.m */; };
 		39B595431C0AF0500015B673 /* BBTCampusInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B595421C0AF0500015B673 /* BBTCampusInfoViewController.m */; };
+		39FE91C61C59D6290041E46F /* BBTCampusBusTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91C51C59D6290041E46F /* BBTCampusBusTableViewCell.m */; };
+		39FE91CA1C5A49860041E46F /* BBTCampusBusTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91C91C5A49860041E46F /* BBTCampusBusTableViewController.m */; };
+		39FE91D51C5A54E60041E46F /* BBTCampusBus.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91D41C5A54E60041E46F /* BBTCampusBus.m */; };
+		39FE91D81C5A54F50041E46F /* BBTCampusBusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91D71C5A54F50041E46F /* BBTCampusBusManager.m */; };
+		39FE91DD1C5DAA0F0041E46F /* BBTCampusBusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91DC1C5DAA0F0041E46F /* BBTCampusBusViewController.m */; };
 		99BCEEF76C0A51F53BF45309 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA2627D2286FFB656F82101 /* libPods.a */; };
 		A947D9291BD8DADA000F071B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A947D9271BD8DADA000F071B /* Main.storyboard */; };
 		A947D92C1BD8DADA000F071B /* BoBanTang.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A947D92A1BD8DADA000F071B /* BoBanTang.xcdatamodeld */; };
@@ -43,13 +49,6 @@
 		A947D9AA1BD8DC34000F071B /* BBTAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D98E1BD8DC34000F071B /* BBTAboutViewController.m */; };
 		A947D9AB1BD8DC34000F071B /* BBTAccountManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D98F1BD8DC34000F071B /* BBTAccountManageViewController.m */; };
 		A947D9AC1BD8DC34000F071B /* BBTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9901BD8DC34000F071B /* BBTAppDelegate.m */; };
-		A947D9AE1BD8DC34000F071B /* BBTBus.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9921BD8DC34000F071B /* BBTBus.m */; };
-		A947D9AF1BD8DC34000F071B /* BBTBusClusterView.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9931BD8DC34000F071B /* BBTBusClusterView.m */; };
-		A947D9B01BD8DC34000F071B /* BBTBusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9941BD8DC34000F071B /* BBTBusManager.m */; };
-		A947D9B11BD8DC34000F071B /* BBTBusRouteView.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9951BD8DC34000F071B /* BBTBusRouteView.m */; };
-		A947D9B21BD8DC34000F071B /* BBTBusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9961BD8DC34000F071B /* BBTBusView.m */; };
-		A947D9B31BD8DC34000F071B /* BBTBusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9971BD8DC34000F071B /* BBTBusViewController.m */; };
-		A947D9B41BD8DC34000F071B /* BBTCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9981BD8DC34000F071B /* BBTCountView.m */; };
 		A947D9B61BD8DC34000F071B /* BBTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99A1BD8DC34000F071B /* BBTMainViewController.m */; };
 		A947D9B71BD8DC34000F071B /* BBTMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99B1BD8DC34000F071B /* BBTMeViewController.m */; };
 		A947D9B81BD8DC34000F071B /* BBTMyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99C1BD8DC34000F071B /* BBTMyCollectionViewController.m */; };
@@ -57,12 +56,7 @@
 		A947D9BA1BD8DC34000F071B /* BBTPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99E1BD8DC34000F071B /* BBTPreferences.m */; };
 		A947D9BD1BD8DC34000F071B /* BBTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A11BD8DC34000F071B /* BBTSettingsViewController.m */; };
 		A947D9BE1BD8DC34000F071B /* BBTToolsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A21BD8DC34000F071B /* BBTToolsViewController.m */; };
-		A947D9C01BD8DC34000F071B /* UIButton+BBTStationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A41BD8DC34000F071B /* UIButton+BBTStationButton.m */; };
 		A947D9C11BD8DC34000F071B /* UIColor+BBTColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A51BD8DC34000F071B /* UIColor+BBTColor.m */; };
-		A947D9C21BD8DC34000F071B /* UILabel+BBTBusMessageLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A61BD8DC34000F071B /* UILabel+BBTBusMessageLabel.m */; };
-		A947D9C31BD8DC34000F071B /* UIView+BBTBusTimeTable.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A71BD8DC34000F071B /* UIView+BBTBusTimeTable.m */; };
-		A947D9C41BD8DC34000F071B /* UIView+BBTStationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A81BD8DC34000F071B /* UIView+BBTStationInfo.m */; };
-		A947D9C51BD8DC34000F071B /* UIView+BBTWaterMark.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A91BD8DC34000F071B /* UIView+BBTWaterMark.m */; };
 		A947D9C61BD8E03A000F071B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D91F1BD8DADA000F071B /* main.m */; };
 		FC69A3F81C035E81000EF949 /* BBTPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC69A3F71C035E81000EF949 /* BBTPickerView.xib */; };
 		FC69A3FB1C035F35000EF949 /* BBTPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC69A3FA1C035F35000EF949 /* BBTPickerView.m */; };
@@ -122,6 +116,8 @@
 		395B10DB1C5713EF00772A38 /* UIFont+BBTFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+BBTFont.m"; sourceTree = "<group>"; };
 		395B10DE1C5737AB00772A38 /* BBTDailyArticleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTDailyArticleTableViewCell.h; sourceTree = "<group>"; };
 		395B10DF1C5737AB00772A38 /* BBTDailyArticleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTDailyArticleTableViewCell.m; sourceTree = "<group>"; };
+		395B10E21C585EA200772A38 /* UIImageView+UIActivityIndicatorForSDWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+UIActivityIndicatorForSDWebImage.h"; sourceTree = "<group>"; };
+		395B10E31C585EA200772A38 /* UIImageView+UIActivityIndicatorForSDWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+UIActivityIndicatorForSDWebImage.m"; sourceTree = "<group>"; };
 		397445291C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSpecRailway2TableViewCell.h; sourceTree = "<group>"; };
 		3974452A1C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSpecRailway2TableViewCell.m; sourceTree = "<group>"; };
 		397445651C0A8D78004B89BA /* BBTCampusInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusInfo.h; sourceTree = "<group>"; };
@@ -138,6 +134,16 @@
 		39B595411C0AF0500015B673 /* BBTCampusInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusInfoViewController.h; sourceTree = "<group>"; };
 		39B595421C0AF0500015B673 /* BBTCampusInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCampusInfoViewController.m; sourceTree = "<group>"; };
 		39B595441C0AF9D90015B673 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		39FE91C41C59D6290041E46F /* BBTCampusBusTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusBusTableViewCell.h; sourceTree = "<group>"; };
+		39FE91C51C59D6290041E46F /* BBTCampusBusTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCampusBusTableViewCell.m; sourceTree = "<group>"; };
+		39FE91C81C5A49860041E46F /* BBTCampusBusTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusBusTableViewController.h; sourceTree = "<group>"; };
+		39FE91C91C5A49860041E46F /* BBTCampusBusTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCampusBusTableViewController.m; sourceTree = "<group>"; };
+		39FE91D31C5A54E60041E46F /* BBTCampusBus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusBus.h; sourceTree = "<group>"; };
+		39FE91D41C5A54E60041E46F /* BBTCampusBus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCampusBus.m; sourceTree = "<group>"; };
+		39FE91D61C5A54F50041E46F /* BBTCampusBusManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusBusManager.h; sourceTree = "<group>"; };
+		39FE91D71C5A54F50041E46F /* BBTCampusBusManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCampusBusManager.m; sourceTree = "<group>"; };
+		39FE91DB1C5DAA0F0041E46F /* BBTCampusBusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusBusViewController.h; sourceTree = "<group>"; };
+		39FE91DC1C5DAA0F0041E46F /* BBTCampusBusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCampusBusViewController.m; sourceTree = "<group>"; };
 		48D6888DD2A267EA93C8D8BC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A947D91B1BD8DADA000F071B /* BoBanTang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoBanTang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A947D91F1BD8DADA000F071B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -163,13 +169,6 @@
 		A947D9681BD8DC0F000F071B /* BBTAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTAboutViewController.h; sourceTree = "<group>"; };
 		A947D9691BD8DC0F000F071B /* BBTAccountManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTAccountManageViewController.h; sourceTree = "<group>"; };
 		A947D96A1BD8DC0F000F071B /* BBTAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTAppDelegate.h; sourceTree = "<group>"; };
-		A947D96C1BD8DC0F000F071B /* BBTBus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BBTBus.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		A947D96D1BD8DC0F000F071B /* BBTBusClusterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTBusClusterView.h; sourceTree = "<group>"; };
-		A947D96E1BD8DC0F000F071B /* BBTBusManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTBusManager.h; sourceTree = "<group>"; };
-		A947D96F1BD8DC0F000F071B /* BBTBusRouteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTBusRouteView.h; sourceTree = "<group>"; };
-		A947D9701BD8DC0F000F071B /* BBTBusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTBusView.h; sourceTree = "<group>"; };
-		A947D9711BD8DC0F000F071B /* BBTBusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTBusViewController.h; sourceTree = "<group>"; };
-		A947D9721BD8DC0F000F071B /* BBTCountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCountView.h; sourceTree = "<group>"; };
 		A947D9741BD8DC0F000F071B /* BBTMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMainViewController.h; sourceTree = "<group>"; };
 		A947D9751BD8DC0F000F071B /* BBTMarco.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMarco.h; sourceTree = "<group>"; };
 		A947D9761BD8DC0F000F071B /* BBTMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMeViewController.h; sourceTree = "<group>"; };
@@ -178,24 +177,12 @@
 		A947D9791BD8DC0F000F071B /* BBTPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BBTPreferences.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		A947D97C1BD8DC0F000F071B /* BBTSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSettingsViewController.h; sourceTree = "<group>"; };
 		A947D97D1BD8DC0F000F071B /* BBTToolsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTToolsViewController.h; sourceTree = "<group>"; };
-		A947D97E1BD8DC0F000F071B /* UIButton+BBTStationButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+BBTStationButton.h"; sourceTree = "<group>"; };
 		A947D97F1BD8DC0F000F071B /* UIColor+BBTColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BBTColor.h"; sourceTree = "<group>"; };
-		A947D9801BD8DC0F000F071B /* UILabel+BBTBusMessageLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+BBTBusMessageLabel.h"; sourceTree = "<group>"; };
-		A947D9811BD8DC0F000F071B /* UIView+BBTBusTimeTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BBTBusTimeTable.h"; sourceTree = "<group>"; };
-		A947D9821BD8DC0F000F071B /* UIView+BBTStationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BBTStationInfo.h"; sourceTree = "<group>"; };
-		A947D9831BD8DC0F000F071B /* UIView+BBTWaterMark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BBTWaterMark.h"; sourceTree = "<group>"; };
 		A947D9851BD8DC24000F071B /* Information.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Information.storyboard; sourceTree = "<group>"; };
 		A947D9881BD8DC24000F071B /* Tools.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tools.storyboard; sourceTree = "<group>"; };
 		A947D98E1BD8DC34000F071B /* BBTAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTAboutViewController.m; sourceTree = "<group>"; };
 		A947D98F1BD8DC34000F071B /* BBTAccountManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTAccountManageViewController.m; sourceTree = "<group>"; };
 		A947D9901BD8DC34000F071B /* BBTAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTAppDelegate.m; sourceTree = "<group>"; };
-		A947D9921BD8DC34000F071B /* BBTBus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BBTBus.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		A947D9931BD8DC34000F071B /* BBTBusClusterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BBTBusClusterView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		A947D9941BD8DC34000F071B /* BBTBusManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BBTBusManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		A947D9951BD8DC34000F071B /* BBTBusRouteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTBusRouteView.m; sourceTree = "<group>"; };
-		A947D9961BD8DC34000F071B /* BBTBusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTBusView.m; sourceTree = "<group>"; };
-		A947D9971BD8DC34000F071B /* BBTBusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BBTBusViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		A947D9981BD8DC34000F071B /* BBTCountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCountView.m; sourceTree = "<group>"; };
 		A947D99A1BD8DC34000F071B /* BBTMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTMainViewController.m; sourceTree = "<group>"; };
 		A947D99B1BD8DC34000F071B /* BBTMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTMeViewController.m; sourceTree = "<group>"; };
 		A947D99C1BD8DC34000F071B /* BBTMyCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTMyCollectionViewController.m; sourceTree = "<group>"; };
@@ -203,12 +190,7 @@
 		A947D99E1BD8DC34000F071B /* BBTPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BBTPreferences.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A947D9A11BD8DC34000F071B /* BBTSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSettingsViewController.m; sourceTree = "<group>"; };
 		A947D9A21BD8DC34000F071B /* BBTToolsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTToolsViewController.m; sourceTree = "<group>"; };
-		A947D9A41BD8DC34000F071B /* UIButton+BBTStationButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+BBTStationButton.m"; sourceTree = "<group>"; };
 		A947D9A51BD8DC34000F071B /* UIColor+BBTColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BBTColor.m"; sourceTree = "<group>"; };
-		A947D9A61BD8DC34000F071B /* UILabel+BBTBusMessageLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+BBTBusMessageLabel.m"; sourceTree = "<group>"; };
-		A947D9A71BD8DC34000F071B /* UIView+BBTBusTimeTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BBTBusTimeTable.m"; sourceTree = "<group>"; };
-		A947D9A81BD8DC34000F071B /* UIView+BBTStationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BBTStationInfo.m"; sourceTree = "<group>"; };
-		A947D9A91BD8DC34000F071B /* UIView+BBTWaterMark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BBTWaterMark.m"; sourceTree = "<group>"; };
 		ABA2627D2286FFB656F82101 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAAC1D9BE8366224C1757CE5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FC69A3F71C035E81000EF949 /* BBTPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBTPickerView.xib; sourceTree = "<group>"; };
@@ -290,7 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				395B10C61C55252600772A38 /* Go.storyboard */,
-				398231BC1BD8EE8C0043E544 /* CampusBus */,
+				39FE91C71C5A49510041E46F /* CampusBus */,
 				391F323D1BF72154004843C3 /* SpecialRailway2 */,
 			);
 			name = Go;
@@ -299,19 +281,10 @@
 		391F32401BF72194004843C3 /* Go */ = {
 			isa = PBXGroup;
 			children = (
-				398231BB1BD8EE800043E544 /* CampusBus */,
+				39FE91D21C5A54A30041E46F /* CampusBus */,
 				391F323E1BF7216E004843C3 /* SpecialRailway2 */,
 			);
 			name = Go;
-			sourceTree = "<group>";
-		};
-		393E3EC11BF4801B0045DE6E /* CampusBus */ = {
-			isa = PBXGroup;
-			children = (
-				A947D9711BD8DC0F000F071B /* BBTBusViewController.h */,
-				A947D9971BD8DC34000F071B /* BBTBusViewController.m */,
-			);
-			name = CampusBus;
 			sourceTree = "<group>";
 		};
 		393E3EC21BF4802A0045DE6E /* SpecialRailway2 */ = {
@@ -466,42 +439,6 @@
 			name = ScoreInquire;
 			sourceTree = "<group>";
 		};
-		398231BB1BD8EE800043E544 /* CampusBus */ = {
-			isa = PBXGroup;
-			children = (
-				A947D96C1BD8DC0F000F071B /* BBTBus.h */,
-				A947D9921BD8DC34000F071B /* BBTBus.m */,
-				A947D96E1BD8DC0F000F071B /* BBTBusManager.h */,
-				A947D9941BD8DC34000F071B /* BBTBusManager.m */,
-			);
-			name = CampusBus;
-			sourceTree = "<group>";
-		};
-		398231BC1BD8EE8C0043E544 /* CampusBus */ = {
-			isa = PBXGroup;
-			children = (
-				A947D96D1BD8DC0F000F071B /* BBTBusClusterView.h */,
-				A947D9931BD8DC34000F071B /* BBTBusClusterView.m */,
-				A947D96F1BD8DC0F000F071B /* BBTBusRouteView.h */,
-				A947D9951BD8DC34000F071B /* BBTBusRouteView.m */,
-				A947D9701BD8DC0F000F071B /* BBTBusView.h */,
-				A947D9961BD8DC34000F071B /* BBTBusView.m */,
-				A947D9721BD8DC0F000F071B /* BBTCountView.h */,
-				A947D9981BD8DC34000F071B /* BBTCountView.m */,
-				A947D97E1BD8DC0F000F071B /* UIButton+BBTStationButton.h */,
-				A947D9A41BD8DC34000F071B /* UIButton+BBTStationButton.m */,
-				A947D9801BD8DC0F000F071B /* UILabel+BBTBusMessageLabel.h */,
-				A947D9A61BD8DC34000F071B /* UILabel+BBTBusMessageLabel.m */,
-				A947D9811BD8DC0F000F071B /* UIView+BBTBusTimeTable.h */,
-				A947D9A71BD8DC34000F071B /* UIView+BBTBusTimeTable.m */,
-				A947D9821BD8DC0F000F071B /* UIView+BBTStationInfo.h */,
-				A947D9A81BD8DC34000F071B /* UIView+BBTStationInfo.m */,
-				A947D9831BD8DC0F000F071B /* UIView+BBTWaterMark.h */,
-				A947D9A91BD8DC34000F071B /* UIView+BBTWaterMark.m */,
-			);
-			name = CampusBus;
-			sourceTree = "<group>";
-		};
 		398231BD1BD8EE960043E544 /* General */ = {
 			isa = PBXGroup;
 			children = (
@@ -581,10 +518,41 @@
 			children = (
 				393E3EBB1BF234210045DE6E /* BBTGoSegmentedControlViewController.h */,
 				393E3EBC1BF234210045DE6E /* BBTGoSegmentedControlViewController.m */,
-				393E3EC11BF4801B0045DE6E /* CampusBus */,
+				39FE91CB1C5A498C0041E46F /* CampusBus */,
 				393E3EC21BF4802A0045DE6E /* SpecialRailway2 */,
 			);
 			name = Go;
+			sourceTree = "<group>";
+		};
+		39FE91C71C5A49510041E46F /* CampusBus */ = {
+			isa = PBXGroup;
+			children = (
+				39FE91C41C59D6290041E46F /* BBTCampusBusTableViewCell.h */,
+				39FE91C51C59D6290041E46F /* BBTCampusBusTableViewCell.m */,
+			);
+			name = CampusBus;
+			sourceTree = "<group>";
+		};
+		39FE91CB1C5A498C0041E46F /* CampusBus */ = {
+			isa = PBXGroup;
+			children = (
+				39FE91C81C5A49860041E46F /* BBTCampusBusTableViewController.h */,
+				39FE91C91C5A49860041E46F /* BBTCampusBusTableViewController.m */,
+				39FE91DB1C5DAA0F0041E46F /* BBTCampusBusViewController.h */,
+				39FE91DC1C5DAA0F0041E46F /* BBTCampusBusViewController.m */,
+			);
+			name = CampusBus;
+			sourceTree = "<group>";
+		};
+		39FE91D21C5A54A30041E46F /* CampusBus */ = {
+			isa = PBXGroup;
+			children = (
+				39FE91D31C5A54E60041E46F /* BBTCampusBus.h */,
+				39FE91D41C5A54E60041E46F /* BBTCampusBus.m */,
+				39FE91D61C5A54F50041E46F /* BBTCampusBusManager.h */,
+				39FE91D71C5A54F50041E46F /* BBTCampusBusManager.m */,
+			);
+			name = CampusBus;
 			sourceTree = "<group>";
 		};
 		4EA28AD388E43D96D5F54ADA /* Frameworks */ = {
@@ -646,6 +614,8 @@
 		A947D91E1BD8DADA000F071B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				395B10E21C585EA200772A38 /* UIImageView+UIActivityIndicatorForSDWebImage.h */,
+				395B10E31C585EA200772A38 /* UIImageView+UIActivityIndicatorForSDWebImage.m */,
 				A947D9901BD8DC34000F071B /* BBTAppDelegate.m */,
 				A947D96A1BD8DC0F000F071B /* BBTAppDelegate.h */,
 				A947D91F1BD8DADA000F071B /* main.m */,
@@ -963,8 +933,9 @@
 				A947D9AB1BD8DC34000F071B /* BBTAccountManageViewController.m in Sources */,
 				FCD0A27E1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.m in Sources */,
 				395B10D91C5646ED00772A38 /* BBTDailyArticleManager.m in Sources */,
-				A947D9B31BD8DC34000F071B /* BBTBusViewController.m in Sources */,
 				395B10D61C5644EF00772A38 /* BBTDailyArticle.m in Sources */,
+				39FE91D81C5A54F50041E46F /* BBTCampusBusManager.m in Sources */,
+				39FE91C61C59D6290041E46F /* BBTCampusBusTableViewCell.m in Sources */,
 				393E3EBD1BF234210045DE6E /* BBTGoSegmentedControlViewController.m in Sources */,
 				A947D92C1BD8DADA000F071B /* BoBanTang.xcdatamodeld in Sources */,
 				391F32461BFDC66B004843C3 /* BBTSpecRailway2Bus.m in Sources */,
@@ -973,32 +944,24 @@
 				A947D9671BD8DBEA000F071B /* PAPropertyDescriptor.m in Sources */,
 				FCD0A2691C0005D80024D78F /* BBTScoresQueryResultsTableViewController.m in Sources */,
 				A947D9AC1BD8DC34000F071B /* BBTAppDelegate.m in Sources */,
-				A947D9C51BD8DC34000F071B /* UIView+BBTWaterMark.m in Sources */,
 				391F324C1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m in Sources */,
-				A947D9C01BD8DC34000F071B /* UIButton+BBTStationButton.m in Sources */,
 				39B595401C0AF0400015B673 /* BBTDailyArticleTableViewController.m in Sources */,
 				FCD0A2811C0009F10024D78F /* BBTScores.m in Sources */,
 				397445671C0A8D78004B89BA /* BBTCampusInfo.m in Sources */,
 				39B595431C0AF0500015B673 /* BBTCampusInfoViewController.m in Sources */,
+				39FE91CA1C5A49860041E46F /* BBTCampusBusTableViewController.m in Sources */,
+				395B10E41C585EA200772A38 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */,
 				A947D9661BD8DBEA000F071B /* PAPreferences.m in Sources */,
 				39B5953D1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m in Sources */,
-				A947D9B21BD8DC34000F071B /* BBTBusView.m in Sources */,
 				395B10DC1C5713EF00772A38 /* UIFont+BBTFont.m in Sources */,
 				A947D9AA1BD8DC34000F071B /* BBTAboutViewController.m in Sources */,
-				A947D9B41BD8DC34000F071B /* BBTCountView.m in Sources */,
-				A947D9B01BD8DC34000F071B /* BBTBusManager.m in Sources */,
-				A947D9C31BD8DC34000F071B /* UIView+BBTBusTimeTable.m in Sources */,
 				FCD0A2681C0005D80024D78F /* BBTScoresLoginTableViewController.m in Sources */,
-				A947D9C21BD8DC34000F071B /* UILabel+BBTBusMessageLabel.m in Sources */,
-				A947D9AF1BD8DC34000F071B /* BBTBusClusterView.m in Sources */,
 				391F32491BFDD42B004843C3 /* BBTSpecRailway2BusManager.m in Sources */,
 				FCD0A2941C023B930024D78F /* BBTHudView.m in Sources */,
-				A947D9AE1BD8DC34000F071B /* BBTBus.m in Sources */,
 				FC69A3FE1C038340000EF949 /* BBTLectureRoomsResultTableViewController.m in Sources */,
 				391F32431BFB5D4A004843C3 /* BBTSpecialRailwayLineTwoViewController.m in Sources */,
 				FCD0A2841C003ABC0024D78F /* BBTScoresFilterTableViewController.m in Sources */,
 				A947D9BD1BD8DC34000F071B /* BBTSettingsViewController.m in Sources */,
-				A947D9C41BD8DC34000F071B /* UIView+BBTStationInfo.m in Sources */,
 				FCD0A26F1C00062D0024D78F /* BBTScoresCell.m in Sources */,
 				A947D9BE1BD8DC34000F071B /* BBTToolsViewController.m in Sources */,
 				FC69A3FB1C035F35000EF949 /* BBTPickerView.m in Sources */,
@@ -1007,12 +970,13 @@
 				A947D9B61BD8DC34000F071B /* BBTMainViewController.m in Sources */,
 				A947D9BA1BD8DC34000F071B /* BBTPreferences.m in Sources */,
 				3974452B1C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.m in Sources */,
+				39FE91D51C5A54E60041E46F /* BBTCampusBus.m in Sources */,
 				A947D9C11BD8DC34000F071B /* UIColor+BBTColor.m in Sources */,
+				39FE91DD1C5DAA0F0041E46F /* BBTCampusBusViewController.m in Sources */,
 				397445701C0AAD60004B89BA /* BBTCampusInfoTableViewCell.m in Sources */,
 				A947D9B91BD8DC34000F071B /* BBTPersonalInfoEditViewController.m in Sources */,
 				395B10E01C5737AB00772A38 /* BBTDailyArticleTableViewCell.m in Sources */,
 				FCD0A27D1C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.m in Sources */,
-				A947D9B11BD8DC34000F071B /* BBTBusRouteView.m in Sources */,
 				A947D9651BD8DBEA000F071B /* KGModal.m in Sources */,
 				395B10D31C55271B00772A38 /* BBTCampusInfoTableViewController.m in Sources */,
 			);

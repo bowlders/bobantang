@@ -36,8 +36,6 @@ PODS:
   - SZTextView (1.2.1)
   - TSMessages (0.9.12):
     - HexColors (~> 2.2.0)
-  - UIActivityIndicator-for-SDWebImage (1.2):
-    - SDWebImage (~> 3.7)
   - VBFPopFlatButton (0.0.6):
     - pop
 
@@ -58,7 +56,6 @@ DEPENDENCIES:
   - SDWebImage (~> 3.7)
   - SZTextView
   - TSMessages
-  - UIActivityIndicator-for-SDWebImage
   - VBFPopFlatButton
 
 SPEC CHECKSUMS:
@@ -80,7 +77,6 @@ SPEC CHECKSUMS:
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SZTextView: 906df45afd3c1b24fc5252088d5ef8061513c238
   TSMessages: c8cc7b80f2a833af533872cd02010cac061532cc
-  UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
   VBFPopFlatButton: 782344da63f104c279a857d806e065117a7e1196
 
 COCOAPODS: 0.39.0

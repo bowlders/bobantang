@@ -143,7 +143,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="articleCell" id="eDo-cX-h5e">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eDo-cX-h5e" id="LK7-kd-0ny">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -187,6 +187,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="EM2-xb-Gb1"/>
+        <segue reference="X0z-j4-UJQ"/>
     </inferredMetricsTieBreakers>
 </document>

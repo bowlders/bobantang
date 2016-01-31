@@ -50,7 +50,9 @@ extern NSString * dailyArticleNotificationName;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80.0f;
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
+    CGFloat screenHeight = applicationFrame.size.height;
+    return screenHeight / 4.0;
 }
 
 #pragma mark - Table view data source
