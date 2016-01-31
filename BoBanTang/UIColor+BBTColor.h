@@ -1,9 +1,9 @@
 //
 //  UIColor+BBTColor.h
-//  bobantang
+//  BoBanTang
 //
-//  Created by Bill Bai on 8/20/14.
-//  Copyright (c) 2014 Bill Bai. All rights reserved.
+//  Created by Caesar on 15/11/19.
+//  Copyright © 2015年 100steps. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

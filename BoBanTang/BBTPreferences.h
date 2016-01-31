@@ -1,9 +1,9 @@
 //
 //  BBTPreferences1.h
-//  bobantang
+//  BoBanTang
 //
-//  Created by skyline on 14/11/30.
-//  Copyright (c) 2014年 Bill Bai. All rights reserved.
+//  Created by Caesar on 15/11/19.
+//  Copyright © 2015年 100steps. All rights reserved.
 //
 
 #import "PAPreferences.h"
