@@ -10,14 +10,14 @@
 
 @interface BBTLAF : JSONModel
 
-@property (assign, nonatomic) NSUInteger itemID;
-@property (assign, nonatomic) NSUInteger loserID;
+@property (strong, nonatomic) NSNumber *itemID;
+@property (strong, nonatomic) NSNumber *loserID;
 @property (strong, nonatomic) NSURL *thumbURL;
 @property (strong, nonatomic) NSURL *url;
-@property (assign, nonatomic) NSUInteger district;
+@property (strong, nonatomic) NSString *campus;
 @property (strong, nonatomic) NSString *location;
-@property (assign, nonatomic) NSUInteger lostType;
-@property (strong, nonatomic) NSString *contact;
+@property (strong, nonatomic) NSNumber *type;
+@property (strong, nonatomic) NSString *phone;
 @property (strong, nonatomic) NSString *otherContact;
 @property (strong, nonatomic) NSString *date;
 @property (strong, nonatomic) NSString *details;

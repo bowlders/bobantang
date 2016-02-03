@@ -6,16 +6,16 @@
 //  Copyright © 2016年 100steps. All rights reserved.
 //
 
-#import "BBTItemDetailViewController.h"
+#import "BBTItemDetailEditingViewController.h"
 #import "UIColor+BBTColor.h"
 
-@interface BBTItemDetailViewController ()
+@interface BBTItemDetailEditingViewController ()
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 
 @end
 
-@implementation BBTItemDetailViewController
+@implementation BBTItemDetailEditingViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -63,10 +63,11 @@
 		FC1770BD1C5F505300BF07AC /* BBTLAFManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1770BB1C5F505300BF07AC /* BBTLAFManager.m */; };
 		FC1770C41C5F507500BF07AC /* BBTLostAndFoundTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1770BF1C5F507500BF07AC /* BBTLostAndFoundTableViewController.m */; };
 		FC1770C51C5F507500BF07AC /* BBTPostInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1770C11C5F507500BF07AC /* BBTPostInfoTableViewController.m */; };
-		FC1770C61C5F507500BF07AC /* BBTItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1770C31C5F507500BF07AC /* BBTItemDetailViewController.m */; };
-		FC69A3F81C035E81000EF949 /* BBTPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC69A3F71C035E81000EF949 /* BBTPickerView.xib */; };
-		FC69A3FB1C035F35000EF949 /* BBTPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC69A3FA1C035F35000EF949 /* BBTPickerView.m */; };
+		FC1770C61C5F507500BF07AC /* BBTItemDetailEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1770C31C5F507500BF07AC /* BBTItemDetailEditingViewController.m */; };
 		FC69A3FE1C038340000EF949 /* BBTLectureRoomsResultTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC69A3FD1C038340000EF949 /* BBTLectureRoomsResultTableViewController.m */; };
+		FC80D4581C62109000A80EDA /* BBTLafItemsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC80D4551C62109000A80EDA /* BBTLafItemsTableViewCell.xib */; };
+		FC80D4591C62109000A80EDA /* BBTLafItemsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC80D4561C62109000A80EDA /* BBTLafItemsTableViewCell.m */; };
+		FC80D45C1C6244A200A80EDA /* BBTItemDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC80D45B1C6244A200A80EDA /* BBTItemDetailsTableViewController.m */; };
 		FCD0A2631C0005A00024D78F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCD0A2621C00059F0024D78F /* Security.framework */; };
 		FCD0A2681C0005D80024D78F /* BBTScoresLoginTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2651C0005D80024D78F /* BBTScoresLoginTableViewController.m */; };
 		FCD0A2691C0005D80024D78F /* BBTScoresQueryResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2671C0005D80024D78F /* BBTScoresQueryResultsTableViewController.m */; };
@@ -209,13 +210,15 @@
 		FC1770BF1C5F507500BF07AC /* BBTLostAndFoundTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLostAndFoundTableViewController.m; sourceTree = "<group>"; };
 		FC1770C01C5F507500BF07AC /* BBTPostInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTPostInfoTableViewController.h; sourceTree = "<group>"; };
 		FC1770C11C5F507500BF07AC /* BBTPostInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTPostInfoTableViewController.m; sourceTree = "<group>"; };
-		FC1770C21C5F507500BF07AC /* BBTItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTItemDetailViewController.h; sourceTree = "<group>"; };
-		FC1770C31C5F507500BF07AC /* BBTItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTItemDetailViewController.m; sourceTree = "<group>"; };
-		FC69A3F71C035E81000EF949 /* BBTPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBTPickerView.xib; sourceTree = "<group>"; };
-		FC69A3F91C035F35000EF949 /* BBTPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTPickerView.h; sourceTree = "<group>"; };
-		FC69A3FA1C035F35000EF949 /* BBTPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTPickerView.m; sourceTree = "<group>"; };
+		FC1770C21C5F507500BF07AC /* BBTItemDetailEditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTItemDetailEditingViewController.h; sourceTree = "<group>"; };
+		FC1770C31C5F507500BF07AC /* BBTItemDetailEditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTItemDetailEditingViewController.m; sourceTree = "<group>"; };
 		FC69A3FC1C038340000EF949 /* BBTLectureRoomsResultTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTLectureRoomsResultTableViewController.h; sourceTree = "<group>"; };
 		FC69A3FD1C038340000EF949 /* BBTLectureRoomsResultTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLectureRoomsResultTableViewController.m; sourceTree = "<group>"; };
+		FC80D4551C62109000A80EDA /* BBTLafItemsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBTLafItemsTableViewCell.xib; sourceTree = "<group>"; };
+		FC80D4561C62109000A80EDA /* BBTLafItemsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLafItemsTableViewCell.m; sourceTree = "<group>"; };
+		FC80D4571C62109000A80EDA /* BBTLafItemsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTLafItemsTableViewCell.h; sourceTree = "<group>"; };
+		FC80D45A1C6244A200A80EDA /* BBTItemDetailsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTItemDetailsTableViewController.h; sourceTree = "<group>"; };
+		FC80D45B1C6244A200A80EDA /* BBTItemDetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTItemDetailsTableViewController.m; sourceTree = "<group>"; };
 		FCD0A2621C00059F0024D78F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		FCD0A2641C0005D80024D78F /* BBTScoresLoginTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTScoresLoginTableViewController.h; sourceTree = "<group>"; };
 		FCD0A2651C0005D80024D78F /* BBTScoresLoginTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTScoresLoginTableViewController.m; sourceTree = "<group>"; };
@@ -744,8 +747,30 @@
 				FC1770BF1C5F507500BF07AC /* BBTLostAndFoundTableViewController.m */,
 				FC1770C01C5F507500BF07AC /* BBTPostInfoTableViewController.h */,
 				FC1770C11C5F507500BF07AC /* BBTPostInfoTableViewController.m */,
-				FC1770C21C5F507500BF07AC /* BBTItemDetailViewController.h */,
-				FC1770C31C5F507500BF07AC /* BBTItemDetailViewController.m */,
+				FC1770C21C5F507500BF07AC /* BBTItemDetailEditingViewController.h */,
+				FC1770C31C5F507500BF07AC /* BBTItemDetailEditingViewController.m */,
+				FC80D45A1C6244A200A80EDA /* BBTItemDetailsTableViewController.h */,
+				FC80D45B1C6244A200A80EDA /* BBTItemDetailsTableViewController.m */,
+			);
+			name = "Lost&Found";
+			sourceTree = "<group>";
+		};
+		FC80D4461C61F11D00A80EDA /* ScoreInquire */ = {
+			isa = PBXGroup;
+			children = (
+				FCD0A26C1C00062D0024D78F /* BBTScoresCell.h */,
+				FCD0A26D1C00062D0024D78F /* BBTScoresCell.m */,
+				FCD0A26E1C00062D0024D78F /* BBTScoresCell.xib */,
+			);
+			name = ScoreInquire;
+			sourceTree = "<group>";
+		};
+		FC80D4481C61F3AF00A80EDA /* Lost&Found */ = {
+			isa = PBXGroup;
+			children = (
+				FC80D4571C62109000A80EDA /* BBTLafItemsTableViewCell.h */,
+				FC80D4561C62109000A80EDA /* BBTLafItemsTableViewCell.m */,
+				FC80D4551C62109000A80EDA /* BBTLafItemsTableViewCell.xib */,
 			);
 			name = "Lost&Found";
 			sourceTree = "<group>";
@@ -753,16 +778,12 @@
 		FCD0A26B1C00060F0024D78F /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				FC1770B31C5F4FBB00BF07AC /* PopoverViews */,
 				A947D9881BD8DC24000F071B /* Tools.storyboard */,
-				FCD0A26C1C00062D0024D78F /* BBTScoresCell.h */,
-				FCD0A26D1C00062D0024D78F /* BBTScoresCell.m */,
-				FCD0A26E1C00062D0024D78F /* BBTScoresCell.xib */,
+				FC80D4481C61F3AF00A80EDA /* Lost&Found */,
+				FC1770B31C5F4FBB00BF07AC /* PopoverViews */,
+				FC80D4461C61F11D00A80EDA /* ScoreInquire */,
 				FCD0A2921C023B930024D78F /* BBTHudView.h */,
 				FCD0A2931C023B930024D78F /* BBTHudView.m */,
-				FC69A3F71C035E81000EF949 /* BBTPickerView.xib */,
-				FC69A3F91C035F35000EF949 /* BBTPickerView.h */,
-				FC69A3FA1C035F35000EF949 /* BBTPickerView.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -897,8 +918,8 @@
 				FCD0A2701C00062D0024D78F /* BBTScoresCell.xib in Resources */,
 				395B10C71C55252600772A38 /* Go.storyboard in Resources */,
 				A947D98A1BD8DC24000F071B /* Information.storyboard in Resources */,
-				FC69A3F81C035E81000EF949 /* BBTPickerView.xib in Resources */,
 				392A0DE41BE63F37001F7D45 /* Images.xcassets in Resources */,
+				FC80D4581C62109000A80EDA /* BBTLafItemsTableViewCell.xib in Resources */,
 				398231B61BD8ED230043E544 /* Me.storyboard in Resources */,
 				A947D9291BD8DADA000F071B /* Main.storyboard in Resources */,
 			);
@@ -1014,9 +1035,8 @@
 				A947D9BD1BD8DC34000F071B /* BBTSettingsViewController.m in Sources */,
 				FCD0A26F1C00062D0024D78F /* BBTScoresCell.m in Sources */,
 				A947D9BE1BD8DC34000F071B /* BBTToolsViewController.m in Sources */,
-				FC69A3FB1C035F35000EF949 /* BBTPickerView.m in Sources */,
 				395B10CD1C5525CD00772A38 /* BBTDailyArticleViewController.m in Sources */,
-				FC1770C61C5F507500BF07AC /* BBTItemDetailViewController.m in Sources */,
+				FC1770C61C5F507500BF07AC /* BBTItemDetailEditingViewController.m in Sources */,
 				FCD0A2751C0006940024D78F /* BBTLectureRooms.m in Sources */,
 				A947D9B61BD8DC34000F071B /* BBTMainViewController.m in Sources */,
 				FC1770BC1C5F505300BF07AC /* BBTLAF.m in Sources */,
@@ -1029,6 +1049,8 @@
 				A947D9B91BD8DC34000F071B /* BBTPersonalInfoEditViewController.m in Sources */,
 				395B10E01C5737AB00772A38 /* BBTDailyArticleTableViewCell.m in Sources */,
 				FCD0A27D1C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.m in Sources */,
+				FC80D45C1C6244A200A80EDA /* BBTItemDetailsTableViewController.m in Sources */,
+				FC80D4591C62109000A80EDA /* BBTLafItemsTableViewCell.m in Sources */,
 				A947D9651BD8DBEA000F071B /* KGModal.m in Sources */,
 				395B10D31C55271B00772A38 /* BBTCampusInfoTableViewController.m in Sources */,
 			);

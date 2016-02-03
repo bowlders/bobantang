@@ -191,7 +191,7 @@ static NSString *itemDetailIdentifier = @"itemDetailIdentifier";
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-- (void)BBTItemDetail:(BBTItemDetailViewController *)controller didFinishEditingDetails:(NSString *)itemDetails
+- (void)BBTItemDetail:(BBTItemDetailEditingViewController *)controller didFinishEditingDetails:(NSString *)itemDetails
 {
     if ([itemDetails length] < 10) {
         self.itemDetail.text = itemDetails;
@@ -209,7 +209,7 @@ static NSString *itemDetailIdentifier = @"itemDetailIdentifier";
 {
     if ([segue.identifier isEqualToString:itemDetailIdentifier]) {
         UINavigationController *navigationController = segue.destinationViewController;
-        BBTItemDetailViewController *controller = (BBTItemDetailViewController *)navigationController.topViewController;
+        BBTItemDetailEditingViewController *controller = (BBTItemDetailEditingViewController *)navigationController.topViewController;
         controller.title = self.itemDetailTitle.text;
         controller.delegate = self;
         if (![self.itemDetail.text isEqualToString:@"请输入详情"]) {

@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BBTItemDetailViewController.h"
+#import "BBTItemDetailEditingViewController.h"
 
-@interface BBTPostInfoTableViewController : UITableViewController <UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, BBTItemDetailViewControllerDelegate>
+@interface BBTPostInfoTableViewController : UITableViewController <UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, BBTItemDetailEditingViewControllerDelegate>
 
 @property (strong, nonatomic) NSString *postType;
 
