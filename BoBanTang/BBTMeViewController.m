@@ -11,6 +11,7 @@
 #import "BBTCurrentUserManager.h"
 #import "BBTLoginViewController.h"
 #import <Masonry.h>
+#import <UIImageView+WebCache.h>
 
 @interface BBTMeViewController ()
 
@@ -30,9 +31,7 @@
 {
     self.title = @"我";
     self.meTableView.scrollEnabled = NO;
-    
-    [[BBTCurrentUserManager sharedCurrentUserManager] currentUserAuthentication];
-    
+
     //Lean Cloud Settings
     AVObject *testObject = [AVObject objectWithClassName:@"TestObject"];
     [testObject setObject:@"bar" forKey:@"foo"];
@@ -75,7 +74,6 @@
         UIImageView *imageView = [UIImageView new];
         imageView.translatesAutoresizingMaskIntoConstraints = NO;
         imageView.contentMode = UIViewContentModeScaleToFill;
-        imageView.image = [UIImage imageNamed:@"BoBanTang"];
         imageView.alpha = 1.0;
         imageView;
     });
@@ -87,7 +85,6 @@
         label.textAlignment = NSTextAlignmentCenter;
         label.adjustsFontSizeToFitWidth = NO;
         label.alpha = 1.0;
-        label.text = @"Caesar";
         label;
     });
     
@@ -98,7 +95,6 @@
         label.textAlignment = NSTextAlignmentCenter;
         label.adjustsFontSizeToFitWidth = NO;
         label.alpha = 1.0;
-        label.text = @"201430582078";
         label;
     });
     
@@ -110,7 +106,6 @@
         tableView;
     });
     
-    //Deal with view hidden or not
     if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
     {
         self.loginButton.hidden = YES;
@@ -118,12 +113,15 @@
         self.studentNumberLabel.hidden = NO;
         self.nameLabel.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.userName;
         self.studentNumberLabel.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account;
+        NSURL *avatarURL = [NSURL URLWithString:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.userLogo];
+        [self.avatarImageView sd_setImageWithURL:avatarURL placeholderImage:[UIImage imageNamed:@"BoBanTang"]];
     }
     else
     {
         self.loginButton.hidden = NO;
         self.nameLabel.hidden = YES;
         self.studentNumberLabel.hidden = YES;
+        self.avatarImageView.image = [UIImage imageNamed:@"BoBanTang"];
     }
     
     //Add to subview

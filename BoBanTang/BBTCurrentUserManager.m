@@ -27,38 +27,36 @@ static NSString * const insertNewUserBaseURL = @"http://218.192.166.167/api/prot
 
 - (BOOL)currentUserAuthentication
 {
-    __block BOOL requestSucceed = 0;                                //Set to 1 if succeed
+    //__block BOOL requestSucceed = 0;                                //Set to 1 if succeed
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    NSDictionary *parameters = @{@"account" : @"201430582078",
-                               @"password" : @"987654321pbxpbx"};
     
-    //NSDictionary *parameters = @{@"account" : self.currentUser.account,
-    //                             @"password" : self.currentUser.password};
-    
+    NSDictionary *parameters = @{@"account" : self.currentUser.account,
+                                 @"password" : self.currentUser.password};
+    NSLog(@"account - %@", self.currentUser.account);
     [manager POST:checkAccountURL parameters:parameters progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+        NSLog(@"account - %@", self.currentUser.account);
         NSLog(@"checkResult: %@", responseObject);
         for (NSString *key in [(NSDictionary *)responseObject allKeys])
         {
             if ([key isEqualToString:@"name"])
             {
-                requestSucceed = 1;
-                [self fetchCurrentUserData];
+                //requestSucceed = 1;
                 self.userIsActive = YES;
+                [self fetchCurrentUserData];
             }
             else if ([key isEqualToString:@"err"])
             {
-                requestSucceed = 0;
+                //requestSucceed = 0;
             }
         }
-        //NSLog(@"name: %@", responseObject[@"name"]);
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
-        requestSucceed = 0;
+        //requestSucceed = 0;
     }];
     
-    return requestSucceed;
+    return YES;
 }
 
 - (void)fetchCurrentUserData
@@ -67,7 +65,8 @@ static NSString * const insertNewUserBaseURL = @"http://218.192.166.167/api/prot
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
 
     NSError *error;
-    NSDictionary *parameters = @{@"account" : @"20143058207"};//self.account};
+    //NSLog(@"account - %@", self.currentUser.account);
+    NSDictionary *parameters = @{@"account" : self.currentUser.account}; //@{@"account" : @"20143058207"};
     NSData *data = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:&error];
     NSString *jsonString = [[NSString alloc] initWithData:data
                                                  encoding:NSUTF8StringEncoding];
