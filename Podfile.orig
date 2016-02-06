@@ -17,8 +17,9 @@ pod 'FlatUIKit'
 pod 'JNKeychain'
 pod 'HMSegmentedControl'
 pod 'SDWebImage', '~>3.7'
+<<<<<<< HEAD
 pod 'KGModal', '~> 0.0.1'
+=======
 pod 'PureLayout'
 pod 'ActionSheetPicker-3.0'
-
-
+>>>>>>> 3dabc5f78f528b43927a176142a284531674ad35

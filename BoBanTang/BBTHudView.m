@@ -74,7 +74,7 @@
     [roundedRect fill];
     
     /*
-    UIImage *image = [UIImage imageNamed:@"Checkmark"];
+    UIImage *image = [UIImage imageNamed:@""];
     
     CGPoint imagePoint = CGPointMake(
                                      self.center.x - roundf(image.size.width / 2.0f),

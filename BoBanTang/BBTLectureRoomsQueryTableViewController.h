@@ -10,7 +10,6 @@
 #import "BBTLectureRoomsTimeTableViewController.h"
 #import "BBTLectureRooms.h"
 #import <AFNetworking/AFNetworking.h>
-#import "BBTPickerView.h"
 #import "BBTLectureRoomsResultTableViewController.h"
 #import "BBTHudView.h"
 
