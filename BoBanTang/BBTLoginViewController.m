@@ -10,6 +10,7 @@
 #import "BBTLoginTableViewCell.h"
 #import "BBTUser.h"
 #import "BBTCurrentUserManager.h"
+#import "UIColor+BBTColor.h"
 #import <AYVibrantButton.h>
 #import <Masonry.h>
 
@@ -25,6 +26,9 @@
 
 - (void)viewDidLoad
 {
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.tableView.scrollEnabled = NO;
+    
     self.logoImageView = ({
         UIImageView *imageView = [UIImageView new];
         imageView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -44,23 +48,24 @@
     UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
     effectView.frame = self.view.bounds;
     [self.view addSubview:effectView];
-    self.loginButton = [[AYVibrantButton alloc] initWithFrame:CGRectZero style:AYVibrantButtonStyleInvert];
-    self.loginButton.vibrancyEffect = [UIVibrancyEffect effectForBlurEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
-    self.loginButton.text = @"Invert";
+    self.loginButton = [[AYVibrantButton alloc] initWithFrame:CGRectZero style:AYVibrantButtonStyleFill];
+    self.loginButton.vibrancyEffect = nil;//[UIVibrancyEffect effectForBlurEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
+    self.loginButton.text = @"登录";
     self.loginButton.font = [UIFont systemFontOfSize:18.0];
     [self.loginButton addTarget:self action:@selector(loginButtonIsTapped) forControlEvents:UIControlEventTouchUpInside];
+    self.loginButton.backgroundColor = [UIColor BBTAppGlobalBlue];
     [effectView.contentView addSubview:self.loginButton];
     
     [self.view addSubview:self.logoImageView];
     [self.view addSubview:self.tableView];
-    [self.view addSubview:self.loginButton];
+    //[self.view addSubview:self.loginButton];
     
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     CGFloat verticalInnerSpacing = 50.0f;
-    CGFloat logoImageSideLength = 50.0f;
-    CGFloat tableViewHeight = 80.0f;
-    CGFloat loginButtonHeight = 30.0f;
-    CGFloat loginButtonWidth = 100.0f;
+    CGFloat logoImageSideLength = 100.0f;
+    CGFloat tableViewHeight = 100.0f;
+    CGFloat loginButtonHeight = 50.0f;
+    CGFloat loginButtonWidth = 200.0f;
     
     [self.logoImageView mas_makeConstraints:^(MASConstraintMaker *make){
         make.top.equalTo(self.view.mas_top).offset(navigationBarHeight + verticalInnerSpacing);
@@ -82,6 +87,12 @@
         make.width.equalTo(@(loginButtonWidth));
         make.centerX.equalTo(self.view.mas_centerX);
     }];
+    
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"取消"
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(cancelButtonIsTapped)];
+    self.navigationItem.leftBarButtonItem = cancelButton;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -92,6 +103,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 2;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50.0f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -119,6 +135,9 @@
     }
     
     cell.textField.delegate = self;
+
+    [cell setNeedsUpdateConstraints];
+    [cell updateConstraintsIfNeeded];
 
     return cell;
 
@@ -157,6 +176,11 @@
     [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account = currentUserUserName;
     [BBTCurrentUserManager sharedCurrentUserManager].currentUser.password = currenUserPassWord;
     [[BBTCurrentUserManager sharedCurrentUserManager] currentUserAuthentication];
+}
+
+- (void)cancelButtonIsTapped
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

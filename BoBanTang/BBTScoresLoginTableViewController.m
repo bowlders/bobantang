@@ -107,7 +107,7 @@ static NSString *checkAutenticationURL = @"http://218.192.166.167/api/jw2005/che
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"account":self.studentsNumber.text,
                                  @"password":self.passwordToJW.text};
-    [manager POST:checkAutenticationURL parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+    [manager POST:checkAutenticationURL parameters:parameters progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
         _hudView = [BBTHudView removeHudInView:self.navigationController.view withHudView:_hudView];
         

@@ -23,6 +23,7 @@
     
     if (self)
     {
+        
         self.label = ({
             UILabel *label = [UILabel new];
             label.translatesAutoresizingMaskIntoConstraints = NO;
@@ -53,9 +54,9 @@
     if (!self.didSetupConstraints)
     {
         
-        CGFloat labelLeftPadding = 5.0f;
+        CGFloat labelLeftPadding = 10.0f;
         CGFloat labelTextFieldInnerSpacing = 10.0f;
-        CGFloat labelWidth = 20.0f;
+        CGFloat labelWidth = 40.0f;
         
         [self.contentView mas_makeConstraints:^(MASConstraintMaker *make){
             make.size.equalTo(self);
