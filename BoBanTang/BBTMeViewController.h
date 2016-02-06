@@ -1,20 +1,14 @@
 //
-//  MoreViewControllerTableViewController.h
+//  BBTMeViewController.h
 //  BoBanTang
 //
-//  Created by Caesar on 15/10/13.
-//  Copyright © 2015年 BBT. All rights reserved.
+//  Created by Caesar on 16/2/1.
+//  Copyright © 2016年 100steps. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import <AMWaveViewController.h>
 #import <LeanCloudFeedback.h>
 
-@interface BBTMeViewController : UITableViewController <
-    UIAlertViewDelegate,
-    UINavigationControllerDelegate,
-    AMWaveTransitioning
->
+@interface BBTMeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end
-    

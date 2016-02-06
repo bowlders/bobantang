@@ -6,11 +6,12 @@
 //  Copyright © 2015年 100steps. All rights reserved.
 //
 
-#import <Masonry.h>
 #import "BBTGoSegmentedControlViewController.h"
 #import "BBTCampusBusViewController.h"
 #import "BBTCampusBusTableViewController.h"
 #import "BBTSpecialRailwayLineTwoViewController.h"
+#import <Masonry.h>
+#import <KGModal.h>
 
 @interface BBTGoSegmentedControlViewController ()
 
@@ -28,7 +29,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    BBTCampusBusTableViewController *campusBusVC = [[BBTCampusBusTableViewController alloc] init];
+    BBTCampusBusViewController *campusBusVC = [[BBTCampusBusViewController alloc] init];
     BBTSpecialRailwayLineTwoViewController *specRailVC = [[BBTSpecialRailwayLineTwoViewController alloc] init];
     
     self.contentViewControllers = @[
@@ -52,6 +53,14 @@
     [self addChildViewController:currentVC];
     [self.contentViewContainer addSubview:currentVC.view];
     [currentVC didMoveToParentViewController:self];
+    
+    UIBarButtonItem *timeTableBarButton = [[UIBarButtonItem alloc]
+                                           initWithImage:[UIImage imageNamed:@"clock"]
+                                           style:UIBarButtonItemStylePlain
+                                           target:self
+                                           action:@selector(popUpTimeTable)];
+    self.navigationItem.rightBarButtonItem = timeTableBarButton;
+
 }
 
 - (IBAction)valueChanged:(UISegmentedControl *)sender
@@ -76,9 +85,11 @@
     self.currentControllerIndex = index;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)popUpTimeTable
+{
+    UIImageView *timeTableImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"timetable"]];
+    [KGModal sharedInstance].modalBackgroundColor = [UIColor whiteColor];
+    [[KGModal sharedInstance] showWithContentView:timeTableImageView andAnimated:YES];
 }
 
 /*

@@ -16,8 +16,8 @@
 
 @implementation BBTCampusBusManager
 
-//NSString * baseURLString = @"http://bbt.100steps.net/go/data/";
-NSString * baseURLString = @"http://127.0.0.1:6767";
+NSString * baseURLString = @"http://bbt.100steps.net/go/data/";
+//NSString * baseURLString = @"http://127.0.0.1:6767";
 static const float dataRequestInterval = 6.6;               //Seconds
 NSString * campusBusNotificationName = @"campusBusNotification";
 
@@ -119,9 +119,6 @@ NSString * campusBusNotificationName = @"campusBusNotification";
     
     for (int i = 0;i < [self.campusBusArray count];i++)
     {
-        NSLog(@"index - %d", [self.campusBusArray[i][@"StationIndex"] intValue]);
-        //NSLog(@"index - %lu", index);
-        NSLog(@"direction - %d", [self.campusBusArray[i][@"Direction"] boolValue]);
         if ([self.campusBusArray[i][@"StationIndex"] intValue] == index)
         {
             numberOfBusesCurrentlyAtThisStation++;
@@ -153,13 +150,16 @@ NSString * campusBusNotificationName = @"campusBusNotification";
     {
         if ([self.campusBusArray[i][@"StationIndex"] intValue] == index)
         {
-            if ([self.campusBusArray[i][@"Direction"] boolValue] == 1)
+            if ([self.campusBusArray[i][@"Stop"] boolValue] == 0)
             {
-                directionSouthCount++;
-            }
-            else
-            {
-                directionNorthCount++;
+                if ([self.campusBusArray[i][@"Direction"] boolValue] == 1)
+                {
+                    directionSouthCount++;
+                }
+                else
+                {
+                    directionNorthCount++;
+                }
             }
         }
     }

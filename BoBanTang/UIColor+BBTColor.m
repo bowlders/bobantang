@@ -12,7 +12,7 @@
 
 + (UIColor *)BBTAppGlobalBlue
 {
-    return [UIColor colorWithRed:0.0f green:153.0f / 255.0f blue:204.0f / 255.0f alpha:1.0f];
+    return [UIColor colorWithRed:0.0f green:153.0f / 255.0f blue:204.0f / 255.0f alpha:0.7f];
 }
 
 + (UIColor *)BBTSusscessfulGreen

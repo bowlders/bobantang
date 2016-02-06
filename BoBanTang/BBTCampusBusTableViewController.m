@@ -30,8 +30,6 @@ extern NSString * campusBusNotificationName;
     CGFloat buttonY = screenHeight - buttonHeight - spacing;
     CGRect buttonFrame = CGRectMake(buttonX, buttonY, buttonWidth, buttonHeight);
     refreshButton.frame = buttonFrame;
-    NSLog(@"%@", NSStringFromCGRect(refreshButton.frame));
-    NSLog(@"screen - %@", NSStringFromCGRect(applicationFrame));
     [refreshButton addTarget:self
                       action:@selector(clickRefreshButton)
             forControlEvents:UIControlEventTouchUpInside];

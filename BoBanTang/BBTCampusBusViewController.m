@@ -9,10 +9,12 @@
 #import "BBTCampusBusViewController.h"
 #import "BBTCampusBusTableViewCell.h"
 #import "BBTCampusBusManager.h"
+#import <Masonry.h>
 
 @interface BBTCampusBusViewController ()
 
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) UITableView * tableView;
+@property (strong, nonatomic) UIButton    * refreshButton;
 
 @end
 
@@ -22,32 +24,57 @@ extern NSString * campusBusNotificationName;
 
 - (void)viewDidLoad
 {
-    self.tableView.scrollEnabled = NO;
-    self.tableView.allowsSelection = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveCampusBusNotification)
                                                  name:campusBusNotificationName
                                                object:nil];
     
-    //Add refresh button
-    UIButton *refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [refreshButton setImage:[UIImage imageNamed:@"refresh"] forState:UIControlStateNormal];
-    CGRect applicationFrame = [UIScreen mainScreen].bounds;
-    CGFloat screenWidth = CGRectGetWidth(applicationFrame);
-    CGFloat screenHeight = CGRectGetHeight(applicationFrame);
-    CGFloat buttonWidth = 40.0f;
-    CGFloat buttonHeight = 40.0f;
-    CGFloat spacing = 10.0f;
-    CGFloat buttonX = screenWidth - buttonWidth - spacing;
-    CGFloat buttonY = screenHeight - buttonHeight - spacing;
-    CGRect buttonFrame = CGRectMake(buttonX, buttonY, buttonWidth, buttonHeight);
-    refreshButton.frame = buttonFrame;
-    NSLog(@"%@", NSStringFromCGRect(refreshButton.frame));
-    NSLog(@"screen - %@", NSStringFromCGRect(applicationFrame));
-    [refreshButton addTarget:self
-                      action:@selector(clickRefreshButton)
-            forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:refreshButton];
+    self.tableView = ({
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        tableView.translatesAutoresizingMaskIntoConstraints = NO;
+        tableView.scrollEnabled = NO;
+        tableView.allowsSelection = NO;
+        tableView.dataSource = self;
+        tableView.delegate = self;
+        tableView;
+    });
+    
+    self.refreshButton = ({
+        UIButton *button = [UIButton new];
+        button.translatesAutoresizingMaskIntoConstraints = NO;
+        [button setTitle:@"testtest" forState:UIControlStateNormal];
+        [button addTarget:self
+                   action:@selector(clickRefreshButton)
+         forControlEvents:UIControlEventTouchUpInside];
+        button.titleLabel.numberOfLines = 1;
+        button.titleLabel.textAlignment = NSTextAlignmentRight;
+        button.titleLabel.adjustsFontSizeToFitWidth = NO;
+        button.alpha = 1.0;
+        button;
+    });
+
+    [self.view addSubview:self.tableView];
+    [self.view addSubview:self.refreshButton];
+    
+    CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
+    CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
+    CGFloat buttonOffset = 10.0f;
+    CGFloat buttonSideLength = 50.0f;
+    
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make){
+        make.top.equalTo(self.view.mas_top).offset(navigationBarHeight);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-tabBarHeight);
+        make.width.equalTo(self.view.mas_width).offset(-buttonOffset * 2 - buttonSideLength);
+        make.left.equalTo(self.view.mas_left);
+    }];
+    
+    [self.refreshButton mas_makeConstraints:^(MASConstraintMaker *make){
+        make.right.equalTo(self.view.mas_right).offset(-buttonOffset);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-buttonOffset);
+        make.width.equalTo(@(buttonSideLength));
+        make.height.equalTo(@(buttonSideLength));
+    }];
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
