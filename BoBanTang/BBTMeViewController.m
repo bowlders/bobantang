@@ -280,7 +280,6 @@ extern NSString * kUserAuthentificationFinishNotifName;
         self.loginButton.hidden = YES;
         self.nameLabel.hidden = NO;
         self.studentNumberLabel.hidden = NO;
-        NSLog(@"currentname - %@",[BBTCurrentUserManager sharedCurrentUserManager].currentUser.userName);
         self.nameLabel.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.userName;
         self.studentNumberLabel.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account;
         NSURL *avatarURL = [NSURL URLWithString:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.userLogo];

@@ -34,9 +34,7 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
     
     NSDictionary *parameters = @{@"account" : self.currentUser.account,
                                  @"password" : self.currentUser.password};
-    NSLog(@"account - %@", self.currentUser.account);
     [manager POST:checkAccountURL parameters:parameters progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        NSLog(@"account - %@", self.currentUser.account);
         NSLog(@"checkResult: %@", responseObject);
         for (NSString *key in [(NSDictionary *)responseObject allKeys])
         {
@@ -62,7 +60,6 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
 
 - (void)fetchCurrentUserData
 {
-    NSLog(@"bool - %d", self.userIsActive);
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
 
@@ -74,7 +71,6 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
     NSLog(@"json - %@", jsonString);
     NSString *stringCleanPath = [jsonString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *url = [fetchUserDataBaseURL stringByAppendingString:stringCleanPath];
-    NSLog(@"url - %@", url);
     
     [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSLog(@"JSON: %@", responseObject);

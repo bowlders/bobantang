@@ -57,7 +57,7 @@ extern NSString * kUserAuthentificationFinishNotifName;
     effectView.frame = self.view.bounds;
     [self.view addSubview:effectView];
     self.loginButton = [[AYVibrantButton alloc] initWithFrame:CGRectZero style:AYVibrantButtonStyleFill];
-    self.loginButton.vibrancyEffect = nil;//[UIVibrancyEffect effectForBlurEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
+    self.loginButton.vibrancyEffect = nil;
     self.loginButton.text = @"登录";
     self.loginButton.font = [UIFont systemFontOfSize:18.0];
     [self.loginButton addTarget:self action:@selector(loginButtonIsTapped) forControlEvents:UIControlEventTouchUpInside];
@@ -66,7 +66,6 @@ extern NSString * kUserAuthentificationFinishNotifName;
     
     [self.view addSubview:self.logoImageView];
     [self.view addSubview:self.tableView];
-    //[self.view addSubview:self.loginButton];
     
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     CGFloat verticalInnerSpacing = 50.0f;
@@ -195,8 +194,7 @@ extern NSString * kUserAuthentificationFinishNotifName;
         HUD.textLabel.text = @"登录成功";
         HUD.indicatorView = [[JGProgressHUDSuccessIndicatorView alloc] init];
         HUD.square = YES;
-        [HUD showInView:self.navigationController.view];
-        //[HUD showInView:self.view];
+        [HUD showInView:self.view];
         [HUD dismissAfterDelay:3.0];
         
         //Dismiss current VC 1 sec after HUD disappears.
@@ -211,7 +209,6 @@ extern NSString * kUserAuthentificationFinishNotifName;
         HUD.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init];
         HUD.square = YES;
         [HUD showInView:self.view];
-        //[HUD showInView:self.navigationController.view];
         [HUD dismissAfterDelay:3.0];
     }
 }
