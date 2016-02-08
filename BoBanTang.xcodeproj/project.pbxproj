@@ -589,10 +589,10 @@
 		39FE91CB1C5A498C0041E46F /* CampusBus */ = {
 			isa = PBXGroup;
 			children = (
-				39FE91C81C5A49860041E46F /* BBTCampusBusTableViewController.h */,
-				39FE91C91C5A49860041E46F /* BBTCampusBusTableViewController.m */,
 				39FE91DB1C5DAA0F0041E46F /* BBTCampusBusViewController.h */,
 				39FE91DC1C5DAA0F0041E46F /* BBTCampusBusViewController.m */,
+				39FE91C81C5A49860041E46F /* BBTCampusBusTableViewController.h */,
+				39FE91C91C5A49860041E46F /* BBTCampusBusTableViewController.m */,
 			);
 			name = CampusBus;
 			sourceTree = "<group>";
@@ -1087,7 +1087,6 @@
 				39239A321C635BAB008EDBB0 /* BBTUser.m in Sources */,
 				FC80D45C1C6244A200A80EDA /* BBTItemDetailsTableViewController.m in Sources */,
 				FC80D4591C62109000A80EDA /* BBTLafItemsTableViewCell.m in Sources */,
-				A947D9651BD8DBEA000F071B /* KGModal.m in Sources */,
 				395B10D31C55271B00772A38 /* BBTCampusInfoTableViewController.m in Sources */,
 				39239A351C646FCD008EDBB0 /* BBTCurrentUserManager.m in Sources */,
 			);

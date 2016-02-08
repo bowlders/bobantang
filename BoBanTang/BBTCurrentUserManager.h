@@ -11,11 +11,13 @@
 
 @interface BBTCurrentUserManager : NSObject
 
-@property (strong, nonatomic) BBTUser * currentUser;
-@property (nonatomic)         BOOL      userIsActive;           //Set to 1 if a user is currently active.
+@property (strong, nonatomic) BBTUser  * currentUser;
+@property (nonatomic)         BOOL       userIsActive;      //Set to 1 if a user is currently active.
+
+typedef void (^voidBlock)(void);
 
 + (instancetype) sharedCurrentUserManager;
-- (BOOL)currentUserAuthentication;                              //Return 1 if succeed.
+- (void)currentUserAuthentication;                          //Return 1 if succeed.
 - (void)fetchCurrentUserData;
 - (void)logOut;
 

@@ -15,6 +15,8 @@ static NSString * const checkAccountURL = @"http://218.192.166.167/api/jw2005/ch
 static NSString * const fetchUserDataBaseURL = @"http://218.192.166.167/api/protype.php?table=users&method=get&data=";
 static NSString * const insertNewUserBaseURL = @"http://218.192.166.167/api/protype.php?table=users&method=save&data=";
 
+NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
+
 + (instancetype)sharedCurrentUserManager
 {
     static BBTCurrentUserManager *_manager = nil;
@@ -25,10 +27,8 @@ static NSString * const insertNewUserBaseURL = @"http://218.192.166.167/api/prot
     return _manager;
 }
 
-- (BOOL)currentUserAuthentication
+- (void)currentUserAuthentication
 {
-    //__block BOOL requestSucceed = 0;                                //Set to 1 if succeed
-    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
@@ -42,31 +42,32 @@ static NSString * const insertNewUserBaseURL = @"http://218.192.166.167/api/prot
         {
             if ([key isEqualToString:@"name"])
             {
-                //requestSucceed = 1;
                 self.userIsActive = YES;
+                self.currentUser.userName = responseObject[@"name"];
+                [self postUserAuthenticationFinishNotification];
                 [self fetchCurrentUserData];
             }
             else if ([key isEqualToString:@"err"])
             {
-                //requestSucceed = 0;
+                self.userIsActive = NO;
+                [self postUserAuthenticationFinishNotification];
             }
         }
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
-        //requestSucceed = 0;
+        self.userIsActive = NO;
+        [self postUserAuthenticationFinishNotification];
     }];
-    
-    return YES;
 }
 
 - (void)fetchCurrentUserData
 {
+    NSLog(@"bool - %d", self.userIsActive);
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
 
     NSError *error;
-    //NSLog(@"account - %@", self.currentUser.account);
-    NSDictionary *parameters = @{@"account" : self.currentUser.account}; //@{@"account" : @"20143058207"};
+    NSDictionary *parameters = @{@"account" : self.currentUser.account};
     NSData *data = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:&error];
     NSString *jsonString = [[NSString alloc] initWithData:data
                                                  encoding:NSUTF8StringEncoding];
@@ -97,7 +98,9 @@ static NSString * const insertNewUserBaseURL = @"http://218.192.166.167/api/prot
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
     NSError *error;
-    NSDictionary *parameters = @{@"account" : @"201430581112", @"password" : @"12341234"};//self.account};
+    NSDictionary *parameters = @{@"account" : self.currentUser.account,
+                                 @"password" : self.currentUser.password,
+                                 @"userName" : self.currentUser.userName};
     NSData *data = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:&error];
     NSString *jsonString = [[NSString alloc] initWithData:data
                                                  encoding:NSUTF8StringEncoding];
@@ -108,6 +111,7 @@ static NSString * const insertNewUserBaseURL = @"http://218.192.166.167/api/prot
     
     [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
+        //[self fetchCurrentUserData];
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
@@ -118,6 +122,12 @@ static NSString * const insertNewUserBaseURL = @"http://218.192.166.167/api/prot
     BBTUser *emptyUser = [BBTUser new];
     self.currentUser = emptyUser;
     self.userIsActive = NO;
+}
+
+- (void)postUserAuthenticationFinishNotification
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kUserAuthentificationFinishNotifName
+                                                        object:self];
 }
 
 @end

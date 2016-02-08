@@ -19,5 +19,4 @@ pod 'HMSegmentedControl'
 pod 'SDWebImage', '~>3.7'
 pod 'KGModal', '~> 0.0.1'
 pod 'ActionSheetPicker-3.0'
-
-
+pod 'JGProgressHUD'

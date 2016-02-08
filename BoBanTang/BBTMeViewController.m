@@ -27,16 +27,23 @@
 
 @implementation BBTMeViewController
 
+extern NSString * kUserAuthentificationFinishNotifName;
+
 - (void)viewDidLoad
 {
     self.title = @"我";
     self.meTableView.scrollEnabled = NO;
-
+    
     //Lean Cloud Settings
     AVObject *testObject = [AVObject objectWithClassName:@"TestObject"];
     [testObject setObject:@"bar" forKey:@"foo"];
     [testObject save];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveUserAuthenticationNotif)
+                                                 name:kUserAuthentificationFinishNotifName
+                                               object:nil];
+    
     CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
@@ -45,7 +52,7 @@
     CGFloat avatarImageViewRadius = 50.0f;                              //Avatar imageView is circular.
     CGFloat avatarImageCenterYOffSet = 20.0f;
     CGFloat labelHeight = 20.0f;
-    CGFloat containerViewHeight = statusBarHeight + navigationBarHeight + loginButtonHeight + verticalInnerSpacing * 4 + avatarImageViewRadius * 2 + labelHeight;
+    CGFloat containerViewHeight = statusBarHeight + navigationBarHeight + verticalInnerSpacing * 6 + avatarImageViewRadius * 2 + labelHeight * 2;
     
     //Initialization
     self.containerView = ({
@@ -106,24 +113,6 @@
         tableView;
     });
     
-    if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
-    {
-        self.loginButton.hidden = YES;
-        self.nameLabel.hidden = NO;
-        self.studentNumberLabel.hidden = NO;
-        self.nameLabel.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.userName;
-        self.studentNumberLabel.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account;
-        NSURL *avatarURL = [NSURL URLWithString:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.userLogo];
-        [self.avatarImageView sd_setImageWithURL:avatarURL placeholderImage:[UIImage imageNamed:@"BoBanTang"]];
-    }
-    else
-    {
-        self.loginButton.hidden = NO;
-        self.nameLabel.hidden = YES;
-        self.studentNumberLabel.hidden = YES;
-        self.avatarImageView.image = [UIImage imageNamed:@"BoBanTang"];
-    }
-    
     //Add to subview
     [self.view addSubview:self.containerView];
     [self.view addSubview:self.meTableView];
@@ -176,7 +165,9 @@
         make.width.equalTo(self.view.mas_width);
         make.centerX.equalTo(self.studentNumberLabel.mas_centerX);
     }];
-    
+ 
+    [self updateView];
+
 }
 
 
@@ -194,6 +185,11 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     return @" ";
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.01f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -270,6 +266,33 @@
     BBTLoginViewController *loginVC = [[BBTLoginViewController alloc] init];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginVC];
     [self presentViewController:navigationController animated:YES completion:nil];
+}
+
+- (void)didReceiveUserAuthenticationNotif
+{
+    [self updateView];
+}
+
+- (void)updateView
+{
+    if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
+    {
+        self.loginButton.hidden = YES;
+        self.nameLabel.hidden = NO;
+        self.studentNumberLabel.hidden = NO;
+        NSLog(@"currentname - %@",[BBTCurrentUserManager sharedCurrentUserManager].currentUser.userName);
+        self.nameLabel.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.userName;
+        self.studentNumberLabel.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account;
+        NSURL *avatarURL = [NSURL URLWithString:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.userLogo];
+        [self.avatarImageView sd_setImageWithURL:avatarURL placeholderImage:[UIImage imageNamed:@"BoBanTang"]];
+    }
+    else
+    {
+        self.loginButton.hidden = NO;
+        self.nameLabel.hidden = YES;
+        self.studentNumberLabel.hidden = YES;
+        self.avatarImageView.image = [UIImage imageNamed:@"BoBanTang"];
+    }
 }
 
 @end

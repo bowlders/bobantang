@@ -12,7 +12,7 @@
 
 //In version 3.0, userName and password are from 教务系统, sex, institution, className and nickName can temporarily be ignored.
 @property (assign, nonatomic) NSInteger  ID;
-@property (assign, nonatomic) NSString * account;
+@property (strong, nonatomic) NSString * account;
 @property (strong, nonatomic) NSString * userName;
 @property (assign, nonatomic) NSInteger  sex;
 @property (strong, nonatomic) NSString * institution;

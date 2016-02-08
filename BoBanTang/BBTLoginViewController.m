@@ -13,6 +13,7 @@
 #import "UIColor+BBTColor.h"
 #import <AYVibrantButton.h>
 #import <Masonry.h>
+#import <JGProgressHUD.h>
 
 @interface BBTLoginViewController ()
 
@@ -24,10 +25,17 @@
 
 @implementation BBTLoginViewController
 
+extern NSString * kUserAuthentificationFinishNotifName;
+
 - (void)viewDidLoad
 {
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView.scrollEnabled = NO;
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveUserAuthenticationNotif)
+                                                 name:kUserAuthentificationFinishNotifName
+                                               object:nil];
     
     self.logoImageView = ({
         UIImageView *imageView = [UIImageView new];
@@ -65,7 +73,6 @@
     CGFloat logoImageSideLength = 100.0f;
     CGFloat tableViewHeight = 100.0f;
     CGFloat loginButtonHeight = 50.0f;
-    CGFloat loginButtonWidth = 200.0f;
     
     [self.logoImageView mas_makeConstraints:^(MASConstraintMaker *make){
         make.top.equalTo(self.view.mas_top).offset(navigationBarHeight + verticalInnerSpacing);
@@ -84,7 +91,7 @@
     [self.loginButton mas_makeConstraints:^(MASConstraintMaker *make){
         make.top.equalTo(self.tableView.mas_bottom).offset(verticalInnerSpacing);
         make.height.equalTo(@(loginButtonHeight));
-        make.width.equalTo(@(loginButtonWidth));
+        make.width.equalTo(self.view.mas_width).multipliedBy(0.55);
         make.centerX.equalTo(self.view.mas_centerX);
     }];
     
@@ -159,10 +166,7 @@
     else
     {
         [textField resignFirstResponder];
-        NSString *currentUserUserName = ((UITextField *)((BBTLoginTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]).textField).text;
-        [BBTCurrentUserManager sharedCurrentUserManager].currentUser = [BBTUser new];
-
-        [BBTCurrentUserManager sharedCurrentUserManager].currentUser.password = textField.text;
+        [self loginButtonIsTapped];
     }
     return YES;
 }
@@ -181,6 +185,35 @@
 - (void)cancelButtonIsTapped
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)didReceiveUserAuthenticationNotif
+{
+    if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
+    {
+        JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+        HUD.textLabel.text = @"登录成功";
+        HUD.indicatorView = [[JGProgressHUDSuccessIndicatorView alloc] init];
+        HUD.square = YES;
+        [HUD showInView:self.navigationController.view];
+        //[HUD showInView:self.view];
+        [HUD dismissAfterDelay:3.0];
+        
+        //Dismiss current VC 1 sec after HUD disappears.
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self dismissViewControllerAnimated:YES completion:nil];
+        });
+    }
+    else
+    {
+        JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+        HUD.textLabel.text = @"登录失败";
+        HUD.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init];
+        HUD.square = YES;
+        [HUD showInView:self.view];
+        //[HUD showInView:self.navigationController.view];
+        [HUD dismissAfterDelay:3.0];
+    }
 }
 
 @end

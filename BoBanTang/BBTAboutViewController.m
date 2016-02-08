@@ -10,6 +10,10 @@
 
 @interface BBTAboutViewController ()
 
+@property (strong, nonatomic) UIImageView * logoImageView;
+@property (strong, nonatomic) UILabel     * productNameLabel;
+//@property (strong, nonatomic) UILabel     *
+
 @end
 
 @implementation BBTAboutViewController
