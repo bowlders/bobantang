@@ -35,6 +35,8 @@ static NSString *itemDetailIdentifier = @"itemDetailIdentifier";
 @property (strong, nonatomic) IBOutlet UITextField *contactName;
 @property (strong, nonatomic) IBOutlet UITextField *contactNum;
 @property (strong, nonatomic) IBOutlet UITextField *contactOthers;
+@property (strong, nonatomic) IBOutlet UITableViewCell *buttonCell;
+@property (strong, nonatomic) IBOutlet UIButton *postButton;
 
 @end
 
@@ -55,6 +57,8 @@ static NSString *itemDetailIdentifier = @"itemDetailIdentifier";
     
     [self.view addGestureRecognizer:tap];
     [tap setCancelsTouchesInView:NO];
+    [self.buttonCell bringSubviewToFront:self.postButton];
+    self.buttonCell.backgroundColor = [UIColor clearColor];
      
     [self.locationDetail addTarget:self
                             action:@selector(dismissKeyboard)

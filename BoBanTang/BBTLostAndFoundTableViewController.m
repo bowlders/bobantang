@@ -12,6 +12,7 @@
 #import "BBTLAFManager.h"
 #import "BBTLafItemsTableViewCell.h"
 #import "BBTItemDetailsTableViewController.h"
+#import "BBTCurrentUserManager.h"
 
 static NSString *postIdentifier = @"LAFPostIdentifier";
 static NSString *itemCellIdentifier = @"BBTLafItemsTableViewCell";
@@ -121,6 +122,32 @@ extern NSString * lafNotificationName;
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if ([identifier isEqualToString:postIdentifier])
+    {
+        if ([BBTCurrentUserManager sharedCurrentUserManager].currentUser.account)
+        {
+            NSLog(@"Account: %@", [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account);
+            return YES;
+        } else {
+            UIAlertController *alertController = [[UIAlertController alloc] init];
+            alertController = [UIAlertController alertControllerWithTitle:@"你还没有登录哟" message:@"请先登录" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"去登陆" style:UIAlertActionStyleDefault handler:nil];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+            
+            [alertController addAction:cancelAction];
+            [alertController addAction:okAction];
+            
+            [self presentViewController:alertController animated:YES completion:nil];
+            return NO;
+        }
+    } else {
+        return YES;
+    }
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:postIdentifier])

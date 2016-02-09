@@ -989,7 +989,7 @@
             <objects>
                 <tableViewController hidesBottomBarWhenPushed="YES" id="aHV-At-Naf" customClass="BBTPostInfoTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="kSF-F8-d2E">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
@@ -1277,14 +1277,34 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="95a-kt-DDD">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="zdN-DB-9Tu">
+                                        <rect key="frame" x="0.0" y="659" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zdN-DB-9Tu" id="gu6-tM-2ee">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTI-sZ-9Sd">
+                                                    <rect key="frame" x="15" y="7" width="46" height="30"/>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="aHV-At-Naf" id="oM2-Gd-yHe"/>
                             <outlet property="delegate" destination="aHV-At-Naf" id="8BP-UG-Gs8"/>
                         </connections>
                     </tableView>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="800"/>
                     <connections>
+                        <outlet property="buttonCell" destination="zdN-DB-9Tu" id="P65-I6-HRz"/>
                         <outlet property="campus" destination="0ge-vi-Q3L" id="Yat-qd-kSj"/>
                         <outlet property="contactName" destination="jO7-CP-Ake" id="29J-3A-RlR"/>
                         <outlet property="contactNum" destination="prM-fn-dWi" id="tCh-Mz-vQT"/>
@@ -1298,6 +1318,7 @@
                         <outlet property="itemTypeTitle" destination="O5P-Tc-qwP" id="3l2-Sa-KeJ"/>
                         <outlet property="locationDetail" destination="aYJ-lo-94A" id="m9m-Ra-8F8"/>
                         <outlet property="locationTitle" destination="Bjw-nU-xEJ" id="gFF-pT-RFE"/>
+                        <outlet property="postButton" destination="cTI-sZ-9Sd" id="CYk-20-YA6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PgB-og-gly" userLabel="First Responder" sceneMemberID="firstResponder"/>
