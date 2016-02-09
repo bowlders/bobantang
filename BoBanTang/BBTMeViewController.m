@@ -239,7 +239,17 @@ extern NSString * kUserAuthentificationFinishNotifName;
     {
         if (indexPath.row == 0)
         {
-            [self performSegueWithIdentifier:@"showMyCollections" sender:tableView];
+            //Log in first
+            if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
+            {
+                [self performSegueWithIdentifier:@"showMyCollections" sender:tableView];
+            }
+            else
+            {
+                BBTLoginViewController *loginVC = [[BBTLoginViewController alloc] init];
+                UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginVC];
+                [self presentViewController:navigationController animated:YES completion:nil];
+            }
         }
         else if (indexPath.row == 1)
         {

@@ -37,7 +37,6 @@
             label.numberOfLines = 2;
             label.adjustsFontSizeToFitWidth = NO;
             label.font = [UIFont BBTInformationTableViewTitleFont];
-            label.lineBreakMode = NSLineBreakByTruncatingTail;
             label.clipsToBounds = YES;
             label;
         });
@@ -49,7 +48,6 @@
             label.textAlignment = NSTextAlignmentRight;
             label.numberOfLines = 1;
             label.font = [UIFont BBTInformationTableViewAuthorandDateFont];
-            label.lineBreakMode = NSLineBreakByTruncatingTail;
             label.clipsToBounds = YES;
             label;
         });
@@ -62,7 +60,6 @@
             label.numberOfLines = 3;
             label.adjustsFontSizeToFitWidth = NO;
             label.font = [UIFont BBTInformationTableViewAbstractFont];
-            label.lineBreakMode = NSLineBreakByTruncatingTail;
             label.clipsToBounds = YES;
             label;
         });
@@ -74,7 +71,6 @@
             label.textAlignment = NSTextAlignmentRight;
             label.numberOfLines = 1;
             label.font = [UIFont BBTInformationTableViewAuthorandDateFont];
-            label.lineBreakMode = NSLineBreakByTruncatingTail;
             label.clipsToBounds = YES;
             label;
         });
@@ -93,12 +89,12 @@
 {
     if (!self.didSetupConstraints)
     {
-        static const CGFloat topOffset = 5.0f;
-        static const CGFloat bottomOffset = 5.0f;
-        static const CGFloat imageLeftOffset = 5.0f;
-        static const CGFloat horizontalInnerSpacing = 3.0f;
-        static const CGFloat verticalInnerSpacing = 3.0f;
-        static const CGFloat rightOffset = 5.0f;
+        CGFloat topOffset = 5.0f;
+        CGFloat bottomOffset = 5.0f;
+        CGFloat imageLeftOffset = 5.0f;
+        CGFloat horizontalInnerSpacing = 3.0f;
+        CGFloat verticalInnerSpacing = 3.0f;
+        CGFloat rightOffset = 5.0f;
         
         [self.contentView mas_makeConstraints:^(MASConstraintMaker *make){
             make.size.equalTo(self);

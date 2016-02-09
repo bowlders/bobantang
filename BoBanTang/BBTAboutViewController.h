@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BBTAboutViewController : UIViewController
+@interface BBTAboutViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @end
