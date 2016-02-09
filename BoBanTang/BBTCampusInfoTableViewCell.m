@@ -159,7 +159,8 @@
     self.authorLabel.text = content[@"author"];
     self.abstractLabel.text = content[@"summary"];
     self.dateLabel.text = content[@"date"];
-    [self.thumbImage setImageWithURL:content[@"picture"] placeholderImage:[UIImage imageNamed:@"trashcanButton"] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    NSURL *imageURL = [NSURL URLWithString:content[@"picture"]];
+    [self.thumbImage sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"BoBanTang"]];
 }
 
 - (void)awakeFromNib {

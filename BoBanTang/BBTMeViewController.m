@@ -9,7 +9,9 @@
 #import "BBTMeViewController.h"
 #import "UIColor+BBTColor.h"
 #import "BBTCurrentUserManager.h"
+#import "BBTLoginViewController.h"
 #import <Masonry.h>
+#import <UIImageView+WebCache.h>
 
 @interface BBTMeViewController ()
 
@@ -25,29 +27,32 @@
 
 @implementation BBTMeViewController
 
+extern NSString * kUserAuthentificationFinishNotifName;
+
 - (void)viewDidLoad
 {
     self.title = @"我";
     self.meTableView.scrollEnabled = NO;
-    
-    [[BBTCurrentUserManager sharedCurrentUserManager] currentUserAuthentication];
     
     //Lean Cloud Settings
     AVObject *testObject = [AVObject objectWithClassName:@"TestObject"];
     [testObject setObject:@"bar" forKey:@"foo"];
     [testObject save];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveUserAuthenticationNotif)
+                                                 name:kUserAuthentificationFinishNotifName
+                                               object:nil];
+    
     CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
-    CGFloat loginButtonUpPadding = 10.0f;
-    CGFloat loginButtonRightPadding = 10.0f;
-    CGFloat loginButtonWidth = 60.0f;
-    CGFloat loginButtonHeight = 20.0f;
+    CGFloat loginButtonHeight = 30.0f;
     CGFloat verticalInnerSpacing = 10.0f;
     CGFloat avatarImageViewRadius = 50.0f;                              //Avatar imageView is circular.
+    CGFloat avatarImageCenterYOffSet = 20.0f;
     CGFloat labelHeight = 20.0f;
-    CGFloat containerViewHeight = statusBarHeight + navigationBarHeight + loginButtonUpPadding + loginButtonHeight + verticalInnerSpacing * 4 + avatarImageViewRadius * 2 + labelHeight * 2;
+    CGFloat containerViewHeight = statusBarHeight + navigationBarHeight + verticalInnerSpacing * 6 + avatarImageViewRadius * 2 + labelHeight * 2;
     
     //Initialization
     self.containerView = ({
@@ -61,7 +66,9 @@
     self.loginButton = ({
         UIButton *button = [UIButton new];
         button.translatesAutoresizingMaskIntoConstraints = NO;
-        [button setTitle:@"请登录" forState:UIControlStateNormal];
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"请登录"];
+        [attributedString addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:NSUnderlineStyleSingle] range:NSMakeRange(0, [attributedString length])];
+        [button setAttributedTitle:attributedString forState:UIControlStateNormal];
         [button addTarget:self action:@selector(loginButtonIsTapped) forControlEvents:UIControlEventTouchUpInside];
         button.titleLabel.numberOfLines = 1;
         button.titleLabel.textAlignment = NSTextAlignmentRight;
@@ -74,7 +81,6 @@
         UIImageView *imageView = [UIImageView new];
         imageView.translatesAutoresizingMaskIntoConstraints = NO;
         imageView.contentMode = UIViewContentModeScaleToFill;
-        imageView.image = [UIImage imageNamed:@"checkMarkbutton"];
         imageView.alpha = 1.0;
         imageView;
     });
@@ -86,7 +92,6 @@
         label.textAlignment = NSTextAlignmentCenter;
         label.adjustsFontSizeToFitWidth = NO;
         label.alpha = 1.0;
-        label.text = @"Caesar";
         label;
     });
     
@@ -97,7 +102,6 @@
         label.textAlignment = NSTextAlignmentCenter;
         label.adjustsFontSizeToFitWidth = NO;
         label.alpha = 1.0;
-        label.text = @"201430582078";
         label;
     });
     
@@ -108,22 +112,6 @@
         tableView.delegate = self;
         tableView;
     });
-    
-    //Deal with view hidden or not
-    if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
-    {
-        self.loginButton.hidden = YES;
-        self.nameLabel.hidden = NO;
-        self.studentNumberLabel.hidden = NO;
-        self.nameLabel.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.userName;
-        self.studentNumberLabel.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account;
-    }
-    else
-    {
-        self.loginButton.hidden = NO;
-        self.nameLabel.hidden = YES;
-        self.studentNumberLabel.hidden = YES;
-    }
     
     //Add to subview
     [self.view addSubview:self.containerView];
@@ -141,21 +129,21 @@
         make.width.equalTo(self.view.mas_width);
     }];
     
-    [self.loginButton mas_makeConstraints:^(MASConstraintMaker *make){
-        make.top.equalTo(self.containerView.mas_top).offset(statusBarHeight + navigationBarHeight + loginButtonUpPadding);
-        make.right.equalTo(self.containerView.mas_right).offset(-loginButtonRightPadding);
-        make.width.equalTo(@(loginButtonWidth));
-        make.height.equalTo(@(loginButtonHeight));
-    }];
-    
     [self.avatarImageView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.top.equalTo(self.loginButton.mas_bottom);
         make.width.equalTo(@(2 * avatarImageViewRadius));
         make.height.equalTo(@(2 * avatarImageViewRadius));
         make.centerX.equalTo(self.containerView.mas_centerX);
+        make.centerY.equalTo(self.containerView.mas_centerY).offset(avatarImageCenterYOffSet);
     }];
     self.avatarImageView.layer.cornerRadius = avatarImageViewRadius;    //Create a circular avatar imageView.
     self.avatarImageView.layer.masksToBounds = YES;
+    
+    [self.loginButton mas_makeConstraints:^(MASConstraintMaker *make){
+        make.top.equalTo(self.avatarImageView.mas_bottom).offset(verticalInnerSpacing);
+        make.width.equalTo(self.containerView.mas_width);
+        make.height.equalTo(@(loginButtonHeight));
+        make.centerX.equalTo(self.avatarImageView.mas_centerX);
+    }];
     
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make){
         make.top.equalTo(self.avatarImageView.mas_bottom).offset(verticalInnerSpacing);
@@ -172,12 +160,14 @@
     }];
     
     [self.meTableView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.top.equalTo(self.studentNumberLabel.mas_bottom).offset(verticalInnerSpacing);
+        make.top.equalTo(self.containerView.mas_bottom);
         make.bottom.equalTo(self.view.mas_bottom).offset(-tabBarHeight);
         make.width.equalTo(self.view.mas_width);
         make.centerX.equalTo(self.studentNumberLabel.mas_centerX);
     }];
-    
+ 
+    [self updateView];
+
 }
 
 
@@ -194,7 +184,12 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"  ";
+    return @" ";
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.01f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -268,7 +263,35 @@
 
 - (void)loginButtonIsTapped
 {
-    
+    BBTLoginViewController *loginVC = [[BBTLoginViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    [self presentViewController:navigationController animated:YES completion:nil];
+}
+
+- (void)didReceiveUserAuthenticationNotif
+{
+    [self updateView];
+}
+
+- (void)updateView
+{
+    if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
+    {
+        self.loginButton.hidden = YES;
+        self.nameLabel.hidden = NO;
+        self.studentNumberLabel.hidden = NO;
+        self.nameLabel.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.userName;
+        self.studentNumberLabel.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account;
+        NSURL *avatarURL = [NSURL URLWithString:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.userLogo];
+        [self.avatarImageView sd_setImageWithURL:avatarURL placeholderImage:[UIImage imageNamed:@"BoBanTang"]];
+    }
+    else
+    {
+        self.loginButton.hidden = NO;
+        self.nameLabel.hidden = YES;
+        self.studentNumberLabel.hidden = YES;
+        self.avatarImageView.image = [UIImage imageNamed:@"BoBanTang"];
+    }
 }
 
 @end

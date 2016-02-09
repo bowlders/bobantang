@@ -40,7 +40,8 @@ extern NSString * campusBusNotificationName;
     });
     
     self.refreshButton = ({
-        UIButton *button = [UIButton new];
+        //UIButton *button = [UIButton new];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
         button.translatesAutoresizingMaskIntoConstraints = NO;
         [button setTitle:@"testtest" forState:UIControlStateNormal];
         [button addTarget:self
@@ -52,19 +53,20 @@ extern NSString * campusBusNotificationName;
         button.alpha = 1.0;
         button;
     });
-
+    
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.refreshButton];
     
+    CGFloat tableViewUpPadding = 20.0f;
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
     CGFloat buttonOffset = 10.0f;
     CGFloat buttonSideLength = 50.0f;
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.top.equalTo(self.view.mas_top).offset(navigationBarHeight);
+        make.top.equalTo(self.view.mas_top).offset(tableViewUpPadding);//.offset(navigationBarHeight);
         make.bottom.equalTo(self.view.mas_bottom).offset(-tabBarHeight);
-        make.width.equalTo(self.view.mas_width).offset(-buttonOffset * 2 - buttonSideLength);
+        make.width.equalTo(self.view.mas_width);
         make.left.equalTo(self.view.mas_left);
     }];
     
@@ -75,6 +77,18 @@ extern NSString * campusBusNotificationName;
         make.height.equalTo(@(buttonSideLength));
     }];
     
+    /*
+    CGRect applicationFrame = [UIScreen mainScreen].bounds;
+    CGFloat screenWidth = CGRectGetWidth(applicationFrame);
+    CGFloat screenHeight = CGRectGetHeight(applicationFrame);
+    CGFloat buttonWidth = 40.0f;
+    CGFloat buttonHeight = 40.0f;
+    CGFloat spacing = 10.0f;
+    CGFloat buttonX = screenWidth - buttonWidth - spacing;
+    CGFloat buttonY = screenHeight - buttonHeight - spacing;
+    CGRect buttonFrame = CGRectMake(buttonX, buttonY, buttonWidth, buttonHeight);
+    [self.refreshButton setFrame:buttonFrame];
+     */
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -89,9 +103,11 @@ extern NSString * campusBusNotificationName;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
+    CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
-    CGFloat screenHeight = applicationFrame.size.height;
-    return screenHeight * 0.77 / 12.0;
+    CGFloat screenHeight = applicationFrame.size.height - navigationBarHeight - tabBarHeight;
+    return screenHeight * 0.9 / 12.0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

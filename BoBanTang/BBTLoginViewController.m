@@ -10,8 +10,10 @@
 #import "BBTLoginTableViewCell.h"
 #import "BBTUser.h"
 #import "BBTCurrentUserManager.h"
+#import "UIColor+BBTColor.h"
 #import <AYVibrantButton.h>
 #import <Masonry.h>
+#import <JGProgressHUD.h>
 
 @interface BBTLoginViewController ()
 
@@ -23,8 +25,18 @@
 
 @implementation BBTLoginViewController
 
+extern NSString * kUserAuthentificationFinishNotifName;
+
 - (void)viewDidLoad
 {
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.tableView.scrollEnabled = NO;
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveUserAuthenticationNotif)
+                                                 name:kUserAuthentificationFinishNotifName
+                                               object:nil];
+    
     self.logoImageView = ({
         UIImageView *imageView = [UIImageView new];
         imageView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -44,23 +56,22 @@
     UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
     effectView.frame = self.view.bounds;
     [self.view addSubview:effectView];
-    self.loginButton = [[AYVibrantButton alloc] initWithFrame:CGRectZero style:AYVibrantButtonStyleInvert];
-    self.loginButton.vibrancyEffect = [UIVibrancyEffect effectForBlurEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
-    self.loginButton.text = @"Invert";
+    self.loginButton = [[AYVibrantButton alloc] initWithFrame:CGRectZero style:AYVibrantButtonStyleFill];
+    self.loginButton.vibrancyEffect = nil;
+    self.loginButton.text = @"登录";
     self.loginButton.font = [UIFont systemFontOfSize:18.0];
     [self.loginButton addTarget:self action:@selector(loginButtonIsTapped) forControlEvents:UIControlEventTouchUpInside];
+    self.loginButton.backgroundColor = [UIColor BBTAppGlobalBlue];
     [effectView.contentView addSubview:self.loginButton];
     
     [self.view addSubview:self.logoImageView];
     [self.view addSubview:self.tableView];
-    [self.view addSubview:self.loginButton];
     
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     CGFloat verticalInnerSpacing = 50.0f;
-    CGFloat logoImageSideLength = 50.0f;
-    CGFloat tableViewHeight = 80.0f;
-    CGFloat loginButtonHeight = 30.0f;
-    CGFloat loginButtonWidth = 100.0f;
+    CGFloat logoImageSideLength = 100.0f;
+    CGFloat tableViewHeight = 100.0f;
+    CGFloat loginButtonHeight = 50.0f;
     
     [self.logoImageView mas_makeConstraints:^(MASConstraintMaker *make){
         make.top.equalTo(self.view.mas_top).offset(navigationBarHeight + verticalInnerSpacing);
@@ -79,9 +90,15 @@
     [self.loginButton mas_makeConstraints:^(MASConstraintMaker *make){
         make.top.equalTo(self.tableView.mas_bottom).offset(verticalInnerSpacing);
         make.height.equalTo(@(loginButtonHeight));
-        make.width.equalTo(@(loginButtonWidth));
+        make.width.equalTo(self.view.mas_width).multipliedBy(0.55);
         make.centerX.equalTo(self.view.mas_centerX);
     }];
+    
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"取消"
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(cancelButtonIsTapped)];
+    self.navigationItem.leftBarButtonItem = cancelButton;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -92,6 +109,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 2;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50.0f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -120,6 +142,9 @@
     
     cell.textField.delegate = self;
 
+    [cell setNeedsUpdateConstraints];
+    [cell updateConstraintsIfNeeded];
+
     return cell;
 
 }
@@ -140,10 +165,7 @@
     else
     {
         [textField resignFirstResponder];
-        NSString *currentUserUserName = ((UITextField *)((BBTLoginTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]).textField).text;
-        [BBTCurrentUserManager sharedCurrentUserManager].currentUser = [BBTUser new];
-
-        [BBTCurrentUserManager sharedCurrentUserManager].currentUser.password = textField.text;
+        [self loginButtonIsTapped];
     }
     return YES;
 }
@@ -157,6 +179,38 @@
     [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account = currentUserUserName;
     [BBTCurrentUserManager sharedCurrentUserManager].currentUser.password = currenUserPassWord;
     [[BBTCurrentUserManager sharedCurrentUserManager] currentUserAuthentication];
+}
+
+- (void)cancelButtonIsTapped
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)didReceiveUserAuthenticationNotif
+{
+    if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
+    {
+        JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+        HUD.textLabel.text = @"登录成功";
+        HUD.indicatorView = [[JGProgressHUDSuccessIndicatorView alloc] init];
+        HUD.square = YES;
+        [HUD showInView:self.view];
+        [HUD dismissAfterDelay:3.0];
+        
+        //Dismiss current VC 1 sec after HUD disappears.
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self dismissViewControllerAnimated:YES completion:nil];
+        });
+    }
+    else
+    {
+        JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+        HUD.textLabel.text = @"登录失败";
+        HUD.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init];
+        HUD.square = YES;
+        [HUD showInView:self.view];
+        [HUD dismissAfterDelay:3.0];
+    }
 }
 
 @end
