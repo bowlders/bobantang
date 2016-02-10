@@ -8,7 +8,7 @@
 
 #import "BBTLostAndFoundTableViewController.h"
 #import "PopoverView.h"
-#import "BBTPostInfoTableViewController.h"
+#import "BBTPostInfoViewController.h"
 #import "BBTLAFManager.h"
 #import "BBTLafItemsTableViewCell.h"
 #import "BBTItemDetailsTableViewController.h"
@@ -27,10 +27,12 @@ static NSString *showItemsDetailsIdentifier = @"showItemsDetailsIdentifier";
 @implementation BBTLostAndFoundTableViewController
 
 extern NSString * lafNotificationName;
+extern NSString * kUserAuthentificationFinishNotifName;
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLafNotification) name:lafNotificationName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveUserAuthentificaionNotification) name:kUserAuthentificationFinishNotifName object:nil];
 }
 
 - (void)viewDidLoad {
@@ -64,6 +66,12 @@ extern NSString * lafNotificationName;
     [self.tableView reloadData];
 }
 
+- (BOOL)didReceiveUserAuthentificaionNotification
+{
+    NSLog(@"User Authentification received");
+    return YES;
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -83,8 +91,24 @@ extern NSString * lafNotificationName;
     
     PopoverView *popoverView = [PopoverView new];
     popoverView.menuTitles   = @[@"发布招领启事", @"发布寻物启事", @"已发布的消息"];
-    [popoverView showFromView:showBtn selected:^(NSInteger index){
+    [popoverView showFromView:showBtn selected:^(NSInteger index)
+    {
         [self performSegueWithIdentifier:postIdentifier sender:popoverView.menuTitles[index]];
+        /*
+        if ([self didReceiveUserAuthentificaionNotification])
+        {
+            if ([self shouldPerformSegueWithIdentifier:postIdentifier sender:nil])
+            {
+                [self performSegueWithIdentifier:postIdentifier sender:popoverView.menuTitles[index]];
+            }
+        } else {
+            UIAlertController *alertController = [[UIAlertController alloc] init];
+            alertController = [UIAlertController alertControllerWithTitle:@"验证用户失败" message:@"请稍后再试" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+            [alertController addAction:okAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+        }
+         */
     }];
 }
 
@@ -127,7 +151,7 @@ extern NSString * lafNotificationName;
 {
     if ([identifier isEqualToString:postIdentifier])
     {
-        if ([BBTCurrentUserManager sharedCurrentUserManager].currentUser.account)
+        if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
         {
             NSLog(@"Account: %@", [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account);
             return YES;
@@ -152,8 +176,8 @@ extern NSString * lafNotificationName;
 {
     if ([segue.identifier isEqualToString:postIdentifier])
     {
-        BBTPostInfoTableViewController *controller = segue.destinationViewController;
-        controller.postType = sender;
+        BBTPostInfoViewController *controller = segue.destinationViewController;
+        controller.lostOrFound = self.lostOrFound.selectedSegmentIndex;
     }
     else if ([segue.identifier isEqualToString:showItemsDetailsIdentifier])
     {
