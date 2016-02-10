@@ -23,6 +23,7 @@
     [self.navigationController.navigationBar setBarTintColor: [UIColor BBTAppGlobalBlue]];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+    self.navigationItem.title = @"请输入详情";
 
     [self.itemDetails becomeFirstResponder];
     self.itemDetails.contentInset = UIEdgeInsetsMake(-65.0, 0.0, 0.0, 0.0);
