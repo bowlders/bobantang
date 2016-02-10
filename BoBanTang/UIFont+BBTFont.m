@@ -12,7 +12,7 @@
 
 + (UIFont *)BBTInformationTableViewTitleFont
 {
-    return [UIFont fontWithName:@"PingFangSC-Bold" size:25];
+    return [UIFont fontWithName:@"PingFangSC-Regular" size:20];
 }
 
 + (UIFont *)BBTInformationTableViewAbstractFont
@@ -22,7 +22,17 @@
 
 + (UIFont *)BBTInformationTableViewAuthorandDateFont
 {
-    return [UIFont fontWithName:@"PingFangSC" size:18];
+    return [UIFont fontWithName:@"PingFangSC-Light" size:16];
+}
+
++ (UIFont *)BBTProductNameLabelFont
+{
+    return [UIFont fontWithName:@"PingFangSC-Regular" size:30];
+}
+
++ (UIFont *)BBTProductDetailLabelAndCopyRightFont
+{
+    return [UIFont fontWithName:@"PingFangSC-Light" size:20];
 }
 
 @end

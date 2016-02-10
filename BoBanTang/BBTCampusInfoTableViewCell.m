@@ -39,7 +39,6 @@
             label.numberOfLines = 2;
             label.adjustsFontSizeToFitWidth = NO;
             label.font = [UIFont BBTInformationTableViewTitleFont];
-            label.lineBreakMode = NSLineBreakByTruncatingTail;
             label.clipsToBounds = YES;
             label;
         });
@@ -51,7 +50,6 @@
             label.textAlignment = NSTextAlignmentRight;
             label.numberOfLines = 1;
             label.font = [UIFont BBTInformationTableViewAuthorandDateFont];
-            label.lineBreakMode = NSLineBreakByTruncatingTail;
             label.clipsToBounds = YES;
             label;
         });
@@ -64,7 +62,6 @@
             label.numberOfLines = 3;
             label.adjustsFontSizeToFitWidth = NO;
             label.font = [UIFont BBTInformationTableViewAbstractFont];
-            label.lineBreakMode = NSLineBreakByTruncatingTail;
             label.clipsToBounds = YES;
             label;
         });
@@ -76,7 +73,6 @@
             label.textAlignment = NSTextAlignmentRight;
             label.numberOfLines = 1;
             label.font = [UIFont BBTInformationTableViewAuthorandDateFont];
-            label.lineBreakMode = NSLineBreakByTruncatingTail;
             label.clipsToBounds = YES;
             label;
         });
