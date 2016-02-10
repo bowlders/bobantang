@@ -29,9 +29,6 @@ extern NSString * campusBusNotificationName;
                                                  name:campusBusNotificationName
                                                object:nil];
     
-    NSLog(@"font family - %@", [UIFont familyNames]);
-    NSLog(@"font names - %@", [UIFont fontNamesForFamilyName:@"PingFang SC"]);
-    
     self.tableView = ({
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         tableView.translatesAutoresizingMaskIntoConstraints = NO;
