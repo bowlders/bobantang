@@ -10,9 +10,17 @@
 
 @interface BBTSettingsViewController ()
 
+@property (strong, nonatomic) IBOutlet UISwitch *appSwitch;
+@property (strong, nonatomic) IBOutlet UISwitch *scoreInquireSwitch;
+
 @end
 
 @implementation BBTSettingsViewController
+
+- (IBAction)valueChanged:(id)sender
+{
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,41 +45,28 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 2;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    static NSString *meCellIdentifier = @"settingCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:meCellIdentifier];
+    CGFloat sectionHeight;
     
-    if (!cell)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:meCellIdentifier];
+    switch (section) {
+        case 0:
+            sectionHeight = 15.0f;
+            break;
+        case 1:
+            sectionHeight = 5.0f;
+            break;
+        case 2:
+            sectionHeight = 40.0f;
+            break;
+        case 3:
+            sectionHeight = 15.0f;
+            break;
+        default:
+            NSAssert(NO, @"Invalid section index");
     }
     
-    if (indexPath.row == 0)
-    {
-        cell.textLabel.text = @"清除缓存";
-    }
-    else if (indexPath.row == 1)
-    {
-        cell.textLabel.text = @"退出当前账号";
-    }
-    
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    return cell;
-
+    return sectionHeight;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -90,12 +85,12 @@
 
 - (void)clearCache
 {
-    //TO DO : Clear cache here.
+    //TODO: Clear cache here.
 }
 
 - (void)logOut
 {
-    //TO DO : Log out here.
+    //TODO: Log out here.
 }
 
 /*
