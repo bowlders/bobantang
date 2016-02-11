@@ -633,7 +633,6 @@
 			children = (
 				A947D91D1BD8DADA000F071B /* BoBanTang */,
 				A947D93A1BD8DADA000F071B /* BoBanTangTests */,
-				A947D9451BD8DADA000F071B /* BoBanTangUITests */,
 				4EA28AD388E43D96D5F54ADA /* Frameworks */,
 				BC88168E9E945BB9A5BFF3C4 /* Pods */,
 				A947D91C1BD8DADA000F071B /* Products */,
@@ -756,6 +755,7 @@
 		BC88168E9E945BB9A5BFF3C4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				A947D9451BD8DADA000F071B /* BoBanTangUITests */,
 				DAAC1D9BE8366224C1757CE5 /* Pods.debug.xcconfig */,
 				48D6888DD2A267EA93C8D8BC /* Pods.release.xcconfig */,
 			);

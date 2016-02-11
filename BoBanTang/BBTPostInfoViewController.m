@@ -33,6 +33,7 @@ static NSString *itemDetailIdentifier = @"itemDetailIdentifier";
 
 @implementation BBTPostInfoViewController
 
+
 - (id)init
 {
     self = [super init];
@@ -41,6 +42,7 @@ static NSString *itemDetailIdentifier = @"itemDetailIdentifier";
     }
     return self;
 }
+
 
 - (void)viewDidLoad
 {
@@ -57,7 +59,7 @@ static NSString *itemDetailIdentifier = @"itemDetailIdentifier";
     
     self.itemDetails = @"请输入详情";
 
-    self.view.translatesAutoresizingMaskIntoConstraints = NO;
+    //self.view.translatesAutoresizingMaskIntoConstraints = NO;
     
     self.tableView = ({
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
@@ -66,7 +68,7 @@ static NSString *itemDetailIdentifier = @"itemDetailIdentifier";
         tableView.translatesAutoresizingMaskIntoConstraints = NO;
         tableView;
     });
-    //[self.view addSubview:self.tableView];
+    [self.view addSubview:self.tableView];
     
     [self.tableView registerNib:[UINib nibWithNibName:campusCellIdentifier bundle:nil] forCellReuseIdentifier:campusCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:imageCellIdentifier bundle:nil] forCellReuseIdentifier:imageCellIdentifier];
