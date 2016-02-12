@@ -29,6 +29,9 @@ extern NSString * campusBusNotificationName;
                                                  name:campusBusNotificationName
                                                object:nil];
     
+    //Initialization
+    [BBTCampusBusManager sharedCampusBusManager];
+    
     self.tableView = ({
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         tableView.translatesAutoresizingMaskIntoConstraints = NO;

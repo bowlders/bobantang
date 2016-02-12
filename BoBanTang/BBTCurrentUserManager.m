@@ -8,12 +8,16 @@
 
 #import "BBTCurrentUserManager.h"
 #import <AFNetworking.h>
+#import <JNKeychain.h>
 
 @implementation BBTCurrentUserManager
 
 static NSString * const checkAccountURL = @"http://218.192.166.167/api/jw2005/checkAccount.php";
 static NSString * const fetchUserDataBaseURL = @"http://218.192.166.167/api/protype.php?table=users&method=get&data=";
 static NSString * const insertNewUserBaseURL = @"http://218.192.166.167/api/protype.php?table=users&method=save&data=";
+
+static NSString * const userNameKey = @"userName";
+static NSString * const passWordKey = @"passWord";
 
 NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
 
@@ -124,6 +128,28 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:kUserAuthentificationFinishNotifName
                                                         object:self];
+}
+
+- (void)saveCurrentUserInfo
+{
+    [JNKeychain saveValue:self.currentUser.userName forKey:userNameKey];
+    [JNKeychain saveValue:self.currentUser.password forKey:passWordKey];
+}
+
+- (NSString *)loadCurrentUserName
+{
+    return [JNKeychain loadValueForKey:userNameKey];
+}
+
+- (NSString *)loadCurrentUserPassWord
+{
+    return [JNKeychain loadValueForKey:passWordKey];
+}
+
+- (void)deleteCurrentUserInfo
+{
+    [JNKeychain deleteValueForKey:userNameKey];
+    [JNKeychain deleteValueForKey:passWordKey];
 }
 
 @end

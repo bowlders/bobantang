@@ -7,20 +7,19 @@
 //
 
 #import "BBTSettingsViewController.h"
+#import "BBTCurrentUserManager.h"
+#import <JNKeychain.h>
 
 @interface BBTSettingsViewController ()
 
 @property (strong, nonatomic) IBOutlet UISwitch *appSwitch;
 @property (strong, nonatomic) IBOutlet UISwitch *scoreInquireSwitch;
+@property (strong, nonatomic) IBOutlet UILabel *appLabel;
+@property (strong, nonatomic) IBOutlet UILabel *exitLoginLabel;
 
 @end
 
 @implementation BBTSettingsViewController
-
-- (IBAction)valueChanged:(id)sender
-{
-    
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,8 +29,9 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.scrollEnabled = NO;
-    
-    
+
+    self.appSwitch.on = (int)[JNKeychain loadValueForKey:@"appSwitchStatus"];
+    self.scoreInquireSwitch.on = (int)[JNKeychain loadValueForKey:@"scoreSwitchStatus"];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -71,16 +71,24 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    if (indexPath.row == 0)
+    if (indexPath.section == 1)
+    {
+        [self downLoadMap];
+    }
+    else if (indexPath.section == 2)
     {
         [self clearCache];
     }
-    else if (indexPath.row == 1)
+    else if (indexPath.section == 3)
     {
         [self logOut];
     }
 
+}
+
+- (void)downLoadMap
+{
+    //TODO: Download 2.5D map here.
 }
 
 - (void)clearCache
@@ -90,18 +98,71 @@
 
 - (void)logOut
 {
-    //TODO: Log out here.
+    BBTUser *emptyUser;
+    [BBTCurrentUserManager sharedCurrentUserManager].currentUser = emptyUser;
+    [BBTCurrentUserManager sharedCurrentUserManager].userIsActive = NO;
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:forIndexPath:indexPath];
     
-    // Configure the cell...
+    static NSString *cellIdentifier = @"settingCell";
+    
+    UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    
+    if (!cell)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    if (indexPath.section == 0)
+    {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        if (indexPath.row == 0)
+        {
+            if (![BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
+            {
+                cell.userInteractionEnabled = NO;
+                self.appSwitch.enabled = NO;
+                self.appLabel.enabled = NO;
+            }
+        }
+    }
+    
+    if (indexPath.section == 3)
+    {
+        if (![BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
+        {
+            cell.userInteractionEnabled = NO;
+            self.exitLoginLabel.enabled = NO;
+        }
+    }
     
     return cell;
 }
-*/
+
+- (IBAction)valueChanged:(UISwitch *)sender
+{
+    NSLog(@"Switch %ld is currently at status %d", (long)sender.tag, sender.on);
+    NSNumber *boolNumber = [NSNumber numberWithBool:sender.on];
+    if (sender.tag == 0)
+    {
+        [JNKeychain saveValue:boolNumber forKey:@"appSwitchStatus"];
+        if (sender.on)                          //Change from off to on, then save current user's userName and passWord
+        {
+            [[BBTCurrentUserManager sharedCurrentUserManager] saveCurrentUserInfo];
+        }
+        else                                    //Otherwise delete current user's info
+        {
+            [[BBTCurrentUserManager sharedCurrentUserManager] deleteCurrentUserInfo];
+        }
+    }
+    else if (sender.tag == 1)
+    {
+        [JNKeychain saveValue:boolNumber forKey:@"scoreSwitchStatus"];
+        
+        //TODO: Deal With score inquire switch event
+    }
+}
 
 /*
 // Override to support conditional editing of the table view.

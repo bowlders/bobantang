@@ -29,6 +29,11 @@
 
 extern NSString * kUserAuthentificationFinishNotifName;
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self updateView];
+}
+
 - (void)viewDidLoad
 {
     self.title = @"我";
@@ -38,11 +43,6 @@ extern NSString * kUserAuthentificationFinishNotifName;
     AVObject *testObject = [AVObject objectWithClassName:@"TestObject"];
     [testObject setObject:@"bar" forKey:@"foo"];
     [testObject save];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveUserAuthenticationNotif)
-                                                 name:kUserAuthentificationFinishNotifName
-                                               object:nil];
     
     CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
@@ -165,12 +165,8 @@ extern NSString * kUserAuthentificationFinishNotifName;
         make.width.equalTo(self.view.mas_width);
         make.centerX.equalTo(self.studentNumberLabel.mas_centerX);
     }];
- 
-    [self updateView];
 
 }
-
-
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -278,15 +274,11 @@ extern NSString * kUserAuthentificationFinishNotifName;
     [self presentViewController:navigationController animated:YES completion:nil];
 }
 
-- (void)didReceiveUserAuthenticationNotif
-{
-    [self updateView];
-}
-
 - (void)updateView
 {
     if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
     {
+        NSLog(@"account - %@",[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account);
         self.loginButton.hidden = YES;
         self.nameLabel.hidden = NO;
         self.studentNumberLabel.hidden = NO;
@@ -297,6 +289,7 @@ extern NSString * kUserAuthentificationFinishNotifName;
     }
     else
     {
+        NSLog(@"username - %@", [BBTCurrentUserManager sharedCurrentUserManager].currentUser.userName);
         self.loginButton.hidden = NO;
         self.nameLabel.hidden = YES;
         self.studentNumberLabel.hidden = YES;

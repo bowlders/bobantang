@@ -14,5 +14,6 @@
 @property (strong, nonatomic) UITextField * textField;
 
 - (void)setCellContentWithLabelText:(NSString *)labelText andTextFieldPlaceHolder:(NSString *)placeHolder;
+- (void)presetTextFieldContentWithString:(NSString *)string;
 
 @end

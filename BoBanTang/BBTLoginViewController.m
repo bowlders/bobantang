@@ -14,6 +14,7 @@
 #import <AYVibrantButton.h>
 #import <Masonry.h>
 #import <JGProgressHUD.h>
+#import <JNKeychain.h>
 
 @interface BBTLoginViewController ()
 
@@ -132,12 +133,22 @@ extern NSString * kUserAuthentificationFinishNotifName;
         [cell setCellContentWithLabelText:@"学号" andTextFieldPlaceHolder:@"请填写教务系统的学号"];
         cell.textField.keyboardType = UIKeyboardTypeNumberPad;
         cell.textField.tag = 0;
+        if ((int)[JNKeychain loadValueForKey:@"appSwitchStatus"])       //Automatically fill in
+        {
+            NSString *savedUserName = [JNKeychain loadValueForKey:@"userName"];
+            [cell presetTextFieldContentWithString:savedUserName];
+        }
     }
     else if (indexPath.row == 1)
     {
         [cell setCellContentWithLabelText:@"密码" andTextFieldPlaceHolder:@"请填写教务系统的密码"];
         cell.textField.tag = 1;
         cell.textField.secureTextEntry = YES;
+        if ((int)[JNKeychain loadValueForKey:@"appSwitchStatus"])       //Automatically fill in
+        {
+            NSString *savedPassWord = [JNKeychain loadValueForKey:@"passWord"];
+            [cell presetTextFieldContentWithString:savedPassWord];
+        }
     }
     
     cell.textField.delegate = self;
@@ -197,8 +208,8 @@ extern NSString * kUserAuthentificationFinishNotifName;
         [HUD showInView:self.view];
         [HUD dismissAfterDelay:3.0];
         
-        //Dismiss current VC 1 sec after HUD disappears.
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        //Dismiss current VC 0.5 sec after HUD disappears.
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [self dismissViewControllerAnimated:YES completion:nil];
         });
     }

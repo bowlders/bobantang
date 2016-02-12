@@ -144,7 +144,7 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="moQ-8B-m92">
                                                     <rect key="frame" x="318" y="5" width="51" height="31"/>
                                                     <connections>
-                                                        <action selector="valueChanged:" destination="j4h-ii-S4h" eventType="valueChanged" id="Zy8-vB-9px"/>
+                                                        <action selector="valueChanged:" destination="j4h-ii-S4h" eventType="valueChanged" id="CVF-Js-TT3"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
@@ -174,7 +174,7 @@
                                                 <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZB6-eA-rzb">
                                                     <rect key="frame" x="318" y="6" width="51" height="31"/>
                                                     <connections>
-                                                        <action selector="valueChanged:" destination="j4h-ii-S4h" eventType="valueChanged" id="Dz4-kA-rdh"/>
+                                                        <action selector="valueChanged:" destination="j4h-ii-S4h" eventType="valueChanged" id="Pug-j8-2Up"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
@@ -251,8 +251,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退出登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GIz-Oq-vEA">
-                                                    <rect key="frame" x="8" y="11" width="359" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="退出登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GIz-Oq-vEA">
+                                                    <rect key="frame" x="8" y="11" width="359" height="24.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -276,7 +276,9 @@
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="appLabel" destination="8at-nk-SDf" id="v8e-DV-65d"/>
                         <outlet property="appSwitch" destination="moQ-8B-m92" id="Aqv-cA-QAd"/>
+                        <outlet property="exitLoginLabel" destination="GIz-Oq-vEA" id="ndT-5B-i4o"/>
                         <outlet property="scoreInquireSwitch" destination="ZB6-eA-rzb" id="kZE-Pk-der"/>
                     </connections>
                 </tableViewController>
