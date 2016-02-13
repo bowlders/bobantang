@@ -278,18 +278,24 @@ extern NSString * kUserAuthentificationFinishNotifName;
 {
     if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
     {
-        NSLog(@"account - %@",[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account);
         self.loginButton.hidden = YES;
         self.nameLabel.hidden = NO;
         self.studentNumberLabel.hidden = NO;
         self.nameLabel.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.userName;
         self.studentNumberLabel.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account;
-        NSURL *avatarURL = [NSURL URLWithString:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.userLogo];
+        NSURL *avatarURL;
+        if (![BBTCurrentUserManager sharedCurrentUserManager].currentUser.userLogo || [[BBTCurrentUserManager sharedCurrentUserManager].currentUser.userLogo  isKindOfClass:[NSNull class]])        //The string is null
+        {
+            avatarURL = [NSURL URLWithString:@""];
+        }
+        else
+        {
+            avatarURL = [NSURL URLWithString:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.userLogo];
+        }
         [self.avatarImageView sd_setImageWithURL:avatarURL placeholderImage:[UIImage imageNamed:@"BoBanTang"]];
     }
     else
     {
-        NSLog(@"username - %@", [BBTCurrentUserManager sharedCurrentUserManager].currentUser.userName);
         self.loginButton.hidden = NO;
         self.nameLabel.hidden = YES;
         self.studentNumberLabel.hidden = YES;

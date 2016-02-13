@@ -13,8 +13,9 @@
 #import "UIColor+BBTColor.h"
 #import <AYVibrantButton.h>
 #import <Masonry.h>
-#import <JGProgressHUD.h>
 #import <JNKeychain.h>
+#import <JGProgressHUD.h>
+#import <MBProgressHUD.h>
 
 @interface BBTLoginViewController ()
 
@@ -183,8 +184,15 @@ extern NSString * kUserAuthentificationFinishNotifName;
 
 - (void)loginButtonIsTapped
 {
+    //Show loading hud
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     NSString *currentUserUserName = ((UITextField *)((BBTLoginTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]).textField).text;
     NSString *currenUserPassWord = ((UITextField *)((BBTLoginTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]]).textField).text;
+    
+    //Save User info in keychain
+    [JNKeychain saveValue:currentUserUserName forKey:@"userName"];
+    [JNKeychain saveValue:currenUserPassWord forKey:@"passWord"];
     
     [BBTCurrentUserManager sharedCurrentUserManager].currentUser = [BBTUser new];
     [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account = currentUserUserName;
@@ -201,6 +209,9 @@ extern NSString * kUserAuthentificationFinishNotifName;
 {
     if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
     {
+        //Hide loading hud
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
         JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
         HUD.textLabel.text = @"登录成功";
         HUD.indicatorView = [[JGProgressHUDSuccessIndicatorView alloc] init];

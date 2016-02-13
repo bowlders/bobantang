@@ -9,6 +9,7 @@
 #import "BBTSettingsViewController.h"
 #import "BBTCurrentUserManager.h"
 #import <JNKeychain.h>
+#import <JGProgressHUD.h>
 
 @interface BBTSettingsViewController ()
 
@@ -101,6 +102,12 @@
     BBTUser *emptyUser;
     [BBTCurrentUserManager sharedCurrentUserManager].currentUser = emptyUser;
     [BBTCurrentUserManager sharedCurrentUserManager].userIsActive = NO;
+    
+    JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    HUD.indicatorView = nil;
+    HUD.textLabel.text = @"您已退出登录";
+    [HUD showInView:self.view];
+    [HUD dismissAfterDelay:3.0];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

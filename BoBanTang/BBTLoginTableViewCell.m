@@ -90,7 +90,7 @@
 
 - (void)presetTextFieldContentWithString:(NSString *)string
 {
-    self.textLabel.text = string;
+    self.textField.text = string;
 }
 
 @end

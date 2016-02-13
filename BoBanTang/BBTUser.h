@@ -21,4 +21,6 @@
 @property (strong, nonatomic) NSString * userLogo;
 @property (strong, nonatomic) NSString * nickName;
 
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+
 @end
