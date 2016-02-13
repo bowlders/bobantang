@@ -16,5 +16,6 @@
 + (instancetype)sharedLAFManager;
  //Singleton method
 - (void)retriveItemsWithType:(NSUInteger)type;
+- (void)postItemDic:(NSDictionary *)itemDic WithType:(NSInteger)type;
 
 @end

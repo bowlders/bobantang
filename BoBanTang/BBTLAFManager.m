@@ -12,7 +12,10 @@
 
 static NSString *getLostItemsUrl = @"http://218.192.166.167/api/protype.php?table=lostItems&method=get";
 static NSString *getPickItemsUrl = @"http://218.192.166.167/api/protype.php?table=pickItems&method=get";
+static NSString *postLostItemUrl = @"http://218.192.166.167/api/protype.php?table=lostItems&method=save";
+static NSString *postPickItemUrl = @"http://218.192.166.167/api/protype.php?table=pickItems&method=save";
 NSString *lafNotificationName = @"lafNotification";
+NSString *postItemNotificaionName = @"postItemNotification";
 
 @implementation BBTLAFManager
 
@@ -28,6 +31,7 @@ NSString *lafNotificationName = @"lafNotification";
 
 - (void)retriveItemsWithType:(NSUInteger)type
 {
+    /*
     NSDictionary *testDictionary = @{@"itemID":@"一颗赛艇",
                                      @"details":@"我是身经百战了！西方哪一个国家我没有去过？美国的华莱士，比你不知道高到哪里去，我和他谈笑风生。你们毕竟还是too young，sometimes naive! 明白我的意思没有？",
                                      @"campus":@"0",
@@ -38,7 +42,7 @@ NSString *lafNotificationName = @"lafNotification";
     
     self.itemArray = [NSMutableArray array];
     [self.itemArray insertObject:testDictionary atIndex:0];
-    
+    */
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSString *url;
     if (type == 1) {
@@ -62,9 +66,33 @@ NSString *lafNotificationName = @"lafNotification";
     }];
 }
 
+- (void)postItemDic:(NSDictionary *)itemDic WithType:(NSInteger)type
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSString *url;
+    if (type == 1) {
+        url = postLostItemUrl;
+    } else if (type == 0) {
+        url = postPickItemUrl;
+    }
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager POST:url parameters:itemDic progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"Succeed!");
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
 - (void)pushLafNotification
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:lafNotificationName object:nil];
+}
+
+- (void)postItemSucceedNotificaion
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:postItemNotificaionName object:nil];
 }
 
 @end

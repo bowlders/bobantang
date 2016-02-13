@@ -29,22 +29,22 @@
     switch (type) {
         case 0:
             self.title.text = @"地点";
-            self.contents.placeholder = @"填写详细丢失/拾获地点";
+            self.contents.placeholder = @"填写详细丢失/拾获地点(必填)";
             break;
             
         case 1:
             self.title.text = @"联系人";
-            self.contents.placeholder = @"填写联系人名称";
+            self.contents.placeholder = @"填写联系人名称(必填)";
             break;
             
         case 2:
             self.title.text = @"联系电话";
-            self.contents.placeholder = @"填写联系人电话";
+            self.contents.placeholder = @"填写联系人电话(必填)";
             break;
             
         case 3:
             self.title.text = @"其他";
-            self.contents.placeholder = @"请备注类别，如短号/QQ/微信";
+            self.contents.placeholder = @"请备注类别，如短号/QQ/微信(选填)";
             break;
             
         default:

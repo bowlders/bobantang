@@ -985,7 +985,7 @@
         <!--Post Info View Controller-->
         <scene sceneID="qn7-SG-pdU">
             <objects>
-                <viewController id="Pvc-MI-GCS" customClass="BBTPostInfoViewController" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="Pvc-MI-GCS" customClass="BBTPostInfoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7zh-oN-TLs"/>
                         <viewControllerLayoutGuide type="bottom" id="ZN3-pp-oU2"/>

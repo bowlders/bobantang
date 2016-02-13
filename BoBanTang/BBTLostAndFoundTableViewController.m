@@ -13,6 +13,7 @@
 #import "BBTLafItemsTableViewCell.h"
 #import "BBTItemDetailsTableViewController.h"
 #import "BBTCurrentUserManager.h"
+#import "BBTLoginViewController.h"
 
 static NSString *postIdentifier = @"LAFPostIdentifier";
 static NSString *itemCellIdentifier = @"BBTLafItemsTableViewCell";
@@ -93,13 +94,11 @@ extern NSString * kUserAuthentificationFinishNotifName;
     popoverView.menuTitles   = @[@"发布招领启事", @"发布寻物启事", @"已发布的消息"];
     [popoverView showFromView:showBtn selected:^(NSInteger index)
     {
-        [self performSegueWithIdentifier:postIdentifier sender:popoverView.menuTitles[index]];
-        /*
         if ([self didReceiveUserAuthentificaionNotification])
         {
-            if ([self shouldPerformSegueWithIdentifier:postIdentifier sender:nil])
+            if ([self shouldPerformSegueWithIdentifier:postIdentifier sender:@(index)])
             {
-                [self performSegueWithIdentifier:postIdentifier sender:popoverView.menuTitles[index]];
+                [self performSegueWithIdentifier:postIdentifier sender:@(index)];
             }
         } else {
             UIAlertController *alertController = [[UIAlertController alloc] init];
@@ -108,7 +107,6 @@ extern NSString * kUserAuthentificationFinishNotifName;
             [alertController addAction:okAction];
             [self presentViewController:alertController animated:YES completion:nil];
         }
-         */
     }];
 }
 
@@ -158,8 +156,19 @@ extern NSString * kUserAuthentificationFinishNotifName;
         } else {
             UIAlertController *alertController = [[UIAlertController alloc] init];
             alertController = [UIAlertController alertControllerWithTitle:@"你还没有登录哟" message:@"请先登录" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"去登陆" style:UIAlertActionStyleDefault handler:nil];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"去登陆"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action) {
+                                                                 BBTLoginViewController *loginViewController = [[BBTLoginViewController alloc] init];
+                                                                 [self presentViewController:loginViewController animated:YES completion:nil];
+                                                                 if ([(NSNumber *)sender longValue] == 0 || [(NSNumber *)sender longValue] == 1) {
+                                                                     [self performSegueWithIdentifier:postIdentifier sender:sender];
+                                                                 }
+                                                             }];
+            
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                                   style:UIAlertActionStyleCancel
+                                                                 handler:nil];
             
             [alertController addAction:cancelAction];
             [alertController addAction:okAction];
@@ -177,7 +186,7 @@ extern NSString * kUserAuthentificationFinishNotifName;
     if ([segue.identifier isEqualToString:postIdentifier])
     {
         BBTPostInfoViewController *controller = segue.destinationViewController;
-        controller.lostOrFound = self.lostOrFound.selectedSegmentIndex;
+        controller.lostOrFound = (NSNumber *)sender;
     }
     else if ([segue.identifier isEqualToString:showItemsDetailsIdentifier])
     {
