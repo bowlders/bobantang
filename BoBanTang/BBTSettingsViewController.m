@@ -84,7 +84,7 @@
     {
         [self logOut];
     }
-
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)downLoadMap

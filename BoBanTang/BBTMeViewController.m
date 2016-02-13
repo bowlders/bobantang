@@ -265,6 +265,7 @@ extern NSString * kUserAuthentificationFinishNotifName;
             [self performSegueWithIdentifier:@"showAbout" sender:tableView];
         }
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)loginButtonIsTapped
