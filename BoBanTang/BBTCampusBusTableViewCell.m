@@ -95,6 +95,7 @@
     {
         CGFloat horizontalInnerSpacing = 5.0f;
         CGFloat leftImageOffset = 60.0f;
+        CGFloat stationLabelWidth = 130.0f;
         
         [self.contentView mas_makeConstraints:^(MASConstraintMaker *make){
             make.center.equalTo(self);
@@ -103,7 +104,7 @@
         
         [self.stationLabel mas_makeConstraints:^(MASConstraintMaker *make){
             make.left.equalTo(self.leftCircleImageView.mas_right).offset(horizontalInnerSpacing);
-            make.width.equalTo(self.contentView).multipliedBy(0.15);
+            make.width.equalTo(@(stationLabelWidth));
             make.centerY.equalTo(self.contentView);
         }];
         
