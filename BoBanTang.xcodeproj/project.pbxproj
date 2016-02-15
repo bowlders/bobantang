@@ -17,6 +17,9 @@
 		39239A3B1C64E132008EDBB0 /* BBTLoginTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39239A3A1C64E132008EDBB0 /* BBTLoginTableViewCell.m */; };
 		392A0DE41BE63F37001F7D45 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 392A0DE31BE63F37001F7D45 /* Images.xcassets */; };
 		393E3EBD1BF234210045DE6E /* BBTGoSegmentedControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 393E3EBC1BF234210045DE6E /* BBTGoSegmentedControlViewController.m */; };
+		3951EFF71C6F72C600076AD4 /* BBTSouthSpecialRailwayTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3951EFF61C6F72C600076AD4 /* BBTSouthSpecialRailwayTwoViewController.m */; };
+		3951EFFA1C70997600076AD4 /* BBTNorthSpecialRailwayTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3951EFF91C70997600076AD4 /* BBTNorthSpecialRailwayTwoViewController.m */; };
+		3951EFFD1C7099B000076AD4 /* BBTSpecialRailwayContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3951EFFC1C7099B000076AD4 /* BBTSpecialRailwayContainerViewController.m */; };
 		395B10C71C55252600772A38 /* Go.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395B10C61C55252600772A38 /* Go.storyboard */; };
 		395B10CD1C5525CD00772A38 /* BBTDailyArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395B10CC1C5525CD00772A38 /* BBTDailyArticleViewController.m */; };
 		395B10D31C55271B00772A38 /* BBTCampusInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395B10D21C55271B00772A38 /* BBTCampusInfoTableViewController.m */; };
@@ -127,6 +130,12 @@
 		392A0DE31BE63F37001F7D45 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		393E3EBB1BF234210045DE6E /* BBTGoSegmentedControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTGoSegmentedControlViewController.h; sourceTree = "<group>"; };
 		393E3EBC1BF234210045DE6E /* BBTGoSegmentedControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTGoSegmentedControlViewController.m; sourceTree = "<group>"; };
+		3951EFF51C6F72C600076AD4 /* BBTSouthSpecialRailwayTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSouthSpecialRailwayTwoViewController.h; sourceTree = "<group>"; };
+		3951EFF61C6F72C600076AD4 /* BBTSouthSpecialRailwayTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSouthSpecialRailwayTwoViewController.m; sourceTree = "<group>"; };
+		3951EFF81C70997600076AD4 /* BBTNorthSpecialRailwayTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTNorthSpecialRailwayTwoViewController.h; sourceTree = "<group>"; };
+		3951EFF91C70997600076AD4 /* BBTNorthSpecialRailwayTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTNorthSpecialRailwayTwoViewController.m; sourceTree = "<group>"; };
+		3951EFFB1C7099B000076AD4 /* BBTSpecialRailwayContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSpecialRailwayContainerViewController.h; sourceTree = "<group>"; };
+		3951EFFC1C7099B000076AD4 /* BBTSpecialRailwayContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSpecialRailwayContainerViewController.m; sourceTree = "<group>"; };
 		395B10C61C55252600772A38 /* Go.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Go.storyboard; sourceTree = "<group>"; };
 		395B10CB1C5525CD00772A38 /* BBTDailyArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTDailyArticleViewController.h; sourceTree = "<group>"; };
 		395B10CC1C5525CD00772A38 /* BBTDailyArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTDailyArticleViewController.m; sourceTree = "<group>"; };
@@ -348,6 +357,12 @@
 		393E3EC21BF4802A0045DE6E /* SpecialRailway2 */ = {
 			isa = PBXGroup;
 			children = (
+				3951EFFB1C7099B000076AD4 /* BBTSpecialRailwayContainerViewController.h */,
+				3951EFFC1C7099B000076AD4 /* BBTSpecialRailwayContainerViewController.m */,
+				3951EFF51C6F72C600076AD4 /* BBTSouthSpecialRailwayTwoViewController.h */,
+				3951EFF61C6F72C600076AD4 /* BBTSouthSpecialRailwayTwoViewController.m */,
+				3951EFF81C70997600076AD4 /* BBTNorthSpecialRailwayTwoViewController.h */,
+				3951EFF91C70997600076AD4 /* BBTNorthSpecialRailwayTwoViewController.m */,
 				391F32411BFB5D4A004843C3 /* BBTSpecialRailwayLineTwoViewController.h */,
 				391F32421BFB5D4A004843C3 /* BBTSpecialRailwayLineTwoViewController.m */,
 			);
@@ -1067,6 +1082,7 @@
 				FCD0A2691C0005D80024D78F /* BBTScoresQueryResultsTableViewController.m in Sources */,
 				A947D9AC1BD8DC34000F071B /* BBTAppDelegate.m in Sources */,
 				391F324C1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m in Sources */,
+				3951EFF71C6F72C600076AD4 /* BBTSouthSpecialRailwayTwoViewController.m in Sources */,
 				39B595401C0AF0400015B673 /* BBTDailyArticleTableViewController.m in Sources */,
 				FCD0A2811C0009F10024D78F /* BBTScores.m in Sources */,
 				397445671C0A8D78004B89BA /* BBTCampusInfo.m in Sources */,
@@ -1084,10 +1100,12 @@
 				39239A381C64BAC4008EDBB0 /* BBTLoginViewController.m in Sources */,
 				FC1770C41C5F507500BF07AC /* BBTLostAndFoundTableViewController.m in Sources */,
 				391F32491BFDD42B004843C3 /* BBTSpecRailway2BusManager.m in Sources */,
+				3951EFFD1C7099B000076AD4 /* BBTSpecialRailwayContainerViewController.m in Sources */,
 				FCD0A2941C023B930024D78F /* BBTHudView.m in Sources */,
 				FC69A3FE1C038340000EF949 /* BBTLectureRoomsResultTableViewController.m in Sources */,
 				391F32431BFB5D4A004843C3 /* BBTSpecialRailwayLineTwoViewController.m in Sources */,
 				FCD0A2841C003ABC0024D78F /* BBTScoresFilterTableViewController.m in Sources */,
+				3951EFFA1C70997600076AD4 /* BBTNorthSpecialRailwayTwoViewController.m in Sources */,
 				A947D9BD1BD8DC34000F071B /* BBTSettingsViewController.m in Sources */,
 				FCD0A26F1C00062D0024D78F /* BBTScoresCell.m in Sources */,
 				A947D9BE1BD8DC34000F071B /* BBTToolsViewController.m in Sources */,

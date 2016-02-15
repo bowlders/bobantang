@@ -41,7 +41,6 @@ NSString * campusInfoNotificationName = @"infoNotification";
             {
                 BBTCampusInfo *newInfo = ((NSArray *)responseObject)[i];
                 [self.infoArray insertObject:newInfo atIndex:i];
-                //NSLog(@"%d - %@", i, [[BBTCampusInfoManager sharedInfoManager] infoArray][i]);
             }
             [self pushCampusInfoNotification];
         }
