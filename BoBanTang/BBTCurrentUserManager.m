@@ -8,12 +8,16 @@
 
 #import "BBTCurrentUserManager.h"
 #import <AFNetworking.h>
+#import <JNKeychain.h>
 
 @implementation BBTCurrentUserManager
 
 static NSString * const checkAccountURL = @"http://218.192.166.167/api/jw2005/checkAccount.php";
 static NSString * const fetchUserDataBaseURL = @"http://218.192.166.167/api/protype.php?table=users&method=get&data=";
 static NSString * const insertNewUserBaseURL = @"http://218.192.166.167/api/protype.php?table=users&method=save&data=";
+
+static NSString * const userNameKey = @"userName";
+static NSString * const passWordKey = @"passWord";
 
 NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
 
@@ -42,19 +46,16 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
             {
                 self.userIsActive = YES;
                 self.currentUser.userName = responseObject[@"name"];
-                [self postUserAuthenticationFinishNotification];
                 [self fetchCurrentUserData];
             }
             else if ([key isEqualToString:@"err"])
             {
                 self.userIsActive = NO;
-                [self postUserAuthenticationFinishNotification];
             }
         }
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
         self.userIsActive = NO;
-        [self postUserAuthenticationFinishNotification];
     }];
 }
 
@@ -68,20 +69,22 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
     NSData *data = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:&error];
     NSString *jsonString = [[NSString alloc] initWithData:data
                                                  encoding:NSUTF8StringEncoding];
-    NSLog(@"json - %@", jsonString);
     NSString *stringCleanPath = [jsonString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *url = [fetchUserDataBaseURL stringByAppendingString:stringCleanPath];
     
     [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
-        if ([(NSDictionary *)responseObject count])                     //This user already exists in database
+        if ([(NSArray *)responseObject count])                          //This user already exists in database
         {
-            BBTUser *user = responseObject[0];
+            BBTUser *user = [[BBTUser alloc] initWithDictionary:responseObject[0]];
+            
             self.currentUser = user;
+            [self postUserAuthenticationFinishNotification];
         }
         else                                                            //This is a new user, add him to database
         {
             [self insertNewUserToDataBase];
+            [self postUserAuthenticationFinishNotification];
         }
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
@@ -124,6 +127,28 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:kUserAuthentificationFinishNotifName
                                                         object:self];
+}
+
+- (void)saveCurrentUserInfo
+{
+    [JNKeychain saveValue:self.currentUser.userName forKey:userNameKey];
+    [JNKeychain saveValue:self.currentUser.password forKey:passWordKey];
+}
+
+- (NSString *)loadCurrentUserName
+{
+    return [JNKeychain loadValueForKey:userNameKey];
+}
+
+- (NSString *)loadCurrentUserPassWord
+{
+    return [JNKeychain loadValueForKey:passWordKey];
+}
+
+- (void)deleteCurrentUserInfo
+{
+    [JNKeychain deleteValueForKey:userNameKey];
+    [JNKeychain deleteValueForKey:passWordKey];
 }
 
 @end

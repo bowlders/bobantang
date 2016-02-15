@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9Ku-3b-FdS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9Ku-3b-FdS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--Go Segmented Control View Controller-->
@@ -34,13 +34,32 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <segue destination="mzG-NW-wg6" kind="show" id="Tcj-g4-g7r"/>
                         <segue destination="wJp-z2-T1o" kind="show" id="pQy-W8-6OM"/>
+                        <segue destination="eMK-Lf-6ZV" kind="show" id="i0P-pH-hQF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lHz-iH-xqK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="193.5" y="-164.5"/>
+        </scene>
+        <!--Special Railway Container View Controller-->
+        <scene sceneID="342-Bd-gFB">
+            <objects>
+                <viewController id="eMK-Lf-6ZV" customClass="BBTSpecialRailwayContainerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gC9-IU-fAk"/>
+                        <viewControllerLayoutGuide type="bottom" id="tRc-u9-2aH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vBt-qz-HCg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cdj-0a-hHw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="825.5" y="295.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Jt9-Ub-7y9">
@@ -60,35 +79,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="flM-GL-0gL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="825.5" y="-620.5"/>
-        </scene>
-        <!--Special Railway Line Two View Controller-->
-        <scene sceneID="6jj-RW-P7h">
-            <objects>
-                <tableViewController automaticallyAdjustsScrollViewInsets="NO" id="mzG-NW-wg6" customClass="BBTSpecialRailwayLineTwoViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="m5Z-Yc-cnl">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="IWJ-ee-ALV">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IWJ-ee-ALV" id="D36-mq-svc">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="mzG-NW-wg6" id="Q4p-XH-lrD"/>
-                            <outlet property="delegate" destination="mzG-NW-wg6" id="dt5-Nd-ZQ4"/>
-                        </connections>
-                    </tableView>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2Is-lA-82b" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="825.5" y="289.5"/>
         </scene>
         <!--出行-->
         <scene sceneID="o2V-7b-LU1">

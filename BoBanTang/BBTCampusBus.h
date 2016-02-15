@@ -11,14 +11,14 @@
 @interface BBTCampusBus : JSONModel
 
 @property (strong, nonatomic) NSString * Name;
-@property (assign, nonatomic) NSUInteger Latitude;
-@property (assign, nonatomic) NSUInteger Longitude;
+@property (assign, nonatomic) NSInteger  Latitude;
+@property (assign, nonatomic) NSInteger  Longitude;
 @property (nonatomic)         BOOL       Direction;
-@property (assign, nonatomic) NSUInteger Time;
+@property (assign, nonatomic) NSInteger  Time;
 @property (nonatomic)         BOOL       Stop;
 @property (strong, nonatomic) NSString * Station;
 @property (assign, nonatomic) NSInteger  StationIndex;
-@property (assign, nonatomic) NSUInteger Percent;
+@property (assign, nonatomic) NSInteger  Percent;
 @property (nonatomic)         BOOL       Fly;
 
 @end

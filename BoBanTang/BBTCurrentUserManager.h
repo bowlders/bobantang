@@ -14,11 +14,15 @@
 @property (strong, nonatomic) BBTUser  * currentUser;
 @property (nonatomic)         BOOL       userIsActive;      //Set to 1 if a user is currently active.
 
-typedef void (^voidBlock)(void);
-
 + (instancetype) sharedCurrentUserManager;
 - (void)currentUserAuthentication;                          //Return 1 if succeed.
 - (void)fetchCurrentUserData;
 - (void)logOut;
+
+//Keychain methods
+- (void)saveCurrentUserInfo;
+- (NSString *)loadCurrentUserName;
+- (NSString *)loadCurrentUserPassWord;
+- (void)deleteCurrentUserInfo;
 
 @end

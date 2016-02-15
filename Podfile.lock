@@ -31,6 +31,7 @@ PODS:
   - LeanCloudFeedback (0.1.0):
     - AVOSCloud
   - Masonry (0.6.4)
+  - MBProgressHUD (0.9.2)
   - pop (1.0.8)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
@@ -57,6 +58,7 @@ DEPENDENCIES:
   - KGModal (~> 0.0.1)
   - LeanCloudFeedback
   - Masonry
+  - MBProgressHUD (~> 0.9.2)
   - SDWebImage (~> 3.7)
   - SZTextView
   - TSMessages
@@ -79,6 +81,7 @@ SPEC CHECKSUMS:
   KGModal: d2759dbd6d5e70e7a60bb0c3ddc7c0ece6040128
   LeanCloudFeedback: 011993aef4d90ad52279339f607a0850787493dc
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SZTextView: 906df45afd3c1b24fc5252088d5ef8061513c238

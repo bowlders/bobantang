@@ -88,4 +88,9 @@
     self.textField.placeholder = placeHolder;
 }
 
+- (void)presetTextFieldContentWithString:(NSString *)string
+{
+    self.textField.text = string;
+}
+
 @end

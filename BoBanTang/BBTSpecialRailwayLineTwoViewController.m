@@ -16,7 +16,7 @@
 
 @implementation BBTSpecialRailwayLineTwoViewController
 
-NSString * busDataNotificationName = @"specBusNotification";
+extern NSString * busDataNotificationName;
 
 - (void)viewWillAppear:(BOOL)animated
 {

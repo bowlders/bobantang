@@ -69,10 +69,11 @@ NSString * campusBusNotificationName = @"campusBusNotification";
         {
             for (NSString *key in [(NSDictionary *)responseObject allKeys])
             {
-                BBTCampusBus *bus = responseObject[key];
-                
-                [self.campusBusArray addObject:bus];
+                //NSLog(@"obj - %@", responseObject[key]);
+                NSError *error = nil;
+                BBTCampusBus *bus = [[BBTCampusBus alloc] initWithDictionary:responseObject[key] error:&error];
                 //NSLog(@"bus - %@",bus);
+                [self.campusBusArray addObject:bus];
             }
             [self postCampusBusNotification];
         }
@@ -98,11 +99,11 @@ NSString * campusBusNotificationName = @"campusBusNotification";
     
     for (int i = 0;i < [self.campusBusArray count];i++)
     {
-        if ([self.campusBusArray[i][@"StationIndex"] intValue] == 1)
+        if (((BBTCampusBus *)self.campusBusArray[i]).StationIndex == 1)
         {
             numberOfBusesCurrentlyAtStartingStation++;
             
-            if ([self.campusBusArray[i][@"Stop"] boolValue] == 1)
+            if (((BBTCampusBus *)self.campusBusArray[i]).Stop == 1)
             {
                 numberofBusesCurrentlyStoppingAtStartingStation++;
             }
@@ -119,7 +120,7 @@ NSString * campusBusNotificationName = @"campusBusNotification";
     
     for (int i = 0;i < [self.campusBusArray count];i++)
     {
-        if ([self.campusBusArray[i][@"StationIndex"] intValue] == index)
+        if (((BBTCampusBus *)self.campusBusArray[i]).StationIndex == index)
         {
             numberOfBusesCurrentlyAtThisStation++;
         }
@@ -132,7 +133,7 @@ NSString * campusBusNotificationName = @"campusBusNotification";
 {
     for (int i = 0;i < [self.campusBusArray count];i++)
     {
-        if ([self.campusBusArray[i][@"StationIndex"] intValue] == index)
+        if (((BBTCampusBus *)self.campusBusArray[i]).StationIndex == index)
         {
             return YES;
         }
@@ -148,11 +149,11 @@ NSString * campusBusNotificationName = @"campusBusNotification";
     
     for (int i = 0;i < [self.campusBusArray count];i++)
     {
-        if ([self.campusBusArray[i][@"StationIndex"] intValue] == index)
+        if (((BBTCampusBus *)self.campusBusArray[i]).StationIndex == index)
         {
-            if ([self.campusBusArray[i][@"Stop"] boolValue] == 0)
+            if (((BBTCampusBus *)self.campusBusArray[i]).Stop == 0)
             {
-                if ([self.campusBusArray[i][@"Direction"] boolValue] == 1)
+                if (((BBTCampusBus *)self.campusBusArray[i]).Direction == 1)
                 {
                     directionSouthCount++;
                 }

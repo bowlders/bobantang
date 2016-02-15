@@ -10,4 +10,8 @@
 
 @interface BBTSpecRailway2TableViewCell : UITableViewCell
 
+- (void)initCellContent:(NSString *)stationName;            //In initialization phase actually only stationName is different
+- (void)initCellContent;
+- (void)changeCellImage;
+
 @end

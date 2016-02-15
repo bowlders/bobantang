@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSArray        * directionNorthStationNames;       //Store station names of the bus whose direction is south
 
 + (instancetype)sharedBusManager;                                                //Singleton method
-- (void)retriveData;                                                             //Retrive bus data
+- (void)retriveData;                                                             //Retrive bus data／
+- (BOOL)noBusInBusArray:(NSArray *)array RunningAtStationSeq:(NSInteger)stationSeq;
 
 @end

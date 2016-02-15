@@ -29,6 +29,11 @@
 
 extern NSString * kUserAuthentificationFinishNotifName;
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self updateView];
+}
+
 - (void)viewDidLoad
 {
     self.title = @"我";
@@ -38,11 +43,6 @@ extern NSString * kUserAuthentificationFinishNotifName;
     AVObject *testObject = [AVObject objectWithClassName:@"TestObject"];
     [testObject setObject:@"bar" forKey:@"foo"];
     [testObject save];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveUserAuthenticationNotif)
-                                                 name:kUserAuthentificationFinishNotifName
-                                               object:nil];
     
     CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
@@ -165,12 +165,8 @@ extern NSString * kUserAuthentificationFinishNotifName;
         make.width.equalTo(self.view.mas_width);
         make.centerX.equalTo(self.studentNumberLabel.mas_centerX);
     }];
- 
-    [self updateView];
 
 }
-
-
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -269,6 +265,7 @@ extern NSString * kUserAuthentificationFinishNotifName;
             [self performSegueWithIdentifier:@"showAbout" sender:tableView];
         }
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)loginButtonIsTapped
@@ -276,11 +273,6 @@ extern NSString * kUserAuthentificationFinishNotifName;
     BBTLoginViewController *loginVC = [[BBTLoginViewController alloc] init];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginVC];
     [self presentViewController:navigationController animated:YES completion:nil];
-}
-
-- (void)didReceiveUserAuthenticationNotif
-{
-    [self updateView];
 }
 
 - (void)updateView
@@ -292,7 +284,15 @@ extern NSString * kUserAuthentificationFinishNotifName;
         self.studentNumberLabel.hidden = NO;
         self.nameLabel.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.userName;
         self.studentNumberLabel.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account;
-        NSURL *avatarURL = [NSURL URLWithString:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.userLogo];
+        NSURL *avatarURL;
+        if (![BBTCurrentUserManager sharedCurrentUserManager].currentUser.userLogo || [[BBTCurrentUserManager sharedCurrentUserManager].currentUser.userLogo  isKindOfClass:[NSNull class]])        //The string is null
+        {
+            avatarURL = [NSURL URLWithString:@""];
+        }
+        else
+        {
+            avatarURL = [NSURL URLWithString:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.userLogo];
+        }
         [self.avatarImageView sd_setImageWithURL:avatarURL placeholderImage:[UIImage imageNamed:@"BoBanTang"]];
     }
     else

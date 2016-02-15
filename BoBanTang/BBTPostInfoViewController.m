@@ -14,9 +14,6 @@
 #import "ActionSheetPicker.h"
 #import <Masonry.h>
 #import <AYVibrantButton.h>
-#import "BBTLAF.h"
-#import "BBTLAFManager.h"
-#import "BBTCurrentUserManager.h"
 
 static NSString * campusCellIdentifier = @"BBTItemCampusTableViewCell";
 static NSString * imageCellIdentifier = @"BBTItemImageTableViewCell";
@@ -29,27 +26,30 @@ static NSString *itemDetailIdentifier = @"itemDetailIdentifier";
 
 @property (strong, nonatomic) UITableView     * tableView;
 @property (strong, nonatomic) NSString        * itemDetails;
+
 @property (strong, nonatomic) AYVibrantButton * postButton;
-@property (strong, nonatomic) AYVibrantButton * resetButton;
-@property (strong, nonatomic) BBTLAF          * item;
 
 @end
 
 @implementation BBTPostInfoViewController
+
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
+}
+
 
 - (void)viewDidLoad
 {
     
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
-    if ([self.lostOrFound longValue] == 0) {
-        self.navigationItem.title = @"发布招领启事";
-    } else {
-        self.navigationItem.title = @"发布寻物启事";
-    }
-    
-    self.item = [[BBTLAF alloc] init];
-    self.item.type = [NSNumber numberWithInteger:0];
+    self.navigationItem.title = @"发布失物招领启示";
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -59,14 +59,16 @@ static NSString *itemDetailIdentifier = @"itemDetailIdentifier";
     
     self.itemDetails = @"请输入详情";
 
+    //self.view.translatesAutoresizingMaskIntoConstraints = NO;
+    
     self.tableView = ({
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         tableView.dataSource = self;
         tableView.delegate = self;
         tableView.translatesAutoresizingMaskIntoConstraints = NO;
-        [tableView reloadData];
         tableView;
     });
+    [self.view addSubview:self.tableView];
     
     [self.tableView registerNib:[UINib nibWithNibName:campusCellIdentifier bundle:nil] forCellReuseIdentifier:campusCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:imageCellIdentifier bundle:nil] forCellReuseIdentifier:imageCellIdentifier];
@@ -75,56 +77,34 @@ static NSString *itemDetailIdentifier = @"itemDetailIdentifier";
     UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
     effectView.frame = self.view.bounds;
     [self.view addSubview:effectView];
-    
     self.postButton = [[AYVibrantButton alloc] initWithFrame:CGRectZero style:AYVibrantButtonStyleFill];
     self.postButton.vibrancyEffect = nil;
     self.postButton.text = @"发布";
     self.postButton.font = [UIFont systemFontOfSize:18.0];
     self.postButton.backgroundColor = [UIColor BBTAppGlobalBlue];
     self.postButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.postButton addTarget:self action:@selector(postButtonIsTapped) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.resetButton = [[AYVibrantButton alloc] initWithFrame:CGRectZero style:AYVibrantButtonStyleFill];
-    self.resetButton.vibrancyEffect = nil;
-    self.resetButton.text = @"重置";
-    self.resetButton.font = [UIFont systemFontOfSize:18.0];
-    self.resetButton.backgroundColor = [UIColor BBTAppGlobalBlue];
-    self.postButton.translatesAutoresizingMaskIntoConstraints = NO;
-    
     [effectView.contentView addSubview:self.postButton];
-    [effectView.contentView addSubview:self.resetButton];
+    
     [self.view addSubview:self.tableView];
     
     //Set up constraints
-    CGFloat innerSpacing = 10.0f;
-    CGFloat buttonHeight = 40.0f;
+    CGFloat verticalInnerSpacing = 10.0f;
+    CGFloat buttonHeight = 50.0f;
+    CGFloat tabBatHeight = self.tabBarController.tabBar.frame.size.height;
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
-    CGFloat buttonCenterXPosition = self.view.frame.size.width/4;
-    CGFloat buttonWidth = self.view.frame.size.width/2 - 2 * innerSpacing;
     
-    NSLog(@"View width is %f and button width is %f", self.view.frame.size.width, buttonWidth);
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view.mas_top).offset(navigationBarHeight + 20);
-        make.bottom.equalTo(self.view.mas_bottom).offset( - 2 * innerSpacing - buttonHeight);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-tabBatHeight - 2*verticalInnerSpacing - buttonHeight);
         make.centerX.equalTo(self.view.mas_centerX);
         make.width.equalTo(self.view.mas_width);
     }];
     
     [self.postButton mas_makeConstraints:^(MASConstraintMaker *make){
-        make.bottom.equalTo(self.view.mas_bottom).offset( - innerSpacing);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-tabBatHeight - verticalInnerSpacing);
         make.height.equalTo(@(buttonHeight));
-        make.left.equalTo(self.view.mas_left).offset(innerSpacing);
-        make.right.equalTo(self.resetButton.mas_left).offset( - 2 * innerSpacing);
-        make.width.equalTo(@(buttonWidth));
-        make.centerX.equalTo(@(buttonCenterXPosition));
-    }];
-    
-    [self.resetButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.view.mas_bottom).offset( - innerSpacing);
-        make.height.equalTo(@(buttonHeight));
-        make.right.equalTo(self.view.mas_right).offset( - innerSpacing);
-        make.width.equalTo(@(buttonWidth));
-        make.centerX.equalTo(@(3 * buttonCenterXPosition));
+        make.width.equalTo(self.view.mas_width).multipliedBy(0.55);
+        make.centerX.equalTo(self.view.mas_centerX);
     }];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -233,8 +213,9 @@ static NSString *itemDetailIdentifier = @"itemDetailIdentifier";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:dateCellIdentifier];
-    //[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:rightDisclosureCellIdentifier];
+    NSLog(@"Succeed");
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:dateCellIdentifier];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:rightDisclosureCellIdentifier];
     
     if (indexPath.section == 0)
     {
@@ -245,12 +226,10 @@ static NSString *itemDetailIdentifier = @"itemDetailIdentifier";
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:dateCellIdentifier];
             }
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+            [dateFormatter setDateFormat:@"MM月dd日"];
             cell.textLabel.text = @"日期";
             cell.detailTextLabel.text = [dateFormatter stringFromDate:[NSDate date]];
-            cell.textLabel.font = [UIFont systemFontOfSize:16];
-            cell.detailTextLabel.font = [UIFont systemFontOfSize:16];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
             return cell;
         }
         else if (indexPath.row == 1)
@@ -275,11 +254,8 @@ static NSString *itemDetailIdentifier = @"itemDetailIdentifier";
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:rightDisclosureCellIdentifier];
             }
             cell.textLabel.text = @"失物类型";
-            cell.detailTextLabel.text = @"大学城一卡通";
-            cell.textLabel.font = [UIFont systemFontOfSize:16];
-            cell.detailTextLabel.font = [UIFont systemFontOfSize:16];
+            cell.detailTextLabel.text = @"请选择失物类型";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
         else if (indexPath.row == 1)
@@ -296,10 +272,7 @@ static NSString *itemDetailIdentifier = @"itemDetailIdentifier";
             }
             cell.textLabel.text = @"失物详情";
             cell.detailTextLabel.text = @"请输入详情";
-            cell.textLabel.font = [UIFont systemFontOfSize:16];
-            cell.detailTextLabel.font = [UIFont systemFontOfSize:16];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
     }
@@ -353,13 +326,12 @@ static NSString *itemDetailIdentifier = @"itemDetailIdentifier";
         [datePicker showActionSheetPicker];
 
     } else if (indexPath.section == 1 && indexPath.row == 0) {
-        NSArray *itemTypes = [NSArray arrayWithObjects:@"大学城一卡通", @"校园卡(绿卡)", @"钱包", @"钥匙", @"其它", nil];
+        NSArray *itemTypes = [NSArray arrayWithObjects:@"大学城一卡通", @"校园卡(绿卡)", @"钱包", @"钥匙", @"电子产品", @"其它", nil];
         [ActionSheetStringPicker showPickerWithTitle:@"请选择类型"
                                                 rows:itemTypes
                                     initialSelection:0
                                            doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                                [tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text = itemTypes[selectedIndex];
-                                               self.item.type = [NSNumber numberWithInteger:selectedIndex];
                                            }
                                          cancelBlock:^(ActionSheetStringPicker *picker) {
                                              
@@ -407,7 +379,7 @@ static NSString *itemDetailIdentifier = @"itemDetailIdentifier";
 - (void)dateWasSelected:(NSDate *)selectedDate element:(id)element
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+    [dateFormatter setDateFormat:@"MM月dd日"];
     [element setText:[dateFormatter stringFromDate:selectedDate]];
 }
 
@@ -430,62 +402,11 @@ static NSString *itemDetailIdentifier = @"itemDetailIdentifier";
     self.itemDetails = itemDetails;
     if ([itemDetails length] < 10) {
         [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1]].detailTextLabel.text = itemDetails;
-    } else if ([itemDetails isEqualToString:@""]) {
-        [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1]].detailTextLabel.text = @"请输入详情";
     } else {
         [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1]].detailTextLabel.text = [[itemDetails substringToIndex:10] stringByAppendingString:@"..."];
     }
     
-    if (![itemDetails isEqualToString:@""]) {
-        self.item.details = itemDetails;
-    }
-    
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)postButtonIsTapped
-{
-    self.item.loserID = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account;
-    
-    self.item.date = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].detailTextLabel.text;
-    
-    BBTItemCampusTableViewCell *campusCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-    self.item.campus = [NSNumber numberWithInteger:campusCell.campus.selectedSegmentIndex];
-    
-    BBTTextFieldTableViewCell *locationCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
-    self.item.location = locationCell.contents.text;
-    
-    BBTTextFieldTableViewCell *contactCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];
-    self.item.publisher = contactCell.contents.text;
-    
-    BBTTextFieldTableViewCell *phoneCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:2]];
-    self.item.phone = phoneCell.contents.text;
-    
-    BBTTextFieldTableViewCell *otherContactCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:2]];
-    self.item.otherContact = otherContactCell.contents.text;
-    
-    if ([self.item.location isEqualToString:@""] || [self.item.publisher isEqualToString:@""] || [self.item.phone isEqualToString:@""])
-    {
-        UIAlertController *alertController = [[UIAlertController alloc] init];
-        alertController = [UIAlertController alertControllerWithTitle:@"信息不全" message:@"请补齐必填信息" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
-        [alertController addAction:okAction];
-        [self presentViewController:alertController animated:YES completion:nil];
-        return;
-    }
-    
-    NSMutableDictionary *itemDic = [[NSMutableDictionary alloc] init];
-    [itemDic setObject:self.item.campus forKey:@"campus"];
-    [itemDic setObject:self.item.date forKey:@"date"];
-    [itemDic setObject:self.item.location forKey:@"loaction"];
-    [itemDic setObject:self.item.phone forKey:@"phone"];
-    [itemDic setObject:self.item.publisher forKey:@"publisher"];
-    [itemDic setObject:self.item.type forKey:@"type"];
-    
-    if (self.item.details)[itemDic setObject:self.item.details forKey:@"details"];
-    if (self.item.otherContact)[itemDic setObject:self.item.otherContact forKey:@"otherContact"];
-    
-    [[BBTLAFManager sharedLAFManager] postItemDic:itemDic WithType:[self.lostOrFound integerValue]];
 }
 
 #pragma mark - Navigation

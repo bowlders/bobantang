@@ -9,7 +9,8 @@
 #import "BBTGoSegmentedControlViewController.h"
 #import "BBTCampusBusViewController.h"
 #import "BBTCampusBusTableViewController.h"
-#import "BBTSpecialRailwayLineTwoViewController.h"
+#import "BBTSpecialRailwayContainerViewController.h"
+#import "BBTSouthSpecialRailwayTwoViewController.h"
 #import <Masonry.h>
 #import <KGModal.h>
 
@@ -30,7 +31,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     BBTCampusBusViewController *campusBusVC = [[BBTCampusBusViewController alloc] init];
-    BBTSpecialRailwayLineTwoViewController *specRailVC = [[BBTSpecialRailwayLineTwoViewController alloc] init];
+    
+    BBTSpecialRailwayContainerViewController *specRailVC = [[BBTSpecialRailwayContainerViewController alloc] init];
     
     self.contentViewControllers = @[
                                     campusBusVC,
@@ -42,6 +44,11 @@
 
     [self.view addSubview:self.contentViewContainer];
 
+    NSLog(@"selfview1 - %@", NSStringFromCGRect(self.view.frame));
+    NSLog(@"navigation - %@", NSStringFromCGRect(self.navigationController.navigationBar.frame));
+    NSLog(@"tabbar - %@", NSStringFromCGRect(self.tabBarController.tabBar.frame));
+    
+    
     [self.contentViewContainer mas_makeConstraints:^(MASConstraintMaker *make){
         make.size.equalTo(self.view);
         make.center.equalTo(self.view);
@@ -60,7 +67,6 @@
                                            target:self
                                            action:@selector(popUpTimeTable)];
     self.navigationItem.rightBarButtonItem = timeTableBarButton;
-
 }
 
 - (IBAction)valueChanged:(UISegmentedControl *)sender
