@@ -27,6 +27,9 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
     view.backgroundColor = [UIColor whiteColor];
     self.selectedBackgroundView = view;
+    self.courseName.numberOfLines = 0;
+    [self.courseName sizeToFit];
+    self.courseName.adjustsFontSizeToFitWidth = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
