@@ -10,6 +10,8 @@
 #import "BBTScoresManager.h"
 #import "BBTScoresCell.h"
 #import "ActionSheetPicker.h"
+#import <JGProgressHUD.h>
+#import <MBProgressHUD.h>
 
 static NSString *scoresCellIdentifier = @"BBTScoresCell";
 static NSString *filterCellIdentifier = @"filterCell";
@@ -42,6 +44,7 @@ extern NSString * kFailGetNotificaionName;
     [self.tableView registerNib:[UINib nibWithNibName:scoresCellIdentifier bundle:nil] forCellReuseIdentifier:scoresCellIdentifier];
     
     [[BBTScoresManager sharedScoresManager] retriveScores:self.userInfo WithConditions:nil];
+    [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,6 +63,13 @@ extern NSString * kFailGetNotificaionName;
     NSLog(@"Scores Notification Received");
     self.scoresArray = [[NSArray alloc] initWithArray:[BBTScoresManager sharedScoresManager].scoresArray];
     [self.tableView reloadData];
+    [MBProgressHUD hideAllHUDsForView:self.tableView animated:YES];
+    JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    HUD.textLabel.text = @"查询成功";
+    HUD.indicatorView = [[JGProgressHUDSuccessIndicatorView alloc] init];
+    HUD.square = YES;
+    [HUD showInView:self.tableView];
+    [HUD dismissAfterDelay:2.0 animated:YES];
 }
 
 - (void)failGetScoresNotification
@@ -127,6 +137,7 @@ extern NSString * kFailGetNotificaionName;
                                                                                     @"term":selectedIndexes[1]
                                                                                     };
                                                        [[BBTScoresManager sharedScoresManager] retriveScores:self.userInfo WithConditions:conditions];
+                                                       [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
         }
                                                  cancelBlock:^(ActionSheetMultipleStringPicker *picker) {
             
