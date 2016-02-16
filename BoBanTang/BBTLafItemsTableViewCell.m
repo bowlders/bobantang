@@ -39,7 +39,7 @@
 
 - (void)configureItemsCells:(NSDictionary *)content
 {
-    self.thumbLostImageView.image = [UIImage imageNamed:@"testImage"];
+    self.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
     self.itemName.text = content[@"itemID"];
     self.itemDetails.text = content[@"details"];
 }
