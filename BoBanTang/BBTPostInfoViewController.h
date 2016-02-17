@@ -11,6 +11,6 @@
 
 @interface BBTPostInfoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, BBTItemDetailEditingViewControllerDelegate>
 
-@property (assign, nonatomic) NSInteger lostOrFound;
+@property (assign, nonatomic) NSNumber * lostOrFound;
 
 @end
