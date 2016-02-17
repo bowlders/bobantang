@@ -28,11 +28,10 @@
     self.title = @"设置";
 
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.scrollEnabled = NO;
 
-    self.appSwitch.on = (int)[JNKeychain loadValueForKey:@"appSwitchStatus"];
-    self.scoreInquireSwitch.on = (int)[JNKeychain loadValueForKey:@"scoreSwitchStatus"];
+    self.appSwitch.on = (BOOL)[[JNKeychain loadValueForKey:@"appSwitchStatus"] boolValue];
+    self.scoreInquireSwitch.on = (BOOL)[[JNKeychain loadValueForKey:@"scoreSwitchStatus"] boolValue];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -108,6 +107,8 @@
     HUD.textLabel.text = @"您已退出登录";
     [HUD showInView:self.view];
     [HUD dismissAfterDelay:3.0];
+    
+    [self disableCellInteraction];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -169,6 +170,18 @@
         
         //TODO: Deal With score inquire switch event
     }
+}
+
+- (void)disableCellInteraction
+{
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    cell.userInteractionEnabled = NO;
+    self.appSwitch.enabled = NO;
+    self.appLabel.enabled = NO;
+    
+    cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:3]];
+    cell.userInteractionEnabled = NO;
+    self.exitLoginLabel.enabled = NO;
 }
 
 /*
