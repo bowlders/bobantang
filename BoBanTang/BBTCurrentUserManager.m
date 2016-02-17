@@ -51,11 +51,13 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
             else if ([key isEqualToString:@"err"])
             {
                 self.userIsActive = NO;
+                [self postUserAuthenticationFinishNotification];
             }
         }
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
         self.userIsActive = NO;
+        [self postUserAuthenticationFinishNotification];
     }];
 }
 
@@ -88,6 +90,8 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
         }
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
+        self.userIsActive = NO;
+        [self postUserAuthenticationFinishNotification];
     }];
 }
 
@@ -113,6 +117,7 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
         //[self fetchCurrentUserData];
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
+        self.userIsActive = NO;
     }];
 }
 
@@ -131,7 +136,7 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
 
 - (void)saveCurrentUserInfo
 {
-    [JNKeychain saveValue:self.currentUser.userName forKey:userNameKey];
+    [JNKeychain saveValue:self.currentUser.account forKey:userNameKey];
     [JNKeychain saveValue:self.currentUser.password forKey:passWordKey];
 }
 

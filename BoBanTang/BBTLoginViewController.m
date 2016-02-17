@@ -134,7 +134,7 @@ extern NSString * kUserAuthentificationFinishNotifName;
         [cell setCellContentWithLabelText:@"学号" andTextFieldPlaceHolder:@"请填写教务系统的学号"];
         cell.textField.keyboardType = UIKeyboardTypeNumberPad;
         cell.textField.tag = 0;
-        if ((int)[JNKeychain loadValueForKey:@"appSwitchStatus"])       //Automatically fill in
+        if ((int)[[JNKeychain loadValueForKey:@"appSwitchStatus"] boolValue])       //Automatically fill in
         {
             NSString *savedUserName = [JNKeychain loadValueForKey:@"userName"];
             [cell presetTextFieldContentWithString:savedUserName];
@@ -145,7 +145,7 @@ extern NSString * kUserAuthentificationFinishNotifName;
         [cell setCellContentWithLabelText:@"密码" andTextFieldPlaceHolder:@"请填写教务系统的密码"];
         cell.textField.tag = 1;
         cell.textField.secureTextEntry = YES;
-        if ((int)[JNKeychain loadValueForKey:@"appSwitchStatus"])       //Automatically fill in
+        if ((int)[[JNKeychain loadValueForKey:@"appSwitchStatus"] boolValue])       //Automatically fill in
         {
             NSString *savedPassWord = [JNKeychain loadValueForKey:@"passWord"];
             [cell presetTextFieldContentWithString:savedPassWord];
@@ -190,10 +190,6 @@ extern NSString * kUserAuthentificationFinishNotifName;
     NSString *currentUserUserName = ((UITextField *)((BBTLoginTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]).textField).text;
     NSString *currenUserPassWord = ((UITextField *)((BBTLoginTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]]).textField).text;
     
-    //Save User info in keychain
-    [JNKeychain saveValue:currentUserUserName forKey:@"userName"];
-    [JNKeychain saveValue:currenUserPassWord forKey:@"passWord"];
-    
     [BBTCurrentUserManager sharedCurrentUserManager].currentUser = [BBTUser new];
     [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account = currentUserUserName;
     [BBTCurrentUserManager sharedCurrentUserManager].currentUser.password = currenUserPassWord;
@@ -209,6 +205,10 @@ extern NSString * kUserAuthentificationFinishNotifName;
 {
     if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
     {
+        //Save User info in keychain
+        [JNKeychain saveValue:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account forKey:@"userName"];
+        [JNKeychain saveValue:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.password forKey:@"passWord"];
+        
         //Hide loading hud
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
@@ -226,6 +226,9 @@ extern NSString * kUserAuthentificationFinishNotifName;
     }
     else
     {
+        //Hide loading hud
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
         JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
         HUD.textLabel.text = @"登录失败";
         HUD.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init];
