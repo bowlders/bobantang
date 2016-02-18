@@ -10,6 +10,7 @@
 #import "BBTCampusInfoManager.h"
 #import "BBTCampusInfoTableViewCell.h"
 #import <UIImageView+WebCache.h>
+#import <Masonry.h>
 
 @interface BBTCampusInfoTableViewController ()
 
@@ -26,9 +27,12 @@ extern NSString * campusInfoNotificationName;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     self.automaticallyAdjustsScrollViewInsets = NO;
-    //self.tableView.contentInset = UIEdgeInsetsZero;
+    self.tableView.contentInset = UIEdgeInsetsZero;
     //Retrive all campus infos
     [[BBTCampusInfoManager sharedInfoManager] retriveData:@""];
 }
@@ -54,12 +58,6 @@ extern NSString * campusInfoNotificationName;
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     CGFloat screenHeight = applicationFrame.size.height;
     return screenHeight / 4.0;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
-    return view;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

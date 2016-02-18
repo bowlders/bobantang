@@ -11,6 +11,7 @@
 		391F32461BFDC66B004843C3 /* BBTSpecRailway2Bus.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F32451BFDC66B004843C3 /* BBTSpecRailway2Bus.m */; };
 		391F32491BFDD42B004843C3 /* BBTSpecRailway2BusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F32481BFDD42B004843C3 /* BBTSpecRailway2BusManager.m */; };
 		391F324C1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F324B1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m */; };
+		3921B0271C7567A200CA9449 /* BBTTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3921B0261C7567A200CA9449 /* BBTTestViewController.m */; };
 		39239A321C635BAB008EDBB0 /* BBTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 39239A311C635BAB008EDBB0 /* BBTUser.m */; };
 		39239A351C646FCD008EDBB0 /* BBTCurrentUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 39239A341C646FCD008EDBB0 /* BBTCurrentUserManager.m */; };
 		39239A381C64BAC4008EDBB0 /* BBTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39239A371C64BAC4008EDBB0 /* BBTLoginViewController.m */; };
@@ -61,7 +62,6 @@
 		A947D9B91BD8DC34000F071B /* BBTPersonalInfoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99D1BD8DC34000F071B /* BBTPersonalInfoEditViewController.m */; };
 		A947D9BA1BD8DC34000F071B /* BBTPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99E1BD8DC34000F071B /* BBTPreferences.m */; };
 		A947D9BD1BD8DC34000F071B /* BBTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A11BD8DC34000F071B /* BBTSettingsViewController.m */; };
-		A947D9BE1BD8DC34000F071B /* BBTToolsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A21BD8DC34000F071B /* BBTToolsViewController.m */; };
 		A947D9C11BD8DC34000F071B /* UIColor+BBTColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A51BD8DC34000F071B /* UIColor+BBTColor.m */; };
 		A947D9C61BD8E03A000F071B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D91F1BD8DADA000F071B /* main.m */; };
 		FC1770B61C5F4FCD00BF07AC /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1770B51C5F4FCD00BF07AC /* PopoverView.m */; };
@@ -81,15 +81,12 @@
 		FC80D4591C62109000A80EDA /* BBTLafItemsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC80D4561C62109000A80EDA /* BBTLafItemsTableViewCell.m */; };
 		FC80D45C1C6244A200A80EDA /* BBTItemDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC80D45B1C6244A200A80EDA /* BBTItemDetailsTableViewController.m */; };
 		FCD0A2631C0005A00024D78F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCD0A2621C00059F0024D78F /* Security.framework */; };
-		FCD0A2681C0005D80024D78F /* BBTScoresLoginTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2651C0005D80024D78F /* BBTScoresLoginTableViewController.m */; };
-		FCD0A2691C0005D80024D78F /* BBTScoresQueryResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2671C0005D80024D78F /* BBTScoresQueryResultsTableViewController.m */; };
 		FCD0A26F1C00062D0024D78F /* BBTScoresCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A26D1C00062D0024D78F /* BBTScoresCell.m */; };
 		FCD0A2701C00062D0024D78F /* BBTScoresCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCD0A26E1C00062D0024D78F /* BBTScoresCell.xib */; };
 		FCD0A2751C0006940024D78F /* BBTLectureRooms.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2741C0006940024D78F /* BBTLectureRooms.m */; };
 		FCD0A27D1C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2791C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.m */; };
 		FCD0A27E1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A27B1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.m */; };
 		FCD0A2811C0009F10024D78F /* BBTScores.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2801C0009F10024D78F /* BBTScores.m */; };
-		FCD0A2841C003ABC0024D78F /* BBTScoresFilterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2831C003ABC0024D78F /* BBTScoresFilterTableViewController.m */; };
 		FCD0A2941C023B930024D78F /* BBTHudView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2931C023B930024D78F /* BBTHudView.m */; };
 /* End PBXBuildFile section */
 
@@ -119,6 +116,8 @@
 		391F32481BFDD42B004843C3 /* BBTSpecRailway2BusManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BBTSpecRailway2BusManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		391F324A1BFE07AE004843C3 /* NSDictionary+BBTDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+BBTDictionary.h"; sourceTree = "<group>"; };
 		391F324B1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+BBTDictionary.m"; sourceTree = "<group>"; };
+		3921B0251C7567A200CA9449 /* BBTTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTTestViewController.h; sourceTree = "<group>"; };
+		3921B0261C7567A200CA9449 /* BBTTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTTestViewController.m; sourceTree = "<group>"; };
 		39239A301C635BAB008EDBB0 /* BBTUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTUser.h; sourceTree = "<group>"; };
 		39239A311C635BAB008EDBB0 /* BBTUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTUser.m; sourceTree = "<group>"; };
 		39239A331C646FCD008EDBB0 /* BBTCurrentUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCurrentUserManager.h; sourceTree = "<group>"; };
@@ -587,6 +586,8 @@
 				A947D9A11BD8DC34000F071B /* BBTSettingsViewController.m */,
 				39239A361C64BAC4008EDBB0 /* BBTLoginViewController.h */,
 				39239A371C64BAC4008EDBB0 /* BBTLoginViewController.m */,
+				3921B0251C7567A200CA9449 /* BBTTestViewController.h */,
+				3921B0261C7567A200CA9449 /* BBTTestViewController.m */,
 			);
 			name = Me;
 			sourceTree = "<group>";
@@ -1079,7 +1080,6 @@
 				3974456A1C0A8E75004B89BA /* BBTCampusInfoManager.m in Sources */,
 				A947D9631BD8DBEA000F071B /* GmailLikeLoadingView.m in Sources */,
 				A947D9671BD8DBEA000F071B /* PAPropertyDescriptor.m in Sources */,
-				FCD0A2691C0005D80024D78F /* BBTScoresQueryResultsTableViewController.m in Sources */,
 				A947D9AC1BD8DC34000F071B /* BBTAppDelegate.m in Sources */,
 				391F324C1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m in Sources */,
 				3951EFF71C6F72C600076AD4 /* BBTSouthSpecialRailwayTwoViewController.m in Sources */,
@@ -1095,7 +1095,6 @@
 				39B5953D1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m in Sources */,
 				395B10DC1C5713EF00772A38 /* UIFont+BBTFont.m in Sources */,
 				A947D9AA1BD8DC34000F071B /* BBTAboutViewController.m in Sources */,
-				FCD0A2681C0005D80024D78F /* BBTScoresLoginTableViewController.m in Sources */,
 				FC2EB0021C69AC7000B5DC42 /* BBTPostInfoViewController.m in Sources */,
 				39239A381C64BAC4008EDBB0 /* BBTLoginViewController.m in Sources */,
 				FC1770C41C5F507500BF07AC /* BBTLostAndFoundTableViewController.m in Sources */,
@@ -1104,11 +1103,9 @@
 				FCD0A2941C023B930024D78F /* BBTHudView.m in Sources */,
 				FC69A3FE1C038340000EF949 /* BBTLectureRoomsResultTableViewController.m in Sources */,
 				391F32431BFB5D4A004843C3 /* BBTSpecialRailwayLineTwoViewController.m in Sources */,
-				FCD0A2841C003ABC0024D78F /* BBTScoresFilterTableViewController.m in Sources */,
 				3951EFFA1C70997600076AD4 /* BBTNorthSpecialRailwayTwoViewController.m in Sources */,
 				A947D9BD1BD8DC34000F071B /* BBTSettingsViewController.m in Sources */,
 				FCD0A26F1C00062D0024D78F /* BBTScoresCell.m in Sources */,
-				A947D9BE1BD8DC34000F071B /* BBTToolsViewController.m in Sources */,
 				395B10CD1C5525CD00772A38 /* BBTDailyArticleViewController.m in Sources */,
 				FC1770C61C5F507500BF07AC /* BBTItemDetailEditingViewController.m in Sources */,
 				FCD0A2751C0006940024D78F /* BBTLectureRooms.m in Sources */,
@@ -1120,6 +1117,7 @@
 				A947D9C11BD8DC34000F071B /* UIColor+BBTColor.m in Sources */,
 				39239A3B1C64E132008EDBB0 /* BBTLoginTableViewCell.m in Sources */,
 				39FE91DD1C5DAA0F0041E46F /* BBTCampusBusViewController.m in Sources */,
+				3921B0271C7567A200CA9449 /* BBTTestViewController.m in Sources */,
 				397445701C0AAD60004B89BA /* BBTCampusInfoTableViewCell.m in Sources */,
 				A947D9B91BD8DC34000F071B /* BBTPersonalInfoEditViewController.m in Sources */,
 				395B10E01C5737AB00772A38 /* BBTDailyArticleTableViewCell.m in Sources */,
