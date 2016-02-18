@@ -7,8 +7,9 @@
 //
 
 #import "BBTLectureRoomsQueryTableViewController.h"
+#import "ActionSheetPicker.h"
 
-static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php";
+static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php?table=emptyroom";
 
 @interface BBTLectureRoomsQueryTableViewController ()
 
@@ -59,6 +60,10 @@ static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php"
                                              selector:@selector(localeChanged:)
                                                  name:NSCurrentLocaleDidChangeNotification
                                                object:nil];
+    
+    NSTimeInterval secondsPerDay = 3600 * 24;
+    self.datePicker.minimumDate = [NSDate date];
+    self.datePicker.maximumDate = [[NSDate date] dateByAddingTimeInterval:secondsPerDay * 2];
 }
 
 - (void)dealloc
@@ -155,31 +160,35 @@ static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php"
 
 - (void)choseBuilding
 {
-    UIAlertController *alertController = [[UIAlertController alloc] init];
-    alertController = [UIAlertController alertControllerWithTitle:@"请选择楼栋"
-                                                          message:nil
-                                                   preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    if (self.campus.selectedSegmentIndex == 0) {
-        NSArray *array = [[NSArray alloc] initWithObjects:@"31", @"32", @"33", @"34", @"35", nil];
-        for (int number = 0; number < 5; ++number) {
-            UIAlertAction *act = [UIAlertAction actionWithTitle:array[number] style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-                self.buildings.text = array[number];
-            }];
-            [alertController addAction:act];
-        }
-    } else if (self.campus.selectedSegmentIndex == 1) {
-        NSArray *array = [[NSArray alloc] initWithObjects:@"A1", @"A2", @"A3", nil];
-        for (int number = 0; number < 3; ++number) {
-            UIAlertAction *act = [UIAlertAction actionWithTitle:array[number] style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-                self.buildings.text = array[number];
-            }];
-            [alertController addAction:act];
-        }
+    if (self.campus.selectedSegmentIndex == 0)
+    {
+        NSArray *buildings = @[@"31", @"32", @"33", @"34", @"35"];
+        ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle:@"请选择教学楼"
+                                                                                    rows:buildings
+                                                                        initialSelection:0
+                                                                               doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                                                                   self.buildings.text = selectedValue;
+                                                                               }
+                                                                             cancelBlock:^(ActionSheetStringPicker *picker) {
+                                                                                 
+                                                                             }
+                                                                                  origin:self.buildings];
+        [picker showActionSheetPicker];
+    } else if (self.campus.selectedSegmentIndex == 1)
+    {
+        NSArray *buildings = @[@"A1", @"A2", @"A3"];
+        ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle:@"请选择教学楼"
+                                                                                    rows:buildings
+                                                                        initialSelection:0
+                                                                               doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                                                                   self.buildings.text = selectedValue;
+                                                                               }
+                                                                             cancelBlock:^(ActionSheetStringPicker *picker) {
+                                                                                 
+                                                                             }
+                                                                                  origin:self.buildings];
+        [picker showActionSheetPicker];
     }
-    
-    [self presentViewController:alertController animated:YES completion:nil];
-    
 }
 
 - (void)performGetEmptyRooms
@@ -188,8 +197,8 @@ static NSString * const emptyRoomURL = @"http://218.192.166.167/api/protype.php"
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    NSDictionary *parameters = @{@"table":@"emptyroom",
-                                 @"method":@"get"};
+    //NSDictionary *parameters = @{@"table":@"emptyroom",
+    //                             @"method":@"get"};
     
     [manager POST:emptyRoomURL parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSLog(@" %lu", (unsigned long)[responseObject count]);
