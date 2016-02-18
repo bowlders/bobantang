@@ -77,10 +77,19 @@ NSString *postItemNotificaionName = @"postItemNotification";
         url = postPickItemUrl;
     }
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];
-    [manager POST:url parameters:itemDic progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        NSLog(@"Succeed!");
+   
+    NSError *error;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:itemDic options:NSJSONWritingPrettyPrinted error:&error];
+    NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSString *stringCleanPath = [jsonString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *completeUrl = [url stringByAppendingString:stringCleanPath];
+    
+    [manager POST:completeUrl parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+        if (responseObject) {
+            NSLog(@"Succeed: %@", responseObject);
+        }
     } failure:^(NSURLSessionTask *task, NSError *error) {
-        NSLog(@"Error: %@", error);
+        NSLog(@"Error: %@",error);
     }];
 }
 
