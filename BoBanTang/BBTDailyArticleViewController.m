@@ -10,7 +10,8 @@
 
 @interface BBTDailyArticleViewController ()
 
-@property (strong, nonatomic) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) IBOutlet UIWebView       * webView;
+@property (strong, nonatomic) UISwipeGestureRecognizer * recognizer;
 
 @end
 
@@ -18,10 +19,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIBarButtonItem * shareButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
-
-    self.navigationItem.rightBarButtonItem = shareButton;
-    //[self.navigationItem setRightBarButtonItem:[NSArray arrayWithObjects:shareButton, collectButton, nil]];
+    
+    self.recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe)];
+    self.recognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    self.recognizer.delegate = self;
+    [self.view addGestureRecognizer:self.recognizer];
     // Do any additional setup after loading the view.
 }
 
@@ -35,11 +37,10 @@
 
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)handleSwipe
+{
+    [self performSegueWithIdentifier:@"showPreviousArticlesList" sender:nil];
 }
-
 /*
 #pragma mark - Navigation
 

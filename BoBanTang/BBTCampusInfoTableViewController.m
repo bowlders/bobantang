@@ -10,6 +10,7 @@
 #import "BBTCampusInfoManager.h"
 #import "BBTCampusInfoTableViewCell.h"
 #import <UIImageView+WebCache.h>
+#import <MJRefresh.h>
 
 @interface BBTCampusInfoTableViewController ()
 
@@ -26,9 +27,16 @@ extern NSString * campusInfoNotificationName;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    //self.tableView.contentInset = UIEdgeInsetsZero;
+    
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self refresh];
+    }];
+    [header setTitle:@"释放刷新" forState:MJRefreshStatePulling];
+    [header setTitle:@"加载中 ..." forState:MJRefreshStateRefreshing];
+    self.tableView.mj_header = header;
+    
+    [self.tableView.mj_header beginRefreshing];
+    
     //Retrive all campus infos
     [[BBTCampusInfoManager sharedInfoManager] retriveData:@""];
 }
@@ -53,13 +61,7 @@ extern NSString * campusInfoNotificationName;
 {
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     CGFloat screenHeight = applicationFrame.size.height;
-    return screenHeight / 4.0;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
-    return view;
+    return screenHeight / 4.5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -85,6 +87,12 @@ extern NSString * campusInfoNotificationName;
 {
     NSLog(@"Did receive campus info notification");
     [self.tableView reloadData];
+    [self.tableView.mj_header endRefreshing];
+}
+
+- (void)refresh
+{
+    [[BBTCampusInfoManager sharedInfoManager] retriveData:@""];
 }
 
 /*

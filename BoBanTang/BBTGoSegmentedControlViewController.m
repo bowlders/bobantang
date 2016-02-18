@@ -41,13 +41,9 @@
     
     self.contentViewContainer = [UIView new];
     self.contentViewContainer.backgroundColor = [UIColor whiteColor];
-
-    [self.view addSubview:self.contentViewContainer];
-
-    NSLog(@"selfview1 - %@", NSStringFromCGRect(self.view.frame));
-    NSLog(@"navigation - %@", NSStringFromCGRect(self.navigationController.navigationBar.frame));
-    NSLog(@"tabbar - %@", NSStringFromCGRect(self.tabBarController.tabBar.frame));
+    self.contentViewContainer.translatesAutoresizingMaskIntoConstraints = NO;
     
+    [self.view addSubview:self.contentViewContainer];
     
     [self.contentViewContainer mas_makeConstraints:^(MASConstraintMaker *make){
         make.size.equalTo(self.view);
@@ -58,6 +54,7 @@
     UIViewController *currentVC = self.contentViewControllers[self.currentControllerIndex];
     
     [self addChildViewController:currentVC];
+    currentVC.view.frame = self.contentViewContainer.bounds;
     [self.contentViewContainer addSubview:currentVC.view];
     [currentVC didMoveToParentViewController:self];
     

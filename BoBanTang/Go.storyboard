@@ -61,10 +61,10 @@
             </objects>
             <point key="canvasLocation" x="825.5" y="295.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Campus Bus View Controller-->
         <scene sceneID="Jt9-Ub-7y9">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="wJp-z2-T1o" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="wJp-z2-T1o" customClass="BBTCampusBusViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OWM-ez-MBL"/>
                         <viewControllerLayoutGuide type="bottom" id="qaI-hf-3Qv"/>

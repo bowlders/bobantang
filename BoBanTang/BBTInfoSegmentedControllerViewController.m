@@ -9,6 +9,7 @@
 #import "BBTInfoSegmentedControllerViewController.h"
 #import "BBTCampusInfoTableViewController.h"
 #import "BBTDailyArticleViewController.h"
+#import "BBTDailyArticleTableViewController.h"
 #import "UIColor+BBTColor.h"
 #import <HMSegmentedControl.h>
 #import <Masonry.h>
@@ -30,7 +31,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     BBTCampusInfoTableViewController * campusInfoVC = [[BBTCampusInfoTableViewController alloc] init];
-    BBTDailyArticleViewController * dailyArticleVC = [[BBTDailyArticleViewController alloc] init];
+    //BBTDailyArticleViewController * dailyArticleVC = [[BBTDailyArticleViewController alloc] init];
+    BBTDailyArticleTableViewController * dailyArticleVC = [[BBTDailyArticleTableViewController alloc] init];
     
     self.contentViewControllers = @[
                                     campusInfoVC,
@@ -40,25 +42,21 @@
     self.contentViewContainer = [UIView new];
     self.contentViewContainer.backgroundColor = [UIColor whiteColor];
     
-    CGFloat navigationBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
-    CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
-    CGFloat segmentedControlY = self.segmentedControl.frame.origin.y;
-    CGFloat segmentedControlHeight = CGRectGetHeight(self.segmentedControl.frame);
-    CGFloat containerY = segmentedControlY + segmentedControlHeight;
-    CGFloat containerWidth = CGRectGetWidth(self.view.frame);
-    CGFloat containerHeight = CGRectGetHeight(self.view.frame) - navigationBarHeight - statusBarHeight - segmentedControlHeight;
-    CGRect containerFrame = CGRectMake(0.0f, containerY, containerWidth, containerHeight);
-    self.contentViewContainer.frame = containerFrame;
     [self.view addSubview:self.contentViewContainer];
     
+    [self.contentViewContainer mas_makeConstraints:^(MASConstraintMaker *make){
+        make.size.equalTo(self.view);
+        make.center.equalTo(self.view);
+    }];
+
     self.currentControllerIndex = 0;
     UIViewController *currentVC = self.contentViewControllers[self.currentControllerIndex];
     
     [self addChildViewController:currentVC];
+    currentVC.view.frame = self.contentViewContainer.bounds;
     [self.contentViewContainer addSubview:currentVC.view];
     [currentVC didMoveToParentViewController:self];
 
-    
     // Do any additional setup after loading the view.
 }
 - (IBAction)valueChanged:(UISegmentedControl *)sender
@@ -66,27 +64,36 @@
     NSLog(@"Index %ld is selected", (long)sender.selectedSegmentIndex);
     [self changeToViewControllerAtIndex:sender.selectedSegmentIndex animated:NO];
 }
-
-/*
-- (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl
-{
-    NSLog(@"Index %ld is selected", (long)segmentedControl.selectedSegmentIndex);
-    [self changeToViewControllerAtIndex:segmentedControl.selectedSegmentIndex animated:NO];
-}
-*/
  
 - (void)changeToViewControllerAtIndex:(NSUInteger)index animated:(BOOL)animated
 {
     UIViewController *currentVC = self.contentViewControllers[self.currentControllerIndex];
-    [currentVC willMoveToParentViewController:nil];
+
+    [currentVC willMoveToParentViewController:self];
     [currentVC.view removeFromSuperview];
     [currentVC removeFromParentViewController];
-    
+
     UIViewController *destinationVC = self.contentViewControllers[index];
+
     [self addChildViewController:destinationVC];
     destinationVC.view.frame = self.contentViewContainer.bounds;
     [self.contentViewContainer addSubview:destinationVC.view];
     [destinationVC didMoveToParentViewController:self];
+    [self addChildViewController:destinationVC];
+    
+    /*
+    [self transitionFromViewController:currentVC toViewController:destinationVC duration:0.5 options:UIViewAnimationOptionTransitionNone animations:^{
+        [currentVC.view removeFromSuperview];
+        destinationVC.view.frame = self.contentViewContainer.bounds;
+        destinationVC.automaticallyAdjustsScrollViewInsets = NO;
+        destinationVC.edgesForExtendedLayout = UIRectEdgeNone;
+        [self.contentViewContainer addSubview:destinationVC.view];
+    } completion:^(BOOL finished) {
+        [currentVC didMoveToParentViewController:self];
+        [currentVC removeFromParentViewController];
+    }];
+    */
+    
     
     self.currentControllerIndex = index;
 }

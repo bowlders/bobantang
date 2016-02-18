@@ -39,7 +39,6 @@ extern NSString * busDataNotificationName;
         tableView.allowsSelection = NO;
         tableView.dataSource = self;
         tableView.delegate = self;
-        //tableView.contentInset = UIEdgeInsetsMake(0, 0, self.bottomLayoutGuide.length, 0);
         tableView;
     });
     
@@ -48,16 +47,16 @@ extern NSString * busDataNotificationName;
     CGFloat tableViewUpPadding = 20.0f;
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
-    //CGFloat buttonOffset = 10.0f;
-    //CGFloat buttonSideLength = 50.0f;
+    CGFloat containerViewHeight = self.view.frame.size.height - navigationBarHeight - tabBarHeight;
+    CGRect containerViewRect = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), containerViewHeight * 0.95);
+    CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.top.equalTo(self.view.mas_top).offset(navigationBarHeight + tableViewUpPadding);//.offset(navigationBarHeight);
-        make.bottom.equalTo(self.view.mas_bottom).offset(-tabBarHeight);
-        make.width.equalTo(self.view.mas_width);
+        make.top.equalTo(self.view.mas_top).offset(statusBarHeight + navigationBarHeight);
         make.left.equalTo(self.view.mas_left);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-tabBarHeight);
+        make.right.equalTo(self.view.mas_right);
     }];
-    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
