@@ -32,6 +32,10 @@ extern NSString * busDataNotificationName;
     //Init specRailwayManager
     [BBTSpecRailway2BusManager sharedBusManager];
     
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:label];
+
     self.tableView = ({
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         tableView.translatesAutoresizingMaskIntoConstraints = NO;

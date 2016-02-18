@@ -24,8 +24,6 @@ extern NSString * dailyArticleNotificationName;
 - (void)viewWillAppear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDailyArticleNotification) name:dailyArticleNotificationName object:nil];
-    //self.view.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
-    NSLog(@"%@ daily article ", NSStringFromCGRect(self.view.frame));
 }
 
 - (void)viewDidLoad {
@@ -41,11 +39,6 @@ extern NSString * dailyArticleNotificationName;
     [self.tableView.mj_header beginRefreshing];
     
     [[BBTDailyArticleManager sharedArticleManager] retriveData:@""];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveDailyArticleNotification
@@ -65,7 +58,7 @@ extern NSString * dailyArticleNotificationName;
 {
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     CGFloat screenHeight = applicationFrame.size.height;
-    return screenHeight / 5.0;
+    return screenHeight / 6.0;
 }
 
 #pragma mark - Table view data source

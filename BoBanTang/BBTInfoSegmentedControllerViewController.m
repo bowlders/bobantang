@@ -9,7 +9,6 @@
 #import "BBTInfoSegmentedControllerViewController.h"
 #import "BBTCampusInfoTableViewController.h"
 #import "BBTDailyArticleViewController.h"
-#import "BBTDailyArticleTableViewController.h"
 #import "UIColor+BBTColor.h"
 #import <HMSegmentedControl.h>
 #import <Masonry.h>
@@ -31,8 +30,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     BBTCampusInfoTableViewController * campusInfoVC = [[BBTCampusInfoTableViewController alloc] init];
-    //BBTDailyArticleViewController * dailyArticleVC = [[BBTDailyArticleViewController alloc] init];
-    BBTDailyArticleTableViewController * dailyArticleVC = [[BBTDailyArticleTableViewController alloc] init];
+    
+    BBTDailyArticleViewController * dailyArticleVC = [[BBTDailyArticleViewController alloc] init];
     
     self.contentViewControllers = @[
                                     campusInfoVC,
@@ -80,20 +79,6 @@
     [self.contentViewContainer addSubview:destinationVC.view];
     [destinationVC didMoveToParentViewController:self];
     [self addChildViewController:destinationVC];
-    
-    /*
-    [self transitionFromViewController:currentVC toViewController:destinationVC duration:0.5 options:UIViewAnimationOptionTransitionNone animations:^{
-        [currentVC.view removeFromSuperview];
-        destinationVC.view.frame = self.contentViewContainer.bounds;
-        destinationVC.automaticallyAdjustsScrollViewInsets = NO;
-        destinationVC.edgesForExtendedLayout = UIRectEdgeNone;
-        [self.contentViewContainer addSubview:destinationVC.view];
-    } completion:^(BOOL finished) {
-        [currentVC didMoveToParentViewController:self];
-        [currentVC removeFromParentViewController];
-    }];
-    */
-    
     
     self.currentControllerIndex = index;
 }

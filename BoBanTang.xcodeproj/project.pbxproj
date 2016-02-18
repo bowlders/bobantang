@@ -12,6 +12,7 @@
 		391F32491BFDD42B004843C3 /* BBTSpecRailway2BusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F32481BFDD42B004843C3 /* BBTSpecRailway2BusManager.m */; };
 		391F324C1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F324B1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m */; };
 		3921B0271C7567A200CA9449 /* BBTTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3921B0261C7567A200CA9449 /* BBTTestViewController.m */; };
+		3921B02A1C75CF4000CA9449 /* BBTPersonalInfoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3921B0291C75CF4000CA9449 /* BBTPersonalInfoEditViewController.m */; };
 		39239A321C635BAB008EDBB0 /* BBTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 39239A311C635BAB008EDBB0 /* BBTUser.m */; };
 		39239A351C646FCD008EDBB0 /* BBTCurrentUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 39239A341C646FCD008EDBB0 /* BBTCurrentUserManager.m */; };
 		39239A381C64BAC4008EDBB0 /* BBTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39239A371C64BAC4008EDBB0 /* BBTLoginViewController.m */; };
@@ -59,7 +60,6 @@
 		A947D9AC1BD8DC34000F071B /* BBTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9901BD8DC34000F071B /* BBTAppDelegate.m */; };
 		A947D9B61BD8DC34000F071B /* BBTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99A1BD8DC34000F071B /* BBTMainViewController.m */; };
 		A947D9B81BD8DC34000F071B /* BBTMyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99C1BD8DC34000F071B /* BBTMyCollectionViewController.m */; };
-		A947D9B91BD8DC34000F071B /* BBTPersonalInfoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99D1BD8DC34000F071B /* BBTPersonalInfoEditViewController.m */; };
 		A947D9BA1BD8DC34000F071B /* BBTPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99E1BD8DC34000F071B /* BBTPreferences.m */; };
 		A947D9BD1BD8DC34000F071B /* BBTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A11BD8DC34000F071B /* BBTSettingsViewController.m */; };
 		A947D9C11BD8DC34000F071B /* UIColor+BBTColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A51BD8DC34000F071B /* UIColor+BBTColor.m */; };
@@ -118,6 +118,8 @@
 		391F324B1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+BBTDictionary.m"; sourceTree = "<group>"; };
 		3921B0251C7567A200CA9449 /* BBTTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTTestViewController.h; sourceTree = "<group>"; };
 		3921B0261C7567A200CA9449 /* BBTTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTTestViewController.m; sourceTree = "<group>"; };
+		3921B0281C75CF4000CA9449 /* BBTPersonalInfoEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTPersonalInfoEditViewController.h; sourceTree = "<group>"; };
+		3921B0291C75CF4000CA9449 /* BBTPersonalInfoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTPersonalInfoEditViewController.m; sourceTree = "<group>"; };
 		39239A301C635BAB008EDBB0 /* BBTUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTUser.h; sourceTree = "<group>"; };
 		39239A311C635BAB008EDBB0 /* BBTUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTUser.m; sourceTree = "<group>"; };
 		39239A331C646FCD008EDBB0 /* BBTCurrentUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCurrentUserManager.h; sourceTree = "<group>"; };
@@ -206,7 +208,6 @@
 		A947D9741BD8DC0F000F071B /* BBTMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMainViewController.h; sourceTree = "<group>"; };
 		A947D9751BD8DC0F000F071B /* BBTMarco.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMarco.h; sourceTree = "<group>"; };
 		A947D9771BD8DC0F000F071B /* BBTMyCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMyCollectionViewController.h; sourceTree = "<group>"; };
-		A947D9781BD8DC0F000F071B /* BBTPersonalInfoEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTPersonalInfoEditViewController.h; sourceTree = "<group>"; };
 		A947D9791BD8DC0F000F071B /* BBTPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BBTPreferences.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		A947D97C1BD8DC0F000F071B /* BBTSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSettingsViewController.h; sourceTree = "<group>"; };
 		A947D97D1BD8DC0F000F071B /* BBTToolsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTToolsViewController.h; sourceTree = "<group>"; };
@@ -218,7 +219,6 @@
 		A947D9901BD8DC34000F071B /* BBTAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTAppDelegate.m; sourceTree = "<group>"; };
 		A947D99A1BD8DC34000F071B /* BBTMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTMainViewController.m; sourceTree = "<group>"; };
 		A947D99C1BD8DC34000F071B /* BBTMyCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTMyCollectionViewController.m; sourceTree = "<group>"; };
-		A947D99D1BD8DC34000F071B /* BBTPersonalInfoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTPersonalInfoEditViewController.m; sourceTree = "<group>"; };
 		A947D99E1BD8DC34000F071B /* BBTPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BBTPreferences.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A947D9A11BD8DC34000F071B /* BBTSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSettingsViewController.m; sourceTree = "<group>"; };
 		A947D9A21BD8DC34000F071B /* BBTToolsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTToolsViewController.m; sourceTree = "<group>"; };
@@ -580,12 +580,12 @@
 				A947D98F1BD8DC34000F071B /* BBTAccountManageViewController.m */,
 				A947D9771BD8DC0F000F071B /* BBTMyCollectionViewController.h */,
 				A947D99C1BD8DC34000F071B /* BBTMyCollectionViewController.m */,
-				A947D9781BD8DC0F000F071B /* BBTPersonalInfoEditViewController.h */,
-				A947D99D1BD8DC34000F071B /* BBTPersonalInfoEditViewController.m */,
 				A947D97C1BD8DC0F000F071B /* BBTSettingsViewController.h */,
 				A947D9A11BD8DC34000F071B /* BBTSettingsViewController.m */,
 				39239A361C64BAC4008EDBB0 /* BBTLoginViewController.h */,
 				39239A371C64BAC4008EDBB0 /* BBTLoginViewController.m */,
+				3921B0281C75CF4000CA9449 /* BBTPersonalInfoEditViewController.h */,
+				3921B0291C75CF4000CA9449 /* BBTPersonalInfoEditViewController.m */,
 				3921B0251C7567A200CA9449 /* BBTTestViewController.h */,
 				3921B0261C7567A200CA9449 /* BBTTestViewController.m */,
 			);
@@ -1106,6 +1106,7 @@
 				3951EFFA1C70997600076AD4 /* BBTNorthSpecialRailwayTwoViewController.m in Sources */,
 				A947D9BD1BD8DC34000F071B /* BBTSettingsViewController.m in Sources */,
 				FCD0A26F1C00062D0024D78F /* BBTScoresCell.m in Sources */,
+				3921B02A1C75CF4000CA9449 /* BBTPersonalInfoEditViewController.m in Sources */,
 				395B10CD1C5525CD00772A38 /* BBTDailyArticleViewController.m in Sources */,
 				FC1770C61C5F507500BF07AC /* BBTItemDetailEditingViewController.m in Sources */,
 				FCD0A2751C0006940024D78F /* BBTLectureRooms.m in Sources */,
@@ -1119,7 +1120,6 @@
 				39FE91DD1C5DAA0F0041E46F /* BBTCampusBusViewController.m in Sources */,
 				3921B0271C7567A200CA9449 /* BBTTestViewController.m in Sources */,
 				397445701C0AAD60004B89BA /* BBTCampusInfoTableViewCell.m in Sources */,
-				A947D9B91BD8DC34000F071B /* BBTPersonalInfoEditViewController.m in Sources */,
 				395B10E01C5737AB00772A38 /* BBTDailyArticleTableViewCell.m in Sources */,
 				39FE91E61C5F886C0041E46F /* BBTMeViewController.m in Sources */,
 				FCD0A27D1C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.m in Sources */,
