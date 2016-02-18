@@ -39,40 +39,27 @@
     
     self.contentViewContainer = [UIView new];
     self.contentViewContainer.backgroundColor = [UIColor whiteColor];
+    self.contentViewContainer.translatesAutoresizingMaskIntoConstraints = NO;
     
     [self.view addSubview:self.contentViewContainer];
     
-    CGFloat tableViewUpPadding = 35.0f;
-    CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
-    CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
-    /*
     [self.contentViewContainer mas_makeConstraints:^(MASConstraintMaker *make){
-        //make.size.equalTo(self.view);
-        //make.center.equalTo(self.view);
-        make.top.equalTo(self.view.mas_top).offset(navigationBarHeight + tableViewUpPadding);//.offset(navigationBarHeight);
-        make.bottom.equalTo(self.view.mas_bottom).offset(-tabBarHeight);
-        make.width.equalTo(self.view.mas_width);
-        make.left.equalTo(self.view.mas_left);
-
+        make.size.equalTo(self.view);
+        make.center.equalTo(self.view);
     }];
-    */
-    CGFloat containerViewHeight = self.view.frame.size.height - navigationBarHeight - tabBarHeight;
-    CGRect containerViewRect = CGRectMake(0, navigationBarHeight + tableViewUpPadding, CGRectGetWidth(self.view.frame), containerViewHeight);
-    self.contentViewContainer.frame = containerViewRect;
     
-    self.currentControllerIndex = 0;
+    self.currentControllerIndex = 1;
     UIViewController *currentVC = self.contentViewControllers[self.currentControllerIndex];
     
     [self addChildViewController:currentVC];
+    currentVC.view.frame = self.contentViewContainer.bounds;
     [self.contentViewContainer addSubview:currentVC.view];
     [currentVC didMoveToParentViewController:self];
     
-    /*
     self.invertButton = ({
-        //UIButton *button = [UIButton new];
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
         button.translatesAutoresizingMaskIntoConstraints = NO;
-        [button setTitle:@"testtest" forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"BoBanTang"] forState:UIControlStateNormal];
         [button addTarget:self
                    action:@selector(clickInvertButton)
          forControlEvents:UIControlEventTouchUpInside];
@@ -87,14 +74,15 @@
     
     CGFloat buttonOffset = 10.0f;
     CGFloat buttonSideLength = 50.0f;
+    CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
     
     [self.invertButton mas_makeConstraints:^(MASConstraintMaker *make){
         make.right.equalTo(self.view.mas_right).offset(-buttonOffset);
-        make.bottom.equalTo(self.view.mas_bottom).offset(-buttonOffset);
+        make.bottom.equalTo(self.view.mas_bottom).offset(- tabBarHeight - buttonOffset);
         make.width.equalTo(@(buttonSideLength));
         make.height.equalTo(@(buttonSideLength));
     }];
-     */
+    
 }
 
 - (void)clickInvertButton

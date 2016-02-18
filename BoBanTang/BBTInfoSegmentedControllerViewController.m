@@ -40,21 +40,19 @@
     self.contentViewContainer = [UIView new];
     self.contentViewContainer.backgroundColor = [UIColor whiteColor];
     
-    CGFloat navigationBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
-    CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
-    CGFloat segmentedControlY = self.segmentedControl.frame.origin.y;
-    CGFloat segmentedControlHeight = CGRectGetHeight(self.segmentedControl.frame);
-    CGFloat containerY = segmentedControlY + segmentedControlHeight;
-    CGFloat containerWidth = CGRectGetWidth(self.view.frame);
-    CGFloat containerHeight = CGRectGetHeight(self.view.frame) - navigationBarHeight - statusBarHeight - segmentedControlHeight;
-    CGRect containerFrame = CGRectMake(0.0f, containerY, containerWidth, containerHeight);
-    self.contentViewContainer.frame = containerFrame;
+    
     [self.view addSubview:self.contentViewContainer];
     
+    [self.contentViewContainer mas_makeConstraints:^(MASConstraintMaker *make){
+        make.size.equalTo(self.view);
+        make.center.equalTo(self.view);
+    }];
+
     self.currentControllerIndex = 0;
     UIViewController *currentVC = self.contentViewControllers[self.currentControllerIndex];
     
     [self addChildViewController:currentVC];
+    currentVC.view.frame = self.contentViewContainer.bounds;
     [self.contentViewContainer addSubview:currentVC.view];
     [currentVC didMoveToParentViewController:self];
 
@@ -66,14 +64,6 @@
     NSLog(@"Index %ld is selected", (long)sender.selectedSegmentIndex);
     [self changeToViewControllerAtIndex:sender.selectedSegmentIndex animated:NO];
 }
-
-/*
-- (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl
-{
-    NSLog(@"Index %ld is selected", (long)segmentedControl.selectedSegmentIndex);
-    [self changeToViewControllerAtIndex:segmentedControl.selectedSegmentIndex animated:NO];
-}
-*/
  
 - (void)changeToViewControllerAtIndex:(NSUInteger)index animated:(BOOL)animated
 {
