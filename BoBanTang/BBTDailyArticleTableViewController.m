@@ -9,9 +9,6 @@
 #import "BBTDailyArticleTableViewController.h"
 #import "BBTDailyArticleManager.h"
 #import "BBTDailyArticleTableViewCell.h"
-#import <MJRefresh.h>
-#import <MJRefreshStateHeader.h>
-#import <Masonry.h>
 
 @interface BBTDailyArticleTableViewController ()
 
@@ -24,22 +21,13 @@ extern NSString * dailyArticleNotificationName;
 - (void)viewWillAppear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDailyArticleNotification) name:dailyArticleNotificationName object:nil];
-    //self.view.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
-    NSLog(@"%@ daily article ", NSStringFromCGRect(self.view.frame));
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self refresh];
-    }];
-    [header setTitle:@"释放刷新" forState:MJRefreshStatePulling];
-    [header setTitle:@"加载中 ..." forState:MJRefreshStateRefreshing];
-    self.tableView.mj_header = header;
-    
-    [self.tableView.mj_header beginRefreshing];
-    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+
     [[BBTDailyArticleManager sharedArticleManager] retriveData:@""];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -52,7 +40,6 @@ extern NSString * dailyArticleNotificationName;
 {
     NSLog(@"Did receive daily article notification");
     [self.tableView reloadData];
-    [self.tableView.mj_header endRefreshing];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -65,7 +52,7 @@ extern NSString * dailyArticleNotificationName;
 {
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     CGFloat screenHeight = applicationFrame.size.height;
-    return screenHeight / 5.0;
+    return screenHeight / 4.0;
 }
 
 #pragma mark - Table view data source
@@ -95,11 +82,6 @@ extern NSString * dailyArticleNotificationName;
     [cell updateConstraintsIfNeeded];
     
     return cell;
-}
-
-- (void)refresh
-{
-    [[BBTDailyArticleManager sharedArticleManager] retriveData:@""];
 }
 
 

@@ -23,11 +23,6 @@
 
 extern NSString * busDataNotificationName;
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    NSLog(@"%@ special line", NSStringFromCGRect(self.tableView.frame));
-}
-
 - (void)viewDidLoad
 {
     //Add self to bus data notification
