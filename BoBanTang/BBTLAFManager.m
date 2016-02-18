@@ -12,8 +12,8 @@
 
 static NSString *getLostItemsUrl = @"http://218.192.166.167/api/protype.php?table=lostItems&method=get";
 static NSString *getPickItemsUrl = @"http://218.192.166.167/api/protype.php?table=pickItems&method=get";
-static NSString *postLostItemUrl = @"http://218.192.166.167/api/protype.php?table=lostItems&method=save";
-static NSString *postPickItemUrl = @"http://218.192.166.167/api/protype.php?table=pickItems&method=save";
+static NSString *postLostItemUrl = @"http://218.192.166.167/api/protype.php?table=lostItems&method=save&data=";
+static NSString *postPickItemUrl = @"http://218.192.166.167/api/protype.php?table=pickItems&method=save&data=";
 NSString *lafNotificationName = @"lafNotification";
 NSString *postItemNotificaionName = @"postItemNotification";
 
@@ -43,6 +43,7 @@ NSString *postItemNotificaionName = @"postItemNotification";
     self.itemArray = [NSMutableArray array];
     [self.itemArray insertObject:testDictionary atIndex:0];
     */
+    self.itemArray = [NSMutableArray array];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSString *url;
     if (type == 1) {
@@ -76,12 +77,19 @@ NSString *postItemNotificaionName = @"postItemNotification";
         url = postPickItemUrl;
     }
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager POST:url parameters:itemDic progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"Succeed!");
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"Error: %@", error);
+   
+    NSError *error;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:itemDic options:NSJSONWritingPrettyPrinted error:&error];
+    NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSString *stringCleanPath = [jsonString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *completeUrl = [url stringByAppendingString:stringCleanPath];
+    
+    [manager POST:completeUrl parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+        if (responseObject) {
+            NSLog(@"Succeed: %@", responseObject);
+        }
+    } failure:^(NSURLSessionTask *task, NSError *error) {
+        NSLog(@"Error: %@",error);
     }];
 }
 

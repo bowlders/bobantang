@@ -7,6 +7,7 @@
 //
 
 #import "BBTLectureRoomsResultTableViewController.h"
+#import "ActionSheetPicker.h"
 
 static NSString *conditionCellIdentifier = @"conditionCell";
 static NSString *resultCellIdentifier = @"resultsCell";
@@ -137,28 +138,35 @@ static NSString *resultCellIdentifier = @"resultsCell";
                                                        preferredStyle:UIAlertControllerStyleActionSheet];
         
         if ([_filterConditions.campus isEqualToString:@"N"]) {
-            NSArray *array = [[NSArray alloc] initWithObjects:@"31", @"32", @"33", @"34", @"35", nil];
-            for (int number = 0; number < 5; ++number) {
-                UIAlertAction *act = [UIAlertAction actionWithTitle:array[number] style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-                    _filterConditions.buildings = array[number];
-                    [self reConfigureRooms];
-                }];
-                [alertController addAction:act];
-            }
+            NSArray *buildings = @[@"31", @"32", @"33", @"34", @"35"];
+            ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle:@"请选择教学楼"
+                                                                                        rows:buildings
+                                                                            initialSelection:0
+                                                                                   doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                                                                       _filterConditions.buildings = selectedValue;
+                                                                                       [self reConfigureRooms];
+                                                                                   }
+                                                                                 cancelBlock:^(ActionSheetStringPicker *picker) {
+                                                                                     
+                                                                                 }
+                                                                                      origin:[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].detailTextLabel];
+            [picker showActionSheetPicker];
         } else if ([_filterConditions.campus isEqualToString:@"S"]) {
-            NSArray *array = [[NSArray alloc] initWithObjects:@"A1", @"A2", @"A3", nil];
-            for (int number = 0; number < 3; ++number) {
-                UIAlertAction *act = [UIAlertAction actionWithTitle:array[number] style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-                    _filterConditions.buildings = array[number];
-                    [self reConfigureRooms];
-                }];
-                [alertController addAction:act];
-            }
+            NSArray *buildings = @[@"A1", @"A2", @"A3"];
+            ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle:@"请选择教学楼"
+                                                                                        rows:buildings
+                                                                            initialSelection:0
+                                                                                   doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                                                                       _filterConditions.buildings = selectedValue;
+                                                                                       [self reConfigureRooms];
+                                                                                   }
+                                                                                 cancelBlock:^(ActionSheetStringPicker *picker) {
+                                                                                     
+                                                                                 }
+                                                                                      origin:[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].detailTextLabel];
+            [picker showActionSheetPicker];
         }
         
-        [self presentViewController:alertController animated:YES completion:nil];
-        
-
     }
 }
 
