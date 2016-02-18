@@ -125,7 +125,8 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <segue destination="BvT-s3-QDP" kind="show" identifier="showArticleList" id="BSS-ua-OGJ"/>
+                        <outlet property="webView" destination="NKs-vJ-DDa" id="pO1-Ll-Ddl"/>
+                        <segue destination="BvT-s3-QDP" kind="show" identifier="showPreviousArticlesList" id="0Rv-IG-xmz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TnD-D5-JVI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -149,7 +150,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="7ra-dh-P6d" kind="show" id="EM2-xb-Gb1"/>
+                                    <segue destination="7ra-dh-P6d" kind="show" identifier="showArticleDetail" id="zsH-dg-BCF"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
