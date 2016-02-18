@@ -9,6 +9,7 @@
 #import "BBTInfoSegmentedControllerViewController.h"
 #import "BBTCampusInfoTableViewController.h"
 #import "BBTDailyArticleViewController.h"
+#import "BBTDailyArticleTableViewController.h"
 #import "UIColor+BBTColor.h"
 #import <HMSegmentedControl.h>
 #import <Masonry.h>
@@ -30,7 +31,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     BBTCampusInfoTableViewController * campusInfoVC = [[BBTCampusInfoTableViewController alloc] init];
-    BBTDailyArticleViewController * dailyArticleVC = [[BBTDailyArticleViewController alloc] init];
+    //BBTDailyArticleViewController * dailyArticleVC = [[BBTDailyArticleViewController alloc] init];
+    BBTDailyArticleTableViewController * dailyArticleVC = [[BBTDailyArticleTableViewController alloc] init];
     
     self.contentViewControllers = @[
                                     campusInfoVC,
@@ -39,7 +41,6 @@
     
     self.contentViewContainer = [UIView new];
     self.contentViewContainer.backgroundColor = [UIColor whiteColor];
-    
     
     [self.view addSubview:self.contentViewContainer];
     
@@ -56,7 +57,6 @@
     [self.contentViewContainer addSubview:currentVC.view];
     [currentVC didMoveToParentViewController:self];
 
-    
     // Do any additional setup after loading the view.
 }
 - (IBAction)valueChanged:(UISegmentedControl *)sender
@@ -68,15 +68,32 @@
 - (void)changeToViewControllerAtIndex:(NSUInteger)index animated:(BOOL)animated
 {
     UIViewController *currentVC = self.contentViewControllers[self.currentControllerIndex];
-    [currentVC willMoveToParentViewController:nil];
+
+    [currentVC willMoveToParentViewController:self];
     [currentVC.view removeFromSuperview];
     [currentVC removeFromParentViewController];
-    
+
     UIViewController *destinationVC = self.contentViewControllers[index];
+
     [self addChildViewController:destinationVC];
     destinationVC.view.frame = self.contentViewContainer.bounds;
     [self.contentViewContainer addSubview:destinationVC.view];
     [destinationVC didMoveToParentViewController:self];
+    [self addChildViewController:destinationVC];
+    
+    /*
+    [self transitionFromViewController:currentVC toViewController:destinationVC duration:0.5 options:UIViewAnimationOptionTransitionNone animations:^{
+        [currentVC.view removeFromSuperview];
+        destinationVC.view.frame = self.contentViewContainer.bounds;
+        destinationVC.automaticallyAdjustsScrollViewInsets = NO;
+        destinationVC.edgesForExtendedLayout = UIRectEdgeNone;
+        [self.contentViewContainer addSubview:destinationVC.view];
+    } completion:^(BOOL finished) {
+        [currentVC didMoveToParentViewController:self];
+        [currentVC removeFromParentViewController];
+    }];
+    */
+    
     
     self.currentControllerIndex = index;
 }

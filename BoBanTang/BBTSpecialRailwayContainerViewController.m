@@ -48,7 +48,7 @@
         make.center.equalTo(self.view);
     }];
     
-    self.currentControllerIndex = 1;
+    self.currentControllerIndex = 0;
     UIViewController *currentVC = self.contentViewControllers[self.currentControllerIndex];
     
     [self addChildViewController:currentVC];
