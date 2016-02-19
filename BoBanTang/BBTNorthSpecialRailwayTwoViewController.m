@@ -48,11 +48,9 @@ extern NSString * busDataNotificationName;
     
     [self.view addSubview:self.tableView];
     
-    CGFloat tableViewUpPadding = 20.0f;
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
     CGFloat containerViewHeight = self.view.frame.size.height - navigationBarHeight - tabBarHeight;
-    CGRect containerViewRect = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), containerViewHeight * 0.95);
     CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make){

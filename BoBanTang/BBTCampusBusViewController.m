@@ -58,9 +58,7 @@ extern NSString * campusBusNotificationName;
     
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.refreshButton];
-    CGFloat tableViewUpPadding = 20.0f;
-    CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
-    CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
+
     CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
     CGFloat buttonOffset = 10.0f;
     CGFloat buttonSideLength = 50.0f;
