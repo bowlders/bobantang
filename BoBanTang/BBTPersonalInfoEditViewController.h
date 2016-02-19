@@ -1,9 +1,9 @@
 //
-//  PersonalInfoEditViewController.h
+//  BBTPersonalInfoEditViewController.h
 //  BoBanTang
 //
-//  Created by Caesar on 15/10/18.
-//  Copyright © 2015年 BBT. All rights reserved.
+//  Created by Caesar on 16/2/18.
+//  Copyright © 2016年 100steps. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

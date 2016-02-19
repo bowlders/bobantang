@@ -91,12 +91,14 @@
     });
     
     self.tableView = ({
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         tableView.scrollEnabled = NO;
         tableView.dataSource = self;
         tableView.delegate = self;
         tableView;
     });
+    
+    self.view.backgroundColor = self.tableView.backgroundColor;
     
     [self.view addSubview:self.logoImageView];
     [self.view addSubview:self.productNameLabel];

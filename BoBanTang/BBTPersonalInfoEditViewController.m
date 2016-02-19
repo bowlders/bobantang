@@ -1,98 +1,49 @@
 //
-//  PersonalInfoEditViewController.m
+//  BBTPersonalInfoEditViewController.m
 //  BoBanTang
 //
-//  Created by Caesar on 15/10/18.
-//  Copyright © 2015年 BBT. All rights reserved.
+//  Created by Caesar on 16/2/18.
+//  Copyright © 2016年 100steps. All rights reserved.
 //
 
 #import "BBTPersonalInfoEditViewController.h"
 
-@interface BBTPersonalInfoEditViewController ()
-
-@end
-
 @implementation BBTPersonalInfoEditViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0)
+    {
+        UIImagePickerController *pickerContoller = [[UIImagePickerController alloc] init];
+        pickerContoller.modalPresentationStyle = UIModalPresentationCurrentContext;
+        pickerContoller.delegate = self;
+        
+        UIAlertController *pickerView = [UIAlertController alertControllerWithTitle:@"Select a photo"
+                                                                            message:nil
+                                                                     preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+                                                         style:UIAlertActionStyleCancel
+                                                       handler:^(UIAlertAction *action){
+                                                           [pickerView dismissViewControllerAnimated:YES completion:nil];
+                                                       }];
+        UIAlertAction *useCamera = [UIAlertAction actionWithTitle:@"拍照"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action){
+                                                              pickerContoller.sourceType = UIImagePickerControllerSourceTypeCamera;
+                                                              [self presentViewController:pickerContoller animated:YES completion:nil];
+                                                          }];
+        UIAlertAction *chooseFromGallery = [UIAlertAction actionWithTitle:@"从相册选取"
+                                                                    style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction *action){
+                                                                      pickerContoller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                                                                      [self presentViewController:pickerContoller animated:YES completion:nil];
+                                                                  }];
+        
+        [pickerView addAction:useCamera];
+        [pickerView addAction:chooseFromGallery];
+        [pickerView addAction:cancel];
+        [self presentViewController:pickerView animated:YES completion:nil];
+    }
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

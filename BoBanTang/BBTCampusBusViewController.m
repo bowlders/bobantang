@@ -45,7 +45,7 @@ extern NSString * campusBusNotificationName;
     self.refreshButton = ({
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
         button.translatesAutoresizingMaskIntoConstraints = NO;
-        [button setImage:[UIImage imageNamed:@"BoBanTang"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"refresh"] forState:UIControlStateNormal];
         [button addTarget:self
                    action:@selector(clickRefreshButton)
          forControlEvents:UIControlEventTouchUpInside];
@@ -58,9 +58,7 @@ extern NSString * campusBusNotificationName;
     
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.refreshButton];
-    CGFloat tableViewUpPadding = 20.0f;
-    CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
-    CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
+
     CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
     CGFloat buttonOffset = 10.0f;
     CGFloat buttonSideLength = 50.0f;

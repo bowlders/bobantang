@@ -19,5 +19,6 @@
 + (instancetype)sharedBusManager;                                                //Singleton method
 - (void)retriveData;                                                             //Retrive bus data／
 - (BOOL)noBusInBusArray:(NSArray *)array RunningAtStationSeq:(NSInteger)stationSeq;
+- (void)refresh;
 
 @end

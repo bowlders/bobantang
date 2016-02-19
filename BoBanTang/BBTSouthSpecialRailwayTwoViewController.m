@@ -39,6 +39,9 @@ extern NSString * busDataNotificationName;
     //Init specRailwayManager
     [BBTSpecRailway2BusManager sharedBusManager];
     
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:label];
+
     self.tableView = ({
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         tableView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -51,11 +54,9 @@ extern NSString * busDataNotificationName;
     
     [self.view addSubview:self.tableView];
 
-    CGFloat tableViewUpPadding = 20.0f;
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
     CGFloat containerViewHeight = self.view.frame.size.height - navigationBarHeight - tabBarHeight;
-    CGRect containerViewRect = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), containerViewHeight * 0.95);
     CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make){
@@ -89,14 +90,19 @@ extern NSString * busDataNotificationName;
 {
     static NSString *cellIdentifier = @"specialRailwayCell";
     
-    BBTSpecRailway2TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-    if (!cell)
-    {
-        cell = [[BBTSpecRailway2TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-    
+    //Here I create a new cell every time in order to fix a bug in view, often you need to reuse a cell.
+    BBTSpecRailway2TableViewCell *cell = [[BBTSpecRailway2TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+
     [cell initCellContent:[BBTSpecRailway2BusManager sharedBusManager].directionSouthStationNames[indexPath.row]];
+    
+    if ([[BBTSpecRailway2BusManager sharedBusManager] noBusInBusArray:[BBTSpecRailway2BusManager sharedBusManager].directionSouthBuses RunningAtStationSeq:(indexPath.row + 1)])
+    {
+        [cell initCellContent];
+    }
+    else
+    {
+        [cell changeCellImage];
+    }
     
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
@@ -107,7 +113,8 @@ extern NSString * busDataNotificationName;
 - (void)didReceiveBusNotification : (NSNotification *)busNotification
 {
     NSLog(@"Did receive special railway data notification");
-    [self updateView];
+    //NSLog(@"south buses - %@", [BBTSpecRailway2BusManager sharedBusManager].directionSouthBuses);
+    [self.tableView reloadData];
 }
 
 - (void)updateView
@@ -116,10 +123,12 @@ extern NSString * busDataNotificationName;
     {
         if ([[BBTSpecRailway2BusManager sharedBusManager] noBusInBusArray:[BBTSpecRailway2BusManager sharedBusManager].directionSouthBuses RunningAtStationSeq:i])
         {
+            //NSLog(@"init i - %d", i);
             [(BBTSpecRailway2TableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(i - 1) inSection:0]] initCellContent];
         }
         else
         {
+            //NSLog(@"change i - %d", i);
             [(BBTSpecRailway2TableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(i - 1) inSection:0]] changeCellImage];
         }
     }

@@ -136,14 +136,14 @@
         <!--Daily Article Table View Controller-->
         <scene sceneID="g2H-sc-ISc">
             <objects>
-                <tableViewController id="BvT-s3-QDP" customClass="BBTDailyArticleTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="PreviousArticlesListVC" id="BvT-s3-QDP" customClass="BBTDailyArticleTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="YeM-GN-ecY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="articleCell" id="eDo-cX-h5e">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eDo-cX-h5e" id="LK7-kd-0ny">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -187,6 +187,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="X0z-j4-UJQ"/>
+        <segue reference="zsH-dg-BCF"/>
     </inferredMetricsTieBreakers>
 </document>

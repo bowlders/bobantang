@@ -7,6 +7,7 @@
 //
 
 #import "BBTDailyArticleViewController.h"
+#import "BBTDailyArticleTableViewController.h"
 
 @interface BBTDailyArticleViewController ()
 
@@ -19,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+        
     self.recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe)];
     self.recognizer.direction = UISwipeGestureRecognizerDirectionRight;
     self.recognizer.delegate = self;
@@ -39,7 +40,9 @@
 
 - (void)handleSwipe
 {
-    [self performSegueWithIdentifier:@"showPreviousArticlesList" sender:nil];
+    BBTDailyArticleTableViewController *controller = [[BBTDailyArticleTableViewController alloc] init];
+ 
+    [self.navigationController pushViewController:controller animated:YES];
 }
 /*
 #pragma mark - Navigation

@@ -10,6 +10,7 @@
 #import "UIColor+BBTColor.h"
 #import "BBTCurrentUserManager.h"
 #import "BBTLoginViewController.h"
+#import "BBTPersonalInfoEditViewController.h"
 #import <Masonry.h>
 #import <UIImageView+WebCache.h>
 
@@ -22,6 +23,8 @@
 @property (strong, nonatomic) UILabel     * nameLabel;
 @property (strong, nonatomic) UILabel     * studentNumberLabel;
 @property (strong, nonatomic) UITableView * meTableView;
+
+@property (strong, nonatomic) UITapGestureRecognizer * recognizer;
 
 @end
 
@@ -166,6 +169,11 @@ extern NSString * kUserAuthentificationFinishNotifName;
         make.centerX.equalTo(self.studentNumberLabel.mas_centerX);
     }];
 
+    self.recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap)];
+    self.recognizer.delegate = self;
+    self.avatarImageView.userInteractionEnabled = YES;
+    [self.avatarImageView addGestureRecognizer:self.recognizer];
+
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -302,6 +310,14 @@ extern NSString * kUserAuthentificationFinishNotifName;
         self.studentNumberLabel.hidden = YES;
         self.avatarImageView.image = [UIImage imageNamed:@"BoBanTang"];
     }
+}
+
+- (void)handleTap
+{
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Me" bundle:nil];
+    UIViewController *controller = [sb instantiateViewControllerWithIdentifier:@"PersonalInfoEditVC"];
+    //BBTPersonalInfoEditViewController *controller = [[BBTPersonalInfoEditViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

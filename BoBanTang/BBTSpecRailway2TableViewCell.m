@@ -42,7 +42,7 @@
             imageView.translatesAutoresizingMaskIntoConstraints = NO;
             imageView.contentMode = UIViewContentModeScaleAspectFill;
             imageView.clipsToBounds = YES;
-            imageView.image = [UIImage imageNamed:@"grayLight"];
+            imageView.image = [UIImage imageNamed:@"circle"];
             imageView.alpha = 1.0;
             imageView;
         });
@@ -52,7 +52,7 @@
             imageView.translatesAutoresizingMaskIntoConstraints = NO;
             imageView.contentMode = UIViewContentModeScaleAspectFill;
             imageView.clipsToBounds = YES;
-            imageView.image = [UIImage imageNamed:@"greenLight"];
+            imageView.image = [UIImage imageNamed:@"bus"];
             imageView.alpha = 0.0;
             imageView;
         });
@@ -87,15 +87,15 @@
         
         [self.leftCircleImageView mas_makeConstraints:^(MASConstraintMaker *make){
             make.left.equalTo(self.contentView.mas_left).offset(leftImageOffset);
-            make.width.equalTo(self.mas_height).multipliedBy(0.5);
-            make.height.equalTo(self.mas_height).multipliedBy(0.5);
+            make.width.equalTo(self.mas_height).multipliedBy(0.8);
+            make.height.equalTo(self.mas_height).multipliedBy(0.8);
             make.centerY.equalTo(self.contentView);
         }];
         
         [self.leftBusImageView mas_makeConstraints:^(MASConstraintMaker *make){
             make.left.equalTo(self.contentView.mas_left).offset(leftImageOffset);
-            make.width.equalTo(self.mas_height).multipliedBy(0.5);
-            make.height.equalTo(self.mas_height).multipliedBy(0.5);
+            make.width.equalTo(self.mas_height).multipliedBy(0.8);
+            make.height.equalTo(self.mas_height).multipliedBy(0.8);
             make.centerY.equalTo(self.contentView);
         }];
         
