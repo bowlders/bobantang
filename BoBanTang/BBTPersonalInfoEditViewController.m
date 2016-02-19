@@ -10,4 +10,12 @@
 
 @implementation BBTPersonalInfoEditViewController
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0)
+    {
+        
+    }
+}
+
 @end

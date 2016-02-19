@@ -92,14 +92,19 @@ extern NSString * busDataNotificationName;
 {
     static NSString *cellIdentifier = @"specialRailwayCell";
     
-    BBTSpecRailway2TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-    if (!cell)
-    {
-        cell = [[BBTSpecRailway2TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-    
+    //Here I create a new cell every time in order to fix a bug in view, often you need to reuse a cell.
+    BBTSpecRailway2TableViewCell *cell = [[BBTSpecRailway2TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+
     [cell initCellContent:[BBTSpecRailway2BusManager sharedBusManager].directionSouthStationNames[indexPath.row]];
+    
+    if ([[BBTSpecRailway2BusManager sharedBusManager] noBusInBusArray:[BBTSpecRailway2BusManager sharedBusManager].directionSouthBuses RunningAtStationSeq:(indexPath.row + 1)])
+    {
+        [cell initCellContent];
+    }
+    else
+    {
+        [cell changeCellImage];
+    }
     
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
@@ -110,7 +115,8 @@ extern NSString * busDataNotificationName;
 - (void)didReceiveBusNotification : (NSNotification *)busNotification
 {
     NSLog(@"Did receive special railway data notification");
-    [self updateView];
+    //NSLog(@"south buses - %@", [BBTSpecRailway2BusManager sharedBusManager].directionSouthBuses);
+    [self.tableView reloadData];
 }
 
 - (void)updateView
@@ -119,10 +125,12 @@ extern NSString * busDataNotificationName;
     {
         if ([[BBTSpecRailway2BusManager sharedBusManager] noBusInBusArray:[BBTSpecRailway2BusManager sharedBusManager].directionSouthBuses RunningAtStationSeq:i])
         {
+            //NSLog(@"init i - %d", i);
             [(BBTSpecRailway2TableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(i - 1) inSection:0]] initCellContent];
         }
         else
         {
+            //NSLog(@"change i - %d", i);
             [(BBTSpecRailway2TableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(i - 1) inSection:0]] changeCellImage];
         }
     }

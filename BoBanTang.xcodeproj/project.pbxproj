@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		391F32431BFB5D4A004843C3 /* BBTSpecialRailwayLineTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F32421BFB5D4A004843C3 /* BBTSpecialRailwayLineTwoViewController.m */; };
 		391F32461BFDC66B004843C3 /* BBTSpecRailway2Bus.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F32451BFDC66B004843C3 /* BBTSpecRailway2Bus.m */; };
 		391F32491BFDD42B004843C3 /* BBTSpecRailway2BusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F32481BFDD42B004843C3 /* BBTSpecRailway2BusManager.m */; };
 		391F324C1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F324B1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m */; };
-		3921B0271C7567A200CA9449 /* BBTTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3921B0261C7567A200CA9449 /* BBTTestViewController.m */; };
 		3921B02A1C75CF4000CA9449 /* BBTPersonalInfoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3921B0291C75CF4000CA9449 /* BBTPersonalInfoEditViewController.m */; };
 		39239A321C635BAB008EDBB0 /* BBTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 39239A311C635BAB008EDBB0 /* BBTUser.m */; };
 		39239A351C646FCD008EDBB0 /* BBTCurrentUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 39239A341C646FCD008EDBB0 /* BBTCurrentUserManager.m */; };
@@ -39,7 +37,6 @@
 		39B595401C0AF0400015B673 /* BBTDailyArticleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B5953F1C0AF0400015B673 /* BBTDailyArticleTableViewController.m */; };
 		39B595431C0AF0500015B673 /* BBTCampusInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B595421C0AF0500015B673 /* BBTCampusInfoViewController.m */; };
 		39FE91C61C59D6290041E46F /* BBTCampusBusTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91C51C59D6290041E46F /* BBTCampusBusTableViewCell.m */; };
-		39FE91CA1C5A49860041E46F /* BBTCampusBusTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91C91C5A49860041E46F /* BBTCampusBusTableViewController.m */; };
 		39FE91D51C5A54E60041E46F /* BBTCampusBus.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91D41C5A54E60041E46F /* BBTCampusBus.m */; };
 		39FE91D81C5A54F50041E46F /* BBTCampusBusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91D71C5A54F50041E46F /* BBTCampusBusManager.m */; };
 		39FE91DD1C5DAA0F0041E46F /* BBTCampusBusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91DC1C5DAA0F0041E46F /* BBTCampusBusViewController.m */; };
@@ -111,8 +108,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		391F32411BFB5D4A004843C3 /* BBTSpecialRailwayLineTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSpecialRailwayLineTwoViewController.h; sourceTree = "<group>"; };
-		391F32421BFB5D4A004843C3 /* BBTSpecialRailwayLineTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BBTSpecialRailwayLineTwoViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		391F32441BFDC66B004843C3 /* BBTSpecRailway2Bus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BBTSpecRailway2Bus.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		391F32451BFDC66B004843C3 /* BBTSpecRailway2Bus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSpecRailway2Bus.m; sourceTree = "<group>"; };
 		391F32471BFDD42B004843C3 /* BBTSpecRailway2BusManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSpecRailway2BusManager.h; sourceTree = "<group>"; };
@@ -173,8 +168,6 @@
 		39B595441C0AF9D90015B673 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		39FE91C41C59D6290041E46F /* BBTCampusBusTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusBusTableViewCell.h; sourceTree = "<group>"; };
 		39FE91C51C59D6290041E46F /* BBTCampusBusTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCampusBusTableViewCell.m; sourceTree = "<group>"; };
-		39FE91C81C5A49860041E46F /* BBTCampusBusTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusBusTableViewController.h; sourceTree = "<group>"; };
-		39FE91C91C5A49860041E46F /* BBTCampusBusTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCampusBusTableViewController.m; sourceTree = "<group>"; };
 		39FE91D31C5A54E60041E46F /* BBTCampusBus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusBus.h; sourceTree = "<group>"; };
 		39FE91D41C5A54E60041E46F /* BBTCampusBus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCampusBus.m; sourceTree = "<group>"; };
 		39FE91D61C5A54F50041E46F /* BBTCampusBusManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusBusManager.h; sourceTree = "<group>"; };
@@ -363,8 +356,6 @@
 				3951EFF61C6F72C600076AD4 /* BBTSouthSpecialRailwayTwoViewController.m */,
 				3951EFF81C70997600076AD4 /* BBTNorthSpecialRailwayTwoViewController.h */,
 				3951EFF91C70997600076AD4 /* BBTNorthSpecialRailwayTwoViewController.m */,
-				391F32411BFB5D4A004843C3 /* BBTSpecialRailwayLineTwoViewController.h */,
-				391F32421BFB5D4A004843C3 /* BBTSpecialRailwayLineTwoViewController.m */,
 			);
 			name = SpecialRailway2;
 			sourceTree = "<group>";
@@ -616,8 +607,6 @@
 			children = (
 				39FE91DB1C5DAA0F0041E46F /* BBTCampusBusViewController.h */,
 				39FE91DC1C5DAA0F0041E46F /* BBTCampusBusViewController.m */,
-				39FE91C81C5A49860041E46F /* BBTCampusBusTableViewController.h */,
-				39FE91C91C5A49860041E46F /* BBTCampusBusTableViewController.m */,
 			);
 			name = CampusBus;
 			sourceTree = "<group>";
@@ -1088,7 +1077,6 @@
 				FCD0A2811C0009F10024D78F /* BBTScores.m in Sources */,
 				397445671C0A8D78004B89BA /* BBTCampusInfo.m in Sources */,
 				39B595431C0AF0500015B673 /* BBTCampusInfoViewController.m in Sources */,
-				39FE91CA1C5A49860041E46F /* BBTCampusBusTableViewController.m in Sources */,
 				395B10E41C585EA200772A38 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */,
 				FC1770B61C5F4FCD00BF07AC /* PopoverView.m in Sources */,
 				FC1770BD1C5F505300BF07AC /* BBTLAFManager.m in Sources */,
@@ -1103,7 +1091,6 @@
 				3951EFFD1C7099B000076AD4 /* BBTSpecialRailwayContainerViewController.m in Sources */,
 				FCD0A2941C023B930024D78F /* BBTHudView.m in Sources */,
 				FC69A3FE1C038340000EF949 /* BBTLectureRoomsResultTableViewController.m in Sources */,
-				391F32431BFB5D4A004843C3 /* BBTSpecialRailwayLineTwoViewController.m in Sources */,
 				3951EFFA1C70997600076AD4 /* BBTNorthSpecialRailwayTwoViewController.m in Sources */,
 				A947D9BD1BD8DC34000F071B /* BBTSettingsViewController.m in Sources */,
 				FCD0A26F1C00062D0024D78F /* BBTScoresCell.m in Sources */,

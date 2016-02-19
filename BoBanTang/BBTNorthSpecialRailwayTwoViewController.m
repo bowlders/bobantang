@@ -86,14 +86,19 @@ extern NSString * busDataNotificationName;
 {
     static NSString *cellIdentifier = @"specialRailwayCell";
     
-    BBTSpecRailway2TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    //Here I create a new cell every time in order to fix a bug in view, often you need to reuse a cell.
+    BBTSpecRailway2TableViewCell *cell = [[BBTSpecRailway2TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     
-    if (!cell)
+    [cell initCellContent:[BBTSpecRailway2BusManager sharedBusManager].directionNorthStationNames[([[BBTSpecRailway2BusManager sharedBusManager].directionNorthStationNames count] - indexPath.row - 1)]];
+    
+    if ([[BBTSpecRailway2BusManager sharedBusManager] noBusInBusArray:[BBTSpecRailway2BusManager sharedBusManager].directionNorthBuses RunningAtStationSeq:([[BBTSpecRailway2BusManager sharedBusManager].directionNorthStationNames count] - indexPath.row)])
     {
-        cell = [[BBTSpecRailway2TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        [cell initCellContent];
     }
-    
-    [cell initCellContent:[BBTSpecRailway2BusManager sharedBusManager].directionNorthStationNames[[[BBTSpecRailway2BusManager sharedBusManager].directionNorthStationNames count] - indexPath.row - 1]];
+    else
+    {
+        [cell changeCellImage];
+    }
     
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
@@ -103,8 +108,8 @@ extern NSString * busDataNotificationName;
 
 - (void)didReceiveBusNotification : (NSNotification *)busNotification
 {
-    NSLog(@"Did receive special railway data notification");
-    [self updateView];
+    //NSLog(@"Did receive special railway data notification");
+    [self.tableView reloadData];
 }
 
 - (void)updateView
