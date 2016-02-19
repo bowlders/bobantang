@@ -40,8 +40,30 @@
 - (void)configureItemsCells:(NSDictionary *)content
 {
     self.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
-    self.itemName.text = content[@"itemID"];
     self.itemDetails.text = content[@"details"];
+    switch ([content[@"type"] integerValue]) {
+        case 0:
+            self.itemName.text = @"大学城一卡通";
+            break;
+            
+        case 1:
+            self.itemName.text = @"校园卡(绿卡)";
+            break;
+            
+        case 2:
+            self.itemName.text = @"钱包";
+            break;
+        
+        case 3:
+            self.itemName.text = @"钥匙";
+            break;
+            
+        case 4:
+            self.itemName.text = @"其他";
+            
+        default:
+            break;
+    }
 }
 
 @end

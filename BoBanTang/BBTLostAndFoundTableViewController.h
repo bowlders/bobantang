@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BBTItemFilterSettingsViewController.h"
 
-@interface BBTLostAndFoundTableViewController : UITableViewController <UISearchBarDelegate, UISearchControllerDelegate, UIPopoverControllerDelegate, UIPopoverPresentationControllerDelegate>
+@interface BBTLostAndFoundTableViewController : UITableViewController <UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, UIPopoverControllerDelegate, UIPopoverPresentationControllerDelegate, BBTItemFilterSettingsViewControllerDelegate>
 
 @end

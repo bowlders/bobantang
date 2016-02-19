@@ -4,6 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--工具-->
@@ -823,14 +824,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="jrZ-lx-gMk">
-                            <rect key="frame" x="0.0" y="64" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="5Fz-y1-ZjJ" id="o28-LO-X7G"/>
-                            </connections>
-                        </searchBar>
                         <connections>
                             <outlet property="dataSource" destination="5Fz-y1-ZjJ" id="Sm2-Je-ehf"/>
                             <outlet property="delegate" destination="5Fz-y1-ZjJ" id="HMF-YU-D24"/>
@@ -849,18 +842,26 @@
                                 <action selector="didChangeLafType:" destination="5Fz-y1-ZjJ" eventType="valueChanged" id="cDi-6Y-rNm"/>
                             </connections>
                         </segmentedControl>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="Y5l-gF-mRs">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" id="fx7-vl-6y6">
-                                <rect key="frame" x="337" y="11" width="22" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <rightBarButtonItems>
+                            <barButtonItem style="plain" id="Y5l-gF-mRs">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" id="fx7-vl-6y6">
+                                    <rect key="frame" x="337" y="11" width="22" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <connections>
+                                        <action selector="addLAFButtonTapped:" destination="5Fz-y1-ZjJ" eventType="touchUpInside" id="5qV-6C-fGB"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem systemItem="search" id="Std-ug-j94">
                                 <connections>
-                                    <action selector="addLAFButtonTapped:" destination="5Fz-y1-ZjJ" eventType="touchUpInside" id="5qV-6C-fGB"/>
+                                    <action selector="setFilterConditions:" destination="5Fz-y1-ZjJ" id="WOh-Ed-RkJ"/>
                                 </connections>
-                            </button>
-                        </barButtonItem>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="filterButton" destination="Std-ug-j94" id="mLa-xh-BAO"/>
                         <outlet property="lostOrFound" destination="uXR-JE-7kU" id="1n4-Gi-jpj"/>
                         <outlet property="searchDisplayController" destination="pWg-JM-bdW" id="8Ae-1H-eoG"/>
                         <segue destination="sta-Oo-5eF" kind="show" identifier="showItemsDetailsIdentifier" id="c5d-gm-phA"/>
@@ -871,7 +872,6 @@
                 <searchDisplayController id="pWg-JM-bdW">
                     <connections>
                         <outlet property="delegate" destination="5Fz-y1-ZjJ" id="dVg-Cs-ebv"/>
-                        <outlet property="searchBar" destination="jrZ-lx-gMk" id="LDr-ac-GKP"/>
                         <outlet property="searchContentsController" destination="5Fz-y1-ZjJ" id="ufv-IJ-gdZ"/>
                         <outlet property="searchResultsDataSource" destination="5Fz-y1-ZjJ" id="kxi-al-fKd"/>
                         <outlet property="searchResultsDelegate" destination="5Fz-y1-ZjJ" id="00M-nt-rW4"/>
@@ -879,6 +879,66 @@
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="2282.5" y="678.5"/>
+        </scene>
+        <!--Item Filter Settings View Controller-->
+        <scene sceneID="oPt-Cc-G3K">
+            <objects>
+                <viewController storyboardIdentifier="BBTItemFilterSettingsViewController" id="g6F-Qg-L1b" customClass="BBTItemFilterSettingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="K5j-dY-ADI"/>
+                        <viewControllerLayoutGuide type="bottom" id="Tv4-fe-TGs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Zy7-NE-jEQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="wiW-sT-ci8">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="typeCell" textLabel="aKs-wx-YMW" detailTextLabel="Vnc-PR-jGD" style="IBUITableViewCellStyleValue1" id="dEb-4e-0aQ">
+                                        <rect key="frame" x="0.0" y="49.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dEb-4e-0aQ" id="xbD-n4-XkH">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aKs-wx-YMW">
+                                                    <rect key="frame" x="15" y="12" width="31.5" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Vnc-PR-jGD">
+                                                    <rect key="frame" x="318.5" y="12" width="41.5" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wiW-sT-ci8" firstAttribute="bottom" secondItem="Tv4-fe-TGs" secondAttribute="top" id="Igf-EF-Od2"/>
+                            <constraint firstAttribute="trailing" secondItem="wiW-sT-ci8" secondAttribute="trailing" id="SKi-Jc-7it"/>
+                            <constraint firstItem="wiW-sT-ci8" firstAttribute="leading" secondItem="Zy7-NE-jEQ" secondAttribute="leading" id="jNK-gk-S6j"/>
+                            <constraint firstItem="wiW-sT-ci8" firstAttribute="top" secondItem="Zy7-NE-jEQ" secondAttribute="top" id="lsT-pR-44n"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="tableView" destination="wiW-sT-ci8" id="ccG-8I-hRt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z3A-RN-yzO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1787.5" y="1493.5"/>
         </scene>
         <!--Post Info View Controller-->
         <scene sceneID="qn7-SG-pdU">

@@ -16,6 +16,7 @@ static NSString *postLostItemUrl = @"http://218.192.166.167/api/protype.php?tabl
 static NSString *postPickItemUrl = @"http://218.192.166.167/api/protype.php?table=pickItems&method=save&data=";
 NSString *lafNotificationName = @"lafNotification";
 NSString *postItemNotificaionName = @"postItemNotification";
+NSString *kGetFuzzyConditionsItemNotificationName = @"getFuzzyConditionsItemNotificationName";
 
 @implementation BBTLAFManager
 
@@ -29,30 +30,48 @@ NSString *postItemNotificaionName = @"postItemNotification";
     return _manager;
 }
 
-- (void)retriveItemsWithType:(NSUInteger)type
+- (void)retriveItems:(NSUInteger)type WithConditions:(NSDictionary *)conditions
 {
-    /*
-    NSDictionary *testDictionary = @{@"itemID":@"一颗赛艇",
-                                     @"details":@"我是身经百战了！西方哪一个国家我没有去过？美国的华莱士，比你不知道高到哪里去，我和他谈笑风生。你们毕竟还是too young，sometimes naive! 明白我的意思没有？",
-                                     @"campus":@"0",
-                                     @"date":@"1989-6-4",
-                                     @"location":@"东湖",
-                                     @"phone":@"110",
-                                     @"publisher":@"蛤蛤"};
-    
-    self.itemArray = [NSMutableArray array];
-    [self.itemArray insertObject:testDictionary atIndex:0];
-    */
     self.itemArray = [NSMutableArray array];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSString *url;
-    if (type == 1) {
-        url = getLostItemsUrl;
-    } else if (type == 0) {
-        url = getPickItemsUrl;
-    }
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];
-    [manager GET:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+    NSString *url;
+    
+    if (!conditions)
+    {
+        if (type == 1) {
+            url = getLostItemsUrl;
+        } else if (type == 0) {
+            url = getPickItemsUrl;
+        }
+    }
+    else
+    {
+        NSString *rowUrl;
+        if (conditions[@"fuzzy"])
+        {
+            if (type == 1) {
+                rowUrl = [getLostItemsUrl stringByAppendingString:@"&option="];
+            } else {
+                rowUrl = [getPickItemsUrl stringByAppendingString:@"&option="];
+            }
+            
+        } else {
+            if (type == 1) {
+                rowUrl = [getLostItemsUrl stringByAppendingString:@"&data="];
+            } else {
+                rowUrl = [getPickItemsUrl stringByAppendingString:@"&data="];
+            }
+        }
+        
+        NSError *error;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:conditions options:NSJSONWritingPrettyPrinted error:&error];
+        NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSString *stringCleanPath = [jsonString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        url = [rowUrl stringByAppendingString:stringCleanPath];
+    }
+    
+    [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
         if (responseObject)
         {
@@ -60,11 +79,16 @@ NSString *postItemNotificaionName = @"postItemNotification";
             {
                 [self.itemArray addObject:itemsInfo];
             }
-            [self pushLafNotification];
+            if (conditions[@"fuzzy"]) {
+                [self getFuzzyConditionsItemNotification];
+            } else {
+                [self pushLafNotification];
+            }
         }
     } failure:^(NSURLSessionTask *task, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
+
 }
 
 - (void)postItemDic:(NSDictionary *)itemDic WithType:(NSInteger)type
@@ -81,7 +105,7 @@ NSString *postItemNotificaionName = @"postItemNotification";
     NSError *error;
     NSData *data = [NSJSONSerialization dataWithJSONObject:itemDic options:NSJSONWritingPrettyPrinted error:&error];
     NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSString *stringCleanPath = [jsonString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *stringCleanPath = [jsonString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     NSString *completeUrl = [url stringByAppendingString:stringCleanPath];
     
     [manager POST:completeUrl parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
@@ -96,6 +120,11 @@ NSString *postItemNotificaionName = @"postItemNotification";
 - (void)pushLafNotification
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:lafNotificationName object:nil];
+}
+
+- (void)getFuzzyConditionsItemNotification
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kGetFuzzyConditionsItemNotificationName object:nil];
 }
 
 - (void)postItemSucceedNotificaion
