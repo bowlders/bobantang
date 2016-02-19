@@ -114,8 +114,6 @@
 		391F32481BFDD42B004843C3 /* BBTSpecRailway2BusManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BBTSpecRailway2BusManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		391F324A1BFE07AE004843C3 /* NSDictionary+BBTDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+BBTDictionary.h"; sourceTree = "<group>"; };
 		391F324B1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+BBTDictionary.m"; sourceTree = "<group>"; };
-		3921B0251C7567A200CA9449 /* BBTTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTTestViewController.h; sourceTree = "<group>"; };
-		3921B0261C7567A200CA9449 /* BBTTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTTestViewController.m; sourceTree = "<group>"; };
 		3921B0281C75CF4000CA9449 /* BBTPersonalInfoEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTPersonalInfoEditViewController.h; sourceTree = "<group>"; };
 		3921B0291C75CF4000CA9449 /* BBTPersonalInfoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTPersonalInfoEditViewController.m; sourceTree = "<group>"; };
 		39239A301C635BAB008EDBB0 /* BBTUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTUser.h; sourceTree = "<group>"; };
@@ -576,8 +574,6 @@
 				39239A371C64BAC4008EDBB0 /* BBTLoginViewController.m */,
 				3921B0281C75CF4000CA9449 /* BBTPersonalInfoEditViewController.h */,
 				3921B0291C75CF4000CA9449 /* BBTPersonalInfoEditViewController.m */,
-				3921B0251C7567A200CA9449 /* BBTTestViewController.h */,
-				3921B0261C7567A200CA9449 /* BBTTestViewController.m */,
 			);
 			name = Me;
 			sourceTree = "<group>";
