@@ -149,4 +149,9 @@ static float dataRequestInterval = 5.0;                                         
     return numberOfBusesCurrentlyAtThisStation == 0;
 }
 
+- (void)refresh
+{
+    [self retriveData];
+}
+
 @end

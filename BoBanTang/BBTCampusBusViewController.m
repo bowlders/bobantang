@@ -45,7 +45,7 @@ extern NSString * campusBusNotificationName;
     self.refreshButton = ({
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
         button.translatesAutoresizingMaskIntoConstraints = NO;
-        [button setImage:[UIImage imageNamed:@"BoBanTang"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"refresh"] forState:UIControlStateNormal];
         [button addTarget:self
                    action:@selector(clickRefreshButton)
          forControlEvents:UIControlEventTouchUpInside];

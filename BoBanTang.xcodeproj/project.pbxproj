@@ -15,7 +15,6 @@
 		39239A351C646FCD008EDBB0 /* BBTCurrentUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 39239A341C646FCD008EDBB0 /* BBTCurrentUserManager.m */; };
 		39239A381C64BAC4008EDBB0 /* BBTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39239A371C64BAC4008EDBB0 /* BBTLoginViewController.m */; };
 		39239A3B1C64E132008EDBB0 /* BBTLoginTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39239A3A1C64E132008EDBB0 /* BBTLoginTableViewCell.m */; };
-		392A0DE41BE63F37001F7D45 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 392A0DE31BE63F37001F7D45 /* Images.xcassets */; };
 		393E3EBD1BF234210045DE6E /* BBTGoSegmentedControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 393E3EBC1BF234210045DE6E /* BBTGoSegmentedControlViewController.m */; };
 		3951EFF71C6F72C600076AD4 /* BBTSouthSpecialRailwayTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3951EFF61C6F72C600076AD4 /* BBTSouthSpecialRailwayTwoViewController.m */; };
 		3951EFFA1C70997600076AD4 /* BBTNorthSpecialRailwayTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3951EFF91C70997600076AD4 /* BBTNorthSpecialRailwayTwoViewController.m */; };
@@ -36,6 +35,7 @@
 		39B5953D1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B5953C1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m */; };
 		39B595401C0AF0400015B673 /* BBTDailyArticleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B5953F1C0AF0400015B673 /* BBTDailyArticleTableViewController.m */; };
 		39B595431C0AF0500015B673 /* BBTCampusInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B595421C0AF0500015B673 /* BBTCampusInfoViewController.m */; };
+		39CB16EF1C77371C0046C9B0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39CB16EE1C77371C0046C9B0 /* Images.xcassets */; };
 		39FE91C61C59D6290041E46F /* BBTCampusBusTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91C51C59D6290041E46F /* BBTCampusBusTableViewCell.m */; };
 		39FE91D51C5A54E60041E46F /* BBTCampusBus.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91D41C5A54E60041E46F /* BBTCampusBus.m */; };
 		39FE91D81C5A54F50041E46F /* BBTCampusBusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91D71C5A54F50041E46F /* BBTCampusBusManager.m */; };
@@ -124,7 +124,6 @@
 		39239A371C64BAC4008EDBB0 /* BBTLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLoginViewController.m; sourceTree = "<group>"; };
 		39239A391C64E132008EDBB0 /* BBTLoginTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTLoginTableViewCell.h; sourceTree = "<group>"; };
 		39239A3A1C64E132008EDBB0 /* BBTLoginTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLoginTableViewCell.m; sourceTree = "<group>"; };
-		392A0DE31BE63F37001F7D45 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		393E3EBB1BF234210045DE6E /* BBTGoSegmentedControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTGoSegmentedControlViewController.h; sourceTree = "<group>"; };
 		393E3EBC1BF234210045DE6E /* BBTGoSegmentedControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTGoSegmentedControlViewController.m; sourceTree = "<group>"; };
 		3951EFF51C6F72C600076AD4 /* BBTSouthSpecialRailwayTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSouthSpecialRailwayTwoViewController.h; sourceTree = "<group>"; };
@@ -164,6 +163,7 @@
 		39B595411C0AF0500015B673 /* BBTCampusInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusInfoViewController.h; sourceTree = "<group>"; };
 		39B595421C0AF0500015B673 /* BBTCampusInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCampusInfoViewController.m; sourceTree = "<group>"; };
 		39B595441C0AF9D90015B673 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		39CB16EE1C77371C0046C9B0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		39FE91C41C59D6290041E46F /* BBTCampusBusTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusBusTableViewCell.h; sourceTree = "<group>"; };
 		39FE91C51C59D6290041E46F /* BBTCampusBusTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCampusBusTableViewCell.m; sourceTree = "<group>"; };
 		39FE91D31C5A54E60041E46F /* BBTCampusBus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusBus.h; sourceTree = "<group>"; };
@@ -662,7 +662,6 @@
 				395B10DA1C5713EF00772A38 /* UIFont+BBTFont.h */,
 				395B10DB1C5713EF00772A38 /* UIFont+BBTFont.m */,
 				A947D92A1BD8DADA000F071B /* BoBanTang.xcdatamodeld */,
-				392A0DE31BE63F37001F7D45 /* Images.xcassets */,
 				398231B71BD8ED300043E544 /* Model */,
 				398231B91BD8ED3F0043E544 /* View */,
 				398231B81BD8ED360043E544 /* Controller */,
@@ -676,10 +675,11 @@
 		A947D91E1BD8DADA000F071B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				39CB16EE1C77371C0046C9B0 /* Images.xcassets */,
 				395B10E21C585EA200772A38 /* UIImageView+UIActivityIndicatorForSDWebImage.h */,
 				395B10E31C585EA200772A38 /* UIImageView+UIActivityIndicatorForSDWebImage.m */,
-				A947D9901BD8DC34000F071B /* BBTAppDelegate.m */,
 				A947D96A1BD8DC0F000F071B /* BBTAppDelegate.h */,
+				A947D9901BD8DC34000F071B /* BBTAppDelegate.m */,
 				A947D91F1BD8DADA000F071B /* main.m */,
 			);
 			name = "Supporting Files";
@@ -969,10 +969,10 @@
 				A947D98D1BD8DC24000F071B /* Tools.storyboard in Resources */,
 				FCD0A2701C00062D0024D78F /* BBTScoresCell.xib in Resources */,
 				FC2EAFFA1C69AAA400B5DC42 /* BBTItemImageTableViewCell.xib in Resources */,
+				39CB16EF1C77371C0046C9B0 /* Images.xcassets in Resources */,
 				395B10C71C55252600772A38 /* Go.storyboard in Resources */,
 				A947D98A1BD8DC24000F071B /* Information.storyboard in Resources */,
 				FC2EB0071C69B1A500B5DC42 /* BBTTextFieldTableViewCell.xib in Resources */,
-				392A0DE41BE63F37001F7D45 /* Images.xcassets in Resources */,
 				FC80D4581C62109000A80EDA /* BBTLafItemsTableViewCell.xib in Resources */,
 				398231B61BD8ED230043E544 /* Me.storyboard in Resources */,
 				A947D9291BD8DADA000F071B /* Main.storyboard in Resources */,

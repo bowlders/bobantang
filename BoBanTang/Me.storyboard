@@ -77,7 +77,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R87-LH-EK7">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addNewImage" translatesAutoresizingMaskIntoConstraints="NO" id="R87-LH-EK7">
                                                     <rect key="frame" x="264" y="15" width="70" height="70"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="70" id="Phx-c8-bs9"/>
@@ -389,4 +389,7 @@
             <point key="canvasLocation" x="204" y="652"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="addNewImage" width="60" height="61"/>
+    </resources>
 </document>

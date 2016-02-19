@@ -9,6 +9,7 @@
 #import "BBTSpecialRailwayContainerViewController.h"
 #import "BBTSouthSpecialRailwayTwoViewController.h"
 #import "BBTNorthSpecialRailwayTwoViewController.h"
+#import "BBTSpecRailway2BusManager.h"
 #import <Masonry.h>
 
 @interface BBTSpecialRailwayContainerViewController ()
@@ -17,6 +18,7 @@
 @property (strong, nonatomic) NSArray           *       contentViewControllers;         //Stores the content view controllers
 @property (assign, nonatomic) NSUInteger                currentControllerIndex;         //Currently displayed view controller's index in the array
 @property (strong, nonatomic) UIButton          *       invertButton;
+@property (strong, nonatomic) UIButton          *       refreshButton;
 
 @end
 
@@ -59,7 +61,7 @@
     self.invertButton = ({
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
         button.translatesAutoresizingMaskIntoConstraints = NO;
-        [button setImage:[UIImage imageNamed:@"BoBanTang"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"invert"] forState:UIControlStateNormal];
         [button addTarget:self
                    action:@selector(clickInvertButton)
          forControlEvents:UIControlEventTouchUpInside];
@@ -70,15 +72,37 @@
         button;
     });
     
+    self.refreshButton = ({
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
+        button.translatesAutoresizingMaskIntoConstraints = NO;
+        [button setImage:[UIImage imageNamed:@"refresh"] forState:UIControlStateNormal];
+        [button addTarget:self
+                   action:@selector(clickRefreshButton)
+         forControlEvents:UIControlEventTouchUpInside];
+        button.titleLabel.numberOfLines = 1;
+        button.titleLabel.textAlignment = NSTextAlignmentRight;
+        button.titleLabel.adjustsFontSizeToFitWidth = NO;
+        button.alpha = 1.0;
+        button;
+    });
+    
     [self.view addSubview:self.invertButton];
+    [self.view addSubview:self.refreshButton];
     
     CGFloat buttonOffset = 10.0f;
     CGFloat buttonSideLength = 50.0f;
     CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
     
-    [self.invertButton mas_makeConstraints:^(MASConstraintMaker *make){
+    [self.refreshButton mas_makeConstraints:^(MASConstraintMaker *make){
         make.right.equalTo(self.view.mas_right).offset(-buttonOffset);
         make.bottom.equalTo(self.view.mas_bottom).offset(- tabBarHeight - buttonOffset);
+        make.width.equalTo(@(buttonSideLength));
+        make.height.equalTo(@(buttonSideLength));
+    }];
+    
+    [self.invertButton mas_makeConstraints:^(MASConstraintMaker *make){
+        make.right.equalTo(self.refreshButton.mas_right);
+        make.bottom.equalTo(self.refreshButton.mas_top).offset(-buttonOffset);
         make.width.equalTo(@(buttonSideLength));
         make.height.equalTo(@(buttonSideLength));
     }];
@@ -105,6 +129,11 @@
     [destinationVC didMoveToParentViewController:self];
     
     self.currentControllerIndex = index;
+}
+
+- (void)clickRefreshButton
+{
+    [[BBTSpecRailway2BusManager sharedBusManager] refresh];
 }
 
 @end

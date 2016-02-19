@@ -8,9 +8,8 @@
 
 #import "BBTAppDelegate.h"
 #import "APService.h"
-
+#import "UIColor+BBTColor.h"
 #import <AVOSCloud/AVOSCloud.h>
-
 
 @interface BBTAppDelegate ()
 
@@ -27,6 +26,9 @@
                       clientKey:@"HRAIPGFlzSurUky1YcoYBYS5"];
     [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
+    [[UINavigationBar appearance] setBarTintColor:[UIColor BBTAppGlobalBlue]];
+    [UINavigationBar appearance].tintColor = [UIColor whiteColor];
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
     return YES;
 }
 
