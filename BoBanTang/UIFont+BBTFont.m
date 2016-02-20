@@ -35,4 +35,9 @@
     return [UIFont fontWithName:@"PingFangSC-Light" size:20];
 }
 
++ (UIFont *)BBTGoLabelFont
+{
+    return [UIFont fontWithName:@"PingFangSC-Ultralight" size:12];
+}
+
 @end
