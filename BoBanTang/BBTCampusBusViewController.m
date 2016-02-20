@@ -10,6 +10,7 @@
 #import "BBTCampusBusTableViewCell.h"
 #import "BBTCampusBusManager.h"
 #import "UIFont+BBTFont.h"
+#import "UIColor+BBTColor.h"
 #import <Masonry.h>
 
 @interface BBTCampusBusViewController ()
@@ -67,7 +68,7 @@ extern NSString * campusBusNotificationName;
     self.labelContainerView = ({
         UIView *view = [UIView new];
         view.translatesAutoresizingMaskIntoConstraints = NO;
-        view.backgroundColor = [UIColor lightGrayColor];
+        view.backgroundColor = [UIColor BBTLightGray];
         view.alpha = 1.0;
         view;
     });

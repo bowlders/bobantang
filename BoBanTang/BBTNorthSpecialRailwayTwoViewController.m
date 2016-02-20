@@ -10,6 +10,7 @@
 #import "BBTSpecRailway2BusManager.h"
 #import "BBTSpecRailway2TableViewCell.h"
 #import "UIFont+BBTFont.h"
+#import "UIColor+BBTColor.h"
 #import <Masonry.h>
 
 @interface BBTNorthSpecialRailwayTwoViewController ()
@@ -38,7 +39,6 @@ extern NSString * busDataNotificationName;
     //Init specRailwayManager
     [BBTSpecRailway2BusManager sharedBusManager];
     
-    
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
     [self.view addSubview:label];
 
@@ -65,7 +65,7 @@ extern NSString * busDataNotificationName;
     self.labelContainerView = ({
         UIView *view = [UIView new];
         view.translatesAutoresizingMaskIntoConstraints = NO;
-        view.backgroundColor = [UIColor lightGrayColor];
+        view.backgroundColor = [UIColor BBTLightGray];
         view.alpha = 1.0;
         view;
     });

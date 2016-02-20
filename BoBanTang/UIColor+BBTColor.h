@@ -13,5 +13,6 @@
 + (UIColor *)BBTAppGlobalBlue;
 + (UIColor *)BBTSusscessfulGreen;
 + (UIColor *)BBTInfoSegmentedControlIndicatorBlue;
++ (UIColor *)BBTLightGray;
 
 @end
