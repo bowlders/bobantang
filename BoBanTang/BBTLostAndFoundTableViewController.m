@@ -14,14 +14,31 @@
 #import "BBTItemDetailsTableViewController.h"
 #import "BBTCurrentUserManager.h"
 #import "BBTLoginViewController.h"
+#import "BBTLafSearchResultTableViewController.h"
+#import "BBTItemCampusTableViewCell.h"
+#import "BBTItemFilterSettingsViewController.h"
+#import <MJRefresh.h>
+#import <MJRefreshStateHeader.h>
+#import "UIColor+BBTColor.h"
+#import "WYPopoverController.h"
 
 static NSString *postIdentifier = @"LAFPostIdentifier";
 static NSString *itemCellIdentifier = @"BBTLafItemsTableViewCell";
 static NSString *showItemsDetailsIdentifier = @"showItemsDetailsIdentifier";
+static NSString *campusCellIdentifier = @"BBTItemCampusTableViewCell";
 
-@interface BBTLostAndFoundTableViewController ()
+@interface BBTLostAndFoundTableViewController () <WYPopoverControllerDelegate>
 
-@property (strong, nonatomic) IBOutlet UISegmentedControl *lostOrFound;
+@property (strong, nonatomic) IBOutlet UISegmentedControl           * lostOrFound;
+@property (weak, nonatomic)   IBOutlet UIBarButtonItem              * filterButton;
+
+@property (strong, nonatomic) NSArray                               * filteredItems;
+@property (strong, nonatomic) NSDictionary                          * conditions;
+
+@property (strong, nonatomic) UISearchController                    * searchController;
+@property (strong, nonatomic) BBTLafSearchResultTableViewController * resultsTableController;
+@property (strong, nonatomic) WYPopoverController                   * settingsPopoverController;
+@property (strong, nonatomic) BBTItemFilterSettingsViewController   * settingsViewController;
 
 @end
 
@@ -29,11 +46,13 @@ static NSString *showItemsDetailsIdentifier = @"showItemsDetailsIdentifier";
 
 extern NSString * lafNotificationName;
 extern NSString * kUserAuthentificationFinishNotifName;
+extern NSString * kGetFuzzyConditionsItemNotificationName;
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLafNotification) name:lafNotificationName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveUserAuthentificaionNotification) name:kUserAuthentificationFinishNotifName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveFuzzyItemsNotificaion) name:kGetFuzzyConditionsItemNotificationName object:nil];
 }
 
 - (void)viewDidLoad {
@@ -42,12 +61,20 @@ extern NSString * kUserAuthentificationFinishNotifName;
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
     
-    [[BBTLAFManager sharedLAFManager] retriveItemsWithType:self.lostOrFound.selectedSegmentIndex];
+    [self refresh];
+    self.filteredItems = [[NSArray alloc] init];
     
-    UINib *cellNib = [UINib nibWithNibName:itemCellIdentifier bundle:nil];
-    [self.tableView registerNib:cellNib forCellReuseIdentifier:itemCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:itemCellIdentifier bundle:nil] forCellReuseIdentifier:itemCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:campusCellIdentifier bundle:nil] forCellReuseIdentifier:campusCellIdentifier];
     
-    self.tableView.rowHeight = 100;
+    _resultsTableController = [[BBTLafSearchResultTableViewController alloc] init];
+    _searchController =  [[UISearchController alloc] initWithSearchResultsController:self.resultsTableController];
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.dimsBackgroundDuringPresentation = YES;
+    [self.searchController.searchBar sizeToFit];
+    self.searchController.searchBar.delegate = self;
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+    self.resultsTableController.tableView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,12 +86,20 @@ extern NSString * kUserAuthentificationFinishNotifName;
 {
     NSLog(@"Items notification received");
     [self.tableView reloadData];
+    [self.tableView.mj_header endRefreshing];
 }
 
 - (BOOL)didReceiveUserAuthentificaionNotification
 {
     NSLog(@"User Authentification received");
     return YES;
+}
+
+- (void)didReceiveFuzzyItemsNotificaion
+{
+    BBTLafSearchResultTableViewController *controller = (BBTLafSearchResultTableViewController *)self.searchController.searchResultsController;
+    controller.filteredItems = [[NSArray alloc] initWithArray:[BBTLAFManager sharedLAFManager].itemArray];
+    [controller.tableView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -75,7 +110,9 @@ extern NSString * kUserAuthentificationFinishNotifName;
 
 - (IBAction)didChangeLafType:(id)sender
 {
-    [[BBTLAFManager sharedLAFManager] retriveItemsWithType:self.lostOrFound.selectedSegmentIndex];
+    [[BBTLAFManager sharedLAFManager] retriveItems:self.lostOrFound.selectedSegmentIndex WithConditions:nil];
+    
+    [self refresh];
     
     [self.tableView reloadData];
 }
@@ -106,6 +143,11 @@ extern NSString * kUserAuthentificationFinishNotifName;
 
 #pragma mark - Table view data source
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100.0f;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -116,8 +158,8 @@ extern NSString * kUserAuthentificationFinishNotifName;
     return [[BBTLAFManager sharedLAFManager].itemArray count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     BBTLafItemsTableViewCell *cell = (BBTLafItemsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:itemCellIdentifier forIndexPath:indexPath];
     
     NSArray *itemArray = [BBTLAFManager sharedLAFManager].itemArray;
@@ -133,6 +175,57 @@ extern NSString * kUserAuthentificationFinishNotifName;
     NSDictionary *itemDetails = itemArray[indexPath.row];
     
     [self performSegueWithIdentifier:showItemsDetailsIdentifier sender:itemDetails];
+}
+
+//Search
+- (IBAction)setFilterConditions:(id)sender
+{
+    self.settingsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BBTItemFilterSettingsViewController"];
+    self.settingsViewController.delegate = self;
+    self.settingsViewController.preferredContentSize = CGSizeMake(320, 280);
+    self.settingsViewController.title = @"请选择筛选条件";
+    self.settingsViewController.modalInPopover = NO;
+    UINavigationController *contentViewController = [[UINavigationController alloc] initWithRootViewController:self.settingsViewController];
+    self.settingsPopoverController = [[WYPopoverController alloc] initWithContentViewController:contentViewController];
+    self.settingsPopoverController.delegate = self;
+    self.settingsPopoverController.passthroughViews = @[self.filterButton];
+    self.settingsPopoverController.popoverLayoutMargins = UIEdgeInsetsMake(10, 10, 10, 10);
+    self.settingsPopoverController.wantsDefaultContentAppearance = NO;
+    
+    [self.settingsPopoverController presentPopoverFromBarButtonItem:self.filterButton
+                                           permittedArrowDirections:WYPopoverArrowDirectionAny
+                                                           animated:YES
+                                                            options:WYPopoverAnimationOptionFadeWithScale];
+}
+
+- (void)BBTItemFilters:(BBTItemFilterSettingsViewController *)controller didFinishSelectConditions:(NSMutableDictionary *)conditions
+{
+    self.conditions = [[NSDictionary alloc] initWithDictionary:conditions];
+    [self refresh];
+}
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
+{
+    
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    NSArray *fuzzyArray = @[searchBar.text];
+    NSDictionary *fuzzyCondition = @{@"fuzzy":fuzzyArray};
+    [[BBTLAFManager sharedLAFManager] retriveItems:self.lostOrFound.selectedSegmentIndex WithConditions:fuzzyCondition];
+}
+
+- (void)refresh
+{
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [[BBTLAFManager sharedLAFManager] retriveItems:self.lostOrFound.selectedSegmentIndex WithConditions:self.conditions];
+    }];
+    [header setTitle:@"释放刷新" forState:MJRefreshStatePulling];
+    [header setTitle:@"加载中 ..." forState:MJRefreshStateRefreshing];
+    self.tableView.mj_header = header;
+    
+    [self.tableView.mj_header beginRefreshing];
 }
 
 #pragma mark - Navigation

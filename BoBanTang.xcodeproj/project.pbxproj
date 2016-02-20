@@ -88,6 +88,8 @@
 		FCD0A27E1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A27B1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.m */; };
 		FCD0A2811C0009F10024D78F /* BBTScores.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2801C0009F10024D78F /* BBTScores.m */; };
 		FCD0A2941C023B930024D78F /* BBTHudView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2931C023B930024D78F /* BBTHudView.m */; };
+		FCE6094B1C7624F8008C331D /* BBTLafSearchResultTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE6094A1C7624F8008C331D /* BBTLafSearchResultTableViewController.m */; };
+		FCE6094E1C76324E008C331D /* BBTItemFilterSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE6094D1C76324E008C331D /* BBTItemFilterSettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -265,6 +267,10 @@
 		FCD0A2801C0009F10024D78F /* BBTScores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTScores.m; sourceTree = "<group>"; };
 		FCD0A2921C023B930024D78F /* BBTHudView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTHudView.h; sourceTree = "<group>"; };
 		FCD0A2931C023B930024D78F /* BBTHudView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTHudView.m; sourceTree = "<group>"; };
+		FCE609491C7624F8008C331D /* BBTLafSearchResultTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTLafSearchResultTableViewController.h; sourceTree = "<group>"; };
+		FCE6094A1C7624F8008C331D /* BBTLafSearchResultTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLafSearchResultTableViewController.m; sourceTree = "<group>"; };
+		FCE6094C1C76324E008C331D /* BBTItemFilterSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTItemFilterSettingsViewController.h; sourceTree = "<group>"; };
+		FCE6094D1C76324E008C331D /* BBTItemFilterSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTItemFilterSettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -787,6 +793,10 @@
 			children = (
 				FC1770BE1C5F507500BF07AC /* BBTLostAndFoundTableViewController.h */,
 				FC1770BF1C5F507500BF07AC /* BBTLostAndFoundTableViewController.m */,
+				FCE6094C1C76324E008C331D /* BBTItemFilterSettingsViewController.h */,
+				FCE6094D1C76324E008C331D /* BBTItemFilterSettingsViewController.m */,
+				FCE609491C7624F8008C331D /* BBTLafSearchResultTableViewController.h */,
+				FCE6094A1C7624F8008C331D /* BBTLafSearchResultTableViewController.m */,
 				FC2EB0001C69AC7000B5DC42 /* BBTPostInfoViewController.h */,
 				FC2EB0011C69AC7000B5DC42 /* BBTPostInfoViewController.m */,
 				FC1770C21C5F507500BF07AC /* BBTItemDetailEditingViewController.h */,
@@ -1076,6 +1086,7 @@
 				395B10E41C585EA200772A38 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */,
 				FC1770B61C5F4FCD00BF07AC /* PopoverView.m in Sources */,
 				FC1770BD1C5F505300BF07AC /* BBTLAFManager.m in Sources */,
+				FCE6094B1C7624F8008C331D /* BBTLafSearchResultTableViewController.m in Sources */,
 				A947D9661BD8DBEA000F071B /* PAPreferences.m in Sources */,
 				39B5953D1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m in Sources */,
 				395B10DC1C5713EF00772A38 /* UIFont+BBTFont.m in Sources */,
@@ -1085,6 +1096,7 @@
 				FC1770C41C5F507500BF07AC /* BBTLostAndFoundTableViewController.m in Sources */,
 				391F32491BFDD42B004843C3 /* BBTSpecRailway2BusManager.m in Sources */,
 				3951EFFD1C7099B000076AD4 /* BBTSpecialRailwayContainerViewController.m in Sources */,
+				FCE6094E1C76324E008C331D /* BBTItemFilterSettingsViewController.m in Sources */,
 				FCD0A2941C023B930024D78F /* BBTHudView.m in Sources */,
 				FC69A3FE1C038340000EF949 /* BBTLectureRoomsResultTableViewController.m in Sources */,
 				3951EFFA1C70997600076AD4 /* BBTNorthSpecialRailwayTwoViewController.m in Sources */,

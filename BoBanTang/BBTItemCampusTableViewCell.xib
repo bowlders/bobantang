@@ -24,7 +24,7 @@
                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="MQa-SE-gNR">
                         <rect key="frame" x="246" y="7" width="121" height="29"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="121" id="BlY-Pe-lfU"/>
+                            <constraint firstAttribute="width" constant="121" id="q6J-a1-h0B"/>
                         </constraints>
                         <segments>
                             <segment title="北校区"/>
