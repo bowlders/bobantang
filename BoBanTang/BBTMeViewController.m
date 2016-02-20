@@ -316,7 +316,6 @@ extern NSString * kUserAuthentificationFinishNotifName;
 {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Me" bundle:nil];
     UIViewController *controller = [sb instantiateViewControllerWithIdentifier:@"PersonalInfoEditVC"];
-    //BBTPersonalInfoEditViewController *controller = [[BBTPersonalInfoEditViewController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
