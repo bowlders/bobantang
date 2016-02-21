@@ -9,24 +9,24 @@
 #import "BBTSouthSpecialRailwayTwoViewController.h"
 #import "BBTSpecRailway2BusManager.h"
 #import "BBTSpecRailway2TableViewCell.h"
+#import "UIFont+BBTFont.h"
+#import "UIColor+BBTColor.h"
 #import <Masonry.h>
 
 @interface BBTSouthSpecialRailwayTwoViewController ()
 
 @property (strong, nonatomic) UITableView * tableView;
-@property (strong, nonatomic) UIButton    * invertButton;
+@property (strong, nonatomic) UIImageView * waterMarkImageView;
+@property (strong, nonatomic) UIView      * labelContainerView;
+@property (strong, nonatomic) UILabel     * directionSouthLabel;
 
+@property (nonatomic) CGFloat cellHeight;
 
 @end
 
 @implementation BBTSouthSpecialRailwayTwoViewController
 
 extern NSString * busDataNotificationName;
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    NSLog(@"%@ special line", NSStringFromCGRect(self.tableView.frame));
-}
 
 - (void)viewDidLoad
 {
@@ -49,22 +49,83 @@ extern NSString * busDataNotificationName;
         tableView.allowsSelection = NO;
         tableView.dataSource = self;
         tableView.delegate = self;
+        tableView.backgroundColor = [UIColor clearColor];
         tableView;
     });
     
+    self.waterMarkImageView = ({
+        UIImageView *imageView = [UIImageView new];
+        imageView.translatesAutoresizingMaskIntoConstraints = NO;
+        imageView.contentMode = UIViewContentModeScaleToFill;
+        imageView.alpha = 1.0;
+        imageView.image = [UIImage imageNamed:@"waterMark"];
+        imageView;
+    });
+    
+    self.labelContainerView = ({
+        UIView *view = [UIView new];
+        view.translatesAutoresizingMaskIntoConstraints = NO;
+        view.backgroundColor = [UIColor BBTLightGray];
+        view.alpha = 1.0;
+        view;
+    });
+    
+    self.directionSouthLabel = ({
+        UILabel *label = [UILabel new];
+        label.translatesAutoresizingMaskIntoConstraints = NO;
+        label.numberOfLines = 1;
+        label.textAlignment = NSTextAlignmentLeft;
+        label.adjustsFontSizeToFitWidth = NO;
+        label.alpha = 1.0;
+        label.text = @"至大学城方向";
+        label.font = [UIFont BBTGoLabelFont];
+        label;
+    });
+    
+    [self.view addSubview:self.waterMarkImageView];
     [self.view addSubview:self.tableView];
-
+    [self.view addSubview:self.labelContainerView];
+    [self.labelContainerView addSubview:self.directionSouthLabel];
+    
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
-    CGFloat containerViewHeight = self.view.frame.size.height - navigationBarHeight - tabBarHeight;
     CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
+    CGFloat screenHeight = applicationFrame.size.height - navigationBarHeight - tabBarHeight;
+    CGFloat leftImageOffset = 50.0f;
+    CGFloat labelHeight = 23.0f;
+    CGFloat labelWidth = 80.0f;
+
+    self.cellHeight = screenHeight * 0.9 / 12.0;
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.top.equalTo(self.view.mas_top).offset(statusBarHeight + navigationBarHeight);
+        make.top.equalTo(self.view.mas_top).offset(statusBarHeight + navigationBarHeight + labelHeight);
         make.left.equalTo(self.view.mas_left);
         make.bottom.equalTo(self.view.mas_bottom).offset(-tabBarHeight);
         make.right.equalTo(self.view.mas_right);
     }];
+    
+    [self.waterMarkImageView mas_makeConstraints:^(MASConstraintMaker *make){
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view.mas_bottom);
+        make.width.equalTo(self.view.mas_width);
+        make.height.equalTo(self.view.mas_height);
+    }];
+    
+    [self.labelContainerView mas_makeConstraints:^(MASConstraintMaker *make){
+        make.top.equalTo(self.view.mas_top).offset(statusBarHeight + navigationBarHeight);
+        make.height.equalTo(@(labelHeight));
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+    }];
+    
+    [self.directionSouthLabel mas_makeConstraints:^(MASConstraintMaker *make){
+        make.top.equalTo(self.view.mas_top).offset(statusBarHeight + navigationBarHeight);
+        make.height.equalTo(@(labelHeight));
+        make.left.equalTo(self.view.mas_left).offset(leftImageOffset);
+        make.width.equalTo(@(labelWidth));
+    }];
+
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -79,11 +140,7 @@ extern NSString * busDataNotificationName;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
-    CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
-    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
-    CGFloat screenHeight = applicationFrame.size.height - navigationBarHeight - tabBarHeight;
-    return screenHeight * 0.9 / 12.0;
+    return self.cellHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -115,6 +172,7 @@ extern NSString * busDataNotificationName;
     NSLog(@"Did receive special railway data notification");
     //NSLog(@"south buses - %@", [BBTSpecRailway2BusManager sharedBusManager].directionSouthBuses);
     [self.tableView reloadData];
+    //[self updateView];
 }
 
 - (void)updateView

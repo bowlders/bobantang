@@ -29,6 +29,8 @@
     
     if (self)
     {
+        self.backgroundColor = [UIColor clearColor];
+
         self.stationLabel = ({
             UILabel *label = [UILabel new];
             label.translatesAutoresizingMaskIntoConstraints = NO;
@@ -94,8 +96,8 @@
     if (!self.didSetupConstraints)
     {
         CGFloat horizontalInnerSpacing = 5.0f;
-        CGFloat leftImageOffset = 60.0f;
-        CGFloat stationLabelWidth = 130.0f;
+        CGFloat leftImageOffset = 50.0f;
+        CGFloat stationLabelWidth = 120.0f;
         
         [self.contentView mas_makeConstraints:^(MASConstraintMaker *make){
             make.center.equalTo(self);
