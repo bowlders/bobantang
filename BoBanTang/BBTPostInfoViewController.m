@@ -7,6 +7,7 @@
 //
 
 #import "BBTPostInfoViewController.h"
+#import "BBTCurrentUserManager.h"
 #import "BBTItemCampusTableViewCell.h"
 #import "BBTItemImageTableViewCell.h"
 #import "BBTTextFieldTableViewCell.h"
@@ -29,6 +30,8 @@ static NSString * detailsInitial = @"请输入详情";
 
 @property (strong, nonatomic) UITableView     * tableView;
 @property (strong, nonatomic) NSString        * itemDetails;
+@property (strong, nonatomic) NSNumber        * account;
+
 @property (strong, nonatomic) BBTLAF          * item;
 
 @property (strong, nonatomic) AYVibrantButton * postButton;
@@ -48,6 +51,8 @@ static NSString * detailsInitial = @"请输入详情";
     } else {
         self.navigationItem.title = @"发布失物启示";
     }
+    
+    self.account = [NSNumber numberWithInt:[[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account intValue]];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -469,6 +474,7 @@ static NSString * detailsInitial = @"请输入详情";
     [itemInfoToPost setObject:self.item.type forKey:@"type"];
     [itemInfoToPost setObject:self.item.publisher forKey:@"publisher"];
     [itemInfoToPost setObject:self.item.phone forKey:@"phone"];
+    [itemInfoToPost setObject:self.account forKey:@"account"];
     
     if (![self.item.details isEqualToString:detailsInitial])[itemInfoToPost setObject:self.item.details forKey:@"details"];
     if (![self.item.otherContact isEqualToString:@""] && !self.item.otherContact)[itemInfoToPost setObject:self.item.otherContact forKey:@"otherContact"];

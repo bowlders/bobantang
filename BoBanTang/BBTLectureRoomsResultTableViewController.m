@@ -8,9 +8,14 @@
 
 #import "BBTLectureRoomsResultTableViewController.h"
 #import "ActionSheetPicker.h"
+#import "BBTLectureRoomsManager.h"
+#import <JGProgressHUD.h>
+#import <MBProgressHUD.h>
 
 static NSString *conditionCellIdentifier = @"conditionCell";
 static NSString *resultCellIdentifier = @"resultsCell";
+extern NSString *kDidGetEmptyRoomsNotificaionName;
+extern NSString *kFailGetEmptyRoomsNotificaionName;
 
 @interface BBTLectureRoomsResultTableViewController ()
 
@@ -22,15 +27,26 @@ static NSString *resultCellIdentifier = @"resultsCell";
     NSMutableArray *_sortedResults;
 }
 
-- (void)viewDidLoad {
+- (void)viewWillAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetRoomsNotification) name:kDidGetEmptyRoomsNotificaionName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failGetRoomsNotification) name:kFailGetEmptyRoomsNotificaionName object:nil];
+}
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     [self.navigationController.navigationBar setBarTintColor: [UIColor colorWithRed:0/255.0 green:153.0/255.0 blue:204.0/255.0 alpha:1.0]];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
     
-    _selectedPeriod = [[NSArray alloc] initWithArray:[self.filterConditions configurePeriod:self.filterConditions]];
-
+    _selectedPeriod = [[NSArray alloc] initWithArray:self.filterConditions.period];
+    
+    self.tableView.scrollEnabled = NO;
+    [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
+    
+    [self retriveRoomsWithConditions:self.filterConditions];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,24 +54,52 @@ static NSString *resultCellIdentifier = @"resultsCell";
     // Dispose of any resources that can be recreated.
 }
 
-- (NSArray *)sortRooms:(NSArray *)resultsRooms
+- (void)viewWillDisappear:(BOOL)animated
 {
-    NSMutableArray *sortResult = [[NSMutableArray alloc] init];
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)retriveRoomsWithConditions:(BBTLectureRooms *)filterdConditions;
+{
+    NSDictionary *conditions = @{@"date":filterdConditions.date,
+                                 @"period":filterdConditions.period,
+                                 @"campus":filterdConditions.campus,
+                                 @"building":filterdConditions.buildings
+                                 };
     
-    for (NSString *period in _selectedPeriod) {
-        NSMutableArray *roomOfPeriod = [[NSMutableArray alloc] init];
-        
-        for (NSDictionary *resultDic in self.resultRooms) {
-            NSString *periodInDic = resultDic[@"period"];
-            if ([periodInDic isEqualToString:period]) {
-                [roomOfPeriod addObject:resultDic];
-            }
-        }
-        
-        [sortResult addObject:roomOfPeriod];
-    }
+    [[BBTLectureRoomsManager sharedLectureRoomsManager] retriveEmptyRoomsWithConditions:conditions];
+}
+
+- (void)didGetRoomsNotification
+{
+    NSLog(@"Get Rooms");
+    NSArray *test = [[NSArray alloc] initWithArray:[BBTLectureRoomsManager sharedLectureRoomsManager].rooms];
+    NSLog(@"Rooms: %lu", (unsigned long)[test count]);
+    [self.tableView reloadData];
     
-    return sortResult;
+    [MBProgressHUD hideAllHUDsForView:self.tableView animated:YES];
+    JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    HUD.textLabel.text = @"查询成功";
+    HUD.indicatorView = [[JGProgressHUDSuccessIndicatorView alloc] init];
+    HUD.square = YES;
+    [HUD showInView:self.tableView];
+    [HUD dismissAfterDelay:2.0 animated:YES];
+    self.tableView.scrollEnabled = YES;
+}
+
+- (void)failGetRoomsNotification
+{
+    NSLog(@"Fail to Get Rooms");
+    
+    [MBProgressHUD hideAllHUDsForView:self.tableView animated:YES];
+    JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    HUD.textLabel.text = @"查询失败";
+    HUD.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init];
+    HUD.square = YES;
+    [HUD showInView:self.tableView];
+    [HUD dismissAfterDelay:2.0 animated:YES];
+    self.tableView.scrollEnabled = YES;
 }
 
 - (void)reConfigureRooms
@@ -101,8 +145,7 @@ static NSString *resultCellIdentifier = @"resultsCell";
     if (section == 0) {
         return 1;
     } else {
-        NSArray *sortResult = [self sortRooms:self.resultRooms][section-1];
-        return [sortResult count];
+        return [[BBTLectureRoomsManager sharedLectureRoomsManager].rooms count];
     }
 }
 
@@ -114,12 +157,14 @@ static NSString *resultCellIdentifier = @"resultsCell";
         cell.detailTextLabel.text = _filterConditions.buildings;
         return cell;
     } else {
-        NSArray *sortResult = [self sortRooms:self.resultRooms][indexPath.section-1];
+        
+        NSArray *results = [BBTLectureRoomsManager sharedLectureRoomsManager].rooms;
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:resultCellIdentifier forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         NSMutableArray *rooms = [[NSMutableArray alloc] init];
-        for (NSDictionary *lectureRooms in sortResult) {
+        for (NSDictionary *lectureRooms in results) {
             [rooms addObject:lectureRooms[@"room"]];
         }
         cell.textLabel.text = rooms[indexPath.row];
@@ -137,36 +182,28 @@ static NSString *resultCellIdentifier = @"resultsCell";
                                                               message:nil
                                                        preferredStyle:UIAlertControllerStyleActionSheet];
         
-        if ([_filterConditions.campus isEqualToString:@"N"]) {
-            NSArray *buildings = @[@"31", @"32", @"33", @"34", @"35"];
-            ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle:@"请选择教学楼"
-                                                                                        rows:buildings
-                                                                            initialSelection:0
-                                                                                   doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                                                                       _filterConditions.buildings = selectedValue;
-                                                                                       [self reConfigureRooms];
-                                                                                   }
-                                                                                 cancelBlock:^(ActionSheetStringPicker *picker) {
-                                                                                     
-                                                                                 }
-                                                                                      origin:[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].detailTextLabel];
-            [picker showActionSheetPicker];
-        } else if ([_filterConditions.campus isEqualToString:@"S"]) {
-            NSArray *buildings = @[@"A1", @"A2", @"A3"];
-            ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle:@"请选择教学楼"
-                                                                                        rows:buildings
-                                                                            initialSelection:0
-                                                                                   doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                                                                       _filterConditions.buildings = selectedValue;
-                                                                                       [self reConfigureRooms];
-                                                                                   }
-                                                                                 cancelBlock:^(ActionSheetStringPicker *picker) {
-                                                                                     
-                                                                                 }
-                                                                                      origin:[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].detailTextLabel];
-            [picker showActionSheetPicker];
+        NSArray *buildings;
+        if ([self.filterConditions.campus isEqualToString:@"N"]) {
+            buildings = @[@"31", @"32", @"33", @"34", @"35"];
+        } else if ([self.filterConditions.campus isEqualToString:@"S"]) {
+           buildings = @[@"A1", @"A2", @"A3"];
         }
         
+        ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle:@"请选择教学楼"
+                                                                                    rows:buildings
+                                                                        initialSelection:0
+                                                                               doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                                                                   self.filterConditions.buildings = selectedValue;
+                                                                                   [self retriveRoomsWithConditions:self.filterConditions];
+                                                                                   [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
+                                                                                   self.tableView.scrollEnabled = NO;
+                                                                               }
+                                                                             cancelBlock:^(ActionSheetStringPicker *picker) {
+                                                                                 
+                                                                             }
+                                                                                  origin:[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].detailTextLabel];
+        [picker showActionSheetPicker];
+
     }
 }
 

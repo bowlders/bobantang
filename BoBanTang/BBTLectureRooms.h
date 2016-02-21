@@ -12,7 +12,7 @@
 
 @property (nonatomic, copy) NSString *date;
 @property (nonatomic, copy) NSArray *time;
-@property (nonatomic, copy) NSString *period;
+@property (nonatomic, copy) NSArray *period;
 @property (nonatomic, copy) NSString *campus;
 @property (nonatomic, copy) NSString *buildings;
 @property (nonatomic, copy) NSArray *seletedBulidings;

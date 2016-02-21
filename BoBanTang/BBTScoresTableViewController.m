@@ -44,6 +44,7 @@ extern NSString * kFailGetNotificaionName;
     [self.tableView registerNib:[UINib nibWithNibName:scoresCellIdentifier bundle:nil] forCellReuseIdentifier:scoresCellIdentifier];
     
     [[BBTScoresManager sharedScoresManager] retriveScores:self.userInfo WithConditions:nil];
+    self.tableView.scrollEnabled = NO;
     [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
 }
 
@@ -63,6 +64,7 @@ extern NSString * kFailGetNotificaionName;
     NSLog(@"Scores Notification Received");
     self.scoresArray = [[NSArray alloc] initWithArray:[BBTScoresManager sharedScoresManager].scoresArray];
     [self.tableView reloadData];
+    
     [MBProgressHUD hideAllHUDsForView:self.tableView animated:YES];
     JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     HUD.textLabel.text = @"查询成功";
@@ -70,11 +72,13 @@ extern NSString * kFailGetNotificaionName;
     HUD.square = YES;
     [HUD showInView:self.tableView];
     [HUD dismissAfterDelay:2.0 animated:YES];
+    self.tableView.scrollEnabled = YES;
 }
 
 - (void)failGetScoresNotification
 {
     NSLog(@"Fail to Get Scores");
+    self.tableView.scrollEnabled = YES;
     
     UIAlertController *alertController = [[UIAlertController alloc] init];
     if ([self.errorType integerValue] == 0) {
@@ -137,6 +141,7 @@ extern NSString * kFailGetNotificaionName;
                                                                                     @"term":selectedIndexes[1]
                                                                                     };
                                                        [[BBTScoresManager sharedScoresManager] retriveScores:self.userInfo WithConditions:conditions];
+                                                       self.tableView.scrollEnabled = NO;
                                                        [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
         }
                                                  cancelBlock:^(ActionSheetMultipleStringPicker *picker) {

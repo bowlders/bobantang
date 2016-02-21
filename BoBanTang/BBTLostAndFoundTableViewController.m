@@ -182,20 +182,23 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
 {
     self.settingsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BBTItemFilterSettingsViewController"];
     self.settingsViewController.delegate = self;
-    self.settingsViewController.preferredContentSize = CGSizeMake(320, 280);
+    self.settingsViewController.preferredContentSize = CGSizeMake(self.view.frame.size.width, 280);
+    WYPopoverBackgroundView *popoverAppearance = [WYPopoverBackgroundView appearance];
+    [popoverAppearance setOuterCornerRadius:0];
+    [popoverAppearance setInnerCornerRadius:0];
     self.settingsViewController.title = @"请选择筛选条件";
     self.settingsViewController.modalInPopover = NO;
     UINavigationController *contentViewController = [[UINavigationController alloc] initWithRootViewController:self.settingsViewController];
     self.settingsPopoverController = [[WYPopoverController alloc] initWithContentViewController:contentViewController];
     self.settingsPopoverController.delegate = self;
     self.settingsPopoverController.passthroughViews = @[self.filterButton];
-    self.settingsPopoverController.popoverLayoutMargins = UIEdgeInsetsMake(10, 10, 10, 10);
+    self.settingsPopoverController.popoverLayoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
     self.settingsPopoverController.wantsDefaultContentAppearance = NO;
     
     [self.settingsPopoverController presentPopoverFromBarButtonItem:self.filterButton
-                                           permittedArrowDirections:WYPopoverArrowDirectionAny
+                                           permittedArrowDirections:WYPopoverArrowDirectionDown
                                                            animated:YES
-                                                            options:WYPopoverAnimationOptionFadeWithScale];
+                                                            options:WYPopoverAnimationOptionFade];
 }
 
 - (void)BBTItemFilters:(BBTItemFilterSettingsViewController *)controller didFinishSelectConditions:(NSMutableDictionary *)conditions

@@ -41,6 +41,7 @@ NSString * kFailGetNotificaionName = @"failGetNotificaion";
             if (error) {
                 self.errorType = @(1);
                 [self pushFailGetNotification];
+                return;
             }
             
             NSDictionary *scoresDic = responseObject[@"score"];
@@ -48,6 +49,7 @@ NSString * kFailGetNotificaionName = @"failGetNotificaion";
             if ([passedArray class] == [NSNull class]) {
                 self.errorType = @(0);
                 [self pushFailGetNotification];
+                return;
             }
             
            self.scoresArray = [[NSMutableArray alloc] init];

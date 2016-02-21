@@ -84,12 +84,13 @@
 		FCD0A26F1C00062D0024D78F /* BBTScoresCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A26D1C00062D0024D78F /* BBTScoresCell.m */; };
 		FCD0A2701C00062D0024D78F /* BBTScoresCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCD0A26E1C00062D0024D78F /* BBTScoresCell.xib */; };
 		FCD0A2751C0006940024D78F /* BBTLectureRooms.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2741C0006940024D78F /* BBTLectureRooms.m */; };
-		FCD0A27D1C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2791C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.m */; };
 		FCD0A27E1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A27B1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.m */; };
 		FCD0A2811C0009F10024D78F /* BBTScores.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2801C0009F10024D78F /* BBTScores.m */; };
 		FCD0A2941C023B930024D78F /* BBTHudView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0A2931C023B930024D78F /* BBTHudView.m */; };
 		FCE6094B1C7624F8008C331D /* BBTLafSearchResultTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE6094A1C7624F8008C331D /* BBTLafSearchResultTableViewController.m */; };
 		FCE6094E1C76324E008C331D /* BBTItemFilterSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE6094D1C76324E008C331D /* BBTItemFilterSettingsViewController.m */; };
+		FCE609511C797061008C331D /* BBTLectureRoomsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE609501C797061008C331D /* BBTLectureRoomsManager.m */; };
+		FCE609541C7979D9008C331D /* BBTLectureRoomsSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE609531C7979D9008C331D /* BBTLectureRoomsSettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -259,8 +260,6 @@
 		FCD0A26E1C00062D0024D78F /* BBTScoresCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBTScoresCell.xib; sourceTree = "<group>"; };
 		FCD0A2731C0006940024D78F /* BBTLectureRooms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTLectureRooms.h; sourceTree = "<group>"; };
 		FCD0A2741C0006940024D78F /* BBTLectureRooms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLectureRooms.m; sourceTree = "<group>"; };
-		FCD0A2781C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTLectureRoomsQueryTableViewController.h; sourceTree = "<group>"; };
-		FCD0A2791C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLectureRoomsQueryTableViewController.m; sourceTree = "<group>"; };
 		FCD0A27A1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTLectureRoomsTimeTableViewController.h; sourceTree = "<group>"; };
 		FCD0A27B1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLectureRoomsTimeTableViewController.m; sourceTree = "<group>"; };
 		FCD0A27F1C0009F10024D78F /* BBTScores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTScores.h; sourceTree = "<group>"; };
@@ -271,6 +270,10 @@
 		FCE6094A1C7624F8008C331D /* BBTLafSearchResultTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLafSearchResultTableViewController.m; sourceTree = "<group>"; };
 		FCE6094C1C76324E008C331D /* BBTItemFilterSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTItemFilterSettingsViewController.h; sourceTree = "<group>"; };
 		FCE6094D1C76324E008C331D /* BBTItemFilterSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTItemFilterSettingsViewController.m; sourceTree = "<group>"; };
+		FCE6094F1C797061008C331D /* BBTLectureRoomsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTLectureRoomsManager.h; sourceTree = "<group>"; };
+		FCE609501C797061008C331D /* BBTLectureRoomsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLectureRoomsManager.m; sourceTree = "<group>"; };
+		FCE609521C7979D9008C331D /* BBTLectureRoomsSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTLectureRoomsSettingsViewController.h; sourceTree = "<group>"; };
+		FCE609531C7979D9008C331D /* BBTLectureRoomsSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLectureRoomsSettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -544,8 +547,8 @@
 		398231C01BD8EEDD0043E544 /* LectureRoomsInquire */ = {
 			isa = PBXGroup;
 			children = (
-				FCD0A2781C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.h */,
-				FCD0A2791C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.m */,
+				FCE609521C7979D9008C331D /* BBTLectureRoomsSettingsViewController.h */,
+				FCE609531C7979D9008C331D /* BBTLectureRoomsSettingsViewController.m */,
 				FCD0A27A1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.h */,
 				FCD0A27B1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.m */,
 				FC69A3FC1C038340000EF949 /* BBTLectureRoomsResultTableViewController.h */,
@@ -864,6 +867,8 @@
 			children = (
 				FCD0A2731C0006940024D78F /* BBTLectureRooms.h */,
 				FCD0A2741C0006940024D78F /* BBTLectureRooms.m */,
+				FCE6094F1C797061008C331D /* BBTLectureRoomsManager.h */,
+				FCE609501C797061008C331D /* BBTLectureRoomsManager.m */,
 			);
 			name = RoomsInquire;
 			sourceTree = "<group>";
@@ -1116,13 +1121,14 @@
 				39FE91DD1C5DAA0F0041E46F /* BBTCampusBusViewController.m in Sources */,
 				397445701C0AAD60004B89BA /* BBTCampusInfoTableViewCell.m in Sources */,
 				395B10E01C5737AB00772A38 /* BBTDailyArticleTableViewCell.m in Sources */,
+				FCE609511C797061008C331D /* BBTLectureRoomsManager.m in Sources */,
 				FC351F221C73683D0055FD41 /* BBTScoresTableViewController.m in Sources */,
 				39FE91E61C5F886C0041E46F /* BBTMeViewController.m in Sources */,
-				FCD0A27D1C0006AB0024D78F /* BBTLectureRoomsQueryTableViewController.m in Sources */,
 				39239A321C635BAB008EDBB0 /* BBTUser.m in Sources */,
 				FC80D45C1C6244A200A80EDA /* BBTItemDetailsTableViewController.m in Sources */,
 				FC80D4591C62109000A80EDA /* BBTLafItemsTableViewCell.m in Sources */,
 				FC2EB0061C69B1A500B5DC42 /* BBTTextFieldTableViewCell.m in Sources */,
+				FCE609541C7979D9008C331D /* BBTLectureRoomsSettingsViewController.m in Sources */,
 				395B10D31C55271B00772A38 /* BBTCampusInfoTableViewController.m in Sources */,
 				39239A351C646FCD008EDBB0 /* BBTCurrentUserManager.m in Sources */,
 			);
