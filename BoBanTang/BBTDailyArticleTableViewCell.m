@@ -92,7 +92,7 @@
     {
         CGFloat topOffset = 5.0f;
         CGFloat bottomOffset = 5.0f;
-        CGFloat imageLeftOffset = 5.0f;
+        CGFloat leftOffset = 5.0f;
         CGFloat horizontalInnerSpacing = 3.0f;
         CGFloat verticalInnerSpacing = 3.0f;
         CGFloat rightOffset = 5.0f;
@@ -102,31 +102,34 @@
             make.center.equalTo(self);
         }];
         
-        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make){
-            make.top.equalTo(self.contentView.mas_top).offset(topOffset);
-            make.bottom.equalTo(self.abstractLabel.mas_top).offset(verticalInnerSpacing);
-            make.left.equalTo(self.contentView).offset(imageLeftOffset);
+        [self.authorLabel mas_makeConstraints:^(MASConstraintMaker *make){
+            make.top.equalTo(self.abstractLabel.mas_bottom).offset(verticalInnerSpacing);
+            make.bottom.equalTo(self.contentView.mas_bottom).offset(-bottomOffset);
+            make.left.equalTo(self.dateLabel.mas_right).offset(horizontalInnerSpacing);
             make.right.equalTo(self.contentView.mas_right).offset(-rightOffset);
         }];
         
-        [self.authorLabel mas_makeConstraints:^(MASConstraintMaker *make){
-            make.bottom.equalTo(self.contentView.mas_bottom).offset(-bottomOffset);
-            make.right.equalTo(self.contentView.mas_right).offset(-rightOffset);
+        [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make){
+            make.top.equalTo(self.authorLabel.mas_top);
+            make.bottom.equalTo(self.authorLabel.mas_bottom);
+            make.left.greaterThanOrEqualTo(self.contentView.mas_left).offset(leftOffset);
+            make.right.equalTo(self.authorLabel.mas_left).offset(-horizontalInnerSpacing);
         }];
         
         [self.abstractLabel mas_makeConstraints:^(MASConstraintMaker *make){
             make.top.equalTo(self.titleLabel.mas_bottom).offset(verticalInnerSpacing);
             make.bottom.equalTo(self.authorLabel.mas_top).offset(-verticalInnerSpacing);
-            make.left.equalTo(self.titleLabel.mas_left);
-            make.right.equalTo(self.contentView.mas_right).offset(-rightOffset);
+            make.left.equalTo(self.contentView.mas_left).offset(leftOffset);
+            make.right.equalTo(self.authorLabel.mas_right);
         }];
-        
-        [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make){
-            make.top.equalTo(self.abstractLabel.mas_bottom).offset(verticalInnerSpacing);
-            make.bottom.equalTo(self.contentView.mas_bottom).offset(-bottomOffset);
-            make.right.equalTo(self.authorLabel.mas_left).offset(-horizontalInnerSpacing);
+
+        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make){
+            make.top.equalTo(self.contentView.mas_top).offset(topOffset);
+            make.bottom.equalTo(self.abstractLabel.mas_top).offset(-verticalInnerSpacing);
+            make.left.equalTo(self.abstractLabel.mas_left);
+            make.right.equalTo(self.authorLabel.mas_right);
         }];
-        
+
         self.didSetupConstraints = YES;
     }
     [super updateConstraints];

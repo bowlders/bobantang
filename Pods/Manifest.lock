@@ -40,6 +40,7 @@ PODS:
   - SZTextView (1.2.1)
   - TSMessages (0.9.12):
     - HexColors (~> 2.2.0)
+  - UITableView+FDTemplateLayoutCell (1.4)
   - VBFPopFlatButton (0.0.6):
     - pop
   - WYPopoverController (0.3.9)
@@ -65,6 +66,7 @@ DEPENDENCIES:
   - SDWebImage (~> 3.7)
   - SZTextView
   - TSMessages
+  - UITableView+FDTemplateLayoutCell (~> 1.4)
   - VBFPopFlatButton
   - WYPopoverController
 
@@ -91,6 +93,7 @@ SPEC CHECKSUMS:
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SZTextView: 906df45afd3c1b24fc5252088d5ef8061513c238
   TSMessages: c8cc7b80f2a833af533872cd02010cac061532cc
+  UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
   VBFPopFlatButton: 782344da63f104c279a857d806e065117a7e1196
   WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
 

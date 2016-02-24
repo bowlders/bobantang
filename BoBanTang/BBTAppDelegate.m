@@ -43,7 +43,7 @@
           activePlatforms:@[
                             @(SSDKPlatformTypeSinaWeibo),
                             @(SSDKPlatformTypeMail),
-                            @(SSDKPlatformTypeSMS),
+                            //@(SSDKPlatformTypeSMS),
                             @(SSDKPlatformTypeCopy),
                             @(SSDKPlatformTypeWechat),
                             @(SSDKPlatformTypeQQ)]
@@ -96,6 +96,7 @@
     [[UINavigationBar appearance] setBarTintColor:[UIColor BBTAppGlobalBlue]];
     [UINavigationBar appearance].tintColor = [UIColor whiteColor];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
+    
     return YES;
 }
 

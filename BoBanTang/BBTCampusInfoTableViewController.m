@@ -10,6 +10,7 @@
 #import "BBTCampusInfoManager.h"
 #import "BBTCampusInfoTableViewCell.h"
 #import "BBTCampusInfoViewController.h"
+#import "UITableView+FDTemplateLayoutCell.h"
 #import <UIImageView+WebCache.h>
 #import <MJRefresh.h>
 #import <Masonry.h>
@@ -33,6 +34,9 @@ extern NSString * campusInfoNotificationName;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSString *cellIdentifier = @"infoCell";
+    [self.tableView registerClass:[BBTCampusInfoTableViewCell class] forCellReuseIdentifier:cellIdentifier];
+
     self.tableView.backgroundColor = [UIColor whiteColor];
     
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -74,9 +78,16 @@ extern NSString * campusInfoNotificationName;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /*
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     CGFloat screenHeight = applicationFrame.size.height;
-    return screenHeight / 4.5;
+    return screenHeight / 4.3;
+     */
+    
+    NSArray *infoArray = [BBTCampusInfoManager sharedInfoManager].infoArray;
+    return [tableView fd_heightForCellWithIdentifier:@"infoCell" configuration:^(BBTCampusInfoTableViewCell *cell){
+        [cell setCellContentDictionary:infoArray[indexPath.row]];
+    }];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -112,13 +123,11 @@ extern NSString * campusInfoNotificationName;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Information" bundle:nil];
     BBTCampusInfoViewController *destinationVC = [[BBTCampusInfoViewController alloc] init];
-    //[sb instantiateViewControllerWithIdentifier:@"campusInfoVC"];
     destinationVC.info = [BBTCampusInfoManager sharedInfoManager].infoArray[indexPath.row];
     
     [self.navigationController pushViewController:destinationVC animated:YES];
-
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

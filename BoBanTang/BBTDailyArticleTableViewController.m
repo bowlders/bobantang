@@ -9,6 +9,8 @@
 #import "BBTDailyArticleTableViewController.h"
 #import "BBTDailyArticleManager.h"
 #import "BBTDailyArticleTableViewCell.h"
+#import "BBTDailyArticleViewController.h"
+#import "UITableView+FDTemplateLayoutCell.h"
 #import <MJRefresh.h>
 #import <MJRefreshStateHeader.h>
 #import <Masonry.h>
@@ -29,6 +31,9 @@ extern NSString * dailyArticleNotificationName;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    NSString *cellIdentifier = @"articleCell";
+    [self.tableView registerClass:[BBTDailyArticleTableViewCell class] forCellReuseIdentifier:cellIdentifier];
+    
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self refresh];
     }];
@@ -56,9 +61,17 @@ extern NSString * dailyArticleNotificationName;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /*
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     CGFloat screenHeight = applicationFrame.size.height;
     return screenHeight / 6.0;
+    */
+    NSArray *articleArray = [BBTDailyArticleManager sharedArticleManager].articleArray;
+    
+    return [tableView fd_heightForCellWithIdentifier:@"articleCell" configuration:^(BBTDailyArticleTableViewCell *cell){
+        [cell setCellContentDictionary:articleArray[indexPath.row]];
+    }];
+
 }
 
 #pragma mark - Table view data source
@@ -80,9 +93,9 @@ extern NSString * dailyArticleNotificationName;
         cell = [[BBTDailyArticleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    NSArray *infoArray = [BBTDailyArticleManager sharedArticleManager].articleArray;
+    NSArray *articleArray = [BBTDailyArticleManager sharedArticleManager].articleArray;
     
-    [cell setCellContentDictionary:infoArray[indexPath.row]];
+    [cell setCellContentDictionary:articleArray[indexPath.row]];
     
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
@@ -90,54 +103,18 @@ extern NSString * dailyArticleNotificationName;
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BBTDailyArticleViewController *destinationVC = [[BBTDailyArticleViewController alloc] init];
+    //destinationVC.info = [BBTCampusInfoManager sharedInfoManager].infoArray[indexPath.row];
+    
+    [self.navigationController pushViewController:destinationVC animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 - (void)refresh
 {
     [[BBTDailyArticleManager sharedArticleManager] retriveData:@""];
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
