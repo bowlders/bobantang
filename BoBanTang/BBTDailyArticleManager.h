@@ -12,10 +12,12 @@
 
 //Singleton Article Manager
 @property NSMutableArray * articleArray;                    //Stores a list of infos
+@property NSMutableArray * collectedArticleArray;           //This array stores article with all properties
 
 + (instancetype)sharedArticleManager;                       //Singleton method
 - (void)retriveData:(NSString *)appendingUrl;
 - (void)addReadNumber:(NSUInteger)infoIndex;                //Add an article's read number by 1
 - (void)addCollectionNumber:(NSUInteger)infoIndex;          //Add an article's collection number by 1
+- (void)fetchCollectedArticleArrayWithGivenSimplifiedArray:(NSArray *)simplifiedArticleArray;
 
 @end

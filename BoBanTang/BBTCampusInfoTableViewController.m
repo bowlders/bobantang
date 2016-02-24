@@ -9,10 +9,15 @@
 #import "BBTCampusInfoTableViewController.h"
 #import "BBTCampusInfoManager.h"
 #import "BBTCampusInfoTableViewCell.h"
+#import "BBTCampusInfoViewController.h"
 #import <UIImageView+WebCache.h>
 #import <MJRefresh.h>
+#import <Masonry.h>
 
 @interface BBTCampusInfoTableViewController ()
+
+@property (strong, nonatomic) UISearchBar               * searchBar;
+@property (strong, nonatomic) UISearchDisplayController * controller;
 
 @end
 
@@ -28,14 +33,24 @@ extern NSString * campusInfoNotificationName;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.backgroundColor = [UIColor whiteColor];
+    
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self refresh];
     }];
     [header setTitle:@"释放刷新" forState:MJRefreshStatePulling];
     [header setTitle:@"加载中 ..." forState:MJRefreshStateRefreshing];
     self.tableView.mj_header = header;
-    
     [self.tableView.mj_header beginRefreshing];
+    
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
+    //self.tableView.tableHeaderView = self.searchBar;
+    
+    self.searchBar.delegate = self;
+    
+    self.controller = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
+    self.controller.searchResultsDataSource = self;
+    self.controller.searchResultsDelegate = self;
     
     //Retrive all campus infos
     [[BBTCampusInfoManager sharedInfoManager] retriveData:@""];
@@ -95,48 +110,23 @@ extern NSString * campusInfoNotificationName;
     [[BBTCampusInfoManager sharedInfoManager] retriveData:@""];
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Information" bundle:nil];
+    BBTCampusInfoViewController *destinationVC = [[BBTCampusInfoViewController alloc] init];
+    //[sb instantiateViewControllerWithIdentifier:@"campusInfoVC"];
+    destinationVC.info = [BBTCampusInfoManager sharedInfoManager].infoArray[indexPath.row];
+    
+    [self.navigationController pushViewController:destinationVC animated:YES];
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    
+    [(BBTCampusInfoViewController *)[segue destinationViewController] setInfo:[BBTCampusInfoManager sharedInfoManager].infoArray[indexPath.row]];
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

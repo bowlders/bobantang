@@ -35,32 +35,40 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="segmentedControl" destination="MrV-FS-Zbd" id="i6E-Qc-N6m"/>
-                        <segue destination="7ra-dh-P6d" kind="show" id="X0z-j4-UJQ"/>
                         <segue destination="uCJ-Yw-TVu" kind="show" id="ZHK-32-xxM"/>
+                        <segue destination="7ra-dh-P6d" kind="show" id="B1N-b1-cvx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nje-0W-b8g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="645.5" y="192.5"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Campus Info Table View Controller-->
         <scene sceneID="yOh-AT-YeM">
             <objects>
-                <tableViewController id="uCJ-Yw-TVu" sceneMemberID="viewController">
+                <tableViewController id="uCJ-Yw-TVu" customClass="BBTCampusInfoTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9xb-xT-DDP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="Search" id="t8x-Aw-bcb">
+                            <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="uCJ-Yw-TVu" id="uad-Mr-iIW"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="infoCell" id="BIU-u0-JJX">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="136" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BIU-u0-JJX" id="ExN-3J-D8o">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="kxk-Qd-WnH" kind="show" identifier="showInfoDetail" id="wM8-8x-tcr"/>
+                                    <segue destination="kxk-Qd-WnH" kind="show" identifier="showInfoDetail" id="p4W-VU-hco"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -70,8 +78,19 @@
                         </connections>
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="oIG-wJ-rfy" id="Gw7-WL-zwn"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D8F-1y-Nce" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="oIG-wJ-rfy">
+                    <connections>
+                        <outlet property="delegate" destination="uCJ-Yw-TVu" id="v00-df-UTr"/>
+                        <outlet property="searchContentsController" destination="uCJ-Yw-TVu" id="xvP-57-fvC"/>
+                        <outlet property="searchResultsDataSource" destination="uCJ-Yw-TVu" id="jps-CN-UJP"/>
+                        <outlet property="searchResultsDelegate" destination="uCJ-Yw-TVu" id="73U-jP-mx2"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1139.5" y="599.5"/>
         </scene>
@@ -88,15 +107,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eEv-rB-vhW">
-                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <connections>
-                        <outlet property="webView" destination="eEv-rB-vhW" id="PjT-D3-S6Z"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ew-h9-aFj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -125,8 +141,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="webView" destination="NKs-vJ-DDa" id="pO1-Ll-Ddl"/>
-                        <segue destination="BvT-s3-QDP" kind="show" identifier="showPreviousArticlesList" id="0Rv-IG-xmz"/>
+                        <segue destination="BvT-s3-QDP" kind="show" identifier="showPreviousArticlesList" id="Ije-9A-1f5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TnD-D5-JVI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -141,9 +156,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" id="7sF-yX-iqo">
+                            <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="articleCell" id="eDo-cX-h5e">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="136" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eDo-cX-h5e" id="LK7-kd-0ny">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -160,8 +180,19 @@
                         </connections>
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="Oie-kr-Ee5" id="aL2-V2-vvh"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z31-7r-W9s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="Oie-kr-Ee5">
+                    <connections>
+                        <outlet property="delegate" destination="BvT-s3-QDP" id="tkl-25-z1n"/>
+                        <outlet property="searchContentsController" destination="BvT-s3-QDP" id="pBO-o1-LMr"/>
+                        <outlet property="searchResultsDataSource" destination="BvT-s3-QDP" id="Z5Y-aP-zVZ"/>
+                        <outlet property="searchResultsDelegate" destination="BvT-s3-QDP" id="rxC-nI-ZN4"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1763.5" y="-232.5"/>
         </scene>
@@ -187,6 +218,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="zsH-dg-BCF"/>
+        <segue reference="B1N-b1-cvx"/>
     </inferredMetricsTieBreakers>
 </document>

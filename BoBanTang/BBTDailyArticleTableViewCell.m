@@ -8,6 +8,7 @@
 
 #import "BBTDailyArticleTableViewCell.h"
 #import "UIFont+BBTFont.h"
+#import "BBTDailyArticle.h"
 #import <Masonry.h>
 
 @interface BBTDailyArticleTableViewCell ()
@@ -131,12 +132,12 @@
     [super updateConstraints];
 }
 
-- (void)setCellContentDictionary:(NSDictionary *)content
+- (void)setCellContentDictionary:(BBTDailyArticle *)content
 {
-    self.titleLabel.text = content[@"title"];
-    self.authorLabel.text = content[@"author"];
-    self.abstractLabel.text = content[@"article"];
-    self.dateLabel.text = content[@"date"];
+    self.titleLabel.text = content.title;
+    self.authorLabel.text = content.author;
+    self.abstractLabel.text = content.article;
+    self.dateLabel.text = content.date;
 }
 
 @end

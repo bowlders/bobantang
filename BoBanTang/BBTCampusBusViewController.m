@@ -58,9 +58,6 @@ extern NSString * campusBusNotificationName;
         [button addTarget:self
                    action:@selector(clickRefreshButton)
          forControlEvents:UIControlEventTouchUpInside];
-        button.titleLabel.numberOfLines = 1;
-        button.titleLabel.textAlignment = NSTextAlignmentRight;
-        button.titleLabel.adjustsFontSizeToFitWidth = NO;
         button.alpha = 1.0;
         button;
     });

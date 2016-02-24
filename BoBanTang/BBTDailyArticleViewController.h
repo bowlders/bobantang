@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BBTDailyArticleViewController : UIViewController
+@interface BBTDailyArticleViewController : UIViewController<UIGestureRecognizerDelegate>
 
 @end

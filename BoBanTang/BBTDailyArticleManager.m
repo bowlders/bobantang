@@ -8,6 +8,7 @@
 
 #import "BBTDailyArticleManager.h"
 #import "BBTDailyArticle.h"
+#import "BBTCollectedDailyArticle.h"
 #import <AFNetworking.h>
 
 static NSString * baseGetDailyArticleUrl = @"http://218.192.166.167/api/protype.php?table=dailySoup&method=get";
@@ -39,7 +40,7 @@ NSString * dailyArticleNotificationName = @"articleNotification";
         {
             for (int i = 0;i < [(NSArray *)responseObject count];i++)
             {
-                BBTDailyArticle *newInfo = ((NSArray *)responseObject)[i];
+                BBTDailyArticle *newInfo = [[BBTDailyArticle alloc] initWithDictionary:((NSArray *)responseObject)[i] error:nil];
                 [self.articleArray insertObject:newInfo atIndex:i];
                 //NSLog(@"%d - %@", i, [[BBTCampusInfoManager sharedInfoManager] infoArray][i]);
             }
@@ -50,19 +51,41 @@ NSString * dailyArticleNotificationName = @"articleNotification";
     }];
 }
 
+- (void)fetchCollectedArticleArrayWithGivenSimplifiedArray:(NSArray *)simplifiedArticleArray
+{
+    self.collectedArticleArray = [NSMutableArray array];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    for (int i = 0;i < [simplifiedArticleArray count];i++)
+    {
+        BBTCollectedDailyArticle *simplifiedCollectedInfo = simplifiedArticleArray[i];
+        
+        NSError *error;
+        NSDictionary *parameters = @{@"articleID" : [NSString stringWithFormat:@"%d",simplifiedCollectedInfo.articleID]};
+        NSData *data = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:&error];
+        NSString *jsonString = [[NSString alloc] initWithData:data
+                                                     encoding:NSUTF8StringEncoding];
+        NSString *stringCleanPath = [jsonString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *url = [baseGetDailyArticleUrl stringByAppendingString:stringCleanPath];
+        
+        [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+            NSLog(@"JSON: %@", responseObject);
+            if (responseObject)
+            {
+                BBTDailyArticle *integratedArticle = [[BBTDailyArticle alloc] initWithDictionary:responseObject error:nil];
+                [self.collectedArticleArray addObject:integratedArticle];
+            }
+        } failure:^(NSURLSessionTask *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+        }];
+    }
+}
+
 - (void)pushDailyArticleNotification
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:dailyArticleNotificationName object:self];
-}
-
-- (void)addReadNumber:(NSUInteger)infoIndex
-{
-
-}
-
-- (void)addCollectionNumber:(NSUInteger)infoIndex
-{
-
 }
 
 @end

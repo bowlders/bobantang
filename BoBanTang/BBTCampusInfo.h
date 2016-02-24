@@ -10,14 +10,14 @@
 
 @interface BBTCampusInfo : JSONModel
 
-@property (assign, nonatomic) NSUInteger ID;                                //Info ID
+@property (assign, nonatomic) int        ID;                                //Info ID
 @property (strong, nonatomic) NSString * date;                              //Info date
 @property (strong, nonatomic) NSString * title;                             //Info title
 @property (strong, nonatomic) NSString * author;                            //Info author
 @property (strong, nonatomic) NSString * article;                           //Info content
 @property (strong, nonatomic) NSString * summary;                           //Info abstract
 @property (strong, nonatomic) NSString * picture;                           //Image url
-@property (assign, nonatomic) NSUInteger readNum;                           //Read Number
-@property (assign, nonatomic) NSUInteger collectionNum;                     //Collection Number
+@property (assign, nonatomic) int        readNum;                           //Read Number
+@property (assign, nonatomic) int        collectionNum;                     //Collection Number
 
 @end

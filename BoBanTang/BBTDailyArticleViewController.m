@@ -11,7 +11,7 @@
 
 @interface BBTDailyArticleViewController ()
 
-@property (strong, nonatomic) IBOutlet UIWebView       * webView;
+@property (strong, nonatomic) UIWebView                * webView;
 @property (strong, nonatomic) UISwipeGestureRecognizer * recognizer;
 
 @end

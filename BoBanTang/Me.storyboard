@@ -390,6 +390,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="addNewImage" width="60" height="61"/>
+        <image name="addNewImage" width="30" height="30"/>
     </resources>
 </document>

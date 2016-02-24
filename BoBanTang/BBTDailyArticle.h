@@ -10,13 +10,13 @@
 
 @interface BBTDailyArticle : JSONModel
 
-@property (assign, nonatomic) NSUInteger ID;
+@property (assign, nonatomic) int        ID;
 @property (strong, nonatomic) NSString * date;
 @property (strong, nonatomic) NSString * title;
 @property (strong, nonatomic) NSString * author;
 @property (strong, nonatomic) NSString * article;
 @property (strong, nonatomic) NSString * authorIntroduce;
-@property (assign, nonatomic) NSUInteger readNum;
-@property (assign, nonatomic) NSUInteger collectionNum;
+@property (assign, nonatomic) int        readNum;
+@property (assign, nonatomic) int        collectionNum;
 
 @end

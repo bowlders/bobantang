@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BBTCampusInfoTableViewController : UITableViewController
+@interface BBTCampusInfoTableViewController : UITableViewController<UISearchBarDelegate>
 
 @end

@@ -16,7 +16,7 @@
 
 @interface BBTMeViewController ()
 
-@property (strong, nonatomic) UIView      * containerView;
+@property (strong, nonatomic) UIImageView * containerView;
 
 @property (strong, nonatomic) UIButton    * loginButton;
 @property (strong, nonatomic) UIImageView * avatarImageView;
@@ -43,9 +43,9 @@ extern NSString * kUserAuthentificationFinishNotifName;
     self.meTableView.scrollEnabled = NO;
     
     //Lean Cloud Settings
-    AVObject *testObject = [AVObject objectWithClassName:@"TestObject"];
-    [testObject setObject:@"bar" forKey:@"foo"];
-    [testObject save];
+    //AVObject *testObject = [AVObject objectWithClassName:@"TestObject"];
+    //[testObject setObject:@"bar" forKey:@"foo"];
+    //[testObject save];
     
     CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
@@ -59,11 +59,12 @@ extern NSString * kUserAuthentificationFinishNotifName;
     
     //Initialization
     self.containerView = ({
-        UIView *view = [UIView new];
-        view.translatesAutoresizingMaskIntoConstraints = NO;
-        view.backgroundColor = [UIColor BBTAppGlobalBlue];
-        view.alpha = 1.0;
-        view;
+        UIImageView *imageView = [UIImageView new];
+        imageView.translatesAutoresizingMaskIntoConstraints = NO;
+        imageView.contentMode = UIViewContentModeScaleToFill;
+        imageView.image = [UIImage imageNamed:@"backGroundImage"];
+        imageView.alpha = 1.0;
+        imageView;
     });
     
     self.loginButton = ({
@@ -76,6 +77,7 @@ extern NSString * kUserAuthentificationFinishNotifName;
         button.titleLabel.numberOfLines = 1;
         button.titleLabel.textAlignment = NSTextAlignmentRight;
         button.titleLabel.adjustsFontSizeToFitWidth = NO;
+        button.titleLabel.textColor = [UIColor whiteColor];
         button.alpha = 1.0;
         button;
     });
@@ -138,8 +140,8 @@ extern NSString * kUserAuthentificationFinishNotifName;
         make.centerX.equalTo(self.containerView.mas_centerX);
         make.centerY.equalTo(self.containerView.mas_centerY).offset(avatarImageCenterYOffSet);
     }];
-    self.avatarImageView.layer.cornerRadius = avatarImageViewRadius;    //Create a circular avatar imageView.
-    self.avatarImageView.layer.masksToBounds = YES;
+    //self.avatarImageView.layer.cornerRadius = avatarImageViewRadius;    //Create a circular avatar imageView.
+    //self.avatarImageView.layer.masksToBounds = YES;
     
     [self.loginButton mas_makeConstraints:^(MASConstraintMaker *make){
         make.top.equalTo(self.avatarImageView.mas_bottom).offset(verticalInnerSpacing);
@@ -301,14 +303,14 @@ extern NSString * kUserAuthentificationFinishNotifName;
         {
             avatarURL = [NSURL URLWithString:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.userLogo];
         }
-        [self.avatarImageView sd_setImageWithURL:avatarURL placeholderImage:[UIImage imageNamed:@"BoBanTang"]];
+        [self.avatarImageView sd_setImageWithURL:avatarURL placeholderImage:[UIImage imageNamed:@"defaultAvatar"]];
     }
     else
     {
         self.loginButton.hidden = NO;
         self.nameLabel.hidden = YES;
         self.studentNumberLabel.hidden = YES;
-        self.avatarImageView.image = [UIImage imageNamed:@"BoBanTang"];
+        self.avatarImageView.image = [UIImage imageNamed:@"defaultAvatar"];
     }
 }
 

@@ -12,10 +12,10 @@
 @interface BBTCampusInfoManager : NSObject
 
 @property NSMutableArray * infoArray;                       //Stores a list of infos
+@property NSMutableArray * collectedInfoArray;              //This array stores info with all properties
 
 + (instancetype)sharedInfoManager;                          //Singleton method
-- (void)retriveData : (NSString *)appendingUrl;
-- (void)addReadNumber:(NSUInteger)infoIndex;                //Add an info's read number by 1
-- (void)addCollectionNumber:(NSUInteger)infoIndex;          //Add an info's collection number by 1
+- (void)retriveData:(NSString *)appendingUrl;
+- (void)fetchCollectedInfoArrayWithGivenSimplifiedArray:(NSArray *)simplifiedInfoArray;
 
 @end
