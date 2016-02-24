@@ -99,8 +99,9 @@
 {
     //1、创建分享参数
     NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-    [shareParams SSDKSetupShareParamsByText:@""
-                                 images:nil
+    [shareParams SSDKEnableUseClientShare];
+    [shareParams SSDKSetupShareParamsByText:self.info.article
+                                 images:[UIImage imageNamed:@"BoBanTang"]
                                     url:[NSURL URLWithString:self.info.article]
                                   title:self.info.title
                                    type:SSDKContentTypeAuto];
