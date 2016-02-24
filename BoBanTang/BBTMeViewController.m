@@ -64,6 +64,7 @@ extern NSString * kUserAuthentificationFinishNotifName;
         imageView.contentMode = UIViewContentModeScaleToFill;
         imageView.image = [UIImage imageNamed:@"backGroundImage"];
         imageView.alpha = 1.0;
+        imageView.userInteractionEnabled = YES;
         imageView;
     });
     
