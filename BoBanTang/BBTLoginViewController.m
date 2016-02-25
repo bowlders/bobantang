@@ -217,10 +217,10 @@ extern NSString * kUserAuthentificationFinishNotifName;
         HUD.indicatorView = [[JGProgressHUDSuccessIndicatorView alloc] init];
         HUD.square = YES;
         [HUD showInView:self.view];
-        [HUD dismissAfterDelay:3.0];
+        [HUD dismissAfterDelay:2.0];
         
         //Dismiss current VC 0.5 sec after HUD disappears.
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [self dismissViewControllerAnimated:YES completion:nil];
         });
     }
@@ -234,7 +234,7 @@ extern NSString * kUserAuthentificationFinishNotifName;
         HUD.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init];
         HUD.square = YES;
         [HUD showInView:self.view];
-        [HUD dismissAfterDelay:3.0];
+        [HUD dismissAfterDelay:2.0];
     }
 }
 

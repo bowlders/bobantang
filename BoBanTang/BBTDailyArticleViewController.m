@@ -12,6 +12,7 @@
 #import <Masonry.h>
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
+#import <JGProgressHUD.h>
 
 @interface BBTDailyArticleViewController ()
 
@@ -107,22 +108,36 @@
 
 - (void)share
 {
-    /*
     //1、创建分享参数
     NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+    [shareParams SSDKEnableUseClientShare];
     [shareParams SSDKSetupShareParamsByText:@""
-                                     images:nil
-                                        url:[NSURL URLWithString:self.info.article]
-                                      title:self.info.title
+                                     images:[UIImage imageNamed:@"BoBanTang"]
+                                        url:[NSURL URLWithString:self.article.article]
+                                      title:self.article.title
                                        type:SSDKContentTypeAuto];
+    
+    //定制邮件的分享内容
+    [shareParams SSDKSetupMailParamsByText:self.article.article title:self.article.title images:nil attachments:nil recipients:nil ccRecipients:nil bccRecipients:nil type:SSDKContentTypeAuto];
+    
     //2、分享（可以弹出我们的分享菜单和编辑界面）
+    SSUIShareActionSheetController *sheet =
     [ShareSDK showShareActionSheet:nil
                              items:nil
                        shareParams:shareParams
                onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
                    
-                   switch (state) {
-                       case SSDKResponseStateSuccess:
+                   if (state == SSDKResponseStateSuccess)
+                   {
+                       if (platformType == SSDKPlatformTypeCopy)
+                       {
+                           JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+                           HUD.textLabel.text = @"已复制链接到剪贴板";
+                           HUD.indicatorView = nil;
+                           [HUD showInView:self.view];
+                           [HUD dismissAfterDelay:2.0];
+                       }
+                       else
                        {
                            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功"
                                                                                message:nil
@@ -130,24 +145,22 @@
                                                                      cancelButtonTitle:@"确定"
                                                                      otherButtonTitles:nil];
                            [alertView show];
-                           break;
                        }
-                       case SSDKResponseStateFail:
-                       {
-                           UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
-                                                                           message:[NSString stringWithFormat:@"%@",error]
-                                                                          delegate:nil
-                                                                 cancelButtonTitle:@"OK"
-                                                                 otherButtonTitles:nil, nil];
-                           [alert show];
-                           break;
-                       }
-                       default:
-                           break;
+                   }
+                   else if (state == SSDKResponseStateFail)
+                   {
+                       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+                                                                       message:[NSString stringWithFormat:@"%@",error]
+                                                                      delegate:nil
+                                                             cancelButtonTitle:@"OK"
+                                                             otherButtonTitles:nil, nil];
+                       [alert show];
                    }
                }
      ];
-     */
+    
+    [sheet.directSharePlatforms addObject:@(SSDKPlatformTypeCopy)];
+    [sheet.directSharePlatforms addObject:@(SSDKPlatformTypeMail)];
 }
 
 - (void)collect
