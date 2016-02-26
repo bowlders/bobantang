@@ -21,7 +21,7 @@
 #import "WXApi.h"
 
 //新浪微博SDK头文件
-#import "WeiboSDK.h"
+//#import "WeiboSDK.h"
 
 @interface BBTAppDelegate ()
 

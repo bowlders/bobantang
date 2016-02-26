@@ -61,17 +61,16 @@ extern NSString * dailyArticleNotificationName;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
-    CGFloat screenHeight = applicationFrame.size.height;
-    return screenHeight / 6.0;
-    */
     NSArray *articleArray = [BBTDailyArticleManager sharedArticleManager].articleArray;
     
     return [tableView fd_heightForCellWithIdentifier:@"articleCell" configuration:^(BBTDailyArticleTableViewCell *cell){
         [cell setCellContentDictionary:articleArray[indexPath.row]];
     }];
+}
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.01f;
 }
 
 #pragma mark - Table view data source

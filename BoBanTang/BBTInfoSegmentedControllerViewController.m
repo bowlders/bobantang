@@ -10,7 +10,6 @@
 #import "BBTCampusInfoTableViewController.h"
 #import "BBTDailyArticleViewController.h"
 #import "UIColor+BBTColor.h"
-#import <HMSegmentedControl.h>
 #import <Masonry.h>
 
 @interface BBTInfoSegmentedControllerViewController ()
