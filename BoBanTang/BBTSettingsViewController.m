@@ -10,6 +10,7 @@
 #import "BBTCurrentUserManager.h"
 #import <JNKeychain.h>
 #import <JGProgressHUD.h>
+#import <SDImageCache.h>
 
 @interface BBTSettingsViewController ()
 
@@ -77,7 +78,7 @@
     }
     else if (indexPath.section == 2)
     {
-        [self clearCache];
+        [self showClearCacheAlertView];
     }
     else if (indexPath.section == 3)
     {
@@ -91,9 +92,35 @@
     //TODO: Download 2.5D map here.
 }
 
+- (void)showClearCacheAlertView
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"确定清空本地缓存数据？"
+                                                        message:@"本地缓存数据包括缓存的网络图片"
+                                                       delegate:self
+                                              cancelButtonTitle:@"取消"
+                                              otherButtonTitles:@"确定", nil];
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        [self clearCache];
+    }
+}
+
 - (void)clearCache
 {
-    //TODO: Clear cache here.
+    [[SDImageCache sharedImageCache] clearDisk];
+    [[SDImageCache sharedImageCache] clearMemory];
+    
+    //show hud
+    JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    HUD.indicatorView = nil;
+    HUD.textLabel.text = @"缓存清理成功";
+    [HUD showInView:self.view];
+    [HUD dismissAfterDelay:2.0];
 }
 
 - (void)logOut
@@ -106,7 +133,7 @@
     HUD.indicatorView = nil;
     HUD.textLabel.text = @"您已退出登录";
     [HUD showInView:self.view];
-    [HUD dismissAfterDelay:3.0];
+    [HUD dismissAfterDelay:2.0];
     
     [self disableCellInteraction];
 }

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BBTSettingsViewController : UITableViewController
+@interface BBTSettingsViewController : UITableViewController<UIAlertViewDelegate>
 
 @end
