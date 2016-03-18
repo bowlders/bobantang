@@ -150,31 +150,34 @@
 
 - (void)initCellContent
 {
+    typeof(self) __weak weakself = self;
     [UIView animateWithDuration:1.0 delay:0
                         options:UIViewAnimationOptionCurveLinear
                      animations:^(void){
-                         self.leftBusImageView.alpha = 0.0;
-                         self.leftCircleImageView.alpha = 1.0;
+                         weakself.leftBusImageView.alpha = 0.0;
+                         weakself.leftCircleImageView.alpha = 1.0;
                      }
                      completion:nil];
     [UIView animateWithDuration:1.0 delay:0
                         options:UIViewAnimationOptionCurveLinear
                      animations:^(void){
-                         self.rightBusImageView.alpha = 0.0;
-                         self.rightCircleImageView.alpha = 1.0;
+                         weakself.rightBusImageView.alpha = 0.0;
+                         weakself.rightCircleImageView.alpha = 1.0;
                          }
                      completion:nil];
 }
 
 - (void)changeCellImageAtSide:(BOOL)side
 {
+    typeof(self) __weak weakself = self;
+
     if (!side)                          //change left image (to bus image).
     {
         [UIView animateWithDuration:1.0 delay:0
                             options:UIViewAnimationOptionCurveLinear
                          animations:^(void){
-                             self.leftBusImageView.alpha = 1.0;
-                             self.leftCircleImageView.alpha = 0.0;
+                             weakself.leftBusImageView.alpha = 1.0;
+                             weakself.leftCircleImageView.alpha = 0.0;
                          }
                          completion:nil];
     }
@@ -183,8 +186,8 @@
         [UIView animateWithDuration:1.0 delay:0
                             options:UIViewAnimationOptionCurveLinear
                          animations:^(void){
-                             self.rightBusImageView.alpha = 1.0;
-                             self.rightCircleImageView.alpha = 0.0;
+                             weakself.rightBusImageView.alpha = 1.0;
+                             weakself.rightCircleImageView.alpha = 0.0;
                          }
                          completion:nil];
     }

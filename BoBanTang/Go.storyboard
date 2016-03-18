@@ -20,7 +20,7 @@
                     <navigationItem key="navigationItem" id="58T-gc-WfN">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="zsr-aP-Epm">
-                            <rect key="frame" x="112.5" y="7" width="150" height="30"/>
+                            <rect key="frame" x="113" y="7" width="150" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="校巴"/>
@@ -84,7 +84,7 @@
         <scene sceneID="o2V-7b-LU1">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9Ku-3b-FdS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="出行" id="NVC-Oj-xbH" userLabel="出行"/>
+                    <tabBarItem key="tabBarItem" title="出行" image="Go" selectedImage="GoSelected" id="NVC-Oj-xbH" userLabel="出行"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -102,4 +102,8 @@
             <point key="canvasLocation" x="-328" y="-164"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Go" width="24" height="24"/>
+        <image name="GoSelected" width="24" height="24"/>
+    </resources>
 </document>

@@ -8,6 +8,9 @@
 
 #import "BBTCampusInfoViewController.h"
 #import "BBTCampusInfo.h"
+#import "BBTCurrentUserManager.h"
+#import "BBTLoginViewController.h"
+#import "BBTCollectedCampusInfoManager.h"
 #import <Masonry.h>
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
@@ -17,11 +20,23 @@
 
 @property (strong, nonatomic) UIWebView * webView;
 @property (strong, nonatomic) UIButton  * shareButton;
-@property (strong, nonatomic) UIButton  * collectButton;
+@property (strong, nonatomic) UIButton  * collectButton;                                //Tag 1 for solid star, 0 for hollow star
 
 @end
 
 @implementation BBTCampusInfoViewController
+
+extern NSString * kUserAuthentificationFinishNotifName;
+
+extern NSString * insertNewCollectedInfoSucceedNotifName;
+extern NSString * insertNewCollectedInfoFailNotifName;
+extern NSString * deleteCollectedInfoSucceedNotifName;
+extern NSString * deleteCollectedInfoFailNotifName;
+extern NSString * fetchCollectedInfoSucceedNotifName;
+extern NSString * fetchCollectedInfoFailNotifName;
+extern NSString * checkCurrentUserHasCollectedGivenInfoNotifName;
+extern NSString * checkCurrentUserHasNotCollectedGivenInfoNotifName;
+extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -30,6 +45,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self addObserver];
     
     self.webView = ({
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
@@ -53,7 +70,7 @@
         button.translatesAutoresizingMaskIntoConstraints = NO;
         [button setImage:[UIImage imageNamed:@"hollowStar"] forState:UIControlStateNormal];
         [button addTarget:self
-                   action:@selector(collect)
+                   action:@selector(collectButtonIsTapped)
          forControlEvents:UIControlEventTouchUpInside];
         button.alpha = 1.0;
         button;
@@ -94,6 +111,59 @@
     NSURL *url = [NSURL URLWithString:cleanedUrlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
+}
+
+- (void)addObserver
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveUserAuthenticationFinishNotification)
+                                                 name:kUserAuthentificationFinishNotifName
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveInsertNewCollectedInfoSucceedNotification)
+                                                 name:insertNewCollectedInfoSucceedNotifName
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveInsertNewCollectedInfoFailNotification)
+                                                 name:insertNewCollectedInfoFailNotifName
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveDeleteCollectedInfoSucceedNotification)
+                                                 name:deleteCollectedInfoSucceedNotifName
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveDeleteCollectedInfoFailNotification)
+                                                 name:deleteCollectedInfoFailNotifName
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveFetchCollectedInfoSucceedNotification)
+                                                 name:fetchCollectedInfoSucceedNotifName
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveFetchCollectedInfoFailNotification)
+                                                 name:fetchCollectedInfoFailNotifName
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveCurrentUserHasCollectedGivenInfoNotification)
+                                                 name:checkCurrentUserHasCollectedGivenInfoNotifName
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveCurrentUserHasNotCollectedGivenInfoNotification)
+                                                 name:checkCurrentUserHasNotCollectedGivenInfoNotifName
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveCheckIfHasCollectedGivenInfoFailNotification)
+                                                 name:checkIfHasCollectedGivenInfoFailNotifName
+                                               object:nil];
 }
 
 - (void)share
@@ -153,14 +223,113 @@
     [sheet.directSharePlatforms addObject:@(SSDKPlatformTypeMail)];
 }
 
-- (void)collect
+- (void)collectButtonIsTapped
 {
+    if (![BBTCurrentUserManager sharedCurrentUserManager].userIsActive)                                         //User must login first
+    {
+        BBTLoginViewController *loginVC = [[BBTLoginViewController alloc] init];
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self presentViewController:navigationController animated:YES completion:nil];
+    }
+    else                                                                                                        //In this situation, the VC must have received check result(check whether current user has collected this info)
+    {
+        if (self.collectButton.tag == 0)                                                                        //Current user has not collected this info
+        {
+            BBTCollectedCampusInfoManager *manager = [[BBTCollectedCampusInfoManager alloc] init];
+            [manager currentUserCollectInfoWithArticleID:self.info.ID];
+        }
+        else                                                                                                    //Current user has collected this info
+        {
+            BBTCollectedCampusInfoManager *manager = [[BBTCollectedCampusInfoManager alloc] init];
+            [manager currentUserCancelCollectInfoWithArticleID:self.info.ID];
+        }
+    }
+}
 
+- (void)didReceiveUserAuthenticationFinishNotification
+{
+    [self updateCollectButtonStatus];
 }
 
 - (void)updateCollectButtonStatus
 {
-    
+    if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
+    {
+        self.collectButton.enabled = NO;
+        self.collectButton.alpha = 0.9;
+        
+        BBTCollectedCampusInfoManager *manager = [[BBTCollectedCampusInfoManager alloc] init];
+        [manager checkIfCurrentUserHasCollectedArticleWithArticleID:self.info.ID];
+    }
+}
+
+- (void)didReceiveInsertNewCollectedInfoSucceedNotification
+{
+    //Show solid star
+    self.collectButton.enabled = YES;
+    self.collectButton.alpha = 1.0;
+    [self.collectButton setImage:[UIImage imageNamed:@"solidStar"] forState:UIControlStateNormal];
+    self.collectButton.tag = 1;
+}
+
+- (void)didReceiveInsertNewCollectedInfoFailNotification
+{
+    //Remain hollow star
+    self.collectButton.enabled = YES;
+    self.collectButton.alpha = 1.0;
+    [self.collectButton setImage:[UIImage imageNamed:@"hollowStar"] forState:UIControlStateNormal];
+    self.collectButton.tag = 0;
+}
+
+- (void)didReceiveDeleteCollectedInfoSucceedNotification
+{
+    //Show hollow star
+    self.collectButton.enabled = YES;
+    self.collectButton.alpha = 1.0;
+    [self.collectButton setImage:[UIImage imageNamed:@"hollowStar"] forState:UIControlStateNormal];
+    self.collectButton.tag = 0;
+}
+
+- (void)didReceiveDeleteCollectedInfoFailNotification
+{
+    //Remain solid star
+    self.collectButton.enabled = YES;
+    self.collectButton.alpha = 1.0;
+    [self.collectButton setImage:[UIImage imageNamed:@"solidStar"] forState:UIControlStateNormal];
+    self.collectButton.tag = 1;
+}
+
+- (void)didReceiveFetchCollectedInfoSucceedNotification
+{
+
+}
+
+- (void)didReceiveFetchCollectedInfoFailNotification
+{
+
+}
+
+- (void)didReceiveCurrentUserHasCollectedGivenInfoNotification
+{
+    //Enable cancel collect
+    self.collectButton.enabled = YES;
+    self.collectButton.alpha = 1.0;
+    [self.collectButton setImage:[UIImage imageNamed:@"solidStar"] forState:UIControlStateNormal];
+    self.collectButton.tag = 1;
+}
+
+- (void)didReceiveCurrentUserHasNotCollectedGivenInfoNotification
+{
+    //Enable collect
+    self.collectButton.enabled = YES;
+    self.collectButton.alpha = 1.0;
+    [self.collectButton setImage:[UIImage imageNamed:@"hollowStar"] forState:UIControlStateNormal];
+    self.collectButton.tag = 0;
+}
+
+- (void)didReceiveCheckIfHasCollectedGivenInfoFailNotification
+{
+    //Do nothing
 }
 
 /*

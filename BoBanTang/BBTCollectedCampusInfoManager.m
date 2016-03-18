@@ -29,6 +29,35 @@ NSString * checkIfHasCollectedGivenInfoFailNotifName = @"checkInfoFail";
 
 - (void)currentUserCollectInfoWithArticleID:(int)articleID
 {
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    ((AFHTTPResponseSerializer *)manager.responseSerializer).acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    NSError *error;
+    NSDictionary *parameters = @{@"account" : [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account,
+                                 @"articleID" : [NSString stringWithFormat:@"%d",articleID]};
+    
+    NSData *data = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:&error];
+    NSString *jsonString = [[NSString alloc] initWithData:data
+                                                 encoding:NSUTF8StringEncoding];
+    NSString *stringCleanPath = [jsonString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlString = [insertNewCollectedInfoBaseURL stringByAppendingString:stringCleanPath];
+    
+    NSURL *URL = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+            [self postCollectedCampusInfoNotifOfNotifName:insertNewCollectedInfoFailNotifName];
+        } else {
+            NSLog(@"%@ %@", response, responseObject);
+            [self postCollectedCampusInfoNotifOfNotifName:insertNewCollectedInfoSucceedNotifName];
+        }
+    }];
+    [dataTask resume];
+    
+    /*
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
@@ -49,6 +78,7 @@ NSString * checkIfHasCollectedGivenInfoFailNotifName = @"checkInfoFail";
         NSLog(@"Error: %@", error);
         [self postCollectedCampusInfoNotifOfNotifName:insertNewCollectedInfoFailNotifName];
     }];
+     */
 }
 
 - (void)currentUserCancelCollectInfoWithArticleID:(int)articleID

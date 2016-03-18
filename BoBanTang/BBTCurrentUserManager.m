@@ -107,11 +107,10 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
     NSData *data = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:&error];
     NSString *jsonString = [[NSString alloc] initWithData:data
                                                  encoding:NSUTF8StringEncoding];
-    NSLog(@"json - %@", jsonString);
+
     NSString *stringCleanPath = [jsonString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *url = [insertNewUserBaseURL stringByAppendingString:stringCleanPath];
-    NSLog(@"url - %@", url);
-    
+
     [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
         //[self fetchCurrentUserData];

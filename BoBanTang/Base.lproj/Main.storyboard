@@ -29,7 +29,7 @@
         <scene sceneID="tRo-cp-O0y">
             <objects>
                 <viewControllerPlaceholder storyboardName="Go" id="Qk4-tc-VNY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="n7r-Zx-FZH"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="Go" selectedImage="GoSelected" id="n7r-Zx-FZH"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DF2-ax-LLh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -39,7 +39,7 @@
         <scene sceneID="TD1-Ec-6qn">
             <objects>
                 <viewControllerPlaceholder storyboardName="Information" id="Ox7-m2-SmX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="BcN-aZ-lNT"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="Information" selectedImage="InformationSelected" id="BcN-aZ-lNT"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xyw-g8-flO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -49,7 +49,7 @@
         <scene sceneID="iqS-2b-Lsy">
             <objects>
                 <viewControllerPlaceholder storyboardName="Tools" id="DfL-p5-W7r" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="S7d-8T-OI9"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="Tools" selectedImage="ToolsSelected" id="S7d-8T-OI9"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="axC-Mc-YOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -59,11 +59,21 @@
         <scene sceneID="mHh-jU-MYN">
             <objects>
                 <viewControllerPlaceholder storyboardName="Me" id="Wd4-Me-RKu" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="0II-Ju-mqv"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="Me" selectedImage="MeSelected" id="0II-Ju-mqv"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PNx-7j-xma" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="332.5" y="522"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Go" width="24" height="24"/>
+        <image name="GoSelected" width="24" height="24"/>
+        <image name="Information" width="24" height="24"/>
+        <image name="InformationSelected" width="24" height="24"/>
+        <image name="Me" width="24" height="24"/>
+        <image name="MeSelected" width="24" height="24"/>
+        <image name="Tools" width="24" height="24"/>
+        <image name="ToolsSelected" width="24" height="24"/>
+    </resources>
 </document>

@@ -192,6 +192,7 @@ extern NSString * campusBusNotificationName;
     static NSString *cellIdentifier = @"campusBusCell";
     
     //Here I create a new cell every time in order to fix a bug in view, often you need to reuse a cell.
+    
     BBTCampusBusTableViewCell *cell = [[BBTCampusBusTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     
     [cell initCellContent:[BBTCampusBusManager sharedCampusBusManager].stationNameArray[indexPath.row]];

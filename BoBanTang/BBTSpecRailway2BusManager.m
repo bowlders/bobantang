@@ -13,8 +13,8 @@
 
 @implementation BBTSpecRailway2BusManager
 
-static NSString * directionSouthURLString = @"http://api.100steps.net/bus.php?dir=0";
-static NSString * directionNorthURLString = @"http://api.100steps.net/bus.php?dir=1";
+static NSString * directionSouthURLString = @"http://bbtwechat1.100steps.net/api/LineTwo.php?dir=0";
+static NSString * directionNorthURLString = @"http://bbtwechat1.100steps.net/api/LineTwo.php?dir=1";
 NSString * busDataNotificationName = @"specBusNotification";
 static float dataRequestInterval = 5.0;                                                     //The time interval between two data requests
 
@@ -95,7 +95,7 @@ static float dataRequestInterval = 5.0;                                         
     //Retrive buses whose direction is south
     AFHTTPSessionManager *southManager = [AFHTTPSessionManager manager];
     southManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [southManager GET:directionSouthURLString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+    [southManager POST:directionSouthURLString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         //NSLog(@"South Buses: %@", responseObject);
         if ([responseObject currentSpecRailwayBusArray])
         {
