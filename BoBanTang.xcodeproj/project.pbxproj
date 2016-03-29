@@ -83,6 +83,7 @@
 		A947D9BD1BD8DC34000F071B /* BBTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A11BD8DC34000F071B /* BBTSettingsViewController.m */; };
 		A947D9C11BD8DC34000F071B /* UIColor+BBTColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A51BD8DC34000F071B /* UIColor+BBTColor.m */; };
 		A947D9C61BD8E03A000F071B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D91F1BD8DADA000F071B /* main.m */; };
+		AF53C8301CAACC0E00D84B9D /* BBTScoresLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF53C82F1CAACC0E00D84B9D /* BBTScoresLoginViewController.m */; };
 		FC1770B61C5F4FCD00BF07AC /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1770B51C5F4FCD00BF07AC /* PopoverView.m */; };
 		FC1770BC1C5F505300BF07AC /* BBTLAF.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1770B91C5F505300BF07AC /* BBTLAF.m */; };
 		FC1770BD1C5F505300BF07AC /* BBTLAFManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1770BB1C5F505300BF07AC /* BBTLAFManager.m */; };
@@ -270,6 +271,8 @@
 		A947D9A11BD8DC34000F071B /* BBTSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSettingsViewController.m; sourceTree = "<group>"; };
 		A947D9A51BD8DC34000F071B /* UIColor+BBTColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BBTColor.m"; sourceTree = "<group>"; };
 		ABA2627D2286FFB656F82101 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF53C82E1CAACC0E00D84B9D /* BBTScoresLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTScoresLoginViewController.h; sourceTree = "<group>"; };
+		AF53C82F1CAACC0E00D84B9D /* BBTScoresLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTScoresLoginViewController.m; sourceTree = "<group>"; };
 		DAAC1D9BE8366224C1757CE5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FC1770B41C5F4FCD00BF07AC /* PopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverView.h; sourceTree = "<group>"; };
 		FC1770B51C5F4FCD00BF07AC /* PopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverView.m; sourceTree = "<group>"; };
@@ -714,6 +717,8 @@
 			children = (
 				FC351F201C73683D0055FD41 /* BBTScoresTableViewController.h */,
 				FC351F211C73683D0055FD41 /* BBTScoresTableViewController.m */,
+				AF53C82E1CAACC0E00D84B9D /* BBTScoresLoginViewController.h */,
+				AF53C82F1CAACC0E00D84B9D /* BBTScoresLoginViewController.m */,
 			);
 			name = ScoreInquire;
 			sourceTree = "<group>";
@@ -1291,6 +1296,7 @@
 				3951EFFD1C7099B000076AD4 /* BBTSpecialRailwayContainerViewController.m in Sources */,
 				395B52961C7C8438008FD949 /* BBTCollectedCampusInfo.m in Sources */,
 				FCE6094E1C76324E008C331D /* BBTItemFilterSettingsViewController.m in Sources */,
+				AF53C8301CAACC0E00D84B9D /* BBTScoresLoginViewController.m in Sources */,
 				FCD0A2941C023B930024D78F /* BBTHudView.m in Sources */,
 				FC69A3FE1C038340000EF949 /* BBTLectureRoomsResultTableViewController.m in Sources */,
 				3951EFFA1C70997600076AD4 /* BBTNorthSpecialRailwayTwoViewController.m in Sources */,
