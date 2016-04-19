@@ -38,6 +38,7 @@ extern NSString * kUserAuthentificationFinishNotifName;
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationItem.title = @"请登录教务系统";
     self.tableView.scrollEnabled = NO;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
