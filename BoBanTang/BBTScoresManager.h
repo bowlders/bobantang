@@ -16,6 +16,4 @@
 @property (strong, nonatomic) NSNumber *errorType;
 @property NSMutableArray *scoresArray;
 
-
-
 @end

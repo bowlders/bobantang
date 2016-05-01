@@ -44,7 +44,7 @@ extern NSString *kFailGetEmptyRoomsNotificaionName;
     _selectedPeriod = [[NSArray alloc] initWithArray:self.filterConditions.period];
     
     self.tableView.scrollEnabled = NO;
-    [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     
     [self retriveRoomsWithConditions:self.filterConditions];
 }
@@ -78,26 +78,27 @@ extern NSString *kFailGetEmptyRoomsNotificaionName;
     NSLog(@"Rooms: %lu", (unsigned long)[test count]);
     [self.tableView reloadData];
     
-    [MBProgressHUD hideAllHUDsForView:self.tableView animated:YES];
+    [MBProgressHUD hideAllHUDsForView:self.navigationController.view animated:YES];
+    self.tableView.scrollEnabled = YES;
     JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    HUD.interactionType = 0;
     HUD.textLabel.text = @"查询成功";
     HUD.indicatorView = [[JGProgressHUDSuccessIndicatorView alloc] init];
     HUD.square = YES;
-    [HUD showInView:self.tableView];
+    [HUD showInView:self.navigationController.view];
     [HUD dismissAfterDelay:2.0 animated:YES];
-    self.tableView.scrollEnabled = YES;
 }
 
 - (void)failGetRoomsNotification
 {
     NSLog(@"Fail to Get Rooms");
     
-    [MBProgressHUD hideAllHUDsForView:self.tableView animated:YES];
+    [MBProgressHUD hideAllHUDsForView:self.navigationController.view animated:YES];
     JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     HUD.textLabel.text = @"查询失败";
     HUD.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init];
     HUD.square = YES;
-    [HUD showInView:self.tableView];
+    [HUD showInView:self.navigationController.view];
     [HUD dismissAfterDelay:2.0 animated:YES];
     self.tableView.scrollEnabled = YES;
 }
@@ -195,7 +196,7 @@ extern NSString *kFailGetEmptyRoomsNotificaionName;
                                                                                doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                                                                    self.filterConditions.buildings = selectedValue;
                                                                                    [self retriveRoomsWithConditions:self.filterConditions];
-                                                                                   [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
+                                                                                   [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
                                                                                    self.tableView.scrollEnabled = NO;
                                                                                }
                                                                              cancelBlock:^(ActionSheetStringPicker *picker) {

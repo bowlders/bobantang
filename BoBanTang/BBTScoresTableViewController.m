@@ -45,7 +45,7 @@ extern NSString * kFailGetNotificaionName;
     
     [[BBTScoresManager sharedScoresManager] retriveScores:self.userInfo WithConditions:nil];
     self.tableView.scrollEnabled = NO;
-    [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,14 +65,15 @@ extern NSString * kFailGetNotificaionName;
     self.scoresArray = [[NSArray alloc] initWithArray:[BBTScoresManager sharedScoresManager].scoresArray];
     [self.tableView reloadData];
     
-    [MBProgressHUD hideAllHUDsForView:self.tableView animated:YES];
+    [MBProgressHUD hideAllHUDsForView:self.navigationController.view animated:YES];
+    self.tableView.scrollEnabled = YES;
     JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    HUD.interactionType = 0;
     HUD.textLabel.text = @"查询成功";
     HUD.indicatorView = [[JGProgressHUDSuccessIndicatorView alloc] init];
     HUD.square = YES;
-    [HUD showInView:self.tableView];
+    [HUD showInView:self.navigationController.view];
     [HUD dismissAfterDelay:2.0 animated:YES];
-    self.tableView.scrollEnabled = YES;
 }
 
 - (void)failGetScoresNotification
@@ -142,7 +143,7 @@ extern NSString * kFailGetNotificaionName;
                                                                                     };
                                                        [[BBTScoresManager sharedScoresManager] retriveScores:self.userInfo WithConditions:conditions];
                                                        self.tableView.scrollEnabled = NO;
-                                                       [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
+                                                       [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
         }
                                                  cancelBlock:^(ActionSheetMultipleStringPicker *picker) {
             

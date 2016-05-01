@@ -55,13 +55,21 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveFuzzyItemsNotificaion) name:kGetFuzzyConditionsItemNotificationName object:nil];
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
     
-    [self refresh];
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self refresh];
+    }];
+    [header setTitle:@"释放刷新" forState:MJRefreshStatePulling];
+    [header setTitle:@"加载中 ..." forState:MJRefreshStateRefreshing];
+    self.tableView.mj_header = header;
+    [self.tableView.mj_header beginRefreshing];
+
     self.filteredItems = [[NSArray alloc] init];
     
     [self.tableView registerNib:[UINib nibWithNibName:itemCellIdentifier bundle:nil] forCellReuseIdentifier:itemCellIdentifier];
@@ -221,14 +229,7 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
 
 - (void)refresh
 {
-    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [[BBTLAFManager sharedLAFManager] retriveItems:self.lostOrFound.selectedSegmentIndex WithConditions:self.conditions];
-    }];
-    [header setTitle:@"释放刷新" forState:MJRefreshStatePulling];
-    [header setTitle:@"加载中 ..." forState:MJRefreshStateRefreshing];
-    self.tableView.mj_header = header;
-    
-    [self.tableView.mj_header beginRefreshing];
+    [[BBTLAFManager sharedLAFManager] retriveItems:self.lostOrFound.selectedSegmentIndex WithConditions:self.conditions];
 }
 
 #pragma mark - Navigation
@@ -250,7 +251,8 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
                                                                style:UIAlertActionStyleDefault
                                                              handler:^(UIAlertAction * action) {
                                                                  BBTLoginViewController *loginViewController = [[BBTLoginViewController alloc] init];
-                                                                 [self presentViewController:loginViewController animated:YES completion:nil];
+                                                                 UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+                                                                 [self presentViewController:navigationController animated:YES completion:nil];
                                                                  if ([(NSNumber *)sender longValue] == 0 || [(NSNumber *)sender longValue] == 1) {
                                                                      [self performSegueWithIdentifier:postIdentifier sender:sender];
                                                                  }
