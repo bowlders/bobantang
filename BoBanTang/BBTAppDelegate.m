@@ -33,8 +33,8 @@
     // Override point for customization after application launch.
     
     //Lean Cloud Settings
-    [AVOSCloud setApplicationId:@"Bfwj1TJ6hcSFBPgMRzGYQOr3"
-                      clientKey:@"HRAIPGFlzSurUky1YcoYBYS5"];
+    //[AVOSCloud setApplicationId:@"Bfwj1TJ6hcSFBPgMRzGYQOr3"
+    //                  clientKey:@"HRAIPGFlzSurUky1YcoYBYS5"];
     [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     //Share SDK Settings
