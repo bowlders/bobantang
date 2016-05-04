@@ -17,3 +17,10 @@ pod 'JGProgressHUD'
 pod 'MJRefresh'
 pod 'WYPopoverController'
 pod 'UITableView+FDTemplateLayoutCell', '~> 1.4'
+pod 'Mapbox-iOS-SDK', '1.6.0'
+pod "CCHMapClusterController"
+pod "PAPreferences"
+pod 'SVProgressHUD'
+pod 'CRToast', '~> 0.0.7'
+pod 'WSCoachMarksView', '~> 0.2'
+pod 'TCBlobDownload'
