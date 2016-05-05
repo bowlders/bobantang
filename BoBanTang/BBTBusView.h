@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BBTMarco.h"
+#import "BBTBus.h"
+
 
 @interface BBTBusView : UIView
 

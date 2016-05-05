@@ -7,7 +7,12 @@
 //
 #import <AFNetworking/AFNetworking.h>
 #import <Foundation/Foundation.h>
-#import "BBTMarco.h"
+
+typedef enum : NSUInteger {
+    BBTBusManagerStateNormal,
+    BBTBusManagerStateAllStop,
+    BBTBusManagerStateNetWorkError
+} BBTBusManagerState;
 
 @interface BBTBusManager : NSObject
 

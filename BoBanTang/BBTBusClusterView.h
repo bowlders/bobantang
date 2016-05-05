@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BBTMarco.h"
+#import "BBTBusView.h"
 
 @protocol BBTBusClusterViewDelegate;
 
