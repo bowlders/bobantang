@@ -1,4 +1,4 @@
-##The Brand New BoBanTang!!
+###The Brand New BoBanTang!!
 
 After you download the project from branch **dev**(latest version will be launched onto this branch), you need to do some work before the project gets ready.
 
