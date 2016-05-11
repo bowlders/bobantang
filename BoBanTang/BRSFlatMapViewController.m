@@ -161,7 +161,7 @@
         make.width.equalTo(@(buttonSize));
         make.height.equalTo(@(buttonSize));
     }];
-
+    
     //self.userTrackingButton = [UIButton ASANRoundRectButtonWithFrame:CGRectMake(10.0f, appFrame.size.height - 110.0f, 46.0f, 46.0f) image:self.trackingImage];
     [self.userTrackingButton addTarget:self action:@selector(trackingButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -179,7 +179,7 @@
     
     [self.mapView addOverlay:[self.dataManager northCampusPolyline]];
     [self.mapView addOverlay:[self.dataManager HEMCCampusPolyline]];
-
+    
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     if(IS_OS_8_OR_LATER) {
@@ -192,10 +192,10 @@
     self.placeVCShowed = NO;
     self.directionVCShowed = NO;
     self.shouldResetCampusRegion = YES;
-
+    
     self.mapClusterController = [[CCHMapClusterController alloc] initWithMapView:self.mapView];
     self.mapClusterController.delegate = self;
-//    [self.mapClusterController addAnnotations:[self.coordTester centerAnnotations] withCompletionHandler:nil];
+    //    [self.mapClusterController addAnnotations:[self.coordTester centerAnnotations] withCompletionHandler:nil];
     
     // first time using flat map
     if (![BBTPreferences sharedInstance].hasSeenFlatMapHelp) {
@@ -225,11 +225,13 @@
                                                  name:kBBTDirectionDidGetResponse
                                                object:self.directionManager];
     
-    self.routeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"routeBefore"]
-                                                        style:UIBarButtonItemStylePlain
-                                                       target:self
-                                                       action:@selector(toogleDirection)];
-    self.parentViewController.navigationItem.rightBarButtonItem = self.routeButton;
+    /*
+     self.routeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"routeBefore"]
+     style:UIBarButtonItemStylePlain
+     target:self
+     action:@selector(toogleDirection)];
+     self.parentViewController.navigationItem.rightBarButtonItem = self.routeButton;
+     */
     
     if (![self.view.subviews containsObject:self.mapView]) {
         [self.view addSubview:self.mapView];
@@ -394,13 +396,13 @@
         return nil;
     }
     
-	MKPinAnnotationView *annotationView = nil;
-	if ([annotation isKindOfClass:[BRSPlace class]])
-	{
-		annotationView = (MKPinAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:@"Pin"];
-		if (annotationView == nil)
-		{
-			annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Pin"];
+    MKPinAnnotationView *annotationView = nil;
+    if ([annotation isKindOfClass:[BRSPlace class]])
+    {
+        annotationView = (MKPinAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:@"Pin"];
+        if (annotationView == nil)
+        {
+            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Pin"];
             if (annotation == self.startAnnotation) {
                 annotationView.pinColor = MKPinAnnotationColorGreen;
             } else if (annotation == self.endAnnotation) {
@@ -409,24 +411,24 @@
                 annotationView.pinColor = MKPinAnnotationColorRed;
             }
             //annotationView.canShowCallout = YES;
-			//annotationView.animatesDrop = YES;
-		}
+            //annotationView.animatesDrop = YES;
+        }
     }
     
-	return annotationView;
+    return annotationView;
 }
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
 {
     if ([overlay isKindOfClass:[MKPolygon class]])
-	{
-		MKPolygonRenderer *render = [[MKPolygonRenderer alloc] initWithOverlay:overlay];
-		render.fillColor = [UIColor orangeColor];
+    {
+        MKPolygonRenderer *render = [[MKPolygonRenderer alloc] initWithOverlay:overlay];
+        render.fillColor = [UIColor orangeColor];
         //render.strokeColor = [UIColor grayColor];
         //render.lineWidth = 3.0;
         render.alpha = 0.4;
         return render;
-	} else if ([overlay isKindOfClass:[MKPolyline class]]) {
+    } else if ([overlay isKindOfClass:[MKPolyline class]]) {
         MKPolylineRenderer *render = [[MKPolylineRenderer alloc] initWithPolyline:overlay];
         if (overlay == [self.dataManager northCampusPolyline] || overlay == [self.dataManager HEMCCampusPolyline]) {
             render.strokeColor = [UIColor grayColor];
@@ -440,7 +442,7 @@
         }
         return render;
     }
-	return nil;
+    return nil;
 }
 
 - (void)mapView:(MKMapView *)mapView didFailToLocateUserWithError:(NSError *)error
@@ -487,7 +489,7 @@
         [self setAndShowCurrentAnnotation:[BRSPlace emptyPlaceWithCoordinate:coord]];
         NSArray *placesForCoord = [self.dataManager placesForCoordinate:coord maxCount:4];
         [self showDetailForPlaces:placesForCoord];
-
+        
     } else {
         NSLog(@"long pressing out of campus boundary");
         if (self.failedLongPressCount == 0 || self.failedLongPressCount == 7 || self.failedLongPressCount == 76) {
@@ -607,15 +609,15 @@
 - (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
 {
     NSLog(@"wii begin");
-    [self.parentViewController.navigationItem setRightBarButtonItem:nil animated:YES];
-    self.containerSearchDC.searchBar.showsCancelButton = YES;
+    //[self.parentViewController.navigationItem setRightBarButtonItem:nil animated:YES];
+    //self.containerSearchDC.searchBar.showsCancelButton = YES;
     //NSLog(@"%@", controller.searchBar.delegate);
 }
 
 - (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
 {
-    [self.parentViewController.navigationItem setRightBarButtonItem:self.routeButton animated:YES];
-    self.containerSearchDC.searchBar.showsCancelButton = NO;
+    //[self.parentViewController.navigationItem setRightBarButtonItem:self.routeButton animated:YES];
+    //self.containerSearchDC.searchBar.showsCancelButton = NO;
 }
 
 #pragma mark - UISearchBarDelegate
@@ -720,7 +722,7 @@
 {
     NSLog(@"direction VC did enter big mode");
     self.popupViewControllerHeight = self.view.frame.size.height - vc.view.frame.origin.y;
-
+    
 }
 
 -(void)directionVCdidEnterSmallMode:(BRSDirectionViewController *)vc
@@ -747,7 +749,7 @@
     [self removeDirectionsOverlay];
     [self.routeButton setImage:[UIImage imageNamed:@"routeBefore"]];
     self.popupViewControllerHeight = 0;
-
+    
 }
 
 #pragma mark - Map Utlities
@@ -872,35 +874,35 @@
 
 -(void)zoomToFitMapAnnotations
 {
-//    if([self.mapView.annotations count] == 0)
-//        return;
-//    
-//    CLLocationCoordinate2D topLeftCoord;
-//    topLeftCoord.latitude = -90;
-//    topLeftCoord.longitude = 180;
-//    
-//    CLLocationCoordinate2D bottomRightCoord;
-//    bottomRightCoord.latitude = 90;
-//    bottomRightCoord.longitude = -180;
-//    
-//    for(id<MKAnnotation> annotation in self.mapView.annotations)
-//    {
-//        topLeftCoord.longitude = fmin(topLeftCoord.longitude, annotation.coordinate.longitude);
-//        topLeftCoord.latitude = fmax(topLeftCoord.latitude, annotation.coordinate.latitude);
-//        
-//        bottomRightCoord.longitude = fmax(bottomRightCoord.longitude, annotation.coordinate.longitude);
-//        bottomRightCoord.latitude = fmin(bottomRightCoord.latitude, annotation.coordinate.latitude);
-//    }
-//    
-//    MKCoordinateRegion region;
-//    region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5;
-//    region.center.longitude = topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5;
-//    region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 1.1; // Add a little extra space on the sides
-//    region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.1; // Add a little extra space on the sides
-//    
-//    region = [self.mapView regionThatFits:region];
-////    [self.mapView setRegion:region animated:YES];
-//    [self.mapView setCenterCoordinate:region.center zoomLevel:[self getZoomLevel] animated:YES];
+    //    if([self.mapView.annotations count] == 0)
+    //        return;
+    //
+    //    CLLocationCoordinate2D topLeftCoord;
+    //    topLeftCoord.latitude = -90;
+    //    topLeftCoord.longitude = 180;
+    //
+    //    CLLocationCoordinate2D bottomRightCoord;
+    //    bottomRightCoord.latitude = 90;
+    //    bottomRightCoord.longitude = -180;
+    //
+    //    for(id<MKAnnotation> annotation in self.mapView.annotations)
+    //    {
+    //        topLeftCoord.longitude = fmin(topLeftCoord.longitude, annotation.coordinate.longitude);
+    //        topLeftCoord.latitude = fmax(topLeftCoord.latitude, annotation.coordinate.latitude);
+    //
+    //        bottomRightCoord.longitude = fmax(bottomRightCoord.longitude, annotation.coordinate.longitude);
+    //        bottomRightCoord.latitude = fmin(bottomRightCoord.latitude, annotation.coordinate.latitude);
+    //    }
+    //
+    //    MKCoordinateRegion region;
+    //    region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5;
+    //    region.center.longitude = topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5;
+    //    region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 1.1; // Add a little extra space on the sides
+    //    region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.1; // Add a little extra space on the sides
+    //
+    //    region = [self.mapView regionThatFits:region];
+    ////    [self.mapView setRegion:region animated:YES];
+    //    [self.mapView setCenterCoordinate:region.center zoomLevel:[self getZoomLevel] animated:YES];
 }
 
 #define MERCATOR_OFFSET 268435456

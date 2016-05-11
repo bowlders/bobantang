@@ -82,6 +82,9 @@
 		A947D9BD1BD8DC34000F071B /* BBTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A11BD8DC34000F071B /* BBTSettingsViewController.m */; };
 		A947D9C11BD8DC34000F071B /* UIColor+BBTColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A51BD8DC34000F071B /* UIColor+BBTColor.m */; };
 		A947D9C61BD8E03A000F071B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D91F1BD8DADA000F071B /* main.m */; };
+		AF32984B1CE3705300F587BF /* BBTDownloadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3298491CE3705300F587BF /* BBTDownloadCell.m */; };
+		AF32984C1CE3705300F587BF /* BBTDownloadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF32984A1CE3705300F587BF /* BBTDownloadCell.xib */; };
+		AF32984F1CE3708100F587BF /* BBTTilesourceDownloadVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AF32984E1CE3708100F587BF /* BBTTilesourceDownloadVC.m */; };
 		AF53C8301CAACC0E00D84B9D /* BBTScoresLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF53C82F1CAACC0E00D84B9D /* BBTScoresLoginViewController.m */; };
 		AF5412751CC67E03004C0CE8 /* BBTMapContainerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AF5412721CC67E03004C0CE8 /* BBTMapContainerVC.m */; };
 		AF5412761CC67E03004C0CE8 /* BBTMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF5412741CC67E03004C0CE8 /* BBTMapViewController.m */; };
@@ -353,6 +356,11 @@
 		A947D9A11BD8DC34000F071B /* BBTSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSettingsViewController.m; sourceTree = "<group>"; };
 		A947D9A51BD8DC34000F071B /* UIColor+BBTColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BBTColor.m"; sourceTree = "<group>"; };
 		ABA2627D2286FFB656F82101 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF3298481CE3705300F587BF /* BBTDownloadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTDownloadCell.h; sourceTree = "<group>"; };
+		AF3298491CE3705300F587BF /* BBTDownloadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTDownloadCell.m; sourceTree = "<group>"; };
+		AF32984A1CE3705300F587BF /* BBTDownloadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBTDownloadCell.xib; sourceTree = "<group>"; };
+		AF32984D1CE3708100F587BF /* BBTTilesourceDownloadVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTTilesourceDownloadVC.h; sourceTree = "<group>"; };
+		AF32984E1CE3708100F587BF /* BBTTilesourceDownloadVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTTilesourceDownloadVC.m; sourceTree = "<group>"; };
 		AF53C82E1CAACC0E00D84B9D /* BBTScoresLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTScoresLoginViewController.h; sourceTree = "<group>"; };
 		AF53C82F1CAACC0E00D84B9D /* BBTScoresLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTScoresLoginViewController.m; sourceTree = "<group>"; };
 		AF5412711CC67E03004C0CE8 /* BBTMapContainerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMapContainerVC.h; sourceTree = "<group>"; };
@@ -592,6 +600,9 @@
 				398231B51BD8ED230043E544 /* Me.storyboard */,
 				39239A391C64E132008EDBB0 /* BBTLoginTableViewCell.h */,
 				39239A3A1C64E132008EDBB0 /* BBTLoginTableViewCell.m */,
+				AF3298481CE3705300F587BF /* BBTDownloadCell.h */,
+				AF3298491CE3705300F587BF /* BBTDownloadCell.m */,
+				AF32984A1CE3705300F587BF /* BBTDownloadCell.xib */,
 			);
 			name = Me;
 			sourceTree = "<group>";
@@ -910,6 +921,8 @@
 				A947D99C1BD8DC34000F071B /* BBTMyCollectionViewController.m */,
 				A947D97C1BD8DC0F000F071B /* BBTSettingsViewController.h */,
 				A947D9A11BD8DC34000F071B /* BBTSettingsViewController.m */,
+				AF32984D1CE3708100F587BF /* BBTTilesourceDownloadVC.h */,
+				AF32984E1CE3708100F587BF /* BBTTilesourceDownloadVC.m */,
 				39239A361C64BAC4008EDBB0 /* BBTLoginViewController.h */,
 				39239A371C64BAC4008EDBB0 /* BBTLoginViewController.m */,
 				3921B0281C75CF4000CA9449 /* BBTPersonalInfoEditViewController.h */,
@@ -1552,6 +1565,7 @@
 				39CB16EF1C77371C0046C9B0 /* Images.xcassets in Resources */,
 				39723CBA1C7FE487004577A5 /* read_me.txt in Resources */,
 				AF5412B81CC6805D004C0CE8 /* BRSPlaceView.xib in Resources */,
+				AF32984C1CE3705300F587BF /* BBTDownloadCell.xib in Resources */,
 				395B10C71C55252600772A38 /* Go.storyboard in Resources */,
 				AF5412BA1CC6805D004C0CE8 /* BBTDirectionHeaderView.xib in Resources */,
 				A947D98A1BD8DC24000F071B /* Information.storyboard in Resources */,
@@ -1716,9 +1730,11 @@
 				39FE91D51C5A54E60041E46F /* BBTCampusBus.m in Sources */,
 				A947D9C11BD8DC34000F071B /* UIColor+BBTColor.m in Sources */,
 				39239A3B1C64E132008EDBB0 /* BBTLoginTableViewCell.m in Sources */,
+				AF32984F1CE3708100F587BF /* BBTTilesourceDownloadVC.m in Sources */,
 				AF5412C91CC680AC004C0CE8 /* UIColor+BRSMapColor.m in Sources */,
 				AF54127E1CC67E9A004C0CE8 /* BBT3DMapView.m in Sources */,
 				39FE91DD1C5DAA0F0041E46F /* BBTCampusBusViewController.m in Sources */,
+				AF32984B1CE3705300F587BF /* BBTDownloadCell.m in Sources */,
 				397445701C0AAD60004B89BA /* BBTCampusInfoTableViewCell.m in Sources */,
 				395B10E01C5737AB00772A38 /* BBTDailyArticleTableViewCell.m in Sources */,
 				AF5412B91CC6805D004C0CE8 /* BRSPlaceView.m in Sources */,
