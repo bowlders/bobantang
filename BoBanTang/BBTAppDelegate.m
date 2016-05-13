@@ -23,6 +23,9 @@
 //新浪微博SDK头文件
 //#import "WeiboSDK.h"
 
+//Mapbox header
+#import "Mapbox.h"
+
 @interface BBTAppDelegate ()
 
 @end
@@ -31,6 +34,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    //Set Mapbox Accesstoken
+    [[RMConfiguration sharedInstance] setAccessToken:@"pk.eyJ1IjoicHl0cmFkZSIsImEiOiJjaW53eGJxZDExNnNidTJtM3N4OHZkZG9jIn0.XPkApL2UVxIpndilZMOsdQ"];
     
     //Lean Cloud Settings
     //[AVOSCloud setApplicationId:@"Bfwj1TJ6hcSFBPgMRzGYQOr3"

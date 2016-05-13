@@ -8,6 +8,7 @@
 
 #import "BBTSettingsViewController.h"
 #import "BBTCurrentUserManager.h"
+#import "BBTTilesourceDownloadVC.h"
 #import <JNKeychain.h>
 #import <JGProgressHUD.h>
 #import <SDImageCache.h>
@@ -89,7 +90,8 @@
 
 - (void)downLoadMap
 {
-    //TODO: Download 2.5D map here.
+    BBTTilesourceDownloadVC *downLoadView = [[BBTTilesourceDownloadVC alloc] initWithStyle:UITableViewStyleGrouped];
+    [self.navigationController pushViewController:downLoadView animated:YES];
 }
 
 - (void)showClearCacheAlertView
