@@ -8,7 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class BBTMapContainerVC;
+
+@protocol BBTMapContainerVCDelegate <NSObject>
+
+- (void)toogleDirection;
+
+@end
+
 @interface BBTMapContainerVC : UIViewController
 @property (nonatomic, readonly) CGRect buttonGroupRect;
+@property (nonatomic, weak) id <BBTMapContainerVCDelegate> delegate;
 - (void)fallbackToFlatMap;
 @end

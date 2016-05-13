@@ -33,6 +33,7 @@ NSString *const k3DMapButtonTitle = @"2.5D";
 @property (strong, nonatomic) UIButton *campusbutton;
 @property (strong, nonatomic) UIButton *mapTypeButton;
 @property (strong, nonatomic) UIBarButtonItem *searchButton;
+@property (nonatomic, strong) UIBarButtonItem *routeButton;
 
 /* map view container, note this is only the  CONTAINER */
 @property (strong, nonatomic) UIView *mapViewContainer;
@@ -125,26 +126,6 @@ NSString *const k3DMapButtonTitle = @"2.5D";
         make.height.equalTo(@(buttonSize));
     }];
     [self.homeButton addTarget:self action:@selector(homeButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-    
-    /*
-     UIButton *campusButton = [UIButton ASANRoundRectButtonWithFrame:CGRectMake(appFrame.size.width - 1.3*buttonSize, 3.9 * buttonSize, buttonSize, buttonSize) image:[UIImage imageNamed:@"校区-北校"]];
-     [campusButton addTarget:self action:@selector(campusButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-     self.campusbutton = campusButton;
-     [self.view addSubview:self.campusbutton];
-     
-     NSString *mapTypeButtonTitle = [BBTPreferences sharedInstance].flatMap ? kFlatMapButtonTitle : k3DMapButtonTitle;
-     UIButton *mapTypeButton = [UIButton ASANRoundRectButtonWithFrame:CGRectMake(appFrame.size.width - 1.3*buttonSize, 2.7 * buttonSize, buttonSize, buttonSize) title:mapTypeButtonTitle];
-     //[mapTypeButton addTarget:self action:@selector(mapTypeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-     self.mapTypeButton = mapTypeButton;
-     [self.view addSubview:self.mapTypeButton];
-     UIButton *homeButton = [UIButton ASANRoundRectButtonWithFrame:CGRectMake(appFrame.size.width - 1.3*buttonSize, 5.1 * buttonSize, buttonSize, buttonSize)
-     image:[UIImage imageNamed:@"home"]];
-     [homeButton addTarget:self action:@selector(homeButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-     self.homeButton = homeButton;
-     [self.view addSubview:self.homeButton];
-     
-     self.buttonGroupRect = CGRectMake(campusButton.frame.origin.x - 10, 10 , buttonSize + 20, buttonSize * 5);
-     */
 }
 
 - (void)viewDidLoad
@@ -159,12 +140,21 @@ NSString *const k3DMapButtonTitle = @"2.5D";
                                                         target:self
                                                         action:@selector(startSearch)];
     
-    self.navigationItem.rightBarButtonItem = self.searchButton;
+    self.routeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"导航"]
+                                                        style:UIBarButtonItemStylePlain
+                                                       target:self
+                                                       action:@selector(toogleDirectionFromDelegate)];
+    
+    NSArray *rightBarButtonItemsGroup = @[self.searchButton, self.routeButton];
+    self.navigationItem.rightBarButtonItems = rightBarButtonItemsGroup;
+   
     self.navigationItem.title = @"地图";
     
     /* search display controller */
     
     self.searchDisplayContrl = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
+    self.searchBar.barTintColor = [UIColor BBTAppGlobalBlue];
+    [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]] setTintColor:[UIColor whiteColor]];
     
     /* init map view controller  */
     _flatMapViewController = [[BRSFlatMapViewController alloc] init];
@@ -185,6 +175,8 @@ NSString *const k3DMapButtonTitle = @"2.5D";
     } else {
         self.homeButton.hidden = YES;
         _mapType = 3;
+        [self.routeButton setEnabled:NO];
+        [self.routeButton setTintColor:[UIColor clearColor]];
         [self.mapTypeButton setBackgroundImage:[UIImage imageNamed:@"blueRect"] forState:UIControlStateNormal];
         self.mapViewController = _threeDMapViewController;
         self.searchBar.delegate = _threeDMapViewController;
@@ -255,12 +247,16 @@ NSString *const k3DMapButtonTitle = @"2.5D";
     preferences.flatMap = !preferences.flatMap;
     //init new map view controller
     if (preferences.flatMap) {
+        [self.routeButton setEnabled:YES];
+        [self.routeButton setTintColor:nil];
         self.mapViewController = _flatMapViewController;
         self.searchBar.delegate = _flatMapViewController;
         self.searchDisplayContrl.delegate = _flatMapViewController;
         self.searchDisplayContrl.searchResultsDataSource = _flatMapViewController;
         self.searchDisplayContrl.searchResultsDelegate = _flatMapViewController;
     } else {
+        [self.routeButton setEnabled:NO];
+        [self.routeButton setTintColor:[UIColor clearColor]];
         self.mapViewController = _threeDMapViewController;
         self.searchBar.delegate = _threeDMapViewController;
         self.searchDisplayContrl.delegate = _threeDMapViewController;
@@ -303,6 +299,11 @@ NSString *const k3DMapButtonTitle = @"2.5D";
     [self.searchBar becomeFirstResponder];
     
     [self.searchDisplayContrl setActive:YES animated:YES];
+}
+
+-(void)toogleDirectionFromDelegate
+{
+    [self.delegate toogleDirection];
 }
 
 #pragma mark - UIAlertViewDelegte

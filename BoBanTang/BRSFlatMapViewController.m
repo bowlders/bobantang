@@ -67,7 +67,6 @@
 @property (nonatomic, strong) BRSPlace *startAnnotation;
 @property (nonatomic, strong) BRSPlace *endAnnotation;
 @property (nonatomic, strong) MKPolyline *routeOverlay;
-@property (nonatomic, strong) UIBarButtonItem *routeButton;
 
 /* user tracking*/
 @property (nonatomic, strong) UIButton *userTrackingButton;
@@ -207,7 +206,7 @@
                                     },
                                 @{
                                     @"rect": [NSValue valueWithCGRect:(CGRect)self.containerVC.buttonGroupRect],
-                                    @"caption": @"切换2D/2.5D地图\n\n切换南北校区\n\n地图复位"
+                                    @"caption": @"切换2D/2.5D地图\n\n切换南北校区\n\n地图复位\n\n定位"
                                     }
                                 ];
         WSCoachMarksView *coachMarksView = [[WSCoachMarksView alloc] initWithFrame:self.view.bounds coachMarks:coachMarks];
@@ -215,6 +214,9 @@
         [coachMarksView start];
         [BBTPreferences sharedInstance].hasSeenFlatMapHelp = YES;
     }
+    
+    //set delegate for containerView
+    self.containerVC.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -224,14 +226,6 @@
                                              selector:@selector(didGetDirectionsResponse:)
                                                  name:kBBTDirectionDidGetResponse
                                                object:self.directionManager];
-    
-    /*
-     self.routeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"routeBefore"]
-     style:UIBarButtonItemStylePlain
-     target:self
-     action:@selector(toogleDirection)];
-     self.parentViewController.navigationItem.rightBarButtonItem = self.routeButton;
-     */
     
     if (![self.view.subviews containsObject:self.mapView]) {
         [self.view addSubview:self.mapView];
@@ -287,12 +281,12 @@
     }
     
 }
-
+ 
 - (void)toogleDirectionViewController
 {
     NSLog(@"toogle direction!");
     if (!self.directionVCShowed) {
-        [self.routeButton setImage:[UIImage imageNamed:@"routeAfter"]];
+        //[self.routeButton setImage:[UIImage imageNamed:@"routeAfter"]];
         if ([self.directionManager alreadyHaveDirections]) {
             [self drawDirectionsOverlay];
         }
@@ -305,7 +299,7 @@
             self.directionVCShowed = YES;
         }];
     } else {
-        [self.routeButton setImage:[UIImage imageNamed:@"routeBefore"]];
+        //[self.routeButton setImage:[UIImage imageNamed:@"routeBefore"]];
         if (self.directionManager.directions.isCalculating) {
             [self.directionManager.directions cancel];
         }
@@ -324,7 +318,7 @@
         }
         [self.directionVC dismissViewControllerAnimated:YES completion:^{
             self.directionVCShowed = NO;
-            [self.routeButton setImage:[UIImage imageNamed:@"routeBefore"]];
+            //[self.routeButton setImage:[UIImage imageNamed:@"routeBefore"]];
             [self removeDirectionsOverlay];
             NSError *error = notification.userInfo[@"error"];
             NSString *errorDescription = error.localizedDescription;
@@ -747,7 +741,7 @@
     self.shouldResetCampusRegion = YES;
     self.directionVCShowed = NO;
     [self removeDirectionsOverlay];
-    [self.routeButton setImage:[UIImage imageNamed:@"routeBefore"]];
+    //[self.routeButton setImage:[UIImage imageNamed:@"routeBefore"]];
     self.popupViewControllerHeight = 0;
     
 }

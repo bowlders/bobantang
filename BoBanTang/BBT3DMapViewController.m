@@ -74,7 +74,6 @@
             [self.mapView setupHEMCCampusTilesource:[BBTTileSourceManager HEMCCampusTile]];
             [self.mapView setupNorthCampusTilesource:[BBTTileSourceManager northCampusTile]];
         }
-        self.parentViewController.navigationItem.rightBarButtonItem = nil;
         self.parentViewController.navigationItem.leftBarButtonItem = nil;
         if ([BBTPreferences sharedInstance].northCampus) {
             [self.mapView displayNorthCampusMap];
