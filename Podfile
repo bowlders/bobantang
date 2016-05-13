@@ -2,7 +2,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 
 pod 'AFNetworking', '~> 3.0'
-;pod "AYVibrantButton”, '~> 1.0.3'
+pod "AYVibrantButton", '1.0.3'
 pod 'AVOSCloud'
 pod 'AVOSCloudCrashReporting'
 pod 'LeanCloudFeedback'
