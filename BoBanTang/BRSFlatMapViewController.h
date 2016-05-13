@@ -12,7 +12,7 @@
 #import "BRSMapMetaDataManager.h"
 #import "BBTMapViewController.h"
 
-@interface BRSFlatMapViewController : BBTMapViewController <BRSMapViewDelegate, MKMapViewDelegate, UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+@interface BRSFlatMapViewController : BBTMapViewController <BRSMapViewDelegate, BBTMapContainerVCDelegate, MKMapViewDelegate, UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property (nonatomic, strong) BRSSCUTMapView *mapView;
 
