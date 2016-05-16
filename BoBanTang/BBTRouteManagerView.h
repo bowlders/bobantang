@@ -20,5 +20,6 @@
 @property (nonatomic, strong) UITextField *endTextField;
 @property (nonatomic, strong) UIButton *exchangeButton;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UILabel *whiteLabel;
 
 @end

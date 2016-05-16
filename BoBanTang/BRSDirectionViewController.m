@@ -19,6 +19,7 @@
 @property (strong, nonatomic) BBTDirectionsManager *directionManager;
 
 @property (strong, nonatomic) UIView *containerView;
+@property (strong, nonatomic) UIView *infoContainerView;
 @property (strong, nonatomic) BBTDirectionHeaderView *directionHeaderView;
 @property (strong, nonatomic) BBTRouteManagerView *routeView;
 @property (strong, nonatomic) UITableView *tableView;
@@ -73,6 +74,12 @@ extern NSString *const kBBTDirectionDidGetResponse;;
         view;
     });
     
+    self.infoContainerView = ({
+        UIView *view = [[UIView alloc] initWithFrame:appFrame];
+        view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        view;
+    });
+    
     self.directionHeaderView = ({
         BBTDirectionHeaderView *header = [[BBTDirectionHeaderView alloc] init];
         header.frame = CGRectMake(0.0f, 0.0f, appFrame.size.width, appFrame.size.height - self.bigModeY);
@@ -87,12 +94,27 @@ extern NSString *const kBBTDirectionDidGetResponse;;
         header;
     });
     
-    [self.containerView addSubview:self.directionHeaderView];
+    [self.infoContainerView addSubview:self.directionHeaderView];
+    
+    self.routeView = ({
+        BBTRouteManagerView *header = [[BBTRouteManagerView alloc] init];
+        header.frame = CGRectMake(0.0f, 0.0f, appFrame.size.width, appFrame.size.height);
+        header.startTextField.delegate = self;
+        header.startTextField.clearsOnBeginEditing = NO;
+        header.startTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        header.endTextField.delegate = self;
+        header.endTextField.clearsOnBeginEditing = NO;
+        header.endTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        [header.cancelButton addTarget:self action:@selector(hideDirectionVC) forControlEvents:UIControlEventTouchUpInside];
+        header;
+    });
+    
+    [self.containerView addSubview:self.routeView];
     
     //CGFloat headerHeight = 96.0f;
     //CGFloat bodyHeight = appFrame.size.height - headerHeight;
     self.tableView = ({
-        UITableView *tableView = self.directionHeaderView.tableView;
+        UITableView *tableView = self.routeView.tableView;
         tableView.backgroundColor = [UIColor whiteColor];
         tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         tableView.delegate = self;
@@ -100,7 +122,11 @@ extern NSString *const kBBTDirectionDidGetResponse;;
         tableView;
     });
     
-    [self.view addSubview:self.containerView];
+    if (self.editMode == NO) {
+        [self.view addSubview:self.infoContainerView];
+    } else {
+        [self.view addSubview:self.containerView];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -146,22 +172,22 @@ extern NSString *const kBBTDirectionDidGetResponse;;
 - (void)updateUI
 {
     [self updateRouteButton];
-    self.directionHeaderView.startTextField.text = self.directionManager.sourcePlace.title;
-    self.directionHeaderView.endTextField.text = self.directionManager.destnationPlace.title;
     self.directionHeaderView.distanceLabel.text = [self.directionManager distanceAndTravelTimeString];
     if (self.editMode) {
-        [self.directionHeaderView.routeButton setImage:[UIImage imageNamed:@"checkMarkBlue"] forState:UIControlStateNormal];
-        self.directionHeaderView.startTextField.enabled = YES;
-        self.directionHeaderView.startTextField.background = [UIImage imageNamed:@"underDash"];
-        self.directionHeaderView.endTextField.enabled = YES;
-        self.directionHeaderView.endTextField.background = [UIImage imageNamed:@"underDash"];
+        [self.infoContainerView removeFromSuperview];
+        [self.view addSubview:self.containerView];
+        self.routeView.startTextField.text = self.directionManager.sourcePlace.title;
+        self.routeView.endTextField.text = self.directionManager.destnationPlace.title;
     } else {
         [self.directionHeaderView.routeButton setImage:[UIImage imageNamed:@"trashcanButton"] forState:UIControlStateNormal];
         self.directionHeaderView.startTextField.enabled = NO;
         self.directionHeaderView.startTextField.background = nil;
         self.directionHeaderView.endTextField.enabled = NO;
         self.directionHeaderView.endTextField.background = nil;
-
+        [self.containerView removeFromSuperview];
+        [self.view addSubview:self.infoContainerView];
+        self.directionHeaderView.startTextField.text = self.directionManager.sourcePlace.title;
+        self.directionHeaderView.endTextField.text = self.directionManager.sourcePlace.title;
     }
     [self.tableView reloadData];
 }
@@ -185,13 +211,9 @@ extern NSString *const kBBTDirectionDidGetResponse;;
     int height = MIN(keyboardSize.height,keyboardSize.width);
     //int width = MAX(keyboardSize.height,keyboardSize.width);
     
-    CGPoint center = self.directionHeaderView.hideDownArrowButton.center;
-    center.y = self.view.frame.size.height - height - HIDE_BUTTON_PADDING;
-    self.directionHeaderView.hideDownArrowButton.center = center;
-    
-    CGRect frame = self.directionHeaderView.tableView.frame;
+    CGRect frame = self.routeView.tableView.frame;
     frame.size.height = self.view.frame.size.height - height - 64.0f;
-    self.directionHeaderView.tableView.frame = frame;
+    self.routeView.tableView.frame = frame;
 }
 
 # pragma mark Search 
@@ -213,18 +235,18 @@ extern NSString *const kBBTDirectionDidGetResponse;;
 {
     NSLog(@"123");
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (self.currentTextField == self.directionHeaderView.startTextField) {
+    if (self.currentTextField == self.routeView.startTextField) {
         self.directionManager.sourcePlace = self.searchResult[indexPath.row];
         [self updateUI];
         if (!self.directionManager.destnationPlace) {
-            [self.directionHeaderView.endTextField becomeFirstResponder];
+            [self.routeView.endTextField becomeFirstResponder];
             return;
         }
     } else {
         self.directionManager.destnationPlace = self.searchResult[indexPath.row];
         [self updateUI];
         if (!self.directionManager.sourcePlace) {
-            [self.directionHeaderView.startTextField becomeFirstResponder];
+            [self.routeView.startTextField becomeFirstResponder];
             return;
         }
     }
@@ -309,19 +331,19 @@ extern NSString *const kBBTDirectionDidGetResponse;;
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if (textField == self.directionHeaderView.startTextField) {
+    if (textField == self.routeView.startTextField) {
         NSLog(@"start field hit return");
         if (!self.endPlace && self.allowCircleEditing) {
             [textField resignFirstResponder];
             [self updateUI];
-            [self.directionHeaderView.endTextField becomeFirstResponder];
+            [self.routeView.endTextField becomeFirstResponder];
             return YES;
         }
     } else {
         if (!self.startPlace && self.allowCircleEditing) {
             [textField resignFirstResponder];
             [self updateUI];
-            [self.directionHeaderView.startTextField becomeFirstResponder];
+            [self.routeView.startTextField becomeFirstResponder];
             return YES;
         }
         NSLog(@"end field hit return");
@@ -341,7 +363,7 @@ extern NSString *const kBBTDirectionDidGetResponse;;
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     self.currentTextField = textField;
-    if (textField == self.directionHeaderView.startTextField) {
+    if (textField == self.routeView.startTextField) {
         NSLog(@"start field begin editing");
     } else {
         NSLog(@"end field begin editing");
@@ -350,7 +372,7 @@ extern NSString *const kBBTDirectionDidGetResponse;;
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if (textField == self.directionHeaderView.startTextField) {
+    if (textField == self.routeView.startTextField) {
         NSLog(@"start field end editing");
         if (!self.directionManager.sourcePlace) {
             if ([self.searchResult count] > 0) {
@@ -359,7 +381,7 @@ extern NSString *const kBBTDirectionDidGetResponse;;
             }
         }
         if (!self.directionManager.destnationPlace && self.allowCircleEditing) {
-            [self.directionHeaderView.endTextField becomeFirstResponder];
+            [self.routeView.endTextField becomeFirstResponder];
             return;
         }
     } else {
@@ -371,7 +393,7 @@ extern NSString *const kBBTDirectionDidGetResponse;;
             }
         }
         if (!self.directionManager.sourcePlace && self.allowCircleEditing) {
-            [self.directionHeaderView.startTextField becomeFirstResponder];
+            [self.routeView.startTextField becomeFirstResponder];
             return;
         }
     }
