@@ -8,6 +8,7 @@
 #import "SVProgressHUD.h"
 #import "BRSDirectionViewController.h"
 #import "BBTDirectionHeaderView.h"
+#import "BBTRouteManagerView.h"
 
 @interface BRSDirectionViewController() <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
@@ -19,6 +20,7 @@
 
 @property (strong, nonatomic) UIView *containerView;
 @property (strong, nonatomic) BBTDirectionHeaderView *directionHeaderView;
+@property (strong, nonatomic) BBTRouteManagerView *routeView;
 @property (strong, nonatomic) UITableView *tableView;
 
 @property (strong, nonatomic) NSMutableArray *searchResult;
@@ -118,6 +120,8 @@ extern NSString *const kBBTDirectionDidGetResponse;;
                                                object:nil];
     [super viewWillAppear:animated];
     self.allowCircleEditing = YES;
+    [self.view setNeedsUpdateConstraints];
+    [self.view updateConstraintsIfNeeded];
     [self updateUI];
 }
 
@@ -146,7 +150,7 @@ extern NSString *const kBBTDirectionDidGetResponse;;
     self.directionHeaderView.endTextField.text = self.directionManager.destnationPlace.title;
     self.directionHeaderView.distanceLabel.text = [self.directionManager distanceAndTravelTimeString];
     if (self.editMode) {
-        [self.directionHeaderView.routeButton setImage:[UIImage imageNamed:@"checkMarkbutton"] forState:UIControlStateNormal];
+        [self.directionHeaderView.routeButton setImage:[UIImage imageNamed:@"checkMarkBlue"] forState:UIControlStateNormal];
         self.directionHeaderView.startTextField.enabled = YES;
         self.directionHeaderView.startTextField.background = [UIImage imageNamed:@"underDash"];
         self.directionHeaderView.endTextField.enabled = YES;

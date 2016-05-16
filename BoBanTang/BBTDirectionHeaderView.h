@@ -2,18 +2,22 @@
 //  BBTDirectionHeaderView.h
 //  bobantang
 //
-//  Created by Bill Bai on 9/7/14.
-//  Copyright (c) 2014 Bill Bai. All rights reserved.
+//  Created by Xu Donghui on 16/5/15.
+//  Copyright © 2016年 100steps. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 @interface BBTDirectionHeaderView : UIView
-@property (weak, nonatomic) IBOutlet UITextField *startTextField;
-@property (weak, nonatomic) IBOutlet UITextField *endTextField;
-@property (weak, nonatomic) IBOutlet UIButton *routeButton;
-@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIButton *hideDownArrowButton;
+@property (strong, nonatomic) UITextField *startTextField;
+@property (strong, nonatomic) UITextField *endTextField;
+@property (strong, nonatomic) UIButton *routeButton;
+@property (strong, nonatomic) UILabel *distanceLabel;
+@property (strong, nonatomic) UILabel *fromLabel;
+@property (strong, nonatomic) UILabel *toLabel;
+@property (strong, nonatomic) UILabel *upperMarginLabel;
+@property (strong, nonatomic) UILabel *leftMarginLabel;
+@property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) UIButton *hideDownArrowButton;
 @end
 

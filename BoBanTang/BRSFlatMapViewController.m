@@ -206,7 +206,7 @@
                                     },
                                 @{
                                     @"rect": [NSValue valueWithCGRect:(CGRect)self.containerVC.buttonGroupRect],
-                                    @"caption": @"切换2D/2.5D地图\n\n切换南北校区\n\n地图复位\n\n定位"
+                                    @"caption": @"切换2D/2.5D地图\n\n切换南北校区\n\n地图复位"
                                     }
                                 ];
         WSCoachMarksView *coachMarksView = [[WSCoachMarksView alloc] initWithFrame:self.view.bounds coachMarks:coachMarks];

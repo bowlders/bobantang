@@ -2,15 +2,16 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "roomLogo.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "underDash@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "underDash@3x.png",
       "scale" : "3x"
     }
   ],
