@@ -14,6 +14,7 @@
 #import "BBTTileSourceManager.h"
 #import "BBTMapContainerVC.h"
 #import <Masonry/Masonry.h>
+#import "BBTRouteManagerView.h"
 
 NSString *const kNorthCampusButtonTitle = @"N";
 NSString *const kHEMCCampusButtonTitle = @"S";
@@ -44,6 +45,8 @@ NSString *const k3DMapButtonTitle = @"2.5D";
 
 /* map view controller */
 @property (weak, nonatomic) BBTMapViewController *mapViewController;
+
+@property (strong, nonatomic)BBTRouteManagerView *routeManagerView;
 
 @end
 
@@ -126,6 +129,7 @@ NSString *const k3DMapButtonTitle = @"2.5D";
         make.height.equalTo(@(buttonSize));
     }];
     [self.homeButton addTarget:self action:@selector(homeButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    
 }
 
 - (void)viewDidLoad
@@ -189,6 +193,13 @@ NSString *const k3DMapButtonTitle = @"2.5D";
     [self addChildViewController:self.mapViewController];
     [self.mapViewContainer addSubview:self.mapViewController.view];
     [self.mapViewController didMoveToParentViewController:self];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.view setNeedsUpdateConstraints];
+    [self.view updateConstraintsIfNeeded];
 }
 
 - (void)mapTypeButtonClicked:(UIButton *)sender

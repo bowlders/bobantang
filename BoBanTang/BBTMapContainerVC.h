@@ -16,7 +16,7 @@
 
 @end
 
-@interface BBTMapContainerVC : UIViewController
+@interface BBTMapContainerVC : UIViewController <UITextFieldDelegate>
 @property (nonatomic, readonly) CGRect buttonGroupRect;
 @property (nonatomic, weak) id <BBTMapContainerVCDelegate> delegate;
 - (void)fallbackToFlatMap;

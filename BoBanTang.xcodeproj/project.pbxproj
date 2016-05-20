@@ -85,6 +85,8 @@
 		AF32984B1CE3705300F587BF /* BBTDownloadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3298491CE3705300F587BF /* BBTDownloadCell.m */; };
 		AF32984C1CE3705300F587BF /* BBTDownloadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF32984A1CE3705300F587BF /* BBTDownloadCell.xib */; };
 		AF32984F1CE3708100F587BF /* BBTTilesourceDownloadVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AF32984E1CE3708100F587BF /* BBTTilesourceDownloadVC.m */; };
+		AF3298831CE6402400F587BF /* libZipZap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF3298781CE6401300F587BF /* libZipZap.a */; };
+		AF3298861CE78C9D00F587BF /* BBTRouteManagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3298851CE78C9D00F587BF /* BBTRouteManagerView.m */; };
 		AF53C8301CAACC0E00D84B9D /* BBTScoresLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF53C82F1CAACC0E00D84B9D /* BBTScoresLoginViewController.m */; };
 		AF5412751CC67E03004C0CE8 /* BBTMapContainerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AF5412721CC67E03004C0CE8 /* BBTMapContainerVC.m */; };
 		AF5412761CC67E03004C0CE8 /* BBTMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF5412741CC67E03004C0CE8 /* BBTMapViewController.m */; };
@@ -117,7 +119,6 @@
 		AF5412C81CC680AC004C0CE8 /* NSArray+BRSMostNearestElements.m in Sources */ = {isa = PBXBuildFile; fileRef = AF5412C41CC680AC004C0CE8 /* NSArray+BRSMostNearestElements.m */; };
 		AF5412C91CC680AC004C0CE8 /* UIColor+BRSMapColor.m in Sources */ = {isa = PBXBuildFile; fileRef = AF5412C61CC680AC004C0CE8 /* UIColor+BRSMapColor.m */; };
 		AF5412CD1CC6A6A8004C0CE8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF5412CC1CC6A6A8004C0CE8 /* MapKit.framework */; };
-		AF5412E61CC75720004C0CE8 /* libZipZap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF5412DF1CC75608004C0CE8 /* libZipZap.a */; };
 		AF9A8D331CC778460079C46F /* campusBoundary.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AF9A8D301CC778460079C46F /* campusBoundary.geojson */; };
 		AF9A8D341CC778460079C46F /* SCUTFlatMapMetaData_n.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AF9A8D311CC778460079C46F /* SCUTFlatMapMetaData_n.geojson */; };
 		AF9A8D351CC778460079C46F /* SCUTFlatMapMetaData_s.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AF9A8D321CC778460079C46F /* SCUTFlatMapMetaData_s.geojson */; };
@@ -170,51 +171,51 @@
 			remoteGlobalIDString = A947D91A1BD8DADA000F071B;
 			remoteInfo = BoBanTang;
 		};
-		AF5412D81CC75608004C0CE8 /* PBXContainerItemProxy */ = {
+		AF3298751CE6401300F587BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = AF5412CE1CC75608004C0CE8 /* ZipZap.xcodeproj */;
+			containerPortal = AF32986B1CE6401300F587BF /* ZipZap.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = D87BA1F81B3D6DEA00ED7EB3;
 			remoteInfo = "ZipZap (iOS Framework)";
 		};
-		AF5412DA1CC75608004C0CE8 /* PBXContainerItemProxy */ = {
+		AF3298771CE6401300F587BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = AF5412CE1CC75608004C0CE8 /* ZipZap.xcodeproj */;
+			containerPortal = AF32986B1CE6401300F587BF /* ZipZap.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = D899CFB0162C5EEB00112F49;
 			remoteInfo = "ZipZap (iOS Static Library)";
 		};
-		AF5412DC1CC75608004C0CE8 /* PBXContainerItemProxy */ = {
+		AF3298791CE6401300F587BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = AF5412CE1CC75608004C0CE8 /* ZipZap.xcodeproj */;
+			containerPortal = AF32986B1CE6401300F587BF /* ZipZap.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = D8D140D31B423B1100C411B0;
 			remoteInfo = "ZipZap (OS X Framework)";
 		};
-		AF5412DE1CC75608004C0CE8 /* PBXContainerItemProxy */ = {
+		AF32987B1CE6401300F587BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = AF5412CE1CC75608004C0CE8 /* ZipZap.xcodeproj */;
+			containerPortal = AF32986B1CE6401300F587BF /* ZipZap.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = D899CF82162C5EC100112F49;
 			remoteInfo = "ZipZap (OS X Static Library)";
 		};
-		AF5412E01CC75608004C0CE8 /* PBXContainerItemProxy */ = {
+		AF32987D1CE6401300F587BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = AF5412CE1CC75608004C0CE8 /* ZipZap.xcodeproj */;
+			containerPortal = AF32986B1CE6401300F587BF /* ZipZap.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = BF8624CB1BB7495200C12EEE;
 			remoteInfo = "ZipZap (tvOS Framework)";
 		};
-		AF5412E21CC75608004C0CE8 /* PBXContainerItemProxy */ = {
+		AF32987F1CE6401300F587BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = AF5412CE1CC75608004C0CE8 /* ZipZap.xcodeproj */;
+			containerPortal = AF32986B1CE6401300F587BF /* ZipZap.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = BF8624EF1BB74B1F00C12EEE;
 			remoteInfo = "ZipZap (tvOS Static Library)";
 		};
-		AF5412E41CC75608004C0CE8 /* PBXContainerItemProxy */ = {
+		AF3298811CE6401300F587BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = AF5412CE1CC75608004C0CE8 /* ZipZap.xcodeproj */;
+			containerPortal = AF32986B1CE6401300F587BF /* ZipZap.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = D899CF96162C5EC100112F49;
 			remoteInfo = ZipZapTests;
@@ -361,6 +362,9 @@
 		AF32984A1CE3705300F587BF /* BBTDownloadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBTDownloadCell.xib; sourceTree = "<group>"; };
 		AF32984D1CE3708100F587BF /* BBTTilesourceDownloadVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTTilesourceDownloadVC.h; sourceTree = "<group>"; };
 		AF32984E1CE3708100F587BF /* BBTTilesourceDownloadVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTTilesourceDownloadVC.m; sourceTree = "<group>"; };
+		AF32986B1CE6401300F587BF /* ZipZap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZipZap.xcodeproj; path = "ZipZap-master/ZipZap.xcodeproj"; sourceTree = "<group>"; };
+		AF3298841CE78C9D00F587BF /* BBTRouteManagerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTRouteManagerView.h; sourceTree = "<group>"; };
+		AF3298851CE78C9D00F587BF /* BBTRouteManagerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTRouteManagerView.m; sourceTree = "<group>"; };
 		AF53C82E1CAACC0E00D84B9D /* BBTScoresLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTScoresLoginViewController.h; sourceTree = "<group>"; };
 		AF53C82F1CAACC0E00D84B9D /* BBTScoresLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTScoresLoginViewController.m; sourceTree = "<group>"; };
 		AF5412711CC67E03004C0CE8 /* BBTMapContainerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMapContainerVC.h; sourceTree = "<group>"; };
@@ -422,7 +426,6 @@
 		AF5412C51CC680AC004C0CE8 /* UIColor+BRSMapColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BRSMapColor.h"; sourceTree = "<group>"; };
 		AF5412C61CC680AC004C0CE8 /* UIColor+BRSMapColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BRSMapColor.m"; sourceTree = "<group>"; };
 		AF5412CC1CC6A6A8004C0CE8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		AF5412CE1CC75608004C0CE8 /* ZipZap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZipZap.xcodeproj; path = ZipZap/ZipZap.xcodeproj; sourceTree = "<group>"; };
 		AF5412E91CC758EA004C0CE8 /* BoBanTang-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BoBanTang-Prefix.pch"; sourceTree = "<group>"; };
 		AF9A8D301CC778460079C46F /* campusBoundary.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = campusBoundary.geojson; sourceTree = "<group>"; };
 		AF9A8D311CC778460079C46F /* SCUTFlatMapMetaData_n.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SCUTFlatMapMetaData_n.geojson; sourceTree = "<group>"; };
@@ -491,8 +494,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF3298831CE6402400F587BF /* libZipZap.a in Frameworks */,
 				39D64D311CDA5681005FBD88 /* Foundation.framework in Frameworks */,
-				AF5412E61CC75720004C0CE8 /* libZipZap.a in Frameworks */,
 				AF5412CD1CC6A6A8004C0CE8 /* MapKit.framework in Frameworks */,
 				395B52E01C7D5CA9008FD949 /* MessageUI.framework in Frameworks */,
 				39723CBD1C7FE487004577A5 /* ShareSDKConnector.framework in Frameworks */,
@@ -993,7 +996,7 @@
 		A947D9121BD8DADA000F071B = {
 			isa = PBXGroup;
 			children = (
-				AF5412CE1CC75608004C0CE8 /* ZipZap.xcodeproj */,
+				AF32986B1CE6401300F587BF /* ZipZap.xcodeproj */,
 				A947D91D1BD8DADA000F071B /* BoBanTang */,
 				A947D93A1BD8DADA000F071B /* BoBanTangTests */,
 				4EA28AD388E43D96D5F54ADA /* Frameworks */,
@@ -1107,6 +1110,20 @@
 			path = KGModal;
 			sourceTree = "<group>";
 		};
+		AF32986C1CE6401300F587BF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AF3298761CE6401300F587BF /* ZipZap.framework */,
+				AF3298781CE6401300F587BF /* libZipZap.a */,
+				AF32987A1CE6401300F587BF /* ZipZap.framework */,
+				AF32987C1CE6401300F587BF /* libZipZap.a */,
+				AF32987E1CE6401300F587BF /* ZipZap.framework */,
+				AF3298801CE6401300F587BF /* libZipZap.a */,
+				AF3298821CE6401300F587BF /* ZipZapTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		AF5412681CC67944004C0CE8 /* CampusMap */ = {
 			isa = PBXGroup;
 			children = (
@@ -1191,6 +1208,8 @@
 				AF5412AD1CC6805D004C0CE8 /* BBTDirectionHeaderView.xib */,
 				AF5412AE1CC6805D004C0CE8 /* BBTDirectionHeaderView.h */,
 				AF5412AF1CC6805D004C0CE8 /* BBTDirectionHeaderView.m */,
+				AF3298841CE78C9D00F587BF /* BBTRouteManagerView.h */,
+				AF3298851CE78C9D00F587BF /* BBTRouteManagerView.m */,
 				AF5412B01CC6805D004C0CE8 /* BRSSCUTMapView.h */,
 				AF5412B11CC6805D004C0CE8 /* BRSSCUTMapView.m */,
 				AF5412B21CC6805D004C0CE8 /* BBTEmptyToolbar.h */,
@@ -1240,20 +1259,6 @@
 				AF5412C61CC680AC004C0CE8 /* UIColor+BRSMapColor.m */,
 			);
 			name = Categories;
-			sourceTree = "<group>";
-		};
-		AF5412CF1CC75608004C0CE8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				AF5412D91CC75608004C0CE8 /* ZipZap.framework */,
-				AF5412DB1CC75608004C0CE8 /* libZipZap.a */,
-				AF5412DD1CC75608004C0CE8 /* ZipZap.framework */,
-				AF5412DF1CC75608004C0CE8 /* libZipZap.a */,
-				AF5412E11CC75608004C0CE8 /* ZipZap.framework */,
-				AF5412E31CC75608004C0CE8 /* libZipZap.a */,
-				AF5412E51CC75608004C0CE8 /* ZipZapTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		AF9A8D2F1CC778300079C46F /* flatMapMetaData */ = {
@@ -1484,8 +1489,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = AF5412CF1CC75608004C0CE8 /* Products */;
-					ProjectRef = AF5412CE1CC75608004C0CE8 /* ZipZap.xcodeproj */;
+					ProductGroup = AF32986C1CE6401300F587BF /* Products */;
+					ProjectRef = AF32986B1CE6401300F587BF /* ZipZap.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1498,53 +1503,53 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		AF5412D91CC75608004C0CE8 /* ZipZap.framework */ = {
+		AF3298761CE6401300F587BF /* ZipZap.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ZipZap.framework;
-			remoteRef = AF5412D81CC75608004C0CE8 /* PBXContainerItemProxy */;
+			remoteRef = AF3298751CE6401300F587BF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		AF5412DB1CC75608004C0CE8 /* libZipZap.a */ = {
+		AF3298781CE6401300F587BF /* libZipZap.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libZipZap.a;
-			remoteRef = AF5412DA1CC75608004C0CE8 /* PBXContainerItemProxy */;
+			remoteRef = AF3298771CE6401300F587BF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		AF5412DD1CC75608004C0CE8 /* ZipZap.framework */ = {
+		AF32987A1CE6401300F587BF /* ZipZap.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ZipZap.framework;
-			remoteRef = AF5412DC1CC75608004C0CE8 /* PBXContainerItemProxy */;
+			remoteRef = AF3298791CE6401300F587BF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		AF5412DF1CC75608004C0CE8 /* libZipZap.a */ = {
+		AF32987C1CE6401300F587BF /* libZipZap.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libZipZap.a;
-			remoteRef = AF5412DE1CC75608004C0CE8 /* PBXContainerItemProxy */;
+			remoteRef = AF32987B1CE6401300F587BF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		AF5412E11CC75608004C0CE8 /* ZipZap.framework */ = {
+		AF32987E1CE6401300F587BF /* ZipZap.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ZipZap.framework;
-			remoteRef = AF5412E01CC75608004C0CE8 /* PBXContainerItemProxy */;
+			remoteRef = AF32987D1CE6401300F587BF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		AF5412E31CC75608004C0CE8 /* libZipZap.a */ = {
+		AF3298801CE6401300F587BF /* libZipZap.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libZipZap.a;
-			remoteRef = AF5412E21CC75608004C0CE8 /* PBXContainerItemProxy */;
+			remoteRef = AF32987F1CE6401300F587BF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		AF5412E51CC75608004C0CE8 /* ZipZapTests.xctest */ = {
+		AF3298821CE6401300F587BF /* ZipZapTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = ZipZapTests.xctest;
-			remoteRef = AF5412E41CC75608004C0CE8 /* PBXContainerItemProxy */;
+			remoteRef = AF3298811CE6401300F587BF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1744,6 +1749,7 @@
 				39FE91E61C5F886C0041E46F /* BBTMeViewController.m in Sources */,
 				39239A321C635BAB008EDBB0 /* BBTUser.m in Sources */,
 				FC80D45C1C6244A200A80EDA /* BBTItemDetailsTableViewController.m in Sources */,
+				AF3298861CE78C9D00F587BF /* BBTRouteManagerView.m in Sources */,
 				FC80D4591C62109000A80EDA /* BBTLafItemsTableViewCell.m in Sources */,
 				FC2EB0061C69B1A500B5DC42 /* BBTTextFieldTableViewCell.m in Sources */,
 				FCE609541C7979D9008C331D /* BBTLectureRoomsSettingsViewController.m in Sources */,

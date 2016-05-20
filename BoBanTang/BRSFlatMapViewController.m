@@ -152,7 +152,7 @@
     
     self.userTrackingButton = [[UIButton alloc] initWithFrame:CGRectZero];
     self.userTrackingButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.userTrackingButton setImage:[UIImage imageNamed:@"定位"] forState:UIControlStateNormal];
+    [self.userTrackingButton setImage:self.trackingImage forState:UIControlStateNormal];
     [self.view addSubview:self.userTrackingButton];
     [self.userTrackingButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view.mas_top).offset(navigationBarHeight + 6.5 * innerSpacing + 2 * buttonSize);
@@ -206,7 +206,7 @@
                                     },
                                 @{
                                     @"rect": [NSValue valueWithCGRect:(CGRect)self.containerVC.buttonGroupRect],
-                                    @"caption": @"切换2D/2.5D地图\n\n切换南北校区\n\n地图复位\n\n定位"
+                                    @"caption": @"切换2D/2.5D地图\n\n切换南北校区\n\n地图复位"
                                     }
                                 ];
         WSCoachMarksView *coachMarksView = [[WSCoachMarksView alloc] initWithFrame:self.view.bounds coachMarks:coachMarks];
@@ -345,7 +345,6 @@
     [self.mapView addOverlay:self.routeOverlay];
     [self.mapView addAnnotations:@[self.startAnnotation, self.endAnnotation]];
     [self fitMapViewForPolyline:self.routeOverlay];
-    [self.mapView setUserInteractionEnabled:NO];
 }
 
 - (void)removeDirectionsOverlay
@@ -359,7 +358,6 @@
     if (self.endAnnotation) {
         [self.mapView removeAnnotation:self.endAnnotation];
     }
-    [self.mapView setUserInteractionEnabled:YES];
 }
 
 #pragma mark - CCHMapClusterControlerDelegate
@@ -941,7 +939,7 @@
 animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
 {
     BRSTostVCTransAnimator *animator = [[BRSTostVCTransAnimator alloc] init];
-    animator.tostHeight = presented == self.directionVC ? 67.0f : 30.0f;
+    animator.tostHeight = presented == self.directionVC ? ([self.directionManager alreadyHaveDirections] ? 67.0f : self.view.frame.size.height) : 30.0f;
     animator.presenting = YES;
     self.shouldResetCampusRegion = NO;
     return animator;
