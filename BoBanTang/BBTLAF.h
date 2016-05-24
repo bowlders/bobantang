@@ -12,8 +12,8 @@
 
 @property (strong, nonatomic) NSNumber * itemID;
 @property (strong, nonatomic) NSString * loserID;
-@property (strong, nonatomic) NSURL    * thumbURL;
-@property (strong, nonatomic) NSURL    * url;
+@property (strong, nonatomic) NSString * thumbURL;
+@property (strong, nonatomic) NSString * orgPicUrl;
 @property (strong, nonatomic) NSNumber * campus;
 @property (strong, nonatomic) NSString * location;
 @property (strong, nonatomic) NSNumber * type;

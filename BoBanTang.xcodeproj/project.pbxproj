@@ -39,7 +39,6 @@
 		395B52DE1C7D5C87008FD949 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 395B52DD1C7D5C87008FD949 /* libsqlite3.tbd */; };
 		395B52E01C7D5CA9008FD949 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 395B52DF1C7D5CA9008FD949 /* MessageUI.framework */; };
 		39723CB31C7FE487004577A5 /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39723C9F1C7FE487004577A5 /* ShareSDK.framework */; };
-		39723CB41C7FE487004577A5 /* ShareSDKExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39723CA21C7FE487004577A5 /* ShareSDKExtension.framework */; };
 		39723CB51C7FE487004577A5 /* ShareSDKUI.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 39723CA31C7FE487004577A5 /* ShareSDKUI.bundle */; };
 		39723CB61C7FE487004577A5 /* ShareSDKUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39723CA41C7FE487004577A5 /* ShareSDKUI.framework */; };
 		39723CB71C7FE487004577A5 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39723CA71C7FE487004577A5 /* TencentOpenAPI.framework */; };
@@ -119,6 +118,7 @@
 		AF5412C81CC680AC004C0CE8 /* NSArray+BRSMostNearestElements.m in Sources */ = {isa = PBXBuildFile; fileRef = AF5412C41CC680AC004C0CE8 /* NSArray+BRSMostNearestElements.m */; };
 		AF5412C91CC680AC004C0CE8 /* UIColor+BRSMapColor.m in Sources */ = {isa = PBXBuildFile; fileRef = AF5412C61CC680AC004C0CE8 /* UIColor+BRSMapColor.m */; };
 		AF5412CD1CC6A6A8004C0CE8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF5412CC1CC6A6A8004C0CE8 /* MapKit.framework */; };
+		AF99038A1CF4869C0039C4E4 /* RSA.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9903891CF4869C0039C4E4 /* RSA.m */; };
 		AF9A8D331CC778460079C46F /* campusBoundary.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AF9A8D301CC778460079C46F /* campusBoundary.geojson */; };
 		AF9A8D341CC778460079C46F /* SCUTFlatMapMetaData_n.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AF9A8D311CC778460079C46F /* SCUTFlatMapMetaData_n.geojson */; };
 		AF9A8D351CC778460079C46F /* SCUTFlatMapMetaData_s.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AF9A8D321CC778460079C46F /* SCUTFlatMapMetaData_s.geojson */; };
@@ -427,6 +427,10 @@
 		AF5412C61CC680AC004C0CE8 /* UIColor+BRSMapColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BRSMapColor.m"; sourceTree = "<group>"; };
 		AF5412CC1CC6A6A8004C0CE8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		AF5412E91CC758EA004C0CE8 /* BoBanTang-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BoBanTang-Prefix.pch"; sourceTree = "<group>"; };
+		AF9903791CF47DF80039C4E4 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../../Library/Developer/Xcode/DerivedData/BoBanTang-attcirrnfptvrjfrasuubeavtccr/Build/Products/Debug-iphonesimulator/libAFNetworking.a"; sourceTree = "<group>"; };
+		AF99037B1CF47FCF0039C4E4 /* libQiniu.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libQiniu.a; path = "../../../Library/Developer/Xcode/DerivedData/BoBanTang-attcirrnfptvrjfrasuubeavtccr/Build/Products/Debug-iphonesimulator/libQiniu.a"; sourceTree = "<group>"; };
+		AF9903881CF4869C0039C4E4 /* RSA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSA.h; sourceTree = "<group>"; };
+		AF9903891CF4869C0039C4E4 /* RSA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSA.m; sourceTree = "<group>"; };
 		AF9A8D301CC778460079C46F /* campusBoundary.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = campusBoundary.geojson; sourceTree = "<group>"; };
 		AF9A8D311CC778460079C46F /* SCUTFlatMapMetaData_n.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SCUTFlatMapMetaData_n.geojson; sourceTree = "<group>"; };
 		AF9A8D321CC778460079C46F /* SCUTFlatMapMetaData_s.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SCUTFlatMapMetaData_s.geojson; sourceTree = "<group>"; };
@@ -504,7 +508,6 @@
 				395B52DA1C7D5C72008FD949 /* JavaScriptCore.framework in Frameworks */,
 				395B52D81C7D5C63008FD949 /* libstdc++.tbd in Frameworks */,
 				39723CB71C7FE487004577A5 /* TencentOpenAPI.framework in Frameworks */,
-				39723CB41C7FE487004577A5 /* ShareSDKExtension.framework in Frameworks */,
 				39723CB31C7FE487004577A5 /* ShareSDK.framework in Frameworks */,
 				39723CBB1C7FE487004577A5 /* MOBFoundation.framework in Frameworks */,
 				395B52D61C7D5C57008FD949 /* libz.tbd in Frameworks */,
@@ -977,6 +980,8 @@
 		4EA28AD388E43D96D5F54ADA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AF99037B1CF47FCF0039C4E4 /* libQiniu.a */,
+				AF9903791CF47DF80039C4E4 /* libAFNetworking.a */,
 				39D64D301CDA5681005FBD88 /* Foundation.framework */,
 				AF5412CC1CC6A6A8004C0CE8 /* MapKit.framework */,
 				395B52DF1C7D5CA9008FD949 /* MessageUI.framework */,
@@ -1306,6 +1311,8 @@
 				FC1770B91C5F505300BF07AC /* BBTLAF.m */,
 				FC1770BA1C5F505300BF07AC /* BBTLAFManager.h */,
 				FC1770BB1C5F505300BF07AC /* BBTLAFManager.m */,
+				AF9903881CF4869C0039C4E4 /* RSA.h */,
+				AF9903891CF4869C0039C4E4 /* RSA.m */,
 			);
 			name = "Lost&Found";
 			sourceTree = "<group>";
@@ -1714,6 +1721,7 @@
 				AF5412BB1CC6805D004C0CE8 /* BBTDirectionHeaderView.m in Sources */,
 				395B52961C7C8438008FD949 /* BBTCollectedCampusInfo.m in Sources */,
 				FCE6094E1C76324E008C331D /* BBTItemFilterSettingsViewController.m in Sources */,
+				AF99038A1CF4869C0039C4E4 /* RSA.m in Sources */,
 				AF53C8301CAACC0E00D84B9D /* BBTScoresLoginViewController.m in Sources */,
 				FCD0A2941C023B930024D78F /* BBTHudView.m in Sources */,
 				FC69A3FE1C038340000EF949 /* BBTLectureRoomsResultTableViewController.m in Sources */,

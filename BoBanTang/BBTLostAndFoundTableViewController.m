@@ -19,6 +19,7 @@
 #import "BBTItemFilterSettingsViewController.h"
 #import <MJRefresh.h>
 #import <MJRefreshStateHeader.h>
+#import "UIImageView+AFNetworking.h"
 #import "UIColor+BBTColor.h"
 #import "WYPopoverController.h"
 
@@ -172,7 +173,10 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
     
     NSArray *itemArray = [BBTLAFManager sharedLAFManager].itemArray;
     [cell configureItemsCells:itemArray[indexPath.row]];
-    [cell updateConstraintsIfNeeded];
+    [cell.imageView setImageWithURL:[NSURL URLWithString:itemArray[indexPath.row][@"thumbnail"]]];
+    
+    [self.view setNeedsUpdateConstraints];
+    [self.view updateConstraintsIfNeeded];
     
     return cell;
 }

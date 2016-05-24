@@ -29,6 +29,8 @@
     self.itemName.numberOfLines = 0;
     [self.itemName sizeToFit];
     self.itemName.adjustsFontSizeToFitWidth = YES;
+    self.thumbLostImageView.contentMode = UIViewContentModeScaleToFill;
+    self.thumbLostImageView.clipsToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -39,7 +41,6 @@
 
 - (void)configureItemsCells:(NSDictionary *)content
 {
-    self.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
     self.itemDetails.text = content[@"details"];
     switch ([content[@"type"] integerValue]) {
         case 0:

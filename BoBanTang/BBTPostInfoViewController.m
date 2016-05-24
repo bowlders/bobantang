@@ -15,6 +15,8 @@
 #import "ActionSheetPicker.h"
 #import <Masonry.h>
 #import <AYVibrantButton.h>
+#import <MBProgressHUD.h>
+#import <JGProgressHUD.h>
 #import "BBTLAF.h"
 #import "BBTLAFManager.h"
 
@@ -28,18 +30,27 @@ static NSString * detailsInitial = @"请输入详情";
 
 @interface BBTPostInfoViewController ()
 
-@property (strong, nonatomic) UITableView     * tableView;
-@property (strong, nonatomic) NSString        * itemDetails;
-@property (strong, nonatomic) NSNumber        * account;
+@property (strong, nonatomic) UITableView         * tableView;
+@property (strong, nonatomic) NSString            * itemDetails;
+@property (strong, nonatomic) NSNumber            * account;
+@property (strong, nonatomic) UIImage             * lostItemImage;
+@property (strong, nonatomic) NSMutableDictionary * itemInfoToPost;
 
-@property (strong, nonatomic) BBTLAF          * item;
+@property (strong, nonatomic) BBTLAF              * item;
 
-@property (strong, nonatomic) AYVibrantButton * postButton;
-@property (strong, nonatomic) AYVibrantButton * resetButton;
+@property (strong, nonatomic) AYVibrantButton     * postButton;
+@property (strong, nonatomic) AYVibrantButton     * resetButton;
 
 @end
 
 @implementation BBTPostInfoViewController
+
+extern NSString *kDidGetTokenNotificationName;
+extern NSString *kFailGetTokenNotificationName;
+extern NSString *kDidUploadImageNotificationName;
+extern NSString *kFailUploadImageNotificationName;
+extern NSString *kDidPostItemNotificaionName;
+extern NSString *kFailPostItemNotificaionName;
 
 - (void)viewDidLoad
 {
@@ -52,7 +63,8 @@ static NSString * detailsInitial = @"请输入详情";
         self.navigationItem.title = @"发布失物启示";
     }
     
-    self.account = [NSNumber numberWithInt:[[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account intValue]];
+    //self.account = [NSNumber numberWithInt:[[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account intValue]];
+    self.account = (@201430202488);
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -131,14 +143,28 @@ static NSString * detailsInitial = @"请输入详情";
         make.width.equalTo(@(buttonWidth));
     }];
     
-    //Notification
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    //Keyboard Notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    //Upload Notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetToken) name:kDidGetTokenNotificationName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failUploading) name:kFailGetTokenNotificationName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUploadImage) name:kDidUploadImageNotificationName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failUploading) name:kFailUploadImageNotificationName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didPostItem) name:kDidPostItemNotificaionName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failUploading) name:kFailPostItemNotificaionName object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -147,6 +173,7 @@ static NSString * detailsInitial = @"请输入详情";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+#pragma -mark handle keyboard
 - (void)dismissKeyboard
 {
     BBTTextFieldTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
@@ -200,6 +227,44 @@ static NSString * detailsInitial = @"请输入详情";
         self.tableView.scrollIndicatorInsets = edgeInsets;
     }
                      completion:nil];
+}
+
+#pragma -mark get upload notifications
+- (void)didGetToken
+{
+    [[BBTLAFManager sharedLAFManager] uploadImageToQiniu:self.lostItemImage];
+}
+
+- (void)didUploadImage
+{
+    [self.itemInfoToPost setObject:([BBTLAFManager sharedLAFManager].OrgPicUrl) forKey:@"originalPicture"];
+    [self.itemInfoToPost setObject:([BBTLAFManager sharedLAFManager].thumbUrl) forKey:@"thumbnail"];
+    
+    [[BBTLAFManager sharedLAFManager] postItemDic:self.itemInfoToPost WithType:[self.lostOrFound integerValue]];
+}
+
+- (void)didPostItem
+{
+    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+    JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    HUD.interactionType = 0;
+    HUD.textLabel.text = @"发布成功";
+    HUD.indicatorView = [[JGProgressHUDSuccessIndicatorView alloc] init];
+    HUD.square = YES;
+    [HUD showInView:self.navigationController.view];
+    [HUD dismissAfterDelay:2.0 animated:YES];
+    [self.view setUserInteractionEnabled:YES];
+}
+
+- (void)failUploading
+{
+    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+    [self.view setUserInteractionEnabled:YES];
+    UIAlertController *alertController = [[UIAlertController alloc] init];
+    alertController = [UIAlertController alertControllerWithTitle:@"上传失败" message:@"可能是网络不好，请稍后再试" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:okAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -370,6 +435,7 @@ static NSString * detailsInitial = @"请输入详情";
         UIImagePickerController *pickerContoller = [[UIImagePickerController alloc] init];
         pickerContoller.modalPresentationStyle = UIModalPresentationCurrentContext;
         pickerContoller.delegate = self;
+        pickerContoller.allowsEditing = YES;
         
         UIAlertController *pickerView = [UIAlertController alertControllerWithTitle:@"Select a photo"
                                                                             message:nil
@@ -383,6 +449,7 @@ static NSString * detailsInitial = @"请输入详情";
                                                             style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction *action){
                                                               pickerContoller.sourceType = UIImagePickerControllerSourceTypeCamera;
+                                                              pickerContoller.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
                                                               [self presentViewController:pickerContoller animated:YES completion:nil];
                                                           }];
         UIAlertAction *chooseFromGallery = [UIAlertAction actionWithTitle:@"从相册选取"
@@ -407,20 +474,6 @@ static NSString * detailsInitial = @"请输入详情";
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"YYYY-MM-dd"];
     [element setText:[dateFormatter stringFromDate:selectedDate]];
-}
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
-{
-    [self dismissViewControllerAnimated:YES completion:NULL];
-    
-    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
-    BBTItemImageTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
-    [cell configureCellWithImage:image];
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)BBTItemDetail:(BBTItemDetailEditingViewController *)controller didFinishEditingDetails:(NSString *)itemDetails
@@ -467,19 +520,42 @@ static NSString * detailsInitial = @"请输入详情";
         return;
     }
     
-    NSMutableDictionary *itemInfoToPost = [[NSMutableDictionary alloc] init];
-    [itemInfoToPost setObject:self.item.date forKey:@"date"];
-    [itemInfoToPost setObject:self.item.campus forKey:@"campus"];
-    [itemInfoToPost setObject:self.item.location forKey:@"location"];
-    [itemInfoToPost setObject:self.item.type forKey:@"type"];
-    [itemInfoToPost setObject:self.item.publisher forKey:@"publisher"];
-    [itemInfoToPost setObject:self.item.phone forKey:@"phone"];
-    [itemInfoToPost setObject:self.account forKey:@"account"];
+    self.itemInfoToPost = [[NSMutableDictionary alloc] init];
+    [self.itemInfoToPost setObject:self.item.date forKey:@"date"];
+    [self.itemInfoToPost setObject:self.item.campus forKey:@"campus"];
+    [self.itemInfoToPost setObject:self.item.location forKey:@"location"];
+    [self.itemInfoToPost setObject:self.item.type forKey:@"type"];
+    [self.itemInfoToPost setObject:self.item.publisher forKey:@"publisher"];
+    [self.itemInfoToPost setObject:self.item.phone forKey:@"phone"];
+    [self.itemInfoToPost setObject:self.account forKey:@"account"];
     
-    if (![self.item.details isEqualToString:detailsInitial])[itemInfoToPost setObject:self.item.details forKey:@"details"];
-    if (![self.item.otherContact isEqualToString:@""] && !self.item.otherContact)[itemInfoToPost setObject:self.item.otherContact forKey:@"otherContact"];
+    if (![self.item.details isEqualToString:detailsInitial])[self.itemInfoToPost setObject:self.item.details forKey:@"details"];
+    if (![self.item.otherContact isEqualToString:@""] && !self.item.otherContact)[self.itemInfoToPost setObject:self.item.otherContact forKey:@"otherContact"];
     
-    [[BBTLAFManager sharedLAFManager] postItemDic:itemInfoToPost WithType:[self.lostOrFound integerValue]];
+    //Show a HUD
+    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    [self.view setUserInteractionEnabled:NO];
+    
+    if (!self.lostItemImage) {
+        [[BBTLAFManager sharedLAFManager] postItemDic:self.itemInfoToPost WithType:[self.lostOrFound integerValue]];
+    } else {
+        [[BBTLAFManager sharedLAFManager] getUploadToken];
+    }
+}
+
+#pragma mark - UIImagePickerController Delegate Methods
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
+    
+    self.lostItemImage = [info valueForKey:UIImagePickerControllerEditedImage];
+    BBTItemImageTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
+    [cell configureCellWithImage:self.lostItemImage];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 #pragma mark - Navigation
