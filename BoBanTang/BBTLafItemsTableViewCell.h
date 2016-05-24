@@ -10,9 +10,9 @@
 
 @interface BBTLafItemsTableViewCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UIImageView *thumbLostImageView;
-@property (strong, nonatomic) IBOutlet UILabel *itemName;
-@property (strong, nonatomic) IBOutlet UILabel *itemDetails;
+@property (strong, nonatomic) IBOutlet UIImageView * thumbLostImageView;
+@property (strong, nonatomic) IBOutlet UILabel     * itemName;
+@property (strong, nonatomic) IBOutlet UILabel     * itemDetails;
 
 - (void)configureItemsCells:(NSDictionary *)content;
 

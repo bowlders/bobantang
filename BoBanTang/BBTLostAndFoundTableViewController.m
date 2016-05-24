@@ -119,8 +119,6 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
 
 - (IBAction)didChangeLafType:(id)sender
 {
-    [[BBTLAFManager sharedLAFManager] retriveItems:self.lostOrFound.selectedSegmentIndex WithConditions:nil];
-    
     [self refresh];
     
     [self.tableView reloadData];
@@ -169,11 +167,26 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BBTLafItemsTableViewCell *cell = (BBTLafItemsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:itemCellIdentifier forIndexPath:indexPath];
+    __unsafe_unretained BBTLafItemsTableViewCell *cell = (BBTLafItemsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:itemCellIdentifier forIndexPath:indexPath];
     
+    //Prevent the cell point to a reused cell with wrong contents because the download request is in the background
+    cell.thumbLostImageView.image = nil;
+    [cell.thumbLostImageView cancelImageDownloadTask];
+    
+    //Configure cell
     NSArray *itemArray = [BBTLAFManager sharedLAFManager].itemArray;
     [cell configureItemsCells:itemArray[indexPath.row]];
-    [cell.imageView setImageWithURL:[NSURL URLWithString:itemArray[indexPath.row][@"thumbnail"]]];
+    
+    //Asynchronously downloads the thumbnail
+    [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:itemArray[indexPath.row][@"thumbnail"]]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
+        NSLog(@"Succeed!");
+        if (cell) {
+            cell.thumbLostImageView.image = image;
+        }
+        [cell setNeedsLayout];
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        
+    }];
     
     [self.view setNeedsUpdateConstraints];
     [self.view updateConstraintsIfNeeded];

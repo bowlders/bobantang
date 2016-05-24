@@ -15,6 +15,8 @@
 @property NSString *token;
 @property NSString *OrgPicUrl;
 @property NSString *thumbUrl;
+@property UIImageView *thumbImageView;
+@property UIImageView *OrgPicImageView;
 
 + (instancetype)sharedLAFManager;
  //Singleton method

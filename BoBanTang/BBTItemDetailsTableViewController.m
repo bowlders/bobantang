@@ -8,6 +8,7 @@
 
 #import "BBTItemDetailsTableViewController.h"
 #import "BBTLAFManager.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface BBTItemDetailsTableViewController ()
 
@@ -53,6 +54,14 @@
     self.location.text = self.itemDetails[@"location"];
     self.contactName.text = self.itemDetails[@"publisher"];
     self.phone.text = self.itemDetails[@"phone"];
+    
+    [self.thumbImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.itemDetails[@"thumbnail"]]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
+        NSLog(@"Succeed!");
+        self.thumbImage.image = image;
+        [self.view setNeedsLayout];
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
