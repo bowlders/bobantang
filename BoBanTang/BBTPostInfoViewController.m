@@ -19,6 +19,7 @@
 #import <JGProgressHUD.h>
 #import "BBTLAF.h"
 #import "BBTLAFManager.h"
+#import "BBTImageUploadManager.h"
 
 static NSString * campusCellIdentifier = @"BBTItemCampusTableViewCell";
 static NSString * imageCellIdentifier = @"BBTItemImageTableViewCell";
@@ -45,8 +46,6 @@ static NSString * detailsInitial = @"请输入详情";
 
 @implementation BBTPostInfoViewController
 
-extern NSString *kDidGetTokenNotificationName;
-extern NSString *kFailGetTokenNotificationName;
 extern NSString *kDidUploadImageNotificationName;
 extern NSString *kFailUploadImageNotificationName;
 extern NSString *kDidPostItemNotificaionName;
@@ -159,8 +158,6 @@ extern NSString *kFailPostItemNotificaionName;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     //Upload Notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetToken) name:kDidGetTokenNotificationName object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failUploading) name:kFailGetTokenNotificationName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUploadImage) name:kDidUploadImageNotificationName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failUploading) name:kFailUploadImageNotificationName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didPostItem) name:kDidPostItemNotificaionName object:nil];
@@ -230,15 +227,10 @@ extern NSString *kFailPostItemNotificaionName;
 }
 
 #pragma -mark get upload notifications
-- (void)didGetToken
-{
-    [[BBTLAFManager sharedLAFManager] uploadImageToQiniu:self.lostItemImage];
-}
-
 - (void)didUploadImage
 {
-    [self.itemInfoToPost setObject:([BBTLAFManager sharedLAFManager].OrgPicUrl) forKey:@"originalPicture"];
-    [self.itemInfoToPost setObject:([BBTLAFManager sharedLAFManager].thumbUrl) forKey:@"thumbnail"];
+    [self.itemInfoToPost setObject:([BBTImageUploadManager sharedUploadManager].OrgPicUrl) forKey:@"originalPicture"];
+    [self.itemInfoToPost setObject:([BBTImageUploadManager sharedUploadManager].thumbnailUrl) forKey:@"thumbnail"];
     
     [[BBTLAFManager sharedLAFManager] postItemDic:self.itemInfoToPost WithType:[self.lostOrFound integerValue]];
 }
@@ -539,7 +531,7 @@ extern NSString *kFailPostItemNotificaionName;
     if (!self.lostItemImage) {
         [[BBTLAFManager sharedLAFManager] postItemDic:self.itemInfoToPost WithType:[self.lostOrFound integerValue]];
     } else {
-        [[BBTLAFManager sharedLAFManager] getUploadToken];
+        [[BBTImageUploadManager sharedUploadManager] uploadImageToQiniu:self.lostItemImage];
     }
 }
 

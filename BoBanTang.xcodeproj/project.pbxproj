@@ -119,6 +119,7 @@
 		AF5412C91CC680AC004C0CE8 /* UIColor+BRSMapColor.m in Sources */ = {isa = PBXBuildFile; fileRef = AF5412C61CC680AC004C0CE8 /* UIColor+BRSMapColor.m */; };
 		AF5412CD1CC6A6A8004C0CE8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF5412CC1CC6A6A8004C0CE8 /* MapKit.framework */; };
 		AF99038A1CF4869C0039C4E4 /* RSA.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9903891CF4869C0039C4E4 /* RSA.m */; };
+		AF9903A71CF607520039C4E4 /* BBTImageUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9903A61CF607520039C4E4 /* BBTImageUploadManager.m */; };
 		AF9A8D331CC778460079C46F /* campusBoundary.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AF9A8D301CC778460079C46F /* campusBoundary.geojson */; };
 		AF9A8D341CC778460079C46F /* SCUTFlatMapMetaData_n.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AF9A8D311CC778460079C46F /* SCUTFlatMapMetaData_n.geojson */; };
 		AF9A8D351CC778460079C46F /* SCUTFlatMapMetaData_s.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AF9A8D321CC778460079C46F /* SCUTFlatMapMetaData_s.geojson */; };
@@ -431,6 +432,8 @@
 		AF99037B1CF47FCF0039C4E4 /* libQiniu.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libQiniu.a; path = "../../../Library/Developer/Xcode/DerivedData/BoBanTang-attcirrnfptvrjfrasuubeavtccr/Build/Products/Debug-iphonesimulator/libQiniu.a"; sourceTree = "<group>"; };
 		AF9903881CF4869C0039C4E4 /* RSA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSA.h; sourceTree = "<group>"; };
 		AF9903891CF4869C0039C4E4 /* RSA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSA.m; sourceTree = "<group>"; };
+		AF9903A51CF607520039C4E4 /* BBTImageUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTImageUploadManager.h; sourceTree = "<group>"; };
+		AF9903A61CF607520039C4E4 /* BBTImageUploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTImageUploadManager.m; sourceTree = "<group>"; };
 		AF9A8D301CC778460079C46F /* campusBoundary.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = campusBoundary.geojson; sourceTree = "<group>"; };
 		AF9A8D311CC778460079C46F /* SCUTFlatMapMetaData_n.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SCUTFlatMapMetaData_n.geojson; sourceTree = "<group>"; };
 		AF9A8D321CC778460079C46F /* SCUTFlatMapMetaData_s.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SCUTFlatMapMetaData_s.geojson; sourceTree = "<group>"; };
@@ -821,6 +824,8 @@
 				FCD0A2711C00066F0024D78F /* Tools */,
 				397445621C0816FE004B89BA /* Information */,
 				39239A2F1C6357AF008EDBB0 /* Me */,
+				AF9903A51CF607520039C4E4 /* BBTImageUploadManager.h */,
+				AF9903A61CF607520039C4E4 /* BBTImageUploadManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1730,6 +1735,7 @@
 				3951EFFA1C70997600076AD4 /* BBTNorthSpecialRailwayTwoViewController.m in Sources */,
 				A947D9BD1BD8DC34000F071B /* BBTSettingsViewController.m in Sources */,
 				FCD0A26F1C00062D0024D78F /* BBTScoresCell.m in Sources */,
+				AF9903A71CF607520039C4E4 /* BBTImageUploadManager.m in Sources */,
 				AF5412A81CC68029004C0CE8 /* BRSMapMetaDataManager.m in Sources */,
 				3921B02A1C75CF4000CA9449 /* BBTPersonalInfoEditViewController.m in Sources */,
 				395B10CD1C5525CD00772A38 /* BBTDailyArticleViewController.m in Sources */,
