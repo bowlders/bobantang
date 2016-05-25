@@ -13,7 +13,7 @@
 
 static NSString *getTokenUrl = @"http://api.100steps.net/qiniu/index.php";
 static NSString *domain = @"http://o6haukahg.bkt.clouddn.com/";
-static NSString *thumbUrlSuffix = @"?imageView2/1/w/200/h/200";
+static NSString *thumbnailUrlSuffix = @"?imageView2/1/w/200/h/200";
 
 static NSString *publicKey = @"-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC7toPDdZWWN2Mz+8S6Y+lWxXSdURd1sC785PUj/7nx0olGdawUK6wyDmv0oXmNyqaVvMTjpRL4Q0cnKRKeCFAh3tqF/IOhyNEzfd56k6g1lx4OB5jKItbov3ZJFjKuJCFLyvSc+R+bUFW1DBFPJ5bN+TT1sixlJogOHd42z6HGdQIDAQAB\n-----END PUBLIC KEY-----";
 static NSString *jsonString = @"api|qiniu|";
@@ -81,8 +81,8 @@ extern NSString *test;
          NSLog(@"info ===== %@", info);
          NSLog(@"resp ===== %@", resp);
          if (resp[@"key"]) {
-             self.OrgPicUrl = [domain stringByAppendingString:resp[@"key"]];
-             self.thumbnailUrl = [self.OrgPicUrl stringByAppendingString:thumbUrlSuffix];
+             self.originalImageUrl = [domain stringByAppendingString:resp[@"key"]];
+             self.thumbnailUrl = [self.originalImageUrl stringByAppendingString:thumbnailUrlSuffix];
              [self postDidUploadImageNotification];
          } else {
              [self postFailUploadImageNotification];

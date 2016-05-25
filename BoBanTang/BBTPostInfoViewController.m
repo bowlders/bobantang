@@ -229,7 +229,7 @@ extern NSString *kFailPostItemNotificaionName;
 #pragma -mark get upload notifications
 - (void)didUploadImage
 {
-    [self.itemInfoToPost setObject:([BBTImageUploadManager sharedUploadManager].OrgPicUrl) forKey:@"originalPicture"];
+    [self.itemInfoToPost setObject:([BBTImageUploadManager sharedUploadManager].originalImageUrl) forKey:@"originalPicture"];
     [self.itemInfoToPost setObject:([BBTImageUploadManager sharedUploadManager].thumbnailUrl) forKey:@"thumbnail"];
     
     [[BBTLAFManager sharedLAFManager] postItemDic:self.itemInfoToPost WithType:[self.lostOrFound integerValue]];
