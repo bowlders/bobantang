@@ -33,6 +33,13 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
 
 - (void)currentUserAuthentication
 {
+    
+    
+    self.userIsActive = YES;                            //Currently JiaoWu authentication fails, so these code is for temporary debugging use.
+    [self postUserAuthenticationFinishNotification];
+    return;
+    
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
@@ -63,11 +70,6 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
 
 - (void)fetchCurrentUserData
 {
-    
-    
-    [self postUserAuthenticationFinishNotification];                    //Currently JiaoWu authentication fails, so this code is for temporary debugging use.
-    
-    
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
