@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This application requires location services to work</string>
 	<key></key>
 	<string></string>
 	<key>CFBundleName</key>
@@ -39,12 +39,12 @@
 	<string>2</string>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
 	<key>CFBundleShortVersionString</key>
 	<string>2.3.4</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -52,12 +52,16 @@
 	</dict>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -91,8 +95,6 @@
 			<string>Editor</string>
 		</dict>
 	</array>
-	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleIcons</key>
