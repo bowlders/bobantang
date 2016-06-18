@@ -317,9 +317,18 @@ extern NSString * kUserAuthentificationFinishNotifName;
 
 - (void)handleTap
 {
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Me" bundle:nil];
-    UIViewController *controller = [sb instantiateViewControllerWithIdentifier:@"PersonalInfoEditVC"];
-    [self.navigationController pushViewController:controller animated:YES];
+    if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
+    {
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Me" bundle:nil];
+        UIViewController *controller = [sb instantiateViewControllerWithIdentifier:@"PersonalInfoEditVC"];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    else
+    {
+        BBTLoginViewController *loginVC = [[BBTLoginViewController alloc] init];
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self presentViewController:navigationController animated:YES completion:nil];
+    }
 }
 
 @end

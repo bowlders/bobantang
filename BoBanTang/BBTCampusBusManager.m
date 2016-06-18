@@ -103,7 +103,8 @@ NSString * campusBusNotificationName = @"campusBusNotification";
         {
             numberOfBusesCurrentlyAtStartingStation++;
             
-            if (((BBTCampusBus *)self.campusBusArray[i]).Stop == 1)
+            //If any bus is stopping or flying at the starting station, then this bus will not be displayed.
+            if ((((BBTCampusBus *)self.campusBusArray[i]).Stop == 1) || (((BBTCampusBus *)self.campusBusArray[i]).Fly == 1))
             {
                 numberofBusesCurrentlyStoppingAtStartingStation++;
             }
@@ -120,7 +121,8 @@ NSString * campusBusNotificationName = @"campusBusNotification";
     
     for (int i = 0;i < [self.campusBusArray count];i++)
     {
-        if (((BBTCampusBus *)self.campusBusArray[i]).StationIndex == index)
+        //If any bus is currently at a normal station(which means it's not the starting station) and it's not flying, then display it.
+        if ((((BBTCampusBus *)self.campusBusArray[i]).StationIndex == index) && (((BBTCampusBus *)self.campusBusArray[i]).Fly == 0))
         {
             numberOfBusesCurrentlyAtThisStation++;
         }
@@ -133,7 +135,8 @@ NSString * campusBusNotificationName = @"campusBusNotification";
 {
     for (int i = 0;i < [self.campusBusArray count];i++)
     {
-        if (((BBTCampusBus *)self.campusBusArray[i]).StationIndex == index)
+        //If any bus is currently at a normal station(which means it's not the starting station) and it's not flying, then display it.
+        if ((((BBTCampusBus *)self.campusBusArray[i]).StationIndex == index) && (((BBTCampusBus *)self.campusBusArray[i]).Fly == 0))
         {
             return YES;
         }
@@ -149,10 +152,8 @@ NSString * campusBusNotificationName = @"campusBusNotification";
     
     for (int i = 0;i < [self.campusBusArray count];i++)
     {
-        if (((BBTCampusBus *)self.campusBusArray[i]).StationIndex == index)
+        if ((((BBTCampusBus *)self.campusBusArray[i]).StationIndex == index) && (((BBTCampusBus *)self.campusBusArray[i]).Stop == 0) && (((BBTCampusBus *)self.campusBusArray[i]).Fly == 0))
         {
-            if (((BBTCampusBus *)self.campusBusArray[i]).Stop == 0)
-            {
                 if (((BBTCampusBus *)self.campusBusArray[i]).Direction == 1)
                 {
                     directionSouthCount++;
@@ -161,7 +162,6 @@ NSString * campusBusNotificationName = @"campusBusNotification";
                 {
                     directionNorthCount++;
                 }
-            }
         }
     }
     
