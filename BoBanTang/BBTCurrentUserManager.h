@@ -25,4 +25,10 @@
 - (NSString *)loadCurrentUserPassWord;
 - (void)deleteCurrentUserInfo;
 
+//NickName
+- (void)uploadNewNickName:(NSString *)nickName;             //Upload a new nickname, if succeed then change current user's nickname
+
+//Logo
+- (void)uploadNewLogoURL:(NSString *)url;                   //Upload a new logo url, if succeed then change current user's logo url
+
 @end

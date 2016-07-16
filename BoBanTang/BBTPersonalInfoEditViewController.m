@@ -8,27 +8,41 @@
 
 #import "BBTPersonalInfoEditViewController.h"
 #import "BBTImageUploadManager.h"
+#import "BBTChangeNickNameViewController.h"
+#import "BBTCurrentUserManager.h"
+#import <MBProgressHUD.h>
 
 @interface BBTPersonalInfoEditViewController ()
 
-@property (strong, nonatomic) IBOutlet UIImageView *addNewImageView;
+@property (strong, nonatomic) IBOutlet UIImageView * addNewImageView;
+@property (strong, nonatomic) UIImage              * theNewAvatarImage;
 
 @end
 
 @implementation BBTPersonalInfoEditViewController
 
-extern NSString *kDidUploadImageNotificationName;
-extern NSString *kFailUploadImageNotificationName;
+extern NSString * kDidUploadImageNotificationName;
+extern NSString * kFailUploadImageNotificationName;
+extern NSString * didUploadUserLogoURLNotifName;
+extern NSString * failUploadUserLogoURLNotifName;
 
 - (void)viewDidLoad
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveImageUploadNotif:)
+                                             selector:@selector(didReceiveImageUploadSucceedNotif)
                                                  name:kDidUploadImageNotificationName
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveImageUploadNotif:)
+                                             selector:@selector(didReceiveImageUploadFailNotif)
                                                  name:kFailUploadImageNotificationName
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveLogoUploadSucceedNotif)
+                                                 name:didUploadUserLogoURLNotifName
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveLogoUploadFailNotif)
+                                                 name:failUploadUserLogoURLNotifName
                                                object:nil];
 }
 
@@ -42,6 +56,8 @@ extern NSString *kFailUploadImageNotificationName;
     {
         [self changeNickName];
     }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)changeAvatar
@@ -92,12 +108,13 @@ extern NSString *kFailUploadImageNotificationName;
     //self.hidesBottomBarWhenPushed = NO;                             //Show tab bar
     //if ([info valueForKey:UIImagePickerControllerEditedImage])
     //{
-        //Set the image of the cell be the choosen picture.
-        UIImage *avatarImage = [info valueForKey:UIImagePickerControllerEditedImage];
-        self.addNewImageView.image = avatarImage;
+    
+    UIImage *avatarImage = [info valueForKey:UIImagePickerControllerEditedImage];
+    self.theNewAvatarImage = avatarImage;
 
-        //Upload the picture to QiNiu
-        //[[BBTImageUploadManager sharedUploadManager] uploadImageToQiniu:avatarImage];
+    //Upload the picture to QiNiu
+    [[BBTImageUploadManager sharedUploadManager] uploadImageToQiniu:avatarImage];
+    
     //}
 }
 
@@ -111,20 +128,78 @@ extern NSString *kFailUploadImageNotificationName;
 
 - (void)changeNickName
 {
-    //TODO: Change user's nickname here.
+    BBTChangeNickNameViewController *changeNickNameVC = [[BBTChangeNickNameViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:changeNickNameVC];
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
-- (void)didReceiveImageUploadNotif:(NSString *)notifName
+- (void)didReceiveImageUploadSucceedNotif
 {
-    if ([notifName isEqualToString:kDidUploadImageNotificationName])
-    {
-        //TODO: Show HUD
-        //TODO: Write Original Image URL into database
-    }
-    else if ([notifName isEqualToString:kFailUploadImageNotificationName])
-    {
-        //TODO: Show HUD
-    }
+    //Set the image of the cell be the choosen picture.
+    self.addNewImageView.image = self.theNewAvatarImage;
+    
+    //Upload current user's logo url
+    [[BBTCurrentUserManager sharedCurrentUserManager] uploadNewLogoURL:[BBTImageUploadManager sharedUploadManager].originalImageUrl];
+}
+
+- (void)didReceiveImageUploadFailNotif
+{
+    //Change back addNewImageView's image
+    self.addNewImageView.image = [UIImage imageNamed:@"addNewImage"];
+    
+    //Show failure HUD
+    MBProgressHUD *failureHUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    
+    //Set the annular determinate mode to show task progress.
+    failureHUD.mode = MBProgressHUDModeText;
+    failureHUD.labelText = @"头像上传失败";
+    
+    //Move to center.
+    CGFloat centerY = 0.5 * (CGRectGetMaxY(self.view.frame) + CGRectGetMinY(self.view.frame));
+    failureHUD.xOffset = 0.0f;
+    failureHUD.yOffset = centerY;
+    
+    //Hide after 3 seconds.
+    [failureHUD hide:YES afterDelay:3.0f];
+}
+
+- (void)didReceiveLogoUploadSucceedNotif
+{
+    //Show success HUD
+    MBProgressHUD *successHUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    
+    //Set the annular determinate mode to show task progress.
+    successHUD.mode = MBProgressHUDModeText;
+    successHUD.labelText = @"头像上传成功!";
+    
+    //Move to center.
+    CGFloat centerY = 0.5 * (CGRectGetMaxY(self.view.frame) + CGRectGetMinY(self.view.frame));
+    successHUD.xOffset = 0.0f;
+    successHUD.yOffset = centerY;
+    
+    //Hide after 3 seconds.
+    [successHUD hide:YES afterDelay:3.0f];
+}
+
+- (void)didReceiveLogoUploadFailNotif
+{
+    //Change back addNewImageView's image
+    self.addNewImageView.image = [UIImage imageNamed:@"addNewImage"];
+    
+    //Show failure HUD
+    MBProgressHUD *failureHUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    
+    //Set the annular determinate mode to show task progress.
+    failureHUD.mode = MBProgressHUDModeText;
+    failureHUD.labelText = @"头像上传失败";
+    
+    //Move to center.
+    CGFloat centerY = 0.5 * (CGRectGetMaxY(self.view.frame) + CGRectGetMinY(self.view.frame));
+    failureHUD.xOffset = 0.0f;
+    failureHUD.yOffset = centerY;
+    
+    //Hide after 3 seconds.
+    [failureHUD hide:YES afterDelay:3.0f];
 }
 
 @end

@@ -58,6 +58,7 @@
 		39B595431C0AF0500015B673 /* BBTCampusInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B595421C0AF0500015B673 /* BBTCampusInfoViewController.m */; };
 		39CB16EF1C77371C0046C9B0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39CB16EE1C77371C0046C9B0 /* Images.xcassets */; };
 		39D64D311CDA5681005FBD88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D64D301CDA5681005FBD88 /* Foundation.framework */; };
+		39DE6D421D36157F002E0A2C /* BBTChangeNickNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DE6D411D36157F002E0A2C /* BBTChangeNickNameViewController.m */; };
 		39FE91C61C59D6290041E46F /* BBTCampusBusTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91C51C59D6290041E46F /* BBTCampusBusTableViewCell.m */; };
 		39FE91D51C5A54E60041E46F /* BBTCampusBus.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91D41C5A54E60041E46F /* BBTCampusBus.m */; };
 		39FE91D81C5A54F50041E46F /* BBTCampusBusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91D71C5A54F50041E46F /* BBTCampusBusManager.m */; };
@@ -310,6 +311,8 @@
 		39B595441C0AF9D90015B673 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		39CB16EE1C77371C0046C9B0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		39D64D301CDA5681005FBD88 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		39DE6D401D36157F002E0A2C /* BBTChangeNickNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTChangeNickNameViewController.h; sourceTree = "<group>"; };
+		39DE6D411D36157F002E0A2C /* BBTChangeNickNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTChangeNickNameViewController.m; sourceTree = "<group>"; };
 		39FE91C41C59D6290041E46F /* BBTCampusBusTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusBusTableViewCell.h; sourceTree = "<group>"; };
 		39FE91C51C59D6290041E46F /* BBTCampusBusTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCampusBusTableViewCell.m; sourceTree = "<group>"; };
 		39FE91D31C5A54E60041E46F /* BBTCampusBus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusBus.h; sourceTree = "<group>"; };
@@ -938,6 +941,8 @@
 				39239A371C64BAC4008EDBB0 /* BBTLoginViewController.m */,
 				3921B0281C75CF4000CA9449 /* BBTPersonalInfoEditViewController.h */,
 				3921B0291C75CF4000CA9449 /* BBTPersonalInfoEditViewController.m */,
+				39DE6D401D36157F002E0A2C /* BBTChangeNickNameViewController.h */,
+				39DE6D411D36157F002E0A2C /* BBTChangeNickNameViewController.m */,
 			);
 			name = Me;
 			sourceTree = "<group>";
@@ -1743,6 +1748,7 @@
 				FCD0A2751C0006940024D78F /* BBTLectureRooms.m in Sources */,
 				AF5412941CC67FAA004C0CE8 /* BRSTostVCTransAnimator.m in Sources */,
 				A947D9B61BD8DC34000F071B /* BBTMainViewController.m in Sources */,
+				39DE6D421D36157F002E0A2C /* BBTChangeNickNameViewController.m in Sources */,
 				FC1770BC1C5F505300BF07AC /* BBTLAF.m in Sources */,
 				A947D9BA1BD8DC34000F071B /* BBTPreferences.m in Sources */,
 				3974452B1C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.m in Sources */,
