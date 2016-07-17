@@ -144,10 +144,8 @@ extern NSString * busDataNotificationName;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"specialRailwayCell";
-    
     //Here I create a new cell every time in order to fix a bug in view, often you need to reuse a cell.
-    BBTSpecRailway2TableViewCell *cell = [[BBTSpecRailway2TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    BBTSpecRailway2TableViewCell *cell = [[BBTSpecRailway2TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     
     [cell initCellContent:[BBTSpecRailway2BusManager sharedBusManager].directionNorthStationNames[([[BBTSpecRailway2BusManager sharedBusManager].directionNorthStationNames count] - indexPath.row - 1)]];
     

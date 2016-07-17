@@ -70,6 +70,8 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
         self.userIsActive = NO;
         [self postUserAuthenticationFinishNotification];
     }];
+
+    [manager invalidateSessionCancelingTasks:NO];
 }
 
 - (void)fetchCurrentUserData
@@ -105,6 +107,8 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
         self.userIsActive = NO;
         [self postUserAuthenticationFinishNotification];
     }];
+    
+    [manager invalidateSessionCancelingTasks:NO];
 }
 
 - (void)insertNewUserToDataBase
@@ -130,6 +134,8 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
         NSLog(@"Error: %@", error);
         self.userIsActive = NO;
     }];
+    
+    [manager invalidateSessionCancelingTasks:NO];
 }
 
 - (void)logOut

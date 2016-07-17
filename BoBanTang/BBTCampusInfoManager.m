@@ -49,6 +49,7 @@ NSString * campusInfoNotificationName = @"infoNotification";
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
+    [manager invalidateSessionCancelingTasks:NO];
 }
 
 - (void)fetchCollectedInfoArrayWithGivenSimplifiedArray:(NSArray *)simplifiedInfoArray
@@ -81,6 +82,7 @@ NSString * campusInfoNotificationName = @"infoNotification";
             NSLog(@"Error: %@", error);
         }];
     }
+    [manager invalidateSessionCancelingTasks:NO];
 }
 
 -(void)pushCampusInfoNotification

@@ -66,12 +66,6 @@ extern NSString * campusInfoNotificationName;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
-    CGFloat screenHeight = applicationFrame.size.height;
-    return screenHeight / 4.3;
-     */
-    
     NSArray *infoArray = [BBTCampusInfoManager sharedInfoManager].infoArray;
     return [tableView fd_heightForCellWithIdentifier:@"infoCell" configuration:^(BBTCampusInfoTableViewCell *cell){
         [cell setCellContentDictionary:infoArray[indexPath.row]];

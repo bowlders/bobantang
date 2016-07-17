@@ -20,7 +20,7 @@
 
 @property (strong, nonatomic) UIWebView * webView;
 @property (strong, nonatomic) UIButton  * shareButton;
-@property (strong, nonatomic) UIButton  * collectButton;                                //Tag 1 for solid star, 0 for hollow star
+@property (strong, nonatomic) UIButton  * collectButton;                            //Tag 1 for solid star, 0 for hollow star
 
 @end
 
