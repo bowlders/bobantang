@@ -26,8 +26,10 @@
 
 @implementation BBTCampusInfoViewController
 
-extern NSString * kUserAuthentificationFinishNotifName;
+NSString * campusInfoURLFront = @"http://babel.100steps.net/news/index.php?ID=";
+NSString * campusInfoURLEnd = @"&articleType=schoolInformation";
 
+extern NSString * kUserAuthentificationFinishNotifName;
 extern NSString * insertNewCollectedInfoSucceedNotifName;
 extern NSString * insertNewCollectedInfoFailNotifName;
 extern NSString * deleteCollectedInfoSucceedNotifName;
@@ -106,7 +108,9 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
     }];
     
     //Create and load request
-    NSString *urlString = self.info.article;
+    NSString *idString = [NSString stringWithFormat:@"%d", self.info.ID];
+    NSString *urlString1 = [campusInfoURLFront stringByAppendingString:idString];
+    NSString *urlString = [urlString1 stringByAppendingString:campusInfoURLEnd];
     NSString *cleanedUrlString = [urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSURL *url = [NSURL URLWithString:cleanedUrlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -331,15 +335,5 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
 {
     //Do nothing
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

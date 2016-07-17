@@ -105,8 +105,7 @@ extern NSString * dailyArticleNotificationName;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BBTDailyArticleViewController *destinationVC = [[BBTDailyArticleViewController alloc] init];
-    //destinationVC.info = [BBTCampusInfoManager sharedInfoManager].infoArray[indexPath.row];
-    
+    destinationVC.article = [BBTDailyArticleManager sharedArticleManager].articleArray[indexPath.row];
     [self.navigationController pushViewController:destinationVC animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

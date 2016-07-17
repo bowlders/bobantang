@@ -17,9 +17,6 @@
 
 @interface BBTCampusInfoTableViewController ()
 
-@property (strong, nonatomic) UISearchBar               * searchBar;
-@property (strong, nonatomic) UISearchDisplayController * controller;
-
 @end
 
 @implementation BBTCampusInfoTableViewController
@@ -46,15 +43,6 @@ extern NSString * campusInfoNotificationName;
     [header setTitle:@"加载中 ..." forState:MJRefreshStateRefreshing];
     self.tableView.mj_header = header;
     [self.tableView.mj_header beginRefreshing];
-    
-    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
-    //self.tableView.tableHeaderView = self.searchBar;
-    
-    self.searchBar.delegate = self;
-    
-    self.controller = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
-    self.controller.searchResultsDataSource = self;
-    self.controller.searchResultsDelegate = self;
     
     //Retrive all campus infos
     [[BBTCampusInfoManager sharedInfoManager] retriveData:@""];

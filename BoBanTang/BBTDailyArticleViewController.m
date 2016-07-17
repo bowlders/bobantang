@@ -25,6 +25,9 @@
 
 @implementation BBTDailyArticleViewController
 
+NSString * dailyArticleURLFront = @"http://babel.100steps.net/news/index.php?ID=";
+NSString * dailyArticleURLEnd = @"&articleType=dailySoup";
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [self updateCollectButtonStatus];
@@ -91,19 +94,18 @@
     }];
     
     //Create and load request
-    /*
-    NSString *urlString = self.article.article;
+    NSString *idString = [NSString stringWithFormat:@"%d", self.article.ID];
+    NSString *urlString1 = [dailyArticleURLFront stringByAppendingString:idString];
+    NSString *urlString = [urlString1 stringByAppendingString:dailyArticleURLEnd];
     NSString *cleanedUrlString = [urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSURL *url = [NSURL URLWithString:cleanedUrlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
-    */
     
     self.recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe)];
     self.recognizer.direction = UISwipeGestureRecognizerDirectionRight;
     self.recognizer.delegate = self;
     [self.view addGestureRecognizer:self.recognizer];
-    // Do any additional setup after loading the view.
 }
 
 - (void)share
