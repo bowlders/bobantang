@@ -245,7 +245,7 @@ extern NSString * campusBusNotificationName;
 
 - (void)didReceiveCampusBusNotification
 {
-    NSLog(@"Did receive campus bus notification");
+    //NSLog(@"Did receive campus bus notification");
     [self.tableView reloadData];
 }
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="s9t-p5-CJI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="s9t-p5-CJI">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -16,8 +16,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="Qk4-tc-VNY" kind="relationship" relationship="viewControllers" id="RtJ-I5-xNQ"/>
-                        <segue destination="Ox7-m2-SmX" kind="relationship" relationship="viewControllers" id="a4x-vf-kMW"/>
                         <segue destination="DfL-p5-W7r" kind="relationship" relationship="viewControllers" id="NEv-U6-c9c"/>
+                        <segue destination="Ox7-m2-SmX" kind="relationship" relationship="viewControllers" id="a4x-vf-kMW"/>
                         <segue destination="Wd4-Me-RKu" kind="relationship" relationship="viewControllers" id="Jy7-AZ-oit"/>
                     </connections>
                 </tabBarController>

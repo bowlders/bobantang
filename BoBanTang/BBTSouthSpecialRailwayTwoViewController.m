@@ -167,7 +167,7 @@ extern NSString * busDataNotificationName;
 
 - (void)didReceiveBusNotification : (NSNotification *)busNotification
 {
-    NSLog(@"Did receive special railway data notification");
+    //NSLog(@"Did receive special railway data notification");
     [self.tableView reloadData];
 }
 
