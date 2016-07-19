@@ -16,6 +16,7 @@
 
 @interface BBTDailyArticleViewController ()
 
+@property (strong, nonatomic) NSURL                    * url;
 @property (strong, nonatomic) UIWebView                * webView;
 @property (strong, nonatomic) UISwipeGestureRecognizer * recognizer;
 @property (strong, nonatomic) UIButton                 * shareButton;
@@ -98,8 +99,8 @@ NSString * dailyArticleURLEnd = @"&articleType=dailySoup";
     NSString *urlString1 = [dailyArticleURLFront stringByAppendingString:idString];
     NSString *urlString = [urlString1 stringByAppendingString:dailyArticleURLEnd];
     NSString *cleanedUrlString = [urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSURL *url = [NSURL URLWithString:cleanedUrlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    self.url = [NSURL URLWithString:cleanedUrlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
     [self.webView loadRequest:request];
     
     self.recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe)];
@@ -115,7 +116,7 @@ NSString * dailyArticleURLEnd = @"&articleType=dailySoup";
     [shareParams SSDKEnableUseClientShare];
     [shareParams SSDKSetupShareParamsByText:@""
                                      images:[UIImage imageNamed:@"BoBanTang"]
-                                        url:[NSURL URLWithString:self.article.article]
+                                        url:self.url
                                       title:self.article.title
                                        type:SSDKContentTypeAuto];
     
