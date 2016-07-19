@@ -10,6 +10,7 @@
 #import "APService.h"
 #import "UIColor+BBTColor.h"
 #import <AVOSCloud/AVOSCloud.h>
+#import <AVOSCloudCrashReporting.h>
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
 
@@ -38,9 +39,11 @@
     //Set Mapbox Accesstoken
     [[RMConfiguration sharedInstance] setAccessToken:@"pk.eyJ1IjoicHl0cmFkZSIsImEiOiJjaW53eGJxZDExNnNidTJtM3N4OHZkZG9jIn0.XPkApL2UVxIpndilZMOsdQ"];
     
+    //Enable Crash Reporting.This line of code must be placed before next `setApplicationId:clientKey`
+    [AVOSCloudCrashReporting enable];
     //Lean Cloud Settings
-    //[AVOSCloud setApplicationId:@"Bfwj1TJ6hcSFBPgMRzGYQOr3"
-    //                  clientKey:@"HRAIPGFlzSurUky1YcoYBYS5"];
+    [AVOSCloud setApplicationId:@"Bfwj1TJ6hcSFBPgMRzGYQOr3"
+                      clientKey:@"HRAIPGFlzSurUky1YcoYBYS5"];
     [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     //Share SDK Settings

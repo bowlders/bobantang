@@ -11,8 +11,10 @@
 #import "BBTCurrentUserManager.h"
 #import "BBTLoginViewController.h"
 #import "BBTPersonalInfoEditViewController.h"
+#import "TDBadgedCell.h"
 #import <Masonry.h>
 #import <UIImageView+WebCache.h>
+#import <LeanCloudFeedback/LeanCloudFeedback.h>
 
 @interface BBTMeViewController ()
 
@@ -31,6 +33,7 @@
 @implementation BBTMeViewController
 
 extern NSString * kUserAuthentificationFinishNotifName;
+extern NSString * kFeedBackViewDisappearNotifName;
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -40,12 +43,12 @@ extern NSString * kUserAuthentificationFinishNotifName;
 - (void)viewDidLoad
 {
     self.title = @"我";
-    self.meTableView.scrollEnabled = NO;
-    
-    //Lean Cloud Settings
-    //AVObject *testObject = [AVObject objectWithClassName:@"TestObject"];
-    //[testObject setObject:@"bar" forKey:@"foo"];
-    //[testObject save];
+
+    //When the feedback view disappears, clear badge.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveFeedBackViewDisappearNotif)
+                                                 name:kFeedBackViewDisappearNotifName
+                                               object:nil];
     
     CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
@@ -203,13 +206,13 @@ extern NSString * kUserAuthentificationFinishNotifName;
 {
     static NSString *meCellIdentifier = @"meCell";
     
-    [self.meTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:meCellIdentifier];
+    [self.meTableView registerClass:[TDBadgedCell class] forCellReuseIdentifier:meCellIdentifier];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:meCellIdentifier];
+    TDBadgedCell *cell = [tableView dequeueReusableCellWithIdentifier:meCellIdentifier];
     
     if (!cell)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:meCellIdentifier];
+        cell = [[TDBadgedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:meCellIdentifier];
     }
 
     if (indexPath.section == 0)
@@ -228,6 +231,14 @@ extern NSString * kUserAuthentificationFinishNotifName;
         if (indexPath.row == 0)
         {
             cell.textLabel.text = @"意见反馈";
+            [[LCUserFeedbackAgent sharedInstance] countUnreadFeedbackThreadsWithBlock:^(NSInteger number, NSError *error) {
+                if (error) {
+                    //网络出错了，不设置红点
+                } else {
+                    //根据未读数 number，设置红点，提醒用户
+                    cell.badgeColor = [UIColor redColor];
+                }
+            }];
         }
         else if (indexPath.row == 1)
         {
@@ -267,9 +278,12 @@ extern NSString * kUserAuthentificationFinishNotifName;
     {
         if (indexPath.row == 0)
         {
-            LCUserFeedbackAgent *agent = [LCUserFeedbackAgent sharedInstance];
-            /* title 传 nil 表示将第一条消息作为反馈的标题。 contact 也可以传入 nil，由用户来填写联系方式。*/
-            [agent showConversations:self title:nil contact:@"pankobe24@vip.qq.com"];
+            LCUserFeedbackViewController *feedbackViewController = [[LCUserFeedbackViewController alloc] init];
+            feedbackViewController.navigationBarStyle = LCUserFeedbackNavigationBarStyleNone;
+            feedbackViewController.contactHeaderHidden = YES;
+            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:feedbackViewController];
+            [self presentViewController:navigationController animated:YES completion: ^{
+            }];
         }
         else if (indexPath.row == 1)
         {
@@ -313,6 +327,19 @@ extern NSString * kUserAuthentificationFinishNotifName;
         self.studentNumberLabel.hidden = YES;
         self.avatarImageView.image = [UIImage imageNamed:@"defaultAvatar"];
     }
+    
+    //Set badge if there are unread messages
+    [[LCUserFeedbackAgent sharedInstance] countUnreadFeedbackThreadsWithBlock:^(NSInteger number, NSError *error) {
+        if (error) {
+            //网络出错了，不设置红点
+        } else {
+            //根据未读数 number，设置红点，提醒用户
+            TDBadgedCell *cell = [self.meTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+            cell.badgeColor = [UIColor redColor];
+            cell.badgeString = [NSString stringWithFormat:@"%ld", (long)number];
+        }
+    }];
+    
 }
 
 - (void)handleTap
@@ -329,6 +356,12 @@ extern NSString * kUserAuthentificationFinishNotifName;
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginVC];
         [self presentViewController:navigationController animated:YES completion:nil];
     }
+}
+
+- (void)receiveFeedBackViewDisappearNotif
+{
+    TDBadgedCell *cell = [self.meTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    cell.badgeString = @"0";
 }
 
 @end

@@ -24,6 +24,7 @@
 		39231B141D3DC336003FBA9C /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39231B071D3DC335003FBA9C /* MOBFoundation.framework */; };
 		39231B151D3DC336003FBA9C /* ShareSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 39231B081D3DC335003FBA9C /* ShareSDK.bundle */; };
 		39231B161D3DC336003FBA9C /* ShareSDKConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39231B091D3DC335003FBA9C /* ShareSDKConnector.framework */; };
+		39231B1A1D3E1BBD003FBA9C /* TDBadgedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39231B191D3E1BBD003FBA9C /* TDBadgedCell.m */; };
 		39239A321C635BAB008EDBB0 /* BBTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 39239A311C635BAB008EDBB0 /* BBTUser.m */; };
 		39239A351C646FCD008EDBB0 /* BBTCurrentUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 39239A341C646FCD008EDBB0 /* BBTCurrentUserManager.m */; };
 		39239A381C64BAC4008EDBB0 /* BBTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39239A371C64BAC4008EDBB0 /* BBTLoginViewController.m */; };
@@ -263,6 +264,9 @@
 		39231B071D3DC335003FBA9C /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
 		39231B081D3DC335003FBA9C /* ShareSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDK.bundle; sourceTree = "<group>"; };
 		39231B091D3DC335003FBA9C /* ShareSDKConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKConnector.framework; sourceTree = "<group>"; };
+		39231B181D3E1BBD003FBA9C /* TDBadgedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDBadgedCell.h; sourceTree = "<group>"; };
+		39231B191D3E1BBD003FBA9C /* TDBadgedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBadgedCell.m; sourceTree = "<group>"; };
+		39231B1E1D3E24AF003FBA9C /* AVOSCloudCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVOSCloudCrashReporting.framework; path = "Pods/AVOSCloudCrashReporting/iOS/release-v3.3.5/Static/AVOSCloudCrashReporting.framework"; sourceTree = "<group>"; };
 		39239A301C635BAB008EDBB0 /* BBTUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTUser.h; sourceTree = "<group>"; };
 		39239A311C635BAB008EDBB0 /* BBTUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTUser.m; sourceTree = "<group>"; };
 		39239A331C646FCD008EDBB0 /* BBTCurrentUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCurrentUserManager.h; sourceTree = "<group>"; };
@@ -690,6 +694,24 @@
 			path = Required;
 			sourceTree = "<group>";
 		};
+		39231B171D3E1BA7003FBA9C /* UIImageView+WebCache */ = {
+			isa = PBXGroup;
+			children = (
+				395B10E21C585EA200772A38 /* UIImageView+UIActivityIndicatorForSDWebImage.h */,
+				395B10E31C585EA200772A38 /* UIImageView+UIActivityIndicatorForSDWebImage.m */,
+			);
+			name = "UIImageView+WebCache";
+			sourceTree = "<group>";
+		};
+		39231B1B1D3E1BC0003FBA9C /* TDBadgedCell */ = {
+			isa = PBXGroup;
+			children = (
+				39231B181D3E1BBD003FBA9C /* TDBadgedCell.h */,
+				39231B191D3E1BBD003FBA9C /* TDBadgedCell.m */,
+			);
+			name = TDBadgedCell;
+			sourceTree = "<group>";
+		};
 		39239A2F1C6357AF008EDBB0 /* Me */ = {
 			isa = PBXGroup;
 			children = (
@@ -1029,6 +1051,7 @@
 		4EA28AD388E43D96D5F54ADA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				39231B1E1D3E24AF003FBA9C /* AVOSCloudCrashReporting.framework */,
 				AF99037B1CF47FCF0039C4E4 /* libQiniu.a */,
 				AF9903791CF47DF80039C4E4 /* libAFNetworking.a */,
 				39D64D301CDA5681005FBD88 /* Foundation.framework */,
@@ -1095,12 +1118,12 @@
 		A947D91E1BD8DADA000F071B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				39231B1B1D3E1BC0003FBA9C /* TDBadgedCell */,
+				39231B171D3E1BA7003FBA9C /* UIImageView+WebCache */,
 				39231AE71D3DC335003FBA9C /* ShareSDK */,
 				AF9A8D2F1CC778300079C46F /* flatMapMetaData */,
 				AF9A8D361CC7784F0079C46F /* 3DMapMateData */,
 				39CB16EE1C77371C0046C9B0 /* Images.xcassets */,
-				395B10E21C585EA200772A38 /* UIImageView+UIActivityIndicatorForSDWebImage.h */,
-				395B10E31C585EA200772A38 /* UIImageView+UIActivityIndicatorForSDWebImage.m */,
 				A947D96A1BD8DC0F000F071B /* BBTAppDelegate.h */,
 				A947D9901BD8DC34000F071B /* BBTAppDelegate.m */,
 				A947D91F1BD8DADA000F071B /* main.m */,
@@ -1811,6 +1834,7 @@
 				FC80D45C1C6244A200A80EDA /* BBTItemDetailsTableViewController.m in Sources */,
 				AF3298861CE78C9D00F587BF /* BBTRouteManagerView.m in Sources */,
 				FC80D4591C62109000A80EDA /* BBTLafItemsTableViewCell.m in Sources */,
+				39231B1A1D3E1BBD003FBA9C /* TDBadgedCell.m in Sources */,
 				FC2EB0061C69B1A500B5DC42 /* BBTTextFieldTableViewCell.m in Sources */,
 				FCE609541C7979D9008C331D /* BBTLectureRoomsSettingsViewController.m in Sources */,
 				395B10D31C55271B00772A38 /* BBTCampusInfoTableViewController.m in Sources */,
@@ -1959,6 +1983,7 @@
 					"$(PROJECT_DIR)/BoBanTang/ShareSDK/Support/PlatformSDK/QQSDK",
 					"$(PROJECT_DIR)/BoBanTang/ShareSDK/Support/Required",
 					"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+					"$(PROJECT_DIR)/Pods/AVOSCloudCrashReporting/iOS/release-v3.3.5/Static",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2028,6 +2053,7 @@
 					"$(PROJECT_DIR)/BoBanTang/ShareSDK/Support/PlatformSDK/QQSDK",
 					"$(PROJECT_DIR)/BoBanTang/ShareSDK/Support/Required",
 					"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+					"$(PROJECT_DIR)/Pods/AVOSCloudCrashReporting/iOS/release-v3.3.5/Static",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

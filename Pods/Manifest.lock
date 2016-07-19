@@ -15,8 +15,8 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - AVOSCloud (3.2.8)
-  - AVOSCloudCrashReporting (3.2.8):
+  - AVOSCloud (3.3.5)
+  - AVOSCloudCrashReporting (3.3.5):
     - AVOSCloud
   - AYVibrantButton (1.0.3)
   - CCHMapClusterController (1.7.0)
@@ -96,8 +96,8 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: 8312778b6815578e6a86d630fbcf31dc94c534e7
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  AVOSCloud: b789619942a4275e615f8f0782e7475675951b95
-  AVOSCloudCrashReporting: 2dddc7dfc8ef423492a01c0076b3e97716854701
+  AVOSCloud: 1fe170768bee7e05bc3ea86e38d5bddb105cb957
+  AVOSCloudCrashReporting: 7ad087db785a25d6ef03cb54c2c0b460eb32dabb
   AYVibrantButton: 7cc5b2c74f6f6a0a52d5b0db361a9d3b755bc448
   CCHMapClusterController: d8cd12cd5682ec6cd76d911ac7198f981b6cc1b8
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
