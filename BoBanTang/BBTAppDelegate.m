@@ -34,7 +34,7 @@
 @implementation BBTAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
     
     //Set Mapbox Accesstoken
     [[RMConfiguration sharedInstance] setAccessToken:@"pk.eyJ1IjoicHl0cmFkZSIsImEiOiJjaW53eGJxZDExNnNidTJtM3N4OHZkZG9jIn0.XPkApL2UVxIpndilZMOsdQ"];

@@ -11,7 +11,7 @@
 #import <AFNetworking.h>
 #import "BBTCampusInfo.h"
 
-static NSString * baseGetCampusInfoUrl = @"http://218.192.166.167/api/protype.php?table=schoolInformation&method=get&option={\"limit\":[0,5]}";  //Url used to get data
+static NSString * baseGetCampusInfoUrl = @"http://218.192.166.167/api/protype.php?table=schoolInformation&method=get&option={\"limit\":";  //Base Url used to get data
 static NSString * baseInsertCampusInfoUrl = @"";                                  //Url used to insert data
 NSString * campusInfoNotificationName = @"infoNotification";
 
@@ -29,22 +29,30 @@ NSString * campusInfoNotificationName = @"infoNotification";
 
 - (void)retriveData:(NSString *)appendingUrl
 {
-    int __block infoCount = 0;                              //Record the number of infos added to infoArray
-    self.infoArray = [NSMutableArray array];
+    if (!_infoArray)
+    {
+        _infoArray = [NSMutableArray array];
+    }
+    
+    int beginningInfo = self.infoCount;                     //Load from this info, or the a in [a, b]; b is always 5, which means one pull-up loads 5 more infos.
+    NSString *appendingURLString = [NSString stringWithFormat:@"[%d,5]}", beginningInfo];
+    NSString *intactURLString = [baseGetCampusInfoUrl stringByAppendingString:appendingURLString];
+    NSString *stringCleanPath = [intactURLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSString *url = [baseGetCampusInfoUrl stringByAppendingString:appendingUrl];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+ 
+    [manager POST:stringCleanPath parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         //NSLog(@"JSON: %@", responseObject);
         if (responseObject)
         {
             for (int i = 0;i < [(NSArray *)responseObject count];i++)
             {
                 BBTCampusInfo *newInfo = [[BBTCampusInfo alloc] initWithDictionary:((NSArray *)responseObject)[i] error:nil];
-                [self.infoArray insertObject:newInfo atIndex:i];
-                infoCount++;
+                [self.infoArray addObject:newInfo];
             }
+            NSLog(@"%@", self.infoArray);
+            self.infoCount += [(NSArray *)responseObject count];
             [self pushCampusInfoNotification];
         }
     } failure:^(NSURLSessionTask *operation, NSError *error) {

@@ -36,6 +36,9 @@ extern NSString * campusInfoNotificationName;
 
     self.tableView.backgroundColor = [UIColor whiteColor];
     
+    //Clear infoCount
+    [BBTCampusInfoManager sharedInfoManager].infoCount = 0;
+
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self refresh];
     }];
@@ -43,9 +46,10 @@ extern NSString * campusInfoNotificationName;
     [header setTitle:@"加载中 ..." forState:MJRefreshStateRefreshing];
     self.tableView.mj_header = header;
     [self.tableView.mj_header beginRefreshing];
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     
-    //Retrive all campus infos
-    [[BBTCampusInfoManager sharedInfoManager] retriveData:@""];
+    //Automatically refresh
+    //[[BBTCampusInfoManager sharedInfoManager] retriveData:@""];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -61,7 +65,7 @@ extern NSString * campusInfoNotificationName;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[BBTCampusInfoManager sharedInfoManager].infoArray count];
+    return [BBTCampusInfoManager sharedInfoManager].infoCount;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -100,7 +104,14 @@ extern NSString * campusInfoNotificationName;
 
 - (void)refresh
 {
+    [BBTCampusInfoManager sharedInfoManager].infoCount = 0;         //Load from the first 5 infos
     [[BBTCampusInfoManager sharedInfoManager] retriveData:@""];
+}
+
+- (void)loadMoreData
+{
+    [[BBTCampusInfoManager sharedInfoManager] retriveData:@""];
+    [self.tableView.mj_footer endRefreshing];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
