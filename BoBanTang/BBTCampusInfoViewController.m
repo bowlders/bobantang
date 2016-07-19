@@ -18,6 +18,7 @@
 
 @interface BBTCampusInfoViewController ()
 
+@property (strong, nonatomic) NSURL     * url;
 @property (strong, nonatomic) UIWebView * webView;
 @property (strong, nonatomic) UIButton  * shareButton;
 @property (strong, nonatomic) UIButton  * collectButton;                            //Tag 1 for solid star, 0 for hollow star
@@ -112,8 +113,8 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
     NSString *urlString1 = [campusInfoURLFront stringByAppendingString:idString];
     NSString *urlString = [urlString1 stringByAppendingString:campusInfoURLEnd];
     NSString *cleanedUrlString = [urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSURL *url = [NSURL URLWithString:cleanedUrlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    self.url = [NSURL URLWithString:cleanedUrlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
     [self.webView loadRequest:request];
 }
 
@@ -177,7 +178,7 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
     [shareParams SSDKEnableUseClientShare];
     [shareParams SSDKSetupShareParamsByText:@""
                                  images:[UIImage imageNamed:@"BoBanTang"]
-                                    url:[NSURL URLWithString:self.info.article]
+                                    url:self.url
                                   title:self.info.title
                                    type:SSDKContentTypeAuto];
 
@@ -213,12 +214,12 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
                }
                else if (state == SSDKResponseStateFail)
                {
-                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+                   UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享失败"
                                                                    message:[NSString stringWithFormat:@"%@",error]
                                                                   delegate:nil
                                                          cancelButtonTitle:@"OK"
                                                          otherButtonTitles:nil, nil];
-                   [alert show];
+                   [alertView show];
                }
         }
     ];
