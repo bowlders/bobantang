@@ -25,9 +25,6 @@
  
     self.view.backgroundColor = [UIColor whiteColor];
     
-    //self.nickNameTextField.delegate = self;
-    [self.nickNameTextField setDelegate:self];
-    
     self.nickNameLengthLabel = ({
         UILabel *label = [UILabel new];
         NSString *currentNickNameLengthText = [NSString stringWithFormat:@"%lu/20", (unsigned long)[[BBTCurrentUserManager sharedCurrentUserManager].currentUser.nickName length]];
@@ -41,6 +38,7 @@
         textField.placeholder = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.nickName;
         textField.textAlignment = NSTextAlignmentLeft;
         textField.backgroundColor = [UIColor lightGrayColor];
+        textField.delegate = self;
         textField;
     });
     
@@ -81,9 +79,12 @@
     self.navigationItem.rightBarButtonItem = saveButton;
     
 }
+
+
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    // Prevent crashing undo bug
+    //Prevent crashing undo bug
     if(range.length + range.location > textField.text.length)
     {
         return NO;

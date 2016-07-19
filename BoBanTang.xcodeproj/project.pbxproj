@@ -853,8 +853,8 @@
 			children = (
 				39B5953B1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.h */,
 				39B5953C1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m */,
-				397445731C0AE881004B89BA /* DailyArticle */,
 				397445721C0AE87C004B89BA /* CampusInfo */,
+				397445731C0AE881004B89BA /* DailyArticle */,
 			);
 			name = Information;
 			sourceTree = "<group>";

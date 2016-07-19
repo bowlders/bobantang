@@ -11,7 +11,7 @@
 #import <AFNetworking.h>
 #import "BBTCampusInfo.h"
 
-static NSString * baseGetCampusInfoUrl = @"http://218.192.166.167/api/protype.php?table=schoolInformation&method=get";                                          //Url used to get data
+static NSString * baseGetCampusInfoUrl = @"http://218.192.166.167/api/protype.php?table=schoolInformation&method=get&option={\"limit\":[0,5]}";  //Url used to get data
 static NSString * baseInsertCampusInfoUrl = @"";                                  //Url used to insert data
 NSString * campusInfoNotificationName = @"infoNotification";
 
@@ -27,12 +27,12 @@ NSString * campusInfoNotificationName = @"infoNotification";
     return _manager;
 }
 
-- (void)retriveData : (NSString *)appendingUrl
+- (void)retriveData:(NSString *)appendingUrl
 {
+    int __block infoCount = 0;                              //Record the number of infos added to infoArray
     self.infoArray = [NSMutableArray array];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    //[manager.requestSerializer setTimeoutInterval:5];
     NSString *url = [baseGetCampusInfoUrl stringByAppendingString:appendingUrl];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
@@ -43,6 +43,7 @@ NSString * campusInfoNotificationName = @"infoNotification";
             {
                 BBTCampusInfo *newInfo = [[BBTCampusInfo alloc] initWithDictionary:((NSArray *)responseObject)[i] error:nil];
                 [self.infoArray insertObject:newInfo atIndex:i];
+                infoCount++;
             }
             [self pushCampusInfoNotification];
         }
