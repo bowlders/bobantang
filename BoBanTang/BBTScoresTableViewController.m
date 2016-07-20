@@ -79,6 +79,7 @@ extern NSString * kFailGetNotificaionName;
 - (void)failGetScoresNotification
 {
     NSLog(@"Fail to Get Scores");
+    [MBProgressHUD hideAllHUDsForView:self.navigationController.view animated:YES];
     self.tableView.scrollEnabled = YES;
     
     UIAlertController *alertController = [[UIAlertController alloc] init];
