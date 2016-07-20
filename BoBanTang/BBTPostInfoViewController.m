@@ -246,6 +246,7 @@ extern NSString *kFailPostItemNotificaionName;
     [HUD showInView:self.navigationController.view];
     [HUD dismissAfterDelay:2.0 animated:YES];
     [self.view setUserInteractionEnabled:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)failUploading
