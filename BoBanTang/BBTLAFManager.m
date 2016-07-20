@@ -36,7 +36,7 @@ NSString *kFailPostItemNotificaionName = @"failPostItemNotification";
 
 - (void)retriveItems:(NSUInteger)type WithConditions:(NSDictionary *)conditions
 {
-    self.itemArray = [[NSArray alloc] init];
+    self.itemArray = [NSMutableArray array];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];
     NSString *url;
@@ -76,19 +76,16 @@ NSString *kFailPostItemNotificaionName = @"failPostItemNotification";
     }
     
     [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        //NSLog(@"JSON: %@", responseObject);
+        NSLog(@"JSON: %@", responseObject);
         if (responseObject)
         {
-            NSMutableArray *origArr = [[NSMutableArray alloc] init];
             for (BBTLAF* itemsInfo in responseObject)
             {
-                [origArr addObject:itemsInfo];
+                [self.itemArray addObject:itemsInfo];
             }
             if (conditions[@"fuzzy"]) {
                 [self getFuzzyConditionsItemNotification];
             } else {
-                self.itemArray = [[origArr reverseObjectEnumerator] allObjects];
-                NSLog(@"itemArray: %@", self.itemArray);
                 [self pushLafNotification];
             }
         }
