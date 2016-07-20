@@ -22,14 +22,19 @@
 @implementation BBTCampusInfoTableViewController
 
 extern NSString * campusInfoNotificationName;
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveCampusInfoNotification) name:campusInfoNotificationName object:nil];
-}
+extern NSString * noNewInfoNotifName;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveCampusInfoNotification)
+                                                 name:campusInfoNotificationName
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveNoMoreInfoNotification)
+                                                 name:noNewInfoNotifName
+                                               object:nil];
     
     NSString *cellIdentifier = @"infoCell";
     [self.tableView registerClass:[BBTCampusInfoTableViewCell class] forCellReuseIdentifier:cellIdentifier];
@@ -47,9 +52,6 @@ extern NSString * campusInfoNotificationName;
     self.tableView.mj_header = header;
     [self.tableView.mj_header beginRefreshing];
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
-    
-    //Automatically refresh
-    //[[BBTCampusInfoManager sharedInfoManager] retriveData:@""];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -91,27 +93,31 @@ extern NSString * campusInfoNotificationName;
     
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
-    
+
     return cell;
 }
 
 - (void)didReceiveCampusInfoNotification
 {
-    NSLog(@"Did receive campus info notification");
     [self.tableView reloadData];
     [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
+}
+
+- (void)didReceiveNoMoreInfoNotification
+{
+    [self.tableView.mj_footer endRefreshingWithNoMoreData];
 }
 
 - (void)refresh
 {
     [BBTCampusInfoManager sharedInfoManager].infoCount = 0;         //Load from the first 5 infos
-    [[BBTCampusInfoManager sharedInfoManager] retriveData:@""];
+    [[BBTCampusInfoManager sharedInfoManager] loadMoreData];
 }
 
 - (void)loadMoreData
 {
-    [[BBTCampusInfoManager sharedInfoManager] retriveData:@""];
-    [self.tableView.mj_footer endRefreshing];
+    [[BBTCampusInfoManager sharedInfoManager] loadMoreData];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -129,6 +135,5 @@ extern NSString * campusInfoNotificationName;
     
     [(BBTCampusInfoViewController *)[segue destinationViewController] setInfo:[BBTCampusInfoManager sharedInfoManager].infoArray[indexPath.row]];
 }
-
 
 @end

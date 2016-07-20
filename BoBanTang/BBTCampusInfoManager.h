@@ -16,7 +16,7 @@
 @property (assign, nonatomic) int infoCount;                                //Count the number of infos that have been loaded in total
 
 + (instancetype)sharedInfoManager;                                          //Singleton method
-- (void)retriveData:(NSString *)appendingUrl;
+- (void)loadMoreData;
 - (void)fetchCollectedInfoArrayWithGivenSimplifiedArray:(NSArray *)simplifiedInfoArray;
 
 @end

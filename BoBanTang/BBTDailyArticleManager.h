@@ -11,11 +11,12 @@
 @interface BBTDailyArticleManager : NSObject
 
 //Singleton Article Manager
-@property NSMutableArray * articleArray;                    //Stores a list of infos
-@property NSMutableArray * collectedArticleArray;           //This array stores article with all properties
+@property (strong, nonatomic) NSMutableArray * articleArray;                    //Stores a list of infos
+@property (strong, nonatomic) NSMutableArray * collectedArticleArray;           //This array stores article with all properties
+@property (assign, nonatomic) int articleCount;
 
 + (instancetype)sharedArticleManager;                       //Singleton method
-- (void)retriveData:(NSString *)appendingUrl;
+- (void)loadMoreData;
 - (void)addReadNumber:(NSUInteger)infoIndex;                //Add an article's read number by 1
 - (void)addCollectionNumber:(NSUInteger)infoIndex;          //Add an article's collection number by 1
 - (void)fetchCollectedArticleArrayWithGivenSimplifiedArray:(NSArray *)simplifiedArticleArray;

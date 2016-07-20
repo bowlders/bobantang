@@ -22,15 +22,20 @@
 @implementation BBTDailyArticleTableViewController
 
 extern NSString * dailyArticleNotificationName;
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDailyArticleNotification) name:dailyArticleNotificationName object:nil];
-}
+extern NSString * noMoreArticleNotifName;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveDailyArticleNotification)
+                                                 name:dailyArticleNotificationName
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveNoMoreArticleNotification)
+                                                 name:noMoreArticleNotifName
+                                               object:nil];
+    
     NSString *cellIdentifier = @"articleCell";
     [self.tableView registerClass:[BBTDailyArticleTableViewCell class] forCellReuseIdentifier:cellIdentifier];
     
@@ -40,10 +45,8 @@ extern NSString * dailyArticleNotificationName;
     [header setTitle:@"释放刷新" forState:MJRefreshStatePulling];
     [header setTitle:@"加载中 ..." forState:MJRefreshStateRefreshing];
     self.tableView.mj_header = header;
-    
     [self.tableView.mj_header beginRefreshing];
-    
-    [[BBTDailyArticleManager sharedArticleManager] retriveData:@""];
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 }
 
 - (void)didReceiveDailyArticleNotification
@@ -51,6 +54,7 @@ extern NSString * dailyArticleNotificationName;
     NSLog(@"Did receive daily article notification");
     [self.tableView reloadData];
     [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -64,7 +68,7 @@ extern NSString * dailyArticleNotificationName;
     NSArray *articleArray = [BBTDailyArticleManager sharedArticleManager].articleArray;
     
     return [tableView fd_heightForCellWithIdentifier:@"articleCell" configuration:^(BBTDailyArticleTableViewCell *cell){
-        [cell setCellContentDictionary:articleArray[indexPath.row]];
+        [cell setCellContentDictionary:articleArray[indexPath.section]];
     }];
 }
 
@@ -76,7 +80,7 @@ extern NSString * dailyArticleNotificationName;
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [[BBTDailyArticleManager sharedArticleManager].articleArray count];
+    return [BBTDailyArticleManager sharedArticleManager].articleCount;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -105,14 +109,25 @@ extern NSString * dailyArticleNotificationName;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BBTDailyArticleViewController *destinationVC = [[BBTDailyArticleViewController alloc] init];
-    destinationVC.article = [BBTDailyArticleManager sharedArticleManager].articleArray[indexPath.row];
+    destinationVC.article = [BBTDailyArticleManager sharedArticleManager].articleArray[indexPath.section];
     [self.navigationController pushViewController:destinationVC animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)refresh
 {
-    [[BBTDailyArticleManager sharedArticleManager] retriveData:@""];
+    [BBTDailyArticleManager sharedArticleManager].articleCount = 0;         //Load from the first 5 articles
+    [[BBTDailyArticleManager sharedArticleManager] loadMoreData];
+}
+
+- (void)loadMoreData
+{
+    [[BBTDailyArticleManager sharedArticleManager] loadMoreData];
+}
+
+- (void)didReceiveNoMoreArticleNotification
+{
+    [self.tableView.mj_footer endRefreshingWithNoMoreData];
 }
 
 @end
