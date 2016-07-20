@@ -129,14 +129,26 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
     UIButton *showBtn = sender;
     
     PopoverView *popoverView = [PopoverView new];
-    popoverView.menuTitles   = @[@"发布招领启事", @"发布寻物启事", @"已发布的消息"];
+    popoverView.menuTitles   = @[@"发布招领启事", @"发布寻物启事", @"已发布的消息", @"全部失物"];
     [popoverView showFromView:showBtn selected:^(NSInteger index)
     {
         if ([self didReceiveUserAuthentificaionNotification])
         {
-            if ([self shouldPerformSegueWithIdentifier:postIdentifier sender:@(index)])
+            if (index == 2)
             {
-                [self performSegueWithIdentifier:postIdentifier sender:@(index)];
+                [self.filterButton setAccessibilityElementsHidden:YES];
+                self.conditions = @{@"account": @201430202488};
+                [self.tableView.mj_header beginRefreshing];
+                [self refresh];
+            } else if (index ==3 ){
+                self.conditions = [[NSDictionary alloc] init];
+                [self.tableView.mj_header beginRefreshing];
+                [self refresh];
+            } else {
+                if ([self shouldPerformSegueWithIdentifier:postIdentifier sender:@(index)])
+                {
+                    [self performSegueWithIdentifier:postIdentifier sender:@(index)];
+                }
             }
         } else {
             UIAlertController *alertController = [[UIAlertController alloc] init];
@@ -179,7 +191,7 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
     
     //Asynchronously downloads the thumbnail
     [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:itemArray[indexPath.row][@"thumbnail"]]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
-        NSLog(@"Succeed!");
+        //NSLog(@"Succeed!");
         if (cell) {
             cell.thumbLostImageView.image = image;
         }
