@@ -57,28 +57,7 @@ NSString * checkIfHasCollectedGivenInfoFailNotifName = @"checkInfoFail";
     }];
     [dataTask resume];
     
-    /*
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    
-    NSError *error;
-    NSDictionary *parameters = @{@"account" : [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account,
-                                 @"articleID" : [NSString stringWithFormat:@"%d",articleID]};
-    
-    NSData *data = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:&error];
-    NSString *jsonString = [[NSString alloc] initWithData:data
-                                                 encoding:NSUTF8StringEncoding];
-    NSString *stringCleanPath = [jsonString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *url = [insertNewCollectedInfoBaseURL stringByAppendingString:stringCleanPath];
-    
-    [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        [self postCollectedCampusInfoNotifOfNotifName:insertNewCollectedInfoSucceedNotifName];
-    } failure:^(NSURLSessionTask *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        [self postCollectedCampusInfoNotifOfNotifName:insertNewCollectedInfoFailNotifName];
-    }];
-     */
+    [manager invalidateSessionCancelingTasks:NO];
 }
 
 - (void)currentUserCancelCollectInfoWithArticleID:(int)articleID
@@ -110,6 +89,8 @@ NSString * checkIfHasCollectedGivenInfoFailNotifName = @"checkInfoFail";
         NSLog(@"Error: %@", error);
         [self postCollectedCampusInfoNotifOfNotifName:deleteCollectedInfoFailNotifName];
     }];
+    
+    [manager invalidateSessionCancelingTasks:NO];
 }
 
 - (void)fetchCurrentUserCollectedCampusInfoIntoArray
@@ -140,6 +121,8 @@ NSString * checkIfHasCollectedGivenInfoFailNotifName = @"checkInfoFail";
         NSLog(@"Error: %@", error);
         [self postCollectedCampusInfoNotifOfNotifName:fetchCollectedInfoFailNotifName];
     }];
+    
+    [manager invalidateSessionCancelingTasks:NO];
 }
 
 - (void)checkIfCurrentUserHasCollectedArticleWithArticleID:(int)articleID
@@ -171,6 +154,8 @@ NSString * checkIfHasCollectedGivenInfoFailNotifName = @"checkInfoFail";
         NSLog(@"Error: %@", error);
         [self postCollectedCampusInfoNotifOfNotifName:checkIfHasCollectedGivenInfoFailNotifName];
     }];
+    
+    [manager invalidateSessionCancelingTasks:NO];
 }
 
 - (void)postCollectedCampusInfoNotifOfNotifName:(NSString *)notifName

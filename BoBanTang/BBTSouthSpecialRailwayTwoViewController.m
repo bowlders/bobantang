@@ -145,10 +145,8 @@ extern NSString * busDataNotificationName;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"specialRailwayCell";
-    
     //Here I create a new cell every time in order to fix a bug in view, often you need to reuse a cell.
-    BBTSpecRailway2TableViewCell *cell = [[BBTSpecRailway2TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    BBTSpecRailway2TableViewCell *cell = [[BBTSpecRailway2TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
 
     [cell initCellContent:[BBTSpecRailway2BusManager sharedBusManager].directionSouthStationNames[indexPath.row]];
     
@@ -169,10 +167,8 @@ extern NSString * busDataNotificationName;
 
 - (void)didReceiveBusNotification : (NSNotification *)busNotification
 {
-    NSLog(@"Did receive special railway data notification");
-    //NSLog(@"south buses - %@", [BBTSpecRailway2BusManager sharedBusManager].directionSouthBuses);
+    //NSLog(@"Did receive special railway data notification");
     [self.tableView reloadData];
-    //[self updateView];
 }
 
 - (void)updateView
@@ -181,12 +177,10 @@ extern NSString * busDataNotificationName;
     {
         if ([[BBTSpecRailway2BusManager sharedBusManager] noBusInBusArray:[BBTSpecRailway2BusManager sharedBusManager].directionSouthBuses RunningAtStationSeq:i])
         {
-            //NSLog(@"init i - %d", i);
             [(BBTSpecRailway2TableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(i - 1) inSection:0]] initCellContent];
         }
         else
         {
-            //NSLog(@"change i - %d", i);
             [(BBTSpecRailway2TableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(i - 1) inSection:0]] changeCellImage];
         }
     }

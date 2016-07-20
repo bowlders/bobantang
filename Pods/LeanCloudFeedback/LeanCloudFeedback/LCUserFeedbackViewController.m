@@ -43,6 +43,8 @@ static CGFloat const kSendButtonWidth = 60;
 
 @implementation LCUserFeedbackViewController
 
+NSString * kFeedBackViewDisappearNotifName = @"feedBackViewDisappear";
+
 - (instancetype)init
 {
     self = [super init];
@@ -76,6 +78,9 @@ static CGFloat const kSendButtonWidth = 60;
         NSString *localKey = [NSString stringWithFormat:@"feedback_%@", _userFeedback.objectId];
         [[NSUserDefaults standardUserDefaults] setObject:@(_feedbackReplies.count) forKey:localKey];
     }
+    
+    //Post notification when current feedback view disappears to clear badge.
+    [[NSNotificationCenter defaultCenter] postNotificationName:kFeedBackViewDisappearNotifName object:self];
 }
 
 - (void)setupUI {

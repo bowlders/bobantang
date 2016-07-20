@@ -80,6 +80,9 @@ NSString * campusBusNotificationName = @"campusBusNotification";
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
+    
+    //To solve memory leak.
+    [manager invalidateSessionCancelingTasks:NO];
 }
 
 - (void)refresh

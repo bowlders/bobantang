@@ -49,6 +49,8 @@ NSString * checkIfHasCollectedGivenArticleFailNotifName = @"checkArticleFail";
         NSLog(@"Error: %@", error);
         [self postCollectedCampusInfoNotifOfNotifName:insertNewCollectedArticleFailNotifName];
     }];
+    
+    [manager invalidateSessionCancelingTasks:NO];
 }
 
 - (void)currentUserCancelCollectInfoWithArticleID:(int)articleID
@@ -80,6 +82,8 @@ NSString * checkIfHasCollectedGivenArticleFailNotifName = @"checkArticleFail";
         NSLog(@"Error: %@", error);
         [self postCollectedCampusInfoNotifOfNotifName:deleteCollectedArticleFailNotifName];
     }];
+    
+    [manager invalidateSessionCancelingTasks:NO];
 }
 
 - (void)fetchCurrentUserCollectedCampusInfoIntoArray
@@ -110,6 +114,8 @@ NSString * checkIfHasCollectedGivenArticleFailNotifName = @"checkArticleFail";
         NSLog(@"Error: %@", error);
         [self postCollectedCampusInfoNotifOfNotifName:fetchCollectedArticleFailNotifName];
     }];
+    
+    [manager invalidateSessionCancelingTasks:NO];
 }
 
 - (void)checkIfCurrentUserHasCollectedArticleWithArticleID:(int)articleID
@@ -141,6 +147,8 @@ NSString * checkIfHasCollectedGivenArticleFailNotifName = @"checkArticleFail";
         NSLog(@"Error: %@", error);
         [self postCollectedCampusInfoNotifOfNotifName:checkIfHasCollectedGivenArticleFailNotifName];
     }];
+    
+    [manager invalidateSessionCancelingTasks:NO];
 }
 
 - (void)postCollectedCampusInfoNotifOfNotifName:(NSString *)notifName

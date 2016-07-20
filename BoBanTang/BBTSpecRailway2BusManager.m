@@ -110,6 +110,8 @@ static float dataRequestInterval = 5.0;                                         
         NSLog(@"Error: %@", error);
     }];
     
+    [southManager invalidateSessionCancelingTasks:NO];
+    
     //Retrive buses whose direction is north
     AFHTTPSessionManager *northManager = [AFHTTPSessionManager manager];
     northManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
@@ -127,6 +129,8 @@ static float dataRequestInterval = 5.0;                                         
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
+    
+    [northManager invalidateSessionCancelingTasks:NO];
 }
 
 - (void)postBusDataNotification

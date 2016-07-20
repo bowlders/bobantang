@@ -17,9 +17,6 @@
 
 @interface BBTCampusInfoTableViewController ()
 
-@property (strong, nonatomic) UISearchBar               * searchBar;
-@property (strong, nonatomic) UISearchDisplayController * controller;
-
 @end
 
 @implementation BBTCampusInfoTableViewController
@@ -39,6 +36,9 @@ extern NSString * campusInfoNotificationName;
 
     self.tableView.backgroundColor = [UIColor whiteColor];
     
+    //Clear infoCount
+    [BBTCampusInfoManager sharedInfoManager].infoCount = 0;
+
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self refresh];
     }];
@@ -46,18 +46,10 @@ extern NSString * campusInfoNotificationName;
     [header setTitle:@"加载中 ..." forState:MJRefreshStateRefreshing];
     self.tableView.mj_header = header;
     [self.tableView.mj_header beginRefreshing];
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     
-    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
-    //self.tableView.tableHeaderView = self.searchBar;
-    
-    self.searchBar.delegate = self;
-    
-    self.controller = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
-    self.controller.searchResultsDataSource = self;
-    self.controller.searchResultsDelegate = self;
-    
-    //Retrive all campus infos
-    [[BBTCampusInfoManager sharedInfoManager] retriveData:@""];
+    //Automatically refresh
+    //[[BBTCampusInfoManager sharedInfoManager] retriveData:@""];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -73,17 +65,11 @@ extern NSString * campusInfoNotificationName;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[BBTCampusInfoManager sharedInfoManager].infoArray count];
+    return [BBTCampusInfoManager sharedInfoManager].infoCount;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
-    CGFloat screenHeight = applicationFrame.size.height;
-    return screenHeight / 4.3;
-     */
-    
     NSArray *infoArray = [BBTCampusInfoManager sharedInfoManager].infoArray;
     return [tableView fd_heightForCellWithIdentifier:@"infoCell" configuration:^(BBTCampusInfoTableViewCell *cell){
         [cell setCellContentDictionary:infoArray[indexPath.row]];
@@ -118,7 +104,14 @@ extern NSString * campusInfoNotificationName;
 
 - (void)refresh
 {
+    [BBTCampusInfoManager sharedInfoManager].infoCount = 0;         //Load from the first 5 infos
     [[BBTCampusInfoManager sharedInfoManager] retriveData:@""];
+}
+
+- (void)loadMoreData
+{
+    [[BBTCampusInfoManager sharedInfoManager] retriveData:@""];
+    [self.tableView.mj_footer endRefreshing];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

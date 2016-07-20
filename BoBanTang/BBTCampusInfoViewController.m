@@ -18,16 +18,19 @@
 
 @interface BBTCampusInfoViewController ()
 
+@property (strong, nonatomic) NSURL     * url;
 @property (strong, nonatomic) UIWebView * webView;
 @property (strong, nonatomic) UIButton  * shareButton;
-@property (strong, nonatomic) UIButton  * collectButton;                                //Tag 1 for solid star, 0 for hollow star
+@property (strong, nonatomic) UIButton  * collectButton;                            //Tag 1 for solid star, 0 for hollow star
 
 @end
 
 @implementation BBTCampusInfoViewController
 
-extern NSString * kUserAuthentificationFinishNotifName;
+NSString * campusInfoURLFront = @"http://babel.100steps.net/news/index.php?ID=";
+NSString * campusInfoURLEnd = @"&articleType=schoolInformation";
 
+extern NSString * kUserAuthentificationFinishNotifName;
 extern NSString * insertNewCollectedInfoSucceedNotifName;
 extern NSString * insertNewCollectedInfoFailNotifName;
 extern NSString * deleteCollectedInfoSucceedNotifName;
@@ -106,10 +109,12 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
     }];
     
     //Create and load request
-    NSString *urlString = self.info.article;
+    NSString *idString = [NSString stringWithFormat:@"%d", self.info.ID];
+    NSString *urlString1 = [campusInfoURLFront stringByAppendingString:idString];
+    NSString *urlString = [urlString1 stringByAppendingString:campusInfoURLEnd];
     NSString *cleanedUrlString = [urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSURL *url = [NSURL URLWithString:cleanedUrlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    self.url = [NSURL URLWithString:cleanedUrlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
     [self.webView loadRequest:request];
 }
 
@@ -173,7 +178,7 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
     [shareParams SSDKEnableUseClientShare];
     [shareParams SSDKSetupShareParamsByText:@""
                                  images:[UIImage imageNamed:@"BoBanTang"]
-                                    url:[NSURL URLWithString:self.info.article]
+                                    url:self.url
                                   title:self.info.title
                                    type:SSDKContentTypeAuto];
 
@@ -209,12 +214,12 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
                }
                else if (state == SSDKResponseStateFail)
                {
-                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+                   UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享失败"
                                                                    message:[NSString stringWithFormat:@"%@",error]
                                                                   delegate:nil
                                                          cancelButtonTitle:@"OK"
                                                          otherButtonTitles:nil, nil];
-                   [alert show];
+                   [alertView show];
                }
         }
     ];
@@ -331,15 +336,5 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
 {
     //Do nothing
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

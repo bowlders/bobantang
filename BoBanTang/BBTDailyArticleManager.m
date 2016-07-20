@@ -49,6 +49,8 @@ NSString * dailyArticleNotificationName = @"articleNotification";
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
+    
+    [manager invalidateSessionCancelingTasks:NO];
 }
 
 - (void)fetchCollectedArticleArrayWithGivenSimplifiedArray:(NSArray *)simplifiedArticleArray
@@ -81,6 +83,8 @@ NSString * dailyArticleNotificationName = @"articleNotification";
             NSLog(@"Error: %@", error);
         }];
     }
+    
+    [manager invalidateSessionCancelingTasks:NO];
 }
 
 - (void)pushDailyArticleNotification

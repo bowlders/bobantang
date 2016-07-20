@@ -68,19 +68,19 @@ extern NSString * dailyArticleNotificationName;
     }];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 0.01f;
+    return 10.0f;
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return [[BBTDailyArticleManager sharedArticleManager].articleArray count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[BBTDailyArticleManager sharedArticleManager].articleArray count];
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -94,7 +94,7 @@ extern NSString * dailyArticleNotificationName;
     
     NSArray *articleArray = [BBTDailyArticleManager sharedArticleManager].articleArray;
     
-    [cell setCellContentDictionary:articleArray[indexPath.row]];
+    [cell setCellContentDictionary:articleArray[indexPath.section]];
     
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
@@ -105,8 +105,7 @@ extern NSString * dailyArticleNotificationName;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BBTDailyArticleViewController *destinationVC = [[BBTDailyArticleViewController alloc] init];
-    //destinationVC.info = [BBTCampusInfoManager sharedInfoManager].infoArray[indexPath.row];
-    
+    destinationVC.article = [BBTDailyArticleManager sharedArticleManager].articleArray[indexPath.row];
     [self.navigationController pushViewController:destinationVC animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

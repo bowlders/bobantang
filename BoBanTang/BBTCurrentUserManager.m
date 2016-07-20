@@ -19,6 +19,10 @@ static NSString * const insertNewUserBaseURL = @"http://218.192.166.167/api/prot
 static NSString * const userNameKey = @"userName";
 static NSString * const passWordKey = @"passWord";
 
+NSString * didUploadNickNameNotifName = @"nickNameSucceed";
+NSString * failUploadNickNameNotifName = @"nickNameFail";
+NSString * didUploadUserLogoURLNotifName = @"logoSucceed";
+NSString * failUploadUserLogoURLNotifName = @"logoFail";
 NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
 
 + (instancetype)sharedCurrentUserManager
@@ -66,6 +70,8 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
         self.userIsActive = NO;
         [self postUserAuthenticationFinishNotification];
     }];
+
+    [manager invalidateSessionCancelingTasks:NO];
 }
 
 - (void)fetchCurrentUserData
@@ -101,6 +107,8 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
         self.userIsActive = NO;
         [self postUserAuthenticationFinishNotification];
     }];
+    
+    [manager invalidateSessionCancelingTasks:NO];
 }
 
 - (void)insertNewUserToDataBase
@@ -126,6 +134,8 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
         NSLog(@"Error: %@", error);
         self.userIsActive = NO;
     }];
+    
+    [manager invalidateSessionCancelingTasks:NO];
 }
 
 - (void)logOut
@@ -162,5 +172,20 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
     [JNKeychain deleteValueForKey:userNameKey];
     [JNKeychain deleteValueForKey:passWordKey];
 }
+
+- (void)uploadNewNickName:(NSString *)nickName
+{
+    //TODO: upload new nickname to database and change current user's nickname, and post notification.
+    //if success    self.currentuser.nickname = nickName; post succeed notif
+    //else post fail notif
+}
+
+- (void)uploadNewLogoURL:(NSString *)url
+{
+    //TODO: upload new logo url to database and change current user's logo, and post notification
+    //If success    self.currentuser.userlogo = url; post succeed notif
+    //else post fail notif
+}
+
 
 @end

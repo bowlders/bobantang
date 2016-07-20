@@ -189,11 +189,9 @@ extern NSString * campusBusNotificationName;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"campusBusCell";
-    
     //Here I create a new cell every time in order to fix a bug in view, often you need to reuse a cell.
-    
-    BBTCampusBusTableViewCell *cell = [[BBTCampusBusTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    //Use nil as identifier to avoid memory leak.
+    BBTCampusBusTableViewCell *cell = [[BBTCampusBusTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     
     [cell initCellContent:[BBTCampusBusManager sharedCampusBusManager].stationNameArray[indexPath.row]];
     
@@ -247,7 +245,7 @@ extern NSString * campusBusNotificationName;
 
 - (void)didReceiveCampusBusNotification
 {
-    NSLog(@"Did receive campus bus notification");
+    //NSLog(@"Did receive campus bus notification");
     [self.tableView reloadData];
 }
 
