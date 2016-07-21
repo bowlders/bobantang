@@ -8,6 +8,7 @@
 
 #import "BBTChangeNickNameViewController.h"
 #import "BBTCurrentUserManager.h"
+#import <MBProgressHUD.h>
 #import <Masonry.h>
 
 @interface BBTChangeNickNameViewController ()
@@ -19,9 +20,25 @@
 
 @implementation BBTChangeNickNameViewController
 
+extern NSString * didUploadNickNameNotifName;
+extern NSString * failUploadNickNameNotifName;
+
 - (void)viewDidLoad
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChange) name:UITextFieldTextDidChangeNotification object:self.nickNameTextField];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(textDidChange)
+                                                 name:UITextFieldTextDidChangeNotification
+                                               object:self.nickNameTextField];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveUploadNickNameNotification)
+                                                 name:didUploadNickNameNotifName
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveUploadNickNameFailNotification)
+                                                 name:failUploadNickNameNotifName
+                                               object:nil];
  
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -35,7 +52,7 @@
     
     self.nickNameTextField = ({
         UITextField *textField = [UITextField new];
-        textField.placeholder = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.nickName;
+        textField.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.nickName;
         textField.textAlignment = NSTextAlignmentLeft;
         textField.backgroundColor = [UIColor lightGrayColor];
         textField.delegate = self;
@@ -107,7 +124,45 @@
 - (void)saveButtonIsTapped
 {
     [[BBTCurrentUserManager sharedCurrentUserManager] uploadNewNickName:self.nickNameTextField.text];
-    //TODO: Receive upload success/failure notification.
+}
+
+- (void)didReceiveUploadNickNameNotification
+{
+    //Show success HUD
+    MBProgressHUD *successHUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    
+    //Set the annular determinate mode to show task progress.
+    successHUD.mode = MBProgressHUDModeText;
+    successHUD.labelText = @"昵称修改成功!";
+    
+    //Move to center.
+    successHUD.xOffset = 0.0f;
+    successHUD.yOffset = 0.0f;
+    
+    //Hide after 2 seconds.
+    [successHUD hide:YES afterDelay:2.0f];
+    
+    //Dismiss current VC 0.5 sec after HUD disappears.
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    });
+}
+
+- (void)didReceiveUploadNickNameFailNotification
+{
+    //Show failure HUD
+    MBProgressHUD *failureHUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    
+    //Set the annular determinate mode to show task progress.
+    failureHUD.mode = MBProgressHUDModeText;
+    failureHUD.labelText = @"昵称修改失败";
+    
+    //Move to center.
+    failureHUD.xOffset = 0.0f;
+    failureHUD.yOffset = 0.0f;
+    
+    //Hide after 2 seconds.
+    [failureHUD hide:YES afterDelay:2.0f];
 }
 
 @end

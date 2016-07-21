@@ -307,7 +307,7 @@ extern NSString * kFeedBackViewDisappearNotifName;
         self.loginButton.hidden = YES;
         self.nameLabel.hidden = NO;
         self.studentNumberLabel.hidden = NO;
-        self.nameLabel.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.userName;
+        self.nameLabel.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.nickName;
         self.studentNumberLabel.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account;
         NSURL *avatarURL;
         if (![BBTCurrentUserManager sharedCurrentUserManager].currentUser.userLogo || [[BBTCurrentUserManager sharedCurrentUserManager].currentUser.userLogo  isKindOfClass:[NSNull class]])        //The string is null

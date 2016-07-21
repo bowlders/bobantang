@@ -173,12 +173,16 @@ extern NSString * failUploadUserLogoURLNotifName;
     successHUD.labelText = @"头像上传成功!";
     
     //Move to center.
-    CGFloat centerY = 0.5 * (CGRectGetMaxY(self.view.frame) + CGRectGetMinY(self.view.frame));
     successHUD.xOffset = 0.0f;
-    successHUD.yOffset = centerY;
+    successHUD.yOffset = 0.0f;
     
-    //Hide after 3 seconds.
-    [successHUD hide:YES afterDelay:3.0f];
+    //Hide after 2 seconds.
+    [successHUD hide:YES afterDelay:2.0f];
+    
+    //Dismiss current VC 0.5 sec after HUD disappears.
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    });
 }
 
 - (void)didReceiveLogoUploadFailNotif
@@ -194,12 +198,16 @@ extern NSString * failUploadUserLogoURLNotifName;
     failureHUD.labelText = @"头像上传失败";
     
     //Move to center.
-    CGFloat centerY = 0.5 * (CGRectGetMaxY(self.view.frame) + CGRectGetMinY(self.view.frame));
     failureHUD.xOffset = 0.0f;
-    failureHUD.yOffset = centerY;
+    failureHUD.yOffset = 0.0f;
     
-    //Hide after 3 seconds.
-    [failureHUD hide:YES afterDelay:3.0f];
+    //Hide after 2 seconds.
+    [failureHUD hide:YES afterDelay:2.0f];
+    
+    //Dismiss current VC 0.5 sec after HUD disappears.
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    });
 }
 
 @end
