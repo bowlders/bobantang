@@ -15,7 +15,7 @@
 static NSString * const checkAccountURL = @"http://218.192.166.167/api/jw2005/checkAccount.php";
 static NSString * const fetchUserDataBaseURL = @"http://218.192.166.167/api/protype.php?table=users&method=get&data=";
 static NSString * const insertNewUserBaseURL = @"http://218.192.166.167/api/protype.php?table=users&method=save&data=";
-static NSString * const modifyNickNameBaseURL = @"http://218.192.166.167/api/protype.php?table=users&method=modify&data=";
+static NSString * const modifyUserInfoBaseURL = @"http://218.192.166.167/api/protype.php?table=users&method=modify&data=";
 
 static NSString * const userNameKey = @"userName";
 static NSString * const passWordKey = @"passWord";
@@ -168,14 +168,13 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
 
 - (void)uploadNewNickName:(NSString *)nickName
 {
-    //String appended after "data=", but
+    //String appended after "data=".
     NSString *dataString = [NSString stringWithFormat:@"{\"account\":%@}", self.currentUser.account];
-    NSString *URLString1 = [modifyNickNameBaseURL stringByAppendingString:dataString];
+    NSString *URLString1 = [modifyUserInfoBaseURL stringByAppendingString:dataString];
     //String appended after URL1, %@ of the nickName must be added "", like \"%@\"
     NSString *setString = [NSString stringWithFormat:@"&set={\"nickName\":\"%@\"}", nickName];
     NSString *intactURLString = [URLString1 stringByAppendingString:setString];
     NSString *stringCleanPath = [intactURLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"cleanpath - %@", stringCleanPath);
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
@@ -183,8 +182,6 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
         //NSLog(@"JSON: %@", responseObject);
         if (responseObject)
         {
-            NSLog(@"response - %@", responseObject);
-            NSLog(@"class - %@", [(id)((NSDictionary *)responseObject[@"status"]) className]);
             if ([(NSNumber *)((NSDictionary *)responseObject[@"status"]) intValue] == 1)
             {
                 [self pushDidUploadNickNameNotification];
@@ -208,6 +205,37 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
     //TODO: upload new logo url to database and change current user's logo, and post notification
     //If success    self.currentuser.userlogo = url; post succeed notif
     //else post fail notif
+    
+    //String appended after "data=".
+    NSString *dataString = [NSString stringWithFormat:@"{\"account\":%@}", self.currentUser.account];
+    NSString *URLString1 = [modifyUserInfoBaseURL stringByAppendingString:dataString];
+    //String appended after URL1.
+    NSString *setString = [NSString stringWithFormat:@"&set={\"userLogo\":\"%@\"}", url];
+    NSString *intactURLString = [URLString1 stringByAppendingString:setString];
+    NSString *stringCleanPath = [intactURLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:stringCleanPath parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+        //NSLog(@"JSON: %@", responseObject);
+        if (responseObject)
+        {
+            if ([(NSNumber *)((NSDictionary *)responseObject[@"status"]) intValue] == 1)
+            {
+                [self pushDidUploadUserLogoNotification];
+                //Change current user's userLogo.
+                self.currentUser.userLogo = url;
+            }
+            else
+            {
+                [self pushUploadUserLogoFailNotification];
+            }
+        }
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        [self pushUploadNickNameFailNotification];
+    }];
+    [manager invalidateSessionCancelingTasks:NO];
 }
 
 - (void)pushDidUploadNickNameNotification
@@ -218,6 +246,16 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
 - (void)pushUploadNickNameFailNotification
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:failUploadNickNameNotifName object:self];
+}
+
+- (void)pushDidUploadUserLogoNotification
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:didUploadUserLogoURLNotifName object:self];
+}
+
+- (void)pushUploadUserLogoFailNotification
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:failUploadUserLogoURLNotifName object:self];
 }
 
 @end

@@ -115,6 +115,9 @@ extern NSString * failUploadUserLogoURLNotifName;
     //Upload the picture to QiNiu
     [[BBTImageUploadManager sharedUploadManager] uploadImageToQiniu:avatarImage];
     
+    //Show loading hud
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     //}
 }
 
@@ -135,18 +138,15 @@ extern NSString * failUploadUserLogoURLNotifName;
 
 - (void)didReceiveImageUploadSucceedNotif
 {
-    //Set the image of the cell be the choosen picture.
-    self.addNewImageView.image = self.theNewAvatarImage;
-    
     //Upload current user's logo url
     [[BBTCurrentUserManager sharedCurrentUserManager] uploadNewLogoURL:[BBTImageUploadManager sharedUploadManager].originalImageUrl];
 }
 
 - (void)didReceiveImageUploadFailNotif
 {
-    //Change back addNewImageView's image
-    self.addNewImageView.image = [UIImage imageNamed:@"addNewImage"];
-    
+    //Hide loading hud
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+
     //Show failure HUD
     MBProgressHUD *failureHUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     
@@ -163,8 +163,16 @@ extern NSString * failUploadUserLogoURLNotifName;
     [failureHUD hide:YES afterDelay:3.0f];
 }
 
+//Only when we receive logoUpLoadSucceedNotification can we say we've successfully changed the user's avatar.
+//But whether we receive imageUploadFailNotificaiton or logoUploadFailNotification, each case means we get a failure.
 - (void)didReceiveLogoUploadSucceedNotif
 {
+    //Hide loading hud
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+
+    //Set the image of the cell be the choosen picture.
+    self.addNewImageView.image = self.theNewAvatarImage;
+    
     //Show success HUD
     MBProgressHUD *successHUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     
@@ -187,9 +195,9 @@ extern NSString * failUploadUserLogoURLNotifName;
 
 - (void)didReceiveLogoUploadFailNotif
 {
-    //Change back addNewImageView's image
-    self.addNewImageView.image = [UIImage imageNamed:@"addNewImage"];
-    
+    //Hide loading hud
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+
     //Show failure HUD
     MBProgressHUD *failureHUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     
