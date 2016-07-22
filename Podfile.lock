@@ -53,6 +53,8 @@ PODS:
   - SMCalloutView (2.0)
   - SVProgressHUD (2.0.3)
   - TCBlobDownload (2.1.1)
+  - UIActivityIndicator-for-SDWebImage (1.2):
+    - SDWebImage (~> 3.7)
   - UITableView+FDTemplateLayoutCell (1.4)
   - WSCoachMarksView (0.2)
   - WYPopoverController (0.3.9)
@@ -79,6 +81,7 @@ DEPENDENCIES:
   - SDWebImage (~> 3.7)
   - SVProgressHUD
   - TCBlobDownload
+  - UIActivityIndicator-for-SDWebImage
   - UITableView+FDTemplateLayoutCell (~> 1.4)
   - WSCoachMarksView (~> 0.2)
   - WYPopoverController
@@ -120,6 +123,7 @@ SPEC CHECKSUMS:
   SMCalloutView: f758edd824b18bf4f42de00df1e299861a2d1950
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   TCBlobDownload: 8726f054cc00bb5f66a57bb0c99764842dfa5c9f
+  UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
   WSCoachMarksView: d1653c058c8289a300ddf28af9dd49eb659c9c42
   WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4

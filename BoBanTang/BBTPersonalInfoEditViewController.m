@@ -105,10 +105,7 @@ extern NSString * failUploadUserLogoURLNotifName;
     //Show tabbar and allow user interaction
     self.tabBarController.tabBar.hidden = NO;
     self.tabBarController.tabBar.userInteractionEnabled = YES;
-    //self.hidesBottomBarWhenPushed = NO;                             //Show tab bar
-    //if ([info valueForKey:UIImagePickerControllerEditedImage])
-    //{
-    
+
     UIImage *avatarImage = [info valueForKey:UIImagePickerControllerEditedImage];
     self.theNewAvatarImage = avatarImage;
 
@@ -117,8 +114,6 @@ extern NSString * failUploadUserLogoURLNotifName;
     
     //Show loading hud
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    //}
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -159,8 +154,8 @@ extern NSString * failUploadUserLogoURLNotifName;
     failureHUD.xOffset = 0.0f;
     failureHUD.yOffset = centerY;
     
-    //Hide after 3 seconds.
-    [failureHUD hide:YES afterDelay:3.0f];
+    //Hide after 2 seconds.
+    [failureHUD hide:YES afterDelay:2.0f];
 }
 
 //Only when we receive logoUpLoadSucceedNotification can we say we've successfully changed the user's avatar.
@@ -174,7 +169,8 @@ extern NSString * failUploadUserLogoURLNotifName;
     self.addNewImageView.image = self.theNewAvatarImage;
     
     //Show success HUD
-    MBProgressHUD *successHUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    NSLog(@"view - %@", self.navigationController.view);
+    MBProgressHUD *successHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     //Set the annular determinate mode to show task progress.
     successHUD.mode = MBProgressHUDModeText;
@@ -186,11 +182,6 @@ extern NSString * failUploadUserLogoURLNotifName;
     
     //Hide after 2 seconds.
     [successHUD hide:YES afterDelay:2.0f];
-    
-    //Dismiss current VC 0.5 sec after HUD disappears.
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [self dismissViewControllerAnimated:YES completion:nil];
-    });
 }
 
 - (void)didReceiveLogoUploadFailNotif
@@ -211,11 +202,6 @@ extern NSString * failUploadUserLogoURLNotifName;
     
     //Hide after 2 seconds.
     [failureHUD hide:YES afterDelay:2.0f];
-    
-    //Dismiss current VC 0.5 sec after HUD disappears.
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [self dismissViewControllerAnimated:YES completion:nil];
-    });
 }
 
 @end

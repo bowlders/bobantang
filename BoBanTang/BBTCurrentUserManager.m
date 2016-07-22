@@ -122,7 +122,6 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
 
     [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
-        //[self fetchCurrentUserData];
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
         self.userIsActive = NO;
@@ -185,8 +184,7 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
             if ([(NSNumber *)((NSDictionary *)responseObject[@"status"]) intValue] == 1)
             {
                 [self pushDidUploadNickNameNotification];
-                //Change current user's nickName.
-                self.currentUser.nickName = nickName;
+                self.currentUser.nickName = nickName;                   //Change current user's nickName.
             }
             else
             {
@@ -202,10 +200,6 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
 
 - (void)uploadNewLogoURL:(NSString *)url
 {
-    //TODO: upload new logo url to database and change current user's logo, and post notification
-    //If success    self.currentuser.userlogo = url; post succeed notif
-    //else post fail notif
-    
     //String appended after "data=".
     NSString *dataString = [NSString stringWithFormat:@"{\"account\":%@}", self.currentUser.account];
     NSString *URLString1 = [modifyUserInfoBaseURL stringByAppendingString:dataString];

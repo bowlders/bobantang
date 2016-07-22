@@ -15,6 +15,7 @@
 #import <Masonry.h>
 #import <UIImageView+WebCache.h>
 #import <LeanCloudFeedback/LeanCloudFeedback.h>
+#import <UIImageView+UIActivityIndicatorForSDWebImage.h>
 
 @interface BBTMeViewController ()
 
@@ -144,9 +145,7 @@ extern NSString * kFeedBackViewDisappearNotifName;
         make.centerX.equalTo(self.containerView.mas_centerX);
         make.centerY.equalTo(self.containerView.mas_centerY).offset(avatarImageCenterYOffSet);
     }];
-    //self.avatarImageView.layer.cornerRadius = avatarImageViewRadius;    //Create a circular avatar imageView.
-    //self.avatarImageView.layer.masksToBounds = YES;
-    
+
     [self.loginButton mas_makeConstraints:^(MASConstraintMaker *make){
         make.top.equalTo(self.avatarImageView.mas_bottom).offset(verticalInnerSpacing);
         make.width.equalTo(self.containerView.mas_width);
@@ -318,7 +317,8 @@ extern NSString * kFeedBackViewDisappearNotifName;
         {
             avatarURL = [NSURL URLWithString:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.userLogo];
         }
-        [self.avatarImageView sd_setImageWithURL:avatarURL placeholderImage:[UIImage imageNamed:@"defaultAvatar"]];
+        [self.avatarImageView setImageWithURL:avatarURL placeholderImage:[UIImage imageNamed:@"defaultAvatar"] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        //[self.avatarImageView sd_setImageWithURL:avatarURL placeholderImage:[UIImage imageNamed:@"defaultAvatar"]];
     }
     else
     {

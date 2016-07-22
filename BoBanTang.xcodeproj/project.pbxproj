@@ -40,7 +40,6 @@
 		395B10D91C5646ED00772A38 /* BBTDailyArticleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 395B10D81C5646ED00772A38 /* BBTDailyArticleManager.m */; };
 		395B10DC1C5713EF00772A38 /* UIFont+BBTFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 395B10DB1C5713EF00772A38 /* UIFont+BBTFont.m */; };
 		395B10E01C5737AB00772A38 /* BBTDailyArticleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 395B10DF1C5737AB00772A38 /* BBTDailyArticleTableViewCell.m */; };
-		395B10E41C585EA200772A38 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 395B10E31C585EA200772A38 /* UIImageView+UIActivityIndicatorForSDWebImage.m */; };
 		395B52961C7C8438008FD949 /* BBTCollectedCampusInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 395B52951C7C8438008FD949 /* BBTCollectedCampusInfo.m */; };
 		395B529A1C7C852B008FD949 /* BBTCollectedCampusInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 395B52991C7C852B008FD949 /* BBTCollectedCampusInfoManager.m */; };
 		395B529E1C7D4BEF008FD949 /* BBTCollectedDailyArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 395B529D1C7D4BEF008FD949 /* BBTCollectedDailyArticle.m */; };
@@ -78,7 +77,6 @@
 		A947D98A1BD8DC24000F071B /* Information.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A947D9851BD8DC24000F071B /* Information.storyboard */; };
 		A947D98D1BD8DC24000F071B /* Tools.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A947D9881BD8DC24000F071B /* Tools.storyboard */; };
 		A947D9AA1BD8DC34000F071B /* BBTAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D98E1BD8DC34000F071B /* BBTAboutViewController.m */; };
-		A947D9AB1BD8DC34000F071B /* BBTAccountManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D98F1BD8DC34000F071B /* BBTAccountManageViewController.m */; };
 		A947D9AC1BD8DC34000F071B /* BBTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9901BD8DC34000F071B /* BBTAppDelegate.m */; };
 		A947D9B61BD8DC34000F071B /* BBTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99A1BD8DC34000F071B /* BBTMainViewController.m */; };
 		A947D9B81BD8DC34000F071B /* BBTMyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D99C1BD8DC34000F071B /* BBTMyCollectionViewController.m */; };
@@ -296,8 +294,6 @@
 		395B10DB1C5713EF00772A38 /* UIFont+BBTFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+BBTFont.m"; sourceTree = "<group>"; };
 		395B10DE1C5737AB00772A38 /* BBTDailyArticleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTDailyArticleTableViewCell.h; sourceTree = "<group>"; };
 		395B10DF1C5737AB00772A38 /* BBTDailyArticleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTDailyArticleTableViewCell.m; sourceTree = "<group>"; };
-		395B10E21C585EA200772A38 /* UIImageView+UIActivityIndicatorForSDWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+UIActivityIndicatorForSDWebImage.h"; sourceTree = "<group>"; };
-		395B10E31C585EA200772A38 /* UIImageView+UIActivityIndicatorForSDWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+UIActivityIndicatorForSDWebImage.m"; sourceTree = "<group>"; };
 		395B52941C7C8438008FD949 /* BBTCollectedCampusInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCollectedCampusInfo.h; sourceTree = "<group>"; };
 		395B52951C7C8438008FD949 /* BBTCollectedCampusInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCollectedCampusInfo.m; sourceTree = "<group>"; };
 		395B52981C7C852B008FD949 /* BBTCollectedCampusInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCollectedCampusInfoManager.h; sourceTree = "<group>"; };
@@ -362,7 +358,6 @@
 		A947D95C1BD8DBEA000F071B /* KGModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGModal.h; sourceTree = "<group>"; };
 		A947D95D1BD8DBEA000F071B /* KGModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGModal.m; sourceTree = "<group>"; };
 		A947D9681BD8DC0F000F071B /* BBTAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTAboutViewController.h; sourceTree = "<group>"; };
-		A947D9691BD8DC0F000F071B /* BBTAccountManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTAccountManageViewController.h; sourceTree = "<group>"; };
 		A947D96A1BD8DC0F000F071B /* BBTAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTAppDelegate.h; sourceTree = "<group>"; };
 		A947D9741BD8DC0F000F071B /* BBTMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMainViewController.h; sourceTree = "<group>"; };
 		A947D9751BD8DC0F000F071B /* BBTMarco.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMarco.h; sourceTree = "<group>"; };
@@ -373,7 +368,6 @@
 		A947D9851BD8DC24000F071B /* Information.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Information.storyboard; sourceTree = "<group>"; };
 		A947D9881BD8DC24000F071B /* Tools.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tools.storyboard; sourceTree = "<group>"; };
 		A947D98E1BD8DC34000F071B /* BBTAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTAboutViewController.m; sourceTree = "<group>"; };
-		A947D98F1BD8DC34000F071B /* BBTAccountManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTAccountManageViewController.m; sourceTree = "<group>"; };
 		A947D9901BD8DC34000F071B /* BBTAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTAppDelegate.m; sourceTree = "<group>"; };
 		A947D99A1BD8DC34000F071B /* BBTMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTMainViewController.m; sourceTree = "<group>"; };
 		A947D99C1BD8DC34000F071B /* BBTMyCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTMyCollectionViewController.m; sourceTree = "<group>"; };
@@ -697,8 +691,6 @@
 		39231B171D3E1BA7003FBA9C /* UIImageView+WebCache */ = {
 			isa = PBXGroup;
 			children = (
-				395B10E21C585EA200772A38 /* UIImageView+UIActivityIndicatorForSDWebImage.h */,
-				395B10E31C585EA200772A38 /* UIImageView+UIActivityIndicatorForSDWebImage.m */,
 			);
 			name = "UIImageView+WebCache";
 			sourceTree = "<group>";
@@ -990,8 +982,6 @@
 				39FE91E51C5F886C0041E46F /* BBTMeViewController.m */,
 				A947D9681BD8DC0F000F071B /* BBTAboutViewController.h */,
 				A947D98E1BD8DC34000F071B /* BBTAboutViewController.m */,
-				A947D9691BD8DC0F000F071B /* BBTAccountManageViewController.h */,
-				A947D98F1BD8DC34000F071B /* BBTAccountManageViewController.m */,
 				A947D9771BD8DC0F000F071B /* BBTMyCollectionViewController.h */,
 				A947D99C1BD8DC34000F071B /* BBTMyCollectionViewController.m */,
 				A947D97C1BD8DC0F000F071B /* BBTSettingsViewController.h */,
@@ -1743,7 +1733,6 @@
 				FC2EAFF91C69AAA400B5DC42 /* BBTItemImageTableViewCell.m in Sources */,
 				395B529E1C7D4BEF008FD949 /* BBTCollectedDailyArticle.m in Sources */,
 				FC351F1F1C73681E0055FD41 /* BBTToolsTableViewController.m in Sources */,
-				A947D9AB1BD8DC34000F071B /* BBTAccountManageViewController.m in Sources */,
 				FCD0A27E1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.m in Sources */,
 				AF5412C71CC680AC004C0CE8 /* MKPolygon+PointInPolygon.m in Sources */,
 				AF5412861CC67EBC004C0CE8 /* BBT3DMapMetaDataManager.m in Sources */,
@@ -1776,7 +1765,6 @@
 				AF5412751CC67E03004C0CE8 /* BBTMapContainerVC.m in Sources */,
 				AF5412BD1CC6805D004C0CE8 /* BBTEmptyToolbar.m in Sources */,
 				39B595431C0AF0500015B673 /* BBTCampusInfoViewController.m in Sources */,
-				395B10E41C585EA200772A38 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */,
 				FC1770B61C5F4FCD00BF07AC /* PopoverView.m in Sources */,
 				FC1770BD1C5F505300BF07AC /* BBTLAFManager.m in Sources */,
 				FCE6094B1C7624F8008C331D /* BBTLafSearchResultTableViewController.m in Sources */,
