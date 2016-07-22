@@ -26,5 +26,5 @@ pod 'WSCoachMarksView', '~> 0.2'
 pod 'TCBlobDownload'
 pod "Qiniu", :git => 'https://github.com/qiniu/objc-sdk.git', :branch => 'AFNetworking-3.x'
 pod 'UIActivityIndicator-for-SDWebImage'
-pod 'ASMediaFocusManager'
+pod "MWPhotoBrowser"
 pod 'RETableViewManager', '~> 1.6'
