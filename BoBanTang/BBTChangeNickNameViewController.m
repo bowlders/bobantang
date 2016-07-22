@@ -8,6 +8,7 @@
 
 #import "BBTChangeNickNameViewController.h"
 #import "BBTCurrentUserManager.h"
+#import "UIColor+BBTColor.h"
 #import <MBProgressHUD.h>
 #import <Masonry.h>
 
@@ -15,6 +16,7 @@
 
 @property (strong, nonatomic) UILabel     * nickNameLengthLabel;
 @property (strong, nonatomic) UITextField * nickNameTextField;
+@property (strong, nonatomic) UIView      * blueLineView;
 
 @end
 
@@ -54,32 +56,51 @@ extern NSString * failUploadNickNameNotifName;
         UITextField *textField = [UITextField new];
         textField.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.nickName;
         textField.textAlignment = NSTextAlignmentLeft;
-        textField.backgroundColor = [UIColor lightGrayColor];
+        //textField.backgroundColor = [UIColor lightGrayColor];
         textField.delegate = self;
         textField;
     });
     
+    self.blueLineView = ({
+        UIView *view = [UIView new];
+        view.backgroundColor = [UIColor BBTAppGlobalBlue];
+        view;
+    });
+    
     [self.view addSubview:self.nickNameLengthLabel];
     [self.view addSubview:self.nickNameTextField];
+    [self.view addSubview:self.blueLineView];
     
     CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     CGFloat nickNameLengthLabelHeight = 20.0f;
     CGFloat nickNameLabelHeight = 30.0f;
     CGFloat nickNameLabelY = statusBarHeight + navigationBarHeight + 20.0f;
+    CGFloat nickNameLengthLabelUpperOffset = 20.0f;
+    CGFloat innerOffset = 5.0f;
+    CGFloat leftOffset = 10.0f;
+    CGFloat rightOffset = 10.0f;
     
     [self.nickNameLengthLabel mas_makeConstraints:^(MASConstraintMaker *make){
-        make.top.equalTo(self.view.mas_top).offset(nickNameLabelY);
+        make.top.equalTo(self.view.mas_top).offset(nickNameLabelY+nickNameLengthLabelUpperOffset);
         make.height.equalTo(@(nickNameLengthLabelHeight));
-        make.left.equalTo(self.view.mas_left);
-        make.width.equalTo(self.view.mas_width);
+        make.left.equalTo(self.view.mas_left).offset(leftOffset);
+        make.right.equalTo(self.view.mas_right).offset(-rightOffset);
+        //make.width.equalTo(self.view.mas_width);
     }];
     
     [self.nickNameTextField mas_makeConstraints:^(MASConstraintMaker *make){
-        make.top.equalTo(self.nickNameLengthLabel.mas_bottom);
+        make.top.equalTo(self.nickNameLengthLabel.mas_bottom).offset(innerOffset);
         make.height.equalTo(@(nickNameLabelHeight));
-        make.left.equalTo(self.view.mas_left);
-        make.width.equalTo(self.view.mas_width);
+        make.left.equalTo(self.nickNameLengthLabel.mas_left);
+        make.width.equalTo(self.nickNameLengthLabel.mas_width);
+    }];
+    
+    [self.blueLineView mas_makeConstraints:^(MASConstraintMaker *make){
+        make.top.equalTo(self.nickNameTextField.mas_bottom);
+        make.left.equalTo(self.nickNameTextField.mas_left);
+        make.width.equalTo(self.nickNameTextField.mas_width);
+        make.height.equalTo(@(2));
     }];
     
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"取消"
