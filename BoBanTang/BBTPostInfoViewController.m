@@ -62,8 +62,8 @@ extern NSString *kFailPostItemNotificaionName;
         self.navigationItem.title = @"发布失物启示";
     }
     
-    //self.account = [NSNumber numberWithInt:[[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account intValue]];
-    self.account = (@201430202488);
+    self.account = [NSNumber numberWithInt:[[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account intValue]];
+    //self.account = (@201430202488);
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
