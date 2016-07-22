@@ -15,6 +15,9 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - ASBPlayerScrubbing (0.1)
+  - ASMediaFocusManager (0.6):
+    - ASBPlayerScrubbing (~> 0.1)
   - AVOSCloud (3.3.5)
   - AVOSCloudCrashReporting (3.3.5):
     - AVOSCloud
@@ -47,6 +50,11 @@ PODS:
   - Qiniu (7.0.18):
     - AFNetworking (~> 3)
     - HappyDNS (~> 0.2)
+  - REFormattedNumberField (1.1.6)
+  - RETableViewManager (1.7):
+    - REFormattedNumberField (~> 1.1.5)
+    - REValidation (~> 0.1.4)
+  - REValidation (0.1.4)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
@@ -62,6 +70,7 @@ PODS:
 DEPENDENCIES:
   - ActionSheetPicker-3.0
   - AFNetworking (~> 3.0)
+  - ASMediaFocusManager
   - AVOSCloud
   - AVOSCloudCrashReporting
   - AYVibrantButton (= 1.0.3)
@@ -78,6 +87,7 @@ DEPENDENCIES:
   - MJRefresh
   - PAPreferences
   - Qiniu (from `https://github.com/qiniu/objc-sdk.git`, branch `AFNetworking-3.x`)
+  - RETableViewManager (~> 1.6)
   - SDWebImage (~> 3.7)
   - SVProgressHUD
   - TCBlobDownload
@@ -99,6 +109,8 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: 8312778b6815578e6a86d630fbcf31dc94c534e7
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  ASBPlayerScrubbing: 0fc5e76aad6fdbcf14380734fb7f2c127cd28b66
+  ASMediaFocusManager: 564dc75d983e4e0dacf24855b5f8a7b4d4a9caec
   AVOSCloud: 1fe170768bee7e05bc3ea86e38d5bddb105cb957
   AVOSCloudCrashReporting: 7ad087db785a25d6ef03cb54c2c0b460eb32dabb
   AYVibrantButton: 7cc5b2c74f6f6a0a52d5b0db361a9d3b755bc448
@@ -119,6 +131,9 @@ SPEC CHECKSUMS:
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   PAPreferences: 9f0ffb1e67174a0df001af9d3320166ceb9ee6f5
   Qiniu: 1e9b485bea897af4a4f9d88a3c83d176aa7ef559
+  REFormattedNumberField: 70fc5fb1218ebd5ee9983820defd12806d5c6ec6
+  RETableViewManager: 0f24d796c42c0890d38c79cc9aeb3871e186726e
+  REValidation: 38c4de1be58455f8b00aab208ac80db316a66b7f
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SMCalloutView: f758edd824b18bf4f42de00df1e299861a2d1950
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
