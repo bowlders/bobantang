@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <StoreKit/StoreKit.h>
 
-@interface BBTAboutViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface BBTAboutViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, SKStoreProductViewControllerDelegate>
 
 @end

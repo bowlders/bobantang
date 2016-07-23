@@ -281,8 +281,7 @@ extern NSString * kFeedBackViewDisappearNotifName;
             feedbackViewController.navigationBarStyle = LCUserFeedbackNavigationBarStyleNone;
             feedbackViewController.contactHeaderHidden = YES;
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:feedbackViewController];
-            [self presentViewController:navigationController animated:YES completion: ^{
-            }];
+            [self presentViewController:navigationController animated:YES completion:nil];
         }
         else if (indexPath.row == 1)
         {
@@ -318,7 +317,6 @@ extern NSString * kFeedBackViewDisappearNotifName;
             avatarURL = [NSURL URLWithString:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.userLogo];
         }
         [self.avatarImageView setImageWithURL:avatarURL placeholderImage:[UIImage imageNamed:@"defaultAvatar"] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-        //[self.avatarImageView sd_setImageWithURL:avatarURL placeholderImage:[UIImage imageNamed:@"defaultAvatar"]];
     }
     else
     {
@@ -339,7 +337,6 @@ extern NSString * kFeedBackViewDisappearNotifName;
             cell.badgeString = [NSString stringWithFormat:@"%ld", (long)number];
         }
     }];
-    
 }
 
 - (void)handleTap

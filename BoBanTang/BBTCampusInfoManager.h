@@ -17,6 +17,5 @@
 
 + (instancetype)sharedInfoManager;                                          //Singleton method
 - (void)loadMoreData;
-- (void)fetchCollectedInfoArrayWithGivenSimplifiedArray:(NSArray *)simplifiedInfoArray;
 
 @end

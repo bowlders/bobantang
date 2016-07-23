@@ -105,6 +105,7 @@
     [[UINavigationBar appearance] setBarTintColor:[UIColor BBTAppGlobalBlue]];
     [UINavigationBar appearance].tintColor = [UIColor whiteColor];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]];
     
     return YES;
 }

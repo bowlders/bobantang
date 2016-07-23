@@ -55,6 +55,7 @@
 		397445671C0A8D78004B89BA /* BBTCampusInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 397445661C0A8D78004B89BA /* BBTCampusInfo.m */; };
 		3974456A1C0A8E75004B89BA /* BBTCampusInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 397445691C0A8E75004B89BA /* BBTCampusInfoManager.m */; };
 		397445701C0AAD60004B89BA /* BBTCampusInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3974456F1C0AAD60004B89BA /* BBTCampusInfoTableViewCell.m */; };
+		39810DFA1D43AAAB00A86941 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39810DF91D43AAAB00A86941 /* StoreKit.framework */; };
 		398231B61BD8ED230043E544 /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 398231B51BD8ED230043E544 /* Me.storyboard */; };
 		39B5953D1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B5953C1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m */; };
 		39B595401C0AF0400015B673 /* BBTDailyArticleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B5953F1C0AF0400015B673 /* BBTDailyArticleTableViewController.m */; };
@@ -317,6 +318,7 @@
 		397445691C0A8E75004B89BA /* BBTCampusInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCampusInfoManager.m; sourceTree = "<group>"; };
 		3974456E1C0AAD60004B89BA /* BBTCampusInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusInfoTableViewCell.h; sourceTree = "<group>"; };
 		3974456F1C0AAD60004B89BA /* BBTCampusInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCampusInfoTableViewCell.m; sourceTree = "<group>"; };
+		39810DF91D43AAAB00A86941 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		398231B51BD8ED230043E544 /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
 		39B5953B1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTInfoSegmentedControllerViewController.h; sourceTree = "<group>"; };
 		39B5953C1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTInfoSegmentedControllerViewController.m; sourceTree = "<group>"; };
@@ -518,6 +520,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39810DFA1D43AAAB00A86941 /* StoreKit.framework in Frameworks */,
 				AF3298831CE6402400F587BF /* libZipZap.a in Frameworks */,
 				39D64D311CDA5681005FBD88 /* Foundation.framework in Frameworks */,
 				39231B0B1D3DC336003FBA9C /* ShareSDKExtension.framework in Frameworks */,
@@ -1041,6 +1044,7 @@
 		4EA28AD388E43D96D5F54ADA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				39810DF91D43AAAB00A86941 /* StoreKit.framework */,
 				39231B1E1D3E24AF003FBA9C /* AVOSCloudCrashReporting.framework */,
 				AF99037B1CF47FCF0039C4E4 /* libQiniu.a */,
 				AF9903791CF47DF80039C4E4 /* libAFNetworking.a */,

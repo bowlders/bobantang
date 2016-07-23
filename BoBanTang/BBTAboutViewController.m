@@ -42,7 +42,7 @@
         label.clipsToBounds = YES;
         label.textAlignment = NSTextAlignmentCenter;
         label.adjustsFontSizeToFitWidth = NO;
-        label.text = @"波板糖1.0";
+        label.text = @"波板糖3.0";
         label.font = [UIFont BBTProductNameLabelFont];
         label.alpha = 1.0;
         label;
@@ -198,7 +198,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //TODO: jump to app store
+    SKStoreProductViewController *storeProductVC =[[SKStoreProductViewController alloc]init];
+    storeProductVC.delegate = self;
+    [storeProductVC loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier:@"625954338"} completionBlock:^(BOOL result, NSError *error) {
+        if (result) {
+            [self presentViewController:storeProductVC animated:YES completion:nil];
+        }else{
+            NSLog(@"error:%@", error);
+        }
+    }];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+-(void)productViewControllerDidFinish:(SKStoreProductViewController* )viewController
+
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

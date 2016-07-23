@@ -9,6 +9,7 @@
 #import "BBTInfoSegmentedControllerViewController.h"
 #import "BBTCampusInfoTableViewController.h"
 #import "BBTDailyArticleViewController.h"
+#import "BBTDailyArticleManager.h"
 #import "UIColor+BBTColor.h"
 #import <Masonry.h>
 
@@ -31,7 +32,7 @@
     BBTCampusInfoTableViewController * campusInfoVC = [[BBTCampusInfoTableViewController alloc] init];
     
     BBTDailyArticleViewController * dailyArticleVC = [[BBTDailyArticleViewController alloc] init];
-    
+
     self.contentViewControllers = @[
                                     campusInfoVC,
                                     dailyArticleVC
@@ -54,9 +55,8 @@
     currentVC.view.frame = self.contentViewContainer.bounds;
     [self.contentViewContainer addSubview:currentVC.view];
     [currentVC didMoveToParentViewController:self];
-
-    // Do any additional setup after loading the view.
 }
+
 - (IBAction)valueChanged:(UISegmentedControl *)sender
 {
     NSLog(@"Index %ld is selected", (long)sender.selectedSegmentIndex);
@@ -73,6 +73,11 @@
 
     UIViewController *destinationVC = self.contentViewControllers[index];
 
+    //Display the latest article.
+    if (index)
+    {
+        [[BBTDailyArticleManager sharedArticleManager] getArticleToday];
+    }
     [self addChildViewController:destinationVC];
     destinationVC.view.frame = self.contentViewContainer.bounds;
     [self.contentViewContainer addSubview:destinationVC.view];
@@ -86,15 +91,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

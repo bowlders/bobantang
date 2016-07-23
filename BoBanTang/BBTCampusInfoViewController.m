@@ -15,6 +15,7 @@
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
 #import <JGProgressHUD.h>
+#import <MBProgressHUD.h>
 
 @interface BBTCampusInfoViewController ()
 
@@ -35,8 +36,6 @@ extern NSString * insertNewCollectedInfoSucceedNotifName;
 extern NSString * insertNewCollectedInfoFailNotifName;
 extern NSString * deleteCollectedInfoSucceedNotifName;
 extern NSString * deleteCollectedInfoFailNotifName;
-extern NSString * fetchCollectedInfoSucceedNotifName;
-extern NSString * fetchCollectedInfoFailNotifName;
 extern NSString * checkCurrentUserHasCollectedGivenInfoNotifName;
 extern NSString * checkCurrentUserHasNotCollectedGivenInfoNotifName;
 extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
@@ -146,16 +145,6 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveFetchCollectedInfoSucceedNotification)
-                                                 name:fetchCollectedInfoSucceedNotifName
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveFetchCollectedInfoFailNotification)
-                                                 name:fetchCollectedInfoFailNotifName
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveCurrentUserHasCollectedGivenInfoNotification)
                                                  name:checkCurrentUserHasCollectedGivenInfoNotifName
                                                object:nil];
@@ -240,13 +229,11 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
     {
         if (self.collectButton.tag == 0)                                                                        //Current user has not collected this info
         {
-            BBTCollectedCampusInfoManager *manager = [[BBTCollectedCampusInfoManager alloc] init];
-            [manager currentUserCollectInfoWithArticleID:self.info.ID];
+            [[BBTCollectedCampusInfoManager sharedCollectedInfoManager] currentUserCollectInfoWithArticleID:self.info.ID];
         }
         else                                                                                                    //Current user has collected this info
         {
-            BBTCollectedCampusInfoManager *manager = [[BBTCollectedCampusInfoManager alloc] init];
-            [manager currentUserCancelCollectInfoWithArticleID:self.info.ID];
+            [[BBTCollectedCampusInfoManager sharedCollectedInfoManager] currentUserCancelCollectInfoWithArticleID:self.info.ID];
         }
     }
 }
@@ -263,8 +250,7 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
         self.collectButton.enabled = NO;
         self.collectButton.alpha = 0.9;
         
-        BBTCollectedCampusInfoManager *manager = [[BBTCollectedCampusInfoManager alloc] init];
-        [manager checkIfCurrentUserHasCollectedArticleWithArticleID:self.info.ID];
+        [[BBTCollectedCampusInfoManager sharedCollectedInfoManager] checkIfCurrentUserHasCollectedArticleWithArticleID:self.info.ID];
     }
 }
 
@@ -275,6 +261,20 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
     self.collectButton.alpha = 1.0;
     [self.collectButton setImage:[UIImage imageNamed:@"solidStar"] forState:UIControlStateNormal];
     self.collectButton.tag = 1;
+    
+    //Show success HUD
+    MBProgressHUD *successHUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    
+    //Set the annular determinate mode to show task progress.
+    successHUD.mode = MBProgressHUDModeText;
+    successHUD.labelText = @"收藏成功!";
+    
+    //Move to center.
+    successHUD.xOffset = 0.0f;
+    successHUD.yOffset = 0.0f;
+    
+    //Hide after 2 seconds.
+    [successHUD hide:YES afterDelay:2.0f];
 }
 
 - (void)didReceiveInsertNewCollectedInfoFailNotification
@@ -284,6 +284,20 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
     self.collectButton.alpha = 1.0;
     [self.collectButton setImage:[UIImage imageNamed:@"hollowStar"] forState:UIControlStateNormal];
     self.collectButton.tag = 0;
+    
+    //Show failure HUD
+    MBProgressHUD *failureHUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    
+    //Set the annular determinate mode to show task progress.
+    failureHUD.mode = MBProgressHUDModeText;
+    failureHUD.labelText = @"收藏失败";
+    
+    //Move to center.
+    failureHUD.xOffset = 0.0f;
+    failureHUD.yOffset = 0.0f;
+    
+    //Hide after 2 seconds.
+    [failureHUD hide:YES afterDelay:2.0f];
 }
 
 - (void)didReceiveDeleteCollectedInfoSucceedNotification
@@ -293,6 +307,20 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
     self.collectButton.alpha = 1.0;
     [self.collectButton setImage:[UIImage imageNamed:@"hollowStar"] forState:UIControlStateNormal];
     self.collectButton.tag = 0;
+    
+    //Show success HUD
+    MBProgressHUD *successHUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    
+    //Set the annular determinate mode to show task progress.
+    successHUD.mode = MBProgressHUDModeText;
+    successHUD.labelText = @"取消收藏成功!";
+    
+    //Move to center.
+    successHUD.xOffset = 0.0f;
+    successHUD.yOffset = 0.0f;
+    
+    //Hide after 2 seconds.
+    [successHUD hide:YES afterDelay:2.0f];
 }
 
 - (void)didReceiveDeleteCollectedInfoFailNotification
@@ -302,16 +330,20 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
     self.collectButton.alpha = 1.0;
     [self.collectButton setImage:[UIImage imageNamed:@"solidStar"] forState:UIControlStateNormal];
     self.collectButton.tag = 1;
-}
-
-- (void)didReceiveFetchCollectedInfoSucceedNotification
-{
-
-}
-
-- (void)didReceiveFetchCollectedInfoFailNotification
-{
-
+    
+    //Show failure HUD
+    MBProgressHUD *failureHUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    
+    //Set the annular determinate mode to show task progress.
+    failureHUD.mode = MBProgressHUDModeText;
+    failureHUD.labelText = @"取消收藏失败";
+    
+    //Move to center.
+    failureHUD.xOffset = 0.0f;
+    failureHUD.yOffset = 0.0f;
+    
+    //Hide after 2 seconds.
+    [failureHUD hide:YES afterDelay:2.0f];
 }
 
 - (void)didReceiveCurrentUserHasCollectedGivenInfoNotification

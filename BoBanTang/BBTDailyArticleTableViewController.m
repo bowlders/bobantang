@@ -97,7 +97,6 @@ extern NSString * noMoreArticleNotifName;
     }
     
     NSArray *articleArray = [BBTDailyArticleManager sharedArticleManager].articleArray;
-    
     [cell setCellContentDictionary:articleArray[indexPath.section]];
     
     [cell setNeedsUpdateConstraints];

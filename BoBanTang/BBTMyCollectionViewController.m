@@ -7,6 +7,12 @@
 //
 
 #import "BBTMyCollectionViewController.h"
+#import "BBTCollectedCampusInfoManager.h"
+#import "BBTCollectedDailyArticleManager.h"
+#import "BBTCampusInfoTableViewCell.h"
+#import "BBTDailyArticleTableViewCell.h"
+#import <MJRefresh.h>
+#import <MBProgressHUD.h>
 
 @interface BBTMyCollectionViewController ()
 
@@ -14,23 +20,222 @@
 
 @implementation BBTMyCollectionViewController
 
+extern NSString * fetchCollectedInfoSucceedNotifName;
+extern NSString * fetchCollectedInfoFailNotifName;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = @"我的收藏";
+    self.tableView.backgroundColor = [UIColor whiteColor];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveFetchCollectedInfoSucceedNotification)
+                                                 name:fetchCollectedInfoSucceedNotifName
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveFetchCollectedInfoFailNotification)
+                                                 name:fetchCollectedInfoFailNotifName
+                                               object:nil];
+    
+    //[BBTCollectedCampusInfoManager sharedCollectedInfoManager];
+    //[BBTCollectedDailyArticleManager sharedCollectedArticleManager];
+    
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self refresh];
+    }];
+    
+    [header setTitle:@"释放刷新" forState:MJRefreshStatePulling];
+    [header setTitle:@"加载中 ..." forState:MJRefreshStateRefreshing];
+    self.tableView.mj_header = header;
+    [self.tableView.mj_header beginRefreshing];
+}
 
+- (void)didReceiveFetchCollectedInfoSucceedNotification
+{
+    [self.tableView reloadData];
+    //User hasn't collected anything.
+    if(!([[BBTCollectedCampusInfoManager sharedCollectedInfoManager].currentUserCollectedCampusInfoArray count]) && !([[BBTCollectedDailyArticleManager sharedCollectedArticleManager].currentUserCollectedDailyArticleArray count]))
+    {
+        //Show HUD
+        MBProgressHUD *successHUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        
+        //Set the annular determinate mode to show task progress.
+        successHUD.mode = MBProgressHUDModeText;
+        successHUD.labelText = @"你还什么都没有收藏哦";
+        
+        //Move to center.
+        successHUD.xOffset = 0.0f;
+        successHUD.yOffset = 0.0f;
+        
+        //Hide after 2 seconds.
+        [successHUD hide:YES afterDelay:2.0f];
+        
+        //Dismiss current VC 0.5 sec after HUD disappears.
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            //Go back to the BBTMeViewController.
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+    }
+    [self.tableView reloadData];
+    [self.tableView.mj_header endRefreshing];
+}
+
+- (void)didReceiveFetchCollectedInfoFailNotification
+{
+    //Show HUD
+    MBProgressHUD *successHUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    
+    //Set the annular determinate mode to show task progress.
+    successHUD.mode = MBProgressHUDModeText;
+    successHUD.labelText = @"加载失败";
+    
+    //Move to center.
+    successHUD.xOffset = 0.0f;
+    successHUD.yOffset = 0.0f;
+    
+    //Hide after 2 seconds.
+    [successHUD hide:YES afterDelay:2.0f];
+    
+    //Dismiss current VC 0.5 sec after HUD disappears.
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        //Go back to the BBTMeViewController.
+        [self.navigationController popViewControllerAnimated:YES];
+    });
+}
+
+- (void)refresh
+{
+    [[BBTCollectedCampusInfoManager sharedCollectedInfoManager] fetchCurrentUserCollectedCampusInfoIntoArray];
+    [[BBTCollectedDailyArticleManager sharedCollectedArticleManager] fetchCurrentUserCollectedDailyArticleIntoArray];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    
+    //User has collected both campus infos and daily articles.
+    if (([[BBTCollectedCampusInfoManager sharedCollectedInfoManager].currentUserIntactCollectedCampusInfoArray count]) && ([[BBTCollectedDailyArticleManager sharedCollectedArticleManager].currentUserIntactCollectedDailyArticleArray count]))
+    {
+        return 2;
+    }
+    //User hasn't collected anything.
+    else if(!([[BBTCollectedCampusInfoManager sharedCollectedInfoManager].currentUserIntactCollectedCampusInfoArray count]) && !([[BBTCollectedDailyArticleManager sharedCollectedArticleManager].currentUserIntactCollectedDailyArticleArray count]))
+    {
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    //User has collected both campus infos and daily articles.
+    if (([[BBTCollectedCampusInfoManager sharedCollectedInfoManager].currentUserIntactCollectedCampusInfoArray count]) && ([[BBTCollectedDailyArticleManager sharedCollectedArticleManager].currentUserIntactCollectedDailyArticleArray count]))
+    {
+        //collectedCampusInfo section.
+        if (!section)
+        {
+            return [[BBTCollectedCampusInfoManager sharedCollectedInfoManager].currentUserIntactCollectedCampusInfoArray count];
+        }
+        //collectedDailyArticle section.
+        else
+        {
+            return [[BBTCollectedDailyArticleManager sharedCollectedArticleManager].currentUserIntactCollectedDailyArticleArray count];
+        }
+    }
+    //User hasn't collected anything.
+    else if(!([[BBTCollectedCampusInfoManager sharedCollectedInfoManager].currentUserIntactCollectedCampusInfoArray count]) && !([[BBTCollectedDailyArticleManager sharedCollectedArticleManager].currentUserIntactCollectedDailyArticleArray count]))
+    {
+        return 0;
+    }
+    //User only collects campus infos.
+    else if([[BBTCollectedCampusInfoManager sharedCollectedInfoManager].currentUserIntactCollectedCampusInfoArray count])
+    {
+        return [[BBTCollectedCampusInfoManager sharedCollectedInfoManager].currentUserIntactCollectedCampusInfoArray count];
+    }
+    else
+    {
+        return [[BBTCollectedDailyArticleManager sharedCollectedArticleManager].currentUserIntactCollectedDailyArticleArray count];
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell;
+    //User has collected both campus infos and daily articles.
+    if (([[BBTCollectedCampusInfoManager sharedCollectedInfoManager].currentUserIntactCollectedCampusInfoArray count]) && ([[BBTCollectedDailyArticleManager sharedCollectedArticleManager].currentUserIntactCollectedDailyArticleArray count]))
+    {
+        //collectedCampusInfo section.
+        if (!indexPath.section)
+        {
+            NSString *cellIdentifier = @"collctedInfoCell";
+            cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            
+            if (!cell)
+            {
+                cell = [[BBTCampusInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            }
+            
+            NSArray *collectedInfoArray = [BBTCollectedCampusInfoManager sharedCollectedInfoManager].currentUserIntactCollectedCampusInfoArray;
+            [(BBTCampusInfoTableViewCell *)cell setCellContentDictionary:collectedInfoArray[indexPath.row]];
+        }
+        //collectedDailyArticle section.
+        else
+        {
+            NSString *cellIdentifier = @"collectedArticleCell";
+            BBTDailyArticleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            
+            if (!cell)
+            {
+                cell = [[BBTDailyArticleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            }
+        
+            NSArray *articleArray = [BBTCollectedDailyArticleManager sharedCollectedArticleManager].currentUserIntactCollectedDailyArticleArray;
+            [(BBTDailyArticleTableViewCell *)cell setCellContentDictionary:articleArray[indexPath.row]];
+        }
+    }
+    //User hasn't collected anything.
+    else if(!([[BBTCollectedCampusInfoManager sharedCollectedInfoManager].currentUserIntactCollectedCampusInfoArray count]) && !([[BBTCollectedDailyArticleManager sharedCollectedArticleManager].currentUserIntactCollectedDailyArticleArray count]))
+    {
+        //Return an empty cell.
+        cell = [[UITableViewCell alloc] init];
+        return cell;
+    }
+    //User only collects campus infos.
+    else if([[BBTCollectedCampusInfoManager sharedCollectedInfoManager].currentUserIntactCollectedCampusInfoArray count])
+    {
+        NSString *cellIdentifier = @"collctedInfoCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        
+        if (!cell)
+        {
+            cell = [[BBTCampusInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        
+        NSArray *collectedInfoArray = [BBTCollectedCampusInfoManager sharedCollectedInfoManager].currentUserIntactCollectedCampusInfoArray;
+        [(BBTCampusInfoTableViewCell *)cell setCellContentDictionary:collectedInfoArray[indexPath.row]];
+    }
+    else
+    {
+        NSString *cellIdentifier = @"collectedArticleCell";
+        BBTDailyArticleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        
+        if (!cell)
+        {
+            cell = [[BBTDailyArticleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        
+        NSArray *articleArray = [BBTCollectedDailyArticleManager sharedCollectedArticleManager].currentUserIntactCollectedDailyArticleArray;
+        [(BBTDailyArticleTableViewCell *)cell setCellContentDictionary:articleArray[indexPath.row]];
+    }
+    
+    [cell setNeedsUpdateConstraints];
+    [cell updateConstraintsIfNeeded];
+    
+    return cell;
 }
 
 @end

@@ -11,7 +11,9 @@
 @interface BBTCollectedCampusInfoManager : NSObject
 
 @property (strong, nonatomic) NSMutableArray * currentUserCollectedCampusInfoArray;
+@property (strong, nonatomic) NSMutableArray * currentUserIntactCollectedCampusInfoArray;
 
++ (instancetype)sharedCollectedInfoManager;                     //Singleton method
 - (void)currentUserCollectInfoWithArticleID:(int)articleID;     //Current user collect info with a given article ID(notice it's not ID).
 - (void)currentUserCancelCollectInfoWithArticleID:(int)articleID;
 - (void)fetchCurrentUserCollectedCampusInfoIntoArray;

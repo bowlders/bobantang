@@ -11,7 +11,9 @@
 @interface BBTCollectedDailyArticleManager : NSObject
 
 @property (strong, nonatomic) NSMutableArray * currentUserCollectedDailyArticleArray;
+@property (strong, nonatomic) NSMutableArray * currentUserIntactCollectedDailyArticleArray;
 
++ (instancetype)sharedCollectedArticleManager;                                //Singleton method
 - (void)currentUserCollectArticleWithArticleID:(int)articleID;
 - (void)currentUserCancelCollectArticleWithArticleID:(int)articleID;
 - (void)fetchCurrentUserCollectedDailyArticleIntoArray;

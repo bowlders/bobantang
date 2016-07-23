@@ -38,7 +38,7 @@ extern NSString * noNewInfoNotifName;
     
     NSString *cellIdentifier = @"infoCell";
     [self.tableView registerClass:[BBTCampusInfoTableViewCell class] forCellReuseIdentifier:cellIdentifier];
-
+    
     self.tableView.backgroundColor = [UIColor whiteColor];
     
     //Clear infoCount
@@ -88,7 +88,6 @@ extern NSString * noNewInfoNotifName;
     }
     
     NSArray *infoArray = [BBTCampusInfoManager sharedInfoManager].infoArray;
-    
     [cell setCellContentDictionary:infoArray[indexPath.row]];
     
     [cell setNeedsUpdateConstraints];

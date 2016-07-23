@@ -9,11 +9,14 @@
 #import "BBTCollectedCampusInfoManager.h"
 #import "BBTCurrentUserManager.h"
 #import "BBTCollectedCampusInfo.h"
+#import "BBTCampusInfo.h"
 #import <AFNetworking.h>
 
 static NSString * const fetchCollectedInfoBaseURL = @"http://218.192.166.167/api/protype.php?table=favouritedInformation&method=get&data=";
 static NSString * const deleteCollectedInfoBaseURL = @"http://218.192.166.167/api/protype.php?table=favouritedInformation&method=delete&data=";
 static NSString * const insertNewCollectedInfoBaseURL = @"http://218.192.166.167/api/protype.php?table=favouritedInformation&method=save&data=";
+static NSString * const frontGetCampusInfoURL = @"http://http://218.192.166.167/api/protype.php?table=schoolInformation&method=get&data=";
+static NSString * const endGetCampusInfoURL = @"&option={\"nofuzzy\":\"ID\"}";
 
 NSString * insertNewCollectedInfoSucceedNotifName = @"infoInsertionSucceed";
 NSString * insertNewCollectedInfoFailNotifName = @"infoInsertionFail";
@@ -26,6 +29,16 @@ NSString * checkCurrentUserHasNotCollectedGivenInfoNotifName = @"hasNotCollected
 NSString * checkIfHasCollectedGivenInfoFailNotifName = @"checkInfoFail";
 
 @implementation BBTCollectedCampusInfoManager
+
++ (instancetype)sharedCollectedInfoManager
+{
+    static BBTCollectedCampusInfoManager *_manager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _manager = [[BBTCollectedCampusInfoManager alloc] init];
+    });
+    return _manager;
+}
 
 - (void)currentUserCollectInfoWithArticleID:(int)articleID
 {
@@ -51,7 +64,6 @@ NSString * checkIfHasCollectedGivenInfoFailNotifName = @"checkInfoFail";
             NSLog(@"Error: %@", error);
             [self postCollectedCampusInfoNotifOfNotifName:insertNewCollectedInfoFailNotifName];
         } else {
-            NSLog(@"%@ %@", response, responseObject);
             [self postCollectedCampusInfoNotifOfNotifName:insertNewCollectedInfoSucceedNotifName];
         }
     }];
@@ -76,7 +88,7 @@ NSString * checkIfHasCollectedGivenInfoFailNotifName = @"checkInfoFail";
     NSString *url = [deleteCollectedInfoBaseURL stringByAppendingString:stringCleanPath];
     
     [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
+        //NSLog(@"JSON: %@", responseObject);
         if ((int)responseObject)
         {
             [self postCollectedCampusInfoNotifOfNotifName:deleteCollectedInfoSucceedNotifName];
@@ -95,6 +107,7 @@ NSString * checkIfHasCollectedGivenInfoFailNotifName = @"checkInfoFail";
 
 - (void)fetchCurrentUserCollectedCampusInfoIntoArray
 {
+    //First fetch collected infos into currentUserCollectedCampusInfoArray.
     self.currentUserCollectedCampusInfoArray = [NSMutableArray array];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -110,19 +123,53 @@ NSString * checkIfHasCollectedGivenInfoFailNotifName = @"checkInfoFail";
     NSString *url = [fetchCollectedInfoBaseURL stringByAppendingString:stringCleanPath];
     
     [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
+        //NSLog(@"JSON: %@", responseObject);
         for (int i = 0;i < [(NSArray *)responseObject count];i++)
         {
             BBTCollectedCampusInfo *newCollectedInfo = [[BBTCollectedCampusInfo alloc] initWithDictionary:responseObject[i] error:nil];
             [self.currentUserCollectedCampusInfoArray addObject:newCollectedInfo];
         }
-        [self postCollectedCampusInfoNotifOfNotifName:fetchCollectedInfoSucceedNotifName];
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
         [self postCollectedCampusInfoNotifOfNotifName:fetchCollectedInfoFailNotifName];
     }];
     
     [manager invalidateSessionCancelingTasks:NO];
+    
+    //Then fetch intact campus infos with given collected infos into currentUserIntactCollectedCampusInfoArray.
+    self.currentUserIntactCollectedCampusInfoArray = [NSMutableArray array];
+    NSMutableArray *tempArray = [NSMutableArray array];
+
+    if (self.currentUserCollectedCampusInfoArray)
+    {
+        for (BBTCollectedCampusInfo *collectedInfo in self.currentUserCollectedCampusInfoArray)
+        {
+            //Add articleIDs into tempArray.
+            [tempArray addObject:[NSNumber numberWithInt:collectedInfo.articleID]];
+        }
+        
+        //Convert tempArray to a string.
+        NSString *resultString = [[tempArray valueForKey:@"description"] componentsJoinedByString:@","];
+        NSString *dataString = [NSString stringWithFormat:@"{\"ID\":[%@]}", resultString];
+        NSString *urlString1 = [frontGetCampusInfoURL stringByAppendingString:dataString];
+        NSString *urlString = [urlString1 stringByAppendingString:endGetCampusInfoURL];
+        NSString *stringCleanPath1 = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        [manager POST:stringCleanPath1 parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+            //NSLog(@"JSON: %@", responseObject);
+            for (int i = 0;i < [(NSArray *)responseObject count];i++)
+            {
+                BBTCampusInfo *intactCampusInfo = [[BBTCampusInfo alloc] initWithDictionary:responseObject[i] error:nil];
+                [self.currentUserIntactCollectedCampusInfoArray addObject:intactCampusInfo];
+            }
+            [self postCollectedCampusInfoNotifOfNotifName:fetchCollectedInfoSucceedNotifName];
+        } failure:^(NSURLSessionTask *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+            [self postCollectedCampusInfoNotifOfNotifName:fetchCollectedInfoFailNotifName];
+        }];
+        
+        [manager invalidateSessionCancelingTasks:NO];
+    }
 }
 
 - (void)checkIfCurrentUserHasCollectedArticleWithArticleID:(int)articleID
@@ -141,7 +188,7 @@ NSString * checkIfHasCollectedGivenInfoFailNotifName = @"checkInfoFail";
     NSString *url = [fetchCollectedInfoBaseURL stringByAppendingString:stringCleanPath];
     
     [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
+        //NSLog(@"JSON: %@", responseObject);
         if ([(NSArray *)responseObject count])
         {
             [self postCollectedCampusInfoNotifOfNotifName:checkCurrentUserHasCollectedGivenInfoNotifName];

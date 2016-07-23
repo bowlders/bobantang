@@ -13,6 +13,6 @@
 @property (assign, nonatomic) int        ID;               //Automatically incremented ID in collected campus info data table
 @property (strong, nonatomic) NSString * account;
 @property (assign, nonatomic) int        articleID;        //The ID hooked with ID in campus info data table
-@property (strong, nonatomic) NSDate   * time;
+@property (strong, nonatomic) NSDate   * date;
 
 @end

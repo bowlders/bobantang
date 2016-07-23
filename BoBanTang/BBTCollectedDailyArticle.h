@@ -13,6 +13,6 @@
 @property (assign, nonatomic) int        ID;
 @property (strong, nonatomic) NSString * account;
 @property (assign, nonatomic) int        articleID;        
-@property (strong, nonatomic) NSDate   * time;
+@property (strong, nonatomic) NSDate   * date;
 
 @end

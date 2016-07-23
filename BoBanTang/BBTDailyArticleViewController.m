@@ -9,10 +9,15 @@
 #import "BBTDailyArticleViewController.h"
 #import "BBTDailyArticle.h"
 #import "BBTDailyArticleTableViewController.h"
+#import "BBTCurrentUserManager.h"
+#import "BBTLoginViewController.h"
+#import "BBTDailyArticleManager.h"
+#import "BBTCollectedDailyArticleManager.h"
 #import <Masonry.h>
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
 #import <JGProgressHUD.h>
+#import <MBProgressHUD.h>
 
 @interface BBTDailyArticleViewController ()
 
@@ -29,13 +34,28 @@
 NSString * dailyArticleURLFront = @"http://babel.100steps.net/news/index.php?ID=";
 NSString * dailyArticleURLEnd = @"&articleType=dailySoup";
 
+extern NSString * kUserAuthentificationFinishNotifName;
+extern NSString * insertNewCollectedArticleSucceedNotifName;
+extern NSString * insertNewCollectedArticleFailNotifName;
+extern NSString * deleteCollectedArticleSucceedNotifName;
+extern NSString * deleteCollectedArticleFailNotifName;
+extern NSString * fetchCollectedArticleSucceedNotifName;
+extern NSString * fetchCollectedArticleFailNotifName;
+extern NSString * checkCurrentUserHasCollectedGivenArticleNotifName;
+extern NSString * checkCurrentUserHasNotCollectedGivenArticleNotifName;
+extern NSString * checkIfHasCollectedGivenArticleFailNotifName;
+extern NSString * getArticleTodaySucceedNotifName;
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [self updateCollectButtonStatus];
+    //[self loadWebView];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self addObserver];
     
     self.webView = ({
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
@@ -65,17 +85,19 @@ NSString * dailyArticleURLEnd = @"&articleType=dailySoup";
         button;
     });
     
-    [self.view addSubview:self.webView];
     [self.view addSubview:self.shareButton];
     [self.view addSubview:self.collectButton];
+    [self.view addSubview:self.webView];
     
+    CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
     CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
+    CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     CGFloat buttonOffset = 10.0f;
     CGFloat buttonSideLength = 50.0f;
     
     [self.webView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.top.equalTo(self.view.mas_top);
-        make.bottom.equalTo(self.view.mas_bottom);
+        make.top.equalTo(self.view.mas_top).offset(statusBarHeight + navigationBarHeight);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-tabBarHeight);
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
     }];
@@ -94,6 +116,16 @@ NSString * dailyArticleURLEnd = @"&articleType=dailySoup";
         make.height.equalTo(self.collectButton.mas_height);
     }];
     
+    [self loadWebView];
+    
+    self.recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe)];
+    self.recognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    self.recognizer.delegate = self;
+    [self.view addGestureRecognizer:self.recognizer];
+}
+
+- (void)loadWebView
+{
     //Create and load request
     NSString *idString = [NSString stringWithFormat:@"%d", self.article.ID];
     NSString *urlString1 = [dailyArticleURLFront stringByAppendingString:idString];
@@ -102,11 +134,54 @@ NSString * dailyArticleURLEnd = @"&articleType=dailySoup";
     self.url = [NSURL URLWithString:cleanedUrlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
     [self.webView loadRequest:request];
+}
+
+- (void)addObserver
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveUserAuthenticationFinishNotification)
+                                                 name:kUserAuthentificationFinishNotifName
+                                               object:nil];
     
-    self.recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe)];
-    self.recognizer.direction = UISwipeGestureRecognizerDirectionRight;
-    self.recognizer.delegate = self;
-    [self.view addGestureRecognizer:self.recognizer];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveInsertNewCollectedArticleSucceedNotification)
+                                                 name:insertNewCollectedArticleSucceedNotifName
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveInsertNewCollectedArticleFailNotification)
+                                                 name:insertNewCollectedArticleFailNotifName
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveDeleteCollectedArticleSucceedNotification)
+                                                 name:deleteCollectedArticleSucceedNotifName
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveDeleteCollectedArticleFailNotification)
+                                                 name:deleteCollectedArticleFailNotifName
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveCurrentUserHasCollectedGivenArticleNotification)
+                                                 name:checkCurrentUserHasCollectedGivenArticleNotifName
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveCurrentUserHasNotCollectedGivenArticleNotification)
+                                                 name:checkCurrentUserHasNotCollectedGivenArticleNotifName
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveCheckIfHasCollectedGivenArticleFailNotification)
+                                                 name:checkIfHasCollectedGivenArticleFailNotifName
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveGetArticleTodayNotification)
+                                                 name:getArticleTodaySucceedNotifName
+                                               object:nil];
 }
 
 - (void)share
@@ -166,30 +241,168 @@ NSString * dailyArticleURLEnd = @"&articleType=dailySoup";
     [sheet.directSharePlatforms addObject:@(SSDKPlatformTypeMail)];
 }
 
-- (void)collect
+- (void)collectButtonIsTapped
 {
-    
+    if (![BBTCurrentUserManager sharedCurrentUserManager].userIsActive)                                         //User must login first
+    {
+        BBTLoginViewController *loginVC = [[BBTLoginViewController alloc] init];
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self presentViewController:navigationController animated:YES completion:nil];
+    }
+    else                                                                                                        //In this situation, the VC must have received check result(check whether current user has collected this info)
+    {
+        if (self.collectButton.tag == 0)                                                                        //Current user has not collected this info
+        {
+            [[BBTCollectedDailyArticleManager sharedCollectedArticleManager] currentUserCollectArticleWithArticleID:self.article.ID];
+        }
+        else                                                                                                    //Current user has collected this info
+        {
+            [[BBTCollectedDailyArticleManager sharedCollectedArticleManager] currentUserCancelCollectArticleWithArticleID:self.article.ID];
+        }
+    }
+}
+
+- (void)didReceiveUserAuthenticationFinishNotification
+{
+    [self updateCollectButtonStatus];
 }
 
 - (void)updateCollectButtonStatus
 {
+    if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
+    {
+        self.collectButton.enabled = NO;
+        self.collectButton.alpha = 0.9;
+        
+        [[BBTCollectedDailyArticleManager sharedCollectedArticleManager] checkIfCurrentUserHasCollectedArticleWithArticleID:self.article.ID];
+    }
+}
+
+- (void)didReceiveInsertNewCollectedArticleSucceedNotification
+{
+    //Show solid star
+    self.collectButton.enabled = YES;
+    self.collectButton.alpha = 1.0;
+    [self.collectButton setImage:[UIImage imageNamed:@"solidStar"] forState:UIControlStateNormal];
+    self.collectButton.tag = 1;
     
+    //Show success HUD
+    MBProgressHUD *successHUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    
+    //Set the annular determinate mode to show task progress.
+    successHUD.mode = MBProgressHUDModeText;
+    successHUD.labelText = @"收藏成功!";
+    
+    //Move to center.
+    successHUD.xOffset = 0.0f;
+    successHUD.yOffset = 0.0f;
+    
+    //Hide after 2 seconds.
+    [successHUD hide:YES afterDelay:2.0f];
+}
+
+- (void)didReceiveInsertNewCollectedArticleFailNotification
+{
+    //Remain hollow star
+    self.collectButton.enabled = YES;
+    self.collectButton.alpha = 1.0;
+    [self.collectButton setImage:[UIImage imageNamed:@"hollowStar"] forState:UIControlStateNormal];
+    self.collectButton.tag = 0;
+    
+    //Show failure HUD
+    MBProgressHUD *failureHUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    
+    //Set the annular determinate mode to show task progress.
+    failureHUD.mode = MBProgressHUDModeText;
+    failureHUD.labelText = @"收藏失败";
+    
+    //Move to center.
+    failureHUD.xOffset = 0.0f;
+    failureHUD.yOffset = 0.0f;
+    
+    //Hide after 2 seconds.
+    [failureHUD hide:YES afterDelay:2.0f];
+}
+
+- (void)didReceiveDeleteCollectedArticleSucceedNotification
+{
+    //Show hollow star
+    self.collectButton.enabled = YES;
+    self.collectButton.alpha = 1.0;
+    [self.collectButton setImage:[UIImage imageNamed:@"hollowStar"] forState:UIControlStateNormal];
+    self.collectButton.tag = 0;
+    
+    //Show success HUD
+    MBProgressHUD *successHUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    
+    //Set the annular determinate mode to show task progress.
+    successHUD.mode = MBProgressHUDModeText;
+    successHUD.labelText = @"取消收藏成功!";
+    
+    //Move to center.
+    successHUD.xOffset = 0.0f;
+    successHUD.yOffset = 0.0f;
+    
+    //Hide after 2 seconds.
+    [successHUD hide:YES afterDelay:2.0f];
+}
+
+- (void)didReceiveDeleteCollectedArticleFailNotification
+{
+    //Remain solid star
+    self.collectButton.enabled = YES;
+    self.collectButton.alpha = 1.0;
+    [self.collectButton setImage:[UIImage imageNamed:@"solidStar"] forState:UIControlStateNormal];
+    self.collectButton.tag = 1;
+    
+    //Show failure HUD
+    MBProgressHUD *failureHUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    
+    //Set the annular determinate mode to show task progress.
+    failureHUD.mode = MBProgressHUDModeText;
+    failureHUD.labelText = @"取消收藏失败";
+    
+    //Move to center.
+    failureHUD.xOffset = 0.0f;
+    failureHUD.yOffset = 0.0f;
+    
+    //Hide after 2 seconds.
+    [failureHUD hide:YES afterDelay:2.0f];
+}
+
+- (void)didReceiveCurrentUserHasCollectedGivenArticleNotification
+{
+    //Enable cancel collect
+    self.collectButton.enabled = YES;
+    self.collectButton.alpha = 1.0;
+    [self.collectButton setImage:[UIImage imageNamed:@"solidStar"] forState:UIControlStateNormal];
+    self.collectButton.tag = 1;
+}
+
+- (void)didReceiveCurrentUserHasNotCollectedGivenArticleNotification
+{
+    //Enable collect
+    self.collectButton.enabled = YES;
+    self.collectButton.alpha = 1.0;
+    [self.collectButton setImage:[UIImage imageNamed:@"hollowStar"] forState:UIControlStateNormal];
+    self.collectButton.tag = 0;
+}
+
+- (void)didReceiveCheckIfHasCollectedGivenArticleFailNotification
+{
+    //Do nothing
+}
+
+- (void)didReceiveGetArticleTodayNotification
+{
+    self.article = [[BBTDailyArticleManager sharedArticleManager].articleToday copy];
+    [self loadWebView];
 }
 
 - (void)handleSwipe
 {
     BBTDailyArticleTableViewController *controller = [[BBTDailyArticleTableViewController alloc] init];
- 
     [self.navigationController pushViewController:controller animated:YES];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

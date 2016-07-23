@@ -9,11 +9,14 @@
 #import "BBTCollectedDailyArticleManager.h"
 #import "BBTCurrentUserManager.h"
 #import "BBTCollectedDailyArticle.h"
+#import "BBTDailyArticle.h"
 #import <AFNetworking.h>
 
 static NSString * const fetchCollectedArticleBaseURL = @"http://218.192.166.167/api/protype.php?table=favouritedSoup&method=get&data=";
 static NSString * const deleteCollectedArticleBaseURL = @"http://218.192.166.167/api/protype.php?table=favouritedSoup&method=delete&data=";
 static NSString * const insertNewCollectedArticleBaseURL = @"http://218.192.166.167/api/protype.php?table=favouritedSoup&method=save&data=";
+static NSString * const frontGetDailyArticleURL = @"http://218.192.166.167/api/protype.php?table=dailySoup&method=get&data=";
+static NSString * const endGetDailyArticleURL = @"&option={\"nofuzzy\":\"ID\"}";
 
 NSString * insertNewCollectedArticleSucceedNotifName = @"articleInsertionSucceed";
 NSString * insertNewCollectedArticleFailNotifName = @"articleInsertionFail";
@@ -27,7 +30,17 @@ NSString * checkIfHasCollectedGivenArticleFailNotifName = @"checkArticleFail";
 
 @implementation BBTCollectedDailyArticleManager
 
-- (void)currentUserCollectInfoWithArticleID:(int)articleID
++ (instancetype)sharedCollectedArticleManager
+{
+    static BBTCollectedDailyArticleManager *_manager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _manager = [[BBTCollectedDailyArticleManager alloc] init];
+    });
+    return _manager;
+}
+
+- (void)currentUserCollectArticleWithArticleID:(int)articleID
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
@@ -43,17 +56,17 @@ NSString * checkIfHasCollectedGivenArticleFailNotifName = @"checkArticleFail";
     NSString *url = [insertNewCollectedArticleBaseURL stringByAppendingString:stringCleanPath];
     
     [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        [self postCollectedCampusInfoNotifOfNotifName:insertNewCollectedArticleSucceedNotifName];
+        //NSLog(@"JSON: %@", responseObject);
+        [self postCollectedDailyArticleNotifOfNotifName:insertNewCollectedArticleSucceedNotifName];
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
-        [self postCollectedCampusInfoNotifOfNotifName:insertNewCollectedArticleFailNotifName];
+        [self postCollectedDailyArticleNotifOfNotifName:insertNewCollectedArticleFailNotifName];
     }];
     
     [manager invalidateSessionCancelingTasks:NO];
 }
 
-- (void)currentUserCancelCollectInfoWithArticleID:(int)articleID
+- (void)currentUserCancelCollectArticleWithArticleID:(int)articleID
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
@@ -69,18 +82,18 @@ NSString * checkIfHasCollectedGivenArticleFailNotifName = @"checkArticleFail";
     NSString *url = [deleteCollectedArticleBaseURL stringByAppendingString:stringCleanPath];
     
     [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
+        //NSLog(@"JSON: %@", responseObject);
         if ((int)responseObject)
         {
-            [self postCollectedCampusInfoNotifOfNotifName:deleteCollectedArticleSucceedNotifName];
+            [self postCollectedDailyArticleNotifOfNotifName:deleteCollectedArticleSucceedNotifName];
         }
         else
         {
-            [self postCollectedCampusInfoNotifOfNotifName:deleteCollectedArticleFailNotifName];
+            [self postCollectedDailyArticleNotifOfNotifName:deleteCollectedArticleFailNotifName];
         }
     } failure:^(NSURLSessionTask *operation, NSError *error){
         NSLog(@"Error: %@", error);
-        [self postCollectedCampusInfoNotifOfNotifName:deleteCollectedArticleFailNotifName];
+        [self postCollectedDailyArticleNotifOfNotifName:deleteCollectedArticleFailNotifName];
     }];
     
     [manager invalidateSessionCancelingTasks:NO];
@@ -88,6 +101,7 @@ NSString * checkIfHasCollectedGivenArticleFailNotifName = @"checkArticleFail";
 
 - (void)fetchCurrentUserCollectedCampusInfoIntoArray
 {
+    //First fetch collected articles into currentUserCollectedDailyArticleArray.
     self.currentUserCollectedDailyArticleArray = [NSMutableArray array];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -103,19 +117,53 @@ NSString * checkIfHasCollectedGivenArticleFailNotifName = @"checkArticleFail";
     NSString *url = [fetchCollectedArticleBaseURL stringByAppendingString:stringCleanPath];
     
     [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
+        //NSLog(@"JSON: %@", responseObject);
         for (int i = 0;i < [(NSArray *)responseObject count];i++)
         {
             BBTCollectedDailyArticle *newCollectedArticle = [[BBTCollectedDailyArticle alloc] initWithDictionary:responseObject[i] error:nil];
             [self.currentUserCollectedDailyArticleArray addObject:newCollectedArticle];
         }
-        [self postCollectedCampusInfoNotifOfNotifName:fetchCollectedArticleSucceedNotifName];
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
-        [self postCollectedCampusInfoNotifOfNotifName:fetchCollectedArticleFailNotifName];
+        [self postCollectedDailyArticleNotifOfNotifName:fetchCollectedArticleFailNotifName];
     }];
     
     [manager invalidateSessionCancelingTasks:NO];
+    
+    //Then fetch intact daily articles with given collected articles into currentUserIntactCollectedDailyArticleArray.
+    self.currentUserIntactCollectedDailyArticleArray = [NSMutableArray array];
+    NSMutableArray *tempArray = [NSMutableArray array];
+    
+    if (self.currentUserCollectedDailyArticleArray)
+    {
+        for (BBTCollectedDailyArticle *collectedArticle in self.currentUserCollectedDailyArticleArray)
+        {
+            //Add articleIDs into tempArray.
+            [tempArray addObject:[NSNumber numberWithInt:collectedArticle.articleID]];
+        }
+        
+        //Convert tempArray to a string.
+        NSString *resultString = [[tempArray valueForKey:@"description"] componentsJoinedByString:@","];
+        NSString *dataString = [NSString stringWithFormat:@"{\"ID\":[%@]}", resultString];
+        NSString *urlString1 = [frontGetDailyArticleURL stringByAppendingString:dataString];
+        NSString *urlString = [urlString1 stringByAppendingString:endGetDailyArticleURL];
+        NSString *stringCleanPath1 = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+        [manager POST:stringCleanPath1 parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+            //NSLog(@"JSON: %@", responseObject);
+            for (int i = 0;i < [(NSArray *)responseObject count];i++)
+            {
+                 BBTDailyArticle *intactDailyArticle = [[BBTDailyArticle alloc] initWithDictionary:responseObject[i] error:nil];
+                [self.currentUserIntactCollectedDailyArticleArray addObject:intactDailyArticle];
+            }
+            [self postCollectedDailyArticleNotifOfNotifName:fetchCollectedArticleSucceedNotifName];
+        } failure:^(NSURLSessionTask *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+            [self postCollectedDailyArticleNotifOfNotifName:fetchCollectedArticleFailNotifName];
+        }];
+        
+        [manager invalidateSessionCancelingTasks:NO];
+    }
 }
 
 - (void)checkIfCurrentUserHasCollectedArticleWithArticleID:(int)articleID
@@ -134,24 +182,24 @@ NSString * checkIfHasCollectedGivenArticleFailNotifName = @"checkArticleFail";
     NSString *url = [fetchCollectedArticleBaseURL stringByAppendingString:stringCleanPath];
     
     [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
+        //NSLog(@"JSON: %@", responseObject);
         if ([(NSArray *)responseObject count])
         {
-            [self postCollectedCampusInfoNotifOfNotifName:checkCurrentUserHasCollectedGivenArticleNotifName];
+            [self postCollectedDailyArticleNotifOfNotifName:checkCurrentUserHasCollectedGivenArticleNotifName];
         }
         else
         {
-            [self postCollectedCampusInfoNotifOfNotifName:checkCurrentUserHasNotCollectedGivenArticleNotifName];
+            [self postCollectedDailyArticleNotifOfNotifName:checkCurrentUserHasNotCollectedGivenArticleNotifName];
         }
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
-        [self postCollectedCampusInfoNotifOfNotifName:checkIfHasCollectedGivenArticleFailNotifName];
+        [self postCollectedDailyArticleNotifOfNotifName:checkIfHasCollectedGivenArticleFailNotifName];
     }];
     
     [manager invalidateSessionCancelingTasks:NO];
 }
 
-- (void)postCollectedCampusInfoNotifOfNotifName:(NSString *)notifName
+- (void)postCollectedDailyArticleNotifOfNotifName:(NSString *)notifName
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:notifName object:self];
 }
