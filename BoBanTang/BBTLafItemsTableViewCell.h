@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BBTLAF.h"
 
 @interface BBTLafItemsTableViewCell : UITableViewCell
 
@@ -14,6 +15,6 @@
 @property (strong, nonatomic) IBOutlet UILabel     * itemName;
 @property (strong, nonatomic) IBOutlet UILabel     * itemDetails;
 
-- (void)configureItemsCells:(NSDictionary *)content;
+- (void)configureItemsCells:(BBTLAF *)content;
 
 @end

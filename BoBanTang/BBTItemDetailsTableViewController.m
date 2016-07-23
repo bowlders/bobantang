@@ -9,6 +9,7 @@
 #import "BBTItemDetailsTableViewController.h"
 #import "BBTLAFManager.h"
 #import "UIImageView+AFNetworking.h"
+#import <SDImageCache.h>
 
 @interface BBTItemDetailsTableViewController ()
 
@@ -21,6 +22,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *contactName;
 @property (strong, nonatomic) IBOutlet UILabel *phone;
 @property (strong, nonatomic) IBOutlet UILabel *otherContact;
+
+@property (strong, nonatomic) NSMutableArray   *photos;
 
 @end
 
@@ -38,29 +41,35 @@
         self.locationTitle.text = @"拾获地点";
     }
     
-    NSLog(@"campus %@", self.itemDetails[@"campus"]);
+    NSLog(@"campus %@", self.itemDetails.campus);
     
-    self.details.text = self.itemDetails[@"details"];
+    self.details.text = self.itemDetails.details;
     self.details.numberOfLines = 0;
     [self.details sizeToFit];
     self.details.adjustsFontSizeToFitWidth = YES;
     
-    self.date.text = self.itemDetails[@"date"];
-    if ([self.itemDetails[@"campus"] isEqualToString:@"0"]) {
+    self.date.text = self.itemDetails.date;
+    if ([self.itemDetails.campus intValue] == 0) {
         self.campus.text = @"北校区";
     } else {
         self.campus.text = @"南校区";
     }
-    self.location.text = self.itemDetails[@"location"];
-    self.contactName.text = self.itemDetails[@"publisher"];
-    self.phone.text = self.itemDetails[@"phone"];
+    self.location.text = self.itemDetails.location;
+    self.contactName.text = self.itemDetails.publisher;
+    self.phone.text = self.itemDetails.phone;
     
-    [self.thumbImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.itemDetails[@"thumbnail"]]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
-        NSLog(@"Succeed!");
+    [self.thumbImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.itemDetails.thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
+        NSLog(@"Pic");
         self.thumbImage.image = image;
         [self.view setNeedsLayout];
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
         
+        self.thumbImage.userInteractionEnabled = YES;
+        UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+        [self.thumbImage addGestureRecognizer:gesture];
+        
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        NSLog(@"NO PIC");
+        self.thumbImage.image = [UIImage imageNamed:@"BoBanTang"];
     }];
 }
 
@@ -69,6 +78,34 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)handleTap:(UITapGestureRecognizer *)gesture
+{
+    NSLog(@"Touched!");
+    
+    self.photos = [NSMutableArray array];
+    
+    [self.photos addObject:[MWPhoto photoWithURL:[NSURL URLWithString:self.itemDetails.orgPicUrl]]];
+    
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser.displayActionButton = YES;
+    browser.enableGrid = NO;
+    
+    [self.navigationController pushViewController:browser animated:YES];
+}
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser
+{
+    return 1;
+}
+
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index
+{
+    if (index < self.photos.count) {
+        return [self.photos objectAtIndex:index];
+    }
+    return nil;
+}
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];

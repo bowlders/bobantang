@@ -80,9 +80,10 @@ NSString *kFailPostItemNotificaionName = @"failPostItemNotification";
         if (responseObject)
         {
             NSMutableArray *origArr = [[NSMutableArray alloc] init];
-            for (BBTLAF* itemsInfo in responseObject)
+            for (NSDictionary *itemsInfo in responseObject)
             {
-                [origArr addObject:itemsInfo];
+                BBTLAF *item = [[BBTLAF alloc] initWithResponesObject:itemsInfo];
+                [origArr addObject:item];
             }
             if (conditions[@"fuzzy"]) {
                 [self getFuzzyConditionsItemNotification];
@@ -127,7 +128,7 @@ NSString *kFailPostItemNotificaionName = @"failPostItemNotification";
 
 - (void)pushLafNotification
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:lafNotificationName object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:lafNotificationName object:self.itemArray];
 }
 
 - (void)getFuzzyConditionsItemNotification

@@ -39,10 +39,10 @@
     // Configure the view for the selected state
 }
 
-- (void)configureItemsCells:(NSDictionary *)content
+- (void)configureItemsCells:(BBTLAF *)content
 {
-    self.itemDetails.text = content[@"details"];
-    switch ([content[@"type"] integerValue]) {
+    self.itemDetails.text = content.details;
+    switch ([content.type integerValue]) {
         case 0:
             self.itemName.text = @"大学城一卡通";
             break;

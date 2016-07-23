@@ -9,6 +9,7 @@
 #import "BBTLostAndFoundTableViewController.h"
 #import "PopoverView.h"
 #import "BBTPostInfoViewController.h"
+#import "BBTLAF.h"
 #import "BBTLAFManager.h"
 #import "BBTLafItemsTableViewCell.h"
 #import "BBTItemDetailsTableViewController.h"
@@ -34,6 +35,7 @@ static NSString *campusCellIdentifier = @"BBTItemCampusTableViewCell";
 @property (weak, nonatomic)   IBOutlet UIBarButtonItem              * filterButton;
 
 @property (strong, nonatomic) NSArray                               * filteredItems;
+@property (strong, nonatomic) NSArray                               * itemArray;
 @property (strong, nonatomic) NSDictionary                          * conditions;
 
 @property (strong, nonatomic) UISearchController                    * searchController;
@@ -51,7 +53,9 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLafNotification) name:lafNotificationName object:nil];
+    self.itemArray = [NSArray array];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLafNotification:) name:lafNotificationName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveUserAuthentificaionNotification) name:kUserAuthentificationFinishNotifName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveFuzzyItemsNotificaion) name:kGetFuzzyConditionsItemNotificationName object:nil];
 }
@@ -91,9 +95,10 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
     // Dispose of any resources that can be recreated.
 }
 
-- (void)didReceiveLafNotification
+- (void)didReceiveLafNotification:(NSNotification *)notification
 {
     NSLog(@"Items notification received");
+    self.itemArray = (NSArray *)notification.object;
     [self.tableView reloadData];
     [self.tableView.mj_header endRefreshing];
 }
@@ -174,7 +179,7 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[BBTLAFManager sharedLAFManager].itemArray count];
+    return [self.itemArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -186,18 +191,18 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
     [cell.thumbLostImageView cancelImageDownloadTask];
     
     //Configure cell
-    NSArray *itemArray = [BBTLAFManager sharedLAFManager].itemArray;
-    [cell configureItemsCells:itemArray[indexPath.row]];
+    //NSArray *itemArray = [BBTLAFManager sharedLAFManager].itemArray;
+    [cell configureItemsCells:self.itemArray[indexPath.row]];
     
     //Asynchronously downloads the thumbnail
-    [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:itemArray[indexPath.row][@"thumbnail"]]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
+    [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)self.itemArray[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
         //NSLog(@"Succeed!");
         if (cell) {
             cell.thumbLostImageView.image = image;
         }
         [cell setNeedsLayout];
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-        
+        cell.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
     }];
     
     [self.view setNeedsUpdateConstraints];
@@ -208,8 +213,8 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *itemArray = [BBTLAFManager sharedLAFManager].itemArray;
-    NSDictionary *itemDetails = itemArray[indexPath.row];
+    //NSArray *itemArray = [BBTLAFManager sharedLAFManager].itemArray;
+    BBTLAF *itemDetails = self.itemArray[indexPath.row];
     
     [self performSegueWithIdentifier:showItemsDetailsIdentifier sender:itemDetails];
 }

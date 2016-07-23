@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MWPhotoBrowser.h"
+#import "BBTLAF.h"
 
-@interface BBTItemDetailsTableViewController : UITableViewController
+@interface BBTItemDetailsTableViewController : UITableViewController <MWPhotoBrowserDelegate>
 
-@property (strong, nonatomic) NSDictionary *itemDetails;
+@property (strong, nonatomic) BBTLAF *itemDetails;
 @property BOOL lostOrFound;
 
 @end
