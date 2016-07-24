@@ -109,7 +109,9 @@ extern NSString * noMoreArticleNotifName;
 {
     BBTDailyArticleViewController *destinationVC = [[BBTDailyArticleViewController alloc] init];
     destinationVC.article = [BBTDailyArticleManager sharedArticleManager].articleArray[indexPath.section];
+    destinationVC.isEnteredFromArticleTableVC = 1;
     [self.navigationController pushViewController:destinationVC animated:YES];
+
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

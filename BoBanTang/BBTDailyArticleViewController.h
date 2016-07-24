@@ -10,8 +10,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BBTDailyArticleViewController : UIViewController<UIGestureRecognizerDelegate>
+@interface BBTDailyArticleViewController : UIViewController<UIGestureRecognizerDelegate, UIWebViewDelegate>
 
 @property (strong, nonatomic) BBTDailyArticle * article;
+@property (assign, nonatomic) int isEnteredFromArticleTableVC;   //Set to 1 if detail VC is entered from BBTDailyArticleTableViewController.
 
 @end

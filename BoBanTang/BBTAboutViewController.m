@@ -9,6 +9,7 @@
 #import "BBTAboutViewController.h"
 #import "UIFont+BBTFont.h"
 #import <Masonry.h>
+#import <MBProgressHUD.h>
 
 @interface BBTAboutViewController ()
 
@@ -198,10 +199,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //Show loading hud
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     SKStoreProductViewController *storeProductVC =[[SKStoreProductViewController alloc]init];
     storeProductVC.delegate = self;
     [storeProductVC loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier:@"625954338"} completionBlock:^(BOOL result, NSError *error) {
         if (result) {
+            //Hide loading hud
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
             [self presentViewController:storeProductVC animated:YES completion:nil];
         }else{
             NSLog(@"error:%@", error);
@@ -211,8 +218,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
--(void)productViewControllerDidFinish:(SKStoreProductViewController* )viewController
-
+- (void)productViewControllerDidFinish:(SKStoreProductViewController* )viewController
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

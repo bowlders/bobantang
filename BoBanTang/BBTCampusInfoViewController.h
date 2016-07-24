@@ -10,7 +10,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BBTCampusInfoViewController : UIViewController
+@interface BBTCampusInfoViewController : UIViewController<UIWebViewDelegate>
 
 @property (strong, nonatomic) BBTCampusInfo * info;
 

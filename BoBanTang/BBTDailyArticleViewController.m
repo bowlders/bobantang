@@ -49,6 +49,12 @@ extern NSString * getArticleTodaySucceedNotifName;
 - (void)viewWillAppear:(BOOL)animated
 {
     [self updateCollectButtonStatus];
+    
+    if (self.isEnteredFromArticleTableVC)
+    {
+        self.isEnteredFromArticleTableVC = 0;
+        [self loadWebView];
+    }
 }
 
 - (void)viewDidLoad {
@@ -58,7 +64,8 @@ extern NSString * getArticleTodaySucceedNotifName;
     
     self.webView = ({
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
-        self.webView.scalesPageToFit = YES;
+        webView.scalesPageToFit = YES;
+        webView.delegate = self;
         webView;
     });
     
@@ -118,7 +125,7 @@ extern NSString * getArticleTodaySucceedNotifName;
         make.height.equalTo(self.collectButton.mas_height);
     }];
     
-    [self loadWebView];
+    //[self loadWebView];
     
     self.recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe)];
     self.recognizer.direction = UISwipeGestureRecognizerDirectionRight;
@@ -405,6 +412,20 @@ extern NSString * getArticleTodaySucceedNotifName;
 {
     BBTDailyArticleTableViewController *controller = [[BBTDailyArticleTableViewController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+#pragma mark - UIWebViewDelegate Methods
+
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    //Show loading hud
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    //Hide loading hud
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 @end

@@ -52,7 +52,8 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
     
     self.webView = ({
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
-        self.webView.scalesPageToFit = YES;
+        webView.scalesPageToFit = YES;
+        webView.delegate = self;
         webView;
     });
     
@@ -367,6 +368,20 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
 - (void)didReceiveCheckIfHasCollectedGivenInfoFailNotification
 {
     //Do nothing
+}
+
+#pragma mark - UIWebViewDelegate Methods
+
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    //Show loading hud
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    //Hide loading hud
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 @end
