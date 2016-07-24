@@ -77,7 +77,7 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
         button.alpha = 1.0;
         button;
     });
-    
+
     [self.view addSubview:self.webView];
     [self.view addSubview:self.shareButton];
     [self.view addSubview:self.collectButton];

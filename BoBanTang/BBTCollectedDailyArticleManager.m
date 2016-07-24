@@ -16,7 +16,6 @@ static NSString * const fetchCollectedArticleBaseURL = @"http://218.192.166.167/
 static NSString * const deleteCollectedArticleBaseURL = @"http://218.192.166.167/api/protype.php?table=favouritedSoup&method=delete&data=";
 static NSString * const insertNewCollectedArticleBaseURL = @"http://218.192.166.167/api/protype.php?table=favouritedSoup&method=save&data=";
 static NSString * const frontGetDailyArticleURL = @"http://218.192.166.167/api/protype.php?table=dailySoup&method=get&data=";
-static NSString * const endGetDailyArticleURL = @"&option={\"nofuzzy\":\"ID\"}";
 
 NSString * insertNewCollectedArticleSucceedNotifName = @"articleInsertionSucceed";
 NSString * insertNewCollectedArticleFailNotifName = @"articleInsertionFail";
@@ -99,7 +98,7 @@ NSString * checkIfHasCollectedGivenArticleFailNotifName = @"checkArticleFail";
     [manager invalidateSessionCancelingTasks:NO];
 }
 
-- (void)fetchCurrentUserCollectedCampusInfoIntoArray
+- (void)fetchCurrentUserCollectedDailyArticleIntoArray
 {
     //First fetch collected articles into currentUserCollectedDailyArticleArray.
     self.currentUserCollectedDailyArticleArray = [NSMutableArray array];
@@ -118,23 +117,31 @@ NSString * checkIfHasCollectedGivenArticleFailNotifName = @"checkArticleFail";
     
     [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         //NSLog(@"JSON: %@", responseObject);
-        for (int i = 0;i < [(NSArray *)responseObject count];i++)
+        if (responseObject)
         {
-            BBTCollectedDailyArticle *newCollectedArticle = [[BBTCollectedDailyArticle alloc] initWithDictionary:responseObject[i] error:nil];
-            [self.currentUserCollectedDailyArticleArray addObject:newCollectedArticle];
+            for (int i = 0;i < [(NSArray *)responseObject count];i++)
+            {
+                BBTCollectedDailyArticle *newCollectedArticle = [[BBTCollectedDailyArticle alloc] initWithDictionary:responseObject[i] error:nil];
+                [self.currentUserCollectedDailyArticleArray addObject:newCollectedArticle];
+            }
+            [self fetchIntactDailyArticleWithCollectedArticle];
         }
+
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
         [self postCollectedDailyArticleNotifOfNotifName:fetchCollectedArticleFailNotifName];
     }];
     
     [manager invalidateSessionCancelingTasks:NO];
-    
+}
+
+- (void)fetchIntactDailyArticleWithCollectedArticle
+{
     //Then fetch intact daily articles with given collected articles into currentUserIntactCollectedDailyArticleArray.
     self.currentUserIntactCollectedDailyArticleArray = [NSMutableArray array];
     NSMutableArray *tempArray = [NSMutableArray array];
     
-    if (self.currentUserCollectedDailyArticleArray)
+    if (self.currentUserCollectedDailyArticleArray && [self.currentUserCollectedDailyArticleArray count])
     {
         for (BBTCollectedDailyArticle *collectedArticle in self.currentUserCollectedDailyArticleArray)
         {
@@ -145,15 +152,17 @@ NSString * checkIfHasCollectedGivenArticleFailNotifName = @"checkArticleFail";
         //Convert tempArray to a string.
         NSString *resultString = [[tempArray valueForKey:@"description"] componentsJoinedByString:@","];
         NSString *dataString = [NSString stringWithFormat:@"{\"ID\":[%@]}", resultString];
-        NSString *urlString1 = [frontGetDailyArticleURL stringByAppendingString:dataString];
-        NSString *urlString = [urlString1 stringByAppendingString:endGetDailyArticleURL];
-        NSString *stringCleanPath1 = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-
-        [manager POST:stringCleanPath1 parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+        NSString *urlString = [frontGetDailyArticleURL stringByAppendingString:dataString];
+        NSString *stringCleanPath = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+        
+        [manager POST:stringCleanPath parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
             //NSLog(@"JSON: %@", responseObject);
             for (int i = 0;i < [(NSArray *)responseObject count];i++)
             {
-                 BBTDailyArticle *intactDailyArticle = [[BBTDailyArticle alloc] initWithDictionary:responseObject[i] error:nil];
+                BBTDailyArticle *intactDailyArticle = [[BBTDailyArticle alloc] initWithDictionary:responseObject[i] error:nil];
                 [self.currentUserIntactCollectedDailyArticleArray addObject:intactDailyArticle];
             }
             [self postCollectedDailyArticleNotifOfNotifName:fetchCollectedArticleSucceedNotifName];
@@ -163,6 +172,11 @@ NSString * checkIfHasCollectedGivenArticleFailNotifName = @"checkArticleFail";
         }];
         
         [manager invalidateSessionCancelingTasks:NO];
+    }
+    //If user hasn't collected any daily article
+    else if(self.currentUserCollectedDailyArticleArray && ![self.currentUserCollectedDailyArticleArray count])
+    {
+        [self postCollectedDailyArticleNotifOfNotifName:fetchCollectedArticleSucceedNotifName];
     }
 }
 

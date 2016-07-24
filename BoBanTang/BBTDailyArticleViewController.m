@@ -49,7 +49,6 @@ extern NSString * getArticleTodaySucceedNotifName;
 - (void)viewWillAppear:(BOOL)animated
 {
     [self updateCollectButtonStatus];
-    //[self loadWebView];
 }
 
 - (void)viewDidLoad {
@@ -79,15 +78,18 @@ extern NSString * getArticleTodaySucceedNotifName;
         button.translatesAutoresizingMaskIntoConstraints = NO;
         [button setImage:[UIImage imageNamed:@"hollowStar"] forState:UIControlStateNormal];
         [button addTarget:self
-                   action:@selector(collect)
+                   action:@selector(collectButtonIsTapped)
          forControlEvents:UIControlEventTouchUpInside];
         button.alpha = 1.0;
         button;
     });
     
+    //In order to deal with a autoLayout bug of iOS, an empty UIView must be added before webView.
+    UIView *emptyView = [UIView new];
+    [self.view addSubview:emptyView];
+    [self.view addSubview:self.webView];
     [self.view addSubview:self.shareButton];
     [self.view addSubview:self.collectButton];
-    [self.view addSubview:self.webView];
     
     CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
     CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
@@ -251,11 +253,11 @@ extern NSString * getArticleTodaySucceedNotifName;
     }
     else                                                                                                        //In this situation, the VC must have received check result(check whether current user has collected this info)
     {
-        if (self.collectButton.tag == 0)                                                                        //Current user has not collected this info
+        if (self.collectButton.tag == 0)                                                                        //Current user has not collected this article.
         {
             [[BBTCollectedDailyArticleManager sharedCollectedArticleManager] currentUserCollectArticleWithArticleID:self.article.ID];
         }
-        else                                                                                                    //Current user has collected this info
+        else                                                                                                    //Current user has collected this article.
         {
             [[BBTCollectedDailyArticleManager sharedCollectedArticleManager] currentUserCancelCollectArticleWithArticleID:self.article.ID];
         }
