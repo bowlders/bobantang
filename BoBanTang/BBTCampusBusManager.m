@@ -19,7 +19,9 @@
 NSString * baseURLString = @"http://bbt.100steps.net/go/data/";
 //NSString * baseURLString = @"http://127.0.0.1:6767";
 static const float dataRequestInterval = 5.0;               //Seconds
+
 NSString * campusBusNotificationName = @"campusBusNotification";
+NSString * retriveCampusBusDataFailNotifName = @"campusBusFailNotification";
 
 + (instancetype)sharedCampusBusManager
 {
@@ -79,6 +81,7 @@ NSString * campusBusNotificationName = @"campusBusNotification";
         }
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
+        [self postRetriveCampusBusDataFailNotification];
     }];
     
     //To solve memory leak.
@@ -92,7 +95,12 @@ NSString * campusBusNotificationName = @"campusBusNotification";
 
 - (void)postCampusBusNotification
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:campusBusNotificationName object:self userInfo:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:campusBusNotificationName object:self];
+}
+
+- (void)postRetriveCampusBusDataFailNotification
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:retriveCampusBusDataFailNotifName object:self];
 }
 
 - (BOOL)noBusRunningAtStartingStation

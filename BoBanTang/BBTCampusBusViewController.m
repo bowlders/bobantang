@@ -12,6 +12,7 @@
 #import "UIFont+BBTFont.h"
 #import "UIColor+BBTColor.h"
 #import <Masonry.h>
+#import <MBProgressHUD.h>
 
 @interface BBTCampusBusViewController ()
 
@@ -29,6 +30,13 @@
 @implementation BBTCampusBusViewController
 
 extern NSString * campusBusNotificationName;
+extern NSString * retriveCampusBusDataFailNotifName;
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    //Show loading hud
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+}
 
 - (void)viewDidLoad
 {
@@ -37,8 +45,11 @@ extern NSString * campusBusNotificationName;
                                                  name:campusBusNotificationName
                                                object:nil];
     
-    //Initialization
-    [BBTCampusBusManager sharedCampusBusManager];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveRetriveCampusBusDataFailNotification)
+                                                 name:retriveCampusBusDataFailNotifName
+                                               object:nil];
+    
     
     self.tableView = ({
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -246,50 +257,33 @@ extern NSString * campusBusNotificationName;
 - (void)didReceiveCampusBusNotification
 {
     //NSLog(@"Did receive campus bus notification");
+    
+    //Hide loading hud
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
     [self.tableView reloadData];
 }
 
-- (void)updateView
+- (void)didReceiveRetriveCampusBusDataFailNotification
 {
-    if ([[BBTCampusBusManager sharedCampusBusManager] noBusRunningAtStartingStation])
-    {
-        [(BBTCampusBusTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:11 inSection:0]] initCellContent];
-    }
-    else if ([[BBTCampusBusManager sharedCampusBusManager] directionOfTheBusAtStationIndex:1] == 0)
-    {
-        [(BBTCampusBusTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:11 inSection:0]] changeCellImageAtSide:1];
-    }
-    else if ([[BBTCampusBusManager sharedCampusBusManager] directionOfTheBusAtStationIndex:1] == 1)
-    {
-        [(BBTCampusBusTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:11 inSection:0]] changeCellImageAtSide:0];
-    }
-    else if ([[BBTCampusBusManager sharedCampusBusManager] directionOfTheBusAtStationIndex:1] == 2)
-    {
-        [(BBTCampusBusTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:11 inSection:0]] changeCellImageAtSide:1];
-        [(BBTCampusBusTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:11 inSection:0]] changeCellImageAtSide:0];
-    }
+    //Hide loading hud
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     
-    //Start from station 2(中山像站)
-    for (int i = ((int)[[BBTCampusBusManager sharedCampusBusManager].stationNameArray count] - 2);i >= 0;i--)
-    {
-        if ([[BBTCampusBusManager sharedCampusBusManager] noBusRunningAtStationAtIndex:([[BBTCampusBusManager sharedCampusBusManager].stationNameArray count] - i)])
-        {
-            [(BBTCampusBusTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]] initCellContent];
-        }
-        else if ([[BBTCampusBusManager sharedCampusBusManager] directionOfTheBusAtStationIndex:([[BBTCampusBusManager sharedCampusBusManager].stationNameArray count] - i)] == 0)
-        {
-            [(BBTCampusBusTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]] changeCellImageAtSide:1];
-        }
-        else if ([[BBTCampusBusManager sharedCampusBusManager] directionOfTheBusAtStationIndex:([[BBTCampusBusManager sharedCampusBusManager].stationNameArray count] - i)] == 1)
-        {
-            [(BBTCampusBusTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]] changeCellImageAtSide:0];
-        }
-        else if ([[BBTCampusBusManager sharedCampusBusManager] directionOfTheBusAtStationIndex:([[BBTCampusBusManager sharedCampusBusManager].stationNameArray count] - i)] == 2)
-        {
-            [(BBTCampusBusTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]] changeCellImageAtSide:1];
-            [(BBTCampusBusTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]] changeCellImageAtSide:0];
-        }
-    }
+    //Show HUD
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    
+    //Set the annular determinate mode to show task progress.
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"加载失败";
+    
+    //Move to center.
+    hud.xOffset = 0.0f;
+    hud.yOffset = 0.0f;
+    
+    //Hide after 2 seconds.
+    [hud hide:YES afterDelay:2.0f];
+    
+    [self.tableView reloadData];
 }
 
 - (void)clickRefreshButton

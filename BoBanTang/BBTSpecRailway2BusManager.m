@@ -15,7 +15,11 @@
 
 static NSString * directionSouthURLString = @"http://bbtwechat1.100steps.net/api/LineTwo.php?dir=0";
 static NSString * directionNorthURLString = @"http://bbtwechat1.100steps.net/api/LineTwo.php?dir=1";
+
 NSString * busDataNotificationName = @"specBusNotification";
+NSString * retriveDirectionSouthFailNotifName = @"southSpecBusFailNotif";
+NSString * retriveDirectionNorthFailNotifName = @"northSpecBusFailNotif";
+
 static float dataRequestInterval = 5.0;                                                     //The time interval between two data requests
 
 + (instancetype)sharedBusManager
@@ -107,6 +111,7 @@ static float dataRequestInterval = 5.0;                                         
             [self postBusDataNotification];
         }
     } failure:^(NSURLSessionTask *operation, NSError *error) {
+        [self pushRetriveDirectionSouthFailNotification];
         NSLog(@"Error: %@", error);
     }];
     
@@ -127,6 +132,7 @@ static float dataRequestInterval = 5.0;                                         
             [self postBusDataNotification];
         }
     } failure:^(NSURLSessionTask *operation, NSError *error) {
+        [self pushRetriveDirectionNorthFailNotification];
         NSLog(@"Error: %@", error);
     }];
     
@@ -136,6 +142,16 @@ static float dataRequestInterval = 5.0;                                         
 - (void)postBusDataNotification
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:busDataNotificationName object:self userInfo:nil];
+}
+
+- (void)pushRetriveDirectionSouthFailNotification
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:retriveDirectionSouthFailNotifName object:self];
+}
+
+- (void)pushRetriveDirectionNorthFailNotification
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:retriveDirectionNorthFailNotifName object:self];
 }
 
 - (BOOL)noBusInBusArray:(NSArray *)array RunningAtStationSeq:(NSInteger)stationSeq

@@ -12,6 +12,7 @@
 #import "UIFont+BBTFont.h"
 #import "UIColor+BBTColor.h"
 #import <Masonry.h>
+#import <MBProgressHUD.h>
 
 @interface BBTNorthSpecialRailwayTwoViewController ()
 
@@ -27,13 +28,25 @@
 @implementation BBTNorthSpecialRailwayTwoViewController
 
 extern NSString * busDataNotificationName;
+extern NSString * retriveDirectionNorthFailNotifName;
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    //Show loading hud
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+}
 
 - (void)viewDidLoad
 {
     //Add self to bus data notification
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveBusNotification:)
+                                             selector:@selector(didReceiveBusNotification)
                                                  name:busDataNotificationName
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveDirectionNorthFailNotification)
+                                                 name:retriveDirectionNorthFailNotifName
                                                object:nil];
     
     //Init specRailwayManager
@@ -164,25 +177,36 @@ extern NSString * busDataNotificationName;
     return cell;
 }
 
-- (void)didReceiveBusNotification : (NSNotification *)busNotification
+- (void)didReceiveBusNotification
 {
     //NSLog(@"Did receive special railway data notification");
+    
+    //Hide loading hud
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
     [self.tableView reloadData];
 }
 
-- (void)updateView
+- (void)didReceiveDirectionNorthFailNotification
 {
-    for (int i = (int)[[BBTSpecRailway2BusManager sharedBusManager].directionNorthStationNames count];i >= 0;i--)
-    {
-        if ([[BBTSpecRailway2BusManager sharedBusManager] noBusInBusArray:[BBTSpecRailway2BusManager sharedBusManager].directionSouthBuses RunningAtStationSeq:i])
-        {
-            [(BBTSpecRailway2TableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:([[BBTSpecRailway2BusManager sharedBusManager].directionNorthStationNames count] - i) inSection:0]] initCellContent];
-        }
-        else
-        {
-            [(BBTSpecRailway2TableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:([[BBTSpecRailway2BusManager sharedBusManager].directionNorthStationNames count] - i) inSection:0]] changeCellImage];
-        }
-    }
+    //Hide loading hud
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    //Show HUD
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    
+    //Set the annular determinate mode to show task progress.
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"加载失败";
+    
+    //Move to center.
+    hud.xOffset = 0.0f;
+    hud.yOffset = 0.0f;
+    
+    //Hide after 2 seconds.
+    [hud hide:YES afterDelay:2.0f];
+    
+    [self.tableView reloadData];
 }
 
 @end
