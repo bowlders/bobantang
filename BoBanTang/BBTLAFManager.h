@@ -11,7 +11,9 @@
 @interface BBTLAFManager : NSObject
 
 //Singleton LAF Manager
-@property NSArray *itemArray;  //Stores a list of items
+@property (strong, nonatomic) NSArray *itemArray;  //A list of items used in the controller
+@property (strong, nonatomic) NSMutableArray *reservedArray; //Reserve the original data for sorting
+@property (assign, nonatomic) int itemsCount;
 
 + (instancetype)sharedLAFManager;
  //Singleton method

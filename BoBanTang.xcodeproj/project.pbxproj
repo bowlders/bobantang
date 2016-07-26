@@ -129,6 +129,7 @@
 		AF9A8D351CC778460079C46F /* SCUTFlatMapMetaData_s.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AF9A8D321CC778460079C46F /* SCUTFlatMapMetaData_s.geojson */; };
 		AF9A8D391CC7786A0079C46F /* 3dMapMetaData_n.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AF9A8D371CC7786A0079C46F /* 3dMapMetaData_n.geojson */; };
 		AF9A8D3A1CC7786A0079C46F /* 3dMapMetaData_s.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AF9A8D381CC7786A0079C46F /* 3dMapMetaData_s.geojson */; };
+		AF9E4D741D45CAEB004AE8DA /* BBTMyPostedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9E4D731D45CAEB004AE8DA /* BBTMyPostedTableViewController.m */; };
 		FC1770B61C5F4FCD00BF07AC /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1770B51C5F4FCD00BF07AC /* PopoverView.m */; };
 		FC1770BC1C5F505300BF07AC /* BBTLAF.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1770B91C5F505300BF07AC /* BBTLAF.m */; };
 		FC1770BD1C5F505300BF07AC /* BBTLAFManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1770BB1C5F505300BF07AC /* BBTLAFManager.m */; };
@@ -458,6 +459,8 @@
 		AF9A8D321CC778460079C46F /* SCUTFlatMapMetaData_s.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SCUTFlatMapMetaData_s.geojson; sourceTree = "<group>"; };
 		AF9A8D371CC7786A0079C46F /* 3dMapMetaData_n.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 3dMapMetaData_n.geojson; sourceTree = "<group>"; };
 		AF9A8D381CC7786A0079C46F /* 3dMapMetaData_s.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 3dMapMetaData_s.geojson; sourceTree = "<group>"; };
+		AF9E4D721D45CAEB004AE8DA /* BBTMyPostedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMyPostedTableViewController.h; sourceTree = "<group>"; };
+		AF9E4D731D45CAEB004AE8DA /* BBTMyPostedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTMyPostedTableViewController.m; sourceTree = "<group>"; };
 		DAAC1D9BE8366224C1757CE5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FC1770B41C5F4FCD00BF07AC /* PopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverView.h; sourceTree = "<group>"; };
 		FC1770B51C5F4FCD00BF07AC /* PopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverView.m; sourceTree = "<group>"; };
@@ -1388,6 +1391,8 @@
 			children = (
 				FC1770BE1C5F507500BF07AC /* BBTLostAndFoundTableViewController.h */,
 				FC1770BF1C5F507500BF07AC /* BBTLostAndFoundTableViewController.m */,
+				AF9E4D721D45CAEB004AE8DA /* BBTMyPostedTableViewController.h */,
+				AF9E4D731D45CAEB004AE8DA /* BBTMyPostedTableViewController.m */,
 				FCE6094C1C76324E008C331D /* BBTItemFilterSettingsViewController.h */,
 				FCE6094D1C76324E008C331D /* BBTItemFilterSettingsViewController.m */,
 				FCE609491C7624F8008C331D /* BBTLafSearchResultTableViewController.h */,
@@ -1782,6 +1787,7 @@
 				AF5412A61CC68029004C0CE8 /* BRSMapSearchHelper.m in Sources */,
 				FC1770C41C5F507500BF07AC /* BBTLostAndFoundTableViewController.m in Sources */,
 				391F32491BFDD42B004843C3 /* BBTSpecRailway2BusManager.m in Sources */,
+				AF9E4D741D45CAEB004AE8DA /* BBTMyPostedTableViewController.m in Sources */,
 				3951EFFD1C7099B000076AD4 /* BBTSpecialRailwayContainerViewController.m in Sources */,
 				AF5412BB1CC6805D004C0CE8 /* BBTDirectionHeaderView.m in Sources */,
 				395B52961C7C8438008FD949 /* BBTCollectedCampusInfo.m in Sources */,
