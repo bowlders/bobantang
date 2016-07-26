@@ -59,7 +59,6 @@
     self.phone.text = self.itemDetails.phone;
     
     [self.thumbImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.itemDetails.thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
-        NSLog(@"Pic");
         self.thumbImage.image = image;
         [self.view setNeedsLayout];
         
@@ -68,8 +67,7 @@
         [self.thumbImage addGestureRecognizer:gesture];
         
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-        NSLog(@"NO PIC");
-        self.thumbImage.image = [UIImage imageNamed:@"BoBanTang"];
+        self.thumbImage.image = [UIImage imageNamed:@"AppIcon"];
     }];
 }
 
@@ -80,8 +78,6 @@
 
 - (void)handleTap:(UITapGestureRecognizer *)gesture
 {
-    NSLog(@"Touched!");
-    
     self.photos = [NSMutableArray array];
     
     [self.photos addObject:[MWPhoto photoWithURL:[NSURL URLWithString:self.itemDetails.orgPicUrl]]];
@@ -106,58 +102,5 @@
     }
     return nil;
 }
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

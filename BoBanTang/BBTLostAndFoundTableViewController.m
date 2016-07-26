@@ -136,7 +136,7 @@ extern NSString * kNoMoreItemsNotificationName;
 
 - (IBAction)didChangeLafType:(id)sender
 {
-    [self refresh];
+    [self.tableView.mj_header beginRefreshing];
     
     [self.tableView reloadData];
 }
@@ -153,7 +153,10 @@ extern NSString * kNoMoreItemsNotificationName;
         {
             if (index == 2)
             {
-                [self performSegueWithIdentifier:myPostedIdentifire sender:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account];
+                if ([self shouldPerformSegueWithIdentifier:myPostedIdentifire sender:nil])
+                {
+                    [self performSegueWithIdentifier:myPostedIdentifire sender:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account];
+                }
             } else {
                 if ([self shouldPerformSegueWithIdentifier:postIdentifier sender:@(index)])
                 {
@@ -211,7 +214,7 @@ extern NSString * kNoMoreItemsNotificationName;
         }
         [cell setNeedsLayout];
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-        cell.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
+        cell.thumbLostImageView.image = [UIImage imageNamed:@"AppIcon"];
     }];
     
     [self.view setNeedsUpdateConstraints];

@@ -33,7 +33,7 @@ static NSString * detailsInitial = @"请输入详情";
 
 @property (strong, nonatomic) UITableView         * tableView;
 @property (strong, nonatomic) NSString            * itemDetails;
-@property (strong, nonatomic) NSNumber            * account;
+@property (strong, nonatomic) NSString            * account;
 @property (strong, nonatomic) UIImage             * lostItemImage;
 @property (strong, nonatomic) NSMutableDictionary * itemInfoToPost;
 
@@ -62,7 +62,7 @@ extern NSString *kFailPostItemNotificaionName;
         self.navigationItem.title = @"发布失物启示";
     }
     
-    self.account = [NSNumber numberWithInt:[[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account intValue]];
+    self.account = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account;
     //self.account = (@201430202488);
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
