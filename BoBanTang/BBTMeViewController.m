@@ -279,7 +279,7 @@ extern NSString * kFeedBackViewDisappearNotifName;
         {
             LCUserFeedbackViewController *feedbackViewController = [[LCUserFeedbackViewController alloc] init];
             feedbackViewController.navigationBarStyle = LCUserFeedbackNavigationBarStyleNone;
-            feedbackViewController.contactHeaderHidden = YES;
+            //feedbackViewController.contactHeaderHidden = YES;
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:feedbackViewController];
             [self presentViewController:navigationController animated:YES completion:nil];
         }
