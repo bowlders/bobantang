@@ -301,7 +301,7 @@ extern NSString * kNoMoreItemsNotificationName;
                                                              UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
                                                              [self presentViewController:navigationController animated:YES completion:nil];
                                                              if ([(NSNumber *)sender longValue] == 0 || [(NSNumber *)sender longValue] == 1) {
-                                                                 [self performSegueWithIdentifier:postIdentifier sender:sender];
+                                                                 //[self performSegueWithIdentifier:postIdentifier sender:sender];
                                                              }
                                                          }];
         

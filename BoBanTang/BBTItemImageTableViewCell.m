@@ -15,7 +15,7 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
     view.backgroundColor = [UIColor whiteColor];
     self.selectedBackgroundView = view;
-    self.itemImage.image = [UIImage imageNamed:@"BoBanTang"];
+    self.itemImage.image = [UIImage imageNamed:@"addNewImage"];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
