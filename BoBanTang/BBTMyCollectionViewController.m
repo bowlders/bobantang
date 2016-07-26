@@ -33,6 +33,8 @@ extern NSString * fetchCollectedArticleFailNotifName;
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [self addObserver];
+    
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self refresh];
     }];
@@ -49,6 +51,14 @@ extern NSString * fetchCollectedArticleFailNotifName;
     self.title = @"我的收藏";
     self.tableView.backgroundColor = [UIColor whiteColor];
     
+    NSString *cellIdentifier1 = @"collectedInfoCell";
+    [self.tableView registerClass:[BBTCampusInfoTableViewCell class] forCellReuseIdentifier:cellIdentifier1];
+    NSString *cellIdentifier2 = @"collectedArticleCell";
+    [self.tableView registerClass:[BBTDailyArticleTableViewCell class] forCellReuseIdentifier:cellIdentifier2];
+}
+
+- (void)addObserver
+{
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveFetchCollectedInfoSucceedNotification)
                                                  name:fetchCollectedInfoSucceedNotifName
@@ -68,11 +78,6 @@ extern NSString * fetchCollectedArticleFailNotifName;
                                              selector:@selector(didReceiveFetchCollectedArticleFailNotification)
                                                  name:fetchCollectedInfoFailNotifName
                                                object:nil];
-    
-    NSString *cellIdentifier1 = @"collectedInfoCell";
-    [self.tableView registerClass:[BBTCampusInfoTableViewCell class] forCellReuseIdentifier:cellIdentifier1];
-    NSString *cellIdentifier2 = @"collectedArticleCell";
-    [self.tableView registerClass:[BBTDailyArticleTableViewCell class] forCellReuseIdentifier:cellIdentifier2];
 }
 
 - (void)didReceiveFetchCollectedInfoSucceedNotification
@@ -427,6 +432,11 @@ extern NSString * fetchCollectedArticleFailNotifName;
         [self.navigationController pushViewController:destinationVC animated:YES];
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

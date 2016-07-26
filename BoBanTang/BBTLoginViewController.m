@@ -29,16 +29,19 @@
 
 extern NSString * kUserAuthentificationFinishNotifName;
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveUserAuthenticationNotif)
+                                                 name:kUserAuthentificationFinishNotifName
+                                               object:nil];
+}
+
 - (void)viewDidLoad
 {
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView.scrollEnabled = NO;
 
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveUserAuthenticationNotif)
-                                                 name:kUserAuthentificationFinishNotifName
-                                               object:nil];
-    
     self.logoImageView = ({
         UIImageView *imageView = [UIImageView new];
         imageView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -236,6 +239,11 @@ extern NSString * kUserAuthentificationFinishNotifName;
         [HUD showInView:self.view];
         [HUD dismissAfterDelay:2.0];
     }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

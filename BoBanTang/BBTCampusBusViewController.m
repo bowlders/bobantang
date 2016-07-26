@@ -36,10 +36,7 @@ extern NSString * retriveCampusBusDataFailNotifName;
 {
     //Show loading hud
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-}
-
-- (void)viewDidLoad
-{
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveCampusBusNotification)
                                                  name:campusBusNotificationName
@@ -49,8 +46,10 @@ extern NSString * retriveCampusBusDataFailNotifName;
                                              selector:@selector(didReceiveRetriveCampusBusDataFailNotification)
                                                  name:retriveCampusBusDataFailNotifName
                                                object:nil];
-    
-    
+}
+
+- (void)viewDidLoad
+{
     self.tableView = ({
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         tableView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -289,6 +288,12 @@ extern NSString * retriveCampusBusDataFailNotifName;
 - (void)clickRefreshButton
 {
     [[BBTCampusBusManager sharedCampusBusManager] refresh];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

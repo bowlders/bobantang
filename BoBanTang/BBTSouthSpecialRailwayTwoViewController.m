@@ -34,10 +34,7 @@ extern NSString * retriveDirectionSouthFailNotifName;
 {
     //Show loading hud
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-}
-
-- (void)viewDidLoad
-{
+    
     //Add self to bus data notification
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveBusNotification)
@@ -48,7 +45,10 @@ extern NSString * retriveDirectionSouthFailNotifName;
                                              selector:@selector(didReceiveDirectionSouthFailNotification)
                                                  name:retriveDirectionSouthFailNotifName
                                                object:nil];
-    
+}
+
+- (void)viewDidLoad
+{
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
     [self.view addSubview:label];
 
@@ -205,6 +205,12 @@ extern NSString * retriveDirectionSouthFailNotifName;
     [hud hide:YES afterDelay:2.0f];
     
     [self.tableView reloadData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

@@ -24,17 +24,21 @@
 extern NSString * campusInfoNotificationName;
 extern NSString * noNewInfoNotifName;
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
+- (void)viewWillAppear:(BOOL)animated
+{
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveCampusInfoNotification)
                                                  name:campusInfoNotificationName
                                                object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveNoMoreInfoNotification)
                                                  name:noNewInfoNotifName
                                                object:nil];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
     
     NSString *cellIdentifier = @"infoCell";
     [self.tableView registerClass:[BBTCampusInfoTableViewCell class] forCellReuseIdentifier:cellIdentifier];

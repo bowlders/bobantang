@@ -24,9 +24,8 @@
 extern NSString * dailyArticleNotificationName;
 extern NSString * noMoreArticleNotifName;
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
+- (void)viewWillAppear:(BOOL)animated
+{
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveDailyArticleNotification)
                                                  name:dailyArticleNotificationName
@@ -35,6 +34,10 @@ extern NSString * noMoreArticleNotifName;
                                              selector:@selector(didReceiveNoMoreArticleNotification)
                                                  name:noMoreArticleNotifName
                                                object:nil];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
     
     NSString *cellIdentifier = @"articleCell";
     [self.tableView registerClass:[BBTDailyArticleTableViewCell class] forCellReuseIdentifier:cellIdentifier];

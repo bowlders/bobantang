@@ -39,18 +39,18 @@ extern NSString * kFeedBackViewDisappearNotifName;
 - (void)viewWillAppear:(BOOL)animated
 {
     [self updateView];
+    
+    //When the feedback view disappears, clear badge.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveFeedBackViewDisappearNotif)
+                                                 name:kFeedBackViewDisappearNotifName
+                                               object:nil];
 }
 
 - (void)viewDidLoad
 {
     self.title = @"我";
 
-    //When the feedback view disappears, clear badge.
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receiveFeedBackViewDisappearNotif)
-                                                 name:kFeedBackViewDisappearNotifName
-                                               object:nil];
-    
     CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
@@ -279,7 +279,7 @@ extern NSString * kFeedBackViewDisappearNotifName;
         {
             LCUserFeedbackViewController *feedbackViewController = [[LCUserFeedbackViewController alloc] init];
             feedbackViewController.navigationBarStyle = LCUserFeedbackNavigationBarStyleNone;
-            feedbackViewController.contactHeaderHidden = YES;
+            //feedbackViewController.contactHeaderHidden = YES;
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:feedbackViewController];
             [self presentViewController:navigationController animated:YES completion:nil];
         }
@@ -359,6 +359,12 @@ extern NSString * kFeedBackViewDisappearNotifName;
 {
     TDBadgedCell *cell = [self.meTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
     cell.badgeString = @"0";
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
