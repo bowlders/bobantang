@@ -43,13 +43,12 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
 - (void)viewWillAppear:(BOOL)animated
 {
     [self updateCollectButtonStatus];
+    [self addObserver];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self addObserver];
-    
+
     self.webView = ({
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
         webView.scalesPageToFit = YES;
@@ -382,6 +381,12 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
 {
     //Hide loading hud
     [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

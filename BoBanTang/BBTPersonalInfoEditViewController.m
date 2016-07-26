@@ -26,7 +26,12 @@ extern NSString * kFailUploadImageNotificationName;
 extern NSString * didUploadUserLogoURLNotifName;
 extern NSString * failUploadUserLogoURLNotifName;
 
-- (void)viewDidLoad
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self addObserver];
+}
+
+- (void)addObserver
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveImageUploadSucceedNotif)
@@ -202,6 +207,11 @@ extern NSString * failUploadUserLogoURLNotifName;
     
     //Hide after 2 seconds.
     [failureHUD hide:YES afterDelay:2.0f];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

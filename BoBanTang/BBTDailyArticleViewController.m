@@ -49,6 +49,7 @@ extern NSString * getArticleTodaySucceedNotifName;
 - (void)viewWillAppear:(BOOL)animated
 {
     [self updateCollectButtonStatus];
+    [self addObserver];
     
     if (self.isEnteredFromArticleTableVC)
     {
@@ -59,8 +60,6 @@ extern NSString * getArticleTodaySucceedNotifName;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self addObserver];
     
     self.webView = ({
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
@@ -426,6 +425,12 @@ extern NSString * getArticleTodaySucceedNotifName;
 {
     //Hide loading hud
     [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

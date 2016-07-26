@@ -25,23 +25,13 @@
 extern NSString * didUploadNickNameNotifName;
 extern NSString * failUploadNickNameNotifName;
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self addObserver];
+}
+
 - (void)viewDidLoad
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(textDidChange)
-                                                 name:UITextFieldTextDidChangeNotification
-                                               object:self.nickNameTextField];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveUploadNickNameNotification)
-                                                 name:didUploadNickNameNotifName
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveUploadNickNameFailNotification)
-                                                 name:failUploadNickNameNotifName
-                                               object:nil];
- 
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.nickNameLengthLabel = ({
@@ -118,6 +108,24 @@ extern NSString * failUploadNickNameNotifName;
     
 }
 
+- (void)addObserver
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(textDidChange)
+                                                 name:UITextFieldTextDidChangeNotification
+                                               object:self.nickNameTextField];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveUploadNickNameNotification)
+                                                 name:didUploadNickNameNotifName
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveUploadNickNameFailNotification)
+                                                 name:failUploadNickNameNotifName
+                                               object:nil];
+}
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     //Prevent crashing undo bug.
@@ -184,6 +192,11 @@ extern NSString * failUploadNickNameNotifName;
     
     //Hide after 2 seconds.
     [failureHUD hide:YES afterDelay:2.0f];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
