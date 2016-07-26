@@ -18,13 +18,17 @@
 #import "BBTLafSearchResultTableViewController.h"
 #import "BBTItemCampusTableViewCell.h"
 #import "BBTItemFilterSettingsViewController.h"
+#import "BBTMyPostedTableViewController.h"
 #import <MJRefresh.h>
 #import <MJRefreshStateHeader.h>
+#import <Masonry.h>
 #import "UIImageView+AFNetworking.h"
 #import "UIColor+BBTColor.h"
 #import "WYPopoverController.h"
+#import "UITableView+FDTemplateLayoutCell.h"
 
 static NSString *postIdentifier = @"LAFPostIdentifier";
+static NSString *myPostedIdentifire = @"postedItemsIdentifier";
 static NSString *itemCellIdentifier = @"BBTLafItemsTableViewCell";
 static NSString *showItemsDetailsIdentifier = @"showItemsDetailsIdentifier";
 static NSString *campusCellIdentifier = @"BBTItemCampusTableViewCell";
@@ -35,7 +39,7 @@ static NSString *campusCellIdentifier = @"BBTItemCampusTableViewCell";
 @property (weak, nonatomic)   IBOutlet UIBarButtonItem              * filterButton;
 
 @property (strong, nonatomic) NSArray                               * filteredItems;
-@property (strong, nonatomic) NSArray                               * itemArray;
+//@property (strong, nonatomic) NSArray                               * itemArray;
 @property (strong, nonatomic) NSDictionary                          * conditions;
 
 @property (strong, nonatomic) UISearchController                    * searchController;
@@ -50,14 +54,15 @@ static NSString *campusCellIdentifier = @"BBTItemCampusTableViewCell";
 extern NSString * lafNotificationName;
 extern NSString * kUserAuthentificationFinishNotifName;
 extern NSString * kGetFuzzyConditionsItemNotificationName;
+extern NSString * kNoMoreItemsNotificationName;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.itemArray = [NSArray array];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLafNotification:) name:lafNotificationName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveUserAuthentificaionNotification) name:kUserAuthentificationFinishNotifName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveFuzzyItemsNotificaion) name:kGetFuzzyConditionsItemNotificationName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveNoMoreItemsNotification) name:kNoMoreItemsNotificationName object:nil];
 }
 
 - (void)viewDidLoad
@@ -67,6 +72,8 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
     
+    [BBTLAFManager sharedLAFManager].itemsCount = 0;
+    
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self refresh];
     }];
@@ -74,6 +81,7 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
     [header setTitle:@"加载中 ..." forState:MJRefreshStateRefreshing];
     self.tableView.mj_header = header;
     [self.tableView.mj_header beginRefreshing];
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreItems)];
 
     self.filteredItems = [[NSArray alloc] init];
     
@@ -97,10 +105,14 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
 
 - (void)didReceiveLafNotification:(NSNotification *)notification
 {
-    NSLog(@"Items notification received");
-    self.itemArray = (NSArray *)notification.object;
     [self.tableView reloadData];
     [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
+}
+
+- (void)didReceiveNoMoreItemsNotification
+{
+    [self.tableView.mj_footer endRefreshingWithNoMoreData];
 }
 
 - (BOOL)didReceiveUserAuthentificaionNotification
@@ -134,21 +146,14 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
     UIButton *showBtn = sender;
     
     PopoverView *popoverView = [PopoverView new];
-    popoverView.menuTitles   = @[@"发布招领启事", @"发布寻物启事", @"已发布的消息", @"全部失物"];
+    popoverView.menuTitles   = @[@"发布招领启事", @"发布寻物启事", @"已发布的消息"];
     [popoverView showFromView:showBtn selected:^(NSInteger index)
     {
         if ([self didReceiveUserAuthentificaionNotification])
         {
             if (index == 2)
             {
-                [self.filterButton setAccessibilityElementsHidden:YES];
-                self.conditions = @{@"account": @201430202488};
-                [self.tableView.mj_header beginRefreshing];
-                [self refresh];
-            } else if (index ==3 ){
-                self.conditions = [[NSDictionary alloc] init];
-                [self.tableView.mj_header beginRefreshing];
-                [self refresh];
+                [self performSegueWithIdentifier:myPostedIdentifire sender:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account];
             } else {
                 if ([self shouldPerformSegueWithIdentifier:postIdentifier sender:@(index)])
                 {
@@ -169,7 +174,11 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100.0f;
+    NSArray *itemArray = [BBTLAFManager sharedLAFManager].itemArray;
+    return [tableView fd_heightForCellWithIdentifier:itemCellIdentifier configuration:^(BBTLafItemsTableViewCell *cell)
+            {
+                [cell configureItemsCells:itemArray[indexPath.row]];
+            }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -179,7 +188,7 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.itemArray count];
+    return [BBTLAFManager sharedLAFManager].itemsCount;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -191,11 +200,11 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
     [cell.thumbLostImageView cancelImageDownloadTask];
     
     //Configure cell
-    //NSArray *itemArray = [BBTLAFManager sharedLAFManager].itemArray;
-    [cell configureItemsCells:self.itemArray[indexPath.row]];
+    NSArray *itemArray = [BBTLAFManager sharedLAFManager].itemArray;
+    [cell configureItemsCells:itemArray[indexPath.row]];
     
     //Asynchronously downloads the thumbnail
-    [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)self.itemArray[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
+    [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)itemArray[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
         //NSLog(@"Succeed!");
         if (cell) {
             cell.thumbLostImageView.image = image;
@@ -214,7 +223,7 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //NSArray *itemArray = [BBTLAFManager sharedLAFManager].itemArray;
-    BBTLAF *itemDetails = self.itemArray[indexPath.row];
+    BBTLAF *itemDetails = [BBTLAFManager sharedLAFManager].itemArray[indexPath.row];
     
     [self performSegueWithIdentifier:showItemsDetailsIdentifier sender:itemDetails];
 }
@@ -263,6 +272,12 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
 
 - (void)refresh
 {
+    [BBTLAFManager sharedLAFManager].itemsCount = 0;
+    [[BBTLAFManager sharedLAFManager] retriveItems:self.lostOrFound.selectedSegmentIndex WithConditions:self.conditions];
+}
+
+- (void)loadMoreItems
+{
     [[BBTLAFManager sharedLAFManager] retriveItems:self.lostOrFound.selectedSegmentIndex WithConditions:self.conditions];
 }
 
@@ -272,38 +287,33 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    if ([identifier isEqualToString:postIdentifier])
+    if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
     {
-        if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
-        {
-            NSLog(@"Account: %@", [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account);
-            return YES;
-        } else {
-            UIAlertController *alertController = [[UIAlertController alloc] init];
-            alertController = [UIAlertController alertControllerWithTitle:@"你还没有登录哟" message:@"请先登录" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"去登陆"
-                                                               style:UIAlertActionStyleDefault
-                                                             handler:^(UIAlertAction * action) {
-                                                                 BBTLoginViewController *loginViewController = [[BBTLoginViewController alloc] init];
-                                                                 UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
-                                                                 [self presentViewController:navigationController animated:YES completion:nil];
-                                                                 if ([(NSNumber *)sender longValue] == 0 || [(NSNumber *)sender longValue] == 1) {
-                                                                     [self performSegueWithIdentifier:postIdentifier sender:sender];
-                                                                 }
-                                                             }];
-            
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
-                                                                   style:UIAlertActionStyleCancel
-                                                                 handler:nil];
-            
-            [alertController addAction:cancelAction];
-            [alertController addAction:okAction];
-            
-            [self presentViewController:alertController animated:YES completion:nil];
-            return NO;
-        }
-    } else {
+        NSLog(@"Account: %@", [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account);
         return YES;
+    } else {
+        UIAlertController *alertController = [[UIAlertController alloc] init];
+        alertController = [UIAlertController alertControllerWithTitle:@"你还没有登录哟" message:@"请先登录" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"去登陆"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * action) {
+                                                             BBTLoginViewController *loginViewController = [[BBTLoginViewController alloc] init];
+                                                             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+                                                             [self presentViewController:navigationController animated:YES completion:nil];
+                                                             if ([(NSNumber *)sender longValue] == 0 || [(NSNumber *)sender longValue] == 1) {
+                                                                 //[self performSegueWithIdentifier:postIdentifier sender:sender];
+                                                             }
+                                                         }];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:nil];
+        
+        [alertController addAction:cancelAction];
+        [alertController addAction:okAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+        return NO;
     }
 }
 
@@ -323,6 +333,11 @@ extern NSString * kGetFuzzyConditionsItemNotificationName;
         } else if (self.lostOrFound.selectedSegmentIndex == 1){
             controller.lostOrFound = true;
         }
+    }
+    else if ([segue.identifier isEqualToString:myPostedIdentifire])
+    {
+        BBTMyPostedTableViewController *controller = segue.destinationViewController;
+        controller.account = sender;
     }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.

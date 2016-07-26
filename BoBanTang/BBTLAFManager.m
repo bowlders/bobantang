@@ -12,15 +12,20 @@
 #import "BBTLAF.h"
 #import "RSA.h"
 
-static NSString *getLostItemsUrl = @"http://218.192.166.167/api/protype.php?table=lostItems&method=get";
-static NSString *getPickItemsUrl = @"http://218.192.166.167/api/protype.php?table=pickItems&method=get";
+static NSString *getLostItemsUrl = @"http://218.192.166.167/api/protype.php?table=lostItems&method=get&option={\"limit\":";
+static NSString *getPickItemsUrl = @"http://218.192.166.167/api/protype.php?table=pickItems&method=get&option={\"limit\":";
 static NSString *postLostItemUrl = @"http://218.192.166.167/api/protype.php?table=lostItems&method=save&data=";
 static NSString *postPickItemUrl = @"http://218.192.166.167/api/protype.php?table=pickItems&method=save&data=";
+static NSString *deleteLostItemUrl = @"http://218.192.166.167/api/protype.php?table=lostItems&method=delete&data=";
+static NSString *deletePickItemUrl = @"http://218.192.166.167/api/protype.php?table=lostItems&method=delete&data=";
 
 NSString *lafNotificationName = @"lafNotification";
+NSString *kNoMoreItemsNotificationName = @"noMoreItems";
 NSString *kGetFuzzyConditionsItemNotificationName = @"getFuzzyConditionsItemNotificationName";
 NSString *kDidPostItemNotificaionName = @"didPostItemNotification";
 NSString *kFailPostItemNotificaionName = @"failPostItemNotification";
+NSString *kDidDeleteItemNotificationName = @"didDeleteItmeNotifiation";
+NSString *kFailDeleteItemNotificaionName = @"FailDeleteItemNotificaion";
 
 @implementation BBTLAFManager
 
@@ -36,17 +41,26 @@ NSString *kFailPostItemNotificaionName = @"failPostItemNotification";
 
 - (void)retriveItems:(NSUInteger)type WithConditions:(NSDictionary *)conditions
 {
-    self.itemArray = [[NSArray alloc] init];
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];
+    if ((!_itemsCount) || (!_itemArray))
+    {
+        self.reservedArray = [NSMutableArray array];
+    }
+    
+    self.itemArray = [NSArray array];
+    
+    int __block noMoreItemsCount = 0;
+    int beginningItem = self.itemsCount;
+    
+    NSString *appendingString = [NSString stringWithFormat:@"[%d,5]}", beginningItem];
+    
     NSString *url;
     
     if (!conditions)
     {
         if (type == 1) {
-            url = getLostItemsUrl;
+            url = [[getLostItemsUrl stringByAppendingString:appendingString] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         } else if (type == 0) {
-            url = getPickItemsUrl;
+            url = [[getPickItemsUrl stringByAppendingString:appendingString] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         }
     }
     else
@@ -62,9 +76,9 @@ NSString *kFailPostItemNotificaionName = @"failPostItemNotification";
             
         } else {
             if (type == 1) {
-                rowUrl = [getLostItemsUrl stringByAppendingString:@"&data="];
+                rowUrl = [[getLostItemsUrl stringByAppendingString:appendingString] stringByAppendingString:@"&data="];
             } else {
-                rowUrl = [getPickItemsUrl stringByAppendingString:@"&data="];
+                rowUrl = [[getPickItemsUrl stringByAppendingString:appendingString] stringByAppendingString:@"&data="];
             }
         }
         
@@ -75,8 +89,10 @@ NSString *kFailPostItemNotificaionName = @"failPostItemNotification";
         url = [rowUrl stringByAppendingString:stringCleanPath];
     }
     
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];
     [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        //NSLog(@"JSON: %@", responseObject);
+        NSLog(@"JSON: %@", responseObject);
         if (responseObject)
         {
             NSMutableArray *origArr = [[NSMutableArray alloc] init];
@@ -84,12 +100,21 @@ NSString *kFailPostItemNotificaionName = @"failPostItemNotification";
             {
                 BBTLAF *item = [[BBTLAF alloc] initWithResponesObject:itemsInfo];
                 [origArr addObject:item];
+                noMoreItemsCount++;
             }
             if (conditions[@"fuzzy"]) {
                 [self getFuzzyConditionsItemNotification];
             } else {
-                self.itemArray = [[origArr reverseObjectEnumerator] allObjects];
+                
+                self.itemsCount += [(NSArray *)responseObject count];
+                
+                [self.reservedArray addObjectsFromArray:origArr];
+                self.itemArray = self.reservedArray;
+                [[self.itemArray reverseObjectEnumerator] allObjects];
+                
                 [self pushLafNotification];
+                
+                if (!noMoreItemsCount) [self pushNoMoreItemsNotification];
             }
         }
     } failure:^(NSURLSessionTask *task, NSError *error) {
@@ -126,9 +151,19 @@ NSString *kFailPostItemNotificaionName = @"failPostItemNotification";
     }];
 }
 
+- (void)deletePostedItemsWithId:(NSString *)itemID
+{
+    
+}
+
 - (void)pushLafNotification
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:lafNotificationName object:self.itemArray];
+}
+
+- (void)pushNoMoreItemsNotification
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNoMoreItemsNotificationName object:nil];
 }
 
 - (void)getFuzzyConditionsItemNotification
