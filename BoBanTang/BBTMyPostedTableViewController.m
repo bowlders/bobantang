@@ -44,6 +44,13 @@ extern NSString * kDidGetLostItemsNotificationName;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetPickedNotification) name:kDidGetPickedItemsNotificationName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetLostNotification) name:kDidGetLostItemsNotificationName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDeleteItem) name:kDidDeleteItemNotificationName object:nil];
+    self.didGetPicked = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    self.didGetPicked = NO;
 }
 
 - (void)viewDidLoad
@@ -78,6 +85,7 @@ extern NSString * kDidGetLostItemsNotificationName;
 - (void)didGetPickedNotification
 {
     self.didGetPicked = YES;
+    [[BBTLAFManager sharedLAFManager] loadMyLostItemsWithAccount:self.account];
     self.myPicked = [BBTLAFManager sharedLAFManager].myPicked;
 }
 
@@ -86,11 +94,12 @@ extern NSString * kDidGetLostItemsNotificationName;
     if (self.didGetPicked) {
         self.myLost = [BBTLAFManager sharedLAFManager].myLost;
         [self.tableView reloadData];
+        [self.tableView.mj_header endRefreshing];
         self.didGetPicked = NO;
     } else {
         [self refresh];
+        self.didGetPicked = NO;
     }
-    [self.tableView.mj_header endRefreshing];
 }
 
 - (void)didDeleteItem
@@ -111,7 +120,6 @@ extern NSString * kDidGetLostItemsNotificationName;
 - (void)refresh
 {
     [[BBTLAFManager sharedLAFManager] loadMyPickedItemsWithAccount:self.account];
-    [[BBTLAFManager sharedLAFManager] loadMyLostItemsWithAccount:self.account];
 }
 
 #pragma mark - Table view data source
@@ -175,10 +183,23 @@ extern NSString * kDidGetLostItemsNotificationName;
     cell.thumbLostImageView.image = nil;
     [cell.thumbLostImageView cancelImageDownloadTask];
 
-    if (indexPath.section == 0)
+    if (indexPath.section == 0 && [[BBTLAFManager sharedLAFManager].myPicked count] > 0)
     {
-        [cell configureItemsCells:self.myPicked[indexPath.row]];
-        [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)self.myPicked[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
+        [cell configureItemsCells:[BBTLAFManager sharedLAFManager].myPicked[indexPath.row]];
+        [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)[BBTLAFManager sharedLAFManager].myPicked[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
+            //NSLog(@"Succeed!");
+            if (cell) {
+                cell.thumbLostImageView.image = image;
+            }
+            [cell setNeedsLayout];
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+            cell.thumbLostImageView.image = [UIImage imageNamed:@"AppIcon"];
+        }];
+    } else if (indexPath.section == 0 && [[BBTLAFManager sharedLAFManager].myPicked count] == 0) {
+        return 0;
+    } else if (indexPath.section == 1 && [[BBTLAFManager sharedLAFManager].myLost count] > 0) {
+        [cell configureItemsCells:[BBTLAFManager sharedLAFManager].myLost[indexPath.row]];
+        [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)[BBTLAFManager sharedLAFManager].myLost[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
             //NSLog(@"Succeed!");
             if (cell) {
                 cell.thumbLostImageView.image = image;
@@ -188,16 +209,7 @@ extern NSString * kDidGetLostItemsNotificationName;
             cell.thumbLostImageView.image = [UIImage imageNamed:@"AppIcon"];
         }];
     } else {
-        [cell configureItemsCells:self.myLost[indexPath.row]];
-        [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)self.myLost[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
-            //NSLog(@"Succeed!");
-            if (cell) {
-                cell.thumbLostImageView.image = image;
-            }
-            [cell setNeedsLayout];
-        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-            cell.thumbLostImageView.image = [UIImage imageNamed:@"AppIcon"];
-        }];
+        return 0;
     }
     
     /*
