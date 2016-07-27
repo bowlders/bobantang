@@ -28,7 +28,9 @@ NSString *kGetFuzzyConditionsItemNotificationName = @"getFuzzyConditionsItemNoti
 NSString *kDidPostItemNotificaionName = @"didPostItemNotification";
 NSString *kFailPostItemNotificaionName = @"failPostItemNotification";
 NSString *kDidDeleteItemNotificationName = @"didDeleteItmeNotifiation";
-NSString *kFailDeleteItemNotificaionName = @"FailDeleteItemNotificaion";
+NSString *kFailDeleteItemNotificaionName = @"FailDeleteItemNotification";
+NSString *kDidGetPickedItemsNotificationName = @"getPickedNotification";
+NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
 
 @implementation BBTLAFManager
 
@@ -154,10 +156,13 @@ NSString *kFailDeleteItemNotificaionName = @"FailDeleteItemNotificaion";
     }];
 }
 
-- (void)loadMyPostedItemsWithAccount:(NSString *)account
+- (void)loadMyPickedItemsWithAccount:(NSString *)account
 {
-    self.myPicked = [[NSMutableArray alloc] init];
-    self.myLost   = [[NSMutableArray alloc] init];
+    if (!self.myPicked) {
+        self.myPicked = [[NSMutableArray alloc] init];
+    } else {
+        [self.myPicked removeAllObjects];
+    }
     
     NSDictionary *condition = @{@"account":account};
     
@@ -166,31 +171,66 @@ NSString *kFailDeleteItemNotificaionName = @"FailDeleteItemNotificaion";
     NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSString *stringCleanPath = [jsonString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
-    NSArray *urls = @[[getMyPickUrl stringByAppendingString:stringCleanPath],
-                      [getMyLostUrl stringByAppendingString:stringCleanPath]
-                      ];
+    NSString *url = [getMyPickUrl stringByAppendingString:stringCleanPath];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];    
+    
+    [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+        if (responseObject)
+        {
+            for (NSDictionary *itemsInfo in responseObject)
+            {
+                BBTLAF *item = [[BBTLAF alloc] initWithResponesObject:itemsInfo];
+                
+                [self.myPicked addObject:item];
+            }
+            
+            [self postDidGetPickedItemsNotification];
+        }
+    } failure:^(NSURLSessionTask *task, NSError *error) {
+        NSLog(@"Error: %@", error);
+        [self postFailLafNotification];
+    }];
+}
+
+- (void)loadMyLostItemsWithAccount:(NSString *)account
+{
+    if (!self.myLost) {
+        self.myLost = [[NSMutableArray alloc] init];
+    } else {
+        [self.myLost removeAllObjects];
+    }
+    
+    NSDictionary *condition = @{@"account":account};
+    
+    NSError *error;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:condition options:NSJSONWritingPrettyPrinted error:&error];
+    NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSString *stringCleanPath = [jsonString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    
+    NSString *url = [getMyLostUrl stringByAppendingString:stringCleanPath];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];
     
-    for (NSString *url in urls)
-    {
-        [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-            if (responseObject)
+    [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+        if (responseObject)
+        {
+            for (NSDictionary *itemsInfo in responseObject)
             {
-                for (NSDictionary *itemsInfo in responseObject)
-                {
-                    BBTLAF *item = [[BBTLAF alloc] initWithResponesObject:itemsInfo];
-                    
-                    if ([url containsString:@"pickItems"]) [self.myPicked addObject:item];
-                    if ([url containsString:@"lostItems"]) [self.myLost   addObject:item];
-                }
-                if ([url containsString:@"lostItems"]) [self pushLafNotification];
+                BBTLAF *item = [[BBTLAF alloc] initWithResponesObject:itemsInfo];
+                
+                [self.myLost addObject:item];
             }
-        } failure:^(NSURLSessionTask *task, NSError *error) {
-            NSLog(@"Error: %@", error);
-        }];
-    }
+            
+            [self postDidGetLostItemsNotification];
+        }
+    } failure:^(NSURLSessionTask *task, NSError *error) {
+        NSLog(@"Error: %@", error);
+        [self postFailLafNotification];
+    }];
+
 }
 
 - (void)deletePostedItemsWithId:(NSString *)itemID inTable:(NSUInteger)lostOrFound
@@ -272,6 +312,16 @@ NSString *kFailDeleteItemNotificaionName = @"FailDeleteItemNotificaion";
 - (void)postFailDeleteItemNotification
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:kFailDeleteItemNotificaionName object:nil];
+}
+
+- (void)postDidGetPickedItemsNotification
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDidGetPickedItemsNotificationName object:nil];
+}
+
+- (void)postDidGetLostItemsNotification
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDidGetLostItemsNotificationName object:nil];
 }
 
 @end

@@ -26,6 +26,7 @@ static NSString *showItemsDetailsIdentifier = @"showItemsDetailsIdentifier2";
 @property (assign, nonatomic) int lostOrFound;
 @property (strong, nonatomic) NSMutableArray *myPicked;
 @property (strong, nonatomic) NSMutableArray *myLost;
+@property (assign, nonatomic) BOOL didGetPicked;
 
 @end
 
@@ -35,11 +36,21 @@ extern NSString * lafNotificationName;
 extern NSString * failNotificationName;
 extern NSString * kDidDeleteItemNotificationName;
 extern NSString * kFailDeleteItemNotificaionName;
+extern NSString * kDidGetPickedItemsNotificationName;
+extern NSString * kDidGetLostItemsNotificationName;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLafNotification) name:lafNotificationName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetPickedNotification) name:kDidGetPickedItemsNotificationName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetLostNotification) name:kDidGetLostItemsNotificationName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDeleteItem) name:kDidDeleteItemNotificationName object:nil];
+    self.didGetPicked = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    self.didGetPicked = NO;
 }
 
 - (void)viewDidLoad
@@ -62,6 +73,8 @@ extern NSString * kFailDeleteItemNotificaionName;
     
     self.myPicked = [NSMutableArray array];
     self.myLost   = [NSMutableArray array];
+    
+    self.didGetPicked = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,10 +82,24 @@ extern NSString * kFailDeleteItemNotificaionName;
     // Dispose of any resources that can be recreated.
 }
 
-- (void)didReceiveLafNotification
+- (void)didGetPickedNotification
 {
-    [self.tableView reloadData];
-    [self.tableView.mj_header endRefreshing];
+    self.didGetPicked = YES;
+    [[BBTLAFManager sharedLAFManager] loadMyLostItemsWithAccount:self.account];
+    self.myPicked = [BBTLAFManager sharedLAFManager].myPicked;
+}
+
+-(void)didGetLostNotification
+{
+    if (self.didGetPicked) {
+        self.myLost = [BBTLAFManager sharedLAFManager].myLost;
+        [self.tableView reloadData];
+        [self.tableView.mj_header endRefreshing];
+        self.didGetPicked = NO;
+    } else {
+        [self refresh];
+        self.didGetPicked = NO;
+    }
 }
 
 - (void)didDeleteItem
@@ -92,18 +119,29 @@ extern NSString * kFailDeleteItemNotificaionName;
 
 - (void)refresh
 {
-    [[BBTLAFManager sharedLAFManager] loadMyPostedItemsWithAccount:self.account];
+    [[BBTLAFManager sharedLAFManager] loadMyPickedItemsWithAccount:self.account];
 }
 
 #pragma mark - Table view data source
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *itemArray = [BBTLAFManager sharedLAFManager].myPicked;
-    return [tableView fd_heightForCellWithIdentifier:itemCellIdentifier configuration:^(BBTLafItemsTableViewCell *cell)
-            {
-                [cell configureItemsCells:itemArray[indexPath.row]];
-            }];
+    if ([[BBTLAFManager sharedLAFManager].myPicked count] > 0 )
+    {
+        NSArray *itemArray = [BBTLAFManager sharedLAFManager].myPicked;
+        return [tableView fd_heightForCellWithIdentifier:itemCellIdentifier configuration:^(BBTLafItemsTableViewCell *cell)
+                {
+                    [cell configureItemsCells:itemArray[indexPath.row]];
+                }];
+    } else if ([[BBTLAFManager sharedLAFManager].myLost count] > 0) {
+        NSArray *itemArray = [BBTLAFManager sharedLAFManager].myLost;
+        return [tableView fd_heightForCellWithIdentifier:itemCellIdentifier configuration:^(BBTLafItemsTableViewCell *cell)
+                {
+                    [cell configureItemsCells:itemArray[indexPath.row]];
+                }];
+    } else {
+        return 0;
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -145,11 +183,23 @@ extern NSString * kFailDeleteItemNotificaionName;
     cell.thumbLostImageView.image = nil;
     [cell.thumbLostImageView cancelImageDownloadTask];
 
-    if (indexPath.section == 0)
+    if (indexPath.section == 0 && [[BBTLAFManager sharedLAFManager].myPicked count] > 0)
     {
-        self.myPicked = [BBTLAFManager sharedLAFManager].myPicked;
-        [cell configureItemsCells:self.myPicked[indexPath.row]];
-        [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)self.myPicked[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
+        [cell configureItemsCells:[BBTLAFManager sharedLAFManager].myPicked[indexPath.row]];
+        [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)[BBTLAFManager sharedLAFManager].myPicked[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
+            //NSLog(@"Succeed!");
+            if (cell) {
+                cell.thumbLostImageView.image = image;
+            }
+            [cell setNeedsLayout];
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+            cell.thumbLostImageView.image = [UIImage imageNamed:@"AppIcon"];
+        }];
+    } else if (indexPath.section == 0 && [[BBTLAFManager sharedLAFManager].myPicked count] == 0) {
+        return 0;
+    } else if (indexPath.section == 1 && [[BBTLAFManager sharedLAFManager].myLost count] > 0) {
+        [cell configureItemsCells:[BBTLAFManager sharedLAFManager].myLost[indexPath.row]];
+        [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)[BBTLAFManager sharedLAFManager].myLost[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
             //NSLog(@"Succeed!");
             if (cell) {
                 cell.thumbLostImageView.image = image;
@@ -159,17 +209,7 @@ extern NSString * kFailDeleteItemNotificaionName;
             cell.thumbLostImageView.image = [UIImage imageNamed:@"AppIcon"];
         }];
     } else {
-        self.myLost = [BBTLAFManager sharedLAFManager].myLost;
-        [cell configureItemsCells:self.myLost[indexPath.row]];
-        [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)self.myLost[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
-            //NSLog(@"Succeed!");
-            if (cell) {
-                cell.thumbLostImageView.image = image;
-            }
-            [cell setNeedsLayout];
-        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-            cell.thumbLostImageView.image = [UIImage imageNamed:@"AppIcon"];
-        }];
+        return 0;
     }
     
     /*

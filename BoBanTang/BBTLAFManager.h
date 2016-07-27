@@ -21,7 +21,8 @@
  //Singleton method
 - (void)retriveItems:(NSUInteger)type WithConditions:(NSDictionary *)conditions;
 - (void)postItemDic:(NSDictionary *)itemDic WithType:(NSInteger)type;
-- (void)loadMyPostedItemsWithAccount:(NSString *)account;
+- (void)loadMyPickedItemsWithAccount:(NSString *)account;
+- (void)loadMyLostItemsWithAccount:(NSString *)account;
 - (void)deletePostedItemsWithId:(NSString *)itemID inTable:(NSUInteger)lostOrFound;
 
 @end
