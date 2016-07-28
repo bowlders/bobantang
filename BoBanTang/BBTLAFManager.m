@@ -72,9 +72,9 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
         NSString *stringCleanPath;
         if (conditions[@"fuzzy"])
         {
-            NSArray *fuzzy = @[@"details", @"location", @"publisher", @"otherContact", @"phone"];
+            //NSArray *fuzzy = @[@"details", @"location", @"publisher", @"otherContact", @"phone"];
             
-            NSDictionary *fuzzyOption = @{@"fuzzy":fuzzy};
+            NSDictionary *fuzzyOption = @{@"fuzzy":@"details"};
             NSString *appendingString = [self getJSONStringForObject:fuzzyOption];
             
             if (type == 1) {

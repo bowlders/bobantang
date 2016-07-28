@@ -96,6 +96,8 @@ extern NSString * kNoMoreItemsNotificationName;
     self.searchController.searchBar.delegate = self;
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.resultsTableController.tableView.delegate = self;
+    
+    self.definesPresentationContext = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -238,6 +240,7 @@ extern NSString * kNoMoreItemsNotificationName;
     //NSArray *itemArray = [BBTLAFManager sharedLAFManager].itemArray;
     BBTLAF *itemDetails = [BBTLAFManager sharedLAFManager].itemArray[indexPath.row];
     
+    
     [self performSegueWithIdentifier:showItemsDetailsIdentifier sender:itemDetails];
 }
 
@@ -278,12 +281,7 @@ extern NSString * kNoMoreItemsNotificationName;
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    NSDictionary *conditions = @{@"details":searchBar.text,
-                                 @"location":searchBar.text,
-                                 @"publisher":searchBar.text,
-                                 @"otherContact":searchBar.text,
-                                 @"phone":searchBar.text
-                                 };
+    NSDictionary *conditions = @{@"details":searchBar.text};
     
     NSDictionary *fuzzyCondition = @{@"fuzzy":conditions};
     [[BBTLAFManager sharedLAFManager] retriveItems:self.lostOrFound.selectedSegmentIndex WithConditions:fuzzyCondition];
