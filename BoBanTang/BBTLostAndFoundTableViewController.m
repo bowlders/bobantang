@@ -177,11 +177,16 @@ extern NSString * kNoMoreItemsNotificationName;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *itemArray = [BBTLAFManager sharedLAFManager].itemArray;
-    return [tableView fd_heightForCellWithIdentifier:itemCellIdentifier configuration:^(BBTLafItemsTableViewCell *cell)
-            {
-                [cell configureItemsCells:itemArray[indexPath.row]];
-            }];
+    if ([BBTLAFManager sharedLAFManager].itemArray > 0)
+    {
+        NSArray *itemArray = [BBTLAFManager sharedLAFManager].itemArray;
+        return [tableView fd_heightForCellWithIdentifier:itemCellIdentifier configuration:^(BBTLafItemsTableViewCell *cell)
+                {
+                    [cell configureItemsCells:itemArray[indexPath.row]];
+                }];
+    } else {
+        return 0;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -202,25 +207,30 @@ extern NSString * kNoMoreItemsNotificationName;
     cell.thumbLostImageView.image = nil;
     [cell.thumbLostImageView cancelImageDownloadTask];
     
-    //Configure cell
-    NSArray *itemArray = [BBTLAFManager sharedLAFManager].itemArray;
-    [cell configureItemsCells:itemArray[indexPath.row]];
-    
-    //Asynchronously downloads the thumbnail
-    [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)itemArray[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
-        //NSLog(@"Succeed!");
-        if (cell) {
-            cell.thumbLostImageView.image = image;
-        }
-        [cell setNeedsLayout];
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-        cell.thumbLostImageView.image = [UIImage imageNamed:@"AppIcon"];
-    }];
-    
-    [self.view setNeedsUpdateConstraints];
-    [self.view updateConstraintsIfNeeded];
-    
-    return cell;
+    if ([BBTLAFManager sharedLAFManager].itemArray > 0)
+    {
+        //Configure cell
+        NSArray *itemArray = [BBTLAFManager sharedLAFManager].itemArray;
+        [cell configureItemsCells:itemArray[indexPath.row]];
+        
+        //Asynchronously downloads the thumbnail
+        [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)itemArray[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
+            //NSLog(@"Succeed!");
+            if (cell) {
+                cell.thumbLostImageView.image = image;
+            }
+            [cell setNeedsLayout];
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+            cell.thumbLostImageView.image = [UIImage imageNamed:@"AppIcon"];
+        }];
+        
+        [self.view setNeedsUpdateConstraints];
+        [self.view updateConstraintsIfNeeded];
+        
+        return cell;
+    } else {
+        return 0;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -258,7 +268,7 @@ extern NSString * kNoMoreItemsNotificationName;
 - (void)BBTItemFilters:(BBTItemFilterSettingsViewController *)controller didFinishSelectConditions:(NSMutableDictionary *)conditions
 {
     self.conditions = [[NSDictionary alloc] initWithDictionary:conditions];
-    [self refresh];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController
@@ -268,8 +278,14 @@ extern NSString * kNoMoreItemsNotificationName;
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    NSArray *fuzzyArray = @[searchBar.text];
-    NSDictionary *fuzzyCondition = @{@"fuzzy":fuzzyArray};
+    NSDictionary *conditions = @{@"details":searchBar.text,
+                                 @"location":searchBar.text,
+                                 @"publisher":searchBar.text,
+                                 @"otherContact":searchBar.text,
+                                 @"phone":searchBar.text
+                                 };
+    
+    NSDictionary *fuzzyCondition = @{@"fuzzy":conditions};
     [[BBTLAFManager sharedLAFManager] retriveItems:self.lostOrFound.selectedSegmentIndex WithConditions:fuzzyCondition];
 }
 

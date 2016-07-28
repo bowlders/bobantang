@@ -12,10 +12,8 @@
 #import "BBTLAF.h"
 #import "RSA.h"
 
-static NSString *getLostItemsUrl = @"http://218.192.166.167/api/protype.php?table=lostItems&method=get&option=";
-static NSString *getPickItemsUrl = @"http://218.192.166.167/api/protype.php?table=pickItems&method=get&option=";
-static NSString *getMyLostUrl = @"http://218.192.166.167/api/protype.php?table=lostItems&method=get&data=";
-static NSString *getMyPickUrl = @"http://218.192.166.167/api/protype.php?table=pickItems&method=get&data=";
+static NSString *getLostItemsUrl = @"http://218.192.166.167/api/protype.php?table=lostItems&method=get";
+static NSString *getPickItemsUrl = @"http://218.192.166.167/api/protype.php?table=pickItems&method=get";
 static NSString *postLostItemUrl = @"http://218.192.166.167/api/protype.php?table=lostItems&method=save&data=";
 static NSString *postPickItemUrl = @"http://218.192.166.167/api/protype.php?table=pickItems&method=save&data=";
 static NSString *deleteLostItemUrl = @"http://218.192.166.167/api/protype.php?table=lostItems&method=delete&data=";
@@ -56,41 +54,47 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
     int __block noMoreItemsCount = 0;
     int beginningItem = self.itemsCount;
     
-    NSString *appendingString = [NSString stringWithFormat:@"{\"limit\":[%d,5]}", beginningItem];
+    NSString *appendingStringOption = [NSString stringWithFormat:@"&option={\"limit\":[%d,5]}", beginningItem];
     
     NSString *url;
     
     if (!conditions)
     {
         if (type == 1) {
-            url = [[getLostItemsUrl stringByAppendingString:appendingString] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+            url = [[getLostItemsUrl stringByAppendingString:appendingStringOption] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         } else if (type == 0) {
-            url = [[getPickItemsUrl stringByAppendingString:appendingString] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+            url = [[getPickItemsUrl stringByAppendingString:appendingStringOption] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         }
     }
     else
     {
         NSString *rowUrl;
+        NSString *stringCleanPath;
         if (conditions[@"fuzzy"])
         {
+            NSArray *fuzzy = @[@"details", @"location", @"publisher", @"otherContact", @"phone"];
+            
+            NSDictionary *fuzzyOption = @{@"fuzzy":fuzzy};
+            NSString *appendingString = [self getJSONStringForObject:fuzzyOption];
+            
             if (type == 1) {
-                rowUrl = [getLostItemsUrl stringByAppendingString:@"&option="];
+                rowUrl = [[[getLostItemsUrl stringByAppendingString:@"&option="] stringByAppendingString:appendingString] stringByAppendingString:@"&data="];
             } else {
-                rowUrl = [getPickItemsUrl stringByAppendingString:@"&option="];
+                rowUrl = [[[getPickItemsUrl stringByAppendingString:@"&option="] stringByAppendingString:appendingString] stringByAppendingString:@"&data="];
             }
+            
+            stringCleanPath = [self getJSONStringForObject:conditions[@"fuzzy"]];
             
         } else {
             if (type == 1) {
-                rowUrl = [[getLostItemsUrl stringByAppendingString:appendingString] stringByAppendingString:@"&data="];
+                rowUrl = [[[getLostItemsUrl stringByAppendingString:appendingStringOption] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]] stringByAppendingString:@"&data="];
             } else {
-                rowUrl = [[getPickItemsUrl stringByAppendingString:appendingString] stringByAppendingString:@"&data="];
+                rowUrl = [[[getPickItemsUrl stringByAppendingString:appendingStringOption] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]] stringByAppendingString:@"&data="];
             }
+            
+            stringCleanPath = [self getJSONStringForObject:conditions];
         }
         
-        NSError *error;
-        NSData *data = [NSJSONSerialization dataWithJSONObject:conditions options:NSJSONWritingPrettyPrinted error:&error];
-        NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSString *stringCleanPath = [jsonString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         url = [rowUrl stringByAppendingString:stringCleanPath];
     }
     
@@ -108,6 +112,7 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
                 noMoreItemsCount++;
             }
             if (conditions[@"fuzzy"]) {
+                self.itemArray = origArr;
                 [self getFuzzyConditionsItemNotification];
             } else {
                 
@@ -126,6 +131,16 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
         NSLog(@"Error: %@", error);
     }];
 
+}
+
+- (NSString *)getJSONStringForObject:(id)object
+{
+    NSError *error;
+    
+    NSData *data = [NSJSONSerialization dataWithJSONObject:object options:NSJSONWritingPrettyPrinted error:&error];
+    NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSString *stringCleanPath = [jsonString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    return stringCleanPath;
 }
 
 - (void)postItemDic:(NSDictionary *)itemDic WithType:(NSInteger)type
@@ -171,7 +186,7 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
     NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSString *stringCleanPath = [jsonString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
-    NSString *url = [getMyPickUrl stringByAppendingString:stringCleanPath];
+    NSString *url = [[getPickItemsUrl stringByAppendingString:@"&data="] stringByAppendingString:stringCleanPath];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];    
@@ -209,7 +224,7 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
     NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSString *stringCleanPath = [jsonString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
-    NSString *url = [getMyLostUrl stringByAppendingString:stringCleanPath];
+    NSString *url = [[getLostItemsUrl stringByAppendingString:@"&data="] stringByAppendingString:stringCleanPath];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];
