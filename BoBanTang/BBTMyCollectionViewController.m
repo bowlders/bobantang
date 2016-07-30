@@ -405,6 +405,7 @@ extern NSString * fetchCollectedArticleFailNotifName;
         {
             BBTDailyArticleViewController *destinationVC = [[BBTDailyArticleViewController alloc] init];
             destinationVC.article = [BBTCollectedDailyArticleManager sharedCollectedArticleManager].currentUserIntactCollectedDailyArticleArray[indexPath.row];
+            destinationVC.isEnteredFromArticleTableVC = 1;
             
             [self.navigationController pushViewController:destinationVC animated:YES];
             [tableView deselectRowAtIndexPath:indexPath animated:YES];

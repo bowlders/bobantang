@@ -124,8 +124,6 @@ extern NSString * getArticleTodaySucceedNotifName;
         make.height.equalTo(self.collectButton.mas_height);
     }];
     
-    //[self loadWebView];
-    
     self.recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe)];
     self.recognizer.direction = UISwipeGestureRecognizerDirectionRight;
     self.recognizer.delegate = self;
