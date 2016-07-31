@@ -24,6 +24,7 @@
     self.date = (NSString *)dictionary[@"date"];
     self.details = (NSString *)dictionary[@"details"];
     self.publisher = (NSString *)dictionary[@"publisher"];
+    self.title = (NSString *)dictionary[@"title"];
     
     return self;
 }

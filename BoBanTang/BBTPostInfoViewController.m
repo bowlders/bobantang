@@ -414,8 +414,13 @@ extern NSString *kFailPostItemNotificaionName;
                                                 rows:itemTypes
                                     initialSelection:0
                                            doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                               [tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text = itemTypes[selectedIndex];
-                                               self.item.type = @(selectedIndex);
+                                               if (selectedIndex != 4)
+                                               {
+                                                   [tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text = itemTypes[selectedIndex];
+                                                   self.item.type = @(selectedIndex);
+                                               } else {
+                                                   //[self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+                                               }
                                            }
                                          cancelBlock:^(ActionSheetStringPicker *picker) {
                                              
