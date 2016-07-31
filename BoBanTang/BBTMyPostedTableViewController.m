@@ -254,10 +254,10 @@ extern NSString * kDidGetLostItemsNotificationName;
                                                              
                                                              if (indexPath.section == 0)
                                                              {
-                                                                 [self.myPicked removeObjectAtIndex:indexPath.row];
+                                                                 
                                                                  [[BBTLAFManager sharedLAFManager] deletePostedItemsWithId:((BBTLAF *)[BBTLAFManager sharedLAFManager].myPicked[indexPath.row]).ID inTable:0];
                                                              } else {
-                                                                 [self.myLost removeObjectAtIndex:indexPath.row];
+                                                                 
                                                                  [[BBTLAFManager sharedLAFManager] deletePostedItemsWithId:((BBTLAF *)[BBTLAFManager sharedLAFManager].myLost[indexPath.row]).ID inTable:1];
                                                              }
                                                          }];

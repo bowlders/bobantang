@@ -67,7 +67,7 @@
         [self.thumbImage addGestureRecognizer:gesture];
         
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-        self.thumbImage.image = [UIImage imageNamed:@"AppIcon"];
+        self.thumbImage.image = [UIImage imageNamed:@"BoBanTang"];
     }];
 }
 

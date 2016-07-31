@@ -42,6 +42,8 @@ static NSString * detailsInitial = @"请输入详情";
 @property (strong, nonatomic) AYVibrantButton     * postButton;
 @property (strong, nonatomic) AYVibrantButton     * resetButton;
 
+@property (assign, nonatomic) BOOL isInsertedRow;
+
 @end
 
 @implementation BBTPostInfoViewController
@@ -141,6 +143,8 @@ extern NSString *kFailPostItemNotificaionName;
         make.centerX.equalTo(@(buttonPosition * 3));
         make.width.equalTo(@(buttonWidth));
     }];
+    
+    self.isInsertedRow = NO;
     
 }
 
@@ -267,7 +271,12 @@ extern NSString *kFailPostItemNotificaionName;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    if (section == 1) {
+        int addRow = self.isInsertedRow ? 1 : 0;
+        return 3 + addRow;
+    } else {
+        return 3;
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -282,10 +291,19 @@ extern NSString *kFailPostItemNotificaionName;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1 && indexPath.row == 1) {
-        return 100.0f;
+    if (!self.isInsertedRow)
+    {
+        if (indexPath.section == 1 && indexPath.row == 1) {
+            return 100.0f;
+        } else {
+            return 44.0f;
+        }
     } else {
-        return 44.0f;
+        if (indexPath.section == 1 && indexPath.row == 2) {
+            return 100.0f;
+        } else {
+            return 44.0f;
+        }
     }
 }
 
@@ -331,32 +349,74 @@ extern NSString *kFailPostItemNotificaionName;
     }
     else if (indexPath.section == 1)
     {
-        if (indexPath.row == 0)
-        {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:rightDisclosureCellIdentifier];
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:rightDisclosureCellIdentifier];
-            self.item.type = @(0);
-            cell.textLabel.text = @"失物类型";
-            cell.textLabel.font = [UIFont systemFontOfSize:16];
-            cell.detailTextLabel.text = @"大学城一卡通";
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            return cell;
-        }
-        else if (indexPath.row == 1)
-        {
-            BBTItemImageTableViewCell *cell = (BBTItemImageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:imageCellIdentifier];
-            
-            return cell;
-        }
-        else if (indexPath.row == 2)
-        {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:rightDisclosureCellIdentifier];
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:rightDisclosureCellIdentifier];
-            cell.textLabel.text = @"失物详情";
-            cell.detailTextLabel.text = detailsInitial;
-            cell.textLabel.font = [UIFont systemFontOfSize:16];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            return cell;
+        if (self.isInsertedRow) {
+            if (indexPath.row == 0)
+            {
+                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:rightDisclosureCellIdentifier];
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:rightDisclosureCellIdentifier];
+                self.item.type = @(0);
+                cell.textLabel.text = @"失物类型";
+                cell.textLabel.font = [UIFont systemFontOfSize:16];
+                cell.detailTextLabel.text = @"大学城一卡通";
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
+            }
+            else if (indexPath.row == 1)
+            {
+                BBTTextFieldTableViewCell *cell = (BBTTextFieldTableViewCell *)[tableView dequeueReusableCellWithIdentifier:textFieldCellIdentifier];
+                [cell configureCellForDifferntUse:4];
+                cell.contents.delegate = self;
+                return cell;
+            }
+            else if (indexPath.row == 2)
+            {
+                BBTItemImageTableViewCell *cell = (BBTItemImageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:imageCellIdentifier];
+                
+                return cell;
+            }
+            else if (indexPath.row == 3)
+            {
+                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:rightDisclosureCellIdentifier];
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:rightDisclosureCellIdentifier];
+                cell.textLabel.text = @"失物详情";
+                cell.detailTextLabel.text = detailsInitial;
+                cell.textLabel.font = [UIFont systemFontOfSize:16];
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
+            }
+        } else {
+            if (indexPath.row == 0)
+            {
+                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:rightDisclosureCellIdentifier];
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:rightDisclosureCellIdentifier];
+                self.item.type = @(0);
+                cell.textLabel.text = @"失物类型";
+                cell.textLabel.font = [UIFont systemFontOfSize:16];
+                cell.detailTextLabel.text = @"大学城一卡通";
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
+            }
+            else if (indexPath.row == 1)
+            {
+                BBTItemImageTableViewCell *cell = (BBTItemImageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:imageCellIdentifier];
+                
+                return cell;
+            }
+            else if (indexPath.row == 2)
+            {
+                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:rightDisclosureCellIdentifier];
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:rightDisclosureCellIdentifier];
+                cell.textLabel.text = @"失物详情";
+                cell.detailTextLabel.text = detailsInitial;
+                cell.textLabel.font = [UIFont systemFontOfSize:16];
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
+            }
+
         }
     }
     else if (indexPath.section == 2)
@@ -418,8 +478,11 @@ extern NSString *kFailPostItemNotificaionName;
                                                {
                                                    [tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text = itemTypes[selectedIndex];
                                                    self.item.type = @(selectedIndex);
+                                                   if (self.isInsertedRow == YES) [self configureEditing];
                                                } else {
-                                                   //[self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+                                                   [tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text = itemTypes[selectedIndex];
+                                                   self.item.type = @(selectedIndex);
+                                                   if (self.isInsertedRow == NO) [self configureEditing];
                                                }
                                            }
                                          cancelBlock:^(ActionSheetStringPicker *picker) {
@@ -429,42 +492,70 @@ extern NSString *kFailPostItemNotificaionName;
          ];
 
     } else if (indexPath.section == 1 && indexPath.row == 1) {
-        
-        UIImagePickerController *pickerContoller = [[UIImagePickerController alloc] init];
-        pickerContoller.modalPresentationStyle = UIModalPresentationCurrentContext;
-        pickerContoller.delegate = self;
-        pickerContoller.allowsEditing = YES;
-        
-        UIAlertController *pickerView = [UIAlertController alertControllerWithTitle:@"Select a photo"
-                                                                            message:nil
-                                                                     preferredStyle:UIAlertControllerStyleActionSheet];
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
-                                                         style:UIAlertActionStyleCancel
-                                                       handler:^(UIAlertAction *action){
-                                                           [pickerView dismissViewControllerAnimated:YES completion:nil];
-                                                       }];
-        UIAlertAction *useCamera = [UIAlertAction actionWithTitle:@"拍照"
-                                                            style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction *action){
-                                                              pickerContoller.sourceType = UIImagePickerControllerSourceTypeCamera;
-                                                              pickerContoller.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
-                                                              [self presentViewController:pickerContoller animated:YES completion:nil];
-                                                          }];
-        UIAlertAction *chooseFromGallery = [UIAlertAction actionWithTitle:@"从相册选取"
-                                                                    style:UIAlertActionStyleDefault
-                                                                  handler:^(UIAlertAction *action){
-                                                                      pickerContoller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-                                                                      [self presentViewController:pickerContoller animated:YES completion:nil];
-                                                                  }];
-        
-        [pickerView addAction:useCamera];
-        [pickerView addAction:chooseFromGallery];
-        [pickerView addAction:cancel];
-        [self presentViewController:pickerView animated:YES completion:nil];
+        if (!self.isInsertedRow) [self showImagePicker];
     } else if (indexPath.section == 1 && indexPath.row == 2) {
-        [self performSegueWithIdentifier:itemDetailIdentifier sender:self.itemDetails];
+        if (!self.isInsertedRow) {
+            [self performSegueWithIdentifier:itemDetailIdentifier sender:self.itemDetails];
+        } else {
+            [self showImagePicker];
+        }
+    } else if (indexPath.section == 1 && indexPath.row == 3) {
+        if (self.isInsertedRow) [self performSegueWithIdentifier:itemDetailIdentifier sender:self.itemDetails];
     }
+}
 
+- (void)showImagePicker
+{
+    UIImagePickerController *pickerContoller = [[UIImagePickerController alloc] init];
+    pickerContoller.modalPresentationStyle = UIModalPresentationCurrentContext;
+    pickerContoller.delegate = self;
+    pickerContoller.allowsEditing = YES;
+    
+    UIAlertController *pickerView = [UIAlertController alertControllerWithTitle:@"Select a photo"
+                                                                        message:nil
+                                                                 preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+                                                     style:UIAlertActionStyleCancel
+                                                   handler:^(UIAlertAction *action){
+                                                       [pickerView dismissViewControllerAnimated:YES completion:nil];
+                                                   }];
+    UIAlertAction *useCamera = [UIAlertAction actionWithTitle:@"拍照"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *action){
+                                                          pickerContoller.sourceType = UIImagePickerControllerSourceTypeCamera;
+                                                          pickerContoller.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+                                                          [self presentViewController:pickerContoller animated:YES completion:nil];
+                                                      }];
+    UIAlertAction *chooseFromGallery = [UIAlertAction actionWithTitle:@"从相册选取"
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction *action){
+                                                                  pickerContoller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                                                                  [self presentViewController:pickerContoller animated:YES completion:nil];
+                                                              }];
+    
+    [pickerView addAction:useCamera];
+    [pickerView addAction:chooseFromGallery];
+    [pickerView addAction:cancel];
+    [self presentViewController:pickerView animated:YES completion:nil];
+}
+
+//Insert a row when the user customizes item type
+- (void)configureEditing
+{
+    [self.tableView beginUpdates];
+    
+    if (!self.isInsertedRow)
+    {
+        self.isInsertedRow = YES;
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:1];
+        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+    } else {
+        self.isInsertedRow = NO;
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:1];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+    }
+    
+    [self.tableView endUpdates];
 }
 
 - (void)dateWasSelected:(NSDate *)selectedDate element:(id)element
@@ -508,17 +599,29 @@ extern NSString *kFailPostItemNotificaionName;
     BBTTextFieldTableViewCell *otherContactCell = (BBTTextFieldTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:2]];
     self.item.otherContact = otherContactCell.contents.text;
     
-    if ([self.item.location isEqualToString:@""] || [self.item.publisher isEqualToString:@""] || [self.item.phone isEqualToString:@""])
+    self.itemInfoToPost = [[NSMutableDictionary alloc] init];
+    
+    if (self.isInsertedRow)
     {
-        UIAlertController *alertController = [[UIAlertController alloc] init];
-        alertController = [UIAlertController alertControllerWithTitle:@"信息不全" message:@"请补全补填信息" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
-        [alertController addAction:okAction];
-        [self presentViewController:alertController animated:YES completion:nil];
-        return;
+        BBTTextFieldTableViewCell *itemTitle = (BBTTextFieldTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
+        self.item.title = itemTitle.contents.text;
+        
+        if ([self.item.location isEqualToString:@""] || [self.item.publisher isEqualToString:@""] || [self.item.phone isEqualToString:@""] || [self.item.title isEqualToString:@""])
+        {
+            [self showAlertView];
+            return;
+        }
+        
+        [self.itemInfoToPost setObject:self.item.title forKey:@"title"];
+        
+    } else {
+        if ([self.item.location isEqualToString:@""] || [self.item.publisher isEqualToString:@""] || [self.item.phone isEqualToString:@""])
+        {
+            [self showAlertView];
+            return;
+        }
     }
     
-    self.itemInfoToPost = [[NSMutableDictionary alloc] init];
     [self.itemInfoToPost setObject:self.item.date forKey:@"date"];
     [self.itemInfoToPost setObject:self.item.campus forKey:@"campus"];
     [self.itemInfoToPost setObject:self.item.location forKey:@"location"];
@@ -541,14 +644,28 @@ extern NSString *kFailPostItemNotificaionName;
     }
 }
 
+- (void)showAlertView
+{
+    UIAlertController *alertController = [[UIAlertController alloc] init];
+    alertController = [UIAlertController alertControllerWithTitle:@"信息不全" message:@"请补全补填信息" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:okAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
 #pragma mark - UIImagePickerController Delegate Methods
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [self dismissViewControllerAnimated:YES completion:NULL];
     
     self.lostItemImage = [info valueForKey:UIImagePickerControllerEditedImage];
-    BBTItemImageTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
-    [cell configureCellWithImage:self.lostItemImage];
+    if (self.isInsertedRow) {
+        BBTItemImageTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1]];
+        [cell configureCellWithImage:self.lostItemImage];
+    } else {
+        BBTItemImageTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
+        [cell configureCellWithImage:self.lostItemImage];
+    }
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

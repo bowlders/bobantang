@@ -47,6 +47,10 @@
             self.contents.placeholder = @"请备注类别，如短号/QQ/微信(选填)";
             break;
             
+        case 4:
+            self.title.text = @"失物名称";
+            self.contents.placeholder = @"请输入失物名称(必填)";
+            
         default:
             break;
     }

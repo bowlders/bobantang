@@ -910,7 +910,7 @@
     </scenes>
     <resources>
         <image name="Tools" width="24" height="24"/>
-        <image name="ToolsSelected" width="30" height="30"/>
+        <image name="ToolsSelected" width="24" height="24"/>
         <image name="group" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
