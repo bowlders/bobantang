@@ -477,7 +477,7 @@
         <scene sceneID="xIc-Da-NjU">
             <objects>
                 <tableViewController id="sta-Oo-5eF" customClass="BBTItemDetailsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="heB-BP-wbb">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="heB-BP-wbb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -910,7 +910,7 @@
     </scenes>
     <resources>
         <image name="Tools" width="24" height="24"/>
-        <image name="ToolsSelected" width="24" height="24"/>
+        <image name="ToolsSelected" width="30" height="30"/>
         <image name="group" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
