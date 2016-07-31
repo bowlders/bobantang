@@ -109,6 +109,7 @@ extern NSString *kFailPostItemNotificaionName;
     self.resetButton.font = [UIFont systemFontOfSize:18.0];
     self.resetButton.backgroundColor = [UIColor BBTAppGlobalBlue];
     self.resetButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.resetButton addTarget:self action:@selector(isReset) forControlEvents:UIControlEventTouchUpInside];
     
     [effectView.contentView addSubview:self.postButton];
     [effectView.contentView addSubview:self.resetButton];
@@ -184,6 +185,10 @@ extern NSString *kFailPostItemNotificaionName;
         BBTTextFieldTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:2]];
         [cell dismissKeyboard];
     }
+    if (self.isInsertedRow) {
+        BBTTextFieldTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
+        [cell dismissKeyboard];
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -193,6 +198,10 @@ extern NSString *kFailPostItemNotificaionName;
     for (NSInteger i = 0; i < 3; i++)
     {
         BBTTextFieldTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:2]];
+        [cell dismissKeyboard];
+    }
+    if (self.isInsertedRow) {
+        BBTTextFieldTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
         [cell dismissKeyboard];
     }
     return YES;
@@ -565,18 +574,6 @@ extern NSString *kFailPostItemNotificaionName;
     [element setText:[dateFormatter stringFromDate:selectedDate]];
 }
 
-- (void)BBTItemDetail:(BBTItemDetailEditingViewController *)controller didFinishEditingDetails:(NSString *)itemDetails
-{
-    self.itemDetails = itemDetails;
-    if ([itemDetails length] < 10) {
-        [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1]].detailTextLabel.text = itemDetails;
-    } else {
-        [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1]].detailTextLabel.text = [[itemDetails substringToIndex:10] stringByAppendingString:@"..."];
-    }
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (void)postButtonIsTapped
 {
     UITableViewCell *dateCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
@@ -608,7 +605,7 @@ extern NSString *kFailPostItemNotificaionName;
         
         if ([self.item.location isEqualToString:@""] || [self.item.publisher isEqualToString:@""] || [self.item.phone isEqualToString:@""] || [self.item.title isEqualToString:@""])
         {
-            [self showAlertView];
+            [self showAlertView:0];
             return;
         }
         
@@ -617,7 +614,7 @@ extern NSString *kFailPostItemNotificaionName;
     } else {
         if ([self.item.location isEqualToString:@""] || [self.item.publisher isEqualToString:@""] || [self.item.phone isEqualToString:@""])
         {
-            [self showAlertView];
+            [self showAlertView:0];
             return;
         }
     }
@@ -644,12 +641,59 @@ extern NSString *kFailPostItemNotificaionName;
     }
 }
 
-- (void)showAlertView
+- (void)isReset
+{
+    [self showAlertView:1];
+}
+
+- (void)didReset
+{
+    self.item = [[BBTLAF alloc] init];
+    self.itemDetails = detailsInitial;
+    self.lostItemImage = nil;
+    if (self.isInsertedRow) [self configureEditing];
+    
+    //Reset custom cell contents
+    for (NSUInteger section = 0; section < 3; section++)
+    {
+        for (NSUInteger row = 0; row < 3; row++)
+        {
+            if ((section == 0 && row == 2) || section == 2)
+            {
+                BBTTextFieldTableViewCell *textFieldCell = (BBTTextFieldTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
+                textFieldCell.contents.text = nil;
+            }
+            else if (section == 1 && row == 1)
+            {
+                BBTItemImageTableViewCell *imageCell = (BBTItemImageTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
+                [imageCell configureCellWithImage:[UIImage imageNamed:@"addNewImage"]];
+            }
+        }
+    }
+    
+    [self.tableView reloadData];
+}
+
+- (void)showAlertView:(NSUInteger)type
 {
     UIAlertController *alertController = [[UIAlertController alloc] init];
-    alertController = [UIAlertController alertControllerWithTitle:@"信息不全" message:@"请补全补填信息" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
-    [alertController addAction:okAction];
+    UIAlertAction *okAction;
+    
+    if (type == 0) {
+        alertController = [UIAlertController alertControllerWithTitle:@"信息不全" message:@"请补全补填信息" preferredStyle:UIAlertControllerStyleAlert];
+        okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+        [alertController addAction:okAction];
+    } else if (type == 1) {
+        alertController = [UIAlertController alertControllerWithTitle:@"确定重置？" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            [self didReset];
+        }];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+        [alertController addAction:okAction];
+        [alertController addAction:cancelAction];
+    }
+    
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
@@ -671,6 +715,19 @@ extern NSString *kFailPostItemNotificaionName;
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+#pragma mark - BBTItemDetailEditingViewController Delegate Methods
+- (void)BBTItemDetail:(BBTItemDetailEditingViewController *)controller didFinishEditingDetails:(NSString *)itemDetails
+{
+    self.itemDetails = itemDetails;
+    if ([itemDetails length] < 10) {
+        [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1]].detailTextLabel.text = itemDetails;
+    } else {
+        [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1]].detailTextLabel.text = [[itemDetails substringToIndex:10] stringByAppendingString:@"..."];
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Navigation
