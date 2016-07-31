@@ -15,8 +15,8 @@
 #import <ShareSDKConnector/ShareSDKConnector.h>
 
 //腾讯开放平台（对应QQ和QQ空间）SDK头文件
-//#import <TencentOpenAPI/TencentOAuth.h>
-//#import <TencentOpenAPI/QQApiInterface.h>
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApiInterface.h>
 
 //微信SDK头文件
 #import "WXApi.h"
@@ -65,9 +65,9 @@
              case SSDKPlatformTypeWechat:
                  [ShareSDKConnector connectWeChat:[WXApi class]];
                  break;
-             //case SSDKPlatformTypeQQ:
-             //    [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
-             //    break;
+             case SSDKPlatformTypeQQ:
+                 [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
+                 break;
              //case SSDKPlatformTypeSinaWeibo:
              //    [ShareSDKConnector connectWeibo:[WeiboSDK class]];
              //    break;
