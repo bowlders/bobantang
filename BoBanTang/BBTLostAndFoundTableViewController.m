@@ -223,7 +223,7 @@ extern NSString * kNoMoreItemsNotificationName;
             }
             [cell setNeedsLayout];
         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-            cell.thumbLostImageView.image = [UIImage imageNamed:@"AppIcon"];
+            cell.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
         }];
         
         [self.view setNeedsUpdateConstraints];
