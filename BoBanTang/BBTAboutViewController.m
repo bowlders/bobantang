@@ -93,7 +93,6 @@
     
     self.tableView = ({
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-        tableView.scrollEnabled = NO;
         tableView.dataSource = self;
         tableView.delegate = self;
         tableView;
