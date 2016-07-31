@@ -60,7 +60,7 @@
             break;
             
         case 4:
-            self.itemName.text = @"其他";
+            self.itemName.text = content.title;
             
         default:
             break;

@@ -22,6 +22,7 @@
 @property (strong, nonatomic) NSString    * date;
 @property (strong, nonatomic) NSString    * details;
 @property (strong, nonatomic) NSString    * publisher;
+@property (strong, nonatomic) NSString    * title;
 
 - (instancetype)initWithResponesObject:(NSDictionary *)dictionary;
 

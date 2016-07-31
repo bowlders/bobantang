@@ -38,8 +38,8 @@ NSString * kFailGetNotificaionName = @"failGetNotificaion";
         if (responseObject)
         {
             NSString *error = responseObject[@"err"];
-            if (error) {
-                self.errorType = @(1);
+            if ([error isEqualToString:@"no score"]) {
+                self.errorType = @(0);
                 [self pushFailGetNotification];
                 return;
             }
@@ -82,6 +82,7 @@ NSString * kFailGetNotificaionName = @"failGetNotificaion";
             [self pushDidGetNotification];
         }
     } failure:^(NSURLSessionTask *task, NSError *error) {
+        NSLog(@"Error: %@",error);
         self.errorType = @(1);
         [self pushFailGetNotification];
     }];
