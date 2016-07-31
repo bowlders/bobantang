@@ -117,7 +117,6 @@ extern NSString * kFeedBackViewDisappearNotifName;
     
     self.meTableView = ({
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-        tableView.scrollEnabled = NO;
         tableView.dataSource = self;
         tableView.delegate = self;
         tableView;
