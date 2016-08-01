@@ -76,9 +76,11 @@ extern NSString * noNewInfoNotifName;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *infoArray = [BBTCampusInfoManager sharedInfoManager].infoArray;
     return [tableView fd_heightForCellWithIdentifier:@"infoCell" configuration:^(BBTCampusInfoTableViewCell *cell){
-        [cell setCellContentDictionary:infoArray[indexPath.row]];
+        if ([BBTCampusInfoManager sharedInfoManager].infoArray && [[BBTCampusInfoManager sharedInfoManager].infoArray count])
+        {
+            [cell setCellContentDictionary:[BBTCampusInfoManager sharedInfoManager].infoArray[indexPath.row]];
+        }
     }];
 }
 
@@ -91,9 +93,11 @@ extern NSString * noNewInfoNotifName;
         cell = [[BBTCampusInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    NSArray *infoArray = [BBTCampusInfoManager sharedInfoManager].infoArray;
-    [cell setCellContentDictionary:infoArray[indexPath.row]];
-    
+    if ([BBTCampusInfoManager sharedInfoManager].infoArray && [[BBTCampusInfoManager sharedInfoManager].infoArray count])
+    {
+        [cell setCellContentDictionary:[BBTCampusInfoManager sharedInfoManager].infoArray[indexPath.row]];
+    }
+
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
 

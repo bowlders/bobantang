@@ -68,10 +68,11 @@ extern NSString * noMoreArticleNotifName;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *articleArray = [BBTDailyArticleManager sharedArticleManager].articleArray;
-    
     return [tableView fd_heightForCellWithIdentifier:@"articleCell" configuration:^(BBTDailyArticleTableViewCell *cell){
-        [cell setCellContentDictionary:articleArray[indexPath.section]];
+        if ([BBTDailyArticleManager sharedArticleManager].articleArray && [[BBTDailyArticleManager sharedArticleManager].articleArray count])
+        {
+            [cell setCellContentDictionary:[BBTDailyArticleManager sharedArticleManager].articleArray[indexPath.section]];
+        }
     }];
 }
 
@@ -99,15 +100,17 @@ extern NSString * noMoreArticleNotifName;
         cell = [[BBTDailyArticleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    NSArray *articleArray = [BBTDailyArticleManager sharedArticleManager].articleArray;
-    [cell setCellContentDictionary:articleArray[indexPath.section]];
-    
+    if ([BBTDailyArticleManager sharedArticleManager].articleArray && [[BBTDailyArticleManager sharedArticleManager].articleArray count])
+    {
+        [cell setCellContentDictionary:[BBTDailyArticleManager sharedArticleManager].articleArray[indexPath.section]];
+    }
+
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
     
     return cell;
 }
-
+ 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BBTDailyArticleViewController *destinationVC = [[BBTDailyArticleViewController alloc] init];
@@ -120,7 +123,7 @@ extern NSString * noMoreArticleNotifName;
 
 - (void)refresh
 {
-    [BBTDailyArticleManager sharedArticleManager].articleCount = 0;         //Load from the first 5 articles
+    [BBTDailyArticleManager sharedArticleManager].articleCount = 0;         //Load from the first 10 articles
     [[BBTDailyArticleManager sharedArticleManager] loadMoreData];
 }
 

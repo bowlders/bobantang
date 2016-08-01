@@ -139,7 +139,7 @@
 {
     self.titleLabel.text = content.title;
     self.authorLabel.text = content.author;
-    self.abstractLabel.text = content.article;
+    self.abstractLabel.text = content.summary;
     self.dateLabel.text = content.date;
 }
 

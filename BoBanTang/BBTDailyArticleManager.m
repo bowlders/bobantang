@@ -33,14 +33,14 @@ NSString * getArticleTodaySucceedNotifName = @"getArticleTodaySucceed";
 
 - (void)loadMoreData
 {
-    if ((!_articleArray) || (!_articleCount))
+    if ((!self.articleArray) || (!self.articleCount))
     {
-        _articleArray = [NSMutableArray array];
+        self.articleArray = [NSMutableArray array];
     }
     
     int __block noMoreArticleCount = 0;                       //Record whether there are new articles loaded in.
     int beginningarticle = self.articleCount;                 //Load from this article, or the a in [a, b]; b is always 5, which means one pull-up loads 5 more articles.
-    NSString *appendingURLString = [NSString stringWithFormat:@"[%d,5]}", beginningarticle];
+    NSString *appendingURLString = [NSString stringWithFormat:@"[%d,10]}", beginningarticle];
     NSString *intactURLString = [baseGetDailyArticleUrl stringByAppendingString:appendingURLString];
     NSString *stringCleanPath = [intactURLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     

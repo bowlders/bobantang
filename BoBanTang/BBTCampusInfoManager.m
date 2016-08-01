@@ -33,9 +33,9 @@ NSString * noNewInfoNotifName = @"noMoreInfo";
 {
     //if _infoArray hasn't been instantiated, instantiate it
     //or if _infoCount == 0, which means that user is currently refreshing(pull-down), then empty _infoArray
-    if ((!_infoArray) || (!_infoCount))
+    if ((!self.infoArray) || (!self.infoCount))
     {
-        _infoArray = [NSMutableArray array];
+        self.infoArray = [NSMutableArray array];
     }
     
     int __block noMoreInfoCount = 0;                        //Record whether there are new infos loaded in.
