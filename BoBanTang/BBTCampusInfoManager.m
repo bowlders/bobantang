@@ -48,10 +48,9 @@ NSString * noNewInfoNotifName = @"noMoreInfo";
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
  
     [manager POST:stringCleanPath parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
+        //NSLog(@"JSON: %@", responseObject);
         if (responseObject)
         {
-            NSLog(@"count - %lu", [(NSArray *)responseObject count]);
             for (int i = 0;i < [(NSArray *)responseObject count];i++)
             {
                 BBTCampusInfo *newInfo = [[BBTCampusInfo alloc] initWithDictionary:((NSArray *)responseObject)[i] error:nil];
