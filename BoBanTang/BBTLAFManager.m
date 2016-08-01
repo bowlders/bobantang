@@ -74,13 +74,13 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
         {
             //NSArray *fuzzy = @[@"details", @"location", @"publisher", @"otherContact", @"phone"];
             
-            NSDictionary *fuzzyOption = @{@"fuzzy":@"details"};
-            NSString *appendingString = [self getJSONStringForObject:fuzzyOption];
+            NSDictionary *fuzzyOption = @{@"fuzzy":@[@"details",@"title"]};
+            NSString *appendingString = @"{\"fuzzy\":[\"details\",\"title\"]}";
             
             if (type == 1) {
-                rowUrl = [[[getLostItemsUrl stringByAppendingString:@"&option="] stringByAppendingString:appendingString] stringByAppendingString:@"&data="];
+                rowUrl = [[[[getLostItemsUrl stringByAppendingString:@"&option="] stringByAppendingString:appendingString] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]] stringByAppendingString:@"&data="];
             } else {
-                rowUrl = [[[getPickItemsUrl stringByAppendingString:@"&option="] stringByAppendingString:appendingString] stringByAppendingString:@"&data="];
+                rowUrl = [[[[getPickItemsUrl stringByAppendingString:@"&option="] stringByAppendingString:appendingString] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]] stringByAppendingString:@"&data="];
             }
             
             stringCleanPath = [self getJSONStringForObject:conditions[@"fuzzy"]];
