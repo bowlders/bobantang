@@ -280,12 +280,15 @@ extern NSString * kNoMoreItemsNotificationName;
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    NSDictionary *conditions = @{@"details":searchBar.text,
-                                 @"title":searchBar.text
-                                 };
+    NSDictionary *conditions = @{@"title":searchBar.text};
     
     NSDictionary *fuzzyCondition = @{@"fuzzy":conditions};
     [[BBTLAFManager sharedLAFManager] retriveItems:self.lostOrFound.selectedSegmentIndex WithConditions:fuzzyCondition];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)refresh
@@ -357,9 +360,6 @@ extern NSString * kNoMoreItemsNotificationName;
         BBTMyPostedTableViewController *controller = segue.destinationViewController;
         controller.account = sender;
     }
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
-
 
 @end

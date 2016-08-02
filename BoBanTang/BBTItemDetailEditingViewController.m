@@ -42,18 +42,24 @@
     [self.delegate BBTItemDetail:self didFinishEditingDetails:self.itemDetails.text];
 }
 
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(nonnull NSString *)text
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-    if (textView.text.length > 1 || (text.length > 0 && ![text isEqualToString:@""]))
+    NSString *newText = [textView.text stringByReplacingCharactersInRange:range withString:text];
+    if (newText.length <= 80)
     {
-        self.doneButton.enabled = YES;
+        if (textView.text.length > 1 || (text.length > 0 && ![text isEqualToString:@""]))
+        {
+            self.doneButton.enabled = YES;
+        }
+        else
+        {
+            self.doneButton.enabled = NO;
+        }
+        return YES;
+    } else {
+        textView.text = [ newText substringToIndex:80];
+        return NO;
     }
-    else
-    {
-        self.doneButton.enabled = NO;
-    }
-    
-    return YES;
 }
 
 /*
