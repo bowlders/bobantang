@@ -54,7 +54,7 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
     int __block noMoreItemsCount = 0;
     int beginningItem = self.itemsCount;
     
-    NSString *appendingStringOption = [NSString stringWithFormat:@"&option={\"limit\":[%d,5]}", beginningItem];
+    NSString *appendingStringOption = [NSString stringWithFormat:@"&option={\"limit\":[%d,6]}", beginningItem];
     
     NSString *url;
     
@@ -72,15 +72,12 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
         NSString *stringCleanPath;
         if (conditions[@"fuzzy"])
         {
-            //NSArray *fuzzy = @[@"details", @"location", @"publisher", @"otherContact", @"phone"];
-            
-            NSDictionary *fuzzyOption = @{@"fuzzy":@"details"};
-            NSString *appendingString = [self getJSONStringForObject:fuzzyOption];
+            NSString *appendingString = @"{\"fuzzy\":\"title\"}";
             
             if (type == 1) {
-                rowUrl = [[[getLostItemsUrl stringByAppendingString:@"&option="] stringByAppendingString:appendingString] stringByAppendingString:@"&data="];
+                rowUrl = [[[[getLostItemsUrl stringByAppendingString:@"&option="] stringByAppendingString:appendingString] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]] stringByAppendingString:@"&data="];
             } else {
-                rowUrl = [[[getPickItemsUrl stringByAppendingString:@"&option="] stringByAppendingString:appendingString] stringByAppendingString:@"&data="];
+                rowUrl = [[[[getPickItemsUrl stringByAppendingString:@"&option="] stringByAppendingString:appendingString] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]] stringByAppendingString:@"&data="];
             }
             
             stringCleanPath = [self getJSONStringForObject:conditions[@"fuzzy"]];
