@@ -235,8 +235,7 @@ extern NSString * kNoMoreItemsNotificationName;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BBTLAF *itemDetails = [BBTLAFManager sharedLAFManager].itemArray[indexPath.row];
-    
-    
+        
     [self performSegueWithIdentifier:showItemsDetailsIdentifier sender:itemDetails];
 }
 
@@ -272,7 +271,8 @@ extern NSString * kNoMoreItemsNotificationName;
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController
 {
-    
+    //Do not remove this method because it will cause crash when user inputs search conditions
+    //Leave it blank or do some advanced search functions here
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
@@ -285,7 +285,11 @@ extern NSString * kNoMoreItemsNotificationName;
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-    [self.tableView.mj_header beginRefreshing];
+     BBTLafSearchResultTableViewController *controller = (BBTLafSearchResultTableViewController *)self.searchController.searchResultsController;
+    controller.filteredItems = [NSArray array];
+    [controller.tableView reloadData];  //Clean search history, prepare the searchResultsController for next search 
+    
+    [self refresh];  //Do not use [self.tableView.mj_header beginRefreshing] because it will cause layout problems
 }
 
 - (void)refresh
