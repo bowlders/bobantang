@@ -72,6 +72,8 @@ extern NSString * kNoMoreItemsNotificationName;
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
     
+    self.tableView.cellLayoutMarginsFollowReadableWidth = false;
+    
     [BBTLAFManager sharedLAFManager].itemsCount = 0;
     
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
