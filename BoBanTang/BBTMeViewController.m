@@ -330,10 +330,13 @@ extern NSString * kFeedBackViewDisappearNotifName;
         if (error) {
             //网络出错了，不设置红点
         } else {
-            //根据未读数 number，设置红点，提醒用户
-            TDBadgedCell *cell = [self.meTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
-            cell.badgeColor = [UIColor redColor];
-            cell.badgeString = [NSString stringWithFormat:@"%ld", (long)number];
+            //根据未读数 number，设置红点，提醒用户(满足强迫症用户的需求，只有未读消息数不为0时才显示红点)
+            if (number)
+            {
+                TDBadgedCell *cell = [self.meTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+                cell.badgeColor = [UIColor redColor];
+                cell.badgeString = [NSString stringWithFormat:@"%ld", (long)number];
+            }
         }
     }];
 }
@@ -356,8 +359,10 @@ extern NSString * kFeedBackViewDisappearNotifName;
 
 - (void)receiveFeedBackViewDisappearNotif
 {
+    //Clear badge.
     TDBadgedCell *cell = [self.meTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
-    cell.badgeString = @"0";
+    cell.badgeColor = [UIColor clearColor];
+    cell.badgeString = nil;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
