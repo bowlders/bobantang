@@ -65,7 +65,6 @@ extern NSString *kFailPostItemNotificaionName;
     }
     
     self.account = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account;
-    //self.account = (@201430202488);
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -173,6 +172,18 @@ extern NSString *kFailPostItemNotificaionName;
 {
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    // Prevent crashing undo bug
+    if(range.length + range.location > textField.text.length)
+    {
+        return NO;
+    }
+    
+    NSUInteger newLength = [textField.text length] + [string length] - range.length;
+    return newLength <= 20;
 }
 
 #pragma -mark handle keyboard

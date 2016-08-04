@@ -83,8 +83,8 @@ extern NSString * kFailGetNotificaionName;
     self.tableView.scrollEnabled = YES;
     
     UIAlertController *alertController = [[UIAlertController alloc] init];
-    if ([self.errorType integerValue] == 0) {
-        alertController = [UIAlertController alertControllerWithTitle:@"连接错误" message:@"可能是网络不好，请稍后再试" preferredStyle:UIAlertControllerStyleAlert];
+    if ([self.errorType integerValue] == 1) {
+        alertController = [UIAlertController alertControllerWithTitle:@"无法获取成绩" message:@"教务系统崩溃或您未完成本学期教师评价" preferredStyle:UIAlertControllerStyleAlert];
     } else {
         alertController = [UIAlertController alertControllerWithTitle:@"无此学期成绩" message:@"请重新选择学期或学年" preferredStyle:UIAlertControllerStyleAlert];
     }

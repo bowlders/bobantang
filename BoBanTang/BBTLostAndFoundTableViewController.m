@@ -179,16 +179,13 @@ extern NSString * kNoMoreItemsNotificationName;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([BBTLAFManager sharedLAFManager].itemArray > 0)
-    {
-        NSArray *itemArray = [BBTLAFManager sharedLAFManager].itemArray;
-        return [tableView fd_heightForCellWithIdentifier:itemCellIdentifier configuration:^(BBTLafItemsTableViewCell *cell)
+    return [tableView fd_heightForCellWithIdentifier:itemCellIdentifier configuration:^(BBTLafItemsTableViewCell *cell)
+            {
+                if ([BBTLAFManager sharedLAFManager].itemArray && [[BBTLAFManager sharedLAFManager].itemArray count] > 0)
                 {
-                    [cell configureItemsCells:itemArray[indexPath.row]];
-                }];
-    } else {
-        return 0;
-    }
+                    [cell configureItemsCells:[BBTLAFManager sharedLAFManager].itemArray[indexPath.row]];
+                }
+            }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -209,7 +206,7 @@ extern NSString * kNoMoreItemsNotificationName;
     cell.thumbLostImageView.image = nil;
     [cell.thumbLostImageView cancelImageDownloadTask];
     
-    if ([BBTLAFManager sharedLAFManager].itemArray > 0)
+    if ([BBTLAFManager sharedLAFManager].itemArray && [[BBTLAFManager sharedLAFManager].itemArray count] > 0)
     {
         //Configure cell
         NSArray *itemArray = [BBTLAFManager sharedLAFManager].itemArray;
@@ -225,14 +222,12 @@ extern NSString * kNoMoreItemsNotificationName;
         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
             cell.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
         }];
-        
-        [self.view setNeedsUpdateConstraints];
-        [self.view updateConstraintsIfNeeded];
-        
-        return cell;
-    } else {
-        return 0;
     }
+    
+    [self.view setNeedsUpdateConstraints];
+    [self.view updateConstraintsIfNeeded];
+    
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

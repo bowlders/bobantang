@@ -21,7 +21,6 @@
 @property (weak, nonatomic) id <BBTItemDetailEditingViewControllerDelegate> delegate;
 
 @property (copy, nonatomic) NSString *textToEditing;
-@property (strong, nonatomic) IBOutlet UITextView *itemDetails;
 
 @end
 

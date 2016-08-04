@@ -37,6 +37,7 @@ NSString * kFailGetNotificaionName = @"failGetNotificaion";
     [manager POST:getScoresUrl parameters:parameters progress:nil success:^(NSURLSessionTask *task, id  responseObject) {
         if (responseObject)
         {
+            NSLog(@"JSON: %@",responseObject);
             NSString *error = responseObject[@"err"];
             if ([error isEqualToString:@"no score"]) {
                 self.errorType = @(0);
