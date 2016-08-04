@@ -732,7 +732,7 @@
                                     </connections>
                                 </button>
                             </barButtonItem>
-                            <barButtonItem systemItem="search" id="Std-ug-j94">
+                            <barButtonItem image="筛选Icon" style="plain" id="Std-ug-j94">
                                 <connections>
                                     <action selector="setFilterConditions:" destination="5Fz-y1-ZjJ" id="WOh-Ed-RkJ"/>
                                 </connections>
@@ -913,8 +913,9 @@
         <image name="Tools" width="24" height="24"/>
         <image name="ToolsSelected" width="24" height="24"/>
         <image name="group" width="24" height="24"/>
+        <image name="筛选Icon" width="20" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="FB3-YY-N3T"/>
+        <segue reference="c5d-gm-phA"/>
     </inferredMetricsTieBreakers>
 </document>

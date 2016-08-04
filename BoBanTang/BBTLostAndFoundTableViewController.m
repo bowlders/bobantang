@@ -287,7 +287,7 @@ extern NSString * kNoMoreItemsNotificationName;
 {
      BBTLafSearchResultTableViewController *controller = (BBTLafSearchResultTableViewController *)self.searchController.searchResultsController;
     controller.filteredItems = [NSArray array];
-    [controller.tableView reloadData];  //Clean search history, prepare the searchResultsController for next search 
+    [controller.tableView reloadData];  //Clean search history, prepare the searchResultsController for next search
     
     [self refresh];  //Do not use [self.tableView.mj_header beginRefreshing] because it will cause layout problems
 }
