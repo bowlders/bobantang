@@ -41,6 +41,7 @@ extern NSString * noMoreArticleNotifName;
     
     NSString *cellIdentifier = @"articleCell";
     [self.tableView registerClass:[BBTDailyArticleTableViewCell class] forCellReuseIdentifier:cellIdentifier];
+    [self.tableView initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self refresh];
@@ -79,6 +80,11 @@ extern NSString * noMoreArticleNotifName;
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 10.0f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.01f;
 }
 
 #pragma mark - Table view data source

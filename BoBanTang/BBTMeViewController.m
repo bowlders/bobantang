@@ -38,6 +38,8 @@ extern NSString * kFeedBackViewDisappearNotifName;
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.navigationController.navigationBarHidden = YES;
+    
     [self updateView];
     
     //When the feedback view disappears, clear badge.
@@ -57,7 +59,7 @@ extern NSString * kFeedBackViewDisappearNotifName;
     CGFloat loginButtonHeight = 30.0f;
     CGFloat verticalInnerSpacing = 10.0f;
     CGFloat avatarImageViewRadius = 50.0f;                              //Avatar imageView is circular.
-    CGFloat avatarImageCenterYOffSet = 20.0f;
+    CGFloat avatarImageCenterYOffSet = 10.0f;
     CGFloat labelHeight = 20.0f;
     CGFloat containerViewHeight = statusBarHeight + navigationBarHeight + verticalInnerSpacing * 6 + avatarImageViewRadius * 2 + labelHeight * 2;
     
@@ -116,7 +118,8 @@ extern NSString * kFeedBackViewDisappearNotifName;
     });
     
     self.meTableView = ({
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        tableView.scrollEnabled = NO;
         tableView.dataSource = self;
         tableView.delegate = self;
         tableView;
@@ -193,6 +196,11 @@ extern NSString * kFeedBackViewDisappearNotifName;
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     return @" ";
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 20.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -368,6 +376,7 @@ extern NSString * kFeedBackViewDisappearNotifName;
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden = NO;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
