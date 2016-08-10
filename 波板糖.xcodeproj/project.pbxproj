@@ -350,10 +350,10 @@
 		A947D9281BD8DADA000F071B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A947D92B1BD8DADA000F071B /* BoBanTang.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BoBanTang.xcdatamodel; sourceTree = "<group>"; };
 		A947D9321BD8DADA000F071B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A947D9371BD8DADA000F071B /* BoBanTangTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BoBanTangTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A947D9371BD8DADA000F071B /* 波板糖.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "波板糖.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A947D93B1BD8DADA000F071B /* BoBanTangTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoBanTangTests.m; sourceTree = "<group>"; };
 		A947D93D1BD8DADA000F071B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A947D9421BD8DADA000F071B /* BoBanTangUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BoBanTangUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A947D9421BD8DADA000F071B /* 波板糖.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "波板糖.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A947D9461BD8DADA000F071B /* BoBanTangUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoBanTangUITests.m; sourceTree = "<group>"; };
 		A947D9481BD8DADA000F071B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A947D9561BD8DBEA000F071B /* GmailLikeLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GmailLikeLoadingView.h; sourceTree = "<group>"; };
@@ -449,7 +449,7 @@
 		AF5412C51CC680AC004C0CE8 /* UIColor+BRSMapColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BRSMapColor.h"; sourceTree = "<group>"; };
 		AF5412C61CC680AC004C0CE8 /* UIColor+BRSMapColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BRSMapColor.m"; sourceTree = "<group>"; };
 		AF5412CC1CC6A6A8004C0CE8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		AF5412E91CC758EA004C0CE8 /* BoBanTang-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BoBanTang-Prefix.pch"; sourceTree = "<group>"; };
+		AF5412E91CC758EA004C0CE8 /* 波板糖-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "波板糖-Prefix.pch"; sourceTree = "<group>"; };
 		AF9903791CF47DF80039C4E4 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../../Library/Developer/Xcode/DerivedData/BoBanTang-attcirrnfptvrjfrasuubeavtccr/Build/Products/Debug-iphonesimulator/libAFNetworking.a"; sourceTree = "<group>"; };
 		AF99037B1CF47FCF0039C4E4 /* libQiniu.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libQiniu.a; path = "../../../Library/Developer/Xcode/DerivedData/BoBanTang-attcirrnfptvrjfrasuubeavtccr/Build/Products/Debug-iphonesimulator/libQiniu.a"; sourceTree = "<group>"; };
 		AF9903881CF4869C0039C4E4 /* RSA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSA.h; sourceTree = "<group>"; };
@@ -1087,8 +1087,8 @@
 			isa = PBXGroup;
 			children = (
 				A947D91B1BD8DADA000F071B /* BoBanTang.app */,
-				A947D9371BD8DADA000F071B /* BoBanTangTests.xctest */,
-				A947D9421BD8DADA000F071B /* BoBanTangUITests.xctest */,
+				A947D9371BD8DADA000F071B /* 波板糖.xctest */,
+				A947D9421BD8DADA000F071B /* 波板糖.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1128,7 +1128,7 @@
 				A947D96A1BD8DC0F000F071B /* BBTAppDelegate.h */,
 				A947D9901BD8DC34000F071B /* BBTAppDelegate.m */,
 				A947D91F1BD8DADA000F071B /* main.m */,
-				AF5412E91CC758EA004C0CE8 /* BoBanTang-Prefix.pch */,
+				AF5412E91CC758EA004C0CE8 /* 波板糖-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1479,9 +1479,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A947D91A1BD8DADA000F071B /* BoBanTang */ = {
+		A947D91A1BD8DADA000F071B /* 波板糖 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A947D94B1BD8DADA000F071B /* Build configuration list for PBXNativeTarget "BoBanTang" */;
+			buildConfigurationList = A947D94B1BD8DADA000F071B /* Build configuration list for PBXNativeTarget "波板糖" */;
 			buildPhases = (
 				DE0E8B634B27FFC0CBC58581 /* Check Pods Manifest.lock */,
 				A947D9171BD8DADA000F071B /* Sources */,
@@ -1494,14 +1494,14 @@
 			);
 			dependencies = (
 			);
-			name = BoBanTang;
+			name = "波板糖";
 			productName = BoBanTang;
 			productReference = A947D91B1BD8DADA000F071B /* BoBanTang.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A947D9361BD8DADA000F071B /* BoBanTangTests */ = {
+		A947D9361BD8DADA000F071B /* 波板糖Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A947D94E1BD8DADA000F071B /* Build configuration list for PBXNativeTarget "BoBanTangTests" */;
+			buildConfigurationList = A947D94E1BD8DADA000F071B /* Build configuration list for PBXNativeTarget "波板糖Tests" */;
 			buildPhases = (
 				A947D9331BD8DADA000F071B /* Sources */,
 				A947D9341BD8DADA000F071B /* Frameworks */,
@@ -1512,14 +1512,14 @@
 			dependencies = (
 				A947D9391BD8DADA000F071B /* PBXTargetDependency */,
 			);
-			name = BoBanTangTests;
+			name = "波板糖Tests";
 			productName = BoBanTangTests;
-			productReference = A947D9371BD8DADA000F071B /* BoBanTangTests.xctest */;
+			productReference = A947D9371BD8DADA000F071B /* 波板糖.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		A947D9411BD8DADA000F071B /* BoBanTangUITests */ = {
+		A947D9411BD8DADA000F071B /* 波板糖UITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A947D9511BD8DADA000F071B /* Build configuration list for PBXNativeTarget "BoBanTangUITests" */;
+			buildConfigurationList = A947D9511BD8DADA000F071B /* Build configuration list for PBXNativeTarget "波板糖UITests" */;
 			buildPhases = (
 				A947D93E1BD8DADA000F071B /* Sources */,
 				A947D93F1BD8DADA000F071B /* Frameworks */,
@@ -1530,9 +1530,9 @@
 			dependencies = (
 				A947D9441BD8DADA000F071B /* PBXTargetDependency */,
 			);
-			name = BoBanTangUITests;
+			name = "波板糖UITests";
 			productName = BoBanTangUITests;
-			productReference = A947D9421BD8DADA000F071B /* BoBanTangUITests.xctest */;
+			productReference = A947D9421BD8DADA000F071B /* 波板糖.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -1558,7 +1558,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A947D9161BD8DADA000F071B /* Build configuration list for PBXProject "BoBanTang" */;
+			buildConfigurationList = A947D9161BD8DADA000F071B /* Build configuration list for PBXProject "波板糖" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1577,9 +1577,9 @@
 			);
 			projectRoot = "";
 			targets = (
-				A947D91A1BD8DADA000F071B /* BoBanTang */,
-				A947D9361BD8DADA000F071B /* BoBanTangTests */,
-				A947D9411BD8DADA000F071B /* BoBanTangUITests */,
+				A947D91A1BD8DADA000F071B /* 波板糖 */,
+				A947D9361BD8DADA000F071B /* 波板糖Tests */,
+				A947D9411BD8DADA000F071B /* 波板糖UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1866,12 +1866,12 @@
 /* Begin PBXTargetDependency section */
 		A947D9391BD8DADA000F071B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A947D91A1BD8DADA000F071B /* BoBanTang */;
+			target = A947D91A1BD8DADA000F071B /* 波板糖 */;
 			targetProxy = A947D9381BD8DADA000F071B /* PBXContainerItemProxy */;
 		};
 		A947D9441BD8DADA000F071B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A947D91A1BD8DADA000F071B /* BoBanTang */;
+			target = A947D91A1BD8DADA000F071B /* 波板糖 */;
 			targetProxy = A947D9431BD8DADA000F071B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1990,7 +1990,7 @@
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BoBanTang/BoBanTang-Prefix.pch";
+				GCC_PREFIX_HEADER = "BoBanTang/波板糖-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -2035,7 +2035,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bbt.bobantang;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "波板糖";
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -2062,7 +2062,7 @@
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BoBanTang/BoBanTang-Prefix.pch";
+				GCC_PREFIX_HEADER = "BoBanTang/波板糖-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -2107,7 +2107,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bbt.bobantang;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "波板糖";
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
@@ -2119,8 +2119,8 @@
 				INFOPLIST_FILE = BoBanTangTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bbt.BoBanTangTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BoBanTang.app/BoBanTang";
+				PRODUCT_NAME = "波板糖";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/波板糖.app/波板糖";
 			};
 			name = Debug;
 		};
@@ -2131,8 +2131,8 @@
 				INFOPLIST_FILE = BoBanTangTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bbt.BoBanTangTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BoBanTang.app/BoBanTang";
+				PRODUCT_NAME = "波板糖";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/波板糖.app/波板糖";
 			};
 			name = Release;
 		};
@@ -2142,7 +2142,7 @@
 				INFOPLIST_FILE = BoBanTangUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bbt.BoBanTangUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "波板糖";
 				TEST_TARGET_NAME = BoBanTang;
 				USES_XCTRUNNER = YES;
 			};
@@ -2154,7 +2154,7 @@
 				INFOPLIST_FILE = BoBanTangUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bbt.BoBanTangUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "波板糖";
 				TEST_TARGET_NAME = BoBanTang;
 				USES_XCTRUNNER = YES;
 			};
@@ -2163,7 +2163,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A947D9161BD8DADA000F071B /* Build configuration list for PBXProject "BoBanTang" */ = {
+		A947D9161BD8DADA000F071B /* Build configuration list for PBXProject "波板糖" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A947D9491BD8DADA000F071B /* Debug */,
@@ -2172,7 +2172,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A947D94B1BD8DADA000F071B /* Build configuration list for PBXNativeTarget "BoBanTang" */ = {
+		A947D94B1BD8DADA000F071B /* Build configuration list for PBXNativeTarget "波板糖" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A947D94C1BD8DADA000F071B /* Debug */,
@@ -2181,7 +2181,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A947D94E1BD8DADA000F071B /* Build configuration list for PBXNativeTarget "BoBanTangTests" */ = {
+		A947D94E1BD8DADA000F071B /* Build configuration list for PBXNativeTarget "波板糖Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A947D94F1BD8DADA000F071B /* Debug */,
@@ -2190,7 +2190,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A947D9511BD8DADA000F071B /* Build configuration list for PBXNativeTarget "BoBanTangUITests" */ = {
+		A947D9511BD8DADA000F071B /* Build configuration list for PBXNativeTarget "波板糖UITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A947D9521BD8DADA000F071B /* Debug */,
