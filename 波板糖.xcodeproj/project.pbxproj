@@ -345,7 +345,7 @@
 		39FE91E41C5F886C0041E46F /* BBTMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMeViewController.h; sourceTree = "<group>"; };
 		39FE91E51C5F886C0041E46F /* BBTMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTMeViewController.m; sourceTree = "<group>"; };
 		48D6888DD2A267EA93C8D8BC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		A947D91B1BD8DADA000F071B /* BoBanTang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoBanTang.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A947D91B1BD8DADA000F071B /* 波板糖.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "波板糖.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A947D91F1BD8DADA000F071B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A947D9281BD8DADA000F071B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A947D92B1BD8DADA000F071B /* BoBanTang.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BoBanTang.xcdatamodel; sourceTree = "<group>"; };
@@ -1086,7 +1086,7 @@
 		A947D91C1BD8DADA000F071B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A947D91B1BD8DADA000F071B /* BoBanTang.app */,
+				A947D91B1BD8DADA000F071B /* 波板糖.app */,
 				A947D9371BD8DADA000F071B /* 波板糖.xctest */,
 				A947D9421BD8DADA000F071B /* 波板糖.xctest */,
 			);
@@ -1496,7 +1496,7 @@
 			);
 			name = "波板糖";
 			productName = BoBanTang;
-			productReference = A947D91B1BD8DADA000F071B /* BoBanTang.app */;
+			productReference = A947D91B1BD8DADA000F071B /* 波板糖.app */;
 			productType = "com.apple.product-type.application";
 		};
 		A947D9361BD8DADA000F071B /* 波板糖Tests */ = {

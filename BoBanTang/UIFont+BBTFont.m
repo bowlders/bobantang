@@ -30,9 +30,14 @@
     return [UIFont fontWithName:@"PingFangSC-Regular" size:30];
 }
 
-+ (UIFont *)BBTProductDetailLabelAndCopyRightFont
++ (UIFont *)BBTProductDetailLabelFont
 {
     return [UIFont fontWithName:@"PingFangSC-Light" size:20];
+}
+
++ (UIFont *)BBTCopyRightLabelFont
+{
+    return [UIFont fontWithName:@"PingFangSC-Light" size:15];
 }
 
 + (UIFont *)BBTGoLabelFont

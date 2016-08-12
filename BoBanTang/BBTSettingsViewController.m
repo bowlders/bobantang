@@ -9,6 +9,7 @@
 #import "BBTSettingsViewController.h"
 #import "BBTCurrentUserManager.h"
 #import "BBTTilesourceDownloadVC.h"
+#import "UIColor+BBTColor.h"
 #import <JNKeychain.h>
 #import <JGProgressHUD.h>
 #import <SDImageCache.h>
@@ -32,6 +33,9 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.scrollEnabled = NO;
 
+    self.appSwitch.onTintColor = [UIColor BBTAppGlobalBlue];
+    self.scoreInquireSwitch.onTintColor = [UIColor BBTAppGlobalBlue];
+    
     self.appSwitch.on = (BOOL)[[JNKeychain loadValueForKey:@"appSwitchStatus"] boolValue];
     self.scoreInquireSwitch.on = (BOOL)[[JNKeychain loadValueForKey:@"scoreSwitchStatus"] boolValue];
 }

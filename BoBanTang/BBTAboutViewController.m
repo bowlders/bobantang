@@ -43,7 +43,7 @@
         label.clipsToBounds = YES;
         label.textAlignment = NSTextAlignmentCenter;
         label.adjustsFontSizeToFitWidth = NO;
-        label.text = @"波板糖3.0";
+        label.text = @"波板糖";
         label.font = [UIFont BBTProductNameLabelFont];
         label.alpha = 1.0;
         label;
@@ -57,8 +57,8 @@
         label.clipsToBounds = YES;
         label.textAlignment = NSTextAlignmentCenter;
         label.adjustsFontSizeToFitWidth = NO;
-        label.text = @"华南理工大学百步梯学生创新中心";
-        label.font = [UIFont BBTProductDetailLabelAndCopyRightFont];
+        label.text = @"V3.0 Blueberry";
+        label.font = [UIFont BBTProductDetailLabelFont];
         label.alpha = 1.0;
         label;
     });
@@ -71,8 +71,8 @@
         label.clipsToBounds = YES;
         label.textAlignment = NSTextAlignmentCenter;
         label.adjustsFontSizeToFitWidth = NO;
-        label.text = @"诚意出品";
-        label.font = [UIFont BBTProductDetailLabelAndCopyRightFont];
+        label.text = @"便捷生活 一触即达";
+        label.font = [UIFont BBTProductDetailLabelFont];
         label.alpha = 1.0;
         label;
     });
@@ -84,9 +84,9 @@
         label.lineBreakMode = NSLineBreakByTruncatingTail;
         label.clipsToBounds = YES;
         label.textAlignment = NSTextAlignmentCenter;
-        label.adjustsFontSizeToFitWidth = NO;
-        label.text = @"Copyright I don't know";
-        label.font = [UIFont BBTProductDetailLabelAndCopyRightFont];
+        label.adjustsFontSizeToFitWidth = YES;
+        label.text = @"Copyright © 2016 100steps Student Innovation Centre. All rights reserved ";
+        label.font = [UIFont BBTCopyRightLabelFont];
         label.alpha = 1.0;
         label;
     });
@@ -114,7 +114,7 @@
     CGFloat productNameLabelHeight = 40.0f;
     CGFloat labelVerticalInnerSpacing = 5.0f;
     CGFloat productDetailAndCopyRightLabelHeight = 30.0f;
-    CGFloat copyRightLabelBottomPadding = 40.0f;
+    CGFloat copyRightLabelBottomPadding = 30.0f;
     CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
     
     //Add Constraints

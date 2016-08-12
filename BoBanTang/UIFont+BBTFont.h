@@ -14,7 +14,8 @@
 + (UIFont *)BBTInformationTableViewAbstractFont;
 + (UIFont *)BBTInformationTableViewAuthorandDateFont;
 + (UIFont *)BBTProductNameLabelFont;
-+ (UIFont *)BBTProductDetailLabelAndCopyRightFont;
++ (UIFont *)BBTProductDetailLabelFont;
++ (UIFont *)BBTCopyRightLabelFont;
 + (UIFont *)BBTGoLabelFont;
 
 @end
