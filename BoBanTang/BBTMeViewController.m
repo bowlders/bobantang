@@ -12,20 +12,23 @@
 #import "BBTLoginViewController.h"
 #import "BBTPersonalInfoEditViewController.h"
 #import "TDBadgedCell.h"
+#import "BBTPreferences.h"
 #import <Masonry.h>
 #import <UIImageView+WebCache.h>
 #import <LeanCloudFeedback/LeanCloudFeedback.h>
 #import <UIImageView+UIActivityIndicatorForSDWebImage.h>
+#import <WSCoachMarksView.h>
 
 @interface BBTMeViewController ()
 
 @property (strong, nonatomic) UIImageView * containerView;
 
-@property (strong, nonatomic) UIButton    * loginButton;
-@property (strong, nonatomic) UIImageView * avatarImageView;
-@property (strong, nonatomic) UILabel     * nameLabel;
-@property (strong, nonatomic) UILabel     * studentNumberLabel;
-@property (strong, nonatomic) UITableView * meTableView;
+@property (strong, nonatomic) UIButton         * loginButton;
+@property (strong, nonatomic) UIImageView      * avatarImageView;
+@property (strong, nonatomic) UILabel          * nameLabel;
+@property (strong, nonatomic) UILabel          * studentNumberLabel;
+@property (strong, nonatomic) UITableView      * meTableView;
+@property (strong, nonatomic) WSCoachMarksView * coachMarksView;
 
 @property (strong, nonatomic) UITapGestureRecognizer * recognizer;
 
@@ -47,6 +50,27 @@ extern NSString * kFeedBackViewDisappearNotifName;
                                              selector:@selector(receiveFeedBackViewDisappearNotif)
                                                  name:kFeedBackViewDisappearNotifName
                                                object:nil];
+    
+
+}
+
+- (void)viewDidLayoutSubviews
+{
+    if (!self.coachMarksView && self.avatarImageView.frame.origin.x && ![BBTPreferences sharedInstance].hasSeenMeView)
+    {
+        // Setup coach marks
+        NSArray *coachMarks = @[
+                                @{
+                                    @"rect": [NSValue valueWithCGRect:self.avatarImageView.frame],
+                                    @"caption": @"点击可修改头像及昵称",
+                                    @"shape": @"square"
+                                    }
+                                ];
+        self.coachMarksView = [[WSCoachMarksView alloc] initWithFrame:self.view.bounds coachMarks:coachMarks];
+        [self.view addSubview:self.coachMarksView];
+        [self.coachMarksView start];
+        [BBTPreferences sharedInstance].hasSeenMeView = YES;
+    }
 }
 
 - (void)viewDidLoad

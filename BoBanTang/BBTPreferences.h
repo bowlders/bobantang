@@ -17,6 +17,7 @@
 @property (assign, nonatomic) BOOL hasSeenBusHelp;
 @property (assign, nonatomic) BOOL hasSeenFlatMapHelp;
 @property (assign, nonatomic) BOOL hasSeen3DMapHelp;
+@property (assign, nonatomic) BOOL hasSeenMeView;
 
 @property (assign, nonatomic) BOOL northCampus;
 @property (assign, nonatomic) BOOL flatMap;

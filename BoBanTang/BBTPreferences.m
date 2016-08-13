@@ -15,12 +15,12 @@
 @dynamic hasSeenBusHelp;
 @dynamic hasSeenIntro;
 @dynamic hasSeenFlatMapHelp;
+@dynamic hasSeenMeView;
 @dynamic busNotifStationIndex;
 @dynamic busNotifDirectionNorth;
 @dynamic busNotifActive;
 @dynamic northCampus;
 @dynamic flatMap;
-
 
 - (id)init
 {
@@ -35,6 +35,7 @@
             self.hasSeenFlatMapHelp = NO;
             self.hasSeen3DMapHelp = NO;
             self.hasSeenBusHelp = NO;
+            self.hasSeenMeView = NO;
             
             self.busNotifActive = NO;
             self.busNotifDirectionNorth = YES;
