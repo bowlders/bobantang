@@ -127,6 +127,8 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
     } failure:^(NSURLSessionTask *task, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
+    
+    [manager invalidateSessionCancelingTasks:NO];
 
 }
 
@@ -166,6 +168,8 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
         NSLog(@"Error: %@",error);
         [self postFailPostItemNotification];
     }];
+    
+    [manager invalidateSessionCancelingTasks:NO];
 }
 
 - (void)loadMyPickedItemsWithAccount:(NSString *)account
@@ -204,6 +208,9 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
         NSLog(@"Error: %@", error);
         [self postFailLafNotification];
     }];
+    
+    [manager invalidateSessionCancelingTasks:NO];
+    
 }
 
 - (void)loadMyLostItemsWithAccount:(NSString *)account
@@ -242,6 +249,8 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
         NSLog(@"Error: %@", error);
         [self postFailLafNotification];
     }];
+    
+    [manager invalidateSessionCancelingTasks:NO];
 
 }
 

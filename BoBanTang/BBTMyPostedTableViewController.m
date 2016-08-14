@@ -190,6 +190,7 @@ extern NSString * kDidGetLostItemsNotificationName;
     if (indexPath.section == 0 && [BBTLAFManager sharedLAFManager].myPicked && [[BBTLAFManager sharedLAFManager].myPicked count] > 0)
     {
         [cell configureItemsCells:[BBTLAFManager sharedLAFManager].myPicked[indexPath.row]];
+        
         [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)[BBTLAFManager sharedLAFManager].myPicked[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
             //NSLog(@"Succeed!");
             if (cell) {
@@ -197,11 +198,13 @@ extern NSString * kDidGetLostItemsNotificationName;
             }
             [cell setNeedsLayout];
         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-            cell.thumbLostImageView.image = [UIImage imageNamed:@"AppIcon"];
+            cell.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
         }];
+        
     }
     else if (indexPath.section == 1 && [BBTLAFManager sharedLAFManager].myLost && [[BBTLAFManager sharedLAFManager].myLost count] > 0) {
         [cell configureItemsCells:[BBTLAFManager sharedLAFManager].myLost[indexPath.row]];
+        
         [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)[BBTLAFManager sharedLAFManager].myLost[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
             //NSLog(@"Succeed!");
             if (cell) {
@@ -209,7 +212,7 @@ extern NSString * kDidGetLostItemsNotificationName;
             }
             [cell setNeedsLayout];
         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-            cell.thumbLostImageView.image = [UIImage imageNamed:@"AppIcon"];
+            cell.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
         }];
     }
     

@@ -58,6 +58,8 @@ NSString * kFailGetEmptyRoomsNotificaionName = @"failGetEmptyRoomsNotificaionNam
         NSLog(@"Error: %@",error);
         [self failGetEmptyRoomNotification];
     }];
+    
+    [manager invalidateSessionCancelingTasks:NO];
 }
 
 - (void)didGetEmptyRoomsNotificaion

@@ -185,7 +185,7 @@ extern NSString *kFailGetEmptyRoomsNotificaionName;
         
         NSArray *buildings;
         if ([self.filterConditions.campus isEqualToString:@"N"]) {
-            buildings = @[@"31", @"32", @"33", @"34", @"35"];
+            buildings = @[@"31", @"32", @"33", @"34", @"35", @"博学楼"];
         } else if ([self.filterConditions.campus isEqualToString:@"S"]) {
            buildings = @[@"A1", @"A2", @"A3"];
         }

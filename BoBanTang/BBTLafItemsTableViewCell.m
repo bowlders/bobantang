@@ -7,6 +7,7 @@
 //
 
 #import "BBTLafItemsTableViewCell.h"
+#import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 
 @implementation BBTLafItemsTableViewCell
 
