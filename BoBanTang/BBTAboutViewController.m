@@ -85,14 +85,16 @@
         label.clipsToBounds = YES;
         label.textAlignment = NSTextAlignmentCenter;
         label.adjustsFontSizeToFitWidth = YES;
-        label.text = @"Copyright © 2016 100steps Student Innovation Centre. All rights reserved ";
+        label.text = @"Copyright © 2016 100steps Student Innovation Centre. All rights reserved.";
         label.font = [UIFont BBTCopyRightLabelFont];
+        label.textColor = [UIColor grayColor];
         label.alpha = 1.0;
         label;
     });
     
     self.tableView = ({
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        tableView.scrollEnabled = NO;
         tableView.dataSource = self;
         tableView.delegate = self;
         tableView;
@@ -104,8 +106,8 @@
     [self.view addSubview:self.productNameLabel];
     [self.view addSubview:self.detailFirstLineLabel];
     [self.view addSubview:self.detailSecondLineLabel];
-    [self.view addSubview:self.theCopyRightLabel];
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.theCopyRightLabel];
     
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     CGFloat logoImageViewUpPadding = 50.0f;
@@ -114,7 +116,7 @@
     CGFloat productNameLabelHeight = 40.0f;
     CGFloat labelVerticalInnerSpacing = 5.0f;
     CGFloat productDetailAndCopyRightLabelHeight = 30.0f;
-    CGFloat copyRightLabelBottomPadding = 30.0f;
+    CGFloat detailSecondLineLabelBottomPadding = 30.0f;
     CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
     
     //Add Constraints
@@ -145,17 +147,17 @@
         make.width.equalTo(self.view.mas_width);
         make.centerX.equalTo(self.view.mas_centerX);
     }];
-    
-    [self.theCopyRightLabel mas_makeConstraints:^(MASConstraintMaker *make){
-        make.top.equalTo(self.detailSecondLineLabel.mas_bottom).offset(labelVerticalInnerSpacing);
-        make.height.equalTo(@(productDetailAndCopyRightLabelHeight));
+     
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make){
+        make.top.equalTo(self.detailSecondLineLabel.mas_bottom).offset(detailSecondLineLabelBottomPadding);
+        make.bottom.equalTo(self.theCopyRightLabel.mas_bottom).offset(-labelVerticalInnerSpacing);
         make.width.equalTo(self.view.mas_width);
         make.centerX.equalTo(self.view.mas_centerX);
     }];
     
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.top.equalTo(self.theCopyRightLabel.mas_bottom).offset(copyRightLabelBottomPadding);
+    [self.theCopyRightLabel mas_makeConstraints:^(MASConstraintMaker *make){
         make.bottom.equalTo(self.view.mas_bottom).offset(-tabBarHeight);
+        make.height.equalTo(@(productDetailAndCopyRightLabelHeight));
         make.width.equalTo(self.view.mas_width);
         make.centerX.equalTo(self.view.mas_centerX);
     }];
