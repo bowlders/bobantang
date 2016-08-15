@@ -24,6 +24,10 @@ static NSString * typeCellIdentifier = @"typeCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor],NSForegroundColorAttributeName,nil]];
+    self.navigationController.navigationBar.tintColor=[UIColor blackColor];
+    
     [self.tableView registerNib:[UINib nibWithNibName:campusCellIdentifier bundle:nil] forCellReuseIdentifier:campusCellIdentifier];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;

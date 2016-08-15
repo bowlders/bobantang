@@ -15,6 +15,7 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
     view.backgroundColor = [UIColor whiteColor];
     self.selectedBackgroundView = view;
+    self.campus.tintColor = [UIColor BBTAppGlobalBlue];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
