@@ -1,5 +1,5 @@
 //
-//  BBTPreferences1.h
+//  BBTPreferences.h
 //  BoBanTang
 //
 //  Created by Caesar on 15/11/19.
@@ -18,6 +18,7 @@
 @property (assign, nonatomic) BOOL hasSeenFlatMapHelp;
 @property (assign, nonatomic) BOOL hasSeen3DMapHelp;
 @property (assign, nonatomic) BOOL hasSeenMeView;
+@property (assign, nonatomic) BOOL hasSeenDailyArticleDetailView;
 
 @property (assign, nonatomic) BOOL northCampus;
 @property (assign, nonatomic) BOOL flatMap;

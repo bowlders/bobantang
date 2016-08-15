@@ -1,5 +1,5 @@
 //
-//  BBTPreferences1.m
+//  BBTPreferences.m
 //  BoBanTang
 //
 //  Created by Caesar on 15/11/19.
@@ -12,10 +12,13 @@
 
 @dynamic firstVersionInstalled;
 @dynamic lastVersionInstalled;
+
 @dynamic hasSeenBusHelp;
 @dynamic hasSeenIntro;
 @dynamic hasSeenFlatMapHelp;
 @dynamic hasSeenMeView;
+@dynamic hasSeenDailyArticleDetailView;
+
 @dynamic busNotifStationIndex;
 @dynamic busNotifDirectionNorth;
 @dynamic busNotifActive;
@@ -36,6 +39,7 @@
             self.hasSeen3DMapHelp = NO;
             self.hasSeenBusHelp = NO;
             self.hasSeenMeView = NO;
+            self.hasSeenDailyArticleDetailView = NO;
             
             self.busNotifActive = NO;
             self.busNotifDirectionNorth = YES;
