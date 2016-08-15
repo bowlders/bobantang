@@ -175,7 +175,7 @@ static NSString * showResultsSegueIdentifier = @"showResults";
     {
         NSArray *buildings;
         if (self.campus.selectedSegmentIndex == 0) {
-           buildings = @[@"31", @"32", @"33", @"34", @"35"];
+           buildings = @[@"31", @"32", @"33", @"34", @"35", @"博学楼"];
         } else if (self.campus.selectedSegmentIndex == 1) {
            buildings = @[@"A1", @"A2", @"A3"];
         }

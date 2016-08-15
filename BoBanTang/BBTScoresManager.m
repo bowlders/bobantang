@@ -87,6 +87,8 @@ NSString * kFailGetNotificaionName = @"failGetNotificaion";
         self.errorType = @(1);
         [self pushFailGetNotification];
     }];
+    
+    [manager invalidateSessionCancelingTasks:NO];
 }
 
 - (void)pushDidGetNotification
