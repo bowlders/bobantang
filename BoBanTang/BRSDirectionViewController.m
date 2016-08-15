@@ -106,6 +106,7 @@ extern NSString *const kBBTDirectionDidGetResponse;;
         header.endTextField.clearsOnBeginEditing = NO;
         header.endTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         [header.cancelButton addTarget:self action:@selector(hideDirectionVC) forControlEvents:UIControlEventTouchUpInside];
+        [header.exchangeButton addTarget:self action:@selector(exchangePlaces) forControlEvents:UIControlEventTouchUpInside];
         header;
     });
     
@@ -199,6 +200,16 @@ extern NSString *const kBBTDirectionDidGetResponse;;
     } else {
         self.directionHeaderView.routeButton.enabled = NO;
     }
+}
+
+- (void)exchangePlaces
+{
+    NSString *tempString = self.directionManager.sourcePlace.title;
+    self.directionManager.sourcePlace.title = self.directionManager.destnationPlace.title;
+    self.directionManager.destnationPlace.title = tempString;
+    
+    [self updateUI];
+    [self routeButtonTapped];
 }
 
 #define HIDE_BUTTON_PADDING 23.0f
