@@ -13,11 +13,13 @@
 #import "BBTLoginViewController.h"
 #import "BBTDailyArticleManager.h"
 #import "BBTCollectedDailyArticleManager.h"
+#import "BBTPreferences.h"
 #import <Masonry.h>
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
 #import <JGProgressHUD.h>
 #import <MBProgressHUD.h>
+#import <WSCoachMarksView.h>
 
 @interface BBTDailyArticleViewController ()
 
@@ -128,6 +130,7 @@ extern NSString * getArticleTodaySucceedNotifName;
     self.recognizer.direction = UISwipeGestureRecognizerDirectionRight;
     self.recognizer.delegate = self;
     [self.view addGestureRecognizer:self.recognizer];
+
 }
 
 - (void)loadWebView
@@ -423,6 +426,23 @@ extern NSString * getArticleTodaySucceedNotifName;
 {
     //Hide loading hud
     [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    if (![BBTPreferences sharedInstance].hasSeenDailyArticleDetailView)
+    {
+        [BBTPreferences sharedInstance].hasSeenDailyArticleDetailView = YES;
+
+        // Setup coach marks
+        NSArray *coachMarks = @[
+                                @{
+                                    @"rect": [NSValue valueWithCGRect:(CGRect){{0, (CGRectGetMidY(self.webView.frame) - 20.0f)}, {0, 0}}],
+                                    @"caption": @"右划查看往期文章",
+                                    @"shape": @"square"
+                                    }
+                                ];
+        WSCoachMarksView *coachMarksView = [[WSCoachMarksView alloc] initWithFrame:self.view.bounds coachMarks:coachMarks];
+        [self.view addSubview:coachMarksView];
+        [coachMarksView start];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
