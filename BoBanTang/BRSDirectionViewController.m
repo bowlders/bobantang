@@ -187,7 +187,7 @@ extern NSString *const kBBTDirectionDidGetResponse;;
         [self.containerView removeFromSuperview];
         [self.view addSubview:self.infoContainerView];
         self.directionHeaderView.startTextField.text = self.directionManager.sourcePlace.title;
-        self.directionHeaderView.endTextField.text = self.directionManager.sourcePlace.title;
+        self.directionHeaderView.endTextField.text = self.directionManager.destnationPlace.title;
     }
     [self.tableView reloadData];
 }
