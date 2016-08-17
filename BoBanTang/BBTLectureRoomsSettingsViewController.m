@@ -199,7 +199,7 @@ static NSString * showResultsSegueIdentifier = @"showResults";
         AbstractActionSheetPicker *datePicker;
         
         NSDate *minDate = [NSDate date];
-        NSDate *maxDate = [[NSDate date] dateByAddingTimeInterval:3600 * 24 * 100];
+        NSDate *maxDate = [[NSDate date] dateByAddingTimeInterval:3600 * 24 * 3];
         
         datePicker = [[ActionSheetDatePicker alloc] initWithTitle:@""
                                                    datePickerMode:UIDatePickerModeDate
