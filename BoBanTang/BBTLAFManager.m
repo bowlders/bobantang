@@ -195,6 +195,7 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
     [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         if (responseObject)
         {
+            NSLog(@"JSON: %@",responseObject);
             for (NSDictionary *itemsInfo in responseObject)
             {
                 BBTLAF *item = [[BBTLAF alloc] initWithResponesObject:itemsInfo];
@@ -236,6 +237,7 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
     [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         if (responseObject)
         {
+            NSLog(@"JSON: %@",responseObject);
             for (NSDictionary *itemsInfo in responseObject)
             {
                 BBTLAF *item = [[BBTLAF alloc] initWithResponesObject:itemsInfo];

@@ -732,10 +732,18 @@ extern NSString *kFailPostItemNotificaionName;
 - (void)BBTItemDetail:(BBTItemDetailEditingViewController *)controller didFinishEditingDetails:(NSString *)itemDetails
 {
     self.itemDetails = itemDetails;
-    if ([itemDetails length] < 10) {
-        [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1]].detailTextLabel.text = itemDetails;
+    if (self.isInsertedRow) {
+        if ([itemDetails length] < 10) {
+            [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:1]].detailTextLabel.text = itemDetails;
+        } else {
+            [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:1]].detailTextLabel.text = [[itemDetails substringToIndex:10] stringByAppendingString:@"..."];
+        }
     } else {
-        [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1]].detailTextLabel.text = [[itemDetails substringToIndex:10] stringByAppendingString:@"..."];
+        if ([itemDetails length] < 10) {
+            [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1]].detailTextLabel.text = itemDetails;
+        } else {
+            [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1]].detailTextLabel.text = [[itemDetails substringToIndex:10] stringByAppendingString:@"..."];
+        }
     }
     
     [self dismissViewControllerAnimated:YES completion:nil];

@@ -28,6 +28,8 @@ static NSString *showItemsDetailsIdentifier = @"showItemsDetailsIdentifier2";
 @property (strong, nonatomic) NSMutableArray *myLost;
 @property (assign, nonatomic) BOOL didGetPicked;
 
+@property (assign, nonatomic) int sectionNum;
+
 @end
 
 @implementation BBTMyPostedTableViewController
@@ -60,7 +62,7 @@ extern NSString * kDidGetLostItemsNotificationName;
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
     self.navigationItem.title = @"我的发布";
-    
+        
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self refresh];
     }];
@@ -85,6 +87,9 @@ extern NSString * kDidGetLostItemsNotificationName;
 - (void)didGetPickedNotification
 {
     self.didGetPicked = YES;
+    if ([[BBTLAFManager sharedLAFManager].myPicked count] > 0) {
+        self.sectionNum++;
+    }
     [[BBTLAFManager sharedLAFManager] loadMyLostItemsWithAccount:self.account];
     self.myPicked = [BBTLAFManager sharedLAFManager].myPicked;
 }
@@ -93,8 +98,38 @@ extern NSString * kDidGetLostItemsNotificationName;
 {
     if (self.didGetPicked) {
         self.myLost = [BBTLAFManager sharedLAFManager].myLost;
+        
+        if ([[BBTLAFManager sharedLAFManager].myLost count] > 0) {
+            self.sectionNum++;
+        }
+        
         [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
+        if ([[BBTLAFManager sharedLAFManager].myPicked count] == 0 && [[BBTLAFManager sharedLAFManager].myLost count] == 0)
+        {
+            if (self.navigationController.view)
+            {
+                //Show HUD
+                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+                
+                //Set the annular determinate mode to show task progress.
+                hud.mode = MBProgressHUDModeText;
+                hud.labelText = @"无失物";
+                
+                //Move to center.
+                hud.xOffset = 0.0f;
+                hud.yOffset = 0.0f;
+                
+                //Hide after 2 seconds.
+                [hud hide:YES afterDelay:2.0f];
+            }
+            
+            //Dismiss current VC 0.5 sec after HUD disappears.
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                //Go back to the BBTMeViewController.
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+        }
         self.didGetPicked = NO;
     } else {
         [self refresh];
@@ -119,6 +154,7 @@ extern NSString * kDidGetLostItemsNotificationName;
 
 - (void)refresh
 {
+    self.sectionNum = 0;
     [[BBTLAFManager sharedLAFManager] loadMyPickedItemsWithAccount:self.account];
 }
 
@@ -150,32 +186,55 @@ extern NSString * kDidGetLostItemsNotificationName;
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    switch (section) {
-        case 0:
-            return @"找失主";
-            break;
-            
-        case 1:
-            return @"找失物";
-            break;
-            
-        default:
-            break;
+    if (self.sectionNum == 2) {
+        switch (section) {
+            case 0:
+                return @" 找失主";
+                break;
+                
+            case 1:
+                return @" 找失物";
+                break;
+                
+            default:
+                break;
+        }
+    } else if (self.sectionNum == 1 && [[BBTLAFManager sharedLAFManager].myLost count] == 0) {
+        return @"找失主";
+    } else if (self.sectionNum == 1 && [[BBTLAFManager sharedLAFManager].myPicked count] == 0) {
+        return @"找失物";
     }
     return 0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return self.sectionNum;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return [[BBTLAFManager sharedLAFManager].myPicked count];
-    } else {
-        return [[BBTLAFManager sharedLAFManager].myLost   count];
+    //User has both picked and lost items
+    if ([[BBTLAFManager sharedLAFManager].myPicked count] != 0 && [[BBTLAFManager sharedLAFManager].myLost count] != 0) {
+        if (section == 0) {
+            return [[BBTLAFManager sharedLAFManager].myPicked count];
+        } else {
+            return [[BBTLAFManager sharedLAFManager].myLost count];
+        }
+    }
+    //Users has none
+    else if ([[BBTLAFManager sharedLAFManager].myPicked count] == 0 && [[BBTLAFManager sharedLAFManager].myLost count] == 0)
+    {
+        return 0;
+    }
+    //Users has either
+    else
+    {
+        if ([[BBTLAFManager sharedLAFManager].myPicked count] != 0) {
+            return [[BBTLAFManager sharedLAFManager].myPicked count];
+        } else {
+            return [[BBTLAFManager sharedLAFManager].myLost count];
+        }
     }
 }
 
@@ -187,34 +246,71 @@ extern NSString * kDidGetLostItemsNotificationName;
     cell.thumbLostImageView.image = nil;
     [cell.thumbLostImageView cancelImageDownloadTask];
 
-    if (indexPath.section == 0 && [BBTLAFManager sharedLAFManager].myPicked && [[BBTLAFManager sharedLAFManager].myPicked count] > 0)
+    //The user has both picked and lost items
+    if (self.sectionNum == 2)
     {
-        [cell configureItemsCells:[BBTLAFManager sharedLAFManager].myPicked[indexPath.row]];
-        
-        [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)[BBTLAFManager sharedLAFManager].myPicked[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
-            //NSLog(@"Succeed!");
-            if (cell) {
-                cell.thumbLostImageView.image = image;
-            }
-            [cell setNeedsLayout];
-        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-            cell.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
-        }];
-        
+        if (indexPath.section == 0 && [BBTLAFManager sharedLAFManager].myPicked && [[BBTLAFManager sharedLAFManager].myPicked count] > 0)
+        {
+            [cell configureItemsCells:[BBTLAFManager sharedLAFManager].myPicked[indexPath.row]];
+            
+            [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)[BBTLAFManager sharedLAFManager].myPicked[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
+                //NSLog(@"Succeed!");
+                if (cell) {
+                    cell.thumbLostImageView.image = image;
+                }
+                [cell setNeedsLayout];
+            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                cell.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
+            }];
+            
+        }
+        else if (indexPath.section == 1 && [BBTLAFManager sharedLAFManager].myLost && [[BBTLAFManager sharedLAFManager].myLost count] > 0) {
+            [cell configureItemsCells:[BBTLAFManager sharedLAFManager].myLost[indexPath.row]];
+            
+            [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)[BBTLAFManager sharedLAFManager].myLost[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
+                //NSLog(@"Succeed!");
+                if (cell) {
+                    cell.thumbLostImageView.image = image;
+                }
+                [cell setNeedsLayout];
+            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                cell.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
+            }];
+        }
     }
-    else if (indexPath.section == 1 && [BBTLAFManager sharedLAFManager].myLost && [[BBTLAFManager sharedLAFManager].myLost count] > 0) {
-        [cell configureItemsCells:[BBTLAFManager sharedLAFManager].myLost[indexPath.row]];
-        
-        [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)[BBTLAFManager sharedLAFManager].myLost[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
-            //NSLog(@"Succeed!");
-            if (cell) {
-                cell.thumbLostImageView.image = image;
+    //The user has either
+    else if (self.sectionNum == 1)
+    {
+        if ([[BBTLAFManager sharedLAFManager].myPicked count] > 0 || [[BBTLAFManager sharedLAFManager].myLost count] > 0)
+        {
+            if ([[BBTLAFManager sharedLAFManager].myPicked count] > 0) {
+                [cell configureItemsCells:[BBTLAFManager sharedLAFManager].myPicked[indexPath.row]];
+                
+                [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)[BBTLAFManager sharedLAFManager].myPicked[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
+                    //NSLog(@"Succeed!");
+                    if (cell) {
+                        cell.thumbLostImageView.image = image;
+                    }
+                    [cell setNeedsLayout];
+                } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                    cell.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
+                }];
+            } else {
+                [cell configureItemsCells:[BBTLAFManager sharedLAFManager].myLost[indexPath.row]];
+                
+                [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)[BBTLAFManager sharedLAFManager].myLost[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
+                    //NSLog(@"Succeed!");
+                    if (cell) {
+                        cell.thumbLostImageView.image = image;
+                    }
+                    [cell setNeedsLayout];
+                } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                    cell.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
+                }];
             }
-            [cell setNeedsLayout];
-        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-            cell.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
-        }];
+        }
     }
+    
     
     [self.view setNeedsUpdateConstraints];
     [self.view updateConstraintsIfNeeded];
@@ -224,14 +320,31 @@ extern NSString * kDidGetLostItemsNotificationName;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        BBTLAF *itemDetails = [BBTLAFManager sharedLAFManager].myPicked[indexPath.row];
-        self.lostOrFound = 0;
-        [self performSegueWithIdentifier:showItemsDetailsIdentifier sender:itemDetails];
-    } else {
-        BBTLAF *itemDetails = [BBTLAFManager sharedLAFManager].myLost[indexPath.row];
-        self.lostOrFound = 1;
-        [self performSegueWithIdentifier:showItemsDetailsIdentifier sender:itemDetails];
+    //The user has both picked and lost items
+    if (self.sectionNum == 2) {
+        if (indexPath.section == 0) {
+            BBTLAF *itemDetails = [BBTLAFManager sharedLAFManager].myPicked[indexPath.row];
+            self.lostOrFound = 0;
+            [self performSegueWithIdentifier:showItemsDetailsIdentifier sender:itemDetails];
+        } else {
+            BBTLAF *itemDetails = [BBTLAFManager sharedLAFManager].myLost[indexPath.row];
+            self.lostOrFound = 1;
+            [self performSegueWithIdentifier:showItemsDetailsIdentifier sender:itemDetails];
+        }
+    }
+    //The user has either
+    else if (self.sectionNum == 1)
+    {
+        if ([[BBTLAFManager sharedLAFManager].myPicked count] > 0)
+        {
+            BBTLAF *itemDetails = [BBTLAFManager sharedLAFManager].myPicked[indexPath.row];
+            self.lostOrFound = 0;
+            [self performSegueWithIdentifier:showItemsDetailsIdentifier sender:itemDetails];
+        } else {
+            BBTLAF *itemDetails = [BBTLAFManager sharedLAFManager].myLost[indexPath.row];
+            self.lostOrFound = 1;
+            [self performSegueWithIdentifier:showItemsDetailsIdentifier sender:itemDetails];
+        }
     }
 }
 
@@ -250,13 +363,23 @@ extern NSString * kDidGetLostItemsNotificationName;
                                                              [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
                                                              [self.view setUserInteractionEnabled:NO];
                                                              
-                                                             if (indexPath.section == 0)
+                                                             //The user has both picked and lost items
+                                                             if (self.sectionNum == 2) {
+                                                                 if (indexPath.section == 0)
+                                                                 {
+                                                                     [[BBTLAFManager sharedLAFManager] deletePostedItemsWithId:((BBTLAF *)[BBTLAFManager sharedLAFManager].myPicked[indexPath.row]).ID inTable:0];
+                                                                 } else {
+                                                                     [[BBTLAFManager sharedLAFManager] deletePostedItemsWithId:((BBTLAF *)[BBTLAFManager sharedLAFManager].myLost[indexPath.row]).ID inTable:1];
+                                                                 }
+                                                             }
+                                                             //The user has either
+                                                             else if (self.sectionNum == 1)
                                                              {
-                                                                 
-                                                                 [[BBTLAFManager sharedLAFManager] deletePostedItemsWithId:((BBTLAF *)[BBTLAFManager sharedLAFManager].myPicked[indexPath.row]).ID inTable:0];
-                                                             } else {
-                                                                 
-                                                                 [[BBTLAFManager sharedLAFManager] deletePostedItemsWithId:((BBTLAF *)[BBTLAFManager sharedLAFManager].myLost[indexPath.row]).ID inTable:1];
+                                                                 if ([[BBTLAFManager sharedLAFManager].myPicked count] > 0) {
+                                                                     [[BBTLAFManager sharedLAFManager] deletePostedItemsWithId:((BBTLAF *)[BBTLAFManager sharedLAFManager].myPicked[indexPath.row]).ID inTable:0];
+                                                                 } else {
+                                                                     [[BBTLAFManager sharedLAFManager] deletePostedItemsWithId:((BBTLAF *)[BBTLAFManager sharedLAFManager].myLost[indexPath.row]).ID inTable:1];
+                                                                 }
                                                              }
                                                          }];
         
