@@ -98,8 +98,8 @@ extern NSString * kNoMoreItemsNotificationName;
     self.searchController.searchBar.delegate = self;
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.resultsTableController.tableView.delegate = self;
-    
     self.definesPresentationContext = YES;
+    [self.tableView setShowsVerticalScrollIndicator:NO];
 }
 
 - (void)didReceiveMemoryWarning {
