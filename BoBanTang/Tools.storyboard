@@ -81,7 +81,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Mrh-y8-LzU" kind="show" id="vrT-TJ-FCJ"/>
+                                            <segue destination="Qsn-FN-ZgX" kind="show" identifier="showScores" id="g8o-zK-ff8"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -175,9 +175,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <connections>
-                        <segue destination="Qsn-FN-ZgX" kind="show" identifier="showScores" id="EiD-UN-0yB"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rpQ-ua-uPE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

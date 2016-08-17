@@ -14,6 +14,8 @@
 #import "BBTMapContainerVC.h"
 #import <Masonry.h>
 
+static NSString *showScoresIdentifier = @"showScores";
+
 @interface BBTToolsTableViewController ()
 
 @property (strong, nonatomic) IBOutlet UIImageView *roomImage;
@@ -28,6 +30,13 @@
 @end
 
 @implementation BBTToolsTableViewController
+
+extern NSString * kUserAuthentificationFinishNotifName;
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveUserAuthentificaionNotification) name:kUserAuthentificationFinishNotifName object:nil];
+}
 
 - (void)viewDidLoad
 {
@@ -50,6 +59,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)didReceiveUserAuthentificaionNotification
+{
+    return YES;
 }
 
 - (void)configureSize:(UIImageView *)imageView andLabel:(UILabel *)label
@@ -78,6 +92,51 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 5.0f;
+}
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if ([identifier isEqualToString:showScoresIdentifier]) {
+        if ([[BBTCurrentUserManager sharedCurrentUserManager] userIsActive])
+        {
+            return YES;
+        } else {
+            UIAlertController *alertController = [[UIAlertController alloc] init];
+            alertController = [UIAlertController alertControllerWithTitle:@"你还没有登录哟" message:@"请先登录" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"去登陆"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action) {
+                                                                 BBTLoginViewController *loginViewController = [[BBTLoginViewController alloc] init];
+                                                                 UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+                                                                 [self presentViewController:navigationController animated:YES completion:nil];
+                                                                 
+                                                             }];
+            
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                                   style:UIAlertActionStyleCancel
+                                                                 handler:nil];
+            
+            [alertController addAction:cancelAction];
+            [alertController addAction:okAction];
+            
+            [self presentViewController:alertController animated:YES completion:nil];
+            return NO;
+        }
+    } else {
+        return YES;
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:showScoresIdentifier])
+    {
+        BBTScoresTableViewController *controller = segue.destinationViewController;
+        NSDictionary *account =@{@"account":[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account,
+                                 @"password":[BBTCurrentUserManager sharedCurrentUserManager].currentUser.password
+                                 };
+        controller.userInfo = [[NSMutableDictionary alloc] initWithDictionary:account];
+    }
 }
 
 @end
