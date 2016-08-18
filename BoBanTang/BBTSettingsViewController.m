@@ -17,7 +17,6 @@
 @interface BBTSettingsViewController ()
 
 @property (strong, nonatomic) IBOutlet UISwitch *appSwitch;
-@property (strong, nonatomic) IBOutlet UISwitch *scoreInquireSwitch;
 @property (strong, nonatomic) IBOutlet UILabel *appLabel;
 @property (strong, nonatomic) IBOutlet UILabel *exitLoginLabel;
 
@@ -34,10 +33,7 @@
     self.tableView.scrollEnabled = NO;
 
     self.appSwitch.onTintColor = [UIColor BBTAppGlobalBlue];
-    self.scoreInquireSwitch.onTintColor = [UIColor BBTAppGlobalBlue];
-    
     self.appSwitch.on = (BOOL)[[JNKeychain loadValueForKey:@"appSwitchStatus"] boolValue];
-    self.scoreInquireSwitch.on = (BOOL)[[JNKeychain loadValueForKey:@"scoreSwitchStatus"] boolValue];
 }
 
 
@@ -52,13 +48,13 @@
     
     switch (section) {
         case 0:
-            sectionHeight = 15.0f;
+            sectionHeight = 10.0f;
             break;
         case 1:
             sectionHeight = 5.0f;
             break;
         case 2:
-            sectionHeight = 40.0f;
+            sectionHeight = 20.0f;
             break;
         case 3:
             sectionHeight = 15.0f;
@@ -191,12 +187,6 @@
         {
             [[BBTCurrentUserManager sharedCurrentUserManager] deleteCurrentUserInfo];
         }
-    }
-    else if (sender.tag == 1)
-    {
-        [JNKeychain saveValue:boolNumber forKey:@"scoreSwitchStatus"];
-        
-        //TODO: Deal With score inquire switch event
     }
 }
 
