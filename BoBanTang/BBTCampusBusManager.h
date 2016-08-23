@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const campusBusNotificationName;
+extern NSString * const retriveCampusBusDataFailNotifName;
+
 @interface BBTCampusBusManager : NSObject
 
 @property (strong, nonatomic) NSArray        * stationNameArray;

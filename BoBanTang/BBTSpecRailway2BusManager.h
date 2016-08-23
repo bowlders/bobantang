@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const busDataNotificationName;
+extern NSString * const retriveDirectionSouthFailNotifName;
+extern NSString * const retriveDirectionNorthFailNotifName;
+
 //Singleton Bus Manager
 @interface BBTSpecRailway2BusManager : NSObject
 

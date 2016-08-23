@@ -87,8 +87,21 @@ extern NSString * failUploadUserLogoURLNotifName;
     UIAlertAction *useCamera = [UIAlertAction actionWithTitle:@"拍照"
                                                         style:UIAlertActionStyleDefault
                                                       handler:^(UIAlertAction *action){
-                                                          pickerContoller.sourceType = UIImagePickerControllerSourceTypeCamera;
-                                                          [self presentViewController:pickerContoller animated:YES completion:nil];
+                                                          if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
+                                                          {
+                                                              //Current device has a camera.
+                                                              pickerContoller.sourceType = UIImagePickerControllerSourceTypeCamera;
+                                                              [self presentViewController:pickerContoller animated:YES completion:nil];
+                                                          }
+                                                          else
+                                                          {
+                                                              UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"当前设备无摄像头"
+                                                                                                                  message:nil
+                                                                                                                 delegate:self
+                                                                                                        cancelButtonTitle:@"确定"
+                                                                                                        otherButtonTitles:@"确定", nil];
+                                                              [alertView show];
+                                                          }
                                                       }];
     UIAlertAction *chooseFromGallery = [UIAlertAction actionWithTitle:@"从相册选取"
                                                                 style:UIAlertActionStyleDefault

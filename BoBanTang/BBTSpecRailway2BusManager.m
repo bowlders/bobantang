@@ -16,9 +16,9 @@
 static NSString * directionSouthURLString = @"http://bbtwechat1.100steps.net/api/LineTwo.php?dir=0";
 static NSString * directionNorthURLString = @"http://bbtwechat1.100steps.net/api/LineTwo.php?dir=1";
 
-NSString * busDataNotificationName = @"specBusNotification";
-NSString * retriveDirectionSouthFailNotifName = @"southSpecBusFailNotif";
-NSString * retriveDirectionNorthFailNotifName = @"northSpecBusFailNotif";
+NSString * const busDataNotificationName = @"specBusNotification";
+NSString * const retriveDirectionSouthFailNotifName = @"southSpecBusFailNotif";
+NSString * const retriveDirectionNorthFailNotifName = @"northSpecBusFailNotif";
 
 static float dataRequestInterval = 5.0;                                                     //The time interval between two data requests
 

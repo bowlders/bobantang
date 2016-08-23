@@ -59,8 +59,8 @@
 		39B5953D1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B5953C1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m */; };
 		39B595401C0AF0400015B673 /* BBTDailyArticleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B5953F1C0AF0400015B673 /* BBTDailyArticleTableViewController.m */; };
 		39B595431C0AF0500015B673 /* BBTCampusInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B595421C0AF0500015B673 /* BBTCampusInfoViewController.m */; };
-		39CB16EF1C77371C0046C9B0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39CB16EE1C77371C0046C9B0 /* Images.xcassets */; };
 		39D64D311CDA5681005FBD88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D64D301CDA5681005FBD88 /* Foundation.framework */; };
+		39DDD84A1D6B5E87008F548E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39DDD8491D6B5E87008F548E /* Images.xcassets */; };
 		39DE6D421D36157F002E0A2C /* BBTChangeNickNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DE6D411D36157F002E0A2C /* BBTChangeNickNameViewController.m */; };
 		39F2D7E41D4D88B500510A00 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F2D7E31D4D88B500510A00 /* libsqlite3.dylib */; };
 		39F2D7EC1D4D88CF00510A00 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 395B52DD1C7D5C87008FD949 /* libsqlite3.tbd */; };
@@ -329,8 +329,8 @@
 		39B595411C0AF0500015B673 /* BBTCampusInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCampusInfoViewController.h; sourceTree = "<group>"; };
 		39B595421C0AF0500015B673 /* BBTCampusInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCampusInfoViewController.m; sourceTree = "<group>"; };
 		39B595441C0AF9D90015B673 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
-		39CB16EE1C77371C0046C9B0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		39D64D301CDA5681005FBD88 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		39DDD8491D6B5E87008F548E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		39DE6D401D36157F002E0A2C /* BBTChangeNickNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTChangeNickNameViewController.h; sourceTree = "<group>"; };
 		39DE6D411D36157F002E0A2C /* BBTChangeNickNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTChangeNickNameViewController.m; sourceTree = "<group>"; };
 		39F2D7E31D4D88B500510A00 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
@@ -1119,12 +1119,12 @@
 		A947D91E1BD8DADA000F071B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				39DDD8491D6B5E87008F548E /* Images.xcassets */,
 				39231B1B1D3E1BC0003FBA9C /* TDBadgedCell */,
 				39231B171D3E1BA7003FBA9C /* UIImageView+WebCache */,
 				39231AE71D3DC335003FBA9C /* ShareSDK */,
 				AF9A8D2F1CC778300079C46F /* flatMapMetaData */,
 				AF9A8D361CC7784F0079C46F /* 3DMapMateData */,
-				39CB16EE1C77371C0046C9B0 /* Images.xcassets */,
 				A947D96A1BD8DC0F000F071B /* BBTAppDelegate.h */,
 				A947D9901BD8DC34000F071B /* BBTAppDelegate.m */,
 				A947D91F1BD8DADA000F071B /* main.m */,
@@ -1649,8 +1649,8 @@
 				AF9A8D331CC778460079C46F /* campusBoundary.geojson in Resources */,
 				AF9A8D341CC778460079C46F /* SCUTFlatMapMetaData_n.geojson in Resources */,
 				39231B131D3DC336003FBA9C /* README.txt in Resources */,
-				39CB16EF1C77371C0046C9B0 /* Images.xcassets in Resources */,
 				AF5412B81CC6805D004C0CE8 /* BRSPlaceView.xib in Resources */,
+				39DDD84A1D6B5E87008F548E /* Images.xcassets in Resources */,
 				AF32984C1CE3705300F587BF /* BBTDownloadCell.xib in Resources */,
 				395B10C71C55252600772A38 /* Go.storyboard in Resources */,
 				AF5412BA1CC6805D004C0CE8 /* BBTDirectionHeaderView.xib in Resources */,

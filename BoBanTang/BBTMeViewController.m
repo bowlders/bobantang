@@ -141,6 +141,8 @@ extern NSString * kFeedBackViewDisappearNotifName;
         label;
     });
     
+    NSLog(@"device - %@", [UIDevice currentDevice].name);
+    
     self.meTableView = ({
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         tableView.scrollEnabled = NO;

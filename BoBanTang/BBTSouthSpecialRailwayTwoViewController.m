@@ -27,9 +27,6 @@
 
 @implementation BBTSouthSpecialRailwayTwoViewController
 
-extern NSString * busDataNotificationName;
-extern NSString * retriveDirectionSouthFailNotifName;
-
 - (void)viewWillAppear:(BOOL)animated
 {
     //Show loading hud

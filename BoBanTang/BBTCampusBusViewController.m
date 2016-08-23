@@ -29,9 +29,6 @@
 
 @implementation BBTCampusBusViewController
 
-extern NSString * campusBusNotificationName;
-extern NSString * retriveCampusBusDataFailNotifName;
-
 - (void)viewWillAppear:(BOOL)animated
 {
     //Show loading hud
