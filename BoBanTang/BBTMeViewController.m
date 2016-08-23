@@ -13,6 +13,7 @@
 #import "BBTPersonalInfoEditViewController.h"
 #import "TDBadgedCell.h"
 #import "BBTPreferences.h"
+#import "UIDeviceHardware.h"
 #import <Masonry.h>
 #import <UIImageView+WebCache.h>
 #import <LeanCloudFeedback/LeanCloudFeedback.h>
@@ -141,8 +142,6 @@ extern NSString * kFeedBackViewDisappearNotifName;
         label;
     });
     
-    NSLog(@"device - %@", [UIDevice currentDevice].name);
-    
     self.meTableView = ({
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         tableView.scrollEnabled = NO;
@@ -150,6 +149,12 @@ extern NSString * kFeedBackViewDisappearNotifName;
         tableView.delegate = self;
         tableView;
     });
+    
+    //Enable scrolling for small screen.
+    if (([[UIDeviceHardware platformString] isEqualToString:@"iPhone 4 (GSM)"]) || ([[UIDeviceHardware platformString] isEqualToString:@"iPhone 4 (CDMA)"]) || ([[UIDeviceHardware platformString] isEqualToString:@"iPhone 4S"]))
+    {
+        self.meTableView.scrollEnabled = YES;
+    }
     
     //Add to subview
     [self.view addSubview:self.containerView];

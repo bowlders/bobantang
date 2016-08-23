@@ -8,6 +8,7 @@
 
 #import "BBTAboutViewController.h"
 #import "UIFont+BBTFont.h"
+#import "UIDeviceHardware.h"
 #import <Masonry.h>
 #import <MBProgressHUD.h>
 
@@ -99,6 +100,12 @@
         tableView.delegate = self;
         tableView;
     });
+    
+    //Enable scrolling for small screen.
+    if (([[UIDeviceHardware platformString] isEqualToString:@"iPhone 4 (GSM)"]) || ([[UIDeviceHardware platformString] isEqualToString:@"iPhone 4 (CDMA)"]) || ([[UIDeviceHardware platformString] isEqualToString:@"iPhone 4S"]))
+    {
+        self.tableView.scrollEnabled = YES;
+    }
     
     self.view.backgroundColor = self.tableView.backgroundColor;
     

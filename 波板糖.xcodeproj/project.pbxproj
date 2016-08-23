@@ -60,6 +60,7 @@
 		39B595401C0AF0400015B673 /* BBTDailyArticleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B5953F1C0AF0400015B673 /* BBTDailyArticleTableViewController.m */; };
 		39B595431C0AF0500015B673 /* BBTCampusInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B595421C0AF0500015B673 /* BBTCampusInfoViewController.m */; };
 		39D64D311CDA5681005FBD88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D64D301CDA5681005FBD88 /* Foundation.framework */; };
+		39D7B2531D6C91F800B3549B /* UIDeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D7B2521D6C91F800B3549B /* UIDeviceHardware.m */; };
 		39DDD84A1D6B5E87008F548E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39DDD8491D6B5E87008F548E /* Images.xcassets */; };
 		39DE6D421D36157F002E0A2C /* BBTChangeNickNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DE6D411D36157F002E0A2C /* BBTChangeNickNameViewController.m */; };
 		39F2D7E41D4D88B500510A00 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F2D7E31D4D88B500510A00 /* libsqlite3.dylib */; };
@@ -330,6 +331,8 @@
 		39B595421C0AF0500015B673 /* BBTCampusInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCampusInfoViewController.m; sourceTree = "<group>"; };
 		39B595441C0AF9D90015B673 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		39D64D301CDA5681005FBD88 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		39D7B2511D6C91F800B3549B /* UIDeviceHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDeviceHardware.h; sourceTree = "<group>"; };
+		39D7B2521D6C91F800B3549B /* UIDeviceHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDeviceHardware.m; sourceTree = "<group>"; };
 		39DDD8491D6B5E87008F548E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		39DE6D401D36157F002E0A2C /* BBTChangeNickNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTChangeNickNameViewController.h; sourceTree = "<group>"; };
 		39DE6D411D36157F002E0A2C /* BBTChangeNickNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTChangeNickNameViewController.m; sourceTree = "<group>"; };
@@ -1127,6 +1130,8 @@
 				AF9A8D361CC7784F0079C46F /* 3DMapMateData */,
 				A947D96A1BD8DC0F000F071B /* BBTAppDelegate.h */,
 				A947D9901BD8DC34000F071B /* BBTAppDelegate.m */,
+				39D7B2511D6C91F800B3549B /* UIDeviceHardware.h */,
+				39D7B2521D6C91F800B3549B /* UIDeviceHardware.m */,
 				A947D91F1BD8DADA000F071B /* main.m */,
 				AF5412E91CC758EA004C0CE8 /* 波板糖-Prefix.pch */,
 			);
@@ -1772,6 +1777,7 @@
 				AF5412971CC67FC4004C0CE8 /* BRSUtilities.m in Sources */,
 				395B529A1C7C852B008FD949 /* BBTCollectedCampusInfoManager.m in Sources */,
 				39B595401C0AF0400015B673 /* BBTDailyArticleTableViewController.m in Sources */,
+				39D7B2531D6C91F800B3549B /* UIDeviceHardware.m in Sources */,
 				FCD0A2811C0009F10024D78F /* BBTScores.m in Sources */,
 				AF5412BF1CC6805D004C0CE8 /* UIImage+BBTSetAlpha.m in Sources */,
 				397445671C0A8D78004B89BA /* BBTCampusInfo.m in Sources */,
