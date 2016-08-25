@@ -8,7 +8,6 @@
 
 #import "BBTAboutViewController.h"
 #import "UIFont+BBTFont.h"
-#import "UIDeviceHardware.h"
 #import <Masonry.h>
 #import <MBProgressHUD.h>
 
@@ -101,12 +100,6 @@
         tableView;
     });
     
-    //Enable scrolling for small screen.
-    if (([[UIDeviceHardware platformString] isEqualToString:@"iPhone 4 (GSM)"]) || ([[UIDeviceHardware platformString] isEqualToString:@"iPhone 4 (CDMA)"]) || ([[UIDeviceHardware platformString] isEqualToString:@"iPhone 4S"]))
-    {
-        self.tableView.scrollEnabled = YES;
-    }
-    
     self.view.backgroundColor = self.tableView.backgroundColor;
     
     [self.view addSubview:self.logoImageView];
@@ -122,8 +115,8 @@
     CGFloat logoImageViewBottomPadding = 40.0f;
     CGFloat productNameLabelHeight = 40.0f;
     CGFloat labelVerticalInnerSpacing = 5.0f;
-    CGFloat productDetailAndCopyRightLabelHeight = 30.0f;
-    CGFloat detailSecondLineLabelBottomPadding = 30.0f;
+    CGFloat productDetailLabelHeight = 30.0f;
+    CGFloat copyRightLabelHeight = 15.0f;
     CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
     
     //Add Constraints
@@ -143,28 +136,28 @@
     
     [self.detailFirstLineLabel mas_makeConstraints:^(MASConstraintMaker *make){
         make.top.equalTo(self.productNameLabel.mas_bottom).offset(labelVerticalInnerSpacing);
-        make.height.equalTo(@(productDetailAndCopyRightLabelHeight));
+        make.height.equalTo(@(productDetailLabelHeight));
         make.width.equalTo(self.view.mas_width);
         make.centerX.equalTo(self.view.mas_centerX);
     }];
     
     [self.detailSecondLineLabel mas_makeConstraints:^(MASConstraintMaker *make){
         make.top.equalTo(self.detailFirstLineLabel.mas_bottom).offset(labelVerticalInnerSpacing);
-        make.height.equalTo(@(productDetailAndCopyRightLabelHeight));
+        make.height.equalTo(@(productDetailLabelHeight));
         make.width.equalTo(self.view.mas_width);
         make.centerX.equalTo(self.view.mas_centerX);
     }];
      
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.top.equalTo(self.detailSecondLineLabel.mas_bottom).offset(detailSecondLineLabelBottomPadding);
-        make.bottom.equalTo(self.theCopyRightLabel.mas_bottom).offset(-labelVerticalInnerSpacing);
+        make.top.equalTo(self.detailSecondLineLabel.mas_bottom);
+        make.bottom.equalTo(self.theCopyRightLabel.mas_top).offset(-labelVerticalInnerSpacing);
         make.width.equalTo(self.view.mas_width);
         make.centerX.equalTo(self.view.mas_centerX);
     }];
     
     [self.theCopyRightLabel mas_makeConstraints:^(MASConstraintMaker *make){
         make.bottom.equalTo(self.view.mas_bottom).offset(-tabBarHeight);
-        make.height.equalTo(@(productDetailAndCopyRightLabelHeight));
+        make.height.equalTo(@(copyRightLabelHeight));
         make.width.equalTo(self.view.mas_width);
         make.centerX.equalTo(self.view.mas_centerX);
     }];
