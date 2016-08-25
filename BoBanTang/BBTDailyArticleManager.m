@@ -76,8 +76,8 @@ NSString * getArticleTodaySucceedNotifName = @"getArticleTodaySucceed";
     NSString *stringCleanPath = [getLatestArticleURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     [manager POST:stringCleanPath parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        //NSLog(@"JSON: %@", responseObject);
-        if (responseObject)
+        NSLog(@"JSON: %@", responseObject);
+        if (responseObject && [(NSArray *)responseObject count])
         {
             _articleToday = [[BBTDailyArticle alloc] initWithDictionary:((NSArray *)responseObject)[0] error:nil];
             [[NSNotificationCenter defaultCenter] postNotificationName:getArticleTodaySucceedNotifName object:self];
