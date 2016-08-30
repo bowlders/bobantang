@@ -63,6 +63,8 @@ extern NSString * getArticleTodaySucceedNotifName;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor whiteColor];
+   
     self.webView = ({
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
         webView.scalesPageToFit = YES;
@@ -130,7 +132,7 @@ extern NSString * getArticleTodaySucceedNotifName;
     self.recognizer.direction = UISwipeGestureRecognizerDirectionRight;
     self.recognizer.delegate = self;
     [self.view addGestureRecognizer:self.recognizer];
-
+ 
 }
 
 - (void)loadWebView
