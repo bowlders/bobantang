@@ -82,7 +82,7 @@
             textField.translatesAutoresizingMaskIntoConstraints = NO;
             textField.textAlignment = NSTextAlignmentLeft;
             textField.textColor = [UIColor colorWithRed:17.0/255.0 green:215.0/255.0 blue:139.0/255.0 alpha:1.0];
-            textField.font = [UIFont systemFontOfSize:14.0];
+            textField.font = [UIFont systemFontOfSize:18.0];
             textField.background = [UIImage imageNamed:@"underDash"];
             textField.borderStyle = UITextBorderStyleNone;
             textField.clearButtonMode = UITextFieldViewModeNever;
@@ -94,7 +94,7 @@
             textField.translatesAutoresizingMaskIntoConstraints = NO;
             textField.textAlignment = NSTextAlignmentLeft;
             textField.textColor = [UIColor colorWithRed:149.0/255.0 green:19.0/255.0 blue:201.0/255.0 alpha:1.0];
-            textField.font = [UIFont systemFontOfSize:14.0];
+            textField.font = [UIFont systemFontOfSize:18.0];
             textField.background = [UIImage imageNamed:@"underDash"];
             textField.borderStyle = UITextBorderStyleNone;
             textField.clearButtonMode = UITextFieldViewModeNever;

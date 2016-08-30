@@ -12,11 +12,11 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BU3-fI-5Q9" id="0Gu-6d-iNG">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="校区" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhx-So-I4T">
-                        <rect key="frame" x="15" y="11" width="223" height="21"/>
+                        <rect key="frame" x="18" y="11" width="220" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -35,7 +35,7 @@
                 <constraints>
                     <constraint firstItem="MQa-SE-gNR" firstAttribute="centerY" secondItem="0Gu-6d-iNG" secondAttribute="centerY" id="7BR-bL-gOK"/>
                     <constraint firstItem="MQa-SE-gNR" firstAttribute="leading" secondItem="bhx-So-I4T" secondAttribute="trailing" constant="8" symbolic="YES" id="7TO-To-jYd"/>
-                    <constraint firstItem="bhx-So-I4T" firstAttribute="leading" secondItem="0Gu-6d-iNG" secondAttribute="leadingMargin" constant="7" id="c1I-xe-smV"/>
+                    <constraint firstItem="bhx-So-I4T" firstAttribute="leading" secondItem="0Gu-6d-iNG" secondAttribute="leadingMargin" constant="10" id="c1I-xe-smV"/>
                     <constraint firstItem="bhx-So-I4T" firstAttribute="firstBaseline" secondItem="MQa-SE-gNR" secondAttribute="firstBaseline" id="dVZ-hQ-HHl"/>
                     <constraint firstItem="MQa-SE-gNR" firstAttribute="trailing" secondItem="0Gu-6d-iNG" secondAttribute="trailingMargin" id="dhj-9h-ows"/>
                     <constraint firstItem="MQa-SE-gNR" firstAttribute="centerY" secondItem="bhx-So-I4T" secondAttribute="centerY" id="jeN-OE-BqG"/>

@@ -103,7 +103,7 @@ extern NSString * kUserAuthentificationFinishNotifName;
         } else {
             UIAlertController *alertController = [[UIAlertController alloc] init];
             alertController = [UIAlertController alertControllerWithTitle:@"你还没有登录哟" message:@"请先登录" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"去登陆"
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"去登录"
                                                                style:UIAlertActionStyleDefault
                                                              handler:^(UIAlertAction * action) {
                                                                  BBTLoginViewController *loginViewController = [[BBTLoginViewController alloc] init];
