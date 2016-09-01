@@ -413,6 +413,17 @@ extern NSString * getArticleTodaySucceedNotifName;
 - (void)handleSwipe
 {
     BBTDailyArticleTableViewController *controller = [[BBTDailyArticleTableViewController alloc] init];
+
+    /** Enable the following commented code to slide the view from left to right, however with a somewhat strange animation effect.
+    CATransition* transition = [CATransition animation];
+    transition.duration = .45;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionMoveIn;
+    transition.subtype= kCATransitionFromLeft;
+    [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+    [self.navigationController pushViewController:controller animated:NO];
+     */
+
     [self.navigationController pushViewController:controller animated:YES];
 }
 

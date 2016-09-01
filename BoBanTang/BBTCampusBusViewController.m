@@ -236,7 +236,7 @@
         {
             [cell changeCellImageAtSide:0];
         }
-        else if ([[BBTCampusBusManager sharedCampusBusManager] directionOfTheBusAtStationIndex:1] == 2)
+        else if ([[BBTCampusBusManager sharedCampusBusManager] directionOfTheBusAtStationIndex:([[BBTCampusBusManager sharedCampusBusManager].stationNameArray count] - indexPath.row)] == 2)
         {
             [cell changeCellImageAtSide:1];
             [cell changeCellImageAtSide:0];
