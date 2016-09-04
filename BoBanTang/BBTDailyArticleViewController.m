@@ -129,7 +129,7 @@ extern NSString * getArticleTodaySucceedNotifName;
     }];
     
     self.recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe)];
-    self.recognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    self.recognizer.direction = UISwipeGestureRecognizerDirectionLeft;
     self.recognizer.delegate = self;
     [self.view addGestureRecognizer:self.recognizer];
  
@@ -448,7 +448,7 @@ extern NSString * getArticleTodaySucceedNotifName;
         NSArray *coachMarks = @[
                                 @{
                                     @"rect": [NSValue valueWithCGRect:(CGRect){{0, (CGRectGetMidY(self.webView.frame) - 20.0f)}, {0, 0}}],
-                                    @"caption": @"右划查看往期文章",
+                                    @"caption": @"左划查看往期文章",
                                     @"shape": @"square"
                                     }
                                 ];

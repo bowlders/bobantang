@@ -11,6 +11,7 @@
 #import "BBTNorthSpecialRailwayTwoViewController.h"
 #import "BBTSpecRailway2BusManager.h"
 #import <Masonry.h>
+#import <AVOSCloud.h>
 
 @interface BBTSpecialRailwayContainerViewController ()
 
@@ -23,6 +24,12 @@
 @end
 
 @implementation BBTSpecialRailwayContainerViewController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [AVAnalytics beginLogPageView:@"ios_SpecialLine"];
+}
 
 - (void)viewDidLoad {
     
@@ -134,6 +141,12 @@
 - (void)clickRefreshButton
 {
     [[BBTSpecRailway2BusManager sharedBusManager] refresh];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [AVAnalytics endLogPageView:@"ios_SpecialLine"];
 }
 
 @end

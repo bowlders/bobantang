@@ -11,6 +11,7 @@
 #import "BBTCampusBusManager.h"
 #import "UIFont+BBTFont.h"
 #import "UIColor+BBTColor.h"
+#import <AVOSCloud.h>
 #import <Masonry.h>
 #import <MBProgressHUD.h>
 
@@ -43,6 +44,8 @@
                                              selector:@selector(didReceiveRetriveCampusBusDataFailNotification)
                                                  name:retriveCampusBusDataFailNotifName
                                                object:nil];
+    
+    [AVAnalytics beginLogPageView:@"ios_CampusBus"];
 }
 
 - (void)viewDidLoad
@@ -291,6 +294,8 @@
 {
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [AVAnalytics endLogPageView:@"ios_CampusBus"];
 }
 
 @end

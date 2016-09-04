@@ -14,6 +14,7 @@
 #import <MJRefresh.h>
 #import <MJRefreshStateHeader.h>
 #import <Masonry.h>
+#import <AVOSCloud.h>
 
 @interface BBTDailyArticleTableViewController ()
 
@@ -34,6 +35,8 @@ extern NSString * noMoreArticleNotifName;
                                              selector:@selector(didReceiveNoMoreArticleNotification)
                                                  name:noMoreArticleNotifName
                                                object:nil];
+    
+    [AVAnalytics beginLogPageView:@"ios_dailyArticleList"];
 }
 
 - (void)viewDidLoad {
@@ -65,6 +68,8 @@ extern NSString * noMoreArticleNotifName;
 {
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [AVAnalytics endLogPageView:@"ios_dailyArticleList"];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
