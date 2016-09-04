@@ -74,9 +74,8 @@ extern NSString *kFailGetEmptyRoomsNotificaionName;
 - (void)didGetRoomsNotification
 {
     NSLog(@"Get Rooms");
-    NSArray *test = [[NSArray alloc] initWithArray:[BBTLectureRoomsManager sharedLectureRoomsManager].rooms];
-    NSLog(@"Rooms: %lu", (unsigned long)[test count]);
-    [self.tableView reloadData];
+    self.rawData = [[NSArray alloc] initWithArray:[BBTLectureRoomsManager sharedLectureRoomsManager].rooms];
+    [self reConfigureRooms];
     
     [MBProgressHUD hideAllHUDsForView:self.navigationController.view animated:YES];
     self.tableView.scrollEnabled = YES;
@@ -146,7 +145,8 @@ extern NSString *kFailGetEmptyRoomsNotificaionName;
     if (section == 0) {
         return 1;
     } else {
-        return [[BBTLectureRoomsManager sharedLectureRoomsManager].rooms count];
+        NSString *period = [NSString stringWithFormat:@"%ld",(section-1)];
+        return [[self.resultRooms objectForKey:period] count];
     }
 }
 
@@ -159,7 +159,8 @@ extern NSString *kFailGetEmptyRoomsNotificaionName;
         return cell;
     } else {
         
-        NSArray *results = [BBTLectureRoomsManager sharedLectureRoomsManager].rooms;
+        NSString *period = [NSString stringWithFormat:@"%ld",(indexPath.section-1)];
+        NSArray *results = [self.resultRooms objectForKey:period];
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:resultCellIdentifier forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -185,7 +186,7 @@ extern NSString *kFailGetEmptyRoomsNotificaionName;
         
         NSArray *buildings;
         if ([self.filterConditions.campus isEqualToString:@"N"]) {
-            buildings = @[@"31", @"32", @"33", @"34", @"35", @"博学楼"];
+            buildings = @[@"32", @"33", @"34", @"博学"];
         } else if ([self.filterConditions.campus isEqualToString:@"S"]) {
            buildings = @[@"A1", @"A2", @"A3"];
         }

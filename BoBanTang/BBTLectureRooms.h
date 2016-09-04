@@ -19,7 +19,7 @@
 @property (nonatomic, copy) NSString *lectureRooms;
 
 - (NSArray *)filterCampusWithParseResults:(NSMutableArray *)parseResults withFilterConditions:(BBTLectureRooms *)filterConditions;
-- (NSArray *)filterLectureRoomsWithFilterResults:(NSArray *)parseResults withFilterConditions:(BBTLectureRooms *)filterConditions;
+- (NSDictionary *)filterLectureRoomsWithFilterResults:(NSArray *)parseResults withFilterConditions:(BBTLectureRooms *)filterConditions;
 - (NSArray *)configurePeriod:(BBTLectureRooms *)filterConditions;
 
 @end

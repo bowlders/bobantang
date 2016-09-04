@@ -162,8 +162,8 @@ static NSString * showResultsSegueIdentifier = @"showResults";
         else
         {
             cell.textLabel.text = @"楼栋";
-            cell.detailTextLabel.text = @"31";
-            self.setConditions.buildings = @"31";
+            cell.detailTextLabel.text = @"32";
+            self.setConditions.buildings = @"32";
         }
         return cell;
     }
@@ -175,7 +175,7 @@ static NSString * showResultsSegueIdentifier = @"showResults";
     {
         NSArray *buildings;
         if (self.campus.selectedSegmentIndex == 0) {
-           buildings = @[@"31", @"32", @"33", @"34", @"35", @"博学楼"];
+           buildings = @[@"32", @"33", @"34", @"博学"];
         } else if (self.campus.selectedSegmentIndex == 1) {
            buildings = @[@"A1", @"A2", @"A3"];
         }
@@ -257,10 +257,10 @@ static NSString * showResultsSegueIdentifier = @"showResults";
         for (NSString *chosenTime in selectedTime) {
             [tempString appendString:chosenTime];
         }
-        self.timeToShow = tempString;
+        [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]].detailTextLabel.text = tempString;
     }
     
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
