@@ -11,6 +11,7 @@
 #import "BBTCampusBusManager.h"
 #import "UIFont+BBTFont.h"
 #import "UIColor+BBTColor.h"
+#import <AVOSCloud.h>
 #import <Masonry.h>
 #import <MBProgressHUD.h>
 
@@ -43,6 +44,8 @@
                                              selector:@selector(didReceiveRetriveCampusBusDataFailNotification)
                                                  name:retriveCampusBusDataFailNotifName
                                                object:nil];
+    
+    [AVAnalytics beginLogPageView:@"ios_CampusBus"];
 }
 
 - (void)viewDidLoad
@@ -236,7 +239,7 @@
         {
             [cell changeCellImageAtSide:0];
         }
-        else if ([[BBTCampusBusManager sharedCampusBusManager] directionOfTheBusAtStationIndex:1] == 2)
+        else if ([[BBTCampusBusManager sharedCampusBusManager] directionOfTheBusAtStationIndex:([[BBTCampusBusManager sharedCampusBusManager].stationNameArray count] - indexPath.row)] == 2)
         {
             [cell changeCellImageAtSide:1];
             [cell changeCellImageAtSide:0];
@@ -291,6 +294,8 @@
 {
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [AVAnalytics endLogPageView:@"ios_CampusBus"];
 }
 
 @end

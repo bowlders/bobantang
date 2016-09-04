@@ -129,7 +129,7 @@ extern NSString * getArticleTodaySucceedNotifName;
     }];
     
     self.recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe)];
-    self.recognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    self.recognizer.direction = UISwipeGestureRecognizerDirectionLeft;
     self.recognizer.delegate = self;
     [self.view addGestureRecognizer:self.recognizer];
  
@@ -413,6 +413,17 @@ extern NSString * getArticleTodaySucceedNotifName;
 - (void)handleSwipe
 {
     BBTDailyArticleTableViewController *controller = [[BBTDailyArticleTableViewController alloc] init];
+
+    /** Enable the following commented code to slide the view from left to right, however with a somewhat strange animation effect.
+    CATransition* transition = [CATransition animation];
+    transition.duration = .45;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionMoveIn;
+    transition.subtype= kCATransitionFromLeft;
+    [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+    [self.navigationController pushViewController:controller animated:NO];
+     */
+
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -437,7 +448,7 @@ extern NSString * getArticleTodaySucceedNotifName;
         NSArray *coachMarks = @[
                                 @{
                                     @"rect": [NSValue valueWithCGRect:(CGRect){{0, (CGRectGetMidY(self.webView.frame) - 20.0f)}, {0, 0}}],
-                                    @"caption": @"右划查看往期文章",
+                                    @"caption": @"左划查看往期文章",
                                     @"shape": @"square"
                                     }
                                 ];

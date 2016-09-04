@@ -16,8 +16,8 @@
 
 @implementation BBTCampusBusManager
 
-NSString * baseURLString = @"http://bbt.100steps.net/go/data/";
-//NSString * baseURLString = @"http://127.0.0.1:6767";
+//NSString * baseURLString = @"http://bbt.100steps.net/go/data/";
+NSString * baseURLString = @"http://127.0.0.1:6767";
 static const float dataRequestInterval = 5.0;               //Seconds
 
 NSString * const campusBusNotificationName = @"campusBusNotification";

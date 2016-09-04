@@ -14,6 +14,7 @@
 #import <UIImageView+WebCache.h>
 #import <MJRefresh.h>
 #import <Masonry.h>
+#import <AVOSCloud.h>
 
 @interface BBTCampusInfoTableViewController ()
 
@@ -35,6 +36,8 @@ extern NSString * noNewInfoNotifName;
                                              selector:@selector(didReceiveNoMoreInfoNotification)
                                                  name:noNewInfoNotifName
                                                object:nil];
+    
+    [AVAnalytics beginLogPageView:@"ios_CampusInfoList"];
 }
 
 - (void)viewDidLoad {
@@ -62,6 +65,8 @@ extern NSString * noNewInfoNotifName;
 {
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [AVAnalytics endLogPageView:@"ios_CampusInfoList"];
 }
 
 #pragma mark - Table view data source
