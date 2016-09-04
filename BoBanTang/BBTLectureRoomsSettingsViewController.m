@@ -15,6 +15,7 @@
 #import "ActionSheetPicker.h"
 #import <Masonry.h>
 #import <AYVibrantButton.h>
+#import <AVOSCloud.h>
 
 static NSString * campusCellIdentifier = @"BBTItemCampusTableViewCell";
 static NSString * rightDetailCellIdentifier = @"itemRightDetailCell";
@@ -35,6 +36,12 @@ static NSString * showResultsSegueIdentifier = @"showResults";
 @end
 
 @implementation BBTLectureRoomsSettingsViewController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [AVAnalytics beginLogPageView:@"iOS_emptyRooms"];
+}
 
 - (void)viewDidLoad
 {
@@ -88,6 +95,12 @@ static NSString * showResultsSegueIdentifier = @"showResults";
         make.width.equalTo(self.view.mas_width).multipliedBy(0.55);
         make.centerX.equalTo(self.view.mas_centerX);
     }];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [AVAnalytics endLogPageView:@"iOS_emptyRooms"];
 }
 
 - (void)didReceiveMemoryWarning {

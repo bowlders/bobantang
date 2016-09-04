@@ -26,6 +26,7 @@
 #import "UIColor+BBTColor.h"
 #import "WYPopoverController.h"
 #import "UITableView+FDTemplateLayoutCell.h"
+#import <AVOSCloud.h>
 
 static NSString *postIdentifier = @"LAFPostIdentifier";
 static NSString *myPostedIdentifire = @"postedItemsIdentifier";
@@ -63,6 +64,8 @@ extern NSString * kNoMoreItemsNotificationName;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveUserAuthentificaionNotification) name:kUserAuthentificationFinishNotifName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveFuzzyItemsNotificaion) name:kGetFuzzyConditionsItemNotificationName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveNoMoreItemsNotification) name:kNoMoreItemsNotificationName object:nil];
+    
+    [AVAnalytics beginLogPageView:@"iOS_lostAndFound"];
 }
 
 - (void)viewDidLoad
@@ -136,6 +139,8 @@ extern NSString * kNoMoreItemsNotificationName;
 {
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [AVAnalytics endLogPageView:@"iOS_lostAndFound"];
 }
 
 - (IBAction)didChangeLafType:(id)sender
