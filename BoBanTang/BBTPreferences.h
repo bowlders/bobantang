@@ -15,6 +15,7 @@
 
 @property (assign, nonatomic) BOOL hasSeenIntro;
 @property (assign, nonatomic) BOOL hasSeenBusHelp;
+@property (assign, nonatomic) BOOL hasSeenLaf;
 @property (assign, nonatomic) BOOL hasSeenFlatMapHelp;
 @property (assign, nonatomic) BOOL hasSeen3DMapHelp;
 @property (assign, nonatomic) BOOL hasSeenMeView;

@@ -88,6 +88,7 @@ extern NSString *kFailPostItemNotificaionName;
     [self.tableView registerNib:[UINib nibWithNibName:textFieldCellIdentifier bundle:nil] forCellReuseIdentifier:textFieldCellIdentifier];
     
     self.item = [[BBTLAF alloc] init];
+    self.item.title = @"大学城一卡通";
     
     //Set buttons
     UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
@@ -498,6 +499,7 @@ extern NSString *kFailPostItemNotificaionName;
                                                {
                                                    [tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text = itemTypes[selectedIndex];
                                                    self.item.type = @(selectedIndex);
+                                                   self.item.title = itemTypes[selectedIndex];
                                                    if (self.isInsertedRow == YES) [self configureEditing];
                                                } else {
                                                    [tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text = itemTypes[selectedIndex];
@@ -620,8 +622,6 @@ extern NSString *kFailPostItemNotificaionName;
             return;
         }
         
-        [self.itemInfoToPost setObject:self.item.title forKey:@"title"];
-        
     } else {
         if ([self.item.location isEqualToString:@""] || [self.item.publisher isEqualToString:@""] || [self.item.phone isEqualToString:@""])
         {
@@ -636,6 +636,7 @@ extern NSString *kFailPostItemNotificaionName;
     [self.itemInfoToPost setObject:self.item.type forKey:@"type"];
     [self.itemInfoToPost setObject:self.item.publisher forKey:@"publisher"];
     [self.itemInfoToPost setObject:self.item.phone forKey:@"phone"];
+    [self.itemInfoToPost setObject:self.item.title forKey:@"title"];
     [self.itemInfoToPost setObject:self.account forKey:@"account"];
     
     if (![self.item.details isEqualToString:detailsInitial])[self.itemInfoToPost setObject:self.item.details forKey:@"details"];
