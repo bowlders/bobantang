@@ -67,7 +67,8 @@
                  break;
              case SSDKPlatformTypeQQ:
                  [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
-                 break;
+             break;
+                 
              //case SSDKPlatformTypeSinaWeibo:
              //    [ShareSDKConnector connectWeibo:[WeiboSDK class]];
              //    break;

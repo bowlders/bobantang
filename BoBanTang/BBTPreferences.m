@@ -15,7 +15,6 @@
 
 @dynamic hasSeenBusHelp;
 @dynamic hasSeenIntro;
-@dynamic hasSeenLaf;
 @dynamic hasSeenFlatMapHelp;
 @dynamic hasSeenMeView;
 @dynamic hasSeenDailyArticleDetailView;
@@ -36,7 +35,6 @@
             NSLog(@"app first launch since installed");
             // Set defaults for new users
             self.hasSeenIntro = NO;
-            self.hasSeenLaf = NO;
             self.hasSeenFlatMapHelp = NO;
             self.hasSeen3DMapHelp = NO;
             self.hasSeenBusHelp = NO;

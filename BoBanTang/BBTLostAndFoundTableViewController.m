@@ -72,24 +72,6 @@ extern NSString * kNoMoreItemsNotificationName;
     [AVAnalytics beginLogPageView:@"iOS_lostAndFound"];
 }
 
-- (void)viewDidLayoutSubviews
-{
-    if (!self.coachMarksView && ![BBTPreferences sharedInstance].hasSeenLaf)
-    {
-        NSArray *coachMarks = @[
-                                @{
-                                    @"rect":[NSValue valueWithCGRect:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.view.frame.size.width, self.navigationController.navigationBar.frame.size.height+20)],
-                                    @"caption":@"搜索栏可搜索失物名称和类别",
-                                    @"shape":@"square",
-                                    }
-                                ];
-        self.coachMarksView = [[WSCoachMarksView alloc] initWithFrame:self.tableView.bounds coachMarks:coachMarks];
-        [self.view addSubview:self.coachMarksView];
-        [self.coachMarksView start];
-        [BBTPreferences sharedInstance].hasSeenLaf= YES;
-    }
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -107,13 +89,7 @@ extern NSString * kNoMoreItemsNotificationName;
     [header setTitle:@"释放刷新" forState:MJRefreshStatePulling];
     [header setTitle:@"加载中 ..." forState:MJRefreshStateRefreshing];
     self.tableView.mj_header = header;
-    
-    if (![BBTPreferences sharedInstance].hasSeenLaf) {
-        [self refresh];            //A fixed searchBar the first time the user see this view in order to present a coachMarkView over the searchBar
-    } else {
-        [self.tableView.mj_header beginRefreshing];     //Show the refresh animation after the first time
-    }
-    
+    [self.tableView.mj_header beginRefreshing];
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreItems)];
 
     self.filteredItems = [[NSArray alloc] init];
@@ -126,6 +102,7 @@ extern NSString * kNoMoreItemsNotificationName;
     self.searchController.searchResultsUpdater = self;
     self.searchController.dimsBackgroundDuringPresentation = YES;
     [self.searchController.searchBar sizeToFit];
+    self.searchController.searchBar.placeholder = @"搜索失物标题";
     self.searchController.searchBar.delegate = self;
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.resultsTableController.tableView.delegate = self;
