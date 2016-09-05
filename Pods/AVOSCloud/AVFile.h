@@ -75,7 +75,7 @@ The name of the file.
 /*!
  The Qiniu bucket of the file.
  */
-@property (readonly) NSString *bucket;
+@property (nonatomic, readonly, copy) NSString *bucket;
 
 /** @name Storing Data with LeanCloud */
 
@@ -87,7 +87,7 @@ The name of the file.
 /*!
  File metadata, caller is able to store additional values here.
  */
-@property (readwrite, strong) NSMutableDictionary * metadata AVDeprecated("2.6.1以后请使用metaData");
+@property (readwrite, strong) NSMutableDictionary * metadata AV_DEPRECATED("2.6.1以后请使用metaData");
 /*!
  File metadata, caller is able to store additional values here.
  */

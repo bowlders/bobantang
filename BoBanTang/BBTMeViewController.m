@@ -1,312 +1,414 @@
 //
-//  MoreViewControllerTableViewController.m
+//  BBTMeViewController.m
 //  BoBanTang
 //
-//  Created by Caesar on 15/10/13.
-//  Copyright © 2015年 BBT. All rights reserved.
+//  Created by Caesar on 16/2/1.
+//  Copyright © 2016年 100steps. All rights reserved.
 //
 
 #import "BBTMeViewController.h"
-
-static const NSInteger kBBTMeSectionIndex         = 0;
-static const NSInteger kBBTSettingSectionIndex    = 1;
-static const NSInteger kBBTOtherSectionIndex      = 2;
-
-static const NSInteger kBBTMeSectionRowCount      = 1;
-static const NSInteger kBBTSettingSectionRowCount = 1;
-static const NSInteger kBBTOtherSectionRowCount   = 2;
+#import "UIColor+BBTColor.h"
+#import "BBTCurrentUserManager.h"
+#import "BBTLoginViewController.h"
+#import "BBTPersonalInfoEditViewController.h"
+#import "TDBadgedCell.h"
+#import "BBTPreferences.h"
+#import "UIDeviceHardware.h"
+#import <Masonry.h>
+#import <UIImageView+WebCache.h>
+#import <LeanCloudFeedback/LeanCloudFeedback.h>
+#import <UIImageView+UIActivityIndicatorForSDWebImage.h>
+#import <WSCoachMarksView.h>
 
 @interface BBTMeViewController ()
 
-@property (strong, nonatomic) IBOutlet AMWaveTransition *interactive;
+@property (strong, nonatomic) UIImageView * containerView;
+
+@property (strong, nonatomic) UIButton         * loginButton;
+@property (strong, nonatomic) UIImageView      * avatarImageView;
+@property (strong, nonatomic) UILabel          * nameLabel;
+@property (strong, nonatomic) UILabel          * studentNumberLabel;
+@property (strong, nonatomic) UITableView      * meTableView;
+@property (strong, nonatomic) WSCoachMarksView * coachMarksView;
+
+@property (strong, nonatomic) UITapGestureRecognizer * recognizer;
 
 @end
 
 @implementation BBTMeViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    //Lean Cloud Settings
-    AVObject *testObject = [AVObject objectWithClassName:@"TestObject"];
-    [testObject setObject:@"bar" forKey:@"foo"];
-    [testObject save];
-    
-    self.title = @"我";
-    
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.scrollEnabled = NO;
-    
-    self.interactive = [[AMWaveTransition alloc] init];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
+extern NSString * kUserAuthentificationFinishNotifName;
+extern NSString * kFeedBackViewDisappearNotifName;
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - AMWaveNavigationController Methods
-
-- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
-                                  animationControllerForOperation:(UINavigationControllerOperation)operation
-                                               fromViewController:(UIViewController*)fromVC
-                                                 toViewController:(UIViewController*)toVC
+- (void)viewWillAppear:(BOOL)animated
 {
+    self.navigationController.navigationBarHidden = YES;
     
-    if (operation != UINavigationControllerOperationNone)
+    [self updateView];
+    
+    //When the feedback view disappears, clear badge.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveFeedBackViewDisappearNotif)
+                                                 name:kFeedBackViewDisappearNotifName
+                                               object:nil];
+    
+
+}
+
+- (void)viewDidLayoutSubviews
+{
+    if (!self.coachMarksView && self.avatarImageView.frame.origin.x && ![BBTPreferences sharedInstance].hasSeenMeView)
     {
-        AMWaveTransition *transition = [AMWaveTransition transitionWithOperation:operation];
-        [transition setTransitionType:AMWaveTransitionTypeSubtle];
-        // FIXME: 不要出现 magic number，定义 const
-        [transition setDuration:1.3];
-        [transition setMaxDelay:0.4];
-        return [AMWaveTransition transitionWithOperation:operation];
+        // Setup coach marks
+        NSArray *coachMarks = @[
+                                @{
+                                    @"rect": [NSValue valueWithCGRect:self.avatarImageView.frame],
+                                    @"caption": @"点击可修改头像及昵称",
+                                    @"shape": @"square"
+                                    }
+                                ];
+        self.coachMarksView = [[WSCoachMarksView alloc] initWithFrame:self.view.bounds coachMarks:coachMarks];
+        [self.view addSubview:self.coachMarksView];
+        [self.coachMarksView start];
+        [BBTPreferences sharedInstance].hasSeenMeView = YES;
+    }
+}
+
+- (void)viewDidLoad
+{
+    self.title = @"我";
+
+    CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
+    CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
+    CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
+    CGFloat loginButtonHeight = 30.0f;
+    CGFloat verticalInnerSpacing = 10.0f;
+    CGFloat avatarImageViewRadius = 50.0f;                              //Avatar imageView is circular.
+    CGFloat avatarImageCenterYOffSet = 10.0f;
+    CGFloat labelHeight = 20.0f;
+    CGFloat containerViewHeight = statusBarHeight + navigationBarHeight + verticalInnerSpacing * 6 + avatarImageViewRadius * 2 + labelHeight * 2;
+    
+    //Initialization
+    self.containerView = ({
+        UIImageView *imageView = [UIImageView new];
+        imageView.translatesAutoresizingMaskIntoConstraints = NO;
+        imageView.contentMode = UIViewContentModeScaleToFill;
+        imageView.image = [UIImage imageNamed:@"backGroundImage"];
+        imageView.alpha = 1.0;
+        imageView.userInteractionEnabled = YES;
+        imageView;
+    });
+    
+    self.loginButton = ({
+        UIButton *button = [UIButton new];
+        button.translatesAutoresizingMaskIntoConstraints = NO;
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"请登录"];
+        [attributedString addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:NSUnderlineStyleSingle] range:NSMakeRange(0, [attributedString length])];
+        [button setAttributedTitle:attributedString forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(loginButtonIsTapped) forControlEvents:UIControlEventTouchUpInside];
+        button.titleLabel.numberOfLines = 1;
+        button.titleLabel.textAlignment = NSTextAlignmentRight;
+        button.titleLabel.adjustsFontSizeToFitWidth = NO;
+        button.titleLabel.textColor = [UIColor whiteColor];
+        button.alpha = 1.0;
+        button;
+    });
+    
+    self.avatarImageView = ({
+        UIImageView *imageView = [UIImageView new];
+        imageView.translatesAutoresizingMaskIntoConstraints = NO;
+        imageView.contentMode = UIViewContentModeScaleToFill;
+        imageView.alpha = 1.0;
+        imageView;
+    });
+    
+    self.nameLabel = ({
+        UILabel *label = [UILabel new];
+        label.translatesAutoresizingMaskIntoConstraints = NO;
+        label.numberOfLines = 1;
+        label.textAlignment = NSTextAlignmentCenter;
+        label.adjustsFontSizeToFitWidth = NO;
+        label.alpha = 1.0;
+        label;
+    });
+    
+    self.studentNumberLabel = ({
+        UILabel *label = [UILabel new];
+        label.translatesAutoresizingMaskIntoConstraints = NO;
+        label.numberOfLines = 1;
+        label.textAlignment = NSTextAlignmentCenter;
+        label.adjustsFontSizeToFitWidth = NO;
+        label.alpha = 1.0;
+        label;
+    });
+    
+    self.meTableView = ({
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        tableView.scrollEnabled = NO;
+        tableView.dataSource = self;
+        tableView.delegate = self;
+        tableView;
+    });
+    
+    //Enable scrolling for small screen.
+    if (([[UIDeviceHardware platformString] isEqualToString:@"iPhone 4 (GSM)"]) || ([[UIDeviceHardware platformString] isEqualToString:@"iPhone 4 (CDMA)"]) || ([[UIDeviceHardware platformString] isEqualToString:@"iPhone 4S"]))
+    {
+        self.meTableView.scrollEnabled = YES;
     }
     
-    return nil;
-
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
+    //Add to subview
+    [self.view addSubview:self.containerView];
+    [self.view addSubview:self.meTableView];
+    [self.containerView addSubview:self.loginButton];
+    [self.containerView addSubview:self.avatarImageView];
+    [self.containerView addSubview:self.nameLabel];
+    [self.containerView addSubview:self.studentNumberLabel];
     
-    [super viewDidAppear:animated];
-    [self.navigationController setDelegate:self];
-    [self.interactive attachInteractiveGestureToNavigationController:self.navigationController];
+    //Set up constraints
+    [self.containerView mas_makeConstraints:^(MASConstraintMaker *make){
+        make.top.equalTo(self.view.mas_top);
+        make.centerX.equalTo(self.view.mas_centerX);
+        make.height.equalTo(@(containerViewHeight));
+        make.width.equalTo(self.view.mas_width);
+    }];
     
-}
+    [self.avatarImageView mas_makeConstraints:^(MASConstraintMaker *make){
+        make.width.equalTo(@(2 * avatarImageViewRadius));
+        make.height.equalTo(@(2 * avatarImageViewRadius));
+        make.centerX.equalTo(self.containerView.mas_centerX);
+        make.centerY.equalTo(self.containerView.mas_centerY).offset(avatarImageCenterYOffSet);
+    }];
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-
-    [super viewDidDisappear:animated];
-    [self.interactive detachInteractiveGesture];
-
-}
-
-- (void)dealloc
-{
+    [self.loginButton mas_makeConstraints:^(MASConstraintMaker *make){
+        make.top.equalTo(self.avatarImageView.mas_bottom).offset(verticalInnerSpacing);
+        make.width.equalTo(self.containerView.mas_width);
+        make.height.equalTo(@(loginButtonHeight));
+        make.centerX.equalTo(self.avatarImageView.mas_centerX);
+    }];
     
-    [self.navigationController setDelegate:nil];
+    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make){
+        make.top.equalTo(self.avatarImageView.mas_bottom).offset(verticalInnerSpacing);
+        make.width.equalTo(self.containerView.mas_width);
+        make.height.equalTo(@(labelHeight));
+        make.centerX.equalTo(self.avatarImageView.mas_centerX);
+    }];
     
+    [self.studentNumberLabel mas_makeConstraints:^(MASConstraintMaker *make){
+        make.top.equalTo(self.nameLabel.mas_bottom).offset(verticalInnerSpacing);
+        make.width.equalTo(self.containerView.mas_width);
+        make.height.equalTo(@(labelHeight));
+        make.centerX.equalTo(self.nameLabel.mas_centerX);
+    }];
+    
+    [self.meTableView mas_makeConstraints:^(MASConstraintMaker *make){
+        make.top.equalTo(self.containerView.mas_bottom);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-tabBarHeight);
+        make.width.equalTo(self.view.mas_width);
+        make.centerX.equalTo(self.studentNumberLabel.mas_centerX);
+    }];
+
+    self.recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap)];
+    self.recognizer.delegate = self;
+    self.avatarImageView.userInteractionEnabled = YES;
+    [self.avatarImageView addGestureRecognizer:self.recognizer];
+
 }
-
-#pragma mark - AMWaveTransitioning Methods
-
-- (NSArray*)visibleCells
-{
-    return [self.tableView visibleCells];
-}
-
-#pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 2;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    NSInteger rowsNumber = 0;
-    
-    switch (section) {
-        case kBBTMeSectionIndex:
-            rowsNumber = kBBTMeSectionRowCount;
-            break;
-        case kBBTSettingSectionIndex:
-            rowsNumber = kBBTSettingSectionRowCount;
-            break;
-        case kBBTOtherSectionIndex:
-            rowsNumber = kBBTOtherSectionRowCount;
-            break;
-        default:
-            NSAssert(NO, @"Invalid section index");
-    }
-    
-    return rowsNumber;
-    
-}
-
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-    NSString *sectionTitle;
-    
-    switch (section) {
-        case kBBTMeSectionIndex:
-            sectionTitle = @"个人";
-            break;
-        case kBBTSettingSectionIndex:
-            sectionTitle = @"设置";
-            break;
-        case kBBTOtherSectionIndex:
-            sectionTitle = @"其他";
-            break;
-        default:
-            NSAssert(NO, @"Invalid section index");
-    }
-    
-    return sectionTitle;
-    
+    return 2;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return 50;
+    return @" ";
 }
 
-
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-
-    CGRect screenBound = self.view.bounds;
-    CGFloat screenHeight = screenBound.size.height;
-    CGFloat footerHeight = 0.1 * screenHeight;
-    return footerHeight;
-    
+    return 20.0f;
 }
 
--(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    
-    ((UITableViewHeaderFooterView *)view).backgroundView.backgroundColor = [[UIColor brownColor] colorWithAlphaComponent:0.3f];
-
+    return 0.01f;
 }
 
--(void)tableView:(UITableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    ((UITableViewHeaderFooterView *)view).backgroundView.backgroundColor = [UIColor clearColor];
-    
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
     static NSString *meCellIdentifier = @"meCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:meCellIdentifier];
+    [self.meTableView registerClass:[TDBadgedCell class] forCellReuseIdentifier:meCellIdentifier];
+    
+    TDBadgedCell *cell = [tableView dequeueReusableCellWithIdentifier:meCellIdentifier];
     
     if (!cell)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:meCellIdentifier];
+        cell = [[TDBadgedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:meCellIdentifier];
     }
-    
-    // FIXME: 使用 const
+
     if (indexPath.section == 0)
     {
-        cell.textLabel.text = @"账户管理";
+        if (indexPath.row == 0)
+        {
+            cell.textLabel.text = @"我的收藏";
+        }
+        else if (indexPath.row == 1)
+        {
+            cell.textLabel.text = @"设置";
+        }
     }
     else if (indexPath.section == 1)
-    {
-        cell.textLabel.text = @"设置";
-    }
-    else if (indexPath.section == 2)
     {
         if (indexPath.row == 0)
         {
             cell.textLabel.text = @"意见反馈";
+            [[LCUserFeedbackAgent sharedInstance] countUnreadFeedbackThreadsWithBlock:^(NSInteger number, NSError *error) {
+                if (error) {
+                    //网络出错了，不设置红点
+                } else {
+                    //根据未读数 number，设置红点，提醒用户
+                    cell.badgeColor = [UIColor redColor];
+                }
+            }];
         }
         else if (indexPath.row == 1)
         {
             cell.textLabel.text = @"关于";
         }
-
     }
-
+    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
-    
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // FIXME: 使用 const
     if (indexPath.section == 0)
-    {
-        [self performSegueWithIdentifier:@"showAccountManage" sender:tableView];
-    }
-    else if (indexPath.section == 1)
-    {
-        [self performSegueWithIdentifier:@"showSettings" sender:tableView];
-    }
-    else if (indexPath.section == 2)
     {
         if (indexPath.row == 0)
         {
-            LCUserFeedbackAgent *agent = [LCUserFeedbackAgent sharedInstance];
-            /* title 传 nil 表示将第一条消息作为反馈的标题。 contact 也可以传入 nil，由用户来填写联系方式。*/
-            [agent showConversations:self title:nil contact:@"pankobe24@vip.qq.com"];
+            //Log in first
+            if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
+            {
+                [self performSegueWithIdentifier:@"showMyCollections" sender:tableView];
+            }
+            else
+            {
+                BBTLoginViewController *loginVC = [[BBTLoginViewController alloc] init];
+                UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginVC];
+                [self presentViewController:navigationController animated:YES completion:nil];
+            }
+        }
+        else if (indexPath.row == 1)
+        {
+            [self performSegueWithIdentifier:@"showSettings" sender:tableView];
+        }
+    }
+    else if (indexPath.section == 1)
+    {
+        if (indexPath.row == 0)
+        {
+            LCUserFeedbackViewController *feedbackViewController = [[LCUserFeedbackViewController alloc] init];
+            feedbackViewController.navigationBarStyle = LCUserFeedbackNavigationBarStyleNone;
+            //feedbackViewController.contactHeaderHidden = YES;
+            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:feedbackViewController];
+            [self presentViewController:navigationController animated:YES completion:nil];
         }
         else if (indexPath.row == 1)
         {
             [self performSegueWithIdentifier:@"showAbout" sender:tableView];
         }
     }
-        
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (void)loginButtonIsTapped
+{
+    BBTLoginViewController *loginVC = [[BBTLoginViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    [self presentViewController:navigationController animated:YES completion:nil];
+}
 
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+- (void)updateView
+{
+    if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
+    {
+        self.loginButton.hidden = YES;
+        self.nameLabel.hidden = NO;
+        self.studentNumberLabel.hidden = NO;
+        self.nameLabel.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.nickName;
+        self.studentNumberLabel.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account;
+        NSURL *avatarURL;
+        if (![BBTCurrentUserManager sharedCurrentUserManager].currentUser.userLogo || [[BBTCurrentUserManager sharedCurrentUserManager].currentUser.userLogo  isKindOfClass:[NSNull class]])        //The string is null
+        {
+            avatarURL = [NSURL URLWithString:@""];
+        }
+        else
+        {
+            avatarURL = [NSURL URLWithString:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.userLogo];
+        }
+        [self.avatarImageView setImageWithURL:avatarURL placeholderImage:[UIImage imageNamed:@"defaultAvatar"] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    }
+    else
+    {
+        self.loginButton.hidden = NO;
+        self.nameLabel.hidden = YES;
+        self.studentNumberLabel.hidden = YES;
+        self.avatarImageView.image = [UIImage imageNamed:@"defaultAvatar"];
+    }
     
-    // Configure the cell...
-    
-    return cell;
+    //Set badge if there are unread messages
+    [[LCUserFeedbackAgent sharedInstance] countUnreadFeedbackThreadsWithBlock:^(NSInteger number, NSError *error) {
+        if (error) {
+            //网络出错了，不设置红点
+        } else {
+            //根据未读数 number，设置红点，提醒用户(满足强迫症用户的需求，只有未读消息数不为0时才显示红点)
+            if (number)
+            {
+                TDBadgedCell *cell = [self.meTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+                cell.badgeColor = [UIColor redColor];
+                cell.badgeString = [NSString stringWithFormat:@"%ld", (long)number];
+            }
+        }
+    }];
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)handleTap
+{
+    if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
+    {
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Me" bundle:nil];
+        UIViewController *controller = [sb instantiateViewControllerWithIdentifier:@"PersonalInfoEditVC"];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    else
+    {
+        BBTLoginViewController *loginVC = [[BBTLoginViewController alloc] init];
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self presentViewController:navigationController animated:YES completion:nil];
+    }
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (void)receiveFeedBackViewDisappearNotif
+{
+    //Clear badge.
+    TDBadgedCell *cell = [self.meTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    cell.badgeColor = [UIColor clearColor];
+    cell.badgeString = nil;
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden = NO;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -14,8 +14,7 @@
 #import "LCUserFeedbackReply.h"
 #import "LCUserFeedbackAgent.h"
 #import "LCUserFeedbackImageViewController.h"
-
-#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#import "LCUtils.h"
 
 #define kInputViewColor [UIColor colorWithRed:247.0f/255 green:248.0f/255 blue:248.0f/255 alpha:1]
 
@@ -44,16 +43,18 @@ static CGFloat const kSendButtonWidth = 60;
 
 @implementation LCUserFeedbackViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+NSString * kFeedBackViewDisappearNotifName = @"feedBackViewDisappear";
+
+- (instancetype)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
         _feedbackReplies = [[NSMutableArray alloc] init];
-        
         // Custom initialization
-        self.navigationBarStyle = LCUserFeedbackNavigationBarStyleBlue;
-        self.contactHeaderHidden = NO;
-        self.feedbackCellFont = [UIFont systemFontOfSize:16];
+        _navigationBarStyle = LCUserFeedbackNavigationBarStyleBlue;
+        _contactHeaderHidden = NO;
+        _feedbackCellFont = [UIFont systemFontOfSize:16];
+        _presented = YES;
     }
     return self;
 }
@@ -77,13 +78,17 @@ static CGFloat const kSendButtonWidth = 60;
         NSString *localKey = [NSString stringWithFormat:@"feedback_%@", _userFeedback.objectId];
         [[NSUserDefaults standardUserDefaults] setObject:@(_feedbackReplies.count) forKey:localKey];
     }
+    
+    //Post notification when current feedback view disappears to clear badge.
+    [[NSNotificationCenter defaultCenter] postNotificationName:kFeedBackViewDisappearNotifName object:self];
 }
 
 - (void)setupUI {
-    self.navigationItem.leftBarButtonItem = self.closeButtonItem;
-    [self.navigationItem setTitle:@"意见反馈"];
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
-    self.navigationItem.backBarButtonItem = backButton;
+    if (self.presented) {
+        self.navigationItem.leftBarButtonItem = self.closeButtonItem;
+    }
+    
+    [self.navigationItem setTitle:LCLocalizedString(@"User Feedback")];
     [self setupNavigaionBar];
     
     [self.view addSubview:self.tableView];
@@ -113,9 +118,14 @@ static CGFloat const kSendButtonWidth = 60;
 
 - (UIBarButtonItem *)closeButtonItem {
     if (_closeButtonItem == nil) {
-        UIButton *closeButton = [self closeButton];
-        [closeButton addTarget:self action:@selector(closeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-         _closeButtonItem = [[UIBarButtonItem alloc] initWithCustomView:closeButton];
+        if (self.presented) {
+            _closeButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(closeButtonClicked:)];
+        } else {
+            UIButton *closeButton = [self closeButton];
+            [closeButton addTarget:self action:@selector(closeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+            _closeButtonItem = [[UIBarButtonItem alloc] initWithCustomView:closeButton];
+        }
+
     }
     return _closeButtonItem;
 }
@@ -149,7 +159,7 @@ static CGFloat const kSendButtonWidth = 60;
         _sendButton.frame = CGRectMake(CGRectGetWidth(self.view.frame) - kSendButtonWidth, CGRectGetHeight(self.view.frame) - kInputViewHeight, kSendButtonWidth, kInputViewHeight);
         [_sendButton.titleLabel setFont:[UIFont systemFontOfSize:12]];
         [_sendButton setTitleColor:[UIColor colorWithRed:137.0f/255 green:137.0f/255 blue:137.0f/255 alpha:1] forState:UIControlStateNormal];
-        [_sendButton setTitle:@"发送" forState:UIControlStateNormal];
+        [_sendButton setTitle:LCLocalizedString(@"Send") forState:UIControlStateNormal];
         [_sendButton setBackgroundColor: kInputViewColor];
         [_sendButton addTarget:self action:@selector(sendButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -162,7 +172,7 @@ static CGFloat const kSendButtonWidth = 60;
         _inputTextField.tag = TAG_InputFiled;
         [_inputTextField setFont:[UIFont systemFontOfSize:12]];
         _inputTextField.backgroundColor = kInputViewColor;
-        _inputTextField.placeholder = @"填写反馈";
+        _inputTextField.placeholder = LCLocalizedString(@"Please write your feedback");
         UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 30)];
         _inputTextField.leftView = paddingView;
         _inputTextField.leftViewMode = UITextFieldViewModeAlways;
@@ -179,12 +189,8 @@ static CGFloat const kSendButtonWidth = 60;
         case LCUserFeedbackNavigationBarStyleBlue: {
             [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
             UIColor *blue =[UIColor colorWithRed:85.0f/255 green:184.0f/255 blue:244.0f/255 alpha:1];
-            if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
-                self.navigationController.navigationBar.tintColor = blue;
-            } else {
-                self.navigationController.navigationBar.barTintColor = blue;
-                self.navigationController.navigationBar.tintColor = blue;
-            }
+            self.navigationController.navigationBar.barTintColor = blue;
+            self.closeButtonItem.tintColor = [UIColor whiteColor];
             break;
         }
         case LCUserFeedbackNavigationBarStyleNone:
@@ -279,9 +285,13 @@ static CGFloat const kSendButtonWidth = 60;
 }
 
 - (void)closeButtonClicked:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        ;
-    }];
+    if (self.presented) {
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (NSString *)currentContact {
@@ -459,6 +469,7 @@ static CGFloat const kSendButtonWidth = 60;
         }];
     }
 }
+
 #pragma mark - UIScrollViewDelegate
 - (void)scrollToBottom {
     if ([self.tableView numberOfRowsInSection:0] > 1) {
@@ -495,7 +506,7 @@ static CGFloat const kSendButtonWidth = 60;
     self.tableViewHeader.tag = TAG_TABLEView_Header;
     [self.tableViewHeader setBackgroundColor:[UIColor colorWithRed:247.0f/255 green:248.0f/255 blue:248.0f/255 alpha:1]];
     self.tableViewHeader.textAlignment = NSTextAlignmentLeft;
-    self.tableViewHeader.placeholder = @"Email或QQ号";
+    self.tableViewHeader.placeholder = LCLocalizedString(@"Email Or QQ");
     [self.tableViewHeader setFont:[UIFont systemFontOfSize:12.0f]];
     if (_contact) {
         self.tableViewHeader.text = _contact;

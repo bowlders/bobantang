@@ -1,9 +1,9 @@
 //
-//  BBTPreferences1.h
-//  bobantang
+//  BBTPreferences.h
+//  BoBanTang
 //
-//  Created by skyline on 14/11/30.
-//  Copyright (c) 2014年 Bill Bai. All rights reserved.
+//  Created by Caesar on 15/11/19.
+//  Copyright © 2015年 100steps. All rights reserved.
 //
 
 #import "PAPreferences.h"
@@ -17,6 +17,8 @@
 @property (assign, nonatomic) BOOL hasSeenBusHelp;
 @property (assign, nonatomic) BOOL hasSeenFlatMapHelp;
 @property (assign, nonatomic) BOOL hasSeen3DMapHelp;
+@property (assign, nonatomic) BOOL hasSeenMeView;
+@property (assign, nonatomic) BOOL hasSeenDailyArticleDetailView;
 
 @property (assign, nonatomic) BOOL northCampus;
 @property (assign, nonatomic) BOOL flatMap;

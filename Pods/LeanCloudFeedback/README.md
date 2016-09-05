@@ -1,10 +1,14 @@
 # leancloud-feedback-ios
 
+[![Podspec][podspec-svg]][podspec-link]
+![Platforms][platforms-svg]
+[![Dependencies][dependencies-svg]][dependencies-link]
+
 LeanCloud Feedback 模块是 [LeanCloud](https://leancloud.cn) 开源的一个用户反馈组件，反馈内容存储在 LeanCloud 云端，开发者可以通过 LeanCloud 提供的统计分析客户端 [LeanAnalytics](https://itunes.apple.com/IE/app/id854896336) 来实时查看和回复用户反馈。
 
 用户反馈界面如下：
 
-![image](images/Screen.png)
+![ios_feedback](https://cloud.githubusercontent.com/assets/5022872/11053506/8e962c94-879c-11e5-9cd9-a96a688b79a3.gif)
 
 
 ## 如何贡献
@@ -86,37 +90,56 @@ xcodebuild -target UniversalFramework -config Release
   pod 'LeanCloudFeedback'
 ```
 
+或者使用动态库，
+
+```
+  pod 'LeanCloudFeedbackDynamic'
+```
+
 ## 其他问题
 ### 我要增加额外的数据，该怎么做？
 可以扩展 LCUserFeedbackReply 的属性值，从而保存更多的内容。譬如允许用户截图来反馈问题的话，可以在应用中先把图片存储到 LeanCloud 云端（使用 AVFile），然后把 AVFile 的 url 保存到 LCUserFeedbackReply(attachment 属性)。
 
 ## ChangeLog
 
+0.0.8
+
+* 增加本地化字符串的支持
+* LCUserFeedbackViewController 增加 presented 参数，来决定返回按钮和样式。默认为 YES，会创建一个返回按钮。当使用 pushViewController 进入时，请设置为 NO，则不会创建返回按钮，用 NavigationController 默认的返回按钮。更多可见 Demo。
+
 0.0.7
 
-结合 LeanCloud SDK 的用户系统，如果当前有用户登录，将记录 user id，方便定位反馈的用户
+* 结合 LeanCloud SDK 的用户系统，如果当前有用户登录，将记录 user id，方便定位反馈的用户
 
 0.0.6
 
-移除了+[UIImage imageNamed:inBundle:compatibleWithTraitCollection:] iOS 8 的API，使得本项目最低能支持 iOS6
+* 移除了+[UIImage imageNamed:inBundle:compatibleWithTraitCollection:] iOS 8 的API，使得本项目最低能支持 iOS6
 
 0.0.5
 
-开放 LCUserFeedbackViewController.h，只需引入 `<LeanCloudFeedback/LeanCloudFeedback.h>` 即可
+* 开放 LCUserFeedbackViewController.h，只需引入 `<LeanCloudFeedback/LeanCloudFeedback.h>` 即可
 
 0.0.4
 
-修复发送的反馈没有显示时间戳的问题、更改 AVOSCloud 依赖至 ~> 3.1 ，使得主项目引用时没有收到此库的限制
+* 修复发送的反馈没有显示时间戳的问题、更改 AVOSCloud 依赖至 ~> 3.1 ，使得主项目引用时没有收到此库的限制
 
 0.0.3
 
-增加图片上传功能，让用户可以上传图片来反映问题
+* 增加图片上传功能，让用户可以上传图片来反映问题
 
 0.0.2
 
-增加了导航栏、联系人表头、字体的定制		
-去掉了 LeftCell 类 和 RightCell 类，统一为 FeedbackCell，因为左右Cell 大部分代码都是相同可复用的。
+* 增加了导航栏、联系人表头、字体的定制		
+* 去掉了 LeftCell 类 和 RightCell 类，统一为 FeedbackCell，因为左右Cell 大部分代码都是相同可复用的。
 
 0.0.1
 
-发布
+* 发布
+
+ [podspec-svg]: https://img.shields.io/cocoapods/v/LeanCloudFeedback.svg
+ [podspec-link]: https://cocoapods.org/pods/LeanCloudFeedback
+
+ [platforms-svg]: https://img.shields.io/badge/platform-ios-lightgrey.svg
+
+ [dependencies-svg]: https://img.shields.io/badge/dependencies-1-yellowgreen.svg
+ [dependencies-link]: https://github.com/leancloud/leancloud-feedback-ios/blob/master/LeanCloudFeedback.podspec#L20

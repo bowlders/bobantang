@@ -1,0 +1,93 @@
+PODS:
+  - ActionSheetPicker-3.0 (2.0.4)
+  - AFNetworking (3.0.4):
+    - AFNetworking/NSURLSession (= 3.0.4)
+    - AFNetworking/Reachability (= 3.0.4)
+    - AFNetworking/Security (= 3.0.4)
+    - AFNetworking/Serialization (= 3.0.4)
+    - AFNetworking/UIKit (= 3.0.4)
+  - AFNetworking/NSURLSession (3.0.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.0.4)
+  - AFNetworking/Security (3.0.4)
+  - AFNetworking/Serialization (3.0.4)
+  - AFNetworking/UIKit (3.0.4):
+    - AFNetworking/NSURLSession
+  - AMWaveTransition (0.6.2)
+  - AVOSCloud (3.2.2)
+  - AVOSCloudCrashReporting (3.2.2):
+    - AVOSCloud
+  - AYVibrantButton (1.0.3)
+  - CRToast (0.0.9)
+  - FlatUIKit (1.6.2)
+  - HexColors (2.2.1)
+  - HMSegmentedControl (1.5.2)
+  - JNKeychain (0.1.4)
+  - JSONModel (1.2.0)
+<<<<<<< HEAD
+  - KGModal (0.0.1)
+  - LeanCloudFeedback (0.1.0):
+=======
+  - LeanCloudFeedback (0.1.1):
+>>>>>>> 3dabc5f78f528b43927a176142a284531674ad35
+    - AVOSCloud
+  - Masonry (0.6.4)
+  - pop (1.0.8)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
+  - SZTextView (1.2.1)
+  - TSMessages (0.9.12):
+    - HexColors (~> 2.2.0)
+  - VBFPopFlatButton (0.0.6):
+    - pop
+
+DEPENDENCIES:
+  - ActionSheetPicker-3.0
+  - AFNetworking (~> 3.0)
+  - AMWaveTransition
+  - AVOSCloud
+  - AVOSCloudCrashReporting
+  - AYVibrantButton
+  - CRToast (~> 0.0.7)
+  - FlatUIKit
+  - HMSegmentedControl
+  - JNKeychain
+  - JSONModel
+  - KGModal (~> 0.0.1)
+  - LeanCloudFeedback
+  - Masonry
+  - SDWebImage (~> 3.7)
+  - SZTextView
+  - TSMessages
+  - VBFPopFlatButton
+
+SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: 860466cb4a66854e6acb590071ecee404b48f49d
+  AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
+  AMWaveTransition: 98952310574779e4ca7e7f4d89f8b1043cdad171
+  AVOSCloud: 73eb3e7b772b84998df5fb104813c17b39b25cf3
+  AVOSCloudCrashReporting: 07e52633ad0dc2a84c310e6a5ae268f42eea5959
+  AYVibrantButton: 7cc5b2c74f6f6a0a52d5b0db361a9d3b755bc448
+  CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
+  FlatUIKit: 1b41f0d4952ce8d970d8479ce79df54a960242c4
+  HexColors: abfd172e329dab59888614ccba6f216cec59289d
+  HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
+  JNKeychain: fb6cc9ec95959ba46cd95d0ee6f7a05e41da9f42
+  JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
+<<<<<<< HEAD
+  KGModal: d2759dbd6d5e70e7a60bb0c3ddc7c0ece6040128
+  LeanCloudFeedback: 011993aef4d90ad52279339f607a0850787493dc
+=======
+  LeanCloudFeedback: 686305ea196931c7eae49800c384e42d78408482
+>>>>>>> 3dabc5f78f528b43927a176142a284531674ad35
+  Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
+  pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  SZTextView: 906df45afd3c1b24fc5252088d5ef8061513c238
+  TSMessages: c8cc7b80f2a833af533872cd02010cac061532cc
+  VBFPopFlatButton: 782344da63f104c279a857d806e065117a7e1196
+
+COCOAPODS: 0.39.0

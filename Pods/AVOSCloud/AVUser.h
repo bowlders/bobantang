@@ -76,11 +76,19 @@ A LeanCloud Framework User Object that is a local representation of a user persi
  */
 @property (nonatomic, retain) NSString *password;
 
-/// The email for the AVUser.
+/**
+ *  Email of the user. If enable "Enable Email Verification" option in the console, when register a user, will send a verification email to the user. Otherwise, only save the email to the server.
+ */
 @property (nonatomic, retain) NSString *email;
 
+/**
+ *  Mobile phone number of the user. Can be set when registering. If enable the "Enable Mobile Phone Number Verification" option in the console, when register a user, will send an sms message to the phone. Otherwise, only save the mobile phone number to the server.
+ */
 @property (nonatomic, strong) NSString *mobilePhoneNumber;
 
+/**
+ *  Mobile phone number verification flag. Read-only. if calling verifyMobilePhone:withBlock: succeeds, the server will set this value YES.
+ */
 @property (nonatomic, readonly) BOOL mobilePhoneVerified;
 
 /**
@@ -97,6 +105,9 @@ A LeanCloud Framework User Object that is a local representation of a user persi
 /*!
  *  请求手机号码验证
  *  发送短信到指定的手机上，内容有6位数字验证码。验证码10分钟内有效。
+ *  
+ *  @warning 对同一个手机号码，每天有 5 条数量的限制，并且发送间隔需要控制在一分钟。
+ *
  *  @param phoneNumber 11位电话号码
  *  @param block 回调结果
  */
@@ -124,11 +135,11 @@ A LeanCloud Framework User Object that is a local representation of a user persi
 - (void)signUpInBackgroundWithBlock:(AVBooleanResultBlock)block;
 
 /*!
- update user's password
- @param oldPassword old password
- @param newPassword new password
- @param block The block to execute. The block should have the following argument signature: (id object, NSError *error)
- @warning the user must have logged in, and provide both oldPassword and newPassword, otherwise can't update password successfully.
+ 用旧密码来更新密码。在 3.1.6 之后，更新密码成功之后不再需要强制用户重新登录，仍然保持登录状态。
+ @param oldPassword 旧密码
+ @param newPassword 新密码
+ @param block 完成时的回调，有以下签名 (id object, NSError *error)
+ @warning 此用户必须登录且同时提供了新旧密码，否则不能更新成功。
  */
 - (void)updatePassword:(NSString *)oldPassword newPassword:(NSString *)newPassword block:(AVIdResultBlock)block;
 
@@ -308,19 +319,19 @@ A LeanCloud Framework User Object that is a local representation of a user persi
  Signs up the user. Make sure that password and username are set. This will also enforce that the username isn't already taken.
  @return true if the sign up was successful.
  */
-- (BOOL)signUp AVDeprecated("2.6.10");
+- (BOOL)signUp AV_DEPRECATED("2.6.10");
 
 /*!
  Signs up the user asynchronously. Make sure that password and username are set. This will also enforce that the username isn't already taken.
  */
-- (void)signUpInBackground AVDeprecated("2.6.10");
+- (void)signUpInBackground AV_DEPRECATED("2.6.10");
 
 /*!
  Signs up the user asynchronously. Make sure that password and username are set. This will also enforce that the username isn't already taken.
  @param target Target object for the selector.
  @param selector The selector that will be called when the asynchrounous request is complete. It should have the following signature: `(void)callbackWithResult:(NSNumber *)result error:(NSError **)error`. error will be nil on success and set if there was an error. `[result boolValue]` will tell you whether the call succeeded or not.
  */
-- (void)signUpInBackgroundWithTarget:(id)target selector:(SEL)selector AVDeprecated("2.6.10");
+- (void)signUpInBackgroundWithTarget:(id)target selector:(SEL)selector AV_DEPRECATED("2.6.10");
 
 /*!
  update user's password
@@ -330,7 +341,7 @@ A LeanCloud Framework User Object that is a local representation of a user persi
  @param selector The selector that will be called when the asynchrounous request is complete. It should have the following signature: `(void)callbackWithResult:(id)object error:(NSError *)error`. error will be nil on success and set if there was an error.
  @warning the user must have logged in, and provide both oldPassword and newPassword, otherwise can't update password successfully.
  */
-- (void)updatePassword:(NSString *)oldPassword newPassword:(NSString *)newPassword withTarget:(id)target selector:(SEL)selector AVDeprecated("2.6.10");
+- (void)updatePassword:(NSString *)oldPassword newPassword:(NSString *)newPassword withTarget:(id)target selector:(SEL)selector AV_DEPRECATED("2.6.10");
 
 /*!
  Makes a request to login a user with specified credentials. Returns an instance
@@ -341,7 +352,7 @@ A LeanCloud Framework User Object that is a local representation of a user persi
  @return an instance of the AVUser on success. If login failed for either wrong password or wrong username, returns nil.
  */
 + (instancetype)logInWithUsername:(NSString *)username
-                         password:(NSString *)password  AVDeprecated("2.6.10");
+                         password:(NSString *)password  AV_DEPRECATED("2.6.10");
 
 /*!
  Makes an asynchronous request to login a user with specified credentials.
@@ -351,7 +362,7 @@ A LeanCloud Framework User Object that is a local representation of a user persi
  @param password The password of the user.
  */
 + (void)logInWithUsernameInBackground:(NSString *)username
-                             password:(NSString *)password AVDeprecated("2.6.10");
+                             password:(NSString *)password AV_DEPRECATED("2.6.10");
 
 /*!
  Makes an asynchronous request to login a user with specified credentials.
@@ -366,25 +377,25 @@ A LeanCloud Framework User Object that is a local representation of a user persi
 + (void)logInWithUsernameInBackground:(NSString *)username
                              password:(NSString *)password
                                target:(id)target
-                             selector:(SEL)selector AVDeprecated("2.6.10");
+                             selector:(SEL)selector AV_DEPRECATED("2.6.10");
 
 + (instancetype)logInWithMobilePhoneNumber:(NSString *)phoneNumber
-                                  password:(NSString *)password AVDeprecated("2.6.10");
+                                  password:(NSString *)password AV_DEPRECATED("2.6.10");
 + (void)logInWithMobilePhoneNumberInBackground:(NSString *)phoneNumber
-                                      password:(NSString *)password AVDeprecated("2.6.10");
+                                      password:(NSString *)password AV_DEPRECATED("2.6.10");
 + (void)logInWithMobilePhoneNumberInBackground:(NSString *)phoneNumber
                                       password:(NSString *)password
                                         target:(id)target
-                                      selector:(SEL)selector AVDeprecated("2.6.10");
+                                      selector:(SEL)selector AV_DEPRECATED("2.6.10");
 
 + (instancetype)logInWithMobilePhoneNumber:(NSString *)phoneNumber
-                                   smsCode:(NSString *)code AVDeprecated("2.6.10");
+                                   smsCode:(NSString *)code AV_DEPRECATED("2.6.10");
 + (void)logInWithMobilePhoneNumberInBackground:(NSString *)phoneNumber
-                                       smsCode:(NSString *)code AVDeprecated("2.6.10");
+                                       smsCode:(NSString *)code AV_DEPRECATED("2.6.10");
 + (void)logInWithMobilePhoneNumberInBackground:(NSString *)phoneNumber
                                        smsCode:(NSString *)code
                                         target:(id)target
-                                      selector:(SEL)selector AVDeprecated("2.6.10");
+                                      selector:(SEL)selector AV_DEPRECATED("2.6.10");
 
 /*!
  Send a password reset request for a specified email. If a user account exists with that email,
@@ -392,7 +403,7 @@ A LeanCloud Framework User Object that is a local representation of a user persi
  @param email Email of the account to send a reset password request.
  @return true if the reset email request is successful. False if no account was found for the email address.
  */
-+ (BOOL)requestPasswordResetForEmail:(NSString *)email AVDeprecated("2.6.10");
++ (BOOL)requestPasswordResetForEmail:(NSString *)email AV_DEPRECATED("2.6.10");
 
 /*!
  Send a password reset request asynchronously for a specified email and sets an
@@ -400,7 +411,7 @@ A LeanCloud Framework User Object that is a local representation of a user persi
  that address with instructions on how to reset their password.
  @param email Email of the account to send a reset password request.
  */
-+ (void)requestPasswordResetForEmailInBackground:(NSString *)email AVDeprecated("2.6.10");
++ (void)requestPasswordResetForEmailInBackground:(NSString *)email AV_DEPRECATED("2.6.10");
 
 /*!
  Send a password reset request asynchronously for a specified email and sets an error object.
@@ -412,6 +423,6 @@ A LeanCloud Framework User Object that is a local representation of a user persi
  */
 + (void)requestPasswordResetForEmailInBackground:(NSString *)email
                                           target:(id)target
-                                        selector:(SEL)selector AVDeprecated("2.6.10");
+                                        selector:(SEL)selector AV_DEPRECATED("2.6.10");
 
 @end

@@ -2,30 +2,15 @@
 // Copyright 2013 AVOS, Inc. All rights reserved.
 
 #import <Foundation/Foundation.h>
+#import "AVAvailability.h"
+
 @class AVObject;
 @class AVUser;
 @class AVFile;
 
-//! Project version number for AVOSCloud.
-FOUNDATION_EXPORT double AVOSCloudVersionNumber;
-
-//! Project version string for AVOSCloud.
-FOUNDATION_EXPORT const unsigned char AVOSCloudVersionString[];
-
-// Version
-#define AVOSCLOUD_VERSION @"1.0.0"
-
-extern NSInteger const AVOSCLOUD_API_VERSION;
-
-// Platform
-#define PARSE_IOS_ONLY (TARGET_OS_IPHONE)
-#define PARSE_OSX_ONLY (TARGET_OS_MAC && !(TARGET_OS_IPHONE))
-
-extern NSString *const kPFDeviceType;
-
-#if PARSE_IOS_ONLY
+#if AV_IOS_ONLY
 #import <UIKit/UIKit.h>
-#else
+#elif AV_OSX_ONLY
 #import <Cocoa/Cocoa.h>
 @compatibility_alias UIImage NSImage;
 @compatibility_alias UIColor NSColor;
@@ -44,22 +29,22 @@ typedef enum : NSUInteger {
 #endif
 /// Cache policies
 typedef NS_ENUM(int, AVCachePolicy) {
-    ///Ignore Cache
+    /// Query from server and do not save result to the local cache.
     kAVCachePolicyIgnoreCache = 0,
     
-    ///Cache Only
+    /// Only query from the local cache.
     kAVCachePolicyCacheOnly,
     
-    ///Network Only
+    /// Only query from server, and save result to the local cache.
     kAVCachePolicyNetworkOnly,
     
-    ///CacheElseNetwork
+    /// Firstly query from the local cache, if fails, query from server.
     kAVCachePolicyCacheElseNetwork,
     
-    ///NetworkElseCache
+    /// Firstly query from server, if fails, query the local cache.
     kAVCachePolicyNetworkElseCache,
     
-    ///CacheThenNetwork
+    /// Firstly query from the local cache, return result. Then query from server, return result. The callback will be called twice.
     kAVCachePolicyCacheThenNetwork,
 } ;
 
@@ -104,7 +89,7 @@ extern NSInteger const kAVErrorCacheMiss;
 extern NSInteger const kAVErrorInvalidNestedKey;
 /*! @abstract 122: Invalid file name. A file name contains only a-zA-Z0-9_. characters and is between 1 and 36 characters. */
 extern NSInteger const kAVErrorInvalidFileName;
-/*! @abstract 123: Invalid ACL. An ACL with an invalid format was saved. This should not happen if you use PFACL. */
+/*! @abstract 123: Invalid ACL. An ACL with an invalid format was saved. This should not happen if you use AVACL. */
 extern NSInteger const kAVErrorInvalidACL;
 /*! @abstract 124: The request timed out on the server. Typically this indicates the request is too expensive. */
 extern NSInteger const kAVErrorTimeout;
@@ -156,8 +141,6 @@ extern NSInteger const kAVErrorUserWithEmailNotFound;
 extern NSInteger const kAVErrorUserCannotBeAlteredWithoutSession;
 /*! @abstract 207: Users can only be created through sign up */
 extern NSInteger const kAVErrorUserCanOnlyBeCreatedThroughSignUp;
-/*! @abstract 208: An existing Facebook account already linked to another user. */
-extern NSInteger const kAVErrorFacebookAccountAlreadyLinked;
 /*! @abstract 208: An existing account already linked to another user. */
 extern NSInteger const kAVErrorAccountAlreadyLinked;
 /*! @abstract 209: User ID mismatch */
@@ -166,12 +149,16 @@ extern NSInteger const kAVErrorUserIdMismatch;
 extern NSInteger const kAVErrorUsernamePasswordMismatch;
 /*! @abstract 211: Could not find user. */
 extern NSInteger const kAVErrorUserNotFound;
-/*! @abstract 250: Facebook id missing from request */
-extern NSInteger const kAVErrorFacebookIdMissing;
+/*! @abstract 212: The mobile phone number is missing, and must be specified. */
+extern NSInteger const kAVErrorUserMobilePhoneMissing;
+/*! @abstract 213: An user with the specified mobile phone number was not found. */
+extern NSInteger const kAVErrorUserWithMobilePhoneNotFound;
+/*! @abstract 214: Mobile phone number has already been taken. */
+extern NSInteger const kAVErrorUserMobilePhoneNumberTaken;
+/*! @abstract 215: Mobile phone number isn't verified. */
+extern NSInteger const kAVErrorUserMobilePhoneNotVerified;
 /*! @abstract 250: Linked id missing from request */
 extern NSInteger const kAVErrorLinkedIdMissing;
-/*! @abstract 251: Invalid Facebook session */
-extern NSInteger const kAVErrorFacebookInvalidSession;
 /*! @abstract 251: Invalid linked session */
 extern NSInteger const kAVErrorInvalidLinkedSession;
 
@@ -190,4 +177,4 @@ typedef void (^AVProgressBlock)(NSInteger percentDone);
 typedef void (^AVFileResultBlock)(AVFile * file, NSError *error);
 typedef void (^AVDictionaryResultBlock)(NSDictionary * dict, NSError *error);
 
-#define AVDeprecated(explain) __attribute__((deprecated(explain)))
+#define AV_DEPRECATED(explain) __attribute__((deprecated(explain)))

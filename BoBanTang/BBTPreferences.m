@@ -1,9 +1,9 @@
 //
-//  BBTPreferences1.m
-//  bobantang
+//  BBTPreferences.m
+//  BoBanTang
 //
-//  Created by skyline on 14/11/30.
-//  Copyright (c) 2014年 Bill Bai. All rights reserved.
+//  Created by Caesar on 15/11/19.
+//  Copyright © 2015年 100steps. All rights reserved.
 //
 
 #import "BBTPreferences.h"
@@ -12,15 +12,18 @@
 
 @dynamic firstVersionInstalled;
 @dynamic lastVersionInstalled;
+
 @dynamic hasSeenBusHelp;
 @dynamic hasSeenIntro;
 @dynamic hasSeenFlatMapHelp;
+@dynamic hasSeenMeView;
+@dynamic hasSeenDailyArticleDetailView;
+
 @dynamic busNotifStationIndex;
 @dynamic busNotifDirectionNorth;
 @dynamic busNotifActive;
 @dynamic northCampus;
 @dynamic flatMap;
-
 
 - (id)init
 {
@@ -35,6 +38,8 @@
             self.hasSeenFlatMapHelp = NO;
             self.hasSeen3DMapHelp = NO;
             self.hasSeenBusHelp = NO;
+            self.hasSeenMeView = NO;
+            self.hasSeenDailyArticleDetailView = NO;
             
             self.busNotifActive = NO;
             self.busNotifDirectionNorth = YES;
