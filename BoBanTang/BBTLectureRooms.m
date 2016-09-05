@@ -78,18 +78,26 @@
     return seletedPeriod;
 }
 
-- (NSArray *)filterLectureRoomsWithFilterResults:(NSArray *)parseResults withFilterConditions:(BBTLectureRooms *)filterConditions
+- (NSDictionary *)filterLectureRoomsWithFilterResults:(NSArray *)parseResults withFilterConditions:(BBTLectureRooms *)filterConditions
 {
-    NSMutableArray *buildingFiltered = [[NSMutableArray alloc] init];
-    for (NSDictionary *resultsDic in parseResults) {
-        NSString *buildingFilter = [resultsDic objectForKey:@"building"];
-        
-        if ([buildingFilter isEqualToString:filterConditions.buildings]) {
-            [buildingFiltered addObject:resultsDic];
-        }
-    }
+    NSMutableArray *periodFiltered = [[NSMutableArray alloc] init];
+    NSMutableDictionary *results = [[NSMutableDictionary alloc] init];
     
-    return buildingFiltered;
+    for (NSString *period in filterConditions.period)
+    {
+        for (NSDictionary *resultsDic in parseResults)
+        {
+            NSString *periodFilter = [resultsDic objectForKey:@"period"];
+            if ([periodFilter isEqualToString:period]) {
+                [periodFiltered addObject:resultsDic];
+            }
+        }
+        
+        NSArray *tempArray = [NSArray arrayWithArray:periodFiltered];
+        [results setObject:tempArray forKey:period];
+        [periodFiltered removeAllObjects];
+    }
+    return results;
 }
 
 @end

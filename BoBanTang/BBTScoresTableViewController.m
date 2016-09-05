@@ -12,6 +12,7 @@
 #import "ActionSheetPicker.h"
 #import <JGProgressHUD.h>
 #import <MBProgressHUD.h>
+#import <AVOSCloud.h>
 
 static NSString *scoresCellIdentifier = @"BBTScoresCell";
 static NSString *filterCellIdentifier = @"filterCell";
@@ -32,6 +33,8 @@ extern NSString * kFailGetNotificaionName;
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetScoresNotification) name:kGetScoresNotificaionName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failGetScoresNotification) name:kFailGetNotificaionName object:self.errorType];
+    
+    [AVAnalytics beginLogPageView:@"iOS_Scores"];
 }
 
 - (void)viewDidLoad
@@ -57,6 +60,8 @@ extern NSString * kFailGetNotificaionName;
 {
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [AVAnalytics endLogPageView:@"iOS_Scores"];
 }
 
 - (void)didGetScoresNotification

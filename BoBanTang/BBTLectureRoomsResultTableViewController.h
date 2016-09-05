@@ -11,7 +11,7 @@
 
 @interface BBTLectureRoomsResultTableViewController : UITableViewController
 
-@property (strong, nonatomic) NSArray *resultRooms;
+@property (strong, nonatomic) NSDictionary *resultRooms;
 @property (strong, nonatomic) NSArray *rawData;
 @property (strong, nonatomic) BBTLectureRooms *filterConditions;
 

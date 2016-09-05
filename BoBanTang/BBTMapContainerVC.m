@@ -15,6 +15,7 @@
 #import "BBTMapContainerVC.h"
 #import <Masonry/Masonry.h>
 #import "BBTRouteManagerView.h"
+#import <AVOSCloud.h>
 
 NSString *const kNorthCampusButtonTitle = @"N";
 NSString *const kHEMCCampusButtonTitle = @"S";
@@ -200,6 +201,14 @@ NSString *const k3DMapButtonTitle = @"2.5D";
     [super viewWillAppear:animated];
     [self.view setNeedsUpdateConstraints];
     [self.view updateConstraintsIfNeeded];
+    
+    [AVAnalytics beginLogPageView:@"iOS_Map"];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [AVAnalytics endLogPageView:@"iOS_Map"];
 }
 
 - (void)mapTypeButtonClicked:(UIButton *)sender

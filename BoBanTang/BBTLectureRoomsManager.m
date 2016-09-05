@@ -36,6 +36,7 @@ NSString * kFailGetEmptyRoomsNotificaionName = @"failGetEmptyRoomsNotificaionNam
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     [manager GET:completeUrl parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+        NSLog(@"Rooms are %@", responseObject);
         if (responseObject)
         {
             BBTLectureRooms *lectureRooms = [[BBTLectureRooms alloc] init];

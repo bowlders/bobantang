@@ -26,6 +26,8 @@
 #import "UIColor+BBTColor.h"
 #import "WYPopoverController.h"
 #import "UITableView+FDTemplateLayoutCell.h"
+#import <AVOSCloud.h>
+#import <WSCoachMarksView.h>
 
 static NSString *postIdentifier = @"LAFPostIdentifier";
 static NSString *myPostedIdentifire = @"postedItemsIdentifier";
@@ -47,6 +49,9 @@ static NSString *campusCellIdentifier = @"BBTItemCampusTableViewCell";
 @property (strong, nonatomic) WYPopoverController                   * settingsPopoverController;
 @property (strong, nonatomic) BBTItemFilterSettingsViewController   * settingsViewController;
 
+@property (strong, nonatomic) WSCoachMarksView                      * coachMarksView;
+
+
 @end
 
 @implementation BBTLostAndFoundTableViewController
@@ -63,6 +68,26 @@ extern NSString * kNoMoreItemsNotificationName;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveUserAuthentificaionNotification) name:kUserAuthentificationFinishNotifName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveFuzzyItemsNotificaion) name:kGetFuzzyConditionsItemNotificationName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveNoMoreItemsNotification) name:kNoMoreItemsNotificationName object:nil];
+    
+    [AVAnalytics beginLogPageView:@"iOS_lostAndFound"];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    if (!self.coachMarksView && ![BBTPreferences sharedInstance].hasSeenLaf)
+    {
+        NSArray *coachMarks = @[
+                                @{
+                                    @"rect":[NSValue valueWithCGRect:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.view.frame.size.width, self.navigationController.navigationBar.frame.size.height+20)],
+                                    @"caption":@"搜索栏可搜索失物名称和类别",
+                                    @"shape":@"square",
+                                    }
+                                ];
+        self.coachMarksView = [[WSCoachMarksView alloc] initWithFrame:self.tableView.bounds coachMarks:coachMarks];
+        [self.view addSubview:self.coachMarksView];
+        [self.coachMarksView start];
+        [BBTPreferences sharedInstance].hasSeenLaf= YES;
+    }
 }
 
 - (void)viewDidLoad
@@ -82,7 +107,13 @@ extern NSString * kNoMoreItemsNotificationName;
     [header setTitle:@"释放刷新" forState:MJRefreshStatePulling];
     [header setTitle:@"加载中 ..." forState:MJRefreshStateRefreshing];
     self.tableView.mj_header = header;
-    [self.tableView.mj_header beginRefreshing];
+    
+    if (![BBTPreferences sharedInstance].hasSeenLaf) {
+        [self refresh];            //A fixed searchBar the first time the user see this view in order to present a coachMarkView over the searchBar
+    } else {
+        [self.tableView.mj_header beginRefreshing];     //Show the refresh animation after the first time
+    }
+    
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreItems)];
 
     self.filteredItems = [[NSArray alloc] init];
@@ -136,6 +167,8 @@ extern NSString * kNoMoreItemsNotificationName;
 {
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [AVAnalytics endLogPageView:@"iOS_lostAndFound"];
 }
 
 - (IBAction)didChangeLafType:(id)sender

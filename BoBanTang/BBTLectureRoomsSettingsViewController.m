@@ -15,6 +15,7 @@
 #import "ActionSheetPicker.h"
 #import <Masonry.h>
 #import <AYVibrantButton.h>
+#import <AVOSCloud.h>
 
 static NSString * campusCellIdentifier = @"BBTItemCampusTableViewCell";
 static NSString * rightDetailCellIdentifier = @"itemRightDetailCell";
@@ -35,6 +36,12 @@ static NSString * showResultsSegueIdentifier = @"showResults";
 @end
 
 @implementation BBTLectureRoomsSettingsViewController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [AVAnalytics beginLogPageView:@"iOS_emptyRooms"];
+}
 
 - (void)viewDidLoad
 {
@@ -88,6 +95,12 @@ static NSString * showResultsSegueIdentifier = @"showResults";
         make.width.equalTo(self.view.mas_width).multipliedBy(0.55);
         make.centerX.equalTo(self.view.mas_centerX);
     }];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [AVAnalytics endLogPageView:@"iOS_emptyRooms"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -162,8 +175,8 @@ static NSString * showResultsSegueIdentifier = @"showResults";
         else
         {
             cell.textLabel.text = @"楼栋";
-            cell.detailTextLabel.text = @"31";
-            self.setConditions.buildings = @"31";
+            cell.detailTextLabel.text = @"32";
+            self.setConditions.buildings = @"32";
         }
         return cell;
     }
@@ -175,7 +188,7 @@ static NSString * showResultsSegueIdentifier = @"showResults";
     {
         NSArray *buildings;
         if (self.campus.selectedSegmentIndex == 0) {
-           buildings = @[@"31", @"32", @"33", @"34", @"35", @"博学楼"];
+           buildings = @[@"32", @"33", @"34", @"博学"];
         } else if (self.campus.selectedSegmentIndex == 1) {
            buildings = @[@"A1", @"A2", @"A3"];
         }
@@ -257,10 +270,10 @@ static NSString * showResultsSegueIdentifier = @"showResults";
         for (NSString *chosenTime in selectedTime) {
             [tempString appendString:chosenTime];
         }
-        self.timeToShow = tempString;
+        [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]].detailTextLabel.text = tempString;
     }
     
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
