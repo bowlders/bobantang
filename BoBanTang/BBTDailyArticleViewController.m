@@ -132,7 +132,12 @@ extern NSString * getArticleTodaySucceedNotifName;
     self.recognizer.direction = UISwipeGestureRecognizerDirectionLeft;
     self.recognizer.delegate = self;
     [self.view addGestureRecognizer:self.recognizer];
- 
+    
+    //Disable left-scroll if current view is entered through the article list to avoid infinite article list views.
+    if (self.isEnteredFromArticleTableVC)
+    {
+        self.recognizer.enabled = NO;
+    }
 }
 
 - (void)loadWebView
