@@ -52,7 +52,8 @@ extern NSString * kFeedBackViewDisappearNotifName;
                                                  name:kFeedBackViewDisappearNotifName
                                                object:nil];
     
-
+    NSLog(@"tab - %@", NSStringFromCGRect(self.tabBarController.tabBar.frame));
+    self.tabBarController.tabBar.hidden = NO;
 }
 
 - (void)viewDidLayoutSubviews
