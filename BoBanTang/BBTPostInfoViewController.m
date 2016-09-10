@@ -52,6 +52,7 @@ extern NSString *kDidUploadImageNotificationName;
 extern NSString *kFailUploadImageNotificationName;
 extern NSString *kDidPostItemNotificaionName;
 extern NSString *kFailPostItemNotificaionName;
+extern NSString *kDidChangedCampusNotificationName;
 
 - (void)viewDidLoad
 {
@@ -89,6 +90,8 @@ extern NSString *kFailPostItemNotificaionName;
     
     self.item = [[BBTLAF alloc] init];
     self.item.title = @"大学城一卡通";
+    self.item.campus = @(0);
+    self.item.type = @(0);
     
     //Set buttons
     UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
@@ -167,6 +170,9 @@ extern NSString *kFailPostItemNotificaionName;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failUploading) name:kFailUploadImageNotificationName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didPostItem) name:kDidPostItemNotificaionName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failUploading) name:kFailPostItemNotificaionName object:nil];
+    
+    //Campus Changed Notification
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateModelForCampus) name:kDidChangedCampusNotificationName object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -185,6 +191,35 @@ extern NSString *kFailPostItemNotificaionName;
     
     NSUInteger newLength = [textField.text length] + [string length] - range.length;
     return newLength <= 20;
+}
+
+//Change the model according to the user's behaviour
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField.text && ![textField.text isEqualToString:@""])
+    {
+        BBTTextFieldTableViewCell *textFieldCell = (BBTTextFieldTableViewCell *)textField.superview.superview.superview;
+        if ([textFieldCell.title.text isEqualToString:@"地点"]) {
+            self.item.location = textField.text;
+        } else if ([textFieldCell.title.text isEqualToString:@"联系人"]) {
+            self.item.publisher = textField.text;
+        } else if ([textFieldCell.title.text isEqualToString:@"联系电话"]) {
+            self.item.phone = textField.text;
+        } else if ([textFieldCell.title.text isEqualToString:@"其他"]) {
+            self.item.otherContact = textField.text;
+        } else if ([textFieldCell.title.text isEqualToString:@"失物名称"]) {
+            self.item.title = textField.text;
+        }
+    }
+}
+
+- (void)updateModelForCampus
+{
+    if ([self.item.campus integerValue] == 0) {
+        self.item.campus = @(1);
+    } else {
+        self.item.campus = @(0);
+    }
 }
 
 #pragma -mark handle keyboard
@@ -229,10 +264,10 @@ extern NSString *kFailPostItemNotificaionName;
                           delay:0
                         options:UIViewAnimationOptionBeginFromCurrentState|curveOption
                      animations:^{
-        UIEdgeInsets edgeInsets = UIEdgeInsetsMake(0, 0, height, 0);
-        self.tableView.contentInset = edgeInsets;
-        self.tableView.scrollIndicatorInsets = edgeInsets;
-    }
+                         UIEdgeInsets edgeInsets = UIEdgeInsetsMake(0, 0, height, 0);
+                         self.tableView.contentInset = edgeInsets;
+                         self.tableView.scrollIndicatorInsets = edgeInsets;
+                     }
                      completion:nil];
 }
 
@@ -244,10 +279,10 @@ extern NSString *kFailPostItemNotificaionName;
     [UIView animateWithDuration:duration delay:0
                         options:UIViewAnimationOptionBeginFromCurrentState|curveOption
                      animations:^{
-        UIEdgeInsets edgeInsets = UIEdgeInsetsZero;
-        self.tableView.contentInset = edgeInsets;
-        self.tableView.scrollIndicatorInsets = edgeInsets;
-    }
+                         UIEdgeInsets edgeInsets = UIEdgeInsetsZero;
+                         self.tableView.contentInset = edgeInsets;
+                         self.tableView.scrollIndicatorInsets = edgeInsets;
+                     }
                      completion:nil];
 }
 
@@ -347,12 +382,15 @@ extern NSString *kFailPostItemNotificaionName;
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"YYYY-MM-dd"];
             
-            self.item.date = [dateFormatter stringFromDate:[NSDate date]];
-            
             cell.textLabel.font = [UIFont systemFontOfSize:16];
             cell.textLabel.text = @"日期";
-            cell.detailTextLabel.text = [dateFormatter stringFromDate:[NSDate date]];
-
+            if ([self.item.date isEqualToString:[dateFormatter stringFromDate:[NSDate date]]] || !self.item.date) {
+                cell.detailTextLabel.text = [dateFormatter stringFromDate:[NSDate date]];
+                self.item.date = [dateFormatter stringFromDate:[NSDate date]];
+            } else {
+                cell.detailTextLabel.text = self.item.date;
+            }
+            
             return cell;
         }
         else if (indexPath.row == 1)
@@ -375,10 +413,13 @@ extern NSString *kFailPostItemNotificaionName;
             {
                 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:rightDisclosureCellIdentifier];
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:rightDisclosureCellIdentifier];
-                self.item.type = @(0);
                 cell.textLabel.text = @"失物类型";
                 cell.textLabel.font = [UIFont systemFontOfSize:16];
-                cell.detailTextLabel.text = @"大学城一卡通";
+                if (![self.item.title isEqualToString:@"大学城一卡通"]) {
+                    cell.detailTextLabel.text =self.item.title;
+                } else {
+                    cell.detailTextLabel.text = @"大学城一卡通";
+                }
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 return cell;
@@ -401,7 +442,15 @@ extern NSString *kFailPostItemNotificaionName;
                 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:rightDisclosureCellIdentifier];
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:rightDisclosureCellIdentifier];
                 cell.textLabel.text = @"失物详情";
-                cell.detailTextLabel.text = detailsInitial;
+                if (!self.item.details || [self.item.details isEqualToString:@""]) {
+                    cell.detailTextLabel.text = detailsInitial;
+                } else {
+                    if ([self.item.details length] < 10) {
+                        cell.detailTextLabel.text = self.item.details;
+                    } else {
+                        cell.detailTextLabel.text = [[self.item.details substringToIndex:10] stringByAppendingString:@"..."];
+                    }
+                }
                 cell.textLabel.font = [UIFont systemFontOfSize:16];
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -412,10 +461,13 @@ extern NSString *kFailPostItemNotificaionName;
             {
                 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:rightDisclosureCellIdentifier];
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:rightDisclosureCellIdentifier];
-                self.item.type = @(0);
                 cell.textLabel.text = @"失物类型";
                 cell.textLabel.font = [UIFont systemFontOfSize:16];
-                cell.detailTextLabel.text = @"大学城一卡通";
+                if (![self.item.title isEqualToString:@"大学城一卡通"]) {
+                    cell.detailTextLabel.text =self.item.title;
+                } else {
+                    cell.detailTextLabel.text = @"大学城一卡通";
+                }
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 return cell;
@@ -431,13 +483,21 @@ extern NSString *kFailPostItemNotificaionName;
                 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:rightDisclosureCellIdentifier];
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:rightDisclosureCellIdentifier];
                 cell.textLabel.text = @"失物详情";
-                cell.detailTextLabel.text = detailsInitial;
+                if (!self.item.details || [self.item.details isEqualToString:@""]) {
+                    cell.detailTextLabel.text = detailsInitial;
+                } else {
+                    if ([self.item.details length] < 10) {
+                        cell.detailTextLabel.text = self.item.details;
+                    } else {
+                        cell.detailTextLabel.text = [[self.item.details substringToIndex:10] stringByAppendingString:@"..."];
+                    }
+                }
                 cell.textLabel.font = [UIFont systemFontOfSize:16];
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 return cell;
             }
-
+            
         }
     }
     else if (indexPath.section == 2)
@@ -454,7 +514,7 @@ extern NSString *kFailPostItemNotificaionName;
             BBTTextFieldTableViewCell *cell = (BBTTextFieldTableViewCell *)[tableView dequeueReusableCellWithIdentifier:textFieldCellIdentifier];
             [cell configureCellForDifferntUse:2];
             cell.contents.delegate = self;
-            cell.contents.keyboardType = UIKeyboardTypeNumberPad;
+            //cell.contents.keyboardType = UIKeyboardTypeNumberPad;
             return cell;
         }
         else if (indexPath.row == 2)
@@ -488,7 +548,7 @@ extern NSString *kFailPostItemNotificaionName;
                                                            action:@selector(dateWasSelected:element:)
                                                            origin:[tableView cellForRowAtIndexPath:indexPath].detailTextLabel];
         [datePicker showActionSheetPicker];
-
+        
     } else if (indexPath.section == 1 && indexPath.row == 0) {
         NSArray *itemTypes = [NSArray arrayWithObjects:@"大学城一卡通", @"校园卡(绿卡)", @"钱包", @"钥匙", @"其它", nil];
         [ActionSheetStringPicker showPickerWithTitle:@"请选择类型"
@@ -512,7 +572,7 @@ extern NSString *kFailPostItemNotificaionName;
                                          }
                                               origin:[tableView cellForRowAtIndexPath:indexPath].detailTextLabel
          ];
-
+        
     } else if (indexPath.section == 1 && indexPath.row == 1) {
         if (!self.isInsertedRow) [self showImagePicker];
     } else if (indexPath.section == 1 && indexPath.row == 2) {
@@ -585,45 +645,27 @@ extern NSString *kFailPostItemNotificaionName;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"YYYY-MM-dd"];
     [element setText:[dateFormatter stringFromDate:selectedDate]];
+    
+    self.item.date = [dateFormatter stringFromDate:selectedDate];
 }
 
 - (void)postButtonIsTapped
 {
-    UITableViewCell *dateCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    self.item.date = dateCell.detailTextLabel.text;
-    
-    BBTItemCampusTableViewCell *campusCell = (BBTItemCampusTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-    self.item.campus = @(campusCell.campus.selectedSegmentIndex);
-    
-    BBTTextFieldTableViewCell *locationCell = (BBTTextFieldTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
-    self.item.location = locationCell.contents.text;
     
     self.item.details = self.itemDetails;
-    
-    BBTTextFieldTableViewCell *publisherCell = (BBTTextFieldTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];
-    self.item.publisher = publisherCell.contents.text;
-    
-    BBTTextFieldTableViewCell *phoneCell = (BBTTextFieldTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:2]];
-    self.item.phone = phoneCell.contents.text;
-    
-    BBTTextFieldTableViewCell *otherContactCell = (BBTTextFieldTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:2]];
-    self.item.otherContact = otherContactCell.contents.text;
     
     self.itemInfoToPost = [[NSMutableDictionary alloc] init];
     
     if (self.isInsertedRow)
     {
-        BBTTextFieldTableViewCell *itemTitle = (BBTTextFieldTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
-        self.item.title = itemTitle.contents.text;
-        
-        if ([self.item.location isEqualToString:@""] || [self.item.publisher isEqualToString:@""] || [self.item.phone isEqualToString:@""] || [self.item.title isEqualToString:@""])
+        if ([self.item.location isEqualToString:@""] || [self.item.publisher isEqualToString:@""] || [self.item.phone isEqualToString:@""] || [self.item.title isEqualToString:@""] || !self.item.location || !self.item.publisher || !self.item.phone || !self.item.title)
         {
             [self showAlertView:0];
             return;
         }
         
     } else {
-        if ([self.item.location isEqualToString:@""] || [self.item.publisher isEqualToString:@""] || [self.item.phone isEqualToString:@""])
+        if ([self.item.location isEqualToString:@""] || [self.item.publisher isEqualToString:@""] || [self.item.phone isEqualToString:@""] || !self.item.location || !self.item.publisher ||!self.item.phone )
         {
             [self showAlertView:0];
             return;
@@ -733,6 +775,7 @@ extern NSString *kFailPostItemNotificaionName;
 - (void)BBTItemDetail:(BBTItemDetailEditingViewController *)controller didFinishEditingDetails:(NSString *)itemDetails
 {
     self.itemDetails = itemDetails;
+    self.item.details = itemDetails;
     if (self.isInsertedRow) {
         if ([itemDetails length] < 10) {
             [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:1]].detailTextLabel.text = itemDetails;
