@@ -682,7 +682,7 @@ extern NSString *kDidChangedCampusNotificationName;
     [self.itemInfoToPost setObject:self.account forKey:@"account"];
     
     if (![self.item.details isEqualToString:detailsInitial])[self.itemInfoToPost setObject:self.item.details forKey:@"details"];
-    if (![self.item.otherContact isEqualToString:@""] && !self.item.otherContact)[self.itemInfoToPost setObject:self.item.otherContact forKey:@"otherContact"];
+    if (self.item.otherContact)[self.itemInfoToPost setObject:self.item.otherContact forKey:@"otherContact"];
     
     //Show a HUD
     [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
