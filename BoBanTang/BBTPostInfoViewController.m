@@ -36,6 +36,7 @@ static NSString * detailsInitial = @"请输入详情";
 @property (strong, nonatomic) NSString            * account;
 @property (strong, nonatomic) UIImage             * lostItemImage;
 @property (strong, nonatomic) NSMutableDictionary * itemInfoToPost;
+@property (strong, nonatomic) NSArray             * itemTypes;
 
 @property (strong, nonatomic) BBTLAF              * item;
 
@@ -74,6 +75,7 @@ extern NSString *kDidChangedCampusNotificationName;
     [tap setCancelsTouchesInView:NO];
     
     self.itemDetails = detailsInitial;
+    self.itemTypes = [NSArray arrayWithObjects:@"大学城一卡通", @"校园卡(绿卡)", @"钱包", @"钥匙", @"其它", nil];
     
     //Set tableview
     self.tableView = ({
@@ -415,11 +417,7 @@ extern NSString *kDidChangedCampusNotificationName;
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:rightDisclosureCellIdentifier];
                 cell.textLabel.text = @"失物类型";
                 cell.textLabel.font = [UIFont systemFontOfSize:16];
-                if (![self.item.title isEqualToString:@"大学城一卡通"]) {
-                    cell.detailTextLabel.text =self.item.title;
-                } else {
-                    cell.detailTextLabel.text = @"大学城一卡通";
-                }
+                cell.detailTextLabel.text = self.itemTypes[[self.item.type integerValue]];
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 return cell;
@@ -463,11 +461,7 @@ extern NSString *kDidChangedCampusNotificationName;
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:rightDisclosureCellIdentifier];
                 cell.textLabel.text = @"失物类型";
                 cell.textLabel.font = [UIFont systemFontOfSize:16];
-                if (![self.item.title isEqualToString:@"大学城一卡通"]) {
-                    cell.detailTextLabel.text =self.item.title;
-                } else {
-                    cell.detailTextLabel.text = @"大学城一卡通";
-                }
+                cell.detailTextLabel.text = self.itemTypes[[self.item.type integerValue]];
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 return cell;
@@ -550,19 +544,19 @@ extern NSString *kDidChangedCampusNotificationName;
         [datePicker showActionSheetPicker];
         
     } else if (indexPath.section == 1 && indexPath.row == 0) {
-        NSArray *itemTypes = [NSArray arrayWithObjects:@"大学城一卡通", @"校园卡(绿卡)", @"钱包", @"钥匙", @"其它", nil];
+        //NSArray *itemTypes = [NSArray arrayWithObjects:@"大学城一卡通", @"校园卡(绿卡)", @"钱包", @"钥匙", @"其它", nil];
         [ActionSheetStringPicker showPickerWithTitle:@"请选择类型"
-                                                rows:itemTypes
+                                                rows:self.itemTypes
                                     initialSelection:0
                                            doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                                if (selectedIndex != 4)
                                                {
-                                                   [tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text = itemTypes[selectedIndex];
+                                                   [tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text = self.itemTypes[selectedIndex];
                                                    self.item.type = @(selectedIndex);
-                                                   self.item.title = itemTypes[selectedIndex];
+                                                   self.item.title = self.itemTypes[selectedIndex];
                                                    if (self.isInsertedRow == YES) [self configureEditing];
                                                } else {
-                                                   [tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text = itemTypes[selectedIndex];
+                                                   [tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text = self.itemTypes[selectedIndex];
                                                    self.item.type = @(selectedIndex);
                                                    if (self.isInsertedRow == NO) [self configureEditing];
                                                }
@@ -633,6 +627,7 @@ extern NSString *kDidChangedCampusNotificationName;
         [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
     } else {
         self.isInsertedRow = NO;
+        self.item.title = self.itemTypes[[self.item.type integerValue]];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:1];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
     }

@@ -60,7 +60,11 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
+<<<<<<< HEAD
+	<string>20</string>
+=======
 	<string>30</string>
+>>>>>>> 2e1e0c53159e863942342004186ad5a09a138be6
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>mqzone</string>

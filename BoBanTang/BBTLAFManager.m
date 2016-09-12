@@ -116,8 +116,11 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
                 self.itemsCount += [(NSArray *)responseObject count];
                 
                 [self.reservedArray addObjectsFromArray:origArr];
-                self.itemArray = self.reservedArray;
-                [[self.itemArray reverseObjectEnumerator] allObjects];
+                //self.itemArray = self.reservedArray;
+                
+                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"ID" ascending:NO];
+                NSArray *sortDescriptorArray = [NSArray arrayWithObject:sortDescriptor];
+                self.itemArray = [self.reservedArray sortedArrayUsingDescriptors:sortDescriptorArray];
                 
                 [self pushLafNotification];
                 
