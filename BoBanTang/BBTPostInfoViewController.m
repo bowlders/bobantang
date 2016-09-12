@@ -383,7 +383,7 @@ extern NSString *kDidChangedCampusNotificationName;
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:dateCellIdentifier];
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"YYYY-MM-dd"];
-            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.textLabel.font = [UIFont systemFontOfSize:16];
             cell.textLabel.text = @"日期";
             if ([self.item.date isEqualToString:[dateFormatter stringFromDate:[NSDate date]]] || !self.item.date) {
