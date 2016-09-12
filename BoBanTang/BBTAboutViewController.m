@@ -8,27 +8,53 @@
 
 #import "BBTAboutViewController.h"
 #import "UIFont+BBTFont.h"
+#import "STScratchView.h"
 #import <Masonry.h>
 #import <MBProgressHUD.h>
 
 @interface BBTAboutViewController ()
 
-@property (strong, nonatomic) UIImageView * logoImageView;
-@property (strong, nonatomic) UILabel     * productNameLabel;
-@property (strong, nonatomic) UILabel     * detailFirstLineLabel;
-@property (strong, nonatomic) UILabel     * detailSecondLineLabel;
-@property (strong, nonatomic) UILabel     * theCopyRightLabel;
-@property (strong, nonatomic) UITableView * tableView;
+@property (strong, nonatomic) UIImageView   * logoImageView;
+@property (strong, nonatomic) UILabel       * productNameLabel;
+@property (strong, nonatomic) UILabel       * detailFirstLineLabel;
+@property (strong, nonatomic) UILabel       * detailSecondLineLabel;
+@property (strong, nonatomic) UILabel       * theCopyRightLabel;
+@property (strong, nonatomic) UITableView   * tableView;
+@property (strong, nonatomic) STScratchView * hiddenContainerView;
+@property (strong, nonatomic) UIImageView   * surpriseView;
+@property (strong, nonatomic) UIView        * scratchView;      //Actually this is the view to be scratched
 
 @end
 
 @implementation BBTAboutViewController
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    CGFloat screenWidth = CGRectGetWidth(self.view.frame);
+    CGFloat screenHeight = CGRectGetHeight(self.view.frame);
+    CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
+    CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
+    CGFloat logoImageViewUpPadding = 50.0f;
+    CGFloat logoImageViewSideLength = 80.0f;                    //Square ImageView
+    CGFloat logoImageViewBottomPadding = 40.0f;
+    CGFloat productNameLabelHeight = 40.0f;
+    CGFloat labelVerticalInnerSpacing = 5.0f;
+    CGFloat productDetailLabelHeight = 30.0f;
+    CGFloat theCopyRightLabelHeight = 15.0f;
+    CGFloat matViewHeight = 50.0f;
+    CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
+    CGFloat logoImageViewY = statusBarHeight + navigationBarHeight + logoImageViewUpPadding;
+    CGFloat productNameLabelY = logoImageViewY + logoImageViewSideLength + logoImageViewBottomPadding;
+    CGFloat detailFirstLineLabelY = productNameLabelY + productDetailLabelHeight + labelVerticalInnerSpacing;
+    CGFloat detailSecondLineLabelY = detailFirstLineLabelY + productDetailLabelHeight + labelVerticalInnerSpacing;
+    CGFloat tableViewY = detailSecondLineLabelY + productDetailLabelHeight;
+    CGFloat tableViewHeight = 100.0f;
+    CGFloat matViewY = tableViewY + tableViewHeight;
     
     self.logoImageView = ({
         UIImageView *imageView = [UIImageView new];
-        imageView.translatesAutoresizingMaskIntoConstraints = NO;
+        [imageView setFrame:CGRectMake(0.5*(screenWidth-logoImageViewSideLength), logoImageViewY, logoImageViewSideLength, logoImageViewSideLength)];
         imageView.contentMode = UIViewContentModeScaleToFill;
         imageView.image = [UIImage imageNamed:@"BoBanTang"];
         imageView.alpha = 1.0;
@@ -37,7 +63,7 @@
     
     self.productNameLabel = ({
         UILabel *label = [UILabel new];
-        label.translatesAutoresizingMaskIntoConstraints = NO;
+        [label setFrame:CGRectMake(0, productNameLabelY, screenWidth, productNameLabelHeight)];
         label.numberOfLines = 1;
         label.lineBreakMode = NSLineBreakByTruncatingTail;
         label.clipsToBounds = YES;
@@ -51,7 +77,7 @@
     
     self.detailFirstLineLabel = ({
         UILabel *label = [UILabel new];
-        label.translatesAutoresizingMaskIntoConstraints = NO;
+        [label setFrame:CGRectMake(0, detailFirstLineLabelY, screenWidth, productDetailLabelHeight)];
         label.numberOfLines = 1;
         label.lineBreakMode = NSLineBreakByTruncatingTail;
         label.clipsToBounds = YES;
@@ -65,7 +91,7 @@
     
     self.detailSecondLineLabel = ({
         UILabel *label = [UILabel new];
-        label.translatesAutoresizingMaskIntoConstraints = NO;
+        [label setFrame:CGRectMake(0, detailSecondLineLabelY, screenWidth, productDetailLabelHeight)];
         label.numberOfLines = 1;
         label.lineBreakMode = NSLineBreakByTruncatingTail;
         label.clipsToBounds = YES;
@@ -77,9 +103,37 @@
         label;
     });
     
+    self.tableView = ({
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, tableViewY, screenWidth, tableViewHeight) style:UITableViewStyleGrouped];
+        tableView.scrollEnabled = NO;
+        tableView.dataSource = self;
+        tableView.delegate = self;
+        tableView;
+    });
+  
+    self.surpriseView = ({
+        UIImageView *surpriseView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"surprise_bg.png"]];
+        [surpriseView setFrame:CGRectMake(0, matViewY, screenWidth, matViewHeight)];
+        surpriseView;
+    });
+    
+    self.scratchView = ({
+        UIView *scratchView = [[UIView alloc] initWithFrame:CGRectMake(0, matViewY, screenWidth, matViewHeight)];
+        scratchView.backgroundColor = self.tableView.backgroundColor;
+        scratchView;
+    });
+    
+    self.hiddenContainerView = ({
+        STScratchView *view = [[STScratchView alloc] initWithFrame:CGRectMake(0, matViewY, screenWidth, matViewHeight)];
+        view.backgroundColor = [UIColor clearColor];
+        [view setSizeBrush:30.0f];
+        [view setHideView:self.scratchView];
+        view;
+    });
+    
     self.theCopyRightLabel = ({
         UILabel *label = [UILabel new];
-        label.translatesAutoresizingMaskIntoConstraints = NO;
+        [label setFrame:CGRectMake(0, screenHeight-tabBarHeight-theCopyRightLabelHeight, screenWidth, theCopyRightLabelHeight)];
         label.numberOfLines = 1;
         label.lineBreakMode = NSLineBreakByTruncatingTail;
         label.clipsToBounds = YES;
@@ -91,15 +145,7 @@
         label.alpha = 1.0;
         label;
     });
-    
-    self.tableView = ({
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-        tableView.scrollEnabled = NO;
-        tableView.dataSource = self;
-        tableView.delegate = self;
-        tableView;
-    });
-    
+
     self.view.backgroundColor = self.tableView.backgroundColor;
     
     [self.view addSubview:self.logoImageView];
@@ -108,61 +154,9 @@
     [self.view addSubview:self.detailSecondLineLabel];
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.theCopyRightLabel];
-    
-    CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
-    CGFloat logoImageViewUpPadding = 50.0f;
-    CGFloat logoImageViewSideLength = 80.0f;            //Square ImageView
-    CGFloat logoImageViewBottomPadding = 40.0f;
-    CGFloat productNameLabelHeight = 40.0f;
-    CGFloat labelVerticalInnerSpacing = 5.0f;
-    CGFloat productDetailLabelHeight = 30.0f;
-    CGFloat copyRightLabelHeight = 15.0f;
-    CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
-    
-    //Add Constraints
-    [self.logoImageView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.top.equalTo(self.view.mas_top).offset(navigationBarHeight + logoImageViewUpPadding);
-        make.height.equalTo(@(logoImageViewSideLength));
-        make.width.equalTo(@(logoImageViewSideLength));
-        make.centerX.equalTo(self.view.mas_centerX);
-    }];
-    
-    [self.productNameLabel mas_makeConstraints:^(MASConstraintMaker *make){
-        make.top.equalTo(self.logoImageView.mas_bottom).offset(logoImageViewBottomPadding);
-        make.height.equalTo(@(productNameLabelHeight));
-        make.width.equalTo(self.view.mas_width);
-        make.centerX.equalTo(self.view.mas_centerX);
-    }];
-    
-    [self.detailFirstLineLabel mas_makeConstraints:^(MASConstraintMaker *make){
-        make.top.equalTo(self.productNameLabel.mas_bottom).offset(labelVerticalInnerSpacing);
-        make.height.equalTo(@(productDetailLabelHeight));
-        make.width.equalTo(self.view.mas_width);
-        make.centerX.equalTo(self.view.mas_centerX);
-    }];
-    
-    [self.detailSecondLineLabel mas_makeConstraints:^(MASConstraintMaker *make){
-        make.top.equalTo(self.detailFirstLineLabel.mas_bottom).offset(labelVerticalInnerSpacing);
-        make.height.equalTo(@(productDetailLabelHeight));
-        make.width.equalTo(self.view.mas_width);
-        make.centerX.equalTo(self.view.mas_centerX);
-    }];
-     
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.top.equalTo(self.detailSecondLineLabel.mas_bottom);
-        make.bottom.equalTo(self.theCopyRightLabel.mas_top).offset(-labelVerticalInnerSpacing);
-        make.width.equalTo(self.view.mas_width);
-        make.centerX.equalTo(self.view.mas_centerX);
-    }];
-    
-    [self.theCopyRightLabel mas_makeConstraints:^(MASConstraintMaker *make){
-        make.bottom.equalTo(self.view.mas_bottom).offset(-tabBarHeight);
-        make.height.equalTo(@(copyRightLabelHeight));
-        make.width.equalTo(self.view.mas_width);
-        make.centerX.equalTo(self.view.mas_centerX);
-    }];
-    
-    [super viewDidLoad];
+    [self.view addSubview:self.surpriseView];
+    [self.view addSubview:self.hiddenContainerView];
+
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
