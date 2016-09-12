@@ -61,10 +61,10 @@
 	</array>
 	<key>CFBundleVersion</key>
 <<<<<<< HEAD
-	<string>20</string>
+	<string>33</string>
 =======
-	<string>30</string>
->>>>>>> 2e1e0c53159e863942342004186ad5a09a138be6
+	<string>32</string>
+>>>>>>> dd915683bf50f7bb65dba002572080baf0e1edaa
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>mqzone</string>
