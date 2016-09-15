@@ -162,24 +162,34 @@ extern NSString * kDidGetLostItemsNotificationName;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([BBTLAFManager sharedLAFManager].myPicked && [[BBTLAFManager sharedLAFManager].myPicked count] > 0)
+    if ([[BBTLAFManager sharedLAFManager].myPicked count] && [[BBTLAFManager sharedLAFManager].myPicked count])
     {
+        if (indexPath.section == 0) {
+            NSArray *itemArray = [BBTLAFManager sharedLAFManager].myPicked;
+            return [tableView fd_heightForCellWithIdentifier:itemCellIdentifier configuration:^(BBTLafItemsTableViewCell *cell)
+                    {
+                            [cell configureItemsCells:itemArray[indexPath.row]];
+                    }];
+        } else {
+            NSArray *itemArray = [BBTLAFManager sharedLAFManager].myLost;
+            return [tableView fd_heightForCellWithIdentifier:itemCellIdentifier configuration:^(BBTLafItemsTableViewCell *cell)
+                    {
+                            [cell configureItemsCells:itemArray[indexPath.row]];
+                    }];
+        }
+    } else if (![[BBTLAFManager sharedLAFManager].myPicked count] && ![[BBTLAFManager sharedLAFManager].myLost count]){
+        return 0;
+    } else if ([[BBTLAFManager sharedLAFManager].myPicked count]){
         NSArray *itemArray = [BBTLAFManager sharedLAFManager].myPicked;
         return [tableView fd_heightForCellWithIdentifier:itemCellIdentifier configuration:^(BBTLafItemsTableViewCell *cell)
                 {
-                    if ([itemArray count] > 0)
-                    {
-                        [cell configureItemsCells:itemArray[indexPath.row]];
-                    }
+                    [cell configureItemsCells:itemArray[indexPath.row]];
                 }];
     } else {
         NSArray *itemArray = [BBTLAFManager sharedLAFManager].myLost;
         return [tableView fd_heightForCellWithIdentifier:itemCellIdentifier configuration:^(BBTLafItemsTableViewCell *cell)
                 {
-                    if ([itemArray count] > 0)
-                    {
-                        [cell configureItemsCells:itemArray[indexPath.row]];
-                    }
+                    [cell configureItemsCells:itemArray[indexPath.row]];
                 }];
     }
 }
