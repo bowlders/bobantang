@@ -83,6 +83,8 @@ extern NSString *kDidChangedCampusNotificationName;
         tableView.dataSource = self;
         tableView.delegate = self;
         tableView.translatesAutoresizingMaskIntoConstraints = NO;
+        tableView.separatorInset = UIEdgeInsetsZero;
+        tableView.layoutMargins = UIEdgeInsetsZero;
         tableView;
     });
     

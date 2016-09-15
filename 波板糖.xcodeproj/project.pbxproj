@@ -134,7 +134,7 @@
 		AF9A8D391CC7786A0079C46F /* 3dMapMetaData_n.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AF9A8D371CC7786A0079C46F /* 3dMapMetaData_n.geojson */; };
 		AF9A8D3A1CC7786A0079C46F /* 3dMapMetaData_s.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AF9A8D381CC7786A0079C46F /* 3dMapMetaData_s.geojson */; };
 		AF9E4D741D45CAEB004AE8DA /* BBTMyPostedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9E4D731D45CAEB004AE8DA /* BBTMyPostedTableViewController.m */; };
-		FC1770B61C5F4FCD00BF07AC /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1770B51C5F4FCD00BF07AC /* PopoverView.m */; };
+		AFE1CD781D8B552400300251 /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE1CD761D8B552400300251 /* PopoverView.m */; };
 		FC1770BC1C5F505300BF07AC /* BBTLAF.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1770B91C5F505300BF07AC /* BBTLAF.m */; };
 		FC1770BD1C5F505300BF07AC /* BBTLAFManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1770BB1C5F505300BF07AC /* BBTLAFManager.m */; };
 		FC1770C41C5F507500BF07AC /* BBTLostAndFoundTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1770BF1C5F507500BF07AC /* BBTLostAndFoundTableViewController.m */; };
@@ -471,9 +471,9 @@
 		AF9A8D381CC7786A0079C46F /* 3dMapMetaData_s.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 3dMapMetaData_s.geojson; sourceTree = "<group>"; };
 		AF9E4D721D45CAEB004AE8DA /* BBTMyPostedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMyPostedTableViewController.h; sourceTree = "<group>"; };
 		AF9E4D731D45CAEB004AE8DA /* BBTMyPostedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTMyPostedTableViewController.m; sourceTree = "<group>"; };
+		AFE1CD761D8B552400300251 /* PopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverView.m; sourceTree = "<group>"; };
+		AFE1CD771D8B552400300251 /* PopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverView.h; sourceTree = "<group>"; };
 		DAAC1D9BE8366224C1757CE5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		FC1770B41C5F4FCD00BF07AC /* PopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverView.h; sourceTree = "<group>"; };
-		FC1770B51C5F4FCD00BF07AC /* PopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverView.m; sourceTree = "<group>"; };
 		FC1770B81C5F505300BF07AC /* BBTLAF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTLAF.h; sourceTree = "<group>"; };
 		FC1770B91C5F505300BF07AC /* BBTLAF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLAF.m; sourceTree = "<group>"; };
 		FC1770BA1C5F505300BF07AC /* BBTLAFManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTLAFManager.h; sourceTree = "<group>"; };
@@ -1371,6 +1371,15 @@
 			name = 3DMapMateData;
 			sourceTree = "<group>";
 		};
+		AFE1CD751D8B54FD00300251 /* PopoverView */ = {
+			isa = PBXGroup;
+			children = (
+				AFE1CD761D8B552400300251 /* PopoverView.m */,
+				AFE1CD771D8B552400300251 /* PopoverView.h */,
+			);
+			name = PopoverView;
+			sourceTree = "<group>";
+		};
 		BC88168E9E945BB9A5BFF3C4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1379,15 +1388,6 @@
 				48D6888DD2A267EA93C8D8BC /* Pods.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		FC1770B31C5F4FBB00BF07AC /* PopoverViews */ = {
-			isa = PBXGroup;
-			children = (
-				FC1770B41C5F4FCD00BF07AC /* PopoverView.h */,
-				FC1770B51C5F4FCD00BF07AC /* PopoverView.m */,
-			);
-			name = PopoverViews;
 			sourceTree = "<group>";
 		};
 		FC1770B71C5F503F00BF07AC /* Lost&Found */ = {
@@ -1457,10 +1457,10 @@
 			isa = PBXGroup;
 			children = (
 				A947D9881BD8DC24000F071B /* Tools.storyboard */,
-				AF5412681CC67944004C0CE8 /* CampusMap */,
 				FC80D4481C61F3AF00A80EDA /* Lost&Found */,
-				FC1770B31C5F4FBB00BF07AC /* PopoverViews */,
+				AF5412681CC67944004C0CE8 /* CampusMap */,
 				FC80D4461C61F11D00A80EDA /* ScoreInquire */,
+				AFE1CD751D8B54FD00300251 /* PopoverView */,
 				FCD0A2921C023B930024D78F /* BBTHudView.h */,
 				FCD0A2931C023B930024D78F /* BBTHudView.m */,
 			);
@@ -1807,7 +1807,6 @@
 				AF5412751CC67E03004C0CE8 /* BBTMapContainerVC.m in Sources */,
 				AF5412BD1CC6805D004C0CE8 /* BBTEmptyToolbar.m in Sources */,
 				39B595431C0AF0500015B673 /* BBTCampusInfoViewController.m in Sources */,
-				FC1770B61C5F4FCD00BF07AC /* PopoverView.m in Sources */,
 				FC1770BD1C5F505300BF07AC /* BBTLAFManager.m in Sources */,
 				FCE6094B1C7624F8008C331D /* BBTLafSearchResultTableViewController.m in Sources */,
 				39B5953D1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m in Sources */,
@@ -1818,6 +1817,7 @@
 				AF5412881CC67EBC004C0CE8 /* BBTPlace.m in Sources */,
 				39239A381C64BAC4008EDBB0 /* BBTLoginViewController.m in Sources */,
 				AF5412A61CC68029004C0CE8 /* BRSMapSearchHelper.m in Sources */,
+				AFE1CD781D8B552400300251 /* PopoverView.m in Sources */,
 				FC1770C41C5F507500BF07AC /* BBTLostAndFoundTableViewController.m in Sources */,
 				391F32491BFDD42B004843C3 /* BBTSpecRailway2BusManager.m in Sources */,
 				AF9E4D741D45CAEB004AE8DA /* BBTMyPostedTableViewController.m in Sources */,

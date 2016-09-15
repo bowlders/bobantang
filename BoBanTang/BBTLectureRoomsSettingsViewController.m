@@ -61,6 +61,8 @@ static NSString * showResultsSegueIdentifier = @"showResults";
     self.tableView.dataSource = self;
     self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
     self.tableView.scrollEnabled = NO;
+    self.tableView.separatorInset = UIEdgeInsetsZero;
+    self.tableView.layoutMargins = UIEdgeInsetsZero;
     [self.tableView registerNib:[UINib nibWithNibName:campusCellIdentifier bundle:nil] forCellReuseIdentifier:campusCellIdentifier];
     
     //Set Button
