@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		390F234A1D86C0500002C667 /* STScratchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 390F23491D86C0500002C667 /* STScratchView.m */; };
 		391F32461BFDC66B004843C3 /* BBTSpecRailway2Bus.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F32451BFDC66B004843C3 /* BBTSpecRailway2Bus.m */; };
 		391F32491BFDD42B004843C3 /* BBTSpecRailway2BusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F32481BFDD42B004843C3 /* BBTSpecRailway2BusManager.m */; };
 		391F324C1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F324B1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m */; };
@@ -232,6 +233,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		390F23481D86C0500002C667 /* STScratchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STScratchView.h; sourceTree = "<group>"; };
+		390F23491D86C0500002C667 /* STScratchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STScratchView.m; sourceTree = "<group>"; };
 		391F32441BFDC66B004843C3 /* BBTSpecRailway2Bus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BBTSpecRailway2Bus.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		391F32451BFDC66B004843C3 /* BBTSpecRailway2Bus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSpecRailway2Bus.m; sourceTree = "<group>"; };
 		391F32471BFDD42B004843C3 /* BBTSpecRailway2BusManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSpecRailway2BusManager.h; sourceTree = "<group>"; };
@@ -1133,6 +1136,8 @@
 				AF9A8D361CC7784F0079C46F /* 3DMapMateData */,
 				A947D96A1BD8DC0F000F071B /* BBTAppDelegate.h */,
 				A947D9901BD8DC34000F071B /* BBTAppDelegate.m */,
+				390F23481D86C0500002C667 /* STScratchView.h */,
+				390F23491D86C0500002C667 /* STScratchView.m */,
 				39D7B2511D6C91F800B3549B /* UIDeviceHardware.h */,
 				39D7B2521D6C91F800B3549B /* UIDeviceHardware.m */,
 				A947D91F1BD8DADA000F071B /* main.m */,
@@ -1828,6 +1833,7 @@
 				AF5412BE1CC6805D004C0CE8 /* UIButton+ASANUserTrackingButton.m in Sources */,
 				3951EFFA1C70997600076AD4 /* BBTNorthSpecialRailwayTwoViewController.m in Sources */,
 				A947D9BD1BD8DC34000F071B /* BBTSettingsViewController.m in Sources */,
+				390F234A1D86C0500002C667 /* STScratchView.m in Sources */,
 				FCD0A26F1C00062D0024D78F /* BBTScoresCell.m in Sources */,
 				AF9903A71CF607520039C4E4 /* BBTImageUploadManager.m in Sources */,
 				AF5412A81CC68029004C0CE8 /* BRSMapMetaDataManager.m in Sources */,

@@ -86,7 +86,6 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
         if ([(NSArray *)responseObject count])                          //This user already exists in database
         {
             BBTUser *user = [[BBTUser alloc] initWithDictionary:responseObject[0]];
-            
             self.currentUser = user;
             [self postUserAuthenticationFinishNotification];
         }
