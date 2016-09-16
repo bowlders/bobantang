@@ -183,7 +183,16 @@ extern NSString * kDidGetLostItemsNotificationName;
         NSArray *itemArray = [BBTLAFManager sharedLAFManager].myPicked;
         return [tableView fd_heightForCellWithIdentifier:itemCellIdentifier configuration:^(BBTLafItemsTableViewCell *cell)
                 {
+<<<<<<< HEAD
+                    if ([itemArray count] > 0)
+                    {
+                        NSLog(@"itemArray - %@", itemArray);
+                        NSLog(@"count - %ld", (long)indexPath.row);
+                        [cell configureItemsCells:itemArray[indexPath.row]];
+                    }
+=======
                     [cell configureItemsCells:itemArray[indexPath.row]];
+>>>>>>> f8a102763fc9c291cfe6cbe43a95f3bf302200e7
                 }];
     } else {
         NSArray *itemArray = [BBTLAFManager sharedLAFManager].myLost;
@@ -231,6 +240,7 @@ extern NSString * kDidGetLostItemsNotificationName;
             NSLog(@"pickedcount - %lu", (unsigned long)[[BBTLAFManager sharedLAFManager].myPicked count]);
             return [[BBTLAFManager sharedLAFManager].myPicked count];
         } else {
+            NSLog(@"lostCount - %lu", (unsigned long)[[BBTLAFManager sharedLAFManager].myLost count]);
             return [[BBTLAFManager sharedLAFManager].myLost count];
         }
     }

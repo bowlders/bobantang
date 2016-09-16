@@ -162,34 +162,24 @@ extern NSString * kDidGetLostItemsNotificationName;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[BBTLAFManager sharedLAFManager].myPicked count] && [[BBTLAFManager sharedLAFManager].myPicked count])
+    if ([BBTLAFManager sharedLAFManager].myPicked && [[BBTLAFManager sharedLAFManager].myPicked count] > 0)
     {
-        if (indexPath.section == 0) {
-            NSArray *itemArray = [BBTLAFManager sharedLAFManager].myPicked;
-            return [tableView fd_heightForCellWithIdentifier:itemCellIdentifier configuration:^(BBTLafItemsTableViewCell *cell)
-                    {
-                            [cell configureItemsCells:itemArray[indexPath.row]];
-                    }];
-        } else {
-            NSArray *itemArray = [BBTLAFManager sharedLAFManager].myLost;
-            return [tableView fd_heightForCellWithIdentifier:itemCellIdentifier configuration:^(BBTLafItemsTableViewCell *cell)
-                    {
-                            [cell configureItemsCells:itemArray[indexPath.row]];
-                    }];
-        }
-    } else if (![[BBTLAFManager sharedLAFManager].myPicked count] && ![[BBTLAFManager sharedLAFManager].myLost count]){
-        return 0;
-    } else if ([[BBTLAFManager sharedLAFManager].myPicked count]){
         NSArray *itemArray = [BBTLAFManager sharedLAFManager].myPicked;
         return [tableView fd_heightForCellWithIdentifier:itemCellIdentifier configuration:^(BBTLafItemsTableViewCell *cell)
                 {
-                    [cell configureItemsCells:itemArray[indexPath.row]];
+                    if ([itemArray count] > 0)
+                    {
+                        [cell configureItemsCells:itemArray[indexPath.row]];
+                    }
                 }];
     } else {
         NSArray *itemArray = [BBTLAFManager sharedLAFManager].myLost;
         return [tableView fd_heightForCellWithIdentifier:itemCellIdentifier configuration:^(BBTLafItemsTableViewCell *cell)
                 {
-                    [cell configureItemsCells:itemArray[indexPath.row]];
+                    if ([itemArray count] > 0)
+                    {
+                        [cell configureItemsCells:itemArray[indexPath.row]];
+                    }
                 }];
     }
 }
@@ -219,7 +209,6 @@ extern NSString * kDidGetLostItemsNotificationName;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSLog(@"%d - sectionNum", self.sectionNum);
     return self.sectionNum;
 }
 
@@ -228,7 +217,6 @@ extern NSString * kDidGetLostItemsNotificationName;
     //User has both picked and lost items
     if ([[BBTLAFManager sharedLAFManager].myPicked count] != 0 && [[BBTLAFManager sharedLAFManager].myLost count] != 0) {
         if (section == 0) {
-            NSLog(@"pickedcount - %lu", (unsigned long)[[BBTLAFManager sharedLAFManager].myPicked count]);
             return [[BBTLAFManager sharedLAFManager].myPicked count];
         } else {
             return [[BBTLAFManager sharedLAFManager].myLost count];
