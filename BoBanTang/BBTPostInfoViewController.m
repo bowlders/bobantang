@@ -589,10 +589,10 @@ extern NSString *kDidChangedCampusNotificationName;
     pickerContoller.delegate = self;
     pickerContoller.allowsEditing = YES;
     
-    UIAlertController *pickerView = [UIAlertController alertControllerWithTitle:@"Select a photo"
+    UIAlertController *pickerView = [UIAlertController alertControllerWithTitle:@"选择一张图片"
                                                                         message:nil
                                                                  preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消"
                                                      style:UIAlertActionStyleCancel
                                                    handler:^(UIAlertAction *action){
                                                        [pickerView dismissViewControllerAnimated:YES completion:nil];

@@ -367,7 +367,7 @@ extern NSString * kDidGetLostItemsNotificationName;
         //Show an alert view to avoid "hands diability"
         UIAlertController *alertController = [[UIAlertController alloc] init];
         alertController = [UIAlertController alertControllerWithTitle:@"确定删除？" message:nil preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"是的"
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction *action) {
                                                              
@@ -395,7 +395,7 @@ extern NSString * kDidGetLostItemsNotificationName;
                                                              }
                                                          }];
         
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         [alertController addAction:okAction];
         [alertController addAction:cancelAction];
         [self presentViewController:alertController animated:YES completion:nil];

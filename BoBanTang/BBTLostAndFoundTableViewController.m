@@ -321,7 +321,6 @@ extern NSString * kNoMoreItemsNotificationName;
 {
     if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
     {
-        NSLog(@"Account: %@", [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account);
         return YES;
     } else {
         BBTLoginViewController *loginViewController = [[BBTLoginViewController alloc] init];
