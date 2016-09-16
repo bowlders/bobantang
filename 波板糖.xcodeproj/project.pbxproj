@@ -30,6 +30,7 @@
 		39239A351C646FCD008EDBB0 /* BBTCurrentUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 39239A341C646FCD008EDBB0 /* BBTCurrentUserManager.m */; };
 		39239A381C64BAC4008EDBB0 /* BBTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39239A371C64BAC4008EDBB0 /* BBTLoginViewController.m */; };
 		39239A3B1C64E132008EDBB0 /* BBTLoginTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39239A3A1C64E132008EDBB0 /* BBTLoginTableViewCell.m */; };
+		393747631D8AB9DD0044F500 /* BBTLAFManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 393747621D8AB9DD0044F500 /* BBTLAFManager.m */; };
 		393E3EBD1BF234210045DE6E /* BBTGoSegmentedControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 393E3EBC1BF234210045DE6E /* BBTGoSegmentedControlViewController.m */; };
 		3951EFF71C6F72C600076AD4 /* BBTSouthSpecialRailwayTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3951EFF61C6F72C600076AD4 /* BBTSouthSpecialRailwayTwoViewController.m */; };
 		3951EFFA1C70997600076AD4 /* BBTNorthSpecialRailwayTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3951EFF91C70997600076AD4 /* BBTNorthSpecialRailwayTwoViewController.m */; };
@@ -136,7 +137,6 @@
 		AF9E4D741D45CAEB004AE8DA /* BBTMyPostedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9E4D731D45CAEB004AE8DA /* BBTMyPostedTableViewController.m */; };
 		FC1770B61C5F4FCD00BF07AC /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1770B51C5F4FCD00BF07AC /* PopoverView.m */; };
 		FC1770BC1C5F505300BF07AC /* BBTLAF.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1770B91C5F505300BF07AC /* BBTLAF.m */; };
-		FC1770BD1C5F505300BF07AC /* BBTLAFManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1770BB1C5F505300BF07AC /* BBTLAFManager.m */; };
 		FC1770C41C5F507500BF07AC /* BBTLostAndFoundTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1770BF1C5F507500BF07AC /* BBTLostAndFoundTableViewController.m */; };
 		FC1770C61C5F507500BF07AC /* BBTItemDetailEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1770C31C5F507500BF07AC /* BBTItemDetailEditingViewController.m */; };
 		FC2EAFF11C69A95000B5DC42 /* BBTItemCampusTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2EAFEF1C69A95000B5DC42 /* BBTItemCampusTableViewCell.m */; };
@@ -281,6 +281,7 @@
 		39239A371C64BAC4008EDBB0 /* BBTLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLoginViewController.m; sourceTree = "<group>"; };
 		39239A391C64E132008EDBB0 /* BBTLoginTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTLoginTableViewCell.h; sourceTree = "<group>"; };
 		39239A3A1C64E132008EDBB0 /* BBTLoginTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLoginTableViewCell.m; sourceTree = "<group>"; };
+		393747621D8AB9DD0044F500 /* BBTLAFManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLAFManager.m; sourceTree = "<group>"; };
 		393E3EBB1BF234210045DE6E /* BBTGoSegmentedControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTGoSegmentedControlViewController.h; sourceTree = "<group>"; };
 		393E3EBC1BF234210045DE6E /* BBTGoSegmentedControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTGoSegmentedControlViewController.m; sourceTree = "<group>"; };
 		3951EFF51C6F72C600076AD4 /* BBTSouthSpecialRailwayTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSouthSpecialRailwayTwoViewController.h; sourceTree = "<group>"; };
@@ -477,7 +478,6 @@
 		FC1770B81C5F505300BF07AC /* BBTLAF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTLAF.h; sourceTree = "<group>"; };
 		FC1770B91C5F505300BF07AC /* BBTLAF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLAF.m; sourceTree = "<group>"; };
 		FC1770BA1C5F505300BF07AC /* BBTLAFManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTLAFManager.h; sourceTree = "<group>"; };
-		FC1770BB1C5F505300BF07AC /* BBTLAFManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLAFManager.m; sourceTree = "<group>"; };
 		FC1770BE1C5F507500BF07AC /* BBTLostAndFoundTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTLostAndFoundTableViewController.h; sourceTree = "<group>"; };
 		FC1770BF1C5F507500BF07AC /* BBTLostAndFoundTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTLostAndFoundTableViewController.m; sourceTree = "<group>"; };
 		FC1770C21C5F507500BF07AC /* BBTItemDetailEditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTItemDetailEditingViewController.h; sourceTree = "<group>"; };
@@ -1396,7 +1396,7 @@
 				FC1770B81C5F505300BF07AC /* BBTLAF.h */,
 				FC1770B91C5F505300BF07AC /* BBTLAF.m */,
 				FC1770BA1C5F505300BF07AC /* BBTLAFManager.h */,
-				FC1770BB1C5F505300BF07AC /* BBTLAFManager.m */,
+				393747621D8AB9DD0044F500 /* BBTLAFManager.m */,
 				AF9903881CF4869C0039C4E4 /* RSA.h */,
 				AF9903891CF4869C0039C4E4 /* RSA.m */,
 			);
@@ -1808,7 +1808,6 @@
 				AF5412BD1CC6805D004C0CE8 /* BBTEmptyToolbar.m in Sources */,
 				39B595431C0AF0500015B673 /* BBTCampusInfoViewController.m in Sources */,
 				FC1770B61C5F4FCD00BF07AC /* PopoverView.m in Sources */,
-				FC1770BD1C5F505300BF07AC /* BBTLAFManager.m in Sources */,
 				FCE6094B1C7624F8008C331D /* BBTLafSearchResultTableViewController.m in Sources */,
 				39B5953D1C0AEA5B0015B673 /* BBTInfoSegmentedControllerViewController.m in Sources */,
 				395B10DC1C5713EF00772A38 /* UIFont+BBTFont.m in Sources */,
@@ -1820,6 +1819,7 @@
 				AF5412A61CC68029004C0CE8 /* BRSMapSearchHelper.m in Sources */,
 				FC1770C41C5F507500BF07AC /* BBTLostAndFoundTableViewController.m in Sources */,
 				391F32491BFDD42B004843C3 /* BBTSpecRailway2BusManager.m in Sources */,
+				393747631D8AB9DD0044F500 /* BBTLAFManager.m in Sources */,
 				AF9E4D741D45CAEB004AE8DA /* BBTMyPostedTableViewController.m in Sources */,
 				3951EFFD1C7099B000076AD4 /* BBTSpecialRailwayContainerViewController.m in Sources */,
 				AF5412BB1CC6805D004C0CE8 /* BBTDirectionHeaderView.m in Sources */,

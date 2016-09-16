@@ -120,7 +120,7 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
                 
                 NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"ID" ascending:NO];
                 NSArray *sortDescriptorArray = [NSArray arrayWithObject:sortDescriptor];
-                self.itemArray = [self.reservedArray sortedArrayUsingDescriptors:sortDescriptorArray];
+                self.itemArray = self.reservedArray;
                 
                 [self pushLafNotification];
                 

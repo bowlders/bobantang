@@ -169,6 +169,8 @@ extern NSString * kDidGetLostItemsNotificationName;
                 {
                     if ([itemArray count] > 0)
                     {
+                        NSLog(@"itemArray - %@", itemArray);
+                        NSLog(@"count - %ld", (long)indexPath.row);
                         [cell configureItemsCells:itemArray[indexPath.row]];
                     }
                 }];
@@ -209,6 +211,7 @@ extern NSString * kDidGetLostItemsNotificationName;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    NSLog(@"%d - sectionNum", self.sectionNum);
     return self.sectionNum;
 }
 
@@ -217,8 +220,10 @@ extern NSString * kDidGetLostItemsNotificationName;
     //User has both picked and lost items
     if ([[BBTLAFManager sharedLAFManager].myPicked count] != 0 && [[BBTLAFManager sharedLAFManager].myLost count] != 0) {
         if (section == 0) {
+            NSLog(@"pickedcount - %lu", (unsigned long)[[BBTLAFManager sharedLAFManager].myPicked count]);
             return [[BBTLAFManager sharedLAFManager].myPicked count];
         } else {
+            NSLog(@"lostCount - %lu", (unsigned long)[[BBTLAFManager sharedLAFManager].myLost count]);
             return [[BBTLAFManager sharedLAFManager].myLost count];
         }
     }
