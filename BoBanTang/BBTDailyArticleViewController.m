@@ -5,7 +5,7 @@
 //  Created by Caesar on 16/1/24.
 //  Copyright © 2016年 100steps. All rights reserved.
 //
-
+#import "RealReachability/RealReachability.h"
 #import "BBTDailyArticleViewController.h"
 #import "BBTDailyArticle.h"
 #import "BBTDailyArticleTableViewController.h"
@@ -147,9 +147,85 @@ extern NSString * getArticleTodaySucceedNotifName;
     NSString *urlString1 = [dailyArticleURLFront stringByAppendingString:idString];
     NSString *urlString = [urlString1 stringByAppendingString:dailyArticleURLEnd];
     NSString *cleanedUrlString = [urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    self.url = [NSURL URLWithString:cleanedUrlString];
+    self.url = [NSURL URLWithString:@"http://beiweiqiang.com/dailySoup/"];
+    self.webView.allowsInlineMediaPlayback=YES;
     NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
     [self.webView loadRequest:request];
+    JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+    context[@"ttf"] = self;
+}
+-(void)getPlayOrNot{
+  
+    [GLobalRealReachability startNotifier];
+    ReachabilityStatus status = [GLobalRealReachability currentReachabilityStatus];
+    
+    if (status == RealStatusNotReachable)
+    {
+        NSLog(@"Not reachable!");
+        UIAlertController *alert=[UIAlertController alertControllerWithTitle:nil message:@"请连接网络" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定"style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        
+    }
+    
+    if (status == RealStatusViaWiFi)
+    {
+        NSLog(@"WiFi Connect");
+        [self.webView stringByEvaluatingJavaScriptFromString:@"invocation()"];
+        [self.webView stringByEvaluatingJavaScriptFromString:@"videoRun()"];
+    }
+    
+    if (status == RealStatusViaWWAN)
+    {
+        NSLog(@"WWAN Connect");
+        UIAlertController *alert=[UIAlertController alertControllerWithTitle:nil message:@"正在使用运营商网络，继续观看可能产生超额流量费用" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"切换WiFi观看"style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"继续使用流量播放"style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            [self.webView stringByEvaluatingJavaScriptFromString:@"invocation()"];
+            [self.webView stringByEvaluatingJavaScriptFromString:@"videoRun()"];
+        }];
+        
+        [alert addAction:cancelAction];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil ];
+    }
+}
+- (void)networkChanged:(NSNotification *)notification
+{
+        RealReachability *reachability = (RealReachability *)notification.object;
+        ReachabilityStatus status = [reachability currentReachabilityStatus];
+        if (status == RealStatusNotReachable)
+        {
+            NSLog(@"Not reachable!");
+            // [webView stringByEvaluatingJavaScriptFromString:@"videoStop()"];
+            UIAlertController *alert=[UIAlertController alertControllerWithTitle:nil message:@"请连接网络" preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定"style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+        
+        if (status == RealStatusViaWiFi)
+        {
+            NSLog(@"WiFi Connect");
+            [self.webView stringByEvaluatingJavaScriptFromString:@"videoRun()"];
+        }
+        
+        if (status == RealStatusViaWWAN)
+        {
+            NSLog(@"WWAN Connect");
+            [self.webView stringByEvaluatingJavaScriptFromString:@"videoStop()"];
+            UIAlertController *alert=[UIAlertController alertControllerWithTitle:nil message:@"正在使用运营商网络，继续观看可能产生超额流量费用" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"切换WiFi观看"style:UIAlertActionStyleCancel handler:nil];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"继续使用流量播放"style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                [self.webView stringByEvaluatingJavaScriptFromString:@"videoRun()"];
+            }];
+            
+            [alert addAction:cancelAction];
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:nil ];
+        }
+   
 }
 
 - (void)addObserver
@@ -198,6 +274,11 @@ extern NSString * getArticleTodaySucceedNotifName;
                                              selector:@selector(didReceiveGetArticleTodayNotification)
                                                  name:getArticleTodaySucceedNotifName
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(networkChanged:)
+                                                 name:kRealReachabilityChangedNotification
+                                               object:nil];
+
 }
 
 - (void)share
@@ -437,13 +518,13 @@ extern NSString * getArticleTodaySucceedNotifName;
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
     //Show loading hud
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     //Hide loading hud
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    //[MBProgressHUD hideHUDForView:self.view animated:YES];
     
     if (![BBTPreferences sharedInstance].hasSeenDailyArticleDetailView)
     {
@@ -466,6 +547,7 @@ extern NSString * getArticleTodaySucceedNotifName;
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [GLobalRealReachability stopNotifier];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
