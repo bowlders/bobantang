@@ -198,8 +198,8 @@ extern NSString * getArticleTodaySucceedNotifName;
         if (status == RealStatusNotReachable)
         {
             NSLog(@"Not reachable!");
-            // [webView stringByEvaluatingJavaScriptFromString:@"videoStop()"];
-            UIAlertController *alert=[UIAlertController alertControllerWithTitle:nil message:@"请连接网络" preferredStyle:UIAlertControllerStyleActionSheet];
+            [self.webView stringByEvaluatingJavaScriptFromString:@"videoStop()"];
+            UIAlertController *alert=[UIAlertController alertControllerWithTitle:nil message:@"请连接网络" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定"style:UIAlertActionStyleCancel handler:nil];
             [alert addAction:okAction];
             [self presentViewController:alert animated:YES completion:nil];
