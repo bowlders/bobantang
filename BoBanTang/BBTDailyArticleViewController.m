@@ -28,6 +28,8 @@
 @property (strong, nonatomic) UISwipeGestureRecognizer * recognizer;
 @property (strong, nonatomic) UIButton                 * shareButton;
 @property (strong, nonatomic) UIButton                 * collectButton;
+@property BOOL isPlaying;
+@property BOOL playOrNot;
 
 @end
 
@@ -155,7 +157,6 @@ extern NSString * getArticleTodaySucceedNotifName;
     context[@"ttf"] = self;
 }
 -(void)getPlayOrNot{
-  
     [GLobalRealReachability startNotifier];
     ReachabilityStatus status = [GLobalRealReachability currentReachabilityStatus];
     
@@ -171,24 +172,33 @@ extern NSString * getArticleTodaySucceedNotifName;
     
     if (status == RealStatusViaWiFi)
     {
-        NSLog(@"WiFi Connect");
-        [self.webView stringByEvaluatingJavaScriptFromString:@"invocation()"];
-        [self.webView stringByEvaluatingJavaScriptFromString:@"videoRun()"];
+        self.playOrNot = 1;
+        if(!self.isPlaying){
+            [self.webView stringByEvaluatingJavaScriptFromString:@"videoRun()"];
+            self.isPlaying = true;
+        }
     }
     
     if (status == RealStatusViaWWAN)
     {
-        NSLog(@"WWAN Connect");
-        UIAlertController *alert=[UIAlertController alertControllerWithTitle:nil message:@"正在使用运营商网络，继续观看可能产生超额流量费用" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"切换WiFi观看"style:UIAlertActionStyleCancel handler:nil];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"继续使用流量播放"style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-            [self.webView stringByEvaluatingJavaScriptFromString:@"invocation()"];
-            [self.webView stringByEvaluatingJavaScriptFromString:@"videoRun()"];
-        }];
-        
-        [alert addAction:cancelAction];
-        [alert addAction:okAction];
-        [self presentViewController:alert animated:YES completion:nil ];
+        if(!self.playOrNot){
+            [self.webView stringByEvaluatingJavaScriptFromString:@"videoStop()"];
+            self.isPlaying=false;
+            NSLog(@"WWAN Connect");
+            UIAlertController *alert=[UIAlertController alertControllerWithTitle:nil message:@"正在使用运营商网络，继续观看可能产生超额流量费用" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"切换WiFi观看"style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
+                self.playOrNot=0;
+            }
+];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"继续使用流量播放"style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                [self.webView stringByEvaluatingJavaScriptFromString:@"videoRun()"];
+                self.playOrNot=1;
+            }];
+            
+            [alert addAction:cancelAction];
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:nil ];
+        }
     }
 }
 - (void)networkChanged:(NSNotification *)notification
@@ -213,19 +223,27 @@ extern NSString * getArticleTodaySucceedNotifName;
         
         if (status == RealStatusViaWWAN)
         {
-            NSLog(@"WWAN Connect");
-            [self.webView stringByEvaluatingJavaScriptFromString:@"videoStop()"];
-            UIAlertController *alert=[UIAlertController alertControllerWithTitle:nil message:@"正在使用运营商网络，继续观看可能产生超额流量费用" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"切换WiFi观看"style:UIAlertActionStyleCancel handler:nil];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"继续使用流量播放"style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-                [self.webView stringByEvaluatingJavaScriptFromString:@"videoRun()"];
-            }];
+            if (self.isPlaying) {
+                NSLog(@"WWAN Connect");
+                [self.webView stringByEvaluatingJavaScriptFromString:@"videoStop()"];
+                self.isPlaying=false;
+                self.playOrNot=0;
+                UIAlertController *alert=[UIAlertController alertControllerWithTitle:nil message:@"您正在使用移动数据观看，是否继续？" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"暂停"style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
+                    self.playOrNot=0;
+                }];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"继续"style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                    [self.webView stringByEvaluatingJavaScriptFromString:@"videoRun()"];
+                    self.playOrNot=1;
+                }];
+                
+                [alert addAction:cancelAction];
+                [alert addAction:okAction];
+                [self presentViewController:alert animated:YES completion:nil ];
+            }
+
+            }
             
-            [alert addAction:cancelAction];
-            [alert addAction:okAction];
-            [self presentViewController:alert animated:YES completion:nil ];
-        }
-   
 }
 
 - (void)addObserver
