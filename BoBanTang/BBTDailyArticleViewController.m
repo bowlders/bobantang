@@ -536,13 +536,13 @@ extern NSString * getArticleTodaySucceedNotifName;
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
     //Show loading hud
-    //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     //Hide loading hud
-    //[MBProgressHUD hideHUDForView:self.view animated:YES];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     if (![BBTPreferences sharedInstance].hasSeenDailyArticleDetailView)
     {
