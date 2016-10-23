@@ -154,7 +154,7 @@ extern NSString * getArticleTodaySucceedNotifName;
     NSString *urlString1 = [dailyArticleURLFront stringByAppendingString:idString];
     NSString *urlString = [urlString1 stringByAppendingString:dailyArticleURLEnd];
     NSString *cleanedUrlString = [urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    self.url = [NSURL URLWithString:cleanedUrlString];
+    self.url = [NSURL URLWithString:@"http://beiweiqiang.com/dailySoup/"];
     self.webView.allowsInlineMediaPlayback=YES;
     NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
     [self.webView loadRequest:request];
