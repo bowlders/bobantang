@@ -60,7 +60,11 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>100</string>
+<<<<<<< HEAD
+	<string>98</string>
+=======
+	<string>108</string>
+>>>>>>> f8a102763fc9c291cfe6cbe43a95f3bf302200e7
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>mqzone</string>
@@ -106,8 +110,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
