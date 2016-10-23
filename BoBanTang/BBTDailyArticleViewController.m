@@ -29,8 +29,9 @@
 @property (strong, nonatomic) UISwipeGestureRecognizer * recognizer;
 @property (strong, nonatomic) UIButton                 * shareButton;
 @property (strong, nonatomic) UIButton                 * collectButton;
-@property BOOL isPlaying;
-@property BOOL playOrNot;
+@property (nonatomic) BOOL                             isPlaying;
+@property (nonatomic) BOOL                             playOrNot;
+@property (nonatomic) BOOL hasLoad;
 
 @end
 
@@ -51,9 +52,6 @@ extern NSString * checkCurrentUserHasNotCollectedGivenArticleNotifName;
 extern NSString * checkIfHasCollectedGivenArticleFailNotifName;
 extern NSString * getArticleTodaySucceedNotifName;
 
-- (BOOL)shouldAutorotate{
-    return NO;
-}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -182,6 +180,10 @@ extern NSString * getArticleTodaySucceedNotifName;
     
 }
 -(void)getPlayOrNot{
+    UIWindow *statusBarWindow = [(UIWindow *)[UIApplication sharedApplication] valueForKey:@"statusBarWindow"];
+    CGRect frame = statusBarWindow.frame;
+    NSLog(@"statusBar: %@", NSStringFromCGRect(frame));
+    NSLog(@"navigationBar: %@", NSStringFromCGRect(self.navigationController.navigationBar.frame));
     [GLobalRealReachability startNotifier];
     ReachabilityStatus status = [GLobalRealReachability currentReachabilityStatus];
     
@@ -285,6 +287,7 @@ extern NSString * getArticleTodaySucceedNotifName;
 
 - (void) exitFullScreen{
 }
+
 
 - (void)addObserver
 {
@@ -551,7 +554,10 @@ extern NSString * getArticleTodaySucceedNotifName;
 - (void)didReceiveGetArticleTodayNotification
 {
     self.article = [[BBTDailyArticleManager sharedArticleManager].articleToday copy];
-    [self loadWebView];
+    if (!self.hasLoad) {
+        self.hasLoad = YES;
+        [self loadWebView];
+    }
 }
 
 - (void)handleSwipe
@@ -606,6 +612,7 @@ extern NSString * getArticleTodaySucceedNotifName;
 {
     [super viewWillDisappear:animated];
     [GLobalRealReachability stopNotifier];
+    [self.webView stringByEvaluatingJavaScriptFromString:@"videoStop()"];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
