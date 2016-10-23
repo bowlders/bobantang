@@ -50,6 +50,10 @@ extern NSString * checkCurrentUserHasNotCollectedGivenArticleNotifName;
 extern NSString * checkIfHasCollectedGivenArticleFailNotifName;
 extern NSString * getArticleTodaySucceedNotifName;
 
+- (BOOL)shouldAutorotate{
+    return NO;
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [self updateCollectButtonStatus];
@@ -183,16 +187,21 @@ extern NSString * getArticleTodaySucceedNotifName;
     {
         if(!self.playOrNot){
             [self.webView stringByEvaluatingJavaScriptFromString:@"videoStop()"];
-            self.isPlaying=false;
+            self.isPlaying = false;
             NSLog(@"WWAN Connect");
-            UIAlertController *alert=[UIAlertController alertControllerWithTitle:nil message:@"正在使用运营商网络，继续观看可能产生超额流量费用" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alert=
+            [UIAlertController alertControllerWithTitle:nil
+                                                message:@"正在使用运营商网络，继续观看可能产生超额流量费用"
+                                         preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"切换WiFi观看"style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
-                self.playOrNot=0;
+                self.playOrNot = 0;
             }
 ];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"继续使用流量播放"style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"继续使用流量播放"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction *action){
                 [self.webView stringByEvaluatingJavaScriptFromString:@"videoRun()"];
-                self.playOrNot=1;
+                self.playOrNot = 1;
             }];
             
             [alert addAction:cancelAction];
@@ -201,6 +210,7 @@ extern NSString * getArticleTodaySucceedNotifName;
         }
     }
 }
+
 - (void)networkChanged:(NSNotification *)notification
 {
         RealReachability *reachability = (RealReachability *)notification.object;
@@ -209,8 +219,11 @@ extern NSString * getArticleTodaySucceedNotifName;
         {
             NSLog(@"Not reachable!");
             [self.webView stringByEvaluatingJavaScriptFromString:@"videoStop()"];
-            UIAlertController *alert=[UIAlertController alertControllerWithTitle:nil message:@"请连接网络" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定"style:UIAlertActionStyleCancel handler:nil];
+            UIAlertController *alert=[UIAlertController alertControllerWithTitle:nil
+                                                                         message:@"请连接网络"
+                                                                  preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定"style:
+                                       UIAlertActionStyleCancel handler:nil];
             [alert addAction:okAction];
             [self presentViewController:alert animated:YES completion:nil];
         }
@@ -244,6 +257,12 @@ extern NSString * getArticleTodaySucceedNotifName;
 
             }
             
+}
+
+- (void) startFullScreen{
+ }
+
+- (void) exitFullScreen{
 }
 
 - (void)addObserver
