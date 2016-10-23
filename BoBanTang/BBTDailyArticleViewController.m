@@ -189,7 +189,7 @@ extern NSString * getArticleTodaySucceedNotifName;
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"切换WiFi观看"style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
                 self.playOrNot=0;
             }
-];
+            ];
             UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"继续使用流量播放"style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
                 [self.webView stringByEvaluatingJavaScriptFromString:@"videoRun()"];
                 self.playOrNot=1;
