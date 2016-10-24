@@ -5,6 +5,7 @@
 //  Created by Caesar on 16/1/24.
 //  Copyright © 2016年 100steps. All rights reserved.
 //
+#import "UIColor+BBTColor.h"
 #import "RealReachability/RealReachability.h"
 #import "BBTDailyArticleViewController.h"
 #import "BBTDailyArticle.h"
@@ -29,8 +30,8 @@
 @property (strong, nonatomic) UISwipeGestureRecognizer * recognizer;
 @property (strong, nonatomic) UIButton                 * shareButton;
 @property (strong, nonatomic) UIButton                 * collectButton;
-@property (nonatomic) BOOL                             isPlaying;
-@property (nonatomic) BOOL                             playOrNot;
+@property (nonatomic) BOOL isPlaying;
+@property (nonatomic) BOOL playOrNot;
 @property (nonatomic) BOOL hasLoad;
 
 @end
@@ -180,6 +181,8 @@ extern NSString * getArticleTodaySucceedNotifName;
     
 }
 -(void)getPlayOrNot{
+    
+    NSLog(@"StatusBar:%i",[self prefersStatusBarHidden]);
     UIWindow *statusBarWindow = [(UIWindow *)[UIApplication sharedApplication] valueForKey:@"statusBarWindow"];
     CGRect frame = statusBarWindow.frame;
     NSLog(@"statusBar: %@", NSStringFromCGRect(frame));
@@ -286,8 +289,21 @@ extern NSString * getArticleTodaySucceedNotifName;
  }
 
 - (void) exitFullScreen{
+    
+    UINavigationController *NavigationController = self.navigationController;
+    CGRect frame = self.navigationController.navigationBar.frame;
+    if (!frame.origin.y){
+        frame.origin.y += 20;
+        NavigationController.navigationBar.frame = frame;
+        UIView *blueView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 20)];
+        blueView.backgroundColor = [UIColor BBTInfoSegmentedControlIndicatorBlue];
+        [self.parentViewController.view addSubview:blueView];
+    }
 }
 
+-(BOOL)prefersStatusBarHidden{
+    return NO;
+}
 
 - (void)addObserver
 {
