@@ -20,4 +20,5 @@
 
 @property (strong, nonatomic) BBTDailyArticle * article;
 @property (assign, nonatomic) int isEnteredFromArticleTableVC;   //Set to 1 if detail VC is entered from BBTDailyArticleTableViewController.
+
 @end
