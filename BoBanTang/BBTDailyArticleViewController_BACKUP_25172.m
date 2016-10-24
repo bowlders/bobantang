@@ -217,10 +217,15 @@ extern NSString * getArticleTodaySucceedNotifName;
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"切换WiFi观看"style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
                 self.playOrNot = 0;
             }
+<<<<<<< HEAD
+            ];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"继续使用流量播放"style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+=======
 ];
             UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"继续使用流量播放"
                                                                style:UIAlertActionStyleDefault
                                                              handler:^(UIAlertAction *action){
+>>>>>>> 3e0d660f20f01c548bc62b01a130e5f3841c4dcd
                 [self.webView stringByEvaluatingJavaScriptFromString:@"videoRun()"];
                 self.playOrNot = 1;
             }];

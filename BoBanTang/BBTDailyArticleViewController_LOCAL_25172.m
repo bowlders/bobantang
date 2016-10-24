@@ -20,7 +20,6 @@
 #import <JGProgressHUD.h>
 #import <MBProgressHUD.h>
 #import <WSCoachMarksView.h>
-#import <AFNetworking.h>
 
 @interface BBTDailyArticleViewController ()
 
@@ -50,10 +49,6 @@ extern NSString * checkCurrentUserHasCollectedGivenArticleNotifName;
 extern NSString * checkCurrentUserHasNotCollectedGivenArticleNotifName;
 extern NSString * checkIfHasCollectedGivenArticleFailNotifName;
 extern NSString * getArticleTodaySucceedNotifName;
-
-- (BOOL)shouldAutorotate{
-    return NO;
-}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -160,26 +155,6 @@ extern NSString * getArticleTodaySucceedNotifName;
     [self.webView loadRequest:request];
     JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     context[@"ttf"] = self;
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    NSMutableDictionary*dic = [NSMutableDictionary dictionary];
-    NSString*IDStr = [NSString stringWithFormat:@"%d", self.article.ID];
-    dic[@"table"] = @"dailySoup";
-    dic[@"method"] = @"modify";
-    dic[@"data"] = [NSString stringWithFormat:@"{\"id\":%@}",IDStr];
-    dic[@"option"] = @"{\"add\":\"readNum\"}";
-    
-    [manager POST:@"http://218.192.166.167/api/protype.php" parameters:dic progress:nil success:^(NSURLSessionTask *task, id response) {
-        if (response){
-            NSLog(@"%@",response);
-            NSLog(@"%d",self.article.readNum);
-        }
-    } failure:^(NSURLSessionTask *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
-    
 }
 -(void)getPlayOrNot{
     [GLobalRealReachability startNotifier];
@@ -208,21 +183,16 @@ extern NSString * getArticleTodaySucceedNotifName;
     {
         if(!self.playOrNot){
             [self.webView stringByEvaluatingJavaScriptFromString:@"videoStop()"];
-            self.isPlaying = false;
+            self.isPlaying=false;
             NSLog(@"WWAN Connect");
-            UIAlertController *alert=
-            [UIAlertController alertControllerWithTitle:nil
-                                                message:@"正在使用运营商网络，继续观看可能产生超额流量费用"
-                                         preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alert=[UIAlertController alertControllerWithTitle:nil message:@"正在使用运营商网络，继续观看可能产生超额流量费用" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"切换WiFi观看"style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
-                self.playOrNot = 0;
+                self.playOrNot=0;
             }
-];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"继续使用流量播放"
-                                                               style:UIAlertActionStyleDefault
-                                                             handler:^(UIAlertAction *action){
+            ];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"继续使用流量播放"style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
                 [self.webView stringByEvaluatingJavaScriptFromString:@"videoRun()"];
-                self.playOrNot = 1;
+                self.playOrNot=1;
             }];
             
             [alert addAction:cancelAction];
@@ -231,7 +201,6 @@ extern NSString * getArticleTodaySucceedNotifName;
         }
     }
 }
-
 - (void)networkChanged:(NSNotification *)notification
 {
         RealReachability *reachability = (RealReachability *)notification.object;
@@ -240,11 +209,8 @@ extern NSString * getArticleTodaySucceedNotifName;
         {
             NSLog(@"Not reachable!");
             [self.webView stringByEvaluatingJavaScriptFromString:@"videoStop()"];
-            UIAlertController *alert=[UIAlertController alertControllerWithTitle:nil
-                                                                         message:@"请连接网络"
-                                                                  preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定"style:
-                                       UIAlertActionStyleCancel handler:nil];
+            UIAlertController *alert=[UIAlertController alertControllerWithTitle:nil message:@"请连接网络" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定"style:UIAlertActionStyleCancel handler:nil];
             [alert addAction:okAction];
             [self presentViewController:alert animated:YES completion:nil];
         }
@@ -278,12 +244,6 @@ extern NSString * getArticleTodaySucceedNotifName;
 
             }
             
-}
-
-- (void) startFullScreen{
- }
-
-- (void) exitFullScreen{
 }
 
 - (void)addObserver

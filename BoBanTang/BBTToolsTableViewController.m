@@ -50,10 +50,10 @@ extern NSString * kUserAuthentificationFinishNotifName;
     self.lostAndFoundImage.image = [UIImage imageNamed:@"失物招领icon"];
     self.mapImage.image = [UIImage imageNamed:@"地图icon"];
     
-    [self configureSize:self.roomImage andLabel:self.roomLabel];
-    [self configureSize:self.socresImage andLabel:self.scoresLabel];
-    [self configureSize:self.lostAndFoundImage andLabel:self.lostAndFoundLabel];
-    [self configureSize:self.mapImage andLabel:self.mapLabel];
+//    [self configureSize:self.roomImage andLabel:self.roomLabel];
+//    [self configureSize:self.socresImage andLabel:self.scoresLabel];
+//    [self configureSize:self.lostAndFoundImage andLabel:self.lostAndFoundLabel];
+//    [self configureSize:self.mapImage andLabel:self.mapLabel];
 }
 
 - (void)didReceiveMemoryWarning {

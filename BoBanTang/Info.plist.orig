@@ -23,7 +23,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.0.2</string>
+	<string>3.0.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -60,7 +60,11 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>106</string>
+<<<<<<< HEAD
+	<string>98</string>
+=======
+	<string>108</string>
+>>>>>>> f8a102763fc9c291cfe6cbe43a95f3bf302200e7
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>mqzone</string>
@@ -93,8 +97,6 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This application requires location services to work</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Photo Library Access Warning</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -108,8 +110,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
