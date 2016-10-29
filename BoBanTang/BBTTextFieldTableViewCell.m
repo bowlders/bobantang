@@ -40,7 +40,6 @@
         case 2:
             self.title.text = @"联系电话";
             self.contents.placeholder = @"填写联系人电话(必填)";
-            self.contents.keyboardType = UIKeyboardTypeNumberPad;
             break;
             
         case 3:

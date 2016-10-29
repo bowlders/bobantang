@@ -236,6 +236,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0D4E64831DB3C71E007FA049 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		5B50392518706368002B2B12 /* ZZConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZConstants.h; sourceTree = "<group>"; };
 		5B50392E187069E4002B2B12 /* ZZStandardCryptoEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZZStandardCryptoEngine.cpp; sourceTree = "<group>"; };
 		5B50392F187069E4002B2B12 /* ZZStandardCryptoEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZStandardCryptoEngine.h; sourceTree = "<group>"; };
@@ -507,6 +508,7 @@
 		D899CF84162C5EC100112F49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0D4E64831DB3C71E007FA049 /* SystemConfiguration.framework */,
 				D87BA2281B3D6F8500ED7EB3 /* libz.dylib */,
 				D87BA1F11B3D6A8300ED7EB3 /* libz.dylib */,
 			);

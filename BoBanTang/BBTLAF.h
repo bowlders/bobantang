@@ -10,7 +10,7 @@
 
 @interface BBTLAF : JSONModel
 
-@property (strong, nonatomic) NSNumber    * ID;
+@property (strong, nonatomic) NSString    * ID;
 @property (strong, nonatomic) NSString    * account;
 @property (strong, nonatomic) NSString    * thumbURL;
 @property (strong, nonatomic) NSString    * orgPicUrl;

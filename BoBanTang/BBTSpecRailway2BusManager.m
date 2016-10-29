@@ -101,14 +101,17 @@ static float dataRequestInterval = 5.0;                                         
     southManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     [southManager POST:directionSouthURLString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         //NSLog(@"South Buses: %@", responseObject);
-        if ([responseObject currentSpecRailwayBusArray])
-        {
-            for (int i = 0;i < [[responseObject currentSpecRailwayBusArray] count];i++)
+        //NSLog(@"%lu",[responseObject[@"d"] count]);
+        if(responseObject[@"d"]){
+            if ([responseObject currentSpecRailwayBusArray])
             {
-                BBTSpecRailway2Bus *currentBus = [[BBTSpecRailway2Bus alloc] initWithDictionary:[responseObject currentSpecRailwayBusArray][i] error:nil];
-                [self.directionSouthBuses addObject:currentBus];
+                for (int i = 0;i < [[responseObject currentSpecRailwayBusArray] count];i++)
+                {
+                    BBTSpecRailway2Bus *currentBus = [[BBTSpecRailway2Bus alloc] initWithDictionary:[responseObject currentSpecRailwayBusArray][i] error:nil];
+                    [self.directionSouthBuses addObject:currentBus];
+                }
+                [self postBusDataNotification];
             }
-            [self postBusDataNotification];
         }
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         [self pushRetriveDirectionSouthFailNotification];
@@ -122,14 +125,17 @@ static float dataRequestInterval = 5.0;                                         
     northManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     [northManager POST:directionNorthURLString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         //NSLog(@"JSON: %@", responseObject);
-        if ([responseObject currentSpecRailwayBusArray])
-        {
-            for (int i = 0;i < [[responseObject currentSpecRailwayBusArray] count];i++)
+        //NSLog(@"%@",responseObject[@"d"]);
+        if(responseObject[@"d"]){
+            if ([responseObject currentSpecRailwayBusArray])
             {
-                BBTSpecRailway2Bus *currentBus = [[BBTSpecRailway2Bus alloc] initWithDictionary:[responseObject currentSpecRailwayBusArray][i] error:nil];
-                [self.directionNorthBuses addObject:currentBus];
+                for (int i = 0;i < [[responseObject currentSpecRailwayBusArray] count];i++)
+                {
+                    BBTSpecRailway2Bus *currentBus = [[BBTSpecRailway2Bus alloc] initWithDictionary:[responseObject currentSpecRailwayBusArray][i] error:nil];
+                    [self.directionNorthBuses addObject:currentBus];
+                }
+                [self postBusDataNotification];
             }
-            [self postBusDataNotification];
         }
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         [self pushRetriveDirectionNorthFailNotification];

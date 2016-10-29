@@ -116,11 +116,8 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
                 self.itemsCount += [(NSArray *)responseObject count];
                 
                 [self.reservedArray addObjectsFromArray:origArr];
-                //self.itemArray = self.reservedArray;
-                
-                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"ID" ascending:NO];
-                NSArray *sortDescriptorArray = [NSArray arrayWithObject:sortDescriptor];
                 self.itemArray = self.reservedArray;
+                [[self.itemArray reverseObjectEnumerator] allObjects];
                 
                 [self pushLafNotification];
                 
@@ -177,7 +174,11 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
 
 - (void)loadMyPickedItemsWithAccount:(NSString *)account
 {
-    NSMutableArray *originalArray = [NSMutableArray array];
+    if (!self.myPicked) {
+        self.myPicked = [[NSMutableArray alloc] init];
+    } else {
+        [self.myPicked removeAllObjects];
+    }
     
     NSDictionary *condition = @{@"account":account};
     
@@ -199,10 +200,9 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
             {
                 BBTLAF *item = [[BBTLAF alloc] initWithResponesObject:itemsInfo];
                 
-                [originalArray addObject:item];
+                [self.myPicked addObject:item];
             }
             
-            self.myPicked = [NSArray arrayWithArray:originalArray];
             [self postDidGetPickedItemsNotification];
         }
     } failure:^(NSURLSessionTask *task, NSError *error) {
@@ -216,7 +216,11 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
 
 - (void)loadMyLostItemsWithAccount:(NSString *)account
 {
-    NSMutableArray *originalArray = [NSMutableArray array];
+    if (!self.myLost) {
+        self.myLost = [[NSMutableArray alloc] init];
+    } else {
+        [self.myLost removeAllObjects];
+    }
     
     NSDictionary *condition = @{@"account":account};
     
@@ -238,10 +242,9 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
             {
                 BBTLAF *item = [[BBTLAF alloc] initWithResponesObject:itemsInfo];
                 
-                [originalArray addObject:item];
+                [self.myLost addObject:item];
             }
             
-            self.myLost = [NSArray arrayWithArray:originalArray];
             [self postDidGetLostItemsNotification];
         }
     } failure:^(NSURLSessionTask *task, NSError *error) {

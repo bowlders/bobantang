@@ -36,7 +36,6 @@ static NSString * detailsInitial = @"请输入详情";
 @property (strong, nonatomic) NSString            * account;
 @property (strong, nonatomic) UIImage             * lostItemImage;
 @property (strong, nonatomic) NSMutableDictionary * itemInfoToPost;
-@property (strong, nonatomic) NSArray             * itemTypes;
 
 @property (strong, nonatomic) BBTLAF              * item;
 
@@ -53,7 +52,6 @@ extern NSString *kDidUploadImageNotificationName;
 extern NSString *kFailUploadImageNotificationName;
 extern NSString *kDidPostItemNotificaionName;
 extern NSString *kFailPostItemNotificaionName;
-extern NSString *kDidChangedCampusNotificationName;
 
 - (void)viewDidLoad
 {
@@ -75,7 +73,6 @@ extern NSString *kDidChangedCampusNotificationName;
     [tap setCancelsTouchesInView:NO];
     
     self.itemDetails = detailsInitial;
-    self.itemTypes = [NSArray arrayWithObjects:@"大学城一卡通", @"校园卡(绿卡)", @"钱包", @"钥匙", @"其它", nil];
     
     //Set tableview
     self.tableView = ({
@@ -83,8 +80,6 @@ extern NSString *kDidChangedCampusNotificationName;
         tableView.dataSource = self;
         tableView.delegate = self;
         tableView.translatesAutoresizingMaskIntoConstraints = NO;
-        tableView.separatorInset = UIEdgeInsetsZero;
-        tableView.layoutMargins = UIEdgeInsetsZero;
         tableView;
     });
     
@@ -94,8 +89,6 @@ extern NSString *kDidChangedCampusNotificationName;
     
     self.item = [[BBTLAF alloc] init];
     self.item.title = @"大学城一卡通";
-    self.item.campus = @(0);
-    self.item.type = @(0);
     
     //Set buttons
     UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
@@ -174,9 +167,6 @@ extern NSString *kDidChangedCampusNotificationName;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failUploading) name:kFailUploadImageNotificationName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didPostItem) name:kDidPostItemNotificaionName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failUploading) name:kFailPostItemNotificaionName object:nil];
-    
-    //Campus Changed Notification
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateModelForCampus) name:kDidChangedCampusNotificationName object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -195,35 +185,6 @@ extern NSString *kDidChangedCampusNotificationName;
     
     NSUInteger newLength = [textField.text length] + [string length] - range.length;
     return newLength <= 20;
-}
-
-//Change the model according to the user's behaviour
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    if (textField.text && ![textField.text isEqualToString:@""])
-    {
-        BBTTextFieldTableViewCell *textFieldCell = (BBTTextFieldTableViewCell *)textField.superview.superview.superview;
-        if ([textFieldCell.title.text isEqualToString:@"地点"]) {
-            self.item.location = textField.text;
-        } else if ([textFieldCell.title.text isEqualToString:@"联系人"]) {
-            self.item.publisher = textField.text;
-        } else if ([textFieldCell.title.text isEqualToString:@"联系电话"]) {
-            self.item.phone = textField.text;
-        } else if ([textFieldCell.title.text isEqualToString:@"其他"]) {
-            self.item.otherContact = textField.text;
-        } else if ([textFieldCell.title.text isEqualToString:@"失物名称"]) {
-            self.item.title = textField.text;
-        }
-    }
-}
-
-- (void)updateModelForCampus
-{
-    if ([self.item.campus integerValue] == 0) {
-        self.item.campus = @(1);
-    } else {
-        self.item.campus = @(0);
-    }
 }
 
 #pragma -mark handle keyboard
@@ -268,10 +229,10 @@ extern NSString *kDidChangedCampusNotificationName;
                           delay:0
                         options:UIViewAnimationOptionBeginFromCurrentState|curveOption
                      animations:^{
-                         UIEdgeInsets edgeInsets = UIEdgeInsetsMake(0, 0, height, 0);
-                         self.tableView.contentInset = edgeInsets;
-                         self.tableView.scrollIndicatorInsets = edgeInsets;
-                     }
+        UIEdgeInsets edgeInsets = UIEdgeInsetsMake(0, 0, height, 0);
+        self.tableView.contentInset = edgeInsets;
+        self.tableView.scrollIndicatorInsets = edgeInsets;
+    }
                      completion:nil];
 }
 
@@ -283,10 +244,10 @@ extern NSString *kDidChangedCampusNotificationName;
     [UIView animateWithDuration:duration delay:0
                         options:UIViewAnimationOptionBeginFromCurrentState|curveOption
                      animations:^{
-                         UIEdgeInsets edgeInsets = UIEdgeInsetsZero;
-                         self.tableView.contentInset = edgeInsets;
-                         self.tableView.scrollIndicatorInsets = edgeInsets;
-                     }
+        UIEdgeInsets edgeInsets = UIEdgeInsetsZero;
+        self.tableView.contentInset = edgeInsets;
+        self.tableView.scrollIndicatorInsets = edgeInsets;
+    }
                      completion:nil];
 }
 
@@ -385,16 +346,13 @@ extern NSString *kDidChangedCampusNotificationName;
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:dateCellIdentifier];
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"YYYY-MM-dd"];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            self.item.date = [dateFormatter stringFromDate:[NSDate date]];
+            
             cell.textLabel.font = [UIFont systemFontOfSize:16];
             cell.textLabel.text = @"日期";
-            if ([self.item.date isEqualToString:[dateFormatter stringFromDate:[NSDate date]]] || !self.item.date) {
-                cell.detailTextLabel.text = [dateFormatter stringFromDate:[NSDate date]];
-                self.item.date = [dateFormatter stringFromDate:[NSDate date]];
-            } else {
-                cell.detailTextLabel.text = self.item.date;
-            }
-            
+            cell.detailTextLabel.text = [dateFormatter stringFromDate:[NSDate date]];
+
             return cell;
         }
         else if (indexPath.row == 1)
@@ -417,9 +375,10 @@ extern NSString *kDidChangedCampusNotificationName;
             {
                 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:rightDisclosureCellIdentifier];
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:rightDisclosureCellIdentifier];
+                self.item.type = @(0);
                 cell.textLabel.text = @"失物类型";
                 cell.textLabel.font = [UIFont systemFontOfSize:16];
-                cell.detailTextLabel.text = self.itemTypes[[self.item.type integerValue]];
+                cell.detailTextLabel.text = @"大学城一卡通";
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 return cell;
@@ -442,15 +401,7 @@ extern NSString *kDidChangedCampusNotificationName;
                 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:rightDisclosureCellIdentifier];
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:rightDisclosureCellIdentifier];
                 cell.textLabel.text = @"失物详情";
-                if (!self.item.details || [self.item.details isEqualToString:@""]) {
-                    cell.detailTextLabel.text = detailsInitial;
-                } else {
-                    if ([self.item.details length] < 10) {
-                        cell.detailTextLabel.text = self.item.details;
-                    } else {
-                        cell.detailTextLabel.text = [[self.item.details substringToIndex:10] stringByAppendingString:@"..."];
-                    }
-                }
+                cell.detailTextLabel.text = detailsInitial;
                 cell.textLabel.font = [UIFont systemFontOfSize:16];
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -461,9 +412,10 @@ extern NSString *kDidChangedCampusNotificationName;
             {
                 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:rightDisclosureCellIdentifier];
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:rightDisclosureCellIdentifier];
+                self.item.type = @(0);
                 cell.textLabel.text = @"失物类型";
                 cell.textLabel.font = [UIFont systemFontOfSize:16];
-                cell.detailTextLabel.text = self.itemTypes[[self.item.type integerValue]];
+                cell.detailTextLabel.text = @"大学城一卡通";
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 return cell;
@@ -479,21 +431,13 @@ extern NSString *kDidChangedCampusNotificationName;
                 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:rightDisclosureCellIdentifier];
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:rightDisclosureCellIdentifier];
                 cell.textLabel.text = @"失物详情";
-                if (!self.item.details || [self.item.details isEqualToString:@""]) {
-                    cell.detailTextLabel.text = detailsInitial;
-                } else {
-                    if ([self.item.details length] < 10) {
-                        cell.detailTextLabel.text = self.item.details;
-                    } else {
-                        cell.detailTextLabel.text = [[self.item.details substringToIndex:10] stringByAppendingString:@"..."];
-                    }
-                }
+                cell.detailTextLabel.text = detailsInitial;
                 cell.textLabel.font = [UIFont systemFontOfSize:16];
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 return cell;
             }
-            
+
         }
     }
     else if (indexPath.section == 2)
@@ -510,7 +454,7 @@ extern NSString *kDidChangedCampusNotificationName;
             BBTTextFieldTableViewCell *cell = (BBTTextFieldTableViewCell *)[tableView dequeueReusableCellWithIdentifier:textFieldCellIdentifier];
             [cell configureCellForDifferntUse:2];
             cell.contents.delegate = self;
-            //cell.contents.keyboardType = UIKeyboardTypeNumberPad;
+            cell.contents.keyboardType = UIKeyboardTypeNumberPad;
             return cell;
         }
         else if (indexPath.row == 2)
@@ -544,21 +488,21 @@ extern NSString *kDidChangedCampusNotificationName;
                                                            action:@selector(dateWasSelected:element:)
                                                            origin:[tableView cellForRowAtIndexPath:indexPath].detailTextLabel];
         [datePicker showActionSheetPicker];
-        
+
     } else if (indexPath.section == 1 && indexPath.row == 0) {
-        //NSArray *itemTypes = [NSArray arrayWithObjects:@"大学城一卡通", @"校园卡(绿卡)", @"钱包", @"钥匙", @"其它", nil];
+        NSArray *itemTypes = [NSArray arrayWithObjects:@"大学城一卡通", @"校园卡(绿卡)", @"钱包", @"钥匙", @"其它", nil];
         [ActionSheetStringPicker showPickerWithTitle:@"请选择类型"
-                                                rows:self.itemTypes
+                                                rows:itemTypes
                                     initialSelection:0
                                            doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                                if (selectedIndex != 4)
                                                {
-                                                   [tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text = self.itemTypes[selectedIndex];
+                                                   [tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text = itemTypes[selectedIndex];
                                                    self.item.type = @(selectedIndex);
-                                                   self.item.title = self.itemTypes[selectedIndex];
+                                                   self.item.title = itemTypes[selectedIndex];
                                                    if (self.isInsertedRow == YES) [self configureEditing];
                                                } else {
-                                                   [tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text = self.itemTypes[selectedIndex];
+                                                   [tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text = itemTypes[selectedIndex];
                                                    self.item.type = @(selectedIndex);
                                                    if (self.isInsertedRow == NO) [self configureEditing];
                                                }
@@ -568,7 +512,7 @@ extern NSString *kDidChangedCampusNotificationName;
                                          }
                                               origin:[tableView cellForRowAtIndexPath:indexPath].detailTextLabel
          ];
-        
+
     } else if (indexPath.section == 1 && indexPath.row == 1) {
         if (!self.isInsertedRow) [self showImagePicker];
     } else if (indexPath.section == 1 && indexPath.row == 2) {
@@ -589,10 +533,10 @@ extern NSString *kDidChangedCampusNotificationName;
     pickerContoller.delegate = self;
     pickerContoller.allowsEditing = YES;
     
-    UIAlertController *pickerView = [UIAlertController alertControllerWithTitle:@"选择一张图片"
+    UIAlertController *pickerView = [UIAlertController alertControllerWithTitle:@"Select a photo"
                                                                         message:nil
                                                                  preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消"
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
                                                      style:UIAlertActionStyleCancel
                                                    handler:^(UIAlertAction *action){
                                                        [pickerView dismissViewControllerAnimated:YES completion:nil];
@@ -629,7 +573,6 @@ extern NSString *kDidChangedCampusNotificationName;
         [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
     } else {
         self.isInsertedRow = NO;
-        self.item.title = self.itemTypes[[self.item.type integerValue]];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:1];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
     }
@@ -642,27 +585,45 @@ extern NSString *kDidChangedCampusNotificationName;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"YYYY-MM-dd"];
     [element setText:[dateFormatter stringFromDate:selectedDate]];
-    
-    self.item.date = [dateFormatter stringFromDate:selectedDate];
 }
 
 - (void)postButtonIsTapped
 {
+    UITableViewCell *dateCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    self.item.date = dateCell.detailTextLabel.text;
+    
+    BBTItemCampusTableViewCell *campusCell = (BBTItemCampusTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    self.item.campus = @(campusCell.campus.selectedSegmentIndex);
+    
+    BBTTextFieldTableViewCell *locationCell = (BBTTextFieldTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+    self.item.location = locationCell.contents.text;
     
     self.item.details = self.itemDetails;
+    
+    BBTTextFieldTableViewCell *publisherCell = (BBTTextFieldTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];
+    self.item.publisher = publisherCell.contents.text;
+    
+    BBTTextFieldTableViewCell *phoneCell = (BBTTextFieldTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:2]];
+    self.item.phone = phoneCell.contents.text;
+    
+    BBTTextFieldTableViewCell *otherContactCell = (BBTTextFieldTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:2]];
+    self.item.otherContact = otherContactCell.contents.text;
     
     self.itemInfoToPost = [[NSMutableDictionary alloc] init];
     
     if (self.isInsertedRow)
     {
-        if ([self.item.location isEqualToString:@""] || [self.item.publisher isEqualToString:@""] || [self.item.phone isEqualToString:@""] || [self.item.title isEqualToString:@""] || !self.item.location || !self.item.publisher || !self.item.phone || !self.item.title)
+        BBTTextFieldTableViewCell *itemTitle = (BBTTextFieldTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
+        self.item.title = itemTitle.contents.text;
+        
+        if ([self.item.location isEqualToString:@""] || [self.item.publisher isEqualToString:@""] || [self.item.phone isEqualToString:@""] || [self.item.title isEqualToString:@""])
         {
             [self showAlertView:0];
             return;
         }
         
     } else {
-        if ([self.item.location isEqualToString:@""] || [self.item.publisher isEqualToString:@""] || [self.item.phone isEqualToString:@""] || !self.item.location || !self.item.publisher ||!self.item.phone )
+        if ([self.item.location isEqualToString:@""] || [self.item.publisher isEqualToString:@""] || [self.item.phone isEqualToString:@""])
         {
             [self showAlertView:0];
             return;
@@ -679,7 +640,7 @@ extern NSString *kDidChangedCampusNotificationName;
     [self.itemInfoToPost setObject:self.account forKey:@"account"];
     
     if (![self.item.details isEqualToString:detailsInitial])[self.itemInfoToPost setObject:self.item.details forKey:@"details"];
-    if (self.item.otherContact)[self.itemInfoToPost setObject:self.item.otherContact forKey:@"otherContact"];
+    if (![self.item.otherContact isEqualToString:@""] && !self.item.otherContact)[self.itemInfoToPost setObject:self.item.otherContact forKey:@"otherContact"];
     
     //Show a HUD
     [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
@@ -772,7 +733,6 @@ extern NSString *kDidChangedCampusNotificationName;
 - (void)BBTItemDetail:(BBTItemDetailEditingViewController *)controller didFinishEditingDetails:(NSString *)itemDetails
 {
     self.itemDetails = itemDetails;
-    self.item.details = itemDetails;
     if (self.isInsertedRow) {
         if ([itemDetails length] < 10) {
             [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:1]].detailTextLabel.text = itemDetails;

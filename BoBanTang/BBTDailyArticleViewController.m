@@ -5,7 +5,8 @@
 //  Created by Caesar on 16/1/24.
 //  Copyright © 2016年 100steps. All rights reserved.
 //
-
+#import "UIColor+BBTColor.h"
+#import "RealReachability/RealReachability.h"
 #import "BBTDailyArticleViewController.h"
 #import "BBTDailyArticle.h"
 #import "BBTDailyArticleTableViewController.h"
@@ -20,6 +21,7 @@
 #import <JGProgressHUD.h>
 #import <MBProgressHUD.h>
 #import <WSCoachMarksView.h>
+#import <AFNetworking.h>
 
 @interface BBTDailyArticleViewController ()
 
@@ -28,6 +30,9 @@
 @property (strong, nonatomic) UISwipeGestureRecognizer * recognizer;
 @property (strong, nonatomic) UIButton                 * shareButton;
 @property (strong, nonatomic) UIButton                 * collectButton;
+@property (nonatomic) BOOL isPlaying;
+@property (nonatomic) BOOL playOrNot;
+@property (nonatomic) BOOL hasLoad;
 
 @end
 
@@ -47,6 +52,7 @@ extern NSString * checkCurrentUserHasCollectedGivenArticleNotifName;
 extern NSString * checkCurrentUserHasNotCollectedGivenArticleNotifName;
 extern NSString * checkIfHasCollectedGivenArticleFailNotifName;
 extern NSString * getArticleTodaySucceedNotifName;
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -148,8 +154,156 @@ extern NSString * getArticleTodaySucceedNotifName;
     NSString *urlString = [urlString1 stringByAppendingString:dailyArticleURLEnd];
     NSString *cleanedUrlString = [urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     self.url = [NSURL URLWithString:cleanedUrlString];
+    self.webView.allowsInlineMediaPlayback=YES;
     NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
     [self.webView loadRequest:request];
+    JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+    context[@"ttf"] = self;
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    NSMutableDictionary*dic = [NSMutableDictionary dictionary];
+    NSString*IDStr = [NSString stringWithFormat:@"%d", self.article.ID];
+    dic[@"table"] = @"dailySoup";
+    dic[@"method"] = @"modify";
+    dic[@"data"] = [NSString stringWithFormat:@"{\"id\":%@}",IDStr];
+    dic[@"option"] = @"{\"add\":\"readNum\"}";
+    
+    [manager POST:@"http://218.192.166.167/api/protype.php" parameters:dic progress:nil success:^(NSURLSessionTask *task, id response) {
+        if (response){
+            NSLog(@"%@",response);
+            NSLog(@"%d",self.article.readNum);
+        }
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+}
+-(void)getPlayOrNot{
+    
+    NSLog(@"StatusBar:%i",[self prefersStatusBarHidden]);
+    UIWindow *statusBarWindow = [(UIWindow *)[UIApplication sharedApplication] valueForKey:@"statusBarWindow"];
+    CGRect frame = statusBarWindow.frame;
+    NSLog(@"statusBar: %@", NSStringFromCGRect(frame));
+    NSLog(@"navigationBar: %@", NSStringFromCGRect(self.navigationController.navigationBar.frame));
+    [GLobalRealReachability startNotifier];
+    ReachabilityStatus status = [GLobalRealReachability currentReachabilityStatus];
+    
+    if (status == RealStatusNotReachable)
+    {
+        NSLog(@"Not reachable!");
+        UIAlertController *alert=[UIAlertController alertControllerWithTitle:nil message:@"请连接网络" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定"style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        
+    }
+    
+    if (status == RealStatusViaWiFi)
+    {
+        self.playOrNot = 1;
+        if(!self.isPlaying){
+            [self.webView stringByEvaluatingJavaScriptFromString:@"videoRun()"];
+            self.isPlaying = true;
+        }
+    }
+    
+    if (status == RealStatusViaWWAN)
+    {
+        if(!self.playOrNot){
+            [self.webView stringByEvaluatingJavaScriptFromString:@"videoStop()"];
+            self.isPlaying = false;
+            NSLog(@"WWAN Connect");
+            UIAlertController *alert=
+            [UIAlertController alertControllerWithTitle:nil
+                                                message:@"正在使用运营商网络，继续观看可能产生超额流量费用"
+                                         preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"切换WiFi观看"style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
+                self.playOrNot = 0;
+            }
+];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"继续使用流量播放"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction *action){
+                [self.webView stringByEvaluatingJavaScriptFromString:@"videoRun()"];
+                self.playOrNot = 1;
+            }];
+            
+            [alert addAction:cancelAction];
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:nil ];
+        }
+    }
+}
+
+- (void)networkChanged:(NSNotification *)notification
+{
+        RealReachability *reachability = (RealReachability *)notification.object;
+        ReachabilityStatus status = [reachability currentReachabilityStatus];
+        if (status == RealStatusNotReachable)
+        {
+            NSLog(@"Not reachable!");
+            [self.webView stringByEvaluatingJavaScriptFromString:@"videoStop()"];
+            UIAlertController *alert=[UIAlertController alertControllerWithTitle:nil
+                                                                         message:@"请连接网络"
+                                                                  preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定"style:
+                                       UIAlertActionStyleCancel handler:nil];
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+        
+        if (status == RealStatusViaWiFi)
+        {
+            NSLog(@"WiFi Connect");
+            [self.webView stringByEvaluatingJavaScriptFromString:@"videoRun()"];
+        }
+        
+        if (status == RealStatusViaWWAN)
+        {
+            if (self.isPlaying) {
+                NSLog(@"WWAN Connect");
+                [self.webView stringByEvaluatingJavaScriptFromString:@"videoStop()"];
+                self.isPlaying=false;
+                self.playOrNot=0;
+                UIAlertController *alert=[UIAlertController alertControllerWithTitle:nil message:@"您正在使用移动数据观看，是否继续？" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"暂停"style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
+                    self.playOrNot=0;
+                }];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"继续"style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                    [self.webView stringByEvaluatingJavaScriptFromString:@"videoRun()"];
+                    self.playOrNot=1;
+                }];
+                
+                [alert addAction:cancelAction];
+                [alert addAction:okAction];
+                [self presentViewController:alert animated:YES completion:nil ];
+            }
+
+            }
+            
+}
+
+- (void) startFullScreen{
+ }
+
+- (void) exitFullScreen {
+    UINavigationController *NavigationController = self.navigationController;
+    CGRect frame = self.navigationController.navigationBar.frame;
+    
+    if (!frame.origin.y) {
+        frame.origin.y += 20;
+        NavigationController.navigationBar.frame = frame;
+        [self.view setNeedsLayout];
+        self.navigationController.navigationBar.barTintColor = [UIColor BBTAppGlobalBlue];
+    }
+    
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return NO;
 }
 
 - (void)addObserver
@@ -198,6 +352,11 @@ extern NSString * getArticleTodaySucceedNotifName;
                                              selector:@selector(didReceiveGetArticleTodayNotification)
                                                  name:getArticleTodaySucceedNotifName
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(networkChanged:)
+                                                 name:kRealReachabilityChangedNotification
+                                               object:nil];
+
 }
 
 - (void)share
@@ -412,7 +571,10 @@ extern NSString * getArticleTodaySucceedNotifName;
 - (void)didReceiveGetArticleTodayNotification
 {
     self.article = [[BBTDailyArticleManager sharedArticleManager].articleToday copy];
-    [self loadWebView];
+    if (!self.hasLoad) {
+        self.hasLoad = YES;
+        [self loadWebView];
+    }
 }
 
 - (void)handleSwipe
@@ -466,6 +628,8 @@ extern NSString * getArticleTodaySucceedNotifName;
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [GLobalRealReachability stopNotifier];
+    [self.webView stringByEvaluatingJavaScriptFromString:@"videoStop()"];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

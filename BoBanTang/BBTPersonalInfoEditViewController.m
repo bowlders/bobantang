@@ -76,10 +76,10 @@ extern NSString * failUploadUserLogoURLNotifName;
     self.tabBarController.tabBar.hidden = YES;
     self.tabBarController.tabBar.userInteractionEnabled = NO;
     
-    UIAlertController *pickerView = [UIAlertController alertControllerWithTitle:@"选择一张图片"
+    UIAlertController *pickerView = [UIAlertController alertControllerWithTitle:@"Select a photo"
                                                                         message:nil
                                                                  preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消"
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
                                                      style:UIAlertActionStyleCancel
                                                    handler:^(UIAlertAction *action){
                                                        [pickerView dismissViewControllerAnimated:YES completion:nil];

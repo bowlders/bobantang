@@ -12,7 +12,7 @@
 
 - (instancetype)initWithResponesObject:(NSDictionary *)dictionary
 {
-    self.ID = (NSNumber *)dictionary[@"ID"];
+    self.ID = (NSString *)dictionary[@"ID"];
     self.account = (NSString *)dictionary[@"account"];
     self.thumbURL = (NSString *)dictionary[@"thumbnail"];
     self.orgPicUrl = (NSString *)dictionary[@"originalPicture"];

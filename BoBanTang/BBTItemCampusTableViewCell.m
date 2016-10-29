@@ -10,8 +10,6 @@
 
 @implementation BBTItemCampusTableViewCell
 
-NSString *kDidChangedCampusNotificationName = @"changeCampus";
-
 - (void)awakeFromNib
 {
     UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
@@ -22,13 +20,8 @@ NSString *kDidChangedCampusNotificationName = @"changeCampus";
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
-}
 
-- (IBAction)chaneCampus:(id)sender
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:kDidChangedCampusNotificationName object:nil];
+    // Configure the view for the selected state
 }
 
 @end

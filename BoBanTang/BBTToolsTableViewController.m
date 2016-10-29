@@ -50,10 +50,10 @@ extern NSString * kUserAuthentificationFinishNotifName;
     self.lostAndFoundImage.image = [UIImage imageNamed:@"失物招领icon"];
     self.mapImage.image = [UIImage imageNamed:@"地图icon"];
     
-    [self configureSize:self.roomImage andLabel:self.roomLabel];
-    [self configureSize:self.socresImage andLabel:self.scoresLabel];
-    [self configureSize:self.lostAndFoundImage andLabel:self.lostAndFoundLabel];
-    [self configureSize:self.mapImage andLabel:self.mapLabel];
+//    [self configureSize:self.roomImage andLabel:self.roomLabel];
+//    [self configureSize:self.socresImage andLabel:self.scoresLabel];
+//    [self configureSize:self.lostAndFoundImage andLabel:self.lostAndFoundLabel];
+//    [self configureSize:self.mapImage andLabel:self.mapLabel];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -101,9 +101,25 @@ extern NSString * kUserAuthentificationFinishNotifName;
         {
             return YES;
         } else {
-            BBTLoginViewController *loginViewController = [[BBTLoginViewController alloc] init];
-            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
-            [self presentViewController:navigationController animated:YES completion:nil];
+            UIAlertController *alertController = [[UIAlertController alloc] init];
+            alertController = [UIAlertController alertControllerWithTitle:@"你还没有登录哟" message:@"请先登录" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"去登录"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action) {
+                                                                 BBTLoginViewController *loginViewController = [[BBTLoginViewController alloc] init];
+                                                                 UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+                                                                 [self presentViewController:navigationController animated:YES completion:nil];
+                                                                 
+                                                             }];
+            
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                                   style:UIAlertActionStyleCancel
+                                                                 handler:nil];
+            
+            [alertController addAction:cancelAction];
+            [alertController addAction:okAction];
+            
+            [self presentViewController:alertController animated:YES completion:nil];
             return NO;
         }
     } else {

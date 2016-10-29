@@ -57,9 +57,6 @@
     self.location.text = self.itemDetails.location;
     self.contactName.text = self.itemDetails.publisher;
     self.phone.text = self.itemDetails.phone;
-    self.otherContact.text = self.itemDetails.otherContact;
-    [self.otherContact sizeToFit];
-    self.otherContact.adjustsFontSizeToFitWidth = YES;
     
     [self.thumbImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.itemDetails.thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
         self.thumbImage.image = image;
