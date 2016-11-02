@@ -103,7 +103,7 @@ static float dataRequestInterval = 5.0;                                         
         //NSLog(@"South Buses: %@", responseObject);
         //NSLog(@"%lu",[responseObject[@"d"] count]);
         if(responseObject[@"d"]){
-            if ([responseObject currentSpecRailwayBusArray])
+            if (![[responseObject currentSpecRailwayBusArray] isEqual:[NSNull null]])    //The property of value whose key is "d" can become NSNull under some conditions
             {
                 for (int i = 0;i < [[responseObject currentSpecRailwayBusArray] count];i++)
                 {
@@ -127,7 +127,7 @@ static float dataRequestInterval = 5.0;                                         
         //NSLog(@"JSON: %@", responseObject);
         //NSLog(@"%@",responseObject[@"d"]);
         if(responseObject[@"d"]){
-            if ([responseObject currentSpecRailwayBusArray])
+            if (![[responseObject currentSpecRailwayBusArray] isEqual:[NSNull null]])
             {
                 for (int i = 0;i < [[responseObject currentSpecRailwayBusArray] count];i++)
                 {
