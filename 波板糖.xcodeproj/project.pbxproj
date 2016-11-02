@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D1139131DC996430024A8E8 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D1139121DC996430024A8E8 /* UserNotifications.framework */; };
 		0D4E64851DB3C983007FA049 /* BBTDailyArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395B10CC1C5525CD00772A38 /* BBTDailyArticleViewController.m */; };
 		0D4E64881DB3CD8C007FA049 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4E64871DB3CD8C007FA049 /* SystemConfiguration.framework */; };
 		0D4E64E41DB3DEBD007FA049 /* LocalConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4E64C81DB3DEBD007FA049 /* LocalConnection.m */; };
@@ -247,6 +248,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0D1139121DC996430024A8E8 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		0D11391B1DC996990024A8E8 /* 波板糖.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "波板糖.entitlements"; sourceTree = "<group>"; };
 		0D4E64871DB3CD8C007FA049 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0D4E64C71DB3DEBD007FA049 /* LocalConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalConnection.h; sourceTree = "<group>"; };
 		0D4E64C81DB3DEBD007FA049 /* LocalConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalConnection.m; sourceTree = "<group>"; };
@@ -573,6 +576,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D1139131DC996430024A8E8 /* UserNotifications.framework in Frameworks */,
 				0D4E64881DB3CD8C007FA049 /* SystemConfiguration.framework in Frameworks */,
 				39F2D7EC1D4D88CF00510A00 /* libsqlite3.tbd in Frameworks */,
 				39F2D7E41D4D88B500510A00 /* libsqlite3.dylib in Frameworks */,
@@ -1157,6 +1161,7 @@
 		4EA28AD388E43D96D5F54ADA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0D1139121DC996430024A8E8 /* UserNotifications.framework */,
 				0D4E64871DB3CD8C007FA049 /* SystemConfiguration.framework */,
 				39F2D7E31D4D88B500510A00 /* libsqlite3.dylib */,
 				39810DF91D43AAAB00A86941 /* StoreKit.framework */,
@@ -1182,6 +1187,7 @@
 		A947D9121BD8DADA000F071B = {
 			isa = PBXGroup;
 			children = (
+				0D11391B1DC996990024A8E8 /* 波板糖.entitlements */,
 				AF32986B1CE6401300F587BF /* ZipZap.xcodeproj */,
 				A947D91D1BD8DADA000F071B /* BoBanTang */,
 				A947D93A1BD8DADA000F071B /* BoBanTangTests */,
@@ -1660,6 +1666,11 @@
 					A947D91A1BD8DADA000F071B = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = V6W7TS6VZ8;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					A947D9361BD8DADA000F071B = {
 						CreatedOnToolsVersion = 7.0;
@@ -2116,6 +2127,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "波板糖.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = V6W7TS6VZ8;
@@ -2188,6 +2200,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "波板糖.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = V6W7TS6VZ8;
