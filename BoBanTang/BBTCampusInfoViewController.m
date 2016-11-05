@@ -64,6 +64,7 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
                    action:@selector(share)
          forControlEvents:UIControlEventTouchUpInside];
         button.alpha = 1.0;
+        button.hidden = YES;
         button;
     });
     
@@ -75,6 +76,7 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
                    action:@selector(collectButtonIsTapped)
          forControlEvents:UIControlEventTouchUpInside];
         button.alpha = 1.0;
+        button.hidden = YES;
         button;
     });
 
@@ -93,26 +95,38 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
         make.right.equalTo(self.view.mas_right);
     }];
     
-    [self.collectButton mas_makeConstraints:^(MASConstraintMaker *make){
-        make.right.equalTo(self.view.mas_right).offset(-buttonOffset);
-        make.bottom.equalTo(self.view.mas_bottom).offset(- tabBarHeight - buttonOffset);
-        make.width.equalTo(@(buttonSideLength));
-        make.height.equalTo(@(buttonSideLength));
-    }];
-    
-    [self.shareButton mas_makeConstraints:^(MASConstraintMaker *make){
-        make.right.equalTo(self.collectButton.mas_right);
-        make.bottom.equalTo(self.collectButton.mas_top).offset(-buttonOffset);
-        make.width.equalTo(self.collectButton.mas_width);
-        make.height.equalTo(self.collectButton.mas_height);
-    }];
+    if (!self.isActivityPage)
+    {
+        [self.collectButton mas_makeConstraints:^(MASConstraintMaker *make){
+            make.right.equalTo(self.view.mas_right).offset(-buttonOffset);
+            make.bottom.equalTo(self.view.mas_bottom).offset(- tabBarHeight - buttonOffset);
+            make.width.equalTo(@(buttonSideLength));
+            make.height.equalTo(@(buttonSideLength));
+        }];
+        
+        [self.shareButton mas_makeConstraints:^(MASConstraintMaker *make){
+            make.right.equalTo(self.collectButton.mas_right);
+            make.bottom.equalTo(self.collectButton.mas_top).offset(-buttonOffset);
+            make.width.equalTo(self.collectButton.mas_width);
+            make.height.equalTo(self.collectButton.mas_height);
+        }];
+        
+        self.shareButton.hidden = NO;
+        self.collectButton.hidden = NO;
+    }
     
     //Create and load request
-    NSString *idString = [NSString stringWithFormat:@"%d", self.info.ID];
-    NSString *urlString1 = [campusInfoURLFront stringByAppendingString:idString];
-    NSString *urlString = [urlString1 stringByAppendingString:campusInfoURLEnd];
-    NSString *cleanedUrlString = [urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    self.url = [NSURL URLWithString:cleanedUrlString];
+    if (!self.isActivityPage)
+    {
+        NSString *idString = [NSString stringWithFormat:@"%d", self.info.ID];
+        NSString *urlString1 = [campusInfoURLFront stringByAppendingString:idString];
+        NSString *urlString = [urlString1 stringByAppendingString:campusInfoURLEnd];
+        NSString *cleanedUrlString = [urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        self.url = [NSURL URLWithString:cleanedUrlString];
+    } else {
+        self.url = [NSURL URLWithString:self.activityPageUrl];
+    }
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
     [self.webView loadRequest:request];
 }

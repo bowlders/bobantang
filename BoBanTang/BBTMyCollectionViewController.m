@@ -396,6 +396,7 @@ extern NSString * fetchCollectedArticleFailNotifName;
         {
             BBTCampusInfoViewController *destinationVC = [[BBTCampusInfoViewController alloc] init];
             destinationVC.info = [BBTCollectedCampusInfoManager sharedCollectedInfoManager].currentUserIntactCollectedCampusInfoArray[indexPath.row];
+            destinationVC.isActivityPage = NO;
             
             [self.navigationController pushViewController:destinationVC animated:YES];
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -421,6 +422,7 @@ extern NSString * fetchCollectedArticleFailNotifName;
     {
         BBTCampusInfoViewController *destinationVC = [[BBTCampusInfoViewController alloc] init];
         destinationVC.info = [BBTCollectedCampusInfoManager sharedCollectedInfoManager].currentUserIntactCollectedCampusInfoArray[indexPath.row];
+        destinationVC.isActivityPage = NO;
         
         [self.navigationController pushViewController:destinationVC animated:YES];
         [tableView deselectRowAtIndexPath:indexPath animated:YES];

@@ -14,4 +14,7 @@
 
 @property (strong, nonatomic) BBTCampusInfo * info;
 
+@property (assign, nonatomic) BOOL isActivityPage;
+@property (strong, nonatomic) NSString *activityPageUrl;
+
 @end

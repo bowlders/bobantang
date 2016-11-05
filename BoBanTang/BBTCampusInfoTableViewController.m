@@ -136,6 +136,7 @@ extern NSString * noNewInfoNotifName;
 {
     BBTCampusInfoViewController *destinationVC = [[BBTCampusInfoViewController alloc] init];
     destinationVC.info = [BBTCampusInfoManager sharedInfoManager].infoArray[indexPath.row];
+    destinationVC.isActivityPage = NO;
     
     [self.navigationController pushViewController:destinationVC animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

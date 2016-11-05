@@ -68,6 +68,7 @@ PODS:
   - UITableView+FDTemplateLayoutCell (1.4)
   - WSCoachMarksView (0.2)
   - WYPopoverController (0.3.9)
+  - XHLaunchAd (2.1.9)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0
@@ -97,6 +98,7 @@ DEPENDENCIES:
   - UITableView+FDTemplateLayoutCell (~> 1.4)
   - WSCoachMarksView (~> 0.2)
   - WYPopoverController
+  - XHLaunchAd
 
 EXTERNAL SOURCES:
   Qiniu:
@@ -144,5 +146,6 @@ SPEC CHECKSUMS:
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
   WSCoachMarksView: d1653c058c8289a300ddf28af9dd49eb659c9c42
   WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
+  XHLaunchAd: 36a28ceda12b4caaa0040cc60b286cd0429bb95d
 
 COCOAPODS: 0.39.0

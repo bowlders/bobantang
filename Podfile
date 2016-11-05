@@ -28,3 +28,4 @@ pod "Qiniu", :git => 'https://github.com/qiniu/objc-sdk.git', :branch => 'AFNetw
 pod 'UIActivityIndicator-for-SDWebImage'
 pod "MWPhotoBrowser"
 pod 'RETableViewManager', '~> 1.6'
+pod 'XHLaunchAd'

@@ -6,6 +6,8 @@
 //  Copyright © 2015年 BBT. All rights reserved.
 //
 
+@class BBTCampusInfo;
+
 #import "BBTAppDelegate.h"
 #import "APService.h"
 #import "UIColor+BBTColor.h"
@@ -28,11 +30,23 @@
 //Mapbox header
 #import "Mapbox.h"
 
+//XHLaunchImage Header
+#import "XHLaunchAd.h"
+
+#import "BBTActivityPageManager.h"
+#import "BBTCampusInfoManager.h"
+#import "BBTCampusInfoViewController.h"
+
+static NSString * activityPageDetailsUrlFront = @"http://babel.100steps.net/news/index.php?ID=";
+static NSString * activityPageDetailsUrlEnd = @"&articleType=schoolInformation";
+
 @interface BBTAppDelegate ()
 
 @end
 
 @implementation BBTAppDelegate
+
+extern NSString *kActivityPageAvaliable;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
@@ -109,6 +123,75 @@
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]];
     [self registerForRemoteNotification];
+    
+    //Set activity page if needed
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showActivityPage) name:kActivityPageAvaliable object:nil];
+    
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSFetchedResultsController *fetchedResultsController;
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BBTActivityPage"];
+    NSString *cacheName = [@"Activity" stringByAppendingString:@"Cache"];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:YES];
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    
+    fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                   managedObjectContext:context
+                                                                     sectionNameKeyPath:nil
+                                                                              cacheName:cacheName];
+    NSError *error;
+    if (![fetchedResultsController performFetch:&error]) {
+        NSLog(@"Error: %@", error);
+    }
+    
+    if ([fetchedResultsController.fetchedObjects count] != 0)
+    {
+        //Redundant Design: In case of multiple local activity pages infomation
+        for (int i = 0; i < [fetchedResultsController.fetchedObjects count]; i++)
+        {
+            BBTActivityPage *activityPageInfo = fetchedResultsController.fetchedObjects[i];;
+            
+            NSDate *currentTime = [NSDate date];
+            BOOL start = ([currentTime compare:activityPageInfo.startTime] == NSOrderedDescending);
+            BOOL end = ([currentTime compare:activityPageInfo.endTime] == NSOrderedAscending);
+            if (start && end)
+            {
+                [XHLaunchAd showWithAdFrame:CGRectMake(0, 0, self.window.bounds.size.width, self.window.bounds.size.height) setAdImage:^(XHLaunchAd *launchAd) {
+                    
+                    NSInteger duration = 3;
+                    __weak __typeof(launchAd) weakLaunchAd = launchAd;
+                    [launchAd setImageUrl:activityPageInfo.imageUrl duration:duration skipType:SkipTypeTimeText options:XHWebImageDefault completed:^(UIImage *image, NSURL *url) {
+                        
+                    } click:^{
+                        
+                        if (![activityPageInfo.articleID isEqualToString:@"0"])
+                        {
+                            NSString *appendingUrlString = [activityPageInfo.articleID stringByAppendingString:activityPageDetailsUrlEnd];
+                            NSString *url = [activityPageDetailsUrlFront stringByAppendingString:appendingUrlString];
+                            
+                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                        }
+                        
+                        //TODO: Bugs exists if call BBTCampusInfoViewController, showFinish will excute right away before user tap the screen
+                        //Suggestions: Consult XHLaunchAd code and write our own activity page class
+                        
+                        /*
+                         BBTCampusInfoViewController *destinationVC = [[BBTCampusInfoViewController alloc] init];
+                         destinationVC.isActivityPage = YES;
+                         destinationVC.activityPageUrl = url;
+                         
+                         [weakLaunchAd presentViewController:destinationVC animated:YES completion:nil];
+                         */
+                    }];
+                    
+                } showFinish:^{
+                    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                    self.window.rootViewController = [storyBoard instantiateInitialViewController];
+                }];
+            }
+        }
+    }
+    
+    [[BBTActivityPageManager sharedActivityPageManager] retriveActivityPageInfo];
 
     return YES;
 }
@@ -194,6 +277,11 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+}
+
+- (void)showActivityPage
+{
+    NSLog(@"Activity Page Info Received!");
 }
 
 #pragma mark - Core Data stack

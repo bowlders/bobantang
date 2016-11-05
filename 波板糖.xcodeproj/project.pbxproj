@@ -104,6 +104,7 @@
 		A947D9BD1BD8DC34000F071B /* BBTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A11BD8DC34000F071B /* BBTSettingsViewController.m */; };
 		A947D9C11BD8DC34000F071B /* UIColor+BBTColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A51BD8DC34000F071B /* UIColor+BBTColor.m */; };
 		A947D9C61BD8E03A000F071B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D91F1BD8DADA000F071B /* main.m */; };
+		AF293D5E1DCD87D7008E704E /* BBTActivityPageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF293D5C1DCD87D7008E704E /* BBTActivityPageManager.m */; };
 		AF32984B1CE3705300F587BF /* BBTDownloadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3298491CE3705300F587BF /* BBTDownloadCell.m */; };
 		AF32984C1CE3705300F587BF /* BBTDownloadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF32984A1CE3705300F587BF /* BBTDownloadCell.xib */; };
 		AF32984F1CE3708100F587BF /* BBTTilesourceDownloadVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AF32984E1CE3708100F587BF /* BBTTilesourceDownloadVC.m */; };
@@ -431,6 +432,10 @@
 		A947D9A11BD8DC34000F071B /* BBTSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSettingsViewController.m; sourceTree = "<group>"; };
 		A947D9A51BD8DC34000F071B /* UIColor+BBTColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BBTColor.m"; sourceTree = "<group>"; };
 		ABA2627D2286FFB656F82101 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF293D591DCD87D7008E704E /* BBTActivityPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTActivityPage.h; sourceTree = "<group>"; };
+		AF293D5A1DCD87D7008E704E /* BBTActivityPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTActivityPage.m; sourceTree = "<group>"; };
+		AF293D5B1DCD87D7008E704E /* BBTActivityPageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTActivityPageManager.h; sourceTree = "<group>"; };
+		AF293D5C1DCD87D7008E704E /* BBTActivityPageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTActivityPageManager.m; sourceTree = "<group>"; };
 		AF3298481CE3705300F587BF /* BBTDownloadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTDownloadCell.h; sourceTree = "<group>"; };
 		AF3298491CE3705300F587BF /* BBTDownloadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTDownloadCell.m; sourceTree = "<group>"; };
 		AF32984A1CE3705300F587BF /* BBTDownloadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBTDownloadCell.xib; sourceTree = "<group>"; };
@@ -514,6 +519,7 @@
 		AF9A8D381CC7786A0079C46F /* 3dMapMetaData_s.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 3dMapMetaData_s.geojson; sourceTree = "<group>"; };
 		AF9E4D721D45CAEB004AE8DA /* BBTMyPostedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMyPostedTableViewController.h; sourceTree = "<group>"; };
 		AF9E4D731D45CAEB004AE8DA /* BBTMyPostedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTMyPostedTableViewController.m; sourceTree = "<group>"; };
+		AFAA17A11DCD910900D2D63F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		DAAC1D9BE8366224C1757CE5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FC1770B41C5F4FCD00BF07AC /* PopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverView.h; sourceTree = "<group>"; };
 		FC1770B51C5F4FCD00BF07AC /* PopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverView.m; sourceTree = "<group>"; };
@@ -996,6 +1002,7 @@
 		398231B71BD8ED300043E544 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AF293D511DCD87BD008E704E /* ActivityPage */,
 				391F32401BF72194004843C3 /* Go */,
 				FCD0A2711C00066F0024D78F /* Tools */,
 				397445621C0816FE004B89BA /* Information */,
@@ -1161,6 +1168,7 @@
 		4EA28AD388E43D96D5F54ADA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AFAA17A11DCD910900D2D63F /* CoreData.framework */,
 				0D1139121DC996430024A8E8 /* UserNotifications.framework */,
 				0D4E64871DB3CD8C007FA049 /* SystemConfiguration.framework */,
 				39F2D7E31D4D88B500510A00 /* libsqlite3.dylib */,
@@ -1304,6 +1312,17 @@
 				A947D95D1BD8DBEA000F071B /* KGModal.m */,
 			);
 			path = KGModal;
+			sourceTree = "<group>";
+		};
+		AF293D511DCD87BD008E704E /* ActivityPage */ = {
+			isa = PBXGroup;
+			children = (
+				AF293D591DCD87D7008E704E /* BBTActivityPage.h */,
+				AF293D5A1DCD87D7008E704E /* BBTActivityPage.m */,
+				AF293D5B1DCD87D7008E704E /* BBTActivityPageManager.h */,
+				AF293D5C1DCD87D7008E704E /* BBTActivityPageManager.m */,
+			);
+			name = ActivityPage;
 			sourceTree = "<group>";
 		};
 		AF32986C1CE6401300F587BF /* Products */ = {
@@ -1910,6 +1929,7 @@
 				391F324C1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m in Sources */,
 				AF5412C81CC680AC004C0CE8 /* NSArray+BRSMostNearestElements.m in Sources */,
 				AF5412A91CC68029004C0CE8 /* BRSPlace.m in Sources */,
+				AF293D5E1DCD87D7008E704E /* BBTActivityPageManager.m in Sources */,
 				3951EFF71C6F72C600076AD4 /* BBTSouthSpecialRailwayTwoViewController.m in Sources */,
 				AF5412BC1CC6805D004C0CE8 /* BRSSCUTMapView.m in Sources */,
 				AF5412971CC67FC4004C0CE8 /* BRSUtilities.m in Sources */,
@@ -2127,6 +2147,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "波板糖.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2200,6 +2221,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "波板糖.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
