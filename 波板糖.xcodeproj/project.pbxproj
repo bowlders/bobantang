@@ -104,6 +104,7 @@
 		A947D9BD1BD8DC34000F071B /* BBTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A11BD8DC34000F071B /* BBTSettingsViewController.m */; };
 		A947D9C11BD8DC34000F071B /* UIColor+BBTColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D9A51BD8DC34000F071B /* UIColor+BBTColor.m */; };
 		A947D9C61BD8E03A000F071B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A947D91F1BD8DADA000F071B /* main.m */; };
+		AF0D8ED31DD0E5EB0003C107 /* BBTActivityPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0D8ED21DD0E5EB0003C107 /* BBTActivityPageViewController.m */; };
 		AF293D5E1DCD87D7008E704E /* BBTActivityPageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF293D5C1DCD87D7008E704E /* BBTActivityPageManager.m */; };
 		AF32984B1CE3705300F587BF /* BBTDownloadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3298491CE3705300F587BF /* BBTDownloadCell.m */; };
 		AF32984C1CE3705300F587BF /* BBTDownloadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF32984A1CE3705300F587BF /* BBTDownloadCell.xib */; };
@@ -432,6 +433,8 @@
 		A947D9A11BD8DC34000F071B /* BBTSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSettingsViewController.m; sourceTree = "<group>"; };
 		A947D9A51BD8DC34000F071B /* UIColor+BBTColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BBTColor.m"; sourceTree = "<group>"; };
 		ABA2627D2286FFB656F82101 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF0D8ED11DD0E5EB0003C107 /* BBTActivityPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTActivityPageViewController.h; sourceTree = "<group>"; };
+		AF0D8ED21DD0E5EB0003C107 /* BBTActivityPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTActivityPageViewController.m; sourceTree = "<group>"; };
 		AF293D591DCD87D7008E704E /* BBTActivityPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTActivityPage.h; sourceTree = "<group>"; };
 		AF293D5A1DCD87D7008E704E /* BBTActivityPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTActivityPage.m; sourceTree = "<group>"; };
 		AF293D5B1DCD87D7008E704E /* BBTActivityPageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTActivityPageManager.h; sourceTree = "<group>"; };
@@ -1098,6 +1101,8 @@
 			children = (
 				A947D9741BD8DC0F000F071B /* BBTMainViewController.h */,
 				A947D99A1BD8DC34000F071B /* BBTMainViewController.m */,
+				AF0D8ED11DD0E5EB0003C107 /* BBTActivityPageViewController.h */,
+				AF0D8ED21DD0E5EB0003C107 /* BBTActivityPageViewController.m */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -1917,6 +1922,7 @@
 				0D4E64E71DB3DEBD007FA049 /* ReachState.m in Sources */,
 				393E3EBD1BF234210045DE6E /* BBTGoSegmentedControlViewController.m in Sources */,
 				AF5412911CC67F03004C0CE8 /* BRSDirectionViewController.m in Sources */,
+				AF0D8ED31DD0E5EB0003C107 /* BBTActivityPageViewController.m in Sources */,
 				A947D92C1BD8DADA000F071B /* BoBanTang.xcdatamodeld in Sources */,
 				AF5412A71CC68029004C0CE8 /* BRSMapCoordinateTester.m in Sources */,
 				0D4E64F01DB3DEBD007FA049 /* README.md in Sources */,

@@ -33,13 +33,34 @@ NSString *kActivityPageVoid = @"void";
     [manager GET:getActivityPageInfoUrl parameters:nil progress:nil
          success:^(NSURLSessionTask * task, id responseObject) {
              
+             //Delete previous activty page info
              id delegate = [[UIApplication sharedApplication] delegate];
              self.managedObjectContext = [delegate managedObjectContext];
-             [self.managedObjectContext deletedObjects];   //Update activity page information
+             NSFetchedResultsController *fetchedResultsController;
+             NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BBTActivityPage"];
+             NSString *cacheName = [@"Activity" stringByAppendingString:@"Cache"];
+             NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:YES];
+             [fetchRequest setSortDescriptors:@[sortDescriptor]];
+             
+             fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                            managedObjectContext:self.managedObjectContext
+                                                                              sectionNameKeyPath:nil
+                                                                                       cacheName:cacheName];
+             NSError *error;
+             if (![fetchedResultsController performFetch:&error]) {
+                 NSLog(@"Error: %@", error);
+             }
+             
+             for (BBTActivityPage *activityPageInfo in fetchedResultsController.fetchedObjects)
+             {
+                 [self.managedObjectContext deleteObject:activityPageInfo];
+             }
+             
              
              //Redundant Design: In case of receiving multiple activity pages information
              for (int i = 0; i < ([responseObject count]); i++)
              {
+                 NSLog(@"JSON: %@", responseObject);
                  NSDictionary *dictionary = responseObject[i];
                  
                  NSEntityDescription *activityEntityDescription = [NSEntityDescription entityForName:@"BBTActivityPage" inManagedObjectContext:self.managedObjectContext];

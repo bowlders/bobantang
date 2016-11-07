@@ -35,7 +35,7 @@
 
 #import "BBTActivityPageManager.h"
 #import "BBTCampusInfoManager.h"
-#import "BBTCampusInfoViewController.h"
+#import "BBTActivityPageViewController.h"
 
 static NSString * activityPageDetailsUrlFront = @"http://babel.100steps.net/news/index.php?ID=";
 static NSString * activityPageDetailsUrlEnd = @"&articleType=schoolInformation";
@@ -148,14 +148,26 @@ extern NSString *kActivityPageAvaliable;
         //Redundant Design: In case of multiple local activity pages infomation
         for (int i = 0; i < [fetchedResultsController.fetchedObjects count]; i++)
         {
-            BBTActivityPage *activityPageInfo = fetchedResultsController.fetchedObjects[i];;
-            
+            NSLog(@"Activity page No: %lu", [fetchedResultsController.fetchedObjects count]);
+            BBTActivityPage *activityPageInfo = fetchedResultsController.fetchedObjects[i];
+            NSString *appendingUrlString = [activityPageInfo.articleID stringByAppendingString:activityPageDetailsUrlEnd];
+            NSString *url = [activityPageDetailsUrlFront stringByAppendingString:appendingUrlString];
+            BOOL isDetails;
+            if ([activityPageInfo.articleID isEqualToString:@"0"]) {
+                isDetails = NO;
+            } else {
+                isDetails = YES;
+            }
+        
             NSDate *currentTime = [NSDate date];
             BOOL start = ([currentTime compare:activityPageInfo.startTime] == NSOrderedDescending);
             BOOL end = ([currentTime compare:activityPageInfo.endTime] == NSOrderedAscending);
             if (start && end)
             {
+
                 [XHLaunchAd showWithAdFrame:CGRectMake(0, 0, self.window.bounds.size.width, self.window.bounds.size.height) setAdImage:^(XHLaunchAd *launchAd) {
+                    
+                    launchAd.noDataDuration = 5;
                     
                     NSInteger duration = 3;
                     __weak __typeof(launchAd) weakLaunchAd = launchAd;
@@ -163,24 +175,15 @@ extern NSString *kActivityPageAvaliable;
                         
                     } click:^{
                         
-                        if (![activityPageInfo.articleID isEqualToString:@"0"])
+                        if (isDetails)
                         {
-                            NSString *appendingUrlString = [activityPageInfo.articleID stringByAppendingString:activityPageDetailsUrlEnd];
-                            NSString *url = [activityPageDetailsUrlFront stringByAppendingString:appendingUrlString];
+                            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                            BBTActivityPageViewController *destinationVC = [storyboard instantiateViewControllerWithIdentifier:@"BBTActivityPageViewController"];
+                            destinationVC.activityPageUrl = url;
                             
-                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                            [weakLaunchAd presentViewController:destinationVC animated:YES completion:nil];
                         }
-                        
-                        //TODO: Bugs exists if call BBTCampusInfoViewController, showFinish will excute right away before user tap the screen
-                        //Suggestions: Consult XHLaunchAd code and write our own activity page class
-                        
-                        /*
-                         BBTCampusInfoViewController *destinationVC = [[BBTCampusInfoViewController alloc] init];
-                         destinationVC.isActivityPage = YES;
-                         destinationVC.activityPageUrl = url;
                          
-                         [weakLaunchAd presentViewController:destinationVC animated:YES completion:nil];
-                         */
                     }];
                     
                 } showFinish:^{
