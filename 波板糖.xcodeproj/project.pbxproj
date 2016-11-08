@@ -10,20 +10,6 @@
 		0D1139131DC996430024A8E8 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D1139121DC996430024A8E8 /* UserNotifications.framework */; };
 		0D4E64851DB3C983007FA049 /* BBTDailyArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395B10CC1C5525CD00772A38 /* BBTDailyArticleViewController.m */; };
 		0D4E64881DB3CD8C007FA049 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4E64871DB3CD8C007FA049 /* SystemConfiguration.framework */; };
-		0D4E64E41DB3DEBD007FA049 /* LocalConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4E64C81DB3DEBD007FA049 /* LocalConnection.m */; };
-		0D4E64E51DB3DEBD007FA049 /* FSMEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4E64CC1DB3DEBD007FA049 /* FSMEngine.m */; };
-		0D4E64E61DB3DEBD007FA049 /* FSMStateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4E64CE1DB3DEBD007FA049 /* FSMStateUtil.m */; };
-		0D4E64E71DB3DEBD007FA049 /* ReachState.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4E64D01DB3DEBD007FA049 /* ReachState.m */; };
-		0D4E64E81DB3DEBD007FA049 /* ReachStateLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4E64D21DB3DEBD007FA049 /* ReachStateLoading.m */; };
-		0D4E64E91DB3DEBD007FA049 /* ReachStateUnloaded.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4E64D41DB3DEBD007FA049 /* ReachStateUnloaded.m */; };
-		0D4E64EA1DB3DEBD007FA049 /* ReachStateUnReachable.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4E64D61DB3DEBD007FA049 /* ReachStateUnReachable.m */; };
-		0D4E64EB1DB3DEBD007FA049 /* ReachStateWIFI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4E64D81DB3DEBD007FA049 /* ReachStateWIFI.m */; };
-		0D4E64EC1DB3DEBD007FA049 /* ReachStateWWAN.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4E64DA1DB3DEBD007FA049 /* ReachStateWWAN.m */; };
-		0D4E64ED1DB3DEBD007FA049 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D4E64DB1DB3DEBD007FA049 /* Info.plist */; };
-		0D4E64EE1DB3DEBD007FA049 /* PingFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4E64DE1DB3DEBD007FA049 /* PingFoundation.m */; };
-		0D4E64EF1DB3DEBD007FA049 /* PingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4E64E01DB3DEBD007FA049 /* PingHelper.m */; };
-		0D4E64F01DB3DEBD007FA049 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 0D4E64E11DB3DEBD007FA049 /* README.md */; };
-		0D4E64F11DB3DEBD007FA049 /* RealReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4E64E31DB3DEBD007FA049 /* RealReachability.m */; };
 		391F32461BFDC66B004843C3 /* BBTSpecRailway2Bus.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F32451BFDC66B004843C3 /* BBTSpecRailway2Bus.m */; };
 		391F32491BFDD42B004843C3 /* BBTSpecRailway2BusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F32481BFDD42B004843C3 /* BBTSpecRailway2BusManager.m */; };
 		391F324C1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F324B1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m */; };
@@ -252,33 +238,6 @@
 		0D1139121DC996430024A8E8 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		0D11391B1DC996990024A8E8 /* 波板糖.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "波板糖.entitlements"; sourceTree = "<group>"; };
 		0D4E64871DB3CD8C007FA049 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		0D4E64C71DB3DEBD007FA049 /* LocalConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalConnection.h; sourceTree = "<group>"; };
-		0D4E64C81DB3DEBD007FA049 /* LocalConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalConnection.m; sourceTree = "<group>"; };
-		0D4E64CA1DB3DEBD007FA049 /* FSMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSMDefines.h; sourceTree = "<group>"; };
-		0D4E64CB1DB3DEBD007FA049 /* FSMEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSMEngine.h; sourceTree = "<group>"; };
-		0D4E64CC1DB3DEBD007FA049 /* FSMEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSMEngine.m; sourceTree = "<group>"; };
-		0D4E64CD1DB3DEBD007FA049 /* FSMStateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSMStateUtil.h; sourceTree = "<group>"; };
-		0D4E64CE1DB3DEBD007FA049 /* FSMStateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSMStateUtil.m; sourceTree = "<group>"; };
-		0D4E64CF1DB3DEBD007FA049 /* ReachState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachState.h; sourceTree = "<group>"; };
-		0D4E64D01DB3DEBD007FA049 /* ReachState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReachState.m; sourceTree = "<group>"; };
-		0D4E64D11DB3DEBD007FA049 /* ReachStateLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachStateLoading.h; sourceTree = "<group>"; };
-		0D4E64D21DB3DEBD007FA049 /* ReachStateLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReachStateLoading.m; sourceTree = "<group>"; };
-		0D4E64D31DB3DEBD007FA049 /* ReachStateUnloaded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachStateUnloaded.h; sourceTree = "<group>"; };
-		0D4E64D41DB3DEBD007FA049 /* ReachStateUnloaded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReachStateUnloaded.m; sourceTree = "<group>"; };
-		0D4E64D51DB3DEBD007FA049 /* ReachStateUnReachable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachStateUnReachable.h; sourceTree = "<group>"; };
-		0D4E64D61DB3DEBD007FA049 /* ReachStateUnReachable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReachStateUnReachable.m; sourceTree = "<group>"; };
-		0D4E64D71DB3DEBD007FA049 /* ReachStateWIFI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachStateWIFI.h; sourceTree = "<group>"; };
-		0D4E64D81DB3DEBD007FA049 /* ReachStateWIFI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReachStateWIFI.m; sourceTree = "<group>"; };
-		0D4E64D91DB3DEBD007FA049 /* ReachStateWWAN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachStateWWAN.h; sourceTree = "<group>"; };
-		0D4E64DA1DB3DEBD007FA049 /* ReachStateWWAN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReachStateWWAN.m; sourceTree = "<group>"; };
-		0D4E64DB1DB3DEBD007FA049 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0D4E64DD1DB3DEBD007FA049 /* PingFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingFoundation.h; sourceTree = "<group>"; };
-		0D4E64DE1DB3DEBD007FA049 /* PingFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingFoundation.m; sourceTree = "<group>"; };
-		0D4E64DF1DB3DEBD007FA049 /* PingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingHelper.h; sourceTree = "<group>"; };
-		0D4E64E01DB3DEBD007FA049 /* PingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingHelper.m; sourceTree = "<group>"; };
-		0D4E64E11DB3DEBD007FA049 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		0D4E64E21DB3DEBD007FA049 /* RealReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealReachability.h; sourceTree = "<group>"; };
-		0D4E64E31DB3DEBD007FA049 /* RealReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealReachability.m; sourceTree = "<group>"; };
 		391F32441BFDC66B004843C3 /* BBTSpecRailway2Bus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BBTSpecRailway2Bus.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		391F32451BFDC66B004843C3 /* BBTSpecRailway2Bus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSpecRailway2Bus.m; sourceTree = "<group>"; };
 		391F32471BFDD42B004843C3 /* BBTSpecRailway2BusManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSpecRailway2BusManager.h; sourceTree = "<group>"; };
@@ -627,64 +586,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0D4E64C51DB3DEBD007FA049 /* RealReachability */ = {
-			isa = PBXGroup;
-			children = (
-				0D4E64C61DB3DEBD007FA049 /* Connection */,
-				0D4E64C91DB3DEBD007FA049 /* FSM */,
-				0D4E64DB1DB3DEBD007FA049 /* Info.plist */,
-				0D4E64DC1DB3DEBD007FA049 /* Ping */,
-				0D4E64E21DB3DEBD007FA049 /* RealReachability.h */,
-				0D4E64E31DB3DEBD007FA049 /* RealReachability.m */,
-			);
-			path = RealReachability;
-			sourceTree = "<group>";
-		};
-		0D4E64C61DB3DEBD007FA049 /* Connection */ = {
-			isa = PBXGroup;
-			children = (
-				0D4E64C71DB3DEBD007FA049 /* LocalConnection.h */,
-				0D4E64C81DB3DEBD007FA049 /* LocalConnection.m */,
-			);
-			path = Connection;
-			sourceTree = "<group>";
-		};
-		0D4E64C91DB3DEBD007FA049 /* FSM */ = {
-			isa = PBXGroup;
-			children = (
-				0D4E64CA1DB3DEBD007FA049 /* FSMDefines.h */,
-				0D4E64CB1DB3DEBD007FA049 /* FSMEngine.h */,
-				0D4E64CC1DB3DEBD007FA049 /* FSMEngine.m */,
-				0D4E64CD1DB3DEBD007FA049 /* FSMStateUtil.h */,
-				0D4E64CE1DB3DEBD007FA049 /* FSMStateUtil.m */,
-				0D4E64CF1DB3DEBD007FA049 /* ReachState.h */,
-				0D4E64D01DB3DEBD007FA049 /* ReachState.m */,
-				0D4E64D11DB3DEBD007FA049 /* ReachStateLoading.h */,
-				0D4E64D21DB3DEBD007FA049 /* ReachStateLoading.m */,
-				0D4E64D31DB3DEBD007FA049 /* ReachStateUnloaded.h */,
-				0D4E64D41DB3DEBD007FA049 /* ReachStateUnloaded.m */,
-				0D4E64D51DB3DEBD007FA049 /* ReachStateUnReachable.h */,
-				0D4E64D61DB3DEBD007FA049 /* ReachStateUnReachable.m */,
-				0D4E64D71DB3DEBD007FA049 /* ReachStateWIFI.h */,
-				0D4E64D81DB3DEBD007FA049 /* ReachStateWIFI.m */,
-				0D4E64D91DB3DEBD007FA049 /* ReachStateWWAN.h */,
-				0D4E64DA1DB3DEBD007FA049 /* ReachStateWWAN.m */,
-			);
-			path = FSM;
-			sourceTree = "<group>";
-		};
-		0D4E64DC1DB3DEBD007FA049 /* Ping */ = {
-			isa = PBXGroup;
-			children = (
-				0D4E64DD1DB3DEBD007FA049 /* PingFoundation.h */,
-				0D4E64DE1DB3DEBD007FA049 /* PingFoundation.m */,
-				0D4E64DF1DB3DEBD007FA049 /* PingHelper.h */,
-				0D4E64E01DB3DEBD007FA049 /* PingHelper.m */,
-				0D4E64E11DB3DEBD007FA049 /* README.md */,
-			);
-			path = Ping;
-			sourceTree = "<group>";
-		};
 		391F323D1BF72154004843C3 /* SpecialRailway2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1218,7 +1119,6 @@
 		A947D91D1BD8DADA000F071B /* BoBanTang */ = {
 			isa = PBXGroup;
 			children = (
-				0D4E64C51DB3DEBD007FA049 /* RealReachability */,
 				A947D9751BD8DC0F000F071B /* BBTMarco.h */,
 				A947D9791BD8DC0F000F071B /* BBTPreferences.h */,
 				A947D99E1BD8DC34000F071B /* BBTPreferences.m */,
@@ -1679,7 +1579,7 @@
 		A947D9131BD8DADA000F071B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = 100steps;
 				TargetAttributes = {
 					A947D91A1BD8DADA000F071B = {
@@ -1796,7 +1696,6 @@
 				39DDD84A1D6B5E87008F548E /* Images.xcassets in Resources */,
 				AF32984C1CE3705300F587BF /* BBTDownloadCell.xib in Resources */,
 				395B10C71C55252600772A38 /* Go.storyboard in Resources */,
-				0D4E64ED1DB3DEBD007FA049 /* Info.plist in Resources */,
 				AF5412BA1CC6805D004C0CE8 /* BBTDirectionHeaderView.xib in Resources */,
 				39D7797E1D7DA7F900B7A8D6 /* LaunchScreen.storyboard in Resources */,
 				A947D98A1BD8DC24000F071B /* Information.storyboard in Resources */,
@@ -1906,7 +1805,6 @@
 				FC351F1F1C73681E0055FD41 /* BBTToolsTableViewController.m in Sources */,
 				FCD0A27E1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.m in Sources */,
 				AF5412C71CC680AC004C0CE8 /* MKPolygon+PointInPolygon.m in Sources */,
-				0D4E64E61DB3DEBD007FA049 /* FSMStateUtil.m in Sources */,
 				AF5412861CC67EBC004C0CE8 /* BBT3DMapMetaDataManager.m in Sources */,
 				AF54129A1CC67FF3004C0CE8 /* UIViewController+ViewForTransitionContext.m in Sources */,
 				395B10D91C5646ED00772A38 /* BBTDailyArticleManager.m in Sources */,
@@ -1914,13 +1812,10 @@
 				39FE91D81C5A54F50041E46F /* BBTCampusBusManager.m in Sources */,
 				39FE91C61C59D6290041E46F /* BBTCampusBusTableViewCell.m in Sources */,
 				AF54128F1CC67F03004C0CE8 /* BRSFlatMapViewController.m in Sources */,
-				0D4E64E71DB3DEBD007FA049 /* ReachState.m in Sources */,
 				393E3EBD1BF234210045DE6E /* BBTGoSegmentedControlViewController.m in Sources */,
 				AF5412911CC67F03004C0CE8 /* BRSDirectionViewController.m in Sources */,
 				A947D92C1BD8DADA000F071B /* BoBanTang.xcdatamodeld in Sources */,
 				AF5412A71CC68029004C0CE8 /* BRSMapCoordinateTester.m in Sources */,
-				0D4E64F01DB3DEBD007FA049 /* README.md in Sources */,
-				0D4E64EB1DB3DEBD007FA049 /* ReachStateWIFI.m in Sources */,
 				391F32461BFDC66B004843C3 /* BBTSpecRailway2Bus.m in Sources */,
 				AF5412871CC67EBC004C0CE8 /* BBTTileSourceManager.m in Sources */,
 				3974456A1C0A8E75004B89BA /* BBTCampusInfoManager.m in Sources */,
@@ -1934,7 +1829,6 @@
 				AF5412BC1CC6805D004C0CE8 /* BRSSCUTMapView.m in Sources */,
 				AF5412971CC67FC4004C0CE8 /* BRSUtilities.m in Sources */,
 				395B529A1C7C852B008FD949 /* BBTCollectedCampusInfoManager.m in Sources */,
-				0D4E64EA1DB3DEBD007FA049 /* ReachStateUnReachable.m in Sources */,
 				39B595401C0AF0400015B673 /* BBTDailyArticleTableViewController.m in Sources */,
 				39D7B2531D6C91F800B3549B /* UIDeviceHardware.m in Sources */,
 				FCD0A2811C0009F10024D78F /* BBTScores.m in Sources */,
@@ -1972,9 +1866,7 @@
 				FCD0A26F1C00062D0024D78F /* BBTScoresCell.m in Sources */,
 				AF9903A71CF607520039C4E4 /* BBTImageUploadManager.m in Sources */,
 				AF5412A81CC68029004C0CE8 /* BRSMapMetaDataManager.m in Sources */,
-				0D4E64EF1DB3DEBD007FA049 /* PingHelper.m in Sources */,
 				3921B02A1C75CF4000CA9449 /* BBTPersonalInfoEditViewController.m in Sources */,
-				0D4E64E41DB3DEBD007FA049 /* LocalConnection.m in Sources */,
 				FC1770C61C5F507500BF07AC /* BBTItemDetailEditingViewController.m in Sources */,
 				FCD0A2751C0006940024D78F /* BBTLectureRooms.m in Sources */,
 				0D4E64851DB3C983007FA049 /* BBTDailyArticleViewController.m in Sources */,
@@ -1984,26 +1876,20 @@
 				FC1770BC1C5F505300BF07AC /* BBTLAF.m in Sources */,
 				A947D9BA1BD8DC34000F071B /* BBTPreferences.m in Sources */,
 				3974452B1C01B5BB004B89BA /* BBTSpecRailway2TableViewCell.m in Sources */,
-				0D4E64E81DB3DEBD007FA049 /* ReachStateLoading.m in Sources */,
 				39FE91D51C5A54E60041E46F /* BBTCampusBus.m in Sources */,
 				A947D9C11BD8DC34000F071B /* UIColor+BBTColor.m in Sources */,
-				0D4E64F11DB3DEBD007FA049 /* RealReachability.m in Sources */,
 				39239A3B1C64E132008EDBB0 /* BBTLoginTableViewCell.m in Sources */,
 				AF32984F1CE3708100F587BF /* BBTTilesourceDownloadVC.m in Sources */,
 				AF5412C91CC680AC004C0CE8 /* UIColor+BRSMapColor.m in Sources */,
 				AF54127E1CC67E9A004C0CE8 /* BBT3DMapView.m in Sources */,
 				39FE91DD1C5DAA0F0041E46F /* BBTCampusBusViewController.m in Sources */,
 				AF32984B1CE3705300F587BF /* BBTDownloadCell.m in Sources */,
-				0D4E64EC1DB3DEBD007FA049 /* ReachStateWWAN.m in Sources */,
-				0D4E64E51DB3DEBD007FA049 /* FSMEngine.m in Sources */,
 				397445701C0AAD60004B89BA /* BBTCampusInfoTableViewCell.m in Sources */,
-				0D4E64E91DB3DEBD007FA049 /* ReachStateUnloaded.m in Sources */,
 				395B10E01C5737AB00772A38 /* BBTDailyArticleTableViewCell.m in Sources */,
 				AF5412B91CC6805D004C0CE8 /* BRSPlaceView.m in Sources */,
 				FCE609511C797061008C331D /* BBTLectureRoomsManager.m in Sources */,
 				FC351F221C73683D0055FD41 /* BBTScoresTableViewController.m in Sources */,
 				395B52A11C7D4C0A008FD949 /* BBTCollectedDailyArticleManager.m in Sources */,
-				0D4E64EE1DB3DEBD007FA049 /* PingFoundation.m in Sources */,
 				39FE91E61C5F886C0041E46F /* BBTMeViewController.m in Sources */,
 				39239A321C635BAB008EDBB0 /* BBTUser.m in Sources */,
 				FC80D45C1C6244A200A80EDA /* BBTItemDetailsTableViewController.m in Sources */,
@@ -2074,8 +1960,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2117,8 +2005,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2145,7 +2035,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DAAC1D9BE8366224C1757CE5 /* Pods.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "波板糖.entitlements";
@@ -2219,7 +2108,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 48D6888DD2A267EA93C8D8BC /* Pods.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "波板糖.entitlements";

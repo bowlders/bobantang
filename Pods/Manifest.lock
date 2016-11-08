@@ -52,6 +52,11 @@ PODS:
   - Qiniu (7.0.18):
     - AFNetworking (~> 3)
     - HappyDNS (~> 0.2)
+  - RealReachability (1.1.8):
+    - RealReachability/Connection (= 1.1.8)
+    - RealReachability/Ping (= 1.1.8)
+  - RealReachability/Connection (1.1.8)
+  - RealReachability/Ping (1.1.8)
   - REFormattedNumberField (1.1.6)
   - RETableViewManager (1.7):
     - REFormattedNumberField (~> 1.1.5)
@@ -90,6 +95,7 @@ DEPENDENCIES:
   - MWPhotoBrowser
   - PAPreferences
   - Qiniu (from `https://github.com/qiniu/objc-sdk.git`, branch `AFNetworking-3.x`)
+  - RealReachability
   - RETableViewManager (~> 1.6)
   - SDWebImage (~> 3.7)
   - SVProgressHUD
@@ -135,6 +141,7 @@ SPEC CHECKSUMS:
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
   PAPreferences: 9f0ffb1e67174a0df001af9d3320166ceb9ee6f5
   Qiniu: 1e9b485bea897af4a4f9d88a3c83d176aa7ef559
+  RealReachability: e6c8a2bbffa316006e8c282efc1ee2567d61a920
   REFormattedNumberField: 70fc5fb1218ebd5ee9983820defd12806d5c6ec6
   RETableViewManager: 0f24d796c42c0890d38c79cc9aeb3871e186726e
   REValidation: 38c4de1be58455f8b00aab208ac80db316a66b7f

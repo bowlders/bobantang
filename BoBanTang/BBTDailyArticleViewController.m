@@ -6,7 +6,6 @@
 //  Copyright © 2016年 100steps. All rights reserved.
 //
 #import "UIColor+BBTColor.h"
-#import "RealReachability/RealReachability.h"
 #import "BBTDailyArticleViewController.h"
 #import "BBTDailyArticle.h"
 #import "BBTDailyArticleTableViewController.h"
@@ -22,6 +21,7 @@
 #import <MBProgressHUD.h>
 #import <WSCoachMarksView.h>
 #import <AFNetworking.h>
+#import <RealReachability.h>
 
 @interface BBTDailyArticleViewController ()
 
