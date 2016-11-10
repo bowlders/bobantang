@@ -1689,7 +1689,6 @@
 				TargetAttributes = {
 					A947D91A1BD8DADA000F071B = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = V6W7TS6VZ8;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -2157,7 +2156,7 @@
 				CODE_SIGN_ENTITLEMENTS = "波板糖.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = V6W7TS6VZ8;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2231,7 +2230,7 @@
 				CODE_SIGN_ENTITLEMENTS = "波板糖.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = V6W7TS6VZ8;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
