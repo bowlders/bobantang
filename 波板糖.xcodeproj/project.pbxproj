@@ -2088,7 +2088,7 @@
 					../ZipZap,
 				);
 				INFOPLIST_FILE = BoBanTang/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2101,6 +2101,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bbt.bobantang;
 				PRODUCT_NAME = "波板糖";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -2161,7 +2162,7 @@
 					../ZipZap,
 				);
 				INFOPLIST_FILE = BoBanTang/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2174,6 +2175,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bbt.bobantang;
 				PRODUCT_NAME = "波板糖";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

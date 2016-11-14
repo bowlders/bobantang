@@ -21,7 +21,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.0.2</string>
+	<string>3.0.3</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -58,11 +58,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-<<<<<<< HEAD
-	<string>274</string>
-=======
-	<string>343</string>
->>>>>>> 301b41e90f5e40eef523de5e00c37b52cfc37ca3
+	<string>346</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>mqzone</string>
