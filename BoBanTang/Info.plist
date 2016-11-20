@@ -58,11 +58,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-<<<<<<< HEAD
-	<string>346</string>
-=======
 	<string>353</string>
->>>>>>> 7ec9c7570a01dc99d89a983e2b989a4d451cbc32
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>mqzone</string>
