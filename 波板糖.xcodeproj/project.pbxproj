@@ -10,6 +10,8 @@
 		0D1139131DC996430024A8E8 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D1139121DC996430024A8E8 /* UserNotifications.framework */; };
 		0D4E64851DB3C983007FA049 /* BBTDailyArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395B10CC1C5525CD00772A38 /* BBTDailyArticleViewController.m */; };
 		0D4E64881DB3CD8C007FA049 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4E64871DB3CD8C007FA049 /* SystemConfiguration.framework */; };
+		0DF4EF2B1DE1F9A900B3843F /* BBTActivityPageViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 0DF4EF291DE1F9A900B3843F /* BBTActivityPageViewController.h */; };
+		0DF4EF2C1DE1F9A900B3843F /* BBTActivityPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DF4EF2A1DE1F9A900B3843F /* BBTActivityPageViewController.m */; };
 		391F32461BFDC66B004843C3 /* BBTSpecRailway2Bus.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F32451BFDC66B004843C3 /* BBTSpecRailway2Bus.m */; };
 		391F32491BFDD42B004843C3 /* BBTSpecRailway2BusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F32481BFDD42B004843C3 /* BBTSpecRailway2BusManager.m */; };
 		391F324C1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F324B1BFE07AE004843C3 /* NSDictionary+BBTDictionary.m */; };
@@ -238,6 +240,8 @@
 		0D1139121DC996430024A8E8 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		0D11391B1DC996990024A8E8 /* 波板糖.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "波板糖.entitlements"; sourceTree = "<group>"; };
 		0D4E64871DB3CD8C007FA049 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		0DF4EF291DE1F9A900B3843F /* BBTActivityPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBTActivityPageViewController.h; sourceTree = "<group>"; };
+		0DF4EF2A1DE1F9A900B3843F /* BBTActivityPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBTActivityPageViewController.m; sourceTree = "<group>"; };
 		391F32441BFDC66B004843C3 /* BBTSpecRailway2Bus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BBTSpecRailway2Bus.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		391F32451BFDC66B004843C3 /* BBTSpecRailway2Bus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTSpecRailway2Bus.m; sourceTree = "<group>"; };
 		391F32471BFDD42B004843C3 /* BBTSpecRailway2BusManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTSpecRailway2BusManager.h; sourceTree = "<group>"; };
@@ -997,6 +1001,8 @@
 		398231C11BD8EEF60043E544 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				0DF4EF291DE1F9A900B3843F /* BBTActivityPageViewController.h */,
+				0DF4EF2A1DE1F9A900B3843F /* BBTActivityPageViewController.m */,
 				A947D9741BD8DC0F000F071B /* BBTMainViewController.h */,
 				A947D99A1BD8DC34000F071B /* BBTMainViewController.m */,
 			);
@@ -1585,7 +1591,6 @@
 					A947D91A1BD8DADA000F071B = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = V6W7TS6VZ8;
-						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1795,6 +1800,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DF4EF2B1DE1F9A900B3843F /* BBTActivityPageViewController.h in Sources */,
+				0DF4EF2C1DE1F9A900B3843F /* BBTActivityPageViewController.m in Sources */,
 				A947D9C61BD8E03A000F071B /* main.m in Sources */,
 				AF5412761CC67E03004C0CE8 /* BBTMapViewController.m in Sources */,
 				FC2EAFF11C69A95000B5DC42 /* BBTItemCampusTableViewCell.m in Sources */,
@@ -1989,7 +1996,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2028,7 +2034,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2091,7 +2096,7 @@
 					../ZipZap,
 				);
 				INFOPLIST_FILE = BoBanTang/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2104,8 +2109,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bbt.bobantang;
 				PRODUCT_NAME = "波板糖";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -2116,7 +2119,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "波板糖.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = V6W7TS6VZ8;
 				ENABLE_BITCODE = NO;
@@ -2166,7 +2169,7 @@
 					../ZipZap,
 				);
 				INFOPLIST_FILE = BoBanTang/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2179,8 +2182,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bbt.bobantang;
 				PRODUCT_NAME = "波板糖";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
