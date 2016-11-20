@@ -160,26 +160,8 @@ extern NSString * getArticleTodaySucceedNotifName;
     JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     context[@"ttf"] = self;
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    NSMutableDictionary*dic = [NSMutableDictionary dictionary];
-    NSString*IDStr = [NSString stringWithFormat:@"%d", self.article.ID];
-    dic[@"table"] = @"dailySoup";
-    dic[@"method"] = @"modify";
-    dic[@"data"] = [NSString stringWithFormat:@"{\"id\":%@}",IDStr];
-    dic[@"option"] = @"{\"add\":\"readNum\"}";
-    
-    [manager POST:@"http://218.192.166.167/api/protype.php" parameters:dic progress:nil success:^(NSURLSessionTask *task, id response) {
-        if (response){
-            NSLog(@"%@",response);
-            NSLog(@"%d",self.article.readNum);
-        }
-    } failure:^(NSURLSessionTask *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
-    
 }
+
 -(void)getPlayOrNot{
     
     NSLog(@"StatusBar:%i",[self prefersStatusBarHidden]);
@@ -627,6 +609,7 @@ extern NSString * getArticleTodaySucceedNotifName;
 
 - (void)backReadNum
 {
+    NSLog(@"%d",self.article.readNum);
     if(self.webView.scrollView.contentOffset.y > (self.webView.scrollView.contentSize.height/2))
     {
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
