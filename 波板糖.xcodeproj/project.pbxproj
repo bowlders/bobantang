@@ -407,6 +407,7 @@
 		AF32986B1CE6401300F587BF /* ZipZap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZipZap.xcodeproj; path = "ZipZap-master/ZipZap.xcodeproj"; sourceTree = "<group>"; };
 		AF3298841CE78C9D00F587BF /* BBTRouteManagerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTRouteManagerView.h; sourceTree = "<group>"; };
 		AF3298851CE78C9D00F587BF /* BBTRouteManagerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTRouteManagerView.m; sourceTree = "<group>"; };
+		AF36E9A71DE8A2D400A3B3DA /* BoBanTang 3.0.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BoBanTang 3.0.3.xcdatamodel"; sourceTree = "<group>"; };
 		AF53C82E1CAACC0E00D84B9D /* BBTScoresLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTScoresLoginViewController.h; sourceTree = "<group>"; };
 		AF53C82F1CAACC0E00D84B9D /* BBTScoresLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTScoresLoginViewController.m; sourceTree = "<group>"; };
 		AF5412711CC67E03004C0CE8 /* BBTMapContainerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMapContainerVC.h; sourceTree = "<group>"; };
@@ -2278,9 +2279,10 @@
 		A947D92A1BD8DADA000F071B /* BoBanTang.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				AF36E9A71DE8A2D400A3B3DA /* BoBanTang 3.0.3.xcdatamodel */,
 				A947D92B1BD8DADA000F071B /* BoBanTang.xcdatamodel */,
 			);
-			currentVersion = A947D92B1BD8DADA000F071B /* BoBanTang.xcdatamodel */;
+			currentVersion = AF36E9A71DE8A2D400A3B3DA /* BoBanTang 3.0.3.xcdatamodel */;
 			path = BoBanTang.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
