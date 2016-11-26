@@ -64,6 +64,10 @@ extern NSString * getArticleTodaySucceedNotifName;
         self.isEnteredFromArticleTableVC = 0;
         [self loadWebView];
     }
+    
+    //for readNum when app will be closed
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive:)
+                                                 name:UIApplicationWillResignActiveNotification object:nil];
 }
 
 - (void)viewDidLoad {
@@ -647,5 +651,12 @@ extern NSString * getArticleTodaySucceedNotifName;
     [self.webView stringByEvaluatingJavaScriptFromString:@"videoStop()"];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+- (void)applicationWillResignActive:(NSNotification *)notification
+
+{
+    [self backReadNum];
+}
+
 
 @end
