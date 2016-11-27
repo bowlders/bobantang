@@ -65,15 +65,16 @@ extern NSString * getArticleTodaySucceedNotifName;
         [self loadWebView];
     }
     
-    //for readNum when app will be closed
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive:)
-                                                 name:UIApplicationWillResignActiveNotification object:nil];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    //for readNum when app will be closed
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate:)
+                                                 name:UIApplicationWillTerminateNotification object:nil];
    
     self.webView = ({
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
@@ -652,11 +653,10 @@ extern NSString * getArticleTodaySucceedNotifName;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)applicationWillResignActive:(NSNotification *)notification
 
+- (void)applicationWillTerminate:(UIApplication *)application
 {
-    [self backReadNum];
+     [self backReadNum];
 }
-
 
 @end
