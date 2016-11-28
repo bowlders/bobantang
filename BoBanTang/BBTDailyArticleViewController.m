@@ -72,10 +72,6 @@ extern NSString * getArticleTodaySucceedNotifName;
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    //for readNum when app will be closed
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate:)
-                                                 name:UIApplicationWillTerminateNotification object:nil];
-   
     self.webView = ({
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
         webView.scalesPageToFit = YES;
@@ -343,6 +339,11 @@ extern NSString * getArticleTodaySucceedNotifName;
                                              selector:@selector(networkChanged:)
                                                  name:kRealReachabilityChangedNotification
                                                object:nil];
+    //for readNum when app will be closed
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive:)
+                                                 name:UIApplicationWillResignActiveNotification object:nil];
+    
+
 
 }
 
@@ -653,10 +654,12 @@ extern NSString * getArticleTodaySucceedNotifName;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-
-- (void)applicationWillTerminate:(UIApplication *)application
+- (void)applicationWillResignActive:(UIApplication *)application
 {
-     [self backReadNum];
+    if([[[UIDevice currentDevice] systemVersion] floatValue])
+    {
+        [self backReadNum];
+    }
 }
 
 @end
