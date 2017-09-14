@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eE5-iI-wei">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="5jF-FA-tbU">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="eE5-iI-wei" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wv7-1w-BoV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="CCH-kT-nBH">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="yHD-fD-eXm" kind="relationship" relationship="rootViewController" id="7uR-DS-V2u"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IHd-dX-bWV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2078" y="-748"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="jVA-87-9SG">
+            <objects>
+                <viewController id="yHD-fD-eXm" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MWB-Qt-UOf"/>
+                        <viewControllerLayoutGuide type="bottom" id="R3m-gp-2Mi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ufl-L8-qbD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OXX-eX-mOO">
+                                <rect key="frame" x="19" y="247" width="337.5" height="400"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WSe-yt-TLg">
+                                        <rect key="frame" x="0.0" y="0.0" width="337.5" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zze-rb-F49">
+                                        <rect key="frame" x="0.0" y="60" width="337.5" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4fO-Dd-FnF">
+                                        <rect key="frame" x="0.0" y="120" width="337.5" height="280"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="WSe-yt-TLg" firstAttribute="top" secondItem="OXX-eX-mOO" secondAttribute="top" id="9SJ-nv-g6C"/>
+                                    <constraint firstAttribute="bottom" secondItem="4fO-Dd-FnF" secondAttribute="bottom" id="wny-QW-Vx1"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OXX-eX-mOO" firstAttribute="centerX" secondItem="ufl-L8-qbD" secondAttribute="centerX" id="Fa4-Pj-MmR"/>
+                            <constraint firstItem="R3m-gp-2Mi" firstAttribute="top" secondItem="OXX-eX-mOO" secondAttribute="bottom" constant="20" id="WuQ-Fm-ngV"/>
+                            <constraint firstItem="OXX-eX-mOO" firstAttribute="height" secondItem="ufl-L8-qbD" secondAttribute="height" multiplier="0.6" id="pdd-Xk-oBl"/>
+                            <constraint firstItem="OXX-eX-mOO" firstAttribute="width" secondItem="ufl-L8-qbD" secondAttribute="width" multiplier="0.9" id="xEq-0I-yLT"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="MaX-vc-JNF"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fCc-Ne-n6h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1132" y="-750.67466266866575"/>
+        </scene>
+    </scenes>
+</document>
