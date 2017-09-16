@@ -7,31 +7,161 @@
 //
 
 #import "BBTHomeViewController.h"
+#import <MBProgressHUD.h>
+#import "BBTCampusBusManager.h"
+#import "BBTCampusBus.h"
+#import "BBTCourseTableViewCell.h"
+#import "BBTCurrentUserManager.h"
+#import "BBTLoginViewController.h"
 
 @interface BBTHomeViewController ()
-
+@property (weak, nonatomic) IBOutlet UILabel *CurrnetStationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *NextStationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *DestinationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *BusCountLabel;
+@property (weak, nonatomic) IBOutlet UITableView *CourseTimetable;
+@property (weak, nonatomic) IBOutlet UIButton *LoginButton;
+@property (weak, nonatomic) IBOutlet UILabel *LoginReminderLabel;
+@property (weak, nonatomic) IBOutlet UIStackView *CampusBusStackView;
+- (IBAction)changeDirection:(UIButton *)sender;
+- (IBAction)login:(id)sender;
 @end
 
 @implementation BBTHomeViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveCampusBusNotification)
+                                                 name:campusBusNotificationName
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveRetriveCampusBusDataFailNotification)
+                                                 name:retriveCampusBusDataFailNotifName
+                                               object:nil];
+    [self reloadData];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
+    
+    if (![[BBTCurrentUserManager sharedCurrentUserManager] userIsActive])
+    {
+        self.CourseTimetable.hidden = true;
+        self.LoginReminderLabel.hidden = false;
+        self.LoginButton.hidden = false;
+    }else{
+        self.CourseTimetable.hidden = false;
+        self.LoginReminderLabel.hidden = true;
+        self.LoginButton.hidden = true;
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.CourseTimetable.dataSource = self;
+    self.CourseTimetable.delegate = self;
+    [self.CourseTimetable registerNib:[UINib nibWithNibName:@"BBTCourseTableViewCell" bundle:nil] forCellReuseIdentifier:@"CourseTimetableCellReuseIdentifier"];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+- (void)didReceiveCampusBusNotification
+{
+    //NSLog(@"Did receive campus bus notification");
+    
+    //Hide loading hud
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    [self reloadData];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)didReceiveRetriveCampusBusDataFailNotification
+{
+    //Hide loading hud
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    //Show HUD
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    
+    //Set the annular determinate mode to show task progress.
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"加载失败";
+    
+    //Move to center.
+    hud.xOffset = 0.0f;
+    hud.yOffset = 0.0f;
+    
+    //Hide after 2 seconds.
+    [hud hide:YES afterDelay:2.0f];
+    
+    [self reloadData];
 }
-*/
 
+bool direction;
+
+- (void)reloadData{
+    BBTCampusBusManager *busManager = [BBTCampusBusManager sharedCampusBusManager];
+    NSMutableArray * runningBusArray = [busManager getRunningBuses];
+    self.BusCountLabel.text = [NSString stringWithFormat:@"当前有%i辆校巴正在运行",(int)runningBusArray.count];
+    if (runningBusArray.count == 0)
+    {
+        self.CurrnetStationLabel.text = @"暂无校巴";
+        self.NextStationLabel.text = @"下一站：";
+        self.DestinationLabel.text = @"终点站：";
+    }
+    else
+    {
+        if ([busManager getBusInDirection:direction] == nil) {
+            direction = !direction;
+        }
+        BBTCampusBus * CampusBus = [busManager getBusInDirection:direction];
+        self.CurrnetStationLabel.text = CampusBus.Station;
+        if (direction == true) {
+            self.DestinationLabel.text = [NSString stringWithFormat:@"终点站：%@",
+                                          [busManager.stationNameArray lastObject]];
+            if (CampusBus.StationIndex == 1) {
+                self.NextStationLabel.text = [NSString stringWithFormat:@"下一站：%@",
+                                              CampusBus.Station];
+            }else{
+                self.NextStationLabel.text = [NSString stringWithFormat:@"下一站：%@",
+                                              [busManager.stationNameArray objectAtIndex:12 - CampusBus.StationIndex + 1]];
+            }
+        }else{
+            self.DestinationLabel.text = [NSString stringWithFormat:@"终点站：%@",
+                                          [busManager.stationNameArray firstObject]];
+            if (CampusBus.StationIndex == busManager.stationNameArray.count) {
+                self.NextStationLabel.text = [NSString stringWithFormat:@"下一站：%@", CampusBus.Station];
+            }else{
+                self.NextStationLabel.text = [NSString stringWithFormat:@"下一站：%@",
+                                              [busManager.stationNameArray objectAtIndex:12 - CampusBus.StationIndex - 1]];
+            }
+        }
+    }
+}
+
+- (IBAction)changeDirection:(UIButton *)sender {
+    direction = !direction;
+    [self reloadData];
+}
+
+- (IBAction)login:(id)sender {
+    BBTLoginViewController *loginViewController = [[BBTLoginViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+    [self presentViewController:navigationController animated:YES completion:nil];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 2;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return tableView.frame.size.height / 2;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    BBTCourseTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"CourseTimetableCellReuseIdentifier"];
+    cell.ClassNumberLabel.text = @"第3-4节";
+    return cell;
+}
 @end

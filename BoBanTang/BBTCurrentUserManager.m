@@ -16,6 +16,7 @@ static NSString * const checkAccountURL = @"http://218.192.166.167/api/jw2005/ch
 static NSString * const fetchUserDataBaseURL = @"http://218.192.166.167/api/protype.php?table=users&method=get&data=";
 static NSString * const insertNewUserBaseURL = @"http://218.192.166.167/api/protype.php?table=users&method=save&data=";
 static NSString * const modifyUserInfoBaseURL = @"http://218.192.166.167/api/protype.php?table=users&method=modify&data=";
+static NSString * const fetchUserProfileBaseURL = @"http://community.100steps.net/current/user/";
 
 static NSString * const userNameKey = @"userName";
 static NSString * const passWordKey = @"passWord";
@@ -102,6 +103,18 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
     }];
     
     [manager invalidateSessionCancelingTasks:NO];
+}
+
+- (void)fetchCurrentUserProfile{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    NSString * fetchUserProfileURL = [NSString stringWithFormat:@"%@%ld",fetchUserProfileBaseURL,(long)self.currentUser.ID];
+    [manager GET:fetchUserProfileURL parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        
+    }failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"Error: %@", error);
+    }];
 }
 
 - (void)insertNewUserToDataBase

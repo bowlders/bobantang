@@ -17,6 +17,7 @@
 + (instancetype) sharedCurrentUserManager;
 - (void)currentUserAuthentication;                          //Return 1 if succeed.
 - (void)fetchCurrentUserData;
+- (void)fetchCurrentUserProfile;
 - (void)logOut;
 
 //Keychain methods

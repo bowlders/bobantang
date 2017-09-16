@@ -222,6 +222,9 @@ extern NSString * kFeedBackViewDisappearNotifName;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (section == 0){
+        return 3;
+    }
     return 2;
 }
 
@@ -255,11 +258,14 @@ extern NSString * kFeedBackViewDisappearNotifName;
 
     if (indexPath.section == 0)
     {
-        if (indexPath.row == 0)
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"我的资料";
+        }
+        else if (indexPath.row == 1)
         {
             cell.textLabel.text = @"我的收藏";
         }
-        else if (indexPath.row == 1)
+        else if (indexPath.row == 2)
         {
             cell.textLabel.text = @"设置";
         }
@@ -293,7 +299,20 @@ extern NSString * kFeedBackViewDisappearNotifName;
 {
     if (indexPath.section == 0)
     {
-        if (indexPath.row == 0)
+        
+        if (indexPath.row == 0) {
+            if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
+            {
+                [self performSegueWithIdentifier:@"showProfile" sender:tableView];
+            }
+            else
+            {
+                BBTLoginViewController *loginVC = [[BBTLoginViewController alloc] init];
+                UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginVC];
+                [self presentViewController:navigationController animated:YES completion:nil];
+            }
+        }
+        else if (indexPath.row == 1)
         {
             //Log in first
             if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
@@ -307,7 +326,7 @@ extern NSString * kFeedBackViewDisappearNotifName;
                 [self presentViewController:navigationController animated:YES completion:nil];
             }
         }
-        else if (indexPath.row == 1)
+        else if (indexPath.row == 2)
         {
             [self performSegueWithIdentifier:@"showSettings" sender:tableView];
         }

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9Ku-3b-FdS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9Ku-3b-FdS">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Go Segmented Control View Controller-->
         <scene sceneID="dsu-eV-zwn">
             <objects>
-                <viewController id="ver-b3-QB4" customClass="BBTGoSegmentedControlViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GoControlVC" id="ver-b3-QB4" customClass="BBTGoSegmentedControlViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OUz-Ja-Hs5"/>
                         <viewControllerLayoutGuide type="bottom" id="n1Q-rd-iYd"/>
@@ -81,11 +81,10 @@
             </objects>
             <point key="canvasLocation" x="825.5" y="-620.5"/>
         </scene>
-        <!--出行-->
+        <!--Navigation Controller-->
         <scene sceneID="o2V-7b-LU1">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9Ku-3b-FdS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="出行" image="Go" selectedImage="GoSelected" id="NVC-Oj-xbH" userLabel="出行"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mzS-6f-FTd">
@@ -102,8 +101,4 @@
             <point key="canvasLocation" x="-328" y="-164"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Go" width="24" height="24"/>
-        <image name="GoSelected" width="24" height="24"/>
-    </resources>
 </document>

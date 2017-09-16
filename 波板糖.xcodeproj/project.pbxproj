@@ -10,6 +10,13 @@
 		0D1139131DC996430024A8E8 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D1139121DC996430024A8E8 /* UserNotifications.framework */; };
 		0D4E64851DB3C983007FA049 /* BBTDailyArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395B10CC1C5525CD00772A38 /* BBTDailyArticleViewController.m */; };
 		0D4E64881DB3CD8C007FA049 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4E64871DB3CD8C007FA049 /* SystemConfiguration.framework */; };
+		0DB37AEF1F6C195E00422956 /* BBTProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DB37AEE1F6C195E00422956 /* BBTProfileViewController.m */; };
+		0DD26BBB1F682723005DE4E8 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DD26BBA1F682723005DE4E8 /* Home.storyboard */; };
+		0DD26BBD1F68287C005DE4E8 /* Club.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DD26BBC1F68287C005DE4E8 /* Club.storyboard */; };
+		0DD26BC11F6913AD005DE4E8 /* BBTHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD26BC01F6913AD005DE4E8 /* BBTHomeViewController.m */; };
+		0DD26BC41F6A41CA005DE4E8 /* BBTClubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD26BC31F6A41CA005DE4E8 /* BBTClubViewController.m */; };
+		0DD26BD61F6A6445005DE4E8 /* BBTCourseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD26BD41F6A6445005DE4E8 /* BBTCourseTableViewCell.m */; };
+		0DD26BD71F6A6445005DE4E8 /* BBTCourseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DD26BD51F6A6445005DE4E8 /* BBTCourseTableViewCell.xib */; };
 		0DF4EF2B1DE1F9A900B3843F /* BBTActivityPageViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 0DF4EF291DE1F9A900B3843F /* BBTActivityPageViewController.h */; };
 		0DF4EF2C1DE1F9A900B3843F /* BBTActivityPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DF4EF2A1DE1F9A900B3843F /* BBTActivityPageViewController.m */; };
 		391F32461BFDC66B004843C3 /* BBTSpecRailway2Bus.m in Sources */ = {isa = PBXBuildFile; fileRef = 391F32451BFDC66B004843C3 /* BBTSpecRailway2Bus.m */; };
@@ -240,6 +247,17 @@
 		0D1139121DC996430024A8E8 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		0D11391B1DC996990024A8E8 /* 波板糖.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "波板糖.entitlements"; sourceTree = "<group>"; };
 		0D4E64871DB3CD8C007FA049 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		0DB37AED1F6C195E00422956 /* BBTProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTProfileViewController.h; sourceTree = "<group>"; };
+		0DB37AEE1F6C195E00422956 /* BBTProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTProfileViewController.m; sourceTree = "<group>"; };
+		0DD26BBA1F682723005DE4E8 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		0DD26BBC1F68287C005DE4E8 /* Club.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Club.storyboard; sourceTree = "<group>"; };
+		0DD26BBF1F6913AD005DE4E8 /* BBTHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTHomeViewController.h; sourceTree = "<group>"; };
+		0DD26BC01F6913AD005DE4E8 /* BBTHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTHomeViewController.m; sourceTree = "<group>"; };
+		0DD26BC21F6A41CA005DE4E8 /* BBTClubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTClubViewController.h; sourceTree = "<group>"; };
+		0DD26BC31F6A41CA005DE4E8 /* BBTClubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTClubViewController.m; sourceTree = "<group>"; };
+		0DD26BD31F6A6445005DE4E8 /* BBTCourseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTCourseTableViewCell.h; sourceTree = "<group>"; };
+		0DD26BD41F6A6445005DE4E8 /* BBTCourseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTCourseTableViewCell.m; sourceTree = "<group>"; };
+		0DD26BD51F6A6445005DE4E8 /* BBTCourseTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBTCourseTableViewCell.xib; sourceTree = "<group>"; };
 		0DF4EF291DE1F9A900B3843F /* BBTActivityPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBTActivityPageViewController.h; sourceTree = "<group>"; };
 		0DF4EF2A1DE1F9A900B3843F /* BBTActivityPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBTActivityPageViewController.m; sourceTree = "<group>"; };
 		391F32441BFDC66B004843C3 /* BBTSpecRailway2Bus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BBTSpecRailway2Bus.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -591,6 +609,63 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0DD26BB41F6820B3005DE4E8 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				0DD26BBA1F682723005DE4E8 /* Home.storyboard */,
+				0DD26BD31F6A6445005DE4E8 /* BBTCourseTableViewCell.h */,
+				0DD26BD41F6A6445005DE4E8 /* BBTCourseTableViewCell.m */,
+				0DD26BD51F6A6445005DE4E8 /* BBTCourseTableViewCell.xib */,
+				FCD0A26B1C00060F0024D78F /* Tools */,
+				391F323F1BF7218F004843C3 /* Go */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		0DD26BB51F682117005DE4E8 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				FCD0A2711C00066F0024D78F /* Tools */,
+				391F32401BF72194004843C3 /* Go */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		0DD26BB61F68213E005DE4E8 /* Club */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Club;
+			sourceTree = "<group>";
+		};
+		0DD26BB71F6821BD005DE4E8 /* Club */ = {
+			isa = PBXGroup;
+			children = (
+				0DD26BBC1F68287C005DE4E8 /* Club.storyboard */,
+			);
+			name = Club;
+			sourceTree = "<group>";
+		};
+		0DD26BB81F682217005DE4E8 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				0DD26BBF1F6913AD005DE4E8 /* BBTHomeViewController.h */,
+				0DD26BC01F6913AD005DE4E8 /* BBTHomeViewController.m */,
+				398231BE1BD8EEBF0043E544 /* Tools */,
+				398231C31BD8EF490043E544 /* Go */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		0DD26BB91F682224005DE4E8 /* Club */ = {
+			isa = PBXGroup;
+			children = (
+				0DD26BC21F6A41CA005DE4E8 /* BBTClubViewController.h */,
+				0DD26BC31F6A41CA005DE4E8 /* BBTClubViewController.m */,
+			);
+			name = Club;
+			sourceTree = "<group>";
+		};
 		391F323D1BF72154004843C3 /* SpecialRailway2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -909,8 +984,8 @@
 			isa = PBXGroup;
 			children = (
 				AF293D511DCD87BD008E704E /* ActivityPage */,
-				391F32401BF72194004843C3 /* Go */,
-				FCD0A2711C00066F0024D78F /* Tools */,
+				0DD26BB51F682117005DE4E8 /* Home */,
+				0DD26BB61F68213E005DE4E8 /* Club */,
 				397445621C0816FE004B89BA /* Information */,
 				39239A2F1C6357AF008EDBB0 /* Me */,
 				AF9903A51CF607520039C4E4 /* BBTImageUploadManager.h */,
@@ -923,10 +998,10 @@
 			isa = PBXGroup;
 			children = (
 				398231C11BD8EEF60043E544 /* General */,
-				398231C31BD8EF490043E544 /* Go */,
-				397445711C0AE874004B89BA /* Information */,
+				0DD26BB81F682217005DE4E8 /* Home */,
+				0DD26BB91F682224005DE4E8 /* Club */,
 				398231C21BD8EF350043E544 /* Me */,
-				398231BE1BD8EEBF0043E544 /* Tools */,
+				397445711C0AE874004B89BA /* Information */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -935,9 +1010,9 @@
 			isa = PBXGroup;
 			children = (
 				398231BD1BD8EE960043E544 /* General */,
-				391F323F1BF7218F004843C3 /* Go */,
+				0DD26BB41F6820B3005DE4E8 /* Home */,
+				0DD26BB71F6821BD005DE4E8 /* Club */,
 				3974456B1C0AA791004B89BA /* Information */,
-				FCD0A26B1C00060F0024D78F /* Tools */,
 				395B10DD1C57361C00772A38 /* Me */,
 			);
 			name = View;
@@ -1029,6 +1104,8 @@
 				3921B0291C75CF4000CA9449 /* BBTPersonalInfoEditViewController.m */,
 				39DE6D401D36157F002E0A2C /* BBTChangeNickNameViewController.h */,
 				39DE6D411D36157F002E0A2C /* BBTChangeNickNameViewController.m */,
+				0DB37AED1F6C195E00422956 /* BBTProfileViewController.h */,
+				0DB37AEE1F6C195E00422956 /* BBTProfileViewController.m */,
 			);
 			name = Me;
 			sourceTree = "<group>";
@@ -1592,6 +1669,7 @@
 					A947D91A1BD8DADA000F071B = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = V6W7TS6VZ8;
+						LastSwiftMigration = 0830;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1706,6 +1784,9 @@
 				AF5412BA1CC6805D004C0CE8 /* BBTDirectionHeaderView.xib in Resources */,
 				39D7797E1D7DA7F900B7A8D6 /* LaunchScreen.storyboard in Resources */,
 				A947D98A1BD8DC24000F071B /* Information.storyboard in Resources */,
+				0DD26BD71F6A6445005DE4E8 /* BBTCourseTableViewCell.xib in Resources */,
+				0DD26BBD1F68287C005DE4E8 /* Club.storyboard in Resources */,
+				0DD26BBB1F682723005DE4E8 /* Home.storyboard in Resources */,
 				39231B0C1D3DC336003FBA9C /* ShareSDKUI.bundle in Resources */,
 				AF9A8D391CC7786A0079C46F /* 3dMapMetaData_n.geojson in Resources */,
 				AF9A8D3A1CC7786A0079C46F /* 3dMapMetaData_s.geojson in Resources */,
@@ -1813,8 +1894,10 @@
 				395B529E1C7D4BEF008FD949 /* BBTCollectedDailyArticle.m in Sources */,
 				FC351F1F1C73681E0055FD41 /* BBTToolsTableViewController.m in Sources */,
 				FCD0A27E1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.m in Sources */,
+				0DD26BC11F6913AD005DE4E8 /* BBTHomeViewController.m in Sources */,
 				AF5412C71CC680AC004C0CE8 /* MKPolygon+PointInPolygon.m in Sources */,
 				AF5412861CC67EBC004C0CE8 /* BBT3DMapMetaDataManager.m in Sources */,
+				0DD26BD61F6A6445005DE4E8 /* BBTCourseTableViewCell.m in Sources */,
 				AF54129A1CC67FF3004C0CE8 /* UIViewController+ViewForTransitionContext.m in Sources */,
 				395B10D91C5646ED00772A38 /* BBTDailyArticleManager.m in Sources */,
 				395B10D61C5644EF00772A38 /* BBTDailyArticle.m in Sources */,
@@ -1835,6 +1918,7 @@
 				AF5412A91CC68029004C0CE8 /* BRSPlace.m in Sources */,
 				AF293D5E1DCD87D7008E704E /* BBTActivityPageManager.m in Sources */,
 				3951EFF71C6F72C600076AD4 /* BBTSouthSpecialRailwayTwoViewController.m in Sources */,
+				0DD26BC41F6A41CA005DE4E8 /* BBTClubViewController.m in Sources */,
 				AF5412BC1CC6805D004C0CE8 /* BRSSCUTMapView.m in Sources */,
 				AF5412971CC67FC4004C0CE8 /* BRSUtilities.m in Sources */,
 				395B529A1C7C852B008FD949 /* BBTCollectedCampusInfoManager.m in Sources */,
@@ -1845,6 +1929,7 @@
 				397445671C0A8D78004B89BA /* BBTCampusInfo.m in Sources */,
 				AF5412751CC67E03004C0CE8 /* BBTMapContainerVC.m in Sources */,
 				AF5412BD1CC6805D004C0CE8 /* BBTEmptyToolbar.m in Sources */,
+				0DB37AEF1F6C195E00422956 /* BBTProfileViewController.m in Sources */,
 				39B595431C0AF0500015B673 /* BBTCampusInfoViewController.m in Sources */,
 				FC1770B61C5F4FCD00BF07AC /* PopoverView.m in Sources */,
 				FC1770BD1C5F505300BF07AC /* BBTLAFManager.m in Sources */,
@@ -2044,6 +2129,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DAAC1D9BE8366224C1757CE5 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "波板糖.entitlements";
@@ -2110,6 +2196,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bbt.bobantang;
 				PRODUCT_NAME = "波板糖";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -2117,6 +2204,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 48D6888DD2A267EA93C8D8BC /* Pods.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "波板糖.entitlements";
@@ -2183,6 +2271,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bbt.bobantang;
 				PRODUCT_NAME = "波板糖";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

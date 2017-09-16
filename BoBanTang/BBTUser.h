@@ -15,11 +15,15 @@
 @property (strong, nonatomic) NSString * account;
 @property (strong, nonatomic) NSString * userName;
 @property (assign, nonatomic) NSInteger  sex;
-@property (strong, nonatomic) NSString * institution;
+@property (strong, nonatomic) NSString * college;
 @property (strong, nonatomic) NSString * className;
 @property (strong, nonatomic) NSString * password;
 @property (strong, nonatomic) NSString * userLogo;
 @property (strong, nonatomic) NSString * nickName;
+@property (strong, nonatomic) NSString * qq;
+@property (strong, nonatomic) NSString * phone;
+@property (strong, nonatomic) NSString * grade;
+
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

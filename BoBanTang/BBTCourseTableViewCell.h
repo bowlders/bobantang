@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface BBTCourseTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *ClassNumberLabel;
+@property (weak, nonatomic) IBOutlet UILabel *CourseLabel;
+@property (weak, nonatomic) IBOutlet UILabel *TeacherLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ClassroomLabel;
 
 @end

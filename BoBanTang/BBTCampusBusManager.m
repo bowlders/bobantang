@@ -193,4 +193,28 @@ NSString * const retriveCampusBusDataFailNotifName = @"campusBusFailNotification
     return 4;
 }
 
+- (NSMutableArray *)getRunningBuses
+{
+    NSMutableArray * runningBusArray = [NSMutableArray array];
+    for (BBTCampusBus * campusBus in self.campusBusArray)
+    {
+        if ((campusBus.Stop == false) && (campusBus.Fly == false))
+        {
+            [runningBusArray addObject:campusBus];
+        }
+    }
+    return runningBusArray;
+}
+
+- (id)getBusInDirection:(BOOL)direction
+{
+    NSMutableArray * runningBusArray = [self getRunningBuses];
+    for (BBTCampusBus * campusBus in runningBusArray) {
+        if (campusBus.Direction == direction) {
+            return campusBus;
+        }
+    }
+    return nil;
+}
+
 @end

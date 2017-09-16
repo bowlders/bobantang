@@ -10,6 +10,7 @@
 #import "BBTCampusBusViewController.h"
 #import "BBTSpecialRailwayContainerViewController.h"
 #import "BBTSouthSpecialRailwayTwoViewController.h"
+#import "BBTAppDelegate.h"
 #import <Masonry.h>
 #import <KGModal.h>
 
@@ -63,7 +64,17 @@
                                            target:self
                                            action:@selector(popUpTimeTable)];
     self.navigationItem.rightBarButtonItem = timeTableBarButton;
+    
+    UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:@selector(backToHome)];
+                                      
+    self.navigationItem.leftBarButtonItem = backBarButton;
 }
+
+- (void)backToHome
+{
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
 
 - (IBAction)valueChanged:(UISegmentedControl *)sender
 {

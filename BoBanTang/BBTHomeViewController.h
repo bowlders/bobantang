@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BBTHomeViewController : UIViewController
+@interface BBTHomeViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @end

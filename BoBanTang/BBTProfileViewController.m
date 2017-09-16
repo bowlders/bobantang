@@ -7,8 +7,16 @@
 //
 
 #import "BBTProfileViewController.h"
+#import "BBTCurrentUserManager.h"
+#import "BBTUser.h"
+
 
 @interface BBTProfileViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *NameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *SexLabel;
+@property (weak, nonatomic) IBOutlet UILabel *StudentNumberLabel;
+@property (weak, nonatomic) IBOutlet UILabel *GradeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *CollegeLabel;
 
 @end
 
@@ -17,6 +25,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [[BBTCurrentUserManager sharedCurrentUserManager]fetchCurrentUserProfile];
+    BBTUser * user = [BBTCurrentUserManager sharedCurrentUserManager].currentUser;
+    self.NameLabel.text = [NSString stringWithFormat:@"姓名：%@",user.userName];
+    if (user.sex == 0) {
+        self.SexLabel.text = @"性别：男";
+    }
+    else if (user.sex == 1){
+        self.SexLabel.text = @"性别：女";
+    }
+    else{
+        self.SexLabel.text = @"性别：";
+    }
+    self.StudentNumberLabel.text = [NSString stringWithFormat:@"学号：%@", user.account];
+    self.GradeLabel.text = [NSString stringWithFormat:@"年级：%@", user.grade];
+    self.CollegeLabel.text = @"学院：";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +47,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
