@@ -27,6 +27,7 @@
 //新浪微博SDK头文件
 //#import "WeiboSDK.h"
 
+#import <JNKeychain.h>
 //Mapbox header
 #import "Mapbox.h"
 
@@ -36,6 +37,8 @@
 #import "BBTActivityPageManager.h"
 #import "BBTCampusInfoManager.h"
 #import "BBTActivityPageViewController.h"
+#import "BBTUser.h"
+#import "BBTCurrentUserManager.h"
 
 static NSString * activityPageDetailsUrlFront = @"http://babel.100steps.net/news/index.php?ID=";
 static NSString * activityPageDetailsUrlEnd = @"&articleType=schoolInformation";
@@ -51,6 +54,19 @@ extern NSString *kActivityPageAvaliable;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
     
+    if ((int)[[JNKeychain loadValueForKey:@"appSwitchStatus"] boolValue])       //Automatically fill in
+    {
+        NSString *savedUserName = [JNKeychain loadValueForKey:@"userName"];
+        NSString *savedPassWord = [JNKeychain loadValueForKey:@"passWord"];
+
+        [BBTCurrentUserManager sharedCurrentUserManager].currentUser = [BBTUser new];
+        [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account =
+        savedUserName;
+        [BBTCurrentUserManager sharedCurrentUserManager].currentUser.password =
+        savedPassWord;
+        [[BBTCurrentUserManager sharedCurrentUserManager] currentUserAuthentication];
+        
+    }
     //Set Mapbox Accesstoken
     [[RMConfiguration sharedInstance] setAccessToken:@"pk.eyJ1IjoicHl0cmFkZSIsImEiOiJjaW53eGJxZDExNnNidTJtM3N4OHZkZG9jIn0.XPkApL2UVxIpndilZMOsdQ"];
     

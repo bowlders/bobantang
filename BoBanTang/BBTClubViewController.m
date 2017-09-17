@@ -10,6 +10,7 @@
 #import <WebKit/WebKit.h>
 #import "BBTCurrentUserManager.h"
 #import "BBTLoginViewController.h"
+#import "BBTUser.h"
 
 @interface BBTClubViewController ()
 @property (weak, nonatomic) WKWebView *ClubWebView;
@@ -46,24 +47,27 @@
         
         [self presentViewController:alertController animated:YES completion:nil];
     }
+    else{
+        [self loadWebView];
+    }
 
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //1.创建WKWebView
-    
+
+}
+
+- (void)loadWebView{
     CGFloat width = self.view.frame.size.width;
     CGFloat height = self.view.frame.size.height - 20;
+
     WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectMake(0,20,width,height)];
-    //2.创建URL
-    NSURL *URL = [NSURL URLWithString:@"http://community.100steps.net/#/login/person/12345678"];
-    //3.创建Request
+    BBTUser *user = [BBTCurrentUserManager sharedCurrentUserManager].currentUser;
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://community.100steps.net/#/login/%@/%@",user.account, user.password]];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-    //4.加载Request
     [webView loadRequest:request];
-    //5.添加到视图
     self.ClubWebView = webView;
-    [self.view addSubview:webView];
+
 }
 
 @end

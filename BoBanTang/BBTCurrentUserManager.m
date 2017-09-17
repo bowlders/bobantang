@@ -17,6 +17,7 @@ static NSString * const fetchUserDataBaseURL = @"http://218.192.166.167/api/prot
 static NSString * const insertNewUserBaseURL = @"http://218.192.166.167/api/protype.php?table=users&method=save&data=";
 static NSString * const modifyUserInfoBaseURL = @"http://218.192.166.167/api/protype.php?table=users&method=modify&data=";
 static NSString * const fetchUserProfileBaseURL = @"http://community.100steps.net/current/user/";
+static NSString * const clubLoginBaseURL = @"http://community.100steps.net/current/user/login";
 
 static NSString * const userNameKey = @"userName";
 static NSString * const passWordKey = @"passWord";
@@ -100,6 +101,22 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
         NSLog(@"Error: %@", error);
         self.userIsActive = NO;
         [self postUserAuthenticationFinishNotification];
+    }];
+    
+    [manager invalidateSessionCancelingTasks:NO];
+}
+
+- (void)clubLogin{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    NSDictionary *parameters = @{@"login_name" : self.currentUser.account,
+                                 @"password" : self.currentUser.password};
+    [manager POST:clubLoginBaseURL parameters:parameters progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+        NSLog(@"checkResult: %@", responseObject);
+        //[self fetchCurrentUserProfile];
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
     }];
     
     [manager invalidateSessionCancelingTasks:NO];

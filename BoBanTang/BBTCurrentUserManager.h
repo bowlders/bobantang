@@ -13,11 +13,13 @@
 
 @property (strong, nonatomic) BBTUser  * currentUser;
 @property (nonatomic)         BOOL       userIsActive;      //Set to 1 if a user is currently active.
+@property (nonatomic) BOOL clubUserIsActive;
 
 + (instancetype) sharedCurrentUserManager;
 - (void)currentUserAuthentication;                          //Return 1 if succeed.
 - (void)fetchCurrentUserData;
 - (void)fetchCurrentUserProfile;
+- (void)clubLogin;
 - (void)logOut;
 
 //Keychain methods

@@ -14,6 +14,7 @@
 #import "BBTCurrentUserManager.h"
 #import "BBTLoginViewController.h"
 
+
 @interface BBTHomeViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *CurrnetStationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *NextStationLabel;
@@ -29,6 +30,10 @@
 
 @implementation BBTHomeViewController
 
+extern NSString * kUserAuthentificationFinishNotifName;
+bool ReceiveCampusBusNotification = false;
+bool ReceiveUserAuthenticationNotif = false;
+
 - (void)viewWillAppear:(BOOL)animated{
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -41,6 +46,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveRetriveCampusBusDataFailNotification)
                                                  name:retriveCampusBusDataFailNotifName
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveUserAuthenticationNotif)
+                                                 name:kUserAuthentificationFinishNotifName
                                                object:nil];
     [self reloadData];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
@@ -71,31 +80,38 @@
     //NSLog(@"Did receive campus bus notification");
     
     //Hide loading hud
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-    
+    ReceiveCampusBusNotification = true;
+    if ((ReceiveCampusBusNotification == true)&&(ReceiveUserAuthenticationNotif == true)){
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }
     [self reloadData];
 }
 
 - (void)didReceiveRetriveCampusBusDataFailNotification
 {
     //Hide loading hud
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-    
-    //Show HUD
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-    
-    //Set the annular determinate mode to show task progress.
-    hud.mode = MBProgressHUDModeText;
-    hud.labelText = @"加载失败";
-    
-    //Move to center.
-    hud.xOffset = 0.0f;
-    hud.yOffset = 0.0f;
-    
-    //Hide after 2 seconds.
-    [hud hide:YES afterDelay:2.0f];
-    
+    ReceiveCampusBusNotification = true;
+    if ((ReceiveCampusBusNotification == true)&&(ReceiveUserAuthenticationNotif == true)){
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }
     [self reloadData];
+}
+
+-(void)didReceiveUserAuthenticationNotif{
+    if (![[BBTCurrentUserManager sharedCurrentUserManager] userIsActive])
+    {
+        self.CourseTimetable.hidden = true;
+        self.LoginReminderLabel.hidden = false;
+        self.LoginButton.hidden = false;
+    }else{
+        self.CourseTimetable.hidden = false;
+        self.LoginReminderLabel.hidden = true;
+        self.LoginButton.hidden = true;
+    }
+    ReceiveUserAuthenticationNotif = true;
+    if ((ReceiveCampusBusNotification == true)&&(ReceiveUserAuthenticationNotif == true)){
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }
 }
 
 bool direction;

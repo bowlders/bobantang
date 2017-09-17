@@ -34,6 +34,7 @@
 
     self.appSwitch.onTintColor = [UIColor BBTAppGlobalBlue];
     self.appSwitch.on = (BOOL)[[JNKeychain loadValueForKey:@"appSwitchStatus"] boolValue];
+    self.appSwitch.on = true;
 }
 
 

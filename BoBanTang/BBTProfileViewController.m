@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [[BBTCurrentUserManager sharedCurrentUserManager]fetchCurrentUserProfile];
+    [[BBTCurrentUserManager sharedCurrentUserManager] clubLogin];
     BBTUser * user = [BBTCurrentUserManager sharedCurrentUserManager].currentUser;
     self.NameLabel.text = [NSString stringWithFormat:@"姓名：%@",user.userName];
     if (user.sex == 0) {
