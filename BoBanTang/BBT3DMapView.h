@@ -5,7 +5,7 @@
 //  Created by Bill Bai on 8/31/14.
 //  Copyright (c) 2014 Bill Bai. All rights reserved.
 //
-#import <mapbox.h>
+#import "Mapbox.h"
 #import "RMMapView.h"
 
 @interface BBT3DMapView : RMMapView

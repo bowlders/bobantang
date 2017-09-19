@@ -13,7 +13,8 @@
 #import "BBTCourseTableViewCell.h"
 #import "BBTCurrentUserManager.h"
 #import "BBTLoginViewController.h"
-
+#import "ScheduleViewController.h"
+#import "ScheduleDateManager.h"
 
 @interface BBTHomeViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *CurrnetStationLabel;
@@ -65,6 +66,7 @@ bool ReceiveUserAuthenticationNotif = false;
         self.LoginReminderLabel.hidden = true;
         self.LoginButton.hidden = true;
     }
+
 }
 
 - (void)viewDidLoad {
@@ -72,6 +74,7 @@ bool ReceiveUserAuthenticationNotif = false;
     self.CourseTimetable.dataSource = self;
     self.CourseTimetable.delegate = self;
     [self.CourseTimetable registerNib:[UINib nibWithNibName:@"BBTCourseTableViewCell" bundle:nil] forCellReuseIdentifier:@"CourseTimetableCellReuseIdentifier"];
+    
 }
 
 
@@ -167,6 +170,7 @@ bool direction;
     [self presentViewController:navigationController animated:YES completion:nil];
 }
 
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 2;
 }
@@ -179,5 +183,19 @@ bool direction;
     BBTCourseTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"CourseTimetableCellReuseIdentifier"];
     cell.ClassNumberLabel.text = @"第3-4节";
     return cell;
+}
+#pragma mark -- 这个地方
+- (void)loadScheduleData{
+    __weak BBTHomeViewController *wself = self;
+    [ScheduleDateManager sharedManager].block = ^(ScheduleDateManager *current, ScheduleDateManager *next){
+        //current和next有可能为nil，要在这里更新cell的话，用到self要注意弱引用
+        //[wself.CourseTimetable reloadData];
+        //current.courseName 课程名称
+        //current.dayTime 第几节到第几节
+        //current.teacherName 老师
+        //current.location 地点
+    };
+    [[ScheduleDateManager sharedManager] getTheCurrentAndNextCoursesWithAccount:@""];
+    
 }
 @end

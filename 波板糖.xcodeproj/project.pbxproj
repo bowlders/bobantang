@@ -82,6 +82,17 @@
 		39FE91D81C5A54F50041E46F /* BBTCampusBusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91D71C5A54F50041E46F /* BBTCampusBusManager.m */; };
 		39FE91DD1C5DAA0F0041E46F /* BBTCampusBusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91DC1C5DAA0F0041E46F /* BBTCampusBusViewController.m */; };
 		39FE91E61C5F886C0041E46F /* BBTMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91E51C5F886C0041E46F /* BBTMeViewController.m */; };
+		67A062171F71179600AD366A /* Schedule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67A062161F71179600AD366A /* Schedule.storyboard */; };
+		67A0621A1F71184500AD366A /* SchduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A062191F71184500AD366A /* SchduleViewController.m */; };
+		67A0621E1F71190700AD366A /* TableTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A0621D1F71190700AD366A /* TableTextField.m */; };
+		67A062211F71193900AD366A /* ScheduleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A062201F71193900AD366A /* ScheduleButton.m */; };
+		67A062251F71198000AD366A /* ScheduleDateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A062241F71198000AD366A /* ScheduleDateManager.m */; };
+		67A062281F71199A00AD366A /* OITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A062271F71199A00AD366A /* OITableViewController.m */; };
+		67A0622D1F7119DF00AD366A /* OITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A0622C1F7119DF00AD366A /* OITableViewCell.m */; };
+		67A062311F711A2200AD366A /* OITableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67A062301F711A2200AD366A /* OITableViewCell.xib */; };
+		67A062341F711A7000AD366A /* ManualImportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A062331F711A7000AD366A /* ManualImportVC.m */; };
+		67A062371F711A8300AD366A /* FloatingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A062361F711A8300AD366A /* FloatingWindow.m */; };
+		67A0623A1F711ABE00AD366A /* ManualImportTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A062391F711ABE00AD366A /* ManualImportTable.m */; };
 		99BCEEF76C0A51F53BF45309 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA2627D2286FFB656F82101 /* libPods.a */; };
 		A947D9291BD8DADA000F071B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A947D9271BD8DADA000F071B /* Main.storyboard */; };
 		A947D92C1BD8DADA000F071B /* BoBanTang.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A947D92A1BD8DADA000F071B /* BoBanTang.xcdatamodeld */; };
@@ -378,6 +389,27 @@
 		39FE91E41C5F886C0041E46F /* BBTMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTMeViewController.h; sourceTree = "<group>"; };
 		39FE91E51C5F886C0041E46F /* BBTMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTMeViewController.m; sourceTree = "<group>"; };
 		48D6888DD2A267EA93C8D8BC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		6743A72A1F6E9EB6009BAE42 /* Mapbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mapbox.h; sourceTree = "<group>"; };
+		67A062161F71179600AD366A /* Schedule.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Schedule.storyboard; sourceTree = "<group>"; };
+		67A062191F71184500AD366A /* SchduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchduleViewController.m; sourceTree = "<group>"; };
+		67A0621B1F71185500AD366A /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
+		67A0621C1F71190700AD366A /* TableTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableTextField.h; sourceTree = "<group>"; };
+		67A0621D1F71190700AD366A /* TableTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableTextField.m; sourceTree = "<group>"; };
+		67A0621F1F71193900AD366A /* ScheduleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleButton.h; sourceTree = "<group>"; };
+		67A062201F71193900AD366A /* ScheduleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleButton.m; sourceTree = "<group>"; };
+		67A062231F71198000AD366A /* ScheduleDateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleDateManager.h; sourceTree = "<group>"; };
+		67A062241F71198000AD366A /* ScheduleDateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleDateManager.m; sourceTree = "<group>"; };
+		67A062261F71199A00AD366A /* OITableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OITableViewController.h; sourceTree = "<group>"; };
+		67A062271F71199A00AD366A /* OITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OITableViewController.m; sourceTree = "<group>"; };
+		67A0622B1F7119DF00AD366A /* OITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OITableViewCell.h; sourceTree = "<group>"; };
+		67A0622C1F7119DF00AD366A /* OITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OITableViewCell.m; sourceTree = "<group>"; };
+		67A062301F711A2200AD366A /* OITableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OITableViewCell.xib; sourceTree = "<group>"; };
+		67A062321F711A7000AD366A /* ManualImportVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManualImportVC.h; sourceTree = "<group>"; };
+		67A062331F711A7000AD366A /* ManualImportVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManualImportVC.m; sourceTree = "<group>"; };
+		67A062351F711A8300AD366A /* FloatingWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingWindow.h; sourceTree = "<group>"; };
+		67A062361F711A8300AD366A /* FloatingWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingWindow.m; sourceTree = "<group>"; };
+		67A062381F711ABE00AD366A /* ManualImportTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManualImportTable.h; sourceTree = "<group>"; };
+		67A062391F711ABE00AD366A /* ManualImportTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManualImportTable.m; sourceTree = "<group>"; };
 		A947D91B1BD8DADA000F071B /* 波板糖.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "波板糖.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A947D91F1BD8DADA000F071B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A947D9281BD8DADA000F071B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -983,6 +1015,7 @@
 		398231B71BD8ED300043E544 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				67A062221F71196700AD366A /* Schedule */,
 				AF293D511DCD87BD008E704E /* ActivityPage */,
 				0DD26BB51F682117005DE4E8 /* Home */,
 				0DD26BB61F68213E005DE4E8 /* Club */,
@@ -997,6 +1030,7 @@
 		398231B81BD8ED360043E544 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				67A062181F71182B00AD366A /* Schedule */,
 				398231C11BD8EEF60043E544 /* General */,
 				0DD26BB81F682217005DE4E8 /* Home */,
 				0DD26BB91F682224005DE4E8 /* Club */,
@@ -1009,6 +1043,7 @@
 		398231B91BD8ED3F0043E544 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				67A0620B1F71166100AD366A /* Schedule */,
 				398231BD1BD8EE960043E544 /* General */,
 				0DD26BB41F6820B3005DE4E8 /* Home */,
 				0DD26BB71F6821BD005DE4E8 /* Club */,
@@ -1177,6 +1212,79 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		67A0620B1F71166100AD366A /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				67A0622F1F7119F600AD366A /* MainSchedule */,
+				67A0622E1F7119E700AD366A /* ImportSchedule */,
+				67A062161F71179600AD366A /* Schedule.storyboard */,
+			);
+			name = Schedule;
+			sourceTree = "<group>";
+		};
+		67A062181F71182B00AD366A /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				67A0622A1F7119BA00AD366A /* ImportSchedule */,
+				67A062291F7119A100AD366A /* MainSchedule */,
+			);
+			name = Schedule;
+			sourceTree = "<group>";
+		};
+		67A062221F71196700AD366A /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				67A062231F71198000AD366A /* ScheduleDateManager.h */,
+				67A062241F71198000AD366A /* ScheduleDateManager.m */,
+			);
+			name = Schedule;
+			sourceTree = "<group>";
+		};
+		67A062291F7119A100AD366A /* MainSchedule */ = {
+			isa = PBXGroup;
+			children = (
+				67A0621B1F71185500AD366A /* ScheduleViewController.h */,
+				67A062191F71184500AD366A /* SchduleViewController.m */,
+			);
+			name = MainSchedule;
+			sourceTree = "<group>";
+		};
+		67A0622A1F7119BA00AD366A /* ImportSchedule */ = {
+			isa = PBXGroup;
+			children = (
+				67A062381F711ABE00AD366A /* ManualImportTable.h */,
+				67A062391F711ABE00AD366A /* ManualImportTable.m */,
+				67A062321F711A7000AD366A /* ManualImportVC.h */,
+				67A062331F711A7000AD366A /* ManualImportVC.m */,
+				67A062261F71199A00AD366A /* OITableViewController.h */,
+				67A062271F71199A00AD366A /* OITableViewController.m */,
+			);
+			name = ImportSchedule;
+			sourceTree = "<group>";
+		};
+		67A0622E1F7119E700AD366A /* ImportSchedule */ = {
+			isa = PBXGroup;
+			children = (
+				67A062351F711A8300AD366A /* FloatingWindow.h */,
+				67A062361F711A8300AD366A /* FloatingWindow.m */,
+				67A062301F711A2200AD366A /* OITableViewCell.xib */,
+				67A0622B1F7119DF00AD366A /* OITableViewCell.h */,
+				67A0622C1F7119DF00AD366A /* OITableViewCell.m */,
+			);
+			name = ImportSchedule;
+			sourceTree = "<group>";
+		};
+		67A0622F1F7119F600AD366A /* MainSchedule */ = {
+			isa = PBXGroup;
+			children = (
+				67A0621F1F71193900AD366A /* ScheduleButton.h */,
+				67A062201F71193900AD366A /* ScheduleButton.m */,
+				67A0621C1F71190700AD366A /* TableTextField.h */,
+				67A0621D1F71190700AD366A /* TableTextField.m */,
+			);
+			name = MainSchedule;
+			sourceTree = "<group>";
+		};
 		A947D9121BD8DADA000F071B = {
 			isa = PBXGroup;
 			children = (
@@ -1226,6 +1334,7 @@
 		A947D91E1BD8DADA000F071B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6743A72A1F6E9EB6009BAE42 /* Mapbox.h */,
 				39D7797D1D7DA7F900B7A8D6 /* LaunchScreen.storyboard */,
 				39DDD8491D6B5E87008F548E /* Images.xcassets */,
 				39231B1B1D3E1BC0003FBA9C /* TDBadgedCell */,
@@ -1668,8 +1777,8 @@
 				TargetAttributes = {
 					A947D91A1BD8DADA000F071B = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = V6W7TS6VZ8;
 						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1770,7 +1879,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC2EAFF21C69A95000B5DC42 /* BBTItemCampusTableViewCell.xib in Resources */,
+				67A062311F711A2200AD366A /* OITableViewCell.xib in Resources */,
 				A947D98D1BD8DC24000F071B /* Tools.storyboard in Resources */,
+				67A062171F71179600AD366A /* Schedule.storyboard in Resources */,
 				FCD0A2701C00062D0024D78F /* BBTScoresCell.xib in Resources */,
 				FC2EAFFA1C69AAA400B5DC42 /* BBTItemImageTableViewCell.xib in Resources */,
 				39231B151D3DC336003FBA9C /* ShareSDK.bundle in Resources */,
@@ -1893,8 +2004,10 @@
 				FC2EAFF91C69AAA400B5DC42 /* BBTItemImageTableViewCell.m in Sources */,
 				395B529E1C7D4BEF008FD949 /* BBTCollectedDailyArticle.m in Sources */,
 				FC351F1F1C73681E0055FD41 /* BBTToolsTableViewController.m in Sources */,
+				67A0623A1F711ABE00AD366A /* ManualImportTable.m in Sources */,
 				FCD0A27E1C0006AB0024D78F /* BBTLectureRoomsTimeTableViewController.m in Sources */,
 				0DD26BC11F6913AD005DE4E8 /* BBTHomeViewController.m in Sources */,
+				67A062371F711A8300AD366A /* FloatingWindow.m in Sources */,
 				AF5412C71CC680AC004C0CE8 /* MKPolygon+PointInPolygon.m in Sources */,
 				AF5412861CC67EBC004C0CE8 /* BBT3DMapMetaDataManager.m in Sources */,
 				0DD26BD61F6A6445005DE4E8 /* BBTCourseTableViewCell.m in Sources */,
@@ -1917,8 +2030,12 @@
 				AF5412C81CC680AC004C0CE8 /* NSArray+BRSMostNearestElements.m in Sources */,
 				AF5412A91CC68029004C0CE8 /* BRSPlace.m in Sources */,
 				AF293D5E1DCD87D7008E704E /* BBTActivityPageManager.m in Sources */,
+				67A062281F71199A00AD366A /* OITableViewController.m in Sources */,
 				3951EFF71C6F72C600076AD4 /* BBTSouthSpecialRailwayTwoViewController.m in Sources */,
+				67A062341F711A7000AD366A /* ManualImportVC.m in Sources */,
+				67A062211F71193900AD366A /* ScheduleButton.m in Sources */,
 				0DD26BC41F6A41CA005DE4E8 /* BBTClubViewController.m in Sources */,
+				67A062251F71198000AD366A /* ScheduleDateManager.m in Sources */,
 				AF5412BC1CC6805D004C0CE8 /* BRSSCUTMapView.m in Sources */,
 				AF5412971CC67FC4004C0CE8 /* BRSUtilities.m in Sources */,
 				395B529A1C7C852B008FD949 /* BBTCollectedCampusInfoManager.m in Sources */,
@@ -1945,6 +2062,7 @@
 				FC1770C41C5F507500BF07AC /* BBTLostAndFoundTableViewController.m in Sources */,
 				391F32491BFDD42B004843C3 /* BBTSpecRailway2BusManager.m in Sources */,
 				AF9E4D741D45CAEB004AE8DA /* BBTMyPostedTableViewController.m in Sources */,
+				67A0622D1F7119DF00AD366A /* OITableViewCell.m in Sources */,
 				3951EFFD1C7099B000076AD4 /* BBTSpecialRailwayContainerViewController.m in Sources */,
 				AF5412BB1CC6805D004C0CE8 /* BBTDirectionHeaderView.m in Sources */,
 				395B52961C7C8438008FD949 /* BBTCollectedCampusInfo.m in Sources */,
@@ -1961,6 +2079,7 @@
 				AF9903A71CF607520039C4E4 /* BBTImageUploadManager.m in Sources */,
 				AF5412A81CC68029004C0CE8 /* BRSMapMetaDataManager.m in Sources */,
 				3921B02A1C75CF4000CA9449 /* BBTPersonalInfoEditViewController.m in Sources */,
+				67A0621E1F71190700AD366A /* TableTextField.m in Sources */,
 				FC1770C61C5F507500BF07AC /* BBTItemDetailEditingViewController.m in Sources */,
 				FCD0A2751C0006940024D78F /* BBTLectureRooms.m in Sources */,
 				0D4E64851DB3C983007FA049 /* BBTDailyArticleViewController.m in Sources */,
@@ -1981,6 +2100,7 @@
 				397445701C0AAD60004B89BA /* BBTCampusInfoTableViewCell.m in Sources */,
 				395B10E01C5737AB00772A38 /* BBTDailyArticleTableViewCell.m in Sources */,
 				AF5412B91CC6805D004C0CE8 /* BRSPlaceView.m in Sources */,
+				67A0621A1F71184500AD366A /* SchduleViewController.m in Sources */,
 				FCE609511C797061008C331D /* BBTLectureRoomsManager.m in Sources */,
 				FC351F221C73683D0055FD41 /* BBTScoresTableViewController.m in Sources */,
 				395B52A11C7D4C0A008FD949 /* BBTCollectedDailyArticleManager.m in Sources */,
@@ -2135,7 +2255,7 @@
 				CODE_SIGN_ENTITLEMENTS = "波板糖.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = V6W7TS6VZ8;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2210,7 +2330,7 @@
 				CODE_SIGN_ENTITLEMENTS = "波板糖.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = V6W7TS6VZ8;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
