@@ -43,6 +43,8 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
+    if (self.currentUser.account == nil){return;}
+    
     NSDictionary *parameters = @{@"account" : self.currentUser.account,
                                  @"password" : self.currentUser.password};
     [manager POST:checkAccountURL parameters:parameters progress:nil success:^(NSURLSessionTask *task, id responseObject) {

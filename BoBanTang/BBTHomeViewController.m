@@ -13,8 +13,8 @@
 #import "BBTCourseTableViewCell.h"
 #import "BBTCurrentUserManager.h"
 #import "BBTLoginViewController.h"
-#import "ScheduleViewController.h"
-#import "ScheduleDateManager.h"
+//#import "ScheduleViewController.h"
+//#import "ScheduleDateManager.h"
 
 @interface BBTHomeViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *CurrnetStationLabel;
@@ -189,6 +189,7 @@ bool direction;
     cell.ClassNumberLabel.text = @"第3-4节";
     return cell;
 }
+/*
 #pragma mark -- 这个方法，是实现更新首页课表部分的回调block
 - (void)loadScheduleData{
     __weak BBTHomeViewController *wself = self;
@@ -203,4 +204,5 @@ bool direction;
     //账号也要补齐
     [[ScheduleDateManager sharedManager] getTheCurrentAndNextCoursesWithAccount:@""];
 }
+ */
 @end
