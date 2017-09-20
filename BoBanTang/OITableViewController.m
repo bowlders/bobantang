@@ -47,7 +47,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:left];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(findTJGet:) name:@"ThefindTJScheduleGet" object:nil];
-    [self.manager getTheScheduleWithAccount:@"201630269199" andPassword:nil andType:@"findTJ"];
+    [self.manager getTheScheduleWithAccount:self.manager.account andPassword:nil andType:@"findTJ"];
     
 }
 - (void)findTJGet:(NSNotification *)noti{
@@ -55,7 +55,12 @@
 }
 - (void)completeBtnDidClick:(UIButton *)sender{
     if (self.manager.mutCourseArray != nil){
-    [ScheduleDateManager sharedManager].mutCourseArray = self.manager.mutCourseArray;
+        if ([ScheduleDateManager sharedManager].mutCourseArray != nil){
+            NSArray *selectWrong = [self.manager.mutCourseArray filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT (SELF in %@)",[ScheduleDateManager sharedManager].mutCourseArray]];
+            [[ScheduleDateManager sharedManager].mutCourseArray addObjectsFromArray:selectWrong];
+        }else{
+            [ScheduleDateManager sharedManager].mutCourseArray = self.manager.mutCourseArray;
+        }
     [[ScheduleDateManager sharedManager] updateLocalScheduleWithNoti:@"ThefindTJScheduleGet"];
     if ([self.delegate respondsToSelector:@selector(updateScheduleView)]){
         [self.delegate updateScheduleView];

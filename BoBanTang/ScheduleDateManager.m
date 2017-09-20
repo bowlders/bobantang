@@ -42,12 +42,12 @@ static ScheduleDateManager *manager;
                               @"current":self.currentWeek
                               };
         [dic2 writeToFile:path atomically:NO];
-        NSString *account = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account;
+        NSString *account = self.account;
         if (account != nil){
         [self getTheScheduleWithAccount:account andPassword:nil andType:@"get"];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSString *account = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account;
+        NSString *account = self.account;
         if (account != nil){
         [self getTheScheduleWithAccount:account andPassword:nil andType:@"get"];
         }
@@ -107,13 +107,12 @@ static ScheduleDateManager *manager;
     
     NSData *data = [NSJSONSerialization dataWithJSONObject:contentDic options:0 error:nil];
     NSString *string = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    
     dic = @{
             @"method":@"set",
+            @"password":self.password,
             @"account":account,
             @"timetable":string
             };
-    
     NSString *targetURL = @"http://babel.100steps.net/timetable/";
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/javascript",@"text/plain",@"text/html",nil];
@@ -233,7 +232,7 @@ static ScheduleDateManager *manager;
         [self dropTablewithTableName:@"schedule"];
         [self createLocalTable];
         [self insertTable];
-        NSString *account = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account;
+        NSString *account = self.account;
         if (account != nil){
         [self updateThePrivateScheduleToServerWithAccount:account];
         }
@@ -289,8 +288,16 @@ static ScheduleDateManager *manager;
 - (NSString *)account{
     if (_account == nil){
         _account = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account;
+        //_account = @"201630269199";
     }
     return _account;
+}
+- (NSString *)password{
+    if (_password == nil){
+        _password = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.password;
+        //_password = @"1054504930@a";
+    }
+    return _password;
 }
 - (NSString *)whichDay{
     NSDate *date = [NSDate date];
@@ -315,7 +322,7 @@ static ScheduleDateManager *manager;
 }
 - (void)getTheCurrentAndNextCoursesWithAccount:(NSString *)account{
     [self fetchThePrivateScheduleFromDatabase];
-    if (self.mutCourseArray != nil){
+    if (self.mutCourseArray != nil && self.currentWeek != nil){
         NSInteger num = 0;
         if ([self isBetweenFromStart:@"0:00" andEnd:@"8:45"]){
             num = 1;
@@ -340,13 +347,14 @@ static ScheduleDateManager *manager;
         }else if ([self isBetweenFromStart:@"20:41" andEnd:@"21:35"]){
             num = 11;
         }
-        NSMutableArray *tmpArr = [NSMutableArray array];
-        for (ScheduleDateManager *mana in self.mutCourseArray){
+        NSArray<ScheduleDateManager *> *CurrentWeekCourses = [self isInCurrentWeek];
+        NSMutableArray<ScheduleDateManager *> *currentDayCourses = [NSMutableArray array];
+        for (ScheduleDateManager *mana in CurrentWeekCourses){
             if ([mana.day isEqual:self.whichDay]){
-                [tmpArr addObject:mana];
+                [currentDayCourses addObject:mana];
             }
         }
-        [tmpArr sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        [currentDayCourses sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
             ScheduleDateManager *manager1 = obj1;
             ScheduleDateManager *manager2 = obj2;
             if ([manager1.dayTime componentsSeparatedByString:@"."][0].integerValue >[manager2.dayTime componentsSeparatedByString:@"."][0].integerValue){
@@ -359,21 +367,23 @@ static ScheduleDateManager *manager;
         }];
         
         NSMutableArray *tmpArr2 = [NSMutableArray arrayWithCapacity:2];
-        for (ScheduleDateManager *mana in tmpArr) {
+        NSInteger returnCourseCount = 0;
+        for (ScheduleDateManager *mana in currentDayCourses) {
             NSArray<NSString *> *beginAndEnd = [mana.dayTime componentsSeparatedByString:@"-"];
             if (beginAndEnd[0].integerValue <= num && beginAndEnd[1].integerValue >= num){
-                    [tmpArr2 addObject:mana];
-                if ([tmpArr indexOfObject:mana] != tmpArr.count-1){
-                    [tmpArr2 addObject: tmpArr[[tmpArr indexOfObject:mana]+1]];
+                [tmpArr2 addObject:mana];
+                returnCourseCount++;
+                if ([currentDayCourses indexOfObject:mana] != currentDayCourses.count-1){
+                    [tmpArr2 addObject: currentDayCourses[[currentDayCourses indexOfObject:mana]+1]];
                 }
                 break;
             }
         }
-        if (tmpArr2.count >= 2){
+        if (returnCourseCount >= 2){
             self.block(tmpArr2[0],tmpArr2[1]);
-        }else if (tmpArr2.count == 1){
+        }else if (returnCourseCount == 1){
             self.block(tmpArr2[0],nil);
-        }else if (tmpArr2.count == 0){
+        }else if (returnCourseCount == 0){
             self.block(nil,nil);
         }
     }
@@ -396,5 +406,27 @@ static ScheduleDateManager *manager;
         return YES;
     }
     return NO;
+}
+- (NSArray *)isInCurrentWeek{
+    NSMutableArray *isOnArr = [NSMutableArray array];
+    for (ScheduleDateManager *singleData in [ScheduleDateManager sharedManager].mutCourseArray) {
+        NSArray *timeArr = [singleData.week componentsSeparatedByString:@" "];
+        BOOL isON = NO;
+        for (NSString *string in timeArr) {
+            if ([string containsString:@"-"]){
+                NSArray<NSString *> *tmp = [string componentsSeparatedByString:@"-"];
+                if(tmp[1].integerValue >= self.currentWeek.integerValue && tmp[0].integerValue <= self.currentWeek.integerValue){
+                    isON = YES;
+                    [isOnArr addObject:singleData];
+                }
+            }else{
+                if (self.currentWeek.integerValue == string.integerValue){
+                    isON = YES;
+                    [isOnArr addObject:singleData];
+                }
+            }
+        }
+    }
+    return isOnArr.copy;
 }
 @end

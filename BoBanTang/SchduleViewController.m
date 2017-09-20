@@ -15,7 +15,6 @@
 #import "ManualImportVC.h"
 #import "FloatingWindow.h"
 //#import "ManualImportTable.h"
-#import "BBTCurrentUserManager.h"
 
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
@@ -89,8 +88,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     if (self.manager != nil&&self.manager.mutCourseArray == nil){
-        NSString *account = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account;
-#pragma mark -- 如果账户不存在，即未登录，需要做点什么吗？
+        NSString *account = self.manager.account;
         if (account != nil){
         [self.manager getTheScheduleWithAccount:account andPassword:nil andType:@"get"];
         }

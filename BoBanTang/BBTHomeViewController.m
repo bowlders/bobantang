@@ -75,6 +75,11 @@ bool ReceiveUserAuthenticationNotif = false;
     self.CourseTimetable.delegate = self;
     [self.CourseTimetable registerNib:[UINib nibWithNibName:@"BBTCourseTableViewCell" bundle:nil] forCellReuseIdentifier:@"CourseTimetableCellReuseIdentifier"];
     
+#pragma mark -- 跳转到课表的方式应该如下，如果已经有了导航控制器，就不要再新建了
+    //UIStoryboard *board = [UIStoryboard storyboardWithName:@"Schedule" bundle:nil];
+    //ScheduleViewController *schedule = [board instantiateViewControllerWithIdentifier:@"ScheduleVC"];
+    //UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:schedule];
+    //[self presentViewController:navi animated:YES completion:nil];
 }
 
 
@@ -184,18 +189,18 @@ bool direction;
     cell.ClassNumberLabel.text = @"第3-4节";
     return cell;
 }
-#pragma mark -- 这个地方
+#pragma mark -- 这个方法，是实现更新首页课表部分的回调block
 - (void)loadScheduleData{
     __weak BBTHomeViewController *wself = self;
     [ScheduleDateManager sharedManager].block = ^(ScheduleDateManager *current, ScheduleDateManager *next){
-        //current和next有可能为nil，要在这里更新cell的话，用到self要注意弱引用
+        //current和next有可能为nil，要在这里更新cell的话，用到self要注意弱引用，所以用wself
         //[wself.CourseTimetable reloadData];
         //current.courseName 课程名称
         //current.dayTime 第几节到第几节
         //current.teacherName 老师
         //current.location 地点
     };
+    //账号也要补齐
     [[ScheduleDateManager sharedManager] getTheCurrentAndNextCoursesWithAccount:@""];
-    
 }
 @end

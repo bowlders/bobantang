@@ -19,10 +19,13 @@ typedef void(^ScheduleBlo)(ScheduleDateManager *current, ScheduleDateManager * n
 @property(nonatomic,copy)NSString *courseName;
 @property (nonatomic,strong)NSMutableArray *mutCourseArray;
 
+//当前周和当前星期几
 @property (nonatomic,copy)NSString *currentWeek;
 @property (nonatomic,copy)NSString *whichDay;
 
+//用户的账号密码
 @property (nonatomic,copy)NSString *account;
+@property (nonatomic,copy)NSString *password;
 
 @property (nonatomic,copy)ScheduleBlo block;
 
