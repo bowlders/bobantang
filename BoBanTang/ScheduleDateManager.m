@@ -320,7 +320,7 @@ static ScheduleDateManager *manager;
     }
     return _currentWeek;
 }
-- (void)getTheCurrentAndNextCoursesWithAccount:(NSString *)account{
+- (NSArray *)getTheCurrentAndNextCoursesWithAccount:(NSString *)account{
     [self fetchThePrivateScheduleFromDatabase];
     if (self.mutCourseArray != nil && self.currentWeek != nil){
         NSInteger num = 0;
@@ -358,10 +358,10 @@ static ScheduleDateManager *manager;
             ScheduleDateManager *manager1 = obj1;
             ScheduleDateManager *manager2 = obj2;
             if ([manager1.dayTime componentsSeparatedByString:@"."][0].integerValue >[manager2.dayTime componentsSeparatedByString:@"."][0].integerValue){
-                return NSOrderedAscending;
+                return NSOrderedDescending;
             }
             if([manager1.dayTime componentsSeparatedByString:@"."][0].integerValue <[manager2.dayTime componentsSeparatedByString:@"."][0].integerValue){
-                return NSOrderedDescending;
+                return NSOrderedAscending;
             }
             return NSOrderedDescending;
         }];
@@ -370,7 +370,7 @@ static ScheduleDateManager *manager;
         NSInteger returnCourseCount = 0;
         for (ScheduleDateManager *mana in currentDayCourses) {
             NSArray<NSString *> *beginAndEnd = [mana.dayTime componentsSeparatedByString:@"-"];
-            if (beginAndEnd[0].integerValue <= num && beginAndEnd[1].integerValue >= num){
+            if (beginAndEnd[1].integerValue >= num){
                 [tmpArr2 addObject:mana];
                 returnCourseCount++;
                 if ([currentDayCourses indexOfObject:mana] != currentDayCourses.count-1){
@@ -380,13 +380,15 @@ static ScheduleDateManager *manager;
             }
         }
         if (returnCourseCount >= 2){
-            self.block(tmpArr2[0],tmpArr2[1]);
+            //self.block(tmpArr2[0],tmpArr2[1]);
         }else if (returnCourseCount == 1){
-            self.block(tmpArr2[0],nil);
+            //self.block(tmpArr2[0],nil);
         }else if (returnCourseCount == 0){
-            self.block(nil,nil);
+            //self.block(nil,nil);
         }
+        return tmpArr2;
     }
+    return nil;
 }
 -(BOOL)isBetweenFromStart:(NSString *)startTime andEnd:(NSString *)endTime{
     //获取当前时间

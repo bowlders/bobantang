@@ -16,7 +16,7 @@
                 <navigationController id="eE5-iI-wei" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="首页" image="Home" selectedImage="HomeSelected" id="EDo-6l-PLf"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wv7-1w-BoV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wv7-1w-BoV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -216,6 +216,7 @@
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstItem="evh-CF-eIE" firstAttribute="width" secondItem="GjR-mX-ktW" secondAttribute="width" id="9dH-x1-UB5"/>
                                                     <constraint firstItem="P37-dU-yVS" firstAttribute="centerY" secondItem="GjR-mX-ktW" secondAttribute="centerY" constant="-25" id="EoG-wW-Hq3"/>
@@ -226,6 +227,9 @@
                                                     <constraint firstItem="BMe-1I-kSn" firstAttribute="centerX" secondItem="GjR-mX-ktW" secondAttribute="centerX" id="hdQ-hU-YfW"/>
                                                     <constraint firstItem="evh-CF-eIE" firstAttribute="height" secondItem="GjR-mX-ktW" secondAttribute="height" id="tf6-pL-c3b"/>
                                                 </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="tS3-Tp-m2z" appends="YES" id="YPe-rN-1wK"/>
+                                                </connections>
                                             </view>
                                         </subviews>
                                     </stackView>
@@ -263,9 +267,14 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fCc-Ne-n6h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="tS3-Tp-m2z">
+                    <connections>
+                        <segue destination="fhp-it-Jha" kind="show" id="xZA-9a-bOf"/>
+                    </connections>
+                </tapGestureRecognizer>
                 <tapGestureRecognizer id="5tn-F9-61R">
                     <connections>
-                        <segue destination="2zm-pP-ws5" kind="show" id="eAP-vn-Y85"/>
+                        <segue destination="2zm-pP-ws5" kind="show" id="5Bf-pR-aQr"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -277,7 +286,15 @@
                 <viewControllerPlaceholder storyboardName="Go" id="2zm-pP-ws5" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NRP-5Q-wg5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-362" y="-823"/>
+            <point key="canvasLocation" x="-482" y="-748"/>
+        </scene>
+        <!--Schedule-->
+        <scene sceneID="0yS-cz-QtT">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Schedule" id="fhp-it-Jha" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e4W-RN-lnd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-391" y="-629"/>
         </scene>
     </scenes>
     <resources>

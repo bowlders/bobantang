@@ -13,8 +13,9 @@
 #import "BBTCourseTableViewCell.h"
 #import "BBTCurrentUserManager.h"
 #import "BBTLoginViewController.h"
-//#import "ScheduleViewController.h"
-//#import "ScheduleDateManager.h"
+#import "BBTGoSegmentedControlViewController.h"
+#import "ScheduleViewController.h"
+#import "ScheduleDateManager.h"
 
 @interface BBTHomeViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *CurrnetStationLabel;
@@ -25,8 +26,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *LoginButton;
 @property (weak, nonatomic) IBOutlet UILabel *LoginReminderLabel;
 @property (weak, nonatomic) IBOutlet UIStackView *CampusBusStackView;
+@property (strong, nonatomic) NSArray<ScheduleDateManager *> *courseArr;
 - (IBAction)changeDirection:(UIButton *)sender;
 - (IBAction)login:(id)sender;
+
 @end
 
 @implementation BBTHomeViewController
@@ -55,6 +58,9 @@ bool ReceiveUserAuthenticationNotif = false;
     [self reloadData];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     
+    //reload一下课表的data
+    self.courseArr = [[ScheduleDateManager sharedManager] getTheCurrentAndNextCoursesWithAccount:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account];
+    [self.CourseTimetable reloadData];
     
     if (![[BBTCurrentUserManager sharedCurrentUserManager] userIsActive])
     {
@@ -75,11 +81,8 @@ bool ReceiveUserAuthenticationNotif = false;
     self.CourseTimetable.delegate = self;
     [self.CourseTimetable registerNib:[UINib nibWithNibName:@"BBTCourseTableViewCell" bundle:nil] forCellReuseIdentifier:@"CourseTimetableCellReuseIdentifier"];
     
-#pragma mark -- 跳转到课表的方式应该如下，如果已经有了导航控制器，就不要再新建了
-    //UIStoryboard *board = [UIStoryboard storyboardWithName:@"Schedule" bundle:nil];
-    //ScheduleViewController *schedule = [board instantiateViewControllerWithIdentifier:@"ScheduleVC"];
-    //UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:schedule];
-    //[self presentViewController:navi animated:YES completion:nil];
+    //获取本地课表数据
+    self.courseArr = [[ScheduleDateManager sharedManager] getTheCurrentAndNextCoursesWithAccount:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account];
 }
 
 
@@ -175,34 +178,30 @@ bool direction;
     [self presentViewController:navigationController animated:YES completion:nil];
 }
 
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 2;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPat{
     return tableView.frame.size.height / 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     BBTCourseTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"CourseTimetableCellReuseIdentifier"];
-    cell.ClassNumberLabel.text = @"第3-4节";
+    NSInteger rowCount = indexPath.row;
+    NSInteger courseCount = self.courseArr.count-1 ;
+    if (self.courseArr!=nil && rowCount <= courseCount){
+        ScheduleDateManager *oneCourse = self.courseArr[indexPath.row];
+        cell.ClassNumberLabel.text = [NSString stringWithFormat:@"第%@节",oneCourse.dayTime];
+        cell.TeacherLabel.text = [NSString stringWithFormat:@"任课老师 : %@",oneCourse.teacherName];
+        cell.CourseLabel.text = oneCourse.courseName;
+        cell.ClassroomLabel.text = [NSString stringWithFormat:@"地点 : %@",oneCourse.location];
+    }else{
+        cell.ClassNumberLabel.text = @"";
+        cell.TeacherLabel.text = @"";
+        cell.CourseLabel.text = @"";
+        cell.ClassroomLabel.text = @"";
+    }
     return cell;
 }
-/*
-#pragma mark -- 这个方法，是实现更新首页课表部分的回调block
-- (void)loadScheduleData{
-    __weak BBTHomeViewController *wself = self;
-    [ScheduleDateManager sharedManager].block = ^(ScheduleDateManager *current, ScheduleDateManager *next){
-        //current和next有可能为nil，要在这里更新cell的话，用到self要注意弱引用，所以用wself
-        //[wself.CourseTimetable reloadData];
-        //current.courseName 课程名称
-        //current.dayTime 第几节到第几节
-        //current.teacherName 老师
-        //current.location 地点
-    };
-    //账号也要补齐
-    [[ScheduleDateManager sharedManager] getTheCurrentAndNextCoursesWithAccount:@""];
-}
- */
 @end

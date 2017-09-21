@@ -65,14 +65,14 @@
                                            action:@selector(popUpTimeTable)];
     self.navigationItem.rightBarButtonItem = timeTableBarButton;
     
-    UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:@selector(backToHome)];
+    UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(backToHome)];
                                       
     self.navigationItem.leftBarButtonItem = backBarButton;
 }
 
 - (void)backToHome
 {
-    [self dismissViewControllerAnimated:true completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
