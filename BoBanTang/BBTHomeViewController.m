@@ -80,6 +80,7 @@ bool ReceiveUserAuthenticationNotif = false;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self.view sendSubviewToBack:self.scrollView];
     self.CourseTimetable.dataSource = self;
     self.CourseTimetable.delegate = self;
@@ -220,7 +221,7 @@ bool direction;
 - (UIScrollView *)scrollView
 {
     if (_scrollView == nil) {
-        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 20, 414, 300)];//130
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 414, 300)];//130
         _scrollView.backgroundColor = [UIColor blackColor];
         
         [self.view addSubview:_scrollView];
@@ -236,7 +237,7 @@ bool direction;
         _scrollView.pagingEnabled = YES;
         
         // contentSize
-        _scrollView.contentSize = CGSizeMake(self.GetArray.count * _scrollView.bounds.size.width, 0);
+        _scrollView.contentSize = CGSizeMake((self.clubArray.count+self.infoArray.count) * _scrollView.bounds.size.width, 0);
         
         // 设置代理
         _scrollView.delegate = self;
@@ -250,12 +251,12 @@ bool direction;
         // 分页控件
         _pageControl = [[UIPageControl alloc] init];
         // 总页数
-        _pageControl.numberOfPages = self.GetArray.count;
+        _pageControl.numberOfPages =(self.clubArray.count+self.infoArray.count);
         // 控件尺寸
-        CGSize size = [_pageControl sizeForNumberOfPages:self.GetArray.count];
+        CGSize size = [_pageControl sizeForNumberOfPages:(self.clubArray.count+self.infoArray.count)];
         
         _pageControl.bounds = CGRectMake(0, 0, size.width, size.height);
-        _pageControl.center = CGPointMake(350, 200);
+        _pageControl.center = CGPointMake(330, 200);
         
         // 设置颜色
         _pageControl.pageIndicatorTintColor = [UIColor redColor];
@@ -294,38 +295,33 @@ bool direction;
         NSLog(@"%lu",(unsigned long)self.GetArray.count);
         self.clubArray = self.GetArray[0];
         self.infoArray = self.GetArray[1];
-        
         for (int i = 0; i < self.clubArray.count; i++)
-        {
+       {
             //头图
-            //NSString *imageName = [NSString stringWithFormat:@"img_0%d", i + 1];//%02d
-            //UIImage *image = [UIImage imageNamed:imageName];
-            UIImageView *imaView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.bounds.size.width, 210)];
-            //imaView.image = image;
+
+            UIImageView *imaView = [[UIImageView alloc] initWithFrame:CGRectMake((i*self.scrollView.bounds.size.width),0, self.scrollView.bounds.size.width, 210)];
+           NSLog(@"%f",self.scrollView.frame.origin.y);
             NSString *URL =[NSString stringWithFormat:@"%@", self.GetArray[0][i][@"content"][@"picture"]];
             [imaView sd_setImageWithURL:[NSURL URLWithString:URL]];
+            NSLog(@"%f",imaView.frame.origin.y);
             [self.scrollView addSubview:imaView];
-            CGRect Imageframe = imaView.frame;
-            Imageframe.origin.x = (i * Imageframe.size.width / 2);
-            imaView.frame = Imageframe;
+           NSLog(@"%f",imaView.frame.origin.y);
+           
             
-            
+        
             UIImage *infoImage = [UIImage imageNamed:@"headInfo"];
-            UIImageView *infoView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 210, self.scrollView.bounds.size.width, 90)];
+            UIImageView *infoView = [[UIImageView alloc] initWithFrame:CGRectMake((i*self.scrollView.bounds.size.width), 210, self.scrollView.bounds.size.width, 90)];
             infoView.image =infoImage ;
             [self.scrollView addSubview:infoView];
-            CGRect Infomaframe = infoView.frame;
-            Infomaframe.origin.x = (i * Infomaframe.size.width / 2);
-            infoView.frame = Infomaframe;
             
             //标题
-            UILabel* mainlabel = [[UILabel alloc]initWithFrame:CGRectMake((50+(i*self.scrollView.bounds.size.width)),230,300,30)];
+            UILabel* mainlabel = [[UILabel alloc]initWithFrame:CGRectMake((50+(i*self.scrollView.bounds.size.width)),240,300,30)];
             mainlabel.tag = i;
             mainlabel.text = [NSString stringWithFormat:@"%@",self.GetArray[0][i][@"title"]];
             mainlabel.textColor = [UIColor whiteColor];
             mainlabel.backgroundColor = [UIColor clearColor];
             mainlabel.textAlignment = NSTextAlignmentCenter;
-            mainlabel.font = [UIFont fontWithName:@"Arial" size:25];
+            mainlabel.font = [UIFont fontWithName:@"Arial" size:23];
             mainlabel.numberOfLines = 1;
             [self.view addSubview:mainlabel];
             
@@ -340,28 +336,22 @@ bool direction;
             infoView.frame = Infomaframe;
 */
         }
-        for (int i = 0 ; i < self.clubArray.count; i++)
+        for (int i = 0 ; i < self.infoArray.count; i++)
         {
-            //NSString *imageName = [NSString stringWithFormat:@"img_0%d", i + 1];//%02d
-            //UIImage *image = [UIImage imageNamed:imageName];
-            UIImageView *imaView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,self.scrollView.bounds.size.width, 210)];
-            //imaView.image = image;
+            
+            UIImageView *imaView = [[UIImageView alloc] initWithFrame:CGRectMake(((i+self.clubArray.count)*self.scrollView.bounds.size.width), 0,self.scrollView.bounds.size.width, 210)];
+            
             NSString *URL =[NSString stringWithFormat:@"%@", self.GetArray[1][i][@"content"][@"picture"]];
             [imaView sd_setImageWithURL:[NSURL URLWithString:URL]];
             [self.scrollView addSubview:imaView];
-            CGRect Imageframe = imaView.frame;
-            Imageframe.origin.x = ((i+self.clubArray.count) * Imageframe.size.width / 2);
-            imaView.frame = Imageframe;
             
             UIImage *infoImage = [UIImage imageNamed:@"headInfo"];
-            UIImageView *infoView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 210,self.scrollView.bounds.size.width, 90)];
+            UIImageView *infoView = [[UIImageView alloc] initWithFrame:CGRectMake(((i+self.clubArray.count)*self.scrollView.bounds.size.width), 210,self.scrollView.bounds.size.width, 90)];
             infoView.image =infoImage ;
             [self.scrollView addSubview:infoView];
-            CGRect Infomaframe = infoView.frame;
-            Infomaframe.origin.x = ((i+self.clubArray.count)* Infomaframe.size.width / 2);
-            infoView.frame = Infomaframe;
+           
             
-            UILabel* mainlabel = [[UILabel alloc]initWithFrame:CGRectMake((50+((i+self.clubArray.count)*self.scrollView.bounds.size.width)),230,300,30)];
+            UILabel* mainlabel = [[UILabel alloc]initWithFrame:CGRectMake((50+((i+self.clubArray.count)*self.scrollView.bounds.size.width)),240,300,30)];
             mainlabel.tag = i;
             mainlabel.text = [NSString stringWithFormat:@"%@",self.GetArray[1][i][@"title"]];
             mainlabel.textColor = [UIColor whiteColor];
@@ -403,7 +393,7 @@ bool direction;
 {
     // 页号发生变化
     // (当前的页数 + 1) % 总页数
-    unsigned long page = (self.pageControl.currentPage + 1) % self.GetArray.count;
+    unsigned long page = (self.pageControl.currentPage + 1) % (self.clubArray.count+self.infoArray.count);
     self.pageControl.currentPage = page;
     
     NSLog(@"%ld", (long)self.pageControl.currentPage);
