@@ -43,22 +43,29 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sur-tS-5zb">
                                 <rect key="frame" x="-1" y="0.0" width="414" height="259"/>
                             </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    标示" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUn-ka-Ced" userLabel="标示">
+                                <rect key="frame" x="362" y="218" width="52" height="19"/>
+                                <color key="backgroundColor" red="0.022052150219678879" green="0.84583717584609985" blue="0.98877495527267456" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mqq-Vx-88S">
                                 <rect key="frame" x="-1" y="259" width="415" height="99"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z29-wv-4HT">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z29-wv-4HT">
                                         <rect key="frame" x="361" y="49" width="42" height="27"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WOx-0J-2Wh">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WOx-0J-2Wh">
                                         <rect key="frame" x="268" y="49" width="59" height="27"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTg-LM-Dhv">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTg-LM-Dhv">
                                         <rect key="frame" x="93" y="8" width="242" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -310,12 +317,16 @@
                         </subviews>
                         <color key="backgroundColor" red="0.96068006753921509" green="0.96084433794021606" blue="0.96066969633102417" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="mqq-Vx-88S" firstAttribute="top" secondItem="MUn-ka-Ced" secondAttribute="bottom" constant="22" id="D2y-7l-q20"/>
                             <constraint firstItem="OXX-eX-mOO" firstAttribute="centerX" secondItem="ufl-L8-qbD" secondAttribute="centerX" id="Fa4-Pj-MmR"/>
                             <constraint firstAttribute="bottom" secondItem="mqq-Vx-88S" secondAttribute="bottom" constant="378" id="JRL-Vp-qKB"/>
+                            <constraint firstAttribute="trailing" secondItem="MUn-ka-Ced" secondAttribute="trailing" id="Tai-vf-eYH"/>
                             <constraint firstItem="R3m-gp-2Mi" firstAttribute="top" secondItem="OXX-eX-mOO" secondAttribute="bottom" constant="20" id="WuQ-Fm-ngV"/>
                             <constraint firstItem="mqq-Vx-88S" firstAttribute="top" secondItem="ufl-L8-qbD" secondAttribute="top" constant="259" id="Xmv-kX-4LT"/>
                             <constraint firstAttribute="bottom" secondItem="Sur-tS-5zb" secondAttribute="bottom" constant="477" id="Xxg-38-tgu"/>
                             <constraint firstItem="Sur-tS-5zb" firstAttribute="top" secondItem="ufl-L8-qbD" secondAttribute="top" id="cX7-CL-6l8"/>
+                            <constraint firstItem="MUn-ka-Ced" firstAttribute="top" secondItem="ufl-L8-qbD" secondAttribute="top" constant="218" id="gKl-Ev-dai"/>
+                            <constraint firstItem="MUn-ka-Ced" firstAttribute="leading" secondItem="ufl-L8-qbD" secondAttribute="leading" constant="362" id="ifC-t6-ZGf"/>
                             <constraint firstAttribute="trailing" secondItem="Sur-tS-5zb" secondAttribute="trailing" id="k73-gG-JRj"/>
                             <constraint firstItem="OXX-eX-mOO" firstAttribute="height" secondItem="ufl-L8-qbD" secondAttribute="height" multiplier="0.45" id="pdd-Xk-oBl"/>
                             <constraint firstAttribute="trailing" secondItem="mqq-Vx-88S" secondAttribute="trailing" id="rDk-GI-MSG"/>
@@ -336,7 +347,8 @@
                         <outlet property="NextStationLabel" destination="aJB-Xh-jTV" id="pyP-E8-lxC"/>
                         <outlet property="_scrollerView" destination="Sur-tS-5zb" id="JOt-Y6-W1d"/>
                         <outlet property="articleInfo" destination="tTg-LM-Dhv" id="ns7-3H-IKp"/>
-                        <outlet property="numberInfo" destination="z29-wv-4HT" id="XrE-oU-6bp"/>
+                        <outlet property="infoType" destination="MUn-ka-Ced" id="IV8-eT-RDq"/>
+                        <outlet property="numberInfo" destination="z29-wv-4HT" id="NeS-aU-wMo"/>
                         <outlet property="personInfo" destination="WOx-0J-2Wh" id="N1F-JH-IAZ"/>
                         <outlet property="picture_1" destination="pwB-LR-mNZ" id="DZU-jv-g5N"/>
                         <outlet property="picture_2" destination="mkF-1N-Rei" id="FoU-WM-zMc"/>

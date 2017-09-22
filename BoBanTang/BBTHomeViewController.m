@@ -23,10 +23,12 @@ static NSString*baseURL = @"http://community.100steps.net/information/activities
 @interface BBTHomeViewController ()<UIScrollViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIScrollView *_scrollerView;
+@property (strong, nonatomic) IBOutlet UILabel *infoType;
+@property (strong, nonatomic) IBOutlet UILabel *numberInfo;
 
 @property (strong, nonatomic) IBOutlet UILabel *articleInfo;
 @property (strong, nonatomic) IBOutlet UILabel *personInfo;
-@property (strong, nonatomic) IBOutlet UILabel *numberInfo;
+
 @property (strong, nonatomic) IBOutlet UIImageView *picture_1;
 @property (strong, nonatomic) IBOutlet UIImageView *picture_2;
 @property (strong, nonatomic) IBOutlet UIImageView *picture_3;
@@ -256,7 +258,7 @@ bool direction;
         CGSize size = [_pageControl sizeForNumberOfPages:(self.clubArray.count+self.infoArray.count)];
         
         _pageControl.bounds = CGRectMake(0, 0, size.width, size.height);
-        _pageControl.center = CGPointMake(330, 200);
+        _pageControl.center = CGPointMake((self._scrollerView.bounds.size.width-size.width-5), self._scrollerView.bounds.size.height-10);
         
         // 设置颜色
         _pageControl.pageIndicatorTintColor = [UIColor redColor];
@@ -280,7 +282,7 @@ bool direction;
     [self._scrollerView setContentOffset:CGPointMake(x, 0) animated:YES];
 }
 
--(void)labelstyle:(UILabel*)label
+-(void)labelstyle1:(UILabel*)label
 {
     label.textColor = [UIColor whiteColor];
     label.backgroundColor = [UIColor clearColor];
@@ -288,23 +290,39 @@ bool direction;
     label.font = [UIFont fontWithName:@"Arial" size:12];
     label.numberOfLines = 1;
 }
+-(void)labelstyle2:(UILabel*)label
+{
+    label.textColor = [UIColor whiteColor];
+    label.backgroundColor = [UIColor clearColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont fontWithName:@"Arial" size:25];
+    label.numberOfLines = 1;
+}
+-(void)labelstyle3:(UILabel*)label
+{
+    
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont fontWithName:@"Arial" size:14];
+    label.numberOfLines = 1;
+    
+}
+
 
 -(void)loadData
 {
-    //头图label设置
+    //头图四个label设置
     self.picture_1.image = [UIImage imageNamed:@"author"];
     self.picture_1.contentMode = UIViewContentModeScaleToFill;
     self.picture_2.image = [UIImage imageNamed:@"shortline"];
     self.picture_2.contentMode = UIViewContentModeScaleToFill;
     self.picture_3.image = [UIImage imageNamed:@"vieweye"];
     self.picture_3.contentMode = UIViewContentModeScaleToFill;
-    self.articleInfo.textColor = [UIColor whiteColor];
-    self.articleInfo.backgroundColor = [UIColor clearColor];
-    self.articleInfo.textAlignment = NSTextAlignmentCenter;
-    self.articleInfo.font = [UIFont fontWithName:@"Arial" size:25];
-    self.articleInfo.numberOfLines = 1;
-    [self labelstyle:self.personInfo];
-    [self labelstyle:self.numberInfo];
+    [self labelstyle2:self.articleInfo];
+    [self labelstyle1:self.personInfo];
+    [self labelstyle1:self.numberInfo];
+    [self labelstyle3:self.infoType];
+    
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
@@ -316,6 +334,8 @@ bool direction;
         self.GetArray = responseObject;
         NSLog(@"%@",self.GetArray[1][0][@"content"][@"picture"]);
         NSLog(@"%lu",(unsigned long)self.GetArray.count);
+        
+        //分双数组操作
         self.clubArray = self.GetArray[0];
         self.infoArray = self.GetArray[1];
         
@@ -325,6 +345,12 @@ bool direction;
            
             UIImageView *imaView = [[UIImageView alloc] initWithFrame:CGRectMake((i*self._scrollerView.bounds.size.width),0, self._scrollerView.bounds.size.width, self._scrollerView.bounds.size.height)];
            
+           //添加tag以及tap手势
+           imaView.tag = i;
+           imaView.userInteractionEnabled = YES;
+           UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+           [imaView addGestureRecognizer:singleTap];
+           
             NSString *URL =[NSString stringWithFormat:@"%@", self.clubArray[i][@"content"][@"picture"]];
             [imaView sd_setImageWithURL:[NSURL URLWithString:URL]];
             [self._scrollerView addSubview:imaView];
@@ -332,15 +358,24 @@ bool direction;
            self.articleInfo.text = [NSString stringWithFormat:@"%@",self.clubArray[0][@"title"]];
            self.personInfo.text = [NSString stringWithFormat:@"%@",self.clubArray[0][@"content"][@"author"]];
            self.numberInfo.text =@"776";
+           self.infoType.text = [NSString stringWithFormat:@"活动"];
         }
         for (int i = 0 ; i < self.infoArray.count; i++)
         {
             
             UIImageView *imaView = [[UIImageView alloc] initWithFrame:CGRectMake(((i+self.clubArray.count)*self._scrollerView.bounds.size.width), 0,self._scrollerView.bounds.size.width,self._scrollerView.bounds.size.height)];
             
+            //添加tag以及tap手势
+            imaView.tag = (i+self.clubArray.count);
+            imaView.userInteractionEnabled = YES;
+            UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+            [imaView addGestureRecognizer:singleTap];
+            
             NSString *URL =[NSString stringWithFormat:@"%@", self.infoArray[i][@"content"][@"picture"]];
             [imaView sd_setImageWithURL:[NSURL URLWithString:URL]];
             [self._scrollerView addSubview:imaView];
+            
+            
         }
 
         
@@ -424,6 +459,8 @@ bool direction;
         self.articleInfo.text = [NSString stringWithFormat:@"%@",self.clubArray[page.currentPage][@"title"]];
         self.personInfo.text = [NSString stringWithFormat:@"%@",self.clubArray[page.currentPage][@"content"][@"author"]];
         self.numberInfo.text =@"776";
+        self.infoType.text = [NSString stringWithFormat:@"活动"];
+        
         
     }
     if(!((page.currentPage) < (self.clubArray.count)))
@@ -431,7 +468,22 @@ bool direction;
         self.articleInfo.text = [NSString stringWithFormat:@"%@",self.infoArray[page.currentPage-self.clubArray.count][@"title"]];
         self.personInfo.text = [NSString stringWithFormat:@"%@",self.infoArray[page.currentPage-self.clubArray.count][@"content"][@"author"]];
         self.numberInfo.text = @"527";
+        self.infoType.text = [NSString stringWithFormat:@"资讯"];
     }
+}
+
+- (void)handleSingleTap:(UIGestureRecognizer *)gestureRecognizer
+{
+    UIView*touchView = gestureRecognizer.view;
+    NSLog(@"%ld",(long)touchView.tag);
+    if(touchView.tag < self.clubArray.count)
+    {
+       //前往self.clubArray[touchView.tag]那个资讯的详情页
+    }else{
+       //前往self.infoArray[touchView.tag-self.clubArray.count]那个资讯的详情页
+        
+    }
+        
 }
 
 @end
