@@ -15,17 +15,28 @@
 #import "BBTLoginViewController.h"
 #import <AFNetworking.h>
 #import "UIImageView+WebCache.h"
+#import "ScheduleViewController.h"
+#import "ScheduleDateManager.h"
 //#import "ScheduleViewController.h"
 //#import "ScheduleDateManager.h"
 static NSString*baseURL = @"http://community.100steps.net/information/activities/head_picture";
 @interface BBTHomeViewController ()<UIScrollViewDelegate>
-@property (nonatomic, strong) UIScrollView *scrollView;
+
+@property (strong, nonatomic) IBOutlet UIScrollView *_scrollerView;
+
+@property (strong, nonatomic) IBOutlet UILabel *articleInfo;
+@property (strong, nonatomic) IBOutlet UILabel *personInfo;
+@property (strong, nonatomic) IBOutlet UILabel *numberInfo;
+@property (strong, nonatomic) IBOutlet UIImageView *picture_1;
+@property (strong, nonatomic) IBOutlet UIImageView *picture_2;
+@property (strong, nonatomic) IBOutlet UIImageView *picture_3;
 @property (nonatomic, strong) UIPageControl *pageControl;
 @property (strong,nonatomic) NSMutableArray *GetArray;
 @property (strong,nonatomic) NSMutableArray *clubArray;
 @property (strong,nonatomic) NSMutableArray *infoArray;
 @property (nonatomic, strong) NSTimer *timer;
-@property (strong, nonatomic) IBOutlet UIScrollView *headFigure;
+
+
 @property (weak, nonatomic) IBOutlet UILabel *CurrnetStationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *NextStationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *DestinationLabel;
@@ -34,8 +45,11 @@ static NSString*baseURL = @"http://community.100steps.net/information/activities
 @property (weak, nonatomic) IBOutlet UIButton *LoginButton;
 @property (weak, nonatomic) IBOutlet UILabel *LoginReminderLabel;
 @property (weak, nonatomic) IBOutlet UIStackView *CampusBusStackView;
+@property (strong, nonatomic) NSArray<ScheduleDateManager *> *courseArr;
+
 - (IBAction)changeDirection:(UIButton *)sender;
 - (IBAction)login:(id)sender;
+
 @end
 
 @implementation BBTHomeViewController
@@ -64,6 +78,9 @@ bool ReceiveUserAuthenticationNotif = false;
     [self reloadData];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     
+    //reload一下课表的data
+    self.courseArr = [[ScheduleDateManager sharedManager] getTheCurrentAndNextCoursesWithAccount:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account];
+    [self.CourseTimetable reloadData];
     
     if (![[BBTCurrentUserManager sharedCurrentUserManager] userIsActive])
     {
@@ -81,18 +98,14 @@ bool ReceiveUserAuthenticationNotif = false;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.view sendSubviewToBack:self.scrollView];
     self.CourseTimetable.dataSource = self;
     self.CourseTimetable.delegate = self;
     [self.CourseTimetable registerNib:[UINib nibWithNibName:@"BBTCourseTableViewCell" bundle:nil] forCellReuseIdentifier:@"CourseTimetableCellReuseIdentifier"];
     [self loadData];
     // 设置图片
     
-#pragma mark -- 跳转到课表的方式应该如下，如果已经有了导航控制器，就不要再新建了
-    //UIStoryboard *board = [UIStoryboard storyboardWithName:@"Schedule" bundle:nil];
-    //ScheduleViewController *schedule = [board instantiateViewControllerWithIdentifier:@"ScheduleVC"];
-    //UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:schedule];
-    //[self presentViewController:navi animated:YES completion:nil];
+    //获取本地课表数据
+    self.courseArr = [[ScheduleDateManager sharedManager] getTheCurrentAndNextCoursesWithAccount:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account];
 }
 
 
@@ -188,20 +201,33 @@ bool direction;
     [self presentViewController:navigationController animated:YES completion:nil];
 }
 
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 2;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPat{
     return tableView.frame.size.height / 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     BBTCourseTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"CourseTimetableCellReuseIdentifier"];
-    cell.ClassNumberLabel.text = @"第3-4节";
+    NSInteger rowCount = indexPath.row;
+    NSInteger courseCount = self.courseArr.count-1 ;
+    if (self.courseArr!=nil && rowCount <= courseCount){
+        ScheduleDateManager *oneCourse = self.courseArr[indexPath.row];
+        cell.ClassNumberLabel.text = [NSString stringWithFormat:@"第%@节",oneCourse.dayTime];
+        cell.TeacherLabel.text = [NSString stringWithFormat:@"任课老师 : %@",oneCourse.teacherName];
+        cell.CourseLabel.text = oneCourse.courseName;
+        cell.ClassroomLabel.text = [NSString stringWithFormat:@"地点 : %@",oneCourse.location];
+    }else{
+        cell.ClassNumberLabel.text = @"";
+        cell.TeacherLabel.text = @"";
+        cell.CourseLabel.text = @"";
+        cell.ClassroomLabel.text = @"";
+    }
     return cell;
 }
+
 /*
 #pragma mark -- 这个方法，是实现更新首页课表部分的回调block
 - (void)loadScheduleData{
@@ -218,33 +244,7 @@ bool direction;
     [[ScheduleDateManager sharedManager] getTheCurrentAndNextCoursesWithAccount:@""];
 }
  */
-- (UIScrollView *)scrollView
-{
-    if (_scrollView == nil) {
-        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 414, 300)];//130
-        _scrollView.backgroundColor = [UIColor blackColor];
-        
-        [self.view addSubview:_scrollView];
-        
-        // 取消弹簧效果
-        _scrollView.bounces = NO;
-        
-        // 取消水平滚动条
-        _scrollView.showsHorizontalScrollIndicator = NO;
-        _scrollView.showsVerticalScrollIndicator = NO;
-        
-        // 要分页
-        _scrollView.pagingEnabled = YES;
-        
-        // contentSize
-        _scrollView.contentSize = CGSizeMake((self.clubArray.count+self.infoArray.count) * _scrollView.bounds.size.width, 0);
-        
-        // 设置代理
-        _scrollView.delegate = self;
-        
-    }
-    return _scrollView;
-}
+
 - (UIPageControl *)pageControl
 {
     if (_pageControl == nil) {
@@ -276,12 +276,35 @@ bool direction;
     NSLog(@"%ld", (long)page.currentPage);
     
     // 根据页数，调整滚动视图中的图片位置 contentOffset
-    CGFloat x = page.currentPage * self.scrollView.bounds.size.width;
-    [self.scrollView setContentOffset:CGPointMake(x, 0) animated:YES];
+    CGFloat x = page.currentPage * self._scrollerView.bounds.size.width;
+    [self._scrollerView setContentOffset:CGPointMake(x, 0) animated:YES];
+}
+
+-(void)labelstyle:(UILabel*)label
+{
+    label.textColor = [UIColor whiteColor];
+    label.backgroundColor = [UIColor clearColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont fontWithName:@"Arial" size:12];
+    label.numberOfLines = 1;
 }
 
 -(void)loadData
 {
+    //头图label设置
+    self.picture_1.image = [UIImage imageNamed:@"author"];
+    self.picture_1.contentMode = UIViewContentModeScaleToFill;
+    self.picture_2.image = [UIImage imageNamed:@"shortline"];
+    self.picture_2.contentMode = UIViewContentModeScaleToFill;
+    self.picture_3.image = [UIImage imageNamed:@"vieweye"];
+    self.picture_3.contentMode = UIViewContentModeScaleToFill;
+    self.articleInfo.textColor = [UIColor whiteColor];
+    self.articleInfo.backgroundColor = [UIColor clearColor];
+    self.articleInfo.textAlignment = NSTextAlignmentCenter;
+    self.articleInfo.font = [UIFont fontWithName:@"Arial" size:25];
+    self.articleInfo.numberOfLines = 1;
+    [self labelstyle:self.personInfo];
+    [self labelstyle:self.numberInfo];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
@@ -295,72 +318,29 @@ bool direction;
         NSLog(@"%lu",(unsigned long)self.GetArray.count);
         self.clubArray = self.GetArray[0];
         self.infoArray = self.GetArray[1];
+        
         for (int i = 0; i < self.clubArray.count; i++)
        {
             //头图
-
-            UIImageView *imaView = [[UIImageView alloc] initWithFrame:CGRectMake((i*self.scrollView.bounds.size.width),0, self.scrollView.bounds.size.width, 210)];
-           NSLog(@"%f",self.scrollView.frame.origin.y);
-            NSString *URL =[NSString stringWithFormat:@"%@", self.GetArray[0][i][@"content"][@"picture"]];
-            [imaView sd_setImageWithURL:[NSURL URLWithString:URL]];
-            NSLog(@"%f",imaView.frame.origin.y);
-            [self.scrollView addSubview:imaView];
-           NSLog(@"%f",imaView.frame.origin.y);
            
-            
-        
-            UIImage *infoImage = [UIImage imageNamed:@"headInfo"];
-            UIImageView *infoView = [[UIImageView alloc] initWithFrame:CGRectMake((i*self.scrollView.bounds.size.width), 210, self.scrollView.bounds.size.width, 90)];
-            infoView.image =infoImage ;
-            [self.scrollView addSubview:infoView];
-            
-            //标题
-            UILabel* mainlabel = [[UILabel alloc]initWithFrame:CGRectMake((50+(i*self.scrollView.bounds.size.width)),240,300,30)];
-            mainlabel.tag = i;
-            mainlabel.text = [NSString stringWithFormat:@"%@",self.GetArray[0][i][@"title"]];
-            mainlabel.textColor = [UIColor whiteColor];
-            mainlabel.backgroundColor = [UIColor clearColor];
-            mainlabel.textAlignment = NSTextAlignmentCenter;
-            mainlabel.font = [UIFont fontWithName:@"Arial" size:23];
-            mainlabel.numberOfLines = 1;
-            [self.view addSubview:mainlabel];
-            
-            
-            //小头图
-            /*UIImage *smallImage = [UIImage imageNamed:@"headInfo"];
-            UIImageView *infoView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 210, self.scrollView.bounds.size.width, 90)];
-            infoView.image =infoImage ;
-            [self.scrollView addSubview:infoView];
-            CGRect Infomaframe = infoView.frame;
-            Infomaframe.origin.x = (i * Infomaframe.size.width / 2);
-            infoView.frame = Infomaframe;
-*/
+            UIImageView *imaView = [[UIImageView alloc] initWithFrame:CGRectMake((i*self._scrollerView.bounds.size.width),0, self._scrollerView.bounds.size.width, self._scrollerView.bounds.size.height)];
+           
+            NSString *URL =[NSString stringWithFormat:@"%@", self.clubArray[i][@"content"][@"picture"]];
+            [imaView sd_setImageWithURL:[NSURL URLWithString:URL]];
+            [self._scrollerView addSubview:imaView];
+           //由于头图的标题等都是在scrollervie监听中，进去加载的第一个scroller页面无法加载，所以在此先行加载（暂时未想到更好的方法） 之后记得优化一下！！
+           self.articleInfo.text = [NSString stringWithFormat:@"%@",self.clubArray[0][@"title"]];
+           self.personInfo.text = [NSString stringWithFormat:@"%@",self.clubArray[0][@"content"][@"author"]];
+           self.numberInfo.text =@"776";
         }
         for (int i = 0 ; i < self.infoArray.count; i++)
         {
             
-            UIImageView *imaView = [[UIImageView alloc] initWithFrame:CGRectMake(((i+self.clubArray.count)*self.scrollView.bounds.size.width), 0,self.scrollView.bounds.size.width, 210)];
+            UIImageView *imaView = [[UIImageView alloc] initWithFrame:CGRectMake(((i+self.clubArray.count)*self._scrollerView.bounds.size.width), 0,self._scrollerView.bounds.size.width,self._scrollerView.bounds.size.height)];
             
-            NSString *URL =[NSString stringWithFormat:@"%@", self.GetArray[1][i][@"content"][@"picture"]];
+            NSString *URL =[NSString stringWithFormat:@"%@", self.infoArray[i][@"content"][@"picture"]];
             [imaView sd_setImageWithURL:[NSURL URLWithString:URL]];
-            [self.scrollView addSubview:imaView];
-            
-            UIImage *infoImage = [UIImage imageNamed:@"headInfo"];
-            UIImageView *infoView = [[UIImageView alloc] initWithFrame:CGRectMake(((i+self.clubArray.count)*self.scrollView.bounds.size.width), 210,self.scrollView.bounds.size.width, 90)];
-            infoView.image =infoImage ;
-            [self.scrollView addSubview:infoView];
-           
-            
-            UILabel* mainlabel = [[UILabel alloc]initWithFrame:CGRectMake((50+((i+self.clubArray.count)*self.scrollView.bounds.size.width)),240,300,30)];
-            mainlabel.tag = i;
-            mainlabel.text = [NSString stringWithFormat:@"%@",self.GetArray[1][i][@"title"]];
-            mainlabel.textColor = [UIColor whiteColor];
-            mainlabel.backgroundColor = [UIColor clearColor];
-            mainlabel.textAlignment = NSTextAlignmentCenter;
-            mainlabel.font = [UIFont fontWithName:@"Arial" size:25];
-            mainlabel.numberOfLines = 1;
-            [self.view addSubview:mainlabel];
-            
+            [self._scrollerView addSubview:imaView];
         }
 
         
@@ -399,6 +379,8 @@ bool direction;
     NSLog(@"%ld", (long)self.pageControl.currentPage);
     // 调用监听方法，让滚动视图滚动
     [self pageChanged:self.pageControl];
+    NSLog(@"%ld",(long)self.pageControl.currentPage);
+    [self ArrangeData:self.pageControl];
     
 }
 
@@ -407,12 +389,13 @@ bool direction;
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     // 停下来的当前页数
-    NSLog(@"%@", NSStringFromCGPoint(scrollView.contentOffset));
+    //NSLog(@"%@", NSStringFromCGPoint(scrollView.contentOffset));
     
     // 计算页数
     int page = scrollView.contentOffset.x / scrollView.bounds.size.width;
     
     self.pageControl.currentPage = page;
+    
 }
 
 /**
@@ -435,17 +418,20 @@ bool direction;
 
 -(void)ArrangeData:(UIPageControl *)page
 {
-    for(int i = 0; i<self.GetArray.count; i++)
+    //NSLog(@"%ld",(long)self.pageControl.currentPage);
+    if((page.currentPage) < (self.clubArray.count))
     {
-        UILabel* mainlabel = [[UILabel alloc]initWithFrame:CGRectMake((50+(page.currentPage * self.scrollView.bounds.size.width)),230,300,30)];
-        mainlabel.tag = page.currentPage;
-        mainlabel.text = [NSString stringWithFormat:@"%@",self.GetArray[0][page.currentPage][@"title"]];
-        mainlabel.textColor = [UIColor whiteColor];
-        mainlabel.backgroundColor = [UIColor clearColor];
-        mainlabel.textAlignment = NSTextAlignmentCenter;
-        mainlabel.font = [UIFont fontWithName:@"Arial" size:25];
-        mainlabel.numberOfLines = 1;
-        [self.view addSubview:mainlabel];
+        self.articleInfo.text = [NSString stringWithFormat:@"%@",self.clubArray[page.currentPage][@"title"]];
+        self.personInfo.text = [NSString stringWithFormat:@"%@",self.clubArray[page.currentPage][@"content"][@"author"]];
+        self.numberInfo.text =@"776";
+        
+    }
+    if(!((page.currentPage) < (self.clubArray.count)))
+    {
+        self.articleInfo.text = [NSString stringWithFormat:@"%@",self.infoArray[page.currentPage-self.clubArray.count][@"title"]];
+        self.personInfo.text = [NSString stringWithFormat:@"%@",self.infoArray[page.currentPage-self.clubArray.count][@"content"][@"author"]];
+        self.numberInfo.text = @"527";
     }
 }
+
 @end

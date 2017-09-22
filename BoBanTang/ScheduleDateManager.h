@@ -39,5 +39,5 @@ typedef void(^ScheduleBlo)(ScheduleDateManager *current, ScheduleDateManager * n
 - (void)updateThePrivateScheduleToServerWithAccount:(NSString *)account;
 - (void)writeToDatabase;
 
-- (void)getTheCurrentAndNextCoursesWithAccount:(NSString *)account;
+- (NSArray *)getTheCurrentAndNextCoursesWithAccount:(NSString *)account;
 @end

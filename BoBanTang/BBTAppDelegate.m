@@ -68,7 +68,9 @@ extern NSString *kActivityPageAvaliable;
         
     }
     else{
-        [[BBTCurrentUserManager sharedCurrentUserManager] currentUserAuthentication];
+        NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
+        [[NSNotificationCenter defaultCenter] postNotificationName:kUserAuthentificationFinishNotifName
+                                                            object:self];
     }
     //Set Mapbox Accesstoken
     [[RMConfiguration sharedInstance] setAccessToken:@"pk.eyJ1IjoicHl0cmFkZSIsImEiOiJjaW53eGJxZDExNnNidTJtM3N4OHZkZG9jIn0.XPkApL2UVxIpndilZMOsdQ"];
