@@ -17,7 +17,7 @@ static NSString * const fetchUserDataBaseURL = @"http://218.192.166.167/api/prot
 static NSString * const insertNewUserBaseURL = @"http://218.192.166.167/api/protype.php?table=users&method=save&data=";
 static NSString * const modifyUserInfoBaseURL = @"http://218.192.166.167/api/protype.php?table=users&method=modify&data=";
 static NSString * const fetchUserProfileBaseURL = @"http://community.100steps.net/current/user/";
-static NSString * const clubLoginBaseURL = @"http://community.100steps.net/current/user/login";
+static NSString * const clubLoginBaseURL = @"http://community.100steps.net/login";
 
 static NSString * const userNameKey = @"userName";
 static NSString * const passWordKey = @"passWord";
@@ -27,6 +27,7 @@ NSString * failUploadNickNameNotifName = @"nickNameFail";
 NSString * didUploadUserLogoURLNotifName = @"logoSucceed";
 NSString * failUploadUserLogoURLNotifName = @"logoFail";
 NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
+NSString * kUserClubLoginFinishNotifName = @"clubLoginFinish";
 
 + (instancetype)sharedCurrentUserManager
 {
@@ -110,15 +111,19 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
 
 - (void)clubLogin{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
     
     NSDictionary *parameters = @{@"login_name" : self.currentUser.account,
                                  @"password" : self.currentUser.password};
     [manager POST:clubLoginBaseURL parameters:parameters progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSLog(@"checkResult: %@", responseObject);
+        self.clubUserIsActive = true;
+        [self postUserClubLoginFinishNotification];
         //[self fetchCurrentUserProfile];
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
+        self.clubUserIsActive = false;
+        [self postUserClubLoginFinishNotification];
     }];
     
     [manager invalidateSessionCancelingTasks:NO];
@@ -173,6 +178,10 @@ NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:kUserAuthentificationFinishNotifName
                                                         object:self];
+}
+
+- (void)postUserClubLoginFinishNotification{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kUserClubLoginFinishNotifName object:self];
 }
 
 - (void)saveCurrentUserInfo

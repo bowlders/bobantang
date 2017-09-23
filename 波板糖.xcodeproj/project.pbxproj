@@ -11,6 +11,7 @@
 		0D4E64851DB3C983007FA049 /* BBTDailyArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395B10CC1C5525CD00772A38 /* BBTDailyArticleViewController.m */; };
 		0D4E64881DB3CD8C007FA049 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4E64871DB3CD8C007FA049 /* SystemConfiguration.framework */; };
 		0DB37AEF1F6C195E00422956 /* BBTProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DB37AEE1F6C195E00422956 /* BBTProfileViewController.m */; };
+		0DB37AFA1F76D4E000422956 /* BBTClubLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DB37AF91F76D4E000422956 /* BBTClubLoginViewController.m */; };
 		0DD26BBB1F682723005DE4E8 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DD26BBA1F682723005DE4E8 /* Home.storyboard */; };
 		0DD26BBD1F68287C005DE4E8 /* Club.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DD26BBC1F68287C005DE4E8 /* Club.storyboard */; };
 		0DD26BC11F6913AD005DE4E8 /* BBTHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD26BC01F6913AD005DE4E8 /* BBTHomeViewController.m */; };
@@ -260,6 +261,8 @@
 		0D4E64871DB3CD8C007FA049 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0DB37AED1F6C195E00422956 /* BBTProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTProfileViewController.h; sourceTree = "<group>"; };
 		0DB37AEE1F6C195E00422956 /* BBTProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTProfileViewController.m; sourceTree = "<group>"; };
+		0DB37AF81F76D4E000422956 /* BBTClubLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTClubLoginViewController.h; sourceTree = "<group>"; };
+		0DB37AF91F76D4E000422956 /* BBTClubLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTClubLoginViewController.m; sourceTree = "<group>"; };
 		0DD26BBA1F682723005DE4E8 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		0DD26BBC1F68287C005DE4E8 /* Club.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Club.storyboard; sourceTree = "<group>"; };
 		0DD26BBF1F6913AD005DE4E8 /* BBTHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTHomeViewController.h; sourceTree = "<group>"; };
@@ -1141,6 +1144,8 @@
 				39DE6D411D36157F002E0A2C /* BBTChangeNickNameViewController.m */,
 				0DB37AED1F6C195E00422956 /* BBTProfileViewController.h */,
 				0DB37AEE1F6C195E00422956 /* BBTProfileViewController.m */,
+				0DB37AF81F76D4E000422956 /* BBTClubLoginViewController.h */,
+				0DB37AF91F76D4E000422956 /* BBTClubLoginViewController.m */,
 			);
 			name = Me;
 			sourceTree = "<group>";
@@ -2098,6 +2103,7 @@
 				39FE91DD1C5DAA0F0041E46F /* BBTCampusBusViewController.m in Sources */,
 				AF32984B1CE3705300F587BF /* BBTDownloadCell.m in Sources */,
 				397445701C0AAD60004B89BA /* BBTCampusInfoTableViewCell.m in Sources */,
+				0DB37AFA1F76D4E000422956 /* BBTClubLoginViewController.m in Sources */,
 				395B10E01C5737AB00772A38 /* BBTDailyArticleTableViewCell.m in Sources */,
 				AF5412B91CC6805D004C0CE8 /* BRSPlaceView.m in Sources */,
 				67A0621A1F71184500AD366A /* SchduleViewController.m in Sources */,
