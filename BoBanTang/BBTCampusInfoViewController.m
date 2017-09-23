@@ -186,7 +186,7 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
                                    type:SSDKContentTypeAuto];
 
     //定制邮件的分享内容
-    [shareParams SSDKSetupMailParamsByText:self.info.article title:self.info.title images:nil attachments:nil recipients:nil ccRecipients:nil bccRecipients:nil type:SSDKContentTypeAuto];
+    [shareParams SSDKSetupMailParamsByText:self.info.content[0] title:self.info.title images:nil attachments:nil recipients:nil ccRecipients:nil bccRecipients:nil type:SSDKContentTypeAuto];
     
     //2、分享（可以弹出我们的分享菜单和编辑界面）
     SSUIShareActionSheetController *sheet =

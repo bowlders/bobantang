@@ -333,7 +333,7 @@ bool direction;
 // 分页控件的监听方法
 - (void)pageChanged:(UIPageControl *)page
 {
-    NSLog(@"%ld", (long)page.currentPage);
+    //NSLog(@"%ld", (long)page.currentPage);
     
     // 根据页数，调整滚动视图中的图片位置 contentOffset
     CGFloat x = page.currentPage * self._scrollerView.bounds.size.width;
@@ -469,10 +469,10 @@ bool direction;
     unsigned long page = (self.pageControl.currentPage + 1) % (self.clubArray.count+self.infoArray.count);
     self.pageControl.currentPage = page;
     
-    NSLog(@"%ld", (long)self.pageControl.currentPage);
+    //NSLog(@"%ld", (long)self.pageControl.currentPage);
     // 调用监听方法，让滚动视图滚动
     [self pageChanged:self.pageControl];
-    NSLog(@"%ld",(long)self.pageControl.currentPage);
+    //NSLog(@"%ld",(long)self.pageControl.currentPage);
     [self ArrangeData:self.pageControl];
     
 }
@@ -498,14 +498,14 @@ bool direction;
  */
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    NSLog(@"%s", __func__);
+    //NSLog(@"%s", __func__);
     // 停止时钟，停止之后就不能再使用，如果要启用时钟，需要重新实例化
     [self.timer invalidate];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    NSLog(@"%s", __func__);
+    //NSLog(@"%s", __func__);
     [self startTimer];
 }
 
