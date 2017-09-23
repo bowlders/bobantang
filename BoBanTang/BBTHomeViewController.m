@@ -17,8 +17,8 @@
 #import "UIImageView+WebCache.h"
 #import "ScheduleViewController.h"
 #import "ScheduleDateManager.h"
-//#import "ScheduleViewController.h"
-//#import "ScheduleDateManager.h"
+#import "BBTScoresTableViewController.h"
+
 static NSString*baseURL = @"http://community.100steps.net/information/activities/head_picture";
 @interface BBTHomeViewController ()<UIScrollViewDelegate>
 
@@ -48,9 +48,15 @@ static NSString*baseURL = @"http://community.100steps.net/information/activities
 @property (weak, nonatomic) IBOutlet UILabel *LoginReminderLabel;
 @property (weak, nonatomic) IBOutlet UIStackView *CampusBusStackView;
 @property (strong, nonatomic) NSArray<ScheduleDateManager *> *courseArr;
+@property (weak, nonatomic) IBOutlet UITapGestureRecognizer *TapToSchedule;
 
 - (IBAction)changeDirection:(UIButton *)sender;
 - (IBAction)login:(id)sender;
+- (IBAction)TapToLostAndFound:(UITapGestureRecognizer *)sender;
+- (IBAction)TapToCampusMap:(UITapGestureRecognizer *)sender;
+- (IBAction)TapToGradeSearch:(UITapGestureRecognizer *)sender;
+- (IBAction)TapToRoomSearch:(UITapGestureRecognizer *)sender;
+
 
 @end
 
@@ -89,10 +95,12 @@ bool ReceiveUserAuthenticationNotif = false;
         self.CourseTimetable.hidden = true;
         self.LoginReminderLabel.hidden = false;
         self.LoginButton.hidden = false;
+        self.TapToSchedule.enabled = NO;
     }else{
         self.CourseTimetable.hidden = false;
         self.LoginReminderLabel.hidden = true;
         self.LoginButton.hidden = true;
+        self.TapToSchedule.enabled = YES;
     }
 
 }
@@ -201,6 +209,56 @@ bool direction;
     BBTLoginViewController *loginViewController = [[BBTLoginViewController alloc] init];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
     [self presentViewController:navigationController animated:YES completion:nil];
+}
+
+- (IBAction)TapToLostAndFound:(UITapGestureRecognizer *)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Tools" bundle:nil];
+    UIViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"LostAndFound"];
+    [self presentViewController:[[UINavigationController alloc]initWithRootViewController:controller] animated:YES completion:nil];
+}
+
+- (IBAction)TapToCampusMap:(UITapGestureRecognizer *)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Tools" bundle:nil];
+    UIViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"BBTMapView"];
+    [self presentViewController:[[UINavigationController alloc]initWithRootViewController:controller] animated:YES completion:nil];
+}
+
+- (IBAction)TapToGradeSearch:(UITapGestureRecognizer *)sender {
+    if (![[BBTCurrentUserManager sharedCurrentUserManager] userIsActive]){
+        UIAlertController *alertController = [[UIAlertController alloc] init];
+        alertController = [UIAlertController alertControllerWithTitle:@"你还没有登录哟" message:@"请先登录" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"去登录"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * action) {
+                                                             BBTLoginViewController *loginViewController = [[BBTLoginViewController alloc] init];
+                                                             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+                                                             [self presentViewController:navigationController animated:YES completion:nil];
+                                                             
+                                                         }];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:nil];
+        
+        [alertController addAction:cancelAction];
+        [alertController addAction:okAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+        return;
+    }
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Tools" bundle:nil];
+    BBTScoresTableViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"BBTScores"];
+    NSDictionary *account =@{@"account":[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account,
+                             @"password":[BBTCurrentUserManager sharedCurrentUserManager].currentUser.password
+                             };
+    controller.userInfo = [[NSMutableDictionary alloc] initWithDictionary:account];
+    [self presentViewController:[[UINavigationController alloc]initWithRootViewController:controller] animated:YES completion:nil];
+}
+
+- (IBAction)TapToRoomSearch:(UITapGestureRecognizer *)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Tools" bundle:nil];
+    UIViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"BBTRoomSearch"];
+    [self presentViewController:[[UINavigationController alloc]initWithRootViewController:controller] animated:YES completion:nil];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

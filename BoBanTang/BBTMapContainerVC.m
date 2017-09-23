@@ -48,6 +48,7 @@ NSString *const k3DMapButtonTitle = @"2.5D";
 @property (weak, nonatomic) BBTMapViewController *mapViewController;
 
 @property (strong, nonatomic)BBTRouteManagerView *routeManagerView;
+- (IBAction)BackToHome:(UIButton *)sender;
 
 @end
 
@@ -341,4 +342,7 @@ NSString *const k3DMapButtonTitle = @"2.5D";
 }
 
 
+- (IBAction)BackToHome:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

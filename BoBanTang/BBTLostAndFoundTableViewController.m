@@ -50,6 +50,7 @@ static NSString *campusCellIdentifier = @"BBTItemCampusTableViewCell";
 @property (strong, nonatomic) BBTItemFilterSettingsViewController   * settingsViewController;
 
 @property (strong, nonatomic) WSCoachMarksView                      * coachMarksView;
+- (IBAction)backToHome:(UIButton *)sender;
 
 
 @end
@@ -373,4 +374,7 @@ extern NSString * kNoMoreItemsNotificationName;
     }
 }
 
+- (IBAction)backToHome:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end
