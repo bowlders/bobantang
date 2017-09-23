@@ -63,8 +63,6 @@ static NSString*baseURL = @"http://community.100steps.net/information/activities
 @implementation BBTHomeViewController
 
 extern NSString * kUserAuthentificationFinishNotifName;
-bool ReceiveCampusBusNotification = false;
-bool ReceiveUserAuthenticationNotif = false;
 
 - (void)viewWillAppear:(BOOL)animated{
     
@@ -94,7 +92,7 @@ bool ReceiveUserAuthenticationNotif = false;
     {
         self.CourseTimetable.hidden = true;
         self.LoginReminderLabel.hidden = false;
-        self.LoginButton.hidden = false;
+        self.LoginButton.hidden = true;
         self.TapToSchedule.enabled = NO;
     }else{
         self.CourseTimetable.hidden = false;
@@ -124,20 +122,14 @@ bool ReceiveUserAuthenticationNotif = false;
     //NSLog(@"Did receive campus bus notification");
     
     //Hide loading hud
-    ReceiveCampusBusNotification = true;
-    if ((ReceiveCampusBusNotification == true)&&(ReceiveUserAuthenticationNotif == true)){
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-    }
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     [self reloadData];
 }
 
 - (void)didReceiveRetriveCampusBusDataFailNotification
 {
     //Hide loading hud
-    ReceiveCampusBusNotification = true;
-    if ((ReceiveCampusBusNotification == true)&&(ReceiveUserAuthenticationNotif == true)){
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-    }
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     [self reloadData];
 }
 
@@ -146,15 +138,11 @@ bool ReceiveUserAuthenticationNotif = false;
     {
         self.CourseTimetable.hidden = true;
         self.LoginReminderLabel.hidden = false;
-        self.LoginButton.hidden = false;
+        self.LoginButton.hidden = true;
     }else{
         self.CourseTimetable.hidden = false;
         self.LoginReminderLabel.hidden = true;
         self.LoginButton.hidden = true;
-    }
-    ReceiveUserAuthenticationNotif = true;
-    if ((ReceiveCampusBusNotification == true)&&(ReceiveUserAuthenticationNotif == true)){
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }
 }
 
@@ -537,6 +525,13 @@ bool direction;
     if(touchView.tag < self.clubArray.count)
     {
        //前往self.clubArray[touchView.tag]那个资讯的详情页
+        [self presentViewController:[[UIViewController alloc] init] animated:true completion:^{
+            UIWebView *webView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+            [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"输入你的网址"]]];
+            UIViewController *viewCro = [[UIViewController alloc] init];
+            [viewCro.view addSubview:webView];
+            [self presentViewController:viewCro animated:YES completion:nil];
+        }];
     }else{
        //前往self.infoArray[touchView.tag-self.clubArray.count]那个资讯的详情页
         
