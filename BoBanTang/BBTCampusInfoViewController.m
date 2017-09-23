@@ -118,9 +118,9 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
     //Create and load request
     if (!self.isActivityPage)
     {
-        NSString *idString = [NSString stringWithFormat:@"%d", self.info.ID];
+        NSString *idString = [NSString stringWithFormat:@"%d", self.info.id];
         NSString *urlString1 = [campusInfoURLFront stringByAppendingString:idString];
-        NSString *urlString = [urlString1 stringByAppendingString:campusInfoURLEnd];
+        NSString *urlString = [NSString stringWithFormat:@"%@",[self.info.content objectForKey:@"article"]];
         NSString *cleanedUrlString = [urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         self.url = [NSURL URLWithString:cleanedUrlString];
     } else {
@@ -186,7 +186,7 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
                                    type:SSDKContentTypeAuto];
 
     //定制邮件的分享内容
-    [shareParams SSDKSetupMailParamsByText:self.info.content[0] title:self.info.title images:nil attachments:nil recipients:nil ccRecipients:nil bccRecipients:nil type:SSDKContentTypeAuto];
+    [shareParams SSDKSetupMailParamsByText:[self.info.content objectForKey:@"article"] title:self.info.title images:nil attachments:nil recipients:nil ccRecipients:nil bccRecipients:nil type:SSDKContentTypeAuto];
     
     //2、分享（可以弹出我们的分享菜单和编辑界面）
     SSUIShareActionSheetController *sheet =
@@ -243,11 +243,11 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
     {
         if (self.collectButton.tag == 0)                                                                        //Current user has not collected this info
         {
-            [[BBTCollectedCampusInfoManager sharedCollectedInfoManager] currentUserCollectInfoWithArticleID:self.info.ID];
+            [[BBTCollectedCampusInfoManager sharedCollectedInfoManager] currentUserCollectInfoWithArticleID:self.info.id];
         }
         else                                                                                                    //Current user has collected this info
         {
-            [[BBTCollectedCampusInfoManager sharedCollectedInfoManager] currentUserCancelCollectInfoWithArticleID:self.info.ID];
+            [[BBTCollectedCampusInfoManager sharedCollectedInfoManager] currentUserCancelCollectInfoWithArticleID:self.info.id];
         }
     }
 }
@@ -264,7 +264,7 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
         self.collectButton.enabled = NO;
         self.collectButton.alpha = 0.9;
         
-        [[BBTCollectedCampusInfoManager sharedCollectedInfoManager] checkIfCurrentUserHasCollectedArticleWithArticleID:self.info.ID];
+        [[BBTCollectedCampusInfoManager sharedCollectedInfoManager] checkIfCurrentUserHasCollectedArticleWithArticleID:self.info.id];
     }
 }
 

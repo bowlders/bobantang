@@ -11,7 +11,7 @@
 #import <AFNetworking.h>
 #import "BBTCampusInfo.h"
 
-static NSString * baseGetCampusInfoUrl = @"http://community.100steps.net/information";  //Base Url used to get data
+static NSString * baseGetCampusInfoUrl = @"http://community.100steps.net/information?type=3";  //Base Url used to get data
 static NSString * baseInsertCampusInfoUrl = @"";                                  //Url used to insert data
 
 NSString * campusInfoNotificationName = @"infoNotification";
@@ -39,7 +39,7 @@ NSString * noNewInfoNotifName = @"noMoreInfo";
     }
     
     int __block noMoreInfoCount = 0;                        //Record whether there are new infos loaded in.
-    int beginningInfo = self.infoCount;                     //Load from this info, or the a in [a, b]; b is always 5, which means one pull-up loads 5 more infos.
+    //int beginningInfo = self.infoCount;                     //Load from this info, or the a in [a, b]; b is always 5, which means one pull-up loads 5 more infos.
     //NSString *appendingURLString = [NSString stringWithFormat:@"[%d,5]}", beginningInfo];
     //NSString *intactURLString = [baseGetCampusInfoUrl stringByAppendingString:appendingURLString];
     //NSString *stringCleanPath = [intactURLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -53,12 +53,13 @@ NSString * noNewInfoNotifName = @"noMoreInfo";
         {
             for (int i = 0;i < [(NSArray *)responseObject[@"data"] count];i++)
             {
-                BBTCampusInfo *newInfo = [[BBTCampusInfo alloc] initWithDictionary:((NSArray *)responseObject)[i] error:nil];
+                BBTCampusInfo *newInfo = [[BBTCampusInfo alloc] initWithDictionary:(NSArray*)responseObject[@"data"][i] error:nil];
+                NSLog(@"%d",newInfo.id);
                 [self.infoArray addObject:newInfo];
                 noMoreInfoCount++;
             }
             
-            self.infoCount += [(NSArray *)responseObject count];
+            self.infoCount += [(NSArray *)responseObject[@"data"] count];
             [self pushCampusInfoNotification];
             
             //No new infos loaded in, push notification. This line of code must be placed after [self pushCampusInfoNotification].
