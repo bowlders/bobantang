@@ -67,9 +67,6 @@ extern NSString *kActivityPageAvaliable;
         [[BBTCurrentUserManager sharedCurrentUserManager] currentUserAuthentication];
         
     }
-    else{
-        [[BBTCurrentUserManager sharedCurrentUserManager] currentUserAuthentication];
-    }
     //Set Mapbox Accesstoken
     [[RMConfiguration sharedInstance] setAccessToken:@"pk.eyJ1IjoicHl0cmFkZSIsImEiOiJjaW53eGJxZDExNnNidTJtM3N4OHZkZG9jIn0.XPkApL2UVxIpndilZMOsdQ"];
     

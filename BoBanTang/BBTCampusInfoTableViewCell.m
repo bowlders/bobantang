@@ -205,10 +205,10 @@
 - (void)setCellContentDictionary:(BBTCampusInfo *)content
 {
     self.titleLabel.text = content.title;
-    self.authorLabel.text = content.author;
-    self.abstractLabel.text = content.summary;
+    self.authorLabel.text = content.content[1];
+    self.abstractLabel.text = content.content[5];
     self.dateLabel.text = content.date;
-    NSURL *imageURL = [NSURL URLWithString:content.picture];
+    NSURL *imageURL = [NSURL URLWithString:content.content[3]];
     [self.thumbImage sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"BoBanTang"]];
 }
 

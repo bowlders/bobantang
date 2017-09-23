@@ -15,17 +15,30 @@
 #import "BBTLoginViewController.h"
 #import <AFNetworking.h>
 #import "UIImageView+WebCache.h"
-//#import "ScheduleViewController.h"
-//#import "ScheduleDateManager.h"
+#import "ScheduleViewController.h"
+#import "ScheduleDateManager.h"
+#import "BBTScoresTableViewController.h"
+
 static NSString*baseURL = @"http://community.100steps.net/information/activities/head_picture";
 @interface BBTHomeViewController ()<UIScrollViewDelegate>
-@property (nonatomic, strong) UIScrollView *scrollView;
+
+@property (strong, nonatomic) IBOutlet UIScrollView *_scrollerView;
+@property (strong, nonatomic) IBOutlet UILabel *infoType;
+@property (strong, nonatomic) IBOutlet UILabel *numberInfo;
+
+@property (strong, nonatomic) IBOutlet UILabel *articleInfo;
+@property (strong, nonatomic) IBOutlet UILabel *personInfo;
+
+@property (strong, nonatomic) IBOutlet UIImageView *picture_1;
+@property (strong, nonatomic) IBOutlet UIImageView *picture_2;
+@property (strong, nonatomic) IBOutlet UIImageView *picture_3;
 @property (nonatomic, strong) UIPageControl *pageControl;
 @property (strong,nonatomic) NSMutableArray *GetArray;
 @property (strong,nonatomic) NSMutableArray *clubArray;
 @property (strong,nonatomic) NSMutableArray *infoArray;
 @property (nonatomic, strong) NSTimer *timer;
-@property (strong, nonatomic) IBOutlet UIScrollView *headFigure;
+
+
 @property (weak, nonatomic) IBOutlet UILabel *CurrnetStationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *NextStationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *DestinationLabel;
@@ -34,15 +47,22 @@ static NSString*baseURL = @"http://community.100steps.net/information/activities
 @property (weak, nonatomic) IBOutlet UIButton *LoginButton;
 @property (weak, nonatomic) IBOutlet UILabel *LoginReminderLabel;
 @property (weak, nonatomic) IBOutlet UIStackView *CampusBusStackView;
+@property (strong, nonatomic) NSArray<ScheduleDateManager *> *courseArr;
+@property (weak, nonatomic) IBOutlet UITapGestureRecognizer *TapToSchedule;
+
 - (IBAction)changeDirection:(UIButton *)sender;
 - (IBAction)login:(id)sender;
+- (IBAction)TapToLostAndFound:(UITapGestureRecognizer *)sender;
+- (IBAction)TapToCampusMap:(UITapGestureRecognizer *)sender;
+- (IBAction)TapToGradeSearch:(UITapGestureRecognizer *)sender;
+- (IBAction)TapToRoomSearch:(UITapGestureRecognizer *)sender;
+
+
 @end
 
 @implementation BBTHomeViewController
 
 extern NSString * kUserAuthentificationFinishNotifName;
-bool ReceiveCampusBusNotification = false;
-bool ReceiveUserAuthenticationNotif = false;
 
 - (void)viewWillAppear:(BOOL)animated{
     
@@ -64,34 +84,36 @@ bool ReceiveUserAuthenticationNotif = false;
     [self reloadData];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     
+    //reload一下课表的data
+    self.courseArr = [[ScheduleDateManager sharedManager] getTheCurrentAndNextCoursesWithAccount:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account];
+    [self.CourseTimetable reloadData];
     
     if (![[BBTCurrentUserManager sharedCurrentUserManager] userIsActive])
     {
         self.CourseTimetable.hidden = true;
         self.LoginReminderLabel.hidden = false;
-        self.LoginButton.hidden = false;
+        self.LoginButton.hidden = true;
+        self.TapToSchedule.enabled = NO;
     }else{
         self.CourseTimetable.hidden = false;
         self.LoginReminderLabel.hidden = true;
         self.LoginButton.hidden = true;
+        self.TapToSchedule.enabled = YES;
     }
 
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view sendSubviewToBack:self.scrollView];
+    
     self.CourseTimetable.dataSource = self;
     self.CourseTimetable.delegate = self;
     [self.CourseTimetable registerNib:[UINib nibWithNibName:@"BBTCourseTableViewCell" bundle:nil] forCellReuseIdentifier:@"CourseTimetableCellReuseIdentifier"];
     [self loadData];
     // 设置图片
     
-#pragma mark -- 跳转到课表的方式应该如下，如果已经有了导航控制器，就不要再新建了
-    //UIStoryboard *board = [UIStoryboard storyboardWithName:@"Schedule" bundle:nil];
-    //ScheduleViewController *schedule = [board instantiateViewControllerWithIdentifier:@"ScheduleVC"];
-    //UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:schedule];
-    //[self presentViewController:navi animated:YES completion:nil];
+    //获取本地课表数据
+    self.courseArr = [[ScheduleDateManager sharedManager] getTheCurrentAndNextCoursesWithAccount:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account];
 }
 
 
@@ -100,20 +122,14 @@ bool ReceiveUserAuthenticationNotif = false;
     //NSLog(@"Did receive campus bus notification");
     
     //Hide loading hud
-    ReceiveCampusBusNotification = true;
-    if ((ReceiveCampusBusNotification == true)&&(ReceiveUserAuthenticationNotif == true)){
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-    }
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     [self reloadData];
 }
 
 - (void)didReceiveRetriveCampusBusDataFailNotification
 {
     //Hide loading hud
-    ReceiveCampusBusNotification = true;
-    if ((ReceiveCampusBusNotification == true)&&(ReceiveUserAuthenticationNotif == true)){
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-    }
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     [self reloadData];
 }
 
@@ -122,15 +138,11 @@ bool ReceiveUserAuthenticationNotif = false;
     {
         self.CourseTimetable.hidden = true;
         self.LoginReminderLabel.hidden = false;
-        self.LoginButton.hidden = false;
+        self.LoginButton.hidden = true;
     }else{
         self.CourseTimetable.hidden = false;
         self.LoginReminderLabel.hidden = true;
         self.LoginButton.hidden = true;
-    }
-    ReceiveUserAuthenticationNotif = true;
-    if ((ReceiveCampusBusNotification == true)&&(ReceiveUserAuthenticationNotif == true)){
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }
 }
 
@@ -187,20 +199,83 @@ bool direction;
     [self presentViewController:navigationController animated:YES completion:nil];
 }
 
+- (IBAction)TapToLostAndFound:(UITapGestureRecognizer *)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Tools" bundle:nil];
+    UIViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"LostAndFound"];
+    [self presentViewController:[[UINavigationController alloc]initWithRootViewController:controller] animated:YES completion:nil];
+}
+
+- (IBAction)TapToCampusMap:(UITapGestureRecognizer *)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Tools" bundle:nil];
+    UIViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"BBTMapView"];
+    [self presentViewController:[[UINavigationController alloc]initWithRootViewController:controller] animated:YES completion:nil];
+}
+
+- (IBAction)TapToGradeSearch:(UITapGestureRecognizer *)sender {
+    if (![[BBTCurrentUserManager sharedCurrentUserManager] userIsActive]){
+        UIAlertController *alertController = [[UIAlertController alloc] init];
+        alertController = [UIAlertController alertControllerWithTitle:@"你还没有登录哟" message:@"请先登录" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"去登录"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * action) {
+                                                             BBTLoginViewController *loginViewController = [[BBTLoginViewController alloc] init];
+                                                             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+                                                             [self presentViewController:navigationController animated:YES completion:nil];
+                                                             
+                                                         }];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:nil];
+        
+        [alertController addAction:cancelAction];
+        [alertController addAction:okAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+        return;
+    }
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Tools" bundle:nil];
+    BBTScoresTableViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"BBTScores"];
+    NSDictionary *account =@{@"account":[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account,
+                             @"password":[BBTCurrentUserManager sharedCurrentUserManager].currentUser.password
+                             };
+    controller.userInfo = [[NSMutableDictionary alloc] initWithDictionary:account];
+    [self presentViewController:[[UINavigationController alloc]initWithRootViewController:controller] animated:YES completion:nil];
+}
+
+- (IBAction)TapToRoomSearch:(UITapGestureRecognizer *)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Tools" bundle:nil];
+    UIViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"BBTRoomSearch"];
+    [self presentViewController:[[UINavigationController alloc]initWithRootViewController:controller] animated:YES completion:nil];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 2;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPat{
     return tableView.frame.size.height / 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     BBTCourseTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"CourseTimetableCellReuseIdentifier"];
-    cell.ClassNumberLabel.text = @"第3-4节";
+    NSInteger rowCount = indexPath.row;
+    NSInteger courseCount = self.courseArr.count-1 ;
+    if (self.courseArr!=nil && rowCount <= courseCount){
+        ScheduleDateManager *oneCourse = self.courseArr[indexPath.row];
+        cell.ClassNumberLabel.text = [NSString stringWithFormat:@"第%@节",oneCourse.dayTime];
+        cell.TeacherLabel.text = [NSString stringWithFormat:@"任课老师 : %@",oneCourse.teacherName];
+        cell.CourseLabel.text = oneCourse.courseName;
+        cell.ClassroomLabel.text = [NSString stringWithFormat:@"地点 : %@",oneCourse.location];
+    }else{
+        cell.ClassNumberLabel.text = @"";
+        cell.TeacherLabel.text = @"";
+        cell.CourseLabel.text = @"";
+        cell.ClassroomLabel.text = @"";
+    }
     return cell;
 }
+
 /*
 #pragma mark -- 这个方法，是实现更新首页课表部分的回调block
 - (void)loadScheduleData{
@@ -217,45 +292,19 @@ bool direction;
     [[ScheduleDateManager sharedManager] getTheCurrentAndNextCoursesWithAccount:@""];
 }
  */
-- (UIScrollView *)scrollView
-{
-    if (_scrollView == nil) {
-        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 20, 414, 300)];//130
-        _scrollView.backgroundColor = [UIColor blackColor];
-        
-        [self.view addSubview:_scrollView];
-        
-        // 取消弹簧效果
-        _scrollView.bounces = NO;
-        
-        // 取消水平滚动条
-        _scrollView.showsHorizontalScrollIndicator = NO;
-        _scrollView.showsVerticalScrollIndicator = NO;
-        
-        // 要分页
-        _scrollView.pagingEnabled = YES;
-        
-        // contentSize
-        _scrollView.contentSize = CGSizeMake(self.GetArray.count * _scrollView.bounds.size.width, 0);
-        
-        // 设置代理
-        _scrollView.delegate = self;
-        
-    }
-    return _scrollView;
-}
+
 - (UIPageControl *)pageControl
 {
     if (_pageControl == nil) {
         // 分页控件
         _pageControl = [[UIPageControl alloc] init];
         // 总页数
-        _pageControl.numberOfPages = self.GetArray.count;
+        _pageControl.numberOfPages =(self.clubArray.count+self.infoArray.count);
         // 控件尺寸
-        CGSize size = [_pageControl sizeForNumberOfPages:self.GetArray.count];
+        CGSize size = [_pageControl sizeForNumberOfPages:(self.clubArray.count+self.infoArray.count)];
         
         _pageControl.bounds = CGRectMake(0, 0, size.width, size.height);
-        _pageControl.center = CGPointMake(350, 200);
+        _pageControl.center = CGPointMake((self._scrollerView.bounds.size.width-size.width-5), self._scrollerView.bounds.size.height-10);
         
         // 设置颜色
         _pageControl.pageIndicatorTintColor = [UIColor redColor];
@@ -272,15 +321,54 @@ bool direction;
 // 分页控件的监听方法
 - (void)pageChanged:(UIPageControl *)page
 {
-    NSLog(@"%ld", (long)page.currentPage);
+    //NSLog(@"%ld", (long)page.currentPage);
     
     // 根据页数，调整滚动视图中的图片位置 contentOffset
-    CGFloat x = page.currentPage * self.scrollView.bounds.size.width;
-    [self.scrollView setContentOffset:CGPointMake(x, 0) animated:YES];
+    CGFloat x = page.currentPage * self._scrollerView.bounds.size.width;
+    [self._scrollerView setContentOffset:CGPointMake(x, 0) animated:YES];
 }
+
+-(void)labelstyle1:(UILabel*)label
+{
+    label.textColor = [UIColor whiteColor];
+    label.backgroundColor = [UIColor clearColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont fontWithName:@"Arial" size:12];
+    label.numberOfLines = 1;
+}
+-(void)labelstyle2:(UILabel*)label
+{
+    label.textColor = [UIColor whiteColor];
+    label.backgroundColor = [UIColor clearColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont fontWithName:@"Arial" size:25];
+    label.numberOfLines = 1;
+}
+-(void)labelstyle3:(UILabel*)label
+{
+    
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont fontWithName:@"Arial" size:14];
+    label.numberOfLines = 1;
+    
+}
+
 
 -(void)loadData
 {
+    //头图四个label设置
+    self.picture_1.image = [UIImage imageNamed:@"author"];
+    self.picture_1.contentMode = UIViewContentModeScaleToFill;
+    self.picture_2.image = [UIImage imageNamed:@"shortline"];
+    self.picture_2.contentMode = UIViewContentModeScaleToFill;
+    self.picture_3.image = [UIImage imageNamed:@"vieweye"];
+    self.picture_3.contentMode = UIViewContentModeScaleToFill;
+    [self labelstyle2:self.articleInfo];
+    [self labelstyle1:self.personInfo];
+    [self labelstyle1:self.numberInfo];
+    [self labelstyle3:self.infoType];
+    
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
@@ -292,84 +380,47 @@ bool direction;
         self.GetArray = responseObject;
         NSLog(@"%@",self.GetArray[1][0][@"content"][@"picture"]);
         NSLog(@"%lu",(unsigned long)self.GetArray.count);
+        
+        //分双数组操作
         self.clubArray = self.GetArray[0];
         self.infoArray = self.GetArray[1];
         
         for (int i = 0; i < self.clubArray.count; i++)
-        {
+       {
             //头图
-            //NSString *imageName = [NSString stringWithFormat:@"img_0%d", i + 1];//%02d
-            //UIImage *image = [UIImage imageNamed:imageName];
-            UIImageView *imaView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.bounds.size.width, 210)];
-            //imaView.image = image;
-            NSString *URL =[NSString stringWithFormat:@"%@", self.GetArray[0][i][@"content"][@"picture"]];
+           
+            UIImageView *imaView = [[UIImageView alloc] initWithFrame:CGRectMake((i*self._scrollerView.bounds.size.width),0, self._scrollerView.bounds.size.width, self._scrollerView.bounds.size.height)];
+           
+           //添加tag以及tap手势
+           imaView.tag = i;
+           imaView.userInteractionEnabled = YES;
+           UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+           [imaView addGestureRecognizer:singleTap];
+           
+            NSString *URL =[NSString stringWithFormat:@"%@", self.clubArray[i][@"content"][@"picture"]];
             [imaView sd_setImageWithURL:[NSURL URLWithString:URL]];
-            [self.scrollView addSubview:imaView];
-            CGRect Imageframe = imaView.frame;
-            Imageframe.origin.x = (i * Imageframe.size.width / 2);
-            imaView.frame = Imageframe;
-            
-            
-            UIImage *infoImage = [UIImage imageNamed:@"headInfo"];
-            UIImageView *infoView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 210, self.scrollView.bounds.size.width, 90)];
-            infoView.image =infoImage ;
-            [self.scrollView addSubview:infoView];
-            CGRect Infomaframe = infoView.frame;
-            Infomaframe.origin.x = (i * Infomaframe.size.width / 2);
-            infoView.frame = Infomaframe;
-            
-            //标题
-            UILabel* mainlabel = [[UILabel alloc]initWithFrame:CGRectMake((50+(i*self.scrollView.bounds.size.width)),230,300,30)];
-            mainlabel.tag = i;
-            mainlabel.text = [NSString stringWithFormat:@"%@",self.GetArray[0][i][@"title"]];
-            mainlabel.textColor = [UIColor whiteColor];
-            mainlabel.backgroundColor = [UIColor clearColor];
-            mainlabel.textAlignment = NSTextAlignmentCenter;
-            mainlabel.font = [UIFont fontWithName:@"Arial" size:25];
-            mainlabel.numberOfLines = 1;
-            [self.view addSubview:mainlabel];
-            
-            
-            //小头图
-            /*UIImage *smallImage = [UIImage imageNamed:@"headInfo"];
-            UIImageView *infoView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 210, self.scrollView.bounds.size.width, 90)];
-            infoView.image =infoImage ;
-            [self.scrollView addSubview:infoView];
-            CGRect Infomaframe = infoView.frame;
-            Infomaframe.origin.x = (i * Infomaframe.size.width / 2);
-            infoView.frame = Infomaframe;
-*/
+            [self._scrollerView addSubview:imaView];
+           //由于头图的标题等都是在scrollervie监听中，进去加载的第一个scroller页面无法加载，所以在此先行加载（暂时未想到更好的方法） 之后记得优化一下！！
+           self.articleInfo.text = [NSString stringWithFormat:@"%@",self.clubArray[0][@"title"]];
+           self.personInfo.text = [NSString stringWithFormat:@"%@",self.clubArray[0][@"content"][@"author"]];
+           self.numberInfo.text =@"776";
+           self.infoType.text = [NSString stringWithFormat:@"活动"];
         }
-        for (int i = 0 ; i < self.clubArray.count; i++)
+        for (int i = 0 ; i < self.infoArray.count; i++)
         {
-            //NSString *imageName = [NSString stringWithFormat:@"img_0%d", i + 1];//%02d
-            //UIImage *image = [UIImage imageNamed:imageName];
-            UIImageView *imaView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,self.scrollView.bounds.size.width, 210)];
-            //imaView.image = image;
-            NSString *URL =[NSString stringWithFormat:@"%@", self.GetArray[1][i][@"content"][@"picture"]];
+            
+            UIImageView *imaView = [[UIImageView alloc] initWithFrame:CGRectMake(((i+self.clubArray.count)*self._scrollerView.bounds.size.width), 0,self._scrollerView.bounds.size.width,self._scrollerView.bounds.size.height)];
+            
+            //添加tag以及tap手势
+            imaView.tag = (i+self.clubArray.count);
+            imaView.userInteractionEnabled = YES;
+            UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+            [imaView addGestureRecognizer:singleTap];
+            
+            NSString *URL =[NSString stringWithFormat:@"%@", self.infoArray[i][@"content"][@"picture"]];
             [imaView sd_setImageWithURL:[NSURL URLWithString:URL]];
-            [self.scrollView addSubview:imaView];
-            CGRect Imageframe = imaView.frame;
-            Imageframe.origin.x = ((i+self.clubArray.count) * Imageframe.size.width / 2);
-            imaView.frame = Imageframe;
+            [self._scrollerView addSubview:imaView];
             
-            UIImage *infoImage = [UIImage imageNamed:@"headInfo"];
-            UIImageView *infoView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 210,self.scrollView.bounds.size.width, 90)];
-            infoView.image =infoImage ;
-            [self.scrollView addSubview:infoView];
-            CGRect Infomaframe = infoView.frame;
-            Infomaframe.origin.x = ((i+self.clubArray.count)* Infomaframe.size.width / 2);
-            infoView.frame = Infomaframe;
-            
-            UILabel* mainlabel = [[UILabel alloc]initWithFrame:CGRectMake((50+((i+self.clubArray.count)*self.scrollView.bounds.size.width)),230,300,30)];
-            mainlabel.tag = i;
-            mainlabel.text = [NSString stringWithFormat:@"%@",self.GetArray[1][i][@"title"]];
-            mainlabel.textColor = [UIColor whiteColor];
-            mainlabel.backgroundColor = [UIColor clearColor];
-            mainlabel.textAlignment = NSTextAlignmentCenter;
-            mainlabel.font = [UIFont fontWithName:@"Arial" size:25];
-            mainlabel.numberOfLines = 1;
-            [self.view addSubview:mainlabel];
             
         }
 
@@ -403,12 +454,14 @@ bool direction;
 {
     // 页号发生变化
     // (当前的页数 + 1) % 总页数
-    unsigned long page = (self.pageControl.currentPage + 1) % self.GetArray.count;
+    unsigned long page = (self.pageControl.currentPage + 1) % (self.clubArray.count+self.infoArray.count);
     self.pageControl.currentPage = page;
     
-    NSLog(@"%ld", (long)self.pageControl.currentPage);
+    //NSLog(@"%ld", (long)self.pageControl.currentPage);
     // 调用监听方法，让滚动视图滚动
     [self pageChanged:self.pageControl];
+    //NSLog(@"%ld",(long)self.pageControl.currentPage);
+    [self ArrangeData:self.pageControl];
     
 }
 
@@ -417,12 +470,13 @@ bool direction;
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     // 停下来的当前页数
-    NSLog(@"%@", NSStringFromCGPoint(scrollView.contentOffset));
+    //NSLog(@"%@", NSStringFromCGPoint(scrollView.contentOffset));
     
     // 计算页数
     int page = scrollView.contentOffset.x / scrollView.bounds.size.width;
     
     self.pageControl.currentPage = page;
+    
 }
 
 /**
@@ -432,30 +486,50 @@ bool direction;
  */
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    NSLog(@"%s", __func__);
+    //NSLog(@"%s", __func__);
     // 停止时钟，停止之后就不能再使用，如果要启用时钟，需要重新实例化
     [self.timer invalidate];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    NSLog(@"%s", __func__);
+    //NSLog(@"%s", __func__);
     [self startTimer];
 }
 
 -(void)ArrangeData:(UIPageControl *)page
 {
-    for(int i = 0; i<self.GetArray.count; i++)
+    //NSLog(@"%ld",(long)self.pageControl.currentPage);
+    if((page.currentPage) < (self.clubArray.count))
     {
-        UILabel* mainlabel = [[UILabel alloc]initWithFrame:CGRectMake((50+(page.currentPage * self.scrollView.bounds.size.width)),230,300,30)];
-        mainlabel.tag = page.currentPage;
-        mainlabel.text = [NSString stringWithFormat:@"%@",self.GetArray[0][page.currentPage][@"title"]];
-        mainlabel.textColor = [UIColor whiteColor];
-        mainlabel.backgroundColor = [UIColor clearColor];
-        mainlabel.textAlignment = NSTextAlignmentCenter;
-        mainlabel.font = [UIFont fontWithName:@"Arial" size:25];
-        mainlabel.numberOfLines = 1;
-        [self.view addSubview:mainlabel];
+        self.articleInfo.text = [NSString stringWithFormat:@"%@",self.clubArray[page.currentPage][@"title"]];
+        self.personInfo.text = [NSString stringWithFormat:@"%@",self.clubArray[page.currentPage][@"content"][@"author"]];
+        self.numberInfo.text =@"776";
+        self.infoType.text = [NSString stringWithFormat:@"活动"];
+        
+        
+    }
+    if(!((page.currentPage) < (self.clubArray.count)))
+    {
+        self.articleInfo.text = [NSString stringWithFormat:@"%@",self.infoArray[page.currentPage-self.clubArray.count][@"title"]];
+        self.personInfo.text = [NSString stringWithFormat:@"%@",self.infoArray[page.currentPage-self.clubArray.count][@"content"][@"author"]];
+        self.numberInfo.text = @"527";
+        self.infoType.text = [NSString stringWithFormat:@"资讯"];
     }
 }
+
+- (void)handleSingleTap:(UIGestureRecognizer *)gestureRecognizer
+{
+    UIView*touchView = gestureRecognizer.view;
+    NSLog(@"%ld",(long)touchView.tag);
+    if(touchView.tag < self.clubArray.count)
+    {
+       //前往self.clubArray[touchView.tag]那个资讯的详情页
+    }else{
+       //前往self.infoArray[touchView.tag-self.clubArray.count]那个资讯的详情页
+        
+    }
+        
+}
+
 @end

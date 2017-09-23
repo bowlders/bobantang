@@ -21,6 +21,7 @@ static NSString *filterCellIdentifier = @"filterCell";
 
 @property (strong, nonatomic) NSNumber *errorType;
 @property (strong, nonatomic) NSArray *scoresArray;
+- (IBAction)BackToHome:(UIButton *)sender;
 
 @end
 
@@ -158,4 +159,7 @@ extern NSString * kFailGetNotificaionName;
     }
 }
 
+- (IBAction)BackToHome:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

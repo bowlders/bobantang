@@ -15,14 +15,26 @@
             <rect key="frame" x="0.0" y="0.0" width="318" height="55"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="318" height="55"/>
+                <rect key="frame" x="0.0" y="0.0" width="318" height="54"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZBF-pQ-vNb">
-                        <rect key="frame" x="30" y="8" width="62" height="24"/>
+                        <rect key="frame" x="30" y="8" width="59" height="24"/>
                         <color key="backgroundColor" red="0.92149084806442261" green="0.92162007093429565" blue="0.92145007848739624" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <attributedString key="attributedText">
-                            <fragment content="第1-2节">
+                            <fragment content="第">
+                                <attributes>
+                                    <color key="NSColor" red="0.45878255367279053" green="0.45885056257247925" blue="0.45876115560531616" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <font key="NSFont" size="17" name="PingFangSC-Semibold"/>
+                                </attributes>
+                            </fragment>
+                            <fragment content="1-2">
+                                <attributes>
+                                    <color key="NSColor" red="0.45878255367279053" green="0.45885056257247925" blue="0.45876115560531616" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <font key="NSFont" size="17" name="Helvetica-Bold"/>
+                                </attributes>
+                            </fragment>
+                            <fragment content="节">
                                 <attributes>
                                     <color key="NSColor" red="0.45878255367279053" green="0.45885056257247925" blue="0.45876115560531616" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <font key="NSFont" size="17" name="PingFangSC-Semibold"/>
@@ -32,7 +44,7 @@
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="10"/>
+                                <integer key="value" value="7"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </label>
@@ -48,10 +60,16 @@
                         <color key="textColor" red="0.39996373653411865" green="0.4000239372253418" blue="0.3999447226524353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="建筑设计基础" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Feb-kv-rdE">
-                        <rect key="frame" x="112" y="8" width="104" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.62745098039215685" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Feb-kv-rdE">
+                        <rect key="frame" x="109" y="8" width="102" height="24"/>
+                        <attributedString key="attributedText">
+                            <fragment content="建筑设计基础">
+                                <attributes>
+                                    <color key="NSColor" red="0.0" green="0.62745098039215685" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <font key="NSFont" size="17" name="PingFangSC-Semibold"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -72,7 +90,7 @@
                 <outlet property="CourseLabel" destination="Feb-kv-rdE" id="elf-MS-Z5Z"/>
                 <outlet property="TeacherLabel" destination="vhh-aF-vjq" id="YPG-Tt-WUi"/>
             </connections>
-            <point key="canvasLocation" x="34" y="138.5"/>
+            <point key="canvasLocation" x="-28" y="170"/>
         </tableViewCell>
     </objects>
 </document>
