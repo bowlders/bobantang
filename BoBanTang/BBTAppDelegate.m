@@ -65,7 +65,7 @@ extern NSString *kActivityPageAvaliable;
         [BBTCurrentUserManager sharedCurrentUserManager].currentUser.password =
         savedPassWord;
         [[BBTCurrentUserManager sharedCurrentUserManager] currentUserAuthentication];
-        
+        [[BBTCurrentUserManager sharedCurrentUserManager] clubLogin];
     }
     //Set Mapbox Accesstoken
     [[RMConfiguration sharedInstance] setAccessToken:@"pk.eyJ1IjoicHl0cmFkZSIsImEiOiJjaW53eGJxZDExNnNidTJtM3N4OHZkZG9jIn0.XPkApL2UVxIpndilZMOsdQ"];

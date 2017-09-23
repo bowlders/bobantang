@@ -7,20 +7,19 @@
 //
 
 #import "BBTClubViewController.h"
-#import <WebKit/WebKit.h>
 #import "BBTCurrentUserManager.h"
-#import "BBTLoginViewController.h"
+#import "BBTClubLoginViewController.h"
 #import "BBTUser.h"
+#import <MBProgressHUD.h>
 
 @interface BBTClubViewController ()
-@property (weak, nonatomic) WKWebView *ClubWebView;
 
 @end
 
 @implementation BBTClubViewController
 
 - (void)viewWillAppear:(BOOL)animated{
-    if (![[BBTCurrentUserManager sharedCurrentUserManager] userIsActive])
+    if (![[BBTCurrentUserManager sharedCurrentUserManager] clubUserIsActive])
     {
         UIAlertController *alertController = [[UIAlertController alloc] init];
         alertController = [UIAlertController
@@ -32,7 +31,7 @@
                                  style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction * action)
          {
-             BBTLoginViewController *loginViewController = [[BBTLoginViewController alloc] init];
+             BBTClubLoginViewController *loginViewController = [[BBTClubLoginViewController alloc] init];
              UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
              [self presentViewController:navigationController animated:YES completion:nil];
              
@@ -62,11 +61,40 @@
     CGFloat height = self.view.frame.size.height - 20;
 
     WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectMake(0,20,width,height)];
+    webView.navigationDelegate = self;
     BBTUser *user = [BBTCurrentUserManager sharedCurrentUserManager].currentUser;
     NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://community.100steps.net/#/login/%@/%@",user.account, user.password]];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     [webView loadRequest:request];
-    self.ClubWebView = webView;
+    [self.view addSubview:webView];
+
+}
+
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+}
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error{
+    
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    //Show HUD
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    
+    //Set the annular determinate mode to show task progress.
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"加载失败";
+    
+    //Move to center.
+    hud.xOffset = 0.0f;
+    hud.yOffset = 0.0f;
+    
+    //Hide after 2 seconds.
+    [hud hide:YES afterDelay:2.0f];
 
 }
 

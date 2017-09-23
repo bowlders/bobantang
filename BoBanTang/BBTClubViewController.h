@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
-@interface BBTClubViewController : UIViewController
+@interface BBTClubViewController : UIViewController<WKNavigationDelegate>
 
 @end
