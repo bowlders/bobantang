@@ -118,19 +118,18 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
     //Create and load request
     if (!self.isActivityPage)
     {
-        NSString *idString = [NSString stringWithFormat:@"%d", self.info.id];
-        NSString *urlString1 = [campusInfoURLFront stringByAppendingString:idString];
+        //NSString *idString = [NSString stringWithFormat:@"%d", self.info.id];
+        //NSString *urlString1 = [campusInfoURLFront stringByAppendingString:idString];
         [self.webView loadHTMLString:[self.info.content objectForKey:@"article"] baseURL:nil];
         /*NSString *urlString = [NSString stringWithFormat:@"%@",[self.info.content objectForKey:@"article"]];
         NSLog(@"%@",urlString);
         NSString *cleanedUrlString = [urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        self.url = [NSURL URLWithString:cleanedUrlString];
+        self.url = [NSURL URLWithString:cleanedUrlString];*/
     } else {
         self.url = [NSURL URLWithString:self.activityPageUrl];
-    }*/}
-    
-    //NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
-    //[self.webView loadRequest:request];
+        NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
+        [self.webView loadRequest:request];
+    }
 }
 
 - (void)addObserver
