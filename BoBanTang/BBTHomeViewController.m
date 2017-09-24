@@ -20,7 +20,7 @@
 #import "BBTScoresTableViewController.h"
 
 static NSString*baseURL = @"http://community.100steps.net/information/activities/head_picture";
-
+static NSString * getclub = @"http://community.100steps.net/activities";
 static NSString*getinfo = @"http://community.100steps.net/information?type=3";
 @interface BBTHomeViewController ()<UIScrollViewDelegate>
 
@@ -373,7 +373,37 @@ bool direction;
     [self labelstyle1:self.numberInfo];
     [self labelstyle3:self.infoType];
     
+    AFHTTPSessionManager *manager_2 = [AFHTTPSessionManager manager];
+    [manager_2 GET:getclub parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    }success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        self.club_all = responseObject;
+        
+        //NSLog(@"%@",self.club_all);
+        //NSLog(@"%@",self.club_all[@"data"][@"introduction"]);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull   error) {
+        
+        NSLog(@"%@",error);
+        
+    }];
+
     
+    AFHTTPSessionManager *manager_1 = [AFHTTPSessionManager manager];
+    [manager_1 GET:getinfo parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    }success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        self.info_all = responseObject;
+        //NSLog(@"%@",self.info_all);
+        NSLog(@"%@",[self.info_all[@"data"][0][@"content"] objectForKey:@"article"]);
+        //NSLog(@"%@",self.info_all[@"data"][0][@"id"]);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull   error) {
+        
+        NSLog(@"%@",error);
+    }];
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
@@ -529,34 +559,30 @@ bool direction;
     if(touchView.tag < self.clubArray.count)
     {
         //前往self.clubArray[touchView.tag]那个资讯的详情页
-        NSString *baseNum = [NSString stringWithFormat:@"%@",[self.clubArray[touchView.tag][@"content"] objectForKey:@"article_id"]];
-        AFHTTPSessionManager *manager_2 = [AFHTTPSessionManager manager];
+        int infoNum = 0;
+        int intString = [[self.clubArray[touchView.tag][@"content"] objectForKey:@"article_id"] intValue];
+        for(int i = 0 ; i <self.clubArray.count ;i++)
+        {
+            NSLog(@"%@",[self.club_all[@"data"][i][@"content"] objectForKey:@"article"]);
+            int intString_all =[self.club_all[@"data"][i][@"id"] intValue];
+            if(intString_all == intString)
+            {
+                infoNum = i;
+            }
+        }
+
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 50, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+        [webView loadHTMLString:self.club_all[@"data"][infoNum][@"introduction"] baseURL:nil];
+        UIView * littleview = [[UIView alloc] initWithFrame:CGRectMake(0, 0,  [UIScreen mainScreen].bounds.size.width, 50)];
+        littleview.backgroundColor = [UIColor colorWithRed:80.0f/255.0f green:234.0f/255.0f blue:255.0f/255.0f alpha:1.0];
         
-        NSString * getclub = [NSString stringWithFormat:@"http://community.100steps.net/activities/%@",baseNum];
-        
-        
-        [manager_2 GET:getclub parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-            
-        }success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            
-            self.club_all = responseObject;
-            
-            //NSLog(@"%@",self.club_all);
-            //NSLog(@"%@",self.club_all[@"data"][@"introduction"]);
-            
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull   error) {
-            
-            NSLog(@"%@",error);
-            
-        }];
-        
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        [webView loadHTMLString:self.club_all[@"introduction"] baseURL:nil];
         UIViewController* InfoView = [[UIViewController alloc]init];
         [InfoView.view addSubview:webView];
+        [InfoView.view addSubview:littleview];
         UIButton* backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 20, 40, 20)];
         [backButton setTitle:@"返回" forState:UIControlStateNormal];
         backButton.titleLabel.font  = [UIFont systemFontOfSize: 15];
+        
         [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [InfoView.view addSubview:backButton];
         
@@ -574,21 +600,6 @@ bool direction;
         
     }else{
         
-        AFHTTPSessionManager *manager_1 = [AFHTTPSessionManager manager];
-        [manager_1 GET:getinfo parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-            
-        }success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            
-            self.info_all = responseObject;
-            //NSLog(@"%@",self.info_all);
-            NSLog(@"%@",[self.info_all[@"data"][0][@"content"] objectForKey:@"article"]);
-            //NSLog(@"%@",self.info_all[@"data"][0][@"id"]);
-            
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull   error) {
-            
-            NSLog(@"%@",error);
-        }];
-
        //前往self.infoArray[touchView.tag-self.clubArray.count]那个资讯的详情页
         int infoNum = 0;
         int intString = [[self.infoArray[touchView.tag-self.clubArray.count][@"content"] objectForKey:@"article_id"] intValue];
@@ -601,11 +612,15 @@ bool direction;
                 infoNum = i;
             }
         }
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 50, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
         
         [webView loadHTMLString:self.info_all[@"data"][infoNum][@"content"][@"article"] baseURL:nil];
+        UIView * littleview = [[UIView alloc] initWithFrame:CGRectMake(0, 0,  [UIScreen mainScreen].bounds.size.width, 50)];
+        littleview.backgroundColor = [UIColor colorWithRed:80.0f/255.0f green:234.0f/255.0f blue:255.0f/255.0f alpha:1.0];
+        
         UIViewController* InfoView = [[UIViewController alloc]init];
         [InfoView.view addSubview:webView];
+        [InfoView.view addSubview:littleview];
         UIButton* backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 20, 40, 20)];
         [backButton setTitle:@"返回" forState:UIControlStateNormal];
         backButton.titleLabel.font  = [UIFont systemFontOfSize: 15];
