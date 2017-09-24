@@ -20,6 +20,8 @@
 #import "BBTScoresTableViewController.h"
 
 static NSString*baseURL = @"http://community.100steps.net/information/activities/head_picture";
+
+static NSString*getinfo = @"http://community.100steps.net/information?type=3";
 @interface BBTHomeViewController ()<UIScrollViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIScrollView *_scrollerView;
@@ -36,6 +38,8 @@ static NSString*baseURL = @"http://community.100steps.net/information/activities
 @property (strong,nonatomic) NSMutableArray *GetArray;
 @property (strong,nonatomic) NSMutableArray *clubArray;
 @property (strong,nonatomic) NSMutableArray *infoArray;
+@property (strong,nonatomic) NSMutableDictionary *club_all;
+@property (strong,nonatomic) NSMutableDictionary *info_all;
 @property (nonatomic, strong) NSTimer *timer;
 
 
@@ -370,6 +374,7 @@ bool direction;
     [self labelstyle3:self.infoType];
     
     
+
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     [manager GET:baseURL parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
@@ -378,11 +383,13 @@ bool direction;
         
         NSLog(@"%@",responseObject);
         self.GetArray = responseObject;
-        NSLog(@"%@",self.GetArray[1][0][@"content"][@"picture"]);
-        NSLog(@"%lu",(unsigned long)self.GetArray.count);
+        //NSLog(@"%@",self.GetArray[1][0][@"content"][@"picture"]);
+        //NSLog(@"%lu",(unsigned long)self.GetArray.count);
+        //NSLog(@"%@",self.GetArray[0][0][@"id"]);
         
         //分双数组操作
         self.clubArray = self.GetArray[0];
+        NSLog(@"%@",self.clubArray[0][@"id"]);
         self.infoArray = self.GetArray[1];
         
         for (int i = 0; i < self.clubArray.count; i++)
@@ -423,9 +430,6 @@ bool direction;
             
             
         }
-
-        
-        
         //    NSLog(@"%@", self.scrollView.subviews)
         
         // 分页初始页数为0
@@ -433,7 +437,6 @@ bool direction;
         
         // 启动时钟
         [self startTimer];
-        
     }
      
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull   error) {
@@ -443,6 +446,7 @@ bool direction;
          }];
     
 }
+
 - (void)startTimer
 {
     self.timer = [NSTimer timerWithTimeInterval:2.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
@@ -524,19 +528,106 @@ bool direction;
     NSLog(@"%ld",(long)touchView.tag);
     if(touchView.tag < self.clubArray.count)
     {
-       //前往self.clubArray[touchView.tag]那个资讯的详情页
-        [self presentViewController:[[UIViewController alloc] init] animated:true completion:^{
-            UIWebView *webView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-            [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"输入你的网址"]]];
-            UIViewController *viewCro = [[UIViewController alloc] init];
-            [viewCro.view addSubview:webView];
-            [self presentViewController:viewCro animated:YES completion:nil];
+        //前往self.clubArray[touchView.tag]那个资讯的详情页
+        NSString *baseNum = [NSString stringWithFormat:@"%@",[self.clubArray[touchView.tag][@"content"] objectForKey:@"article_id"]];
+        AFHTTPSessionManager *manager_2 = [AFHTTPSessionManager manager];
+        
+        NSString * getclub = [NSString stringWithFormat:@"http://community.100steps.net/activities/%@",baseNum];
+        
+        
+        [manager_2 GET:getclub parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+            
+        }success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            
+            self.club_all = responseObject;
+            
+            //NSLog(@"%@",self.club_all);
+            //NSLog(@"%@",self.club_all[@"data"][@"introduction"]);
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull   error) {
+            
+            NSLog(@"%@",error);
+            
         }];
+        
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        [webView loadHTMLString:self.club_all[@"introduction"] baseURL:nil];
+        UIViewController* InfoView = [[UIViewController alloc]init];
+        [InfoView.view addSubview:webView];
+        UIButton* backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 20, 40, 20)];
+        [backButton setTitle:@"返回" forState:UIControlStateNormal];
+        backButton.titleLabel.font  = [UIFont systemFontOfSize: 15];
+        [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [InfoView.view addSubview:backButton];
+        
+        [backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        UIViewController *topRootViewController = [[UIApplication sharedApplication] keyWindow].rootViewController;
+            // 在这里加一个这个样式的循环
+        while (topRootViewController.presentedViewController)
+        { // 这里固定写法
+            topRootViewController = topRootViewController.presentedViewController; }
+            // 然后再进行present操作
+        [topRootViewController presentViewController:InfoView animated:YES completion:nil];
+        
+        
+          
+        
     }else{
+        
+        AFHTTPSessionManager *manager_1 = [AFHTTPSessionManager manager];
+        [manager_1 GET:getinfo parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+            
+        }success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            
+            self.info_all = responseObject;
+            //NSLog(@"%@",self.info_all);
+            NSLog(@"%@",[self.info_all[@"data"][0][@"content"] objectForKey:@"article"]);
+            //NSLog(@"%@",self.info_all[@"data"][0][@"id"]);
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull   error) {
+            
+            NSLog(@"%@",error);
+        }];
+
        //前往self.infoArray[touchView.tag-self.clubArray.count]那个资讯的详情页
+        int infoNum = 0;
+        int intString = [[self.infoArray[touchView.tag-self.clubArray.count][@"content"] objectForKey:@"article_id"] intValue];
+        for(int i = 0 ; i <self.infoArray.count ;i++)
+        {
+            NSLog(@"%@",[self.info_all[@"data"][i][@"content"] objectForKey:@"article"]);
+            int intString_all =[self.info_all[@"data"][i][@"id"] intValue];
+            if(intString_all == intString)
+            {
+                infoNum = i;
+            }
+        }
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        
+        [webView loadHTMLString:self.info_all[@"data"][infoNum][@"content"][@"article"] baseURL:nil];
+        UIViewController* InfoView = [[UIViewController alloc]init];
+        [InfoView.view addSubview:webView];
+        UIButton* backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 20, 40, 20)];
+        [backButton setTitle:@"返回" forState:UIControlStateNormal];
+        backButton.titleLabel.font  = [UIFont systemFontOfSize: 15];
+        [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [InfoView.view addSubview:backButton];
+        
+        [backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        UIViewController *topRootViewController = [[UIApplication sharedApplication] keyWindow].rootViewController;
+        // 在这里加一个这个样式的循环
+        while (topRootViewController.presentedViewController)
+        { // 这里固定写法
+            topRootViewController = topRootViewController.presentedViewController; }
+        // 然后再进行present操作
+        [topRootViewController presentViewController:InfoView animated:YES completion:nil];
         
     }
         
 }
-
+- (void)backButtonPressed:(id)sender{
+    
+[self dismissViewControllerAnimated:true completion:^{
+        //返回后执行的事件；
+}];
+}
 @end

@@ -51,9 +51,12 @@ NSString * noNewInfoNotifName = @"noMoreInfo";
         NSLog(@"JSON: %@", responseObject);
         if (responseObject)
         {
+
+            
             for (int i = 0;i < [(NSArray *)responseObject[@"data"] count];i++)
             {
                 BBTCampusInfo *newInfo = [[BBTCampusInfo alloc] initWithDictionary:(NSArray*)responseObject[@"data"][i] error:nil];
+                NSLog(@"JSON: %@", [newInfo.content objectForKey:@"article"]);
                 NSLog(@"%d",newInfo.id);
                 [self.infoArray addObject:newInfo];
                 noMoreInfoCount++;
