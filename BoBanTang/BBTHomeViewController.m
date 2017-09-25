@@ -18,6 +18,7 @@
 #import "ScheduleViewController.h"
 #import "ScheduleDateManager.h"
 #import "BBTScoresTableViewController.h"
+#import "UIColor+BBTColor.h"
 
 static NSString*baseURL = @"http://community.100steps.net/information/activities/head_picture";
 
@@ -311,8 +312,8 @@ bool direction;
         _pageControl.center = CGPointMake((self._scrollerView.bounds.size.width-size.width-5), self._scrollerView.bounds.size.height-10);
         
         // 设置颜色
-        _pageControl.pageIndicatorTintColor = [UIColor redColor];
-        _pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
+        _pageControl.pageIndicatorTintColor = [UIColor BBTLightGray];
+        _pageControl.currentPageIndicatorTintColor = [UIColor BBTAppGlobalBlue];
         
         [self.view addSubview:_pageControl];
         
