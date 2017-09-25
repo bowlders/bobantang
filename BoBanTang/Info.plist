@@ -58,7 +58,11 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
+<<<<<<< HEAD
 	<string>926</string>
+=======
+	<string>915</string>
+>>>>>>> 6dcde24e1e931c16ed76a4ca686d74161d9a2dbb
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationQueriesSchemes</key>
