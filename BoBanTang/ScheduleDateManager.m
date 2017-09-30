@@ -142,6 +142,12 @@ static ScheduleDateManager *manager;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/javascript",@"text/plain",@"text/html",nil];
     [manager POST:targetURL parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        //防止服务器崩掉时，把本地数据给清空
+        NSString *errorString = [responseObject valueForKey:@"error"];
+        if (errorString != nil) {
+            return;
+        }
+        
         NSArray *courses2 = [[responseObject valueForKey:@"timetable"] valueForKey:@"content"];
         NSLog(@"%@",responseObject);
         self.mutCourseArray = [NSMutableArray arrayWithCapacity:10];

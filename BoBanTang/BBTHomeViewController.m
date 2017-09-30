@@ -93,7 +93,7 @@ extern NSString * kUserAuthentificationFinishNotifName;
     self.courseArr = [[ScheduleDateManager sharedManager] getTheCurrentAndNextCoursesWithAccount:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account];
     [self.CourseTimetable reloadData];
     
-    if (![[BBTCurrentUserManager sharedCurrentUserManager] userIsActive])
+    if ([[BBTCurrentUserManager sharedCurrentUserManager] userIsActive])
     {
         self.CourseTimetable.hidden = true;
         self.LoginReminderLabel.hidden = false;
