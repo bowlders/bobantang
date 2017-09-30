@@ -56,7 +56,21 @@
 - (void)completeBtnDidClick:(UIButton *)sender{
     if (self.manager.mutCourseArray != nil){
         if ([ScheduleDateManager sharedManager].mutCourseArray != nil){
-            NSArray *selectWrong = [self.manager.mutCourseArray filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT (SELF in %@)",[ScheduleDateManager sharedManager].mutCourseArray]];
+            NSMutableArray *selectWrong = [NSMutableArray array];
+            bool isInArray = NO;
+            for (ScheduleDateManager *oneManger in self.manager.mutCourseArray) {
+                for (ScheduleDateManager *originManager in [ScheduleDateManager sharedManager].mutCourseArray){
+                    if ([originManager.courseName isEqual:oneManger.courseName] && [originManager.teacherName isEqualToString:oneManger.teacherName] && [originManager.dayTime isEqualToString:oneManger.dayTime] && [originManager.day isEqualToString:oneManger.day] && [originManager.week isEqualToString:oneManger.week]){
+                        isInArray = YES;
+                        break;
+                    }
+                }
+                if (!isInArray){
+                    [selectWrong addObject:oneManger];
+                }else{
+                    isInArray = NO;
+                }
+            }
             [[ScheduleDateManager sharedManager].mutCourseArray addObjectsFromArray:selectWrong];
         }else{
             [ScheduleDateManager sharedManager].mutCourseArray = self.manager.mutCourseArray;

@@ -370,7 +370,7 @@ static ScheduleDateManager *manager;
         NSInteger returnCourseCount = 0;
         for (ScheduleDateManager *mana in currentDayCourses) {
             NSArray<NSString *> *beginAndEnd = [mana.dayTime componentsSeparatedByString:@"-"];
-            if (beginAndEnd[1].integerValue >= num){
+            if (num!=0 && beginAndEnd[1].integerValue >= num){
                 [tmpArr2 addObject:mana];
                 returnCourseCount++;
                 if ([currentDayCourses indexOfObject:mana] != currentDayCourses.count-1){
