@@ -111,7 +111,7 @@
     
     [self loadTopTitle];
     
-    //获取当前周
+    //先从本地获取当前周,没有本地周数信息的话就默认设置为周一
     NSString *path = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)lastObject]stringByAppendingPathComponent:@"week.plist"];
     NSDictionary *dic2 = [NSDictionary dictionaryWithContentsOfFile:path];
     if (dic2[@"current"]){
@@ -128,6 +128,9 @@
     }
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(dealWithRawRecommendScheduleData:) name:@"ThegetScheduleGet" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(dealWithRawRecommendScheduleData:) name:@"ThegetScheduleFailed" object:nil];
+    
+    //获取服务器上的当前周数，同时，不论失败成功，都会去获取一次服务器上的个人课表,但事件流为：先完成周数的获取，然后再去获取更新课表，最后发送通知
+    //这样做的理由是，一、课表展示对周数有依赖。二、为了解决两次请求的等待时间过长，所以先进行本地周数、本地课表的展示，最后获取数据后再刷新，从而给一个较好的用户体验
     [self.manager fetchCurrentWeek];
 }
 
@@ -258,6 +261,7 @@
 }
 
 - (void)updateNow{
+    //更新的逻辑为，如果已经有了上层的按钮，那么就一次性清除全部，再重新添加
     if (_topBtnArr != nil){
         for (ScheduleButton *button in _topBtnArr) {
             [button removeFromSuperview];

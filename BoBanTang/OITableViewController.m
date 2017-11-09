@@ -58,6 +58,7 @@
         if ([ScheduleDateManager sharedManager].mutCourseArray != nil){
             NSMutableArray *selectWrong = [NSMutableArray array];
             bool isInArray = NO;
+            //教务网导课的时候对本地课表进行一一检索，如果发现本地课表已经有这个课了，那么就不进行导入
             for (ScheduleDateManager *oneManger in self.manager.mutCourseArray) {
                 for (ScheduleDateManager *originManager in [ScheduleDateManager sharedManager].mutCourseArray){
                     if ([originManager.courseName isEqual:oneManger.courseName] && [originManager.teacherName isEqualToString:oneManger.teacherName] && [originManager.dayTime isEqualToString:oneManger.dayTime] && [originManager.day isEqualToString:oneManger.day] && [originManager.week isEqualToString:oneManger.week]){
@@ -140,6 +141,5 @@
     [self.manager.mutCourseArray removeObjectAtIndex:indexPath.row];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     [self.tableView endUpdates];
-    
 }
 @end

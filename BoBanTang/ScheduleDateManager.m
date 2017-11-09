@@ -77,6 +77,8 @@ static ScheduleDateManager *manager;
         }
     }else{
         NSLog(@"从数据库中取出课表时出错!");
+        //要是第一次打开没有本地表，就新创建一个出来
+        [self createLocalTable];
         sqlite3_finalize(stmt);
         return NO;
     }
@@ -109,8 +111,8 @@ static ScheduleDateManager *manager;
     NSString *string = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     dic = @{
             @"method":@"set",
-            @"password":self.password,
-            @"account":account,
+            @"password":@"",//self.password,
+            @"account":@"",//account,
             @"timetable":string
             };
     NSString *targetURL = @"http://babel.100steps.net/timetable/";
@@ -134,7 +136,9 @@ static ScheduleDateManager *manager;
     }else{
         dic = @{
                 @"method":type,
-                @"account":account
+#pragma mark -- 账号修改
+                //账号修改
+                @"account":@""
                 };
     }
     
@@ -145,9 +149,10 @@ static ScheduleDateManager *manager;
         //防止服务器崩掉时，把本地数据给清空
         NSString *errorString = [responseObject valueForKey:@"error"];
         if (errorString != nil) {
+            //发送失败通知
+            [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithFormat:@"The%@ScheduleFailed",type] object:nil];
             return;
         }
-        
         NSArray *courses2 = [[responseObject valueForKey:@"timetable"] valueForKey:@"content"];
         NSLog(@"%@",responseObject);
         self.mutCourseArray = [NSMutableArray arrayWithCapacity:10];
@@ -233,7 +238,8 @@ static ScheduleDateManager *manager;
         [self createLocalTable];
         [self insertTable];
     }else if ([noti isEqualToString:@"ThegetScheduleFailed"]){
-       
+        //如果获取失败了就只建立一个空表
+        [self createLocalTable];
     }else if ([noti isEqualToString:@"ThefindTJScheduleGet"]){
         [self dropTablewithTableName:@"schedule"];
         [self createLocalTable];
@@ -355,11 +361,14 @@ static ScheduleDateManager *manager;
         }
         NSArray<ScheduleDateManager *> *CurrentWeekCourses = [self isInCurrentWeek];
         NSMutableArray<ScheduleDateManager *> *currentDayCourses = [NSMutableArray array];
+        
+        //首先根据周数进行一次课表筛选，如星期一，就只留下星期一的课表
         for (ScheduleDateManager *mana in CurrentWeekCourses){
             if ([mana.day isEqual:self.whichDay]){
                 [currentDayCourses addObject:mana];
             }
         }
+        
         [currentDayCourses sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
             ScheduleDateManager *manager1 = obj1;
             ScheduleDateManager *manager2 = obj2;
