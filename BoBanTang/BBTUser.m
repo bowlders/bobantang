@@ -13,19 +13,18 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary
 {
-    self.ID = (NSInteger)dictionary[@"ID"];
+    self.ID = (NSNumber *)dictionary[@"id"];
     self.account = (NSString *)dictionary[@"account"];
-    self.userName = (NSString *)dictionary[@"userName"];
-    self.sex = (NSInteger)dictionary[@"sex"];
-    self.college = (NSString *)dictionary[@"college"];
-    self.className = (NSString *)dictionary[@"className"];
-    self.password = (NSString *)dictionary[@"password"];
-    self.userLogo = (NSString *)dictionary[@"userLogo"];
-    self.nickName = (NSString *)dictionary[@"nickName"];
-    self.qq = (NSString *)dictionary[@"qq"];
-    self.phone = (NSString *)dictionary[@"phone"];
+    self.nick = (NSString *)dictionary[@"nick"];
+    self.name = (NSString *)dictionary[@"name"];
+    self.sex = (NSNumber *)dictionary[@"sex"];
     self.grade = (NSString *)dictionary[@"grade"];
-    
+    self.college = (NSString *)dictionary[@"college"];
+    self.phone = (NSString *)dictionary[@"phone"];
+    self.qq = (NSString *)dictionary[@"qq"];
+    self.password = (NSString *)dictionary[@"password"];
+    self.dormitory = (NSString *)dictionary[@"dormitory"];
+    self.avatar = dictionary[@"avatar"];
     return self;
 }
 

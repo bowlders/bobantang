@@ -41,7 +41,12 @@ extern NSString * kUserAuthentificationFinishNotifName;
 {
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView.scrollEnabled = NO;
-
+    
+    //如果appSwitchStatus键不存在，则说明用户第一次使用，那么就默认记录账号密码
+    if([JNKeychain loadValueForKey:@"appSwitchStatus"]==nil){
+        [JNKeychain saveValue:@1 forKey:@"appSwitchStatus"];
+    }
+    
     self.logoImageView = ({
         UIImageView *imageView = [UIImageView new];
         imageView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -193,7 +198,6 @@ extern NSString * kUserAuthentificationFinishNotifName;
     NSString *currentUserUserName = ((UITextField *)((BBTLoginTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]).textField).text;
     NSString *currenUserPassWord = ((UITextField *)((BBTLoginTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]]).textField).text;
     
-    [BBTCurrentUserManager sharedCurrentUserManager].currentUser = [BBTUser new];
     [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account = currentUserUserName;
     [BBTCurrentUserManager sharedCurrentUserManager].currentUser.password = currenUserPassWord;
     [[BBTCurrentUserManager sharedCurrentUserManager] currentUserAuthentication];
@@ -208,9 +212,11 @@ extern NSString * kUserAuthentificationFinishNotifName;
 {
     if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
     {
-        //Save User info in keychain
-        [JNKeychain saveValue:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account forKey:@"userName"];
-        [JNKeychain saveValue:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.password forKey:@"passWord"];
+        if ([[JNKeychain loadValueForKey:@"appSwitchStatus"] isEqual:@1]){
+            //Save User info in keychain
+            [[BBTCurrentUserManager sharedCurrentUserManager] saveCurrentUserInfo];
+            
+        }
         
         //Hide loading hud
         [MBProgressHUD hideHUDForView:self.view animated:YES];

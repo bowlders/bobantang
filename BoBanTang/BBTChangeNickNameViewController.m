@@ -22,8 +22,9 @@
 
 @implementation BBTChangeNickNameViewController
 
-extern NSString * didUploadNickNameNotifName;
-extern NSString * failUploadNickNameNotifName;
+//extern NSString * didUploadNickNameNotifName;
+//extern NSString * failUploadNickNameNotifName;
+extern NSString * finishUpdateCurrentUserInformationName;
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -36,7 +37,7 @@ extern NSString * failUploadNickNameNotifName;
     
     self.nickNameLengthLabel = ({
         UILabel *label = [UILabel new];
-        NSString *currentNickNameLengthText = [NSString stringWithFormat:@"%lu/20", (unsigned long)[[BBTCurrentUserManager sharedCurrentUserManager].currentUser.nickName length]];
+        NSString *currentNickNameLengthText = [NSString stringWithFormat:@"%lu/20", (unsigned long)[[BBTCurrentUserManager sharedCurrentUserManager].currentUser.nick length]];
         label.text = currentNickNameLengthText;
         label.textAlignment = NSTextAlignmentLeft;
         label;
@@ -44,7 +45,7 @@ extern NSString * failUploadNickNameNotifName;
     
     self.nickNameTextField = ({
         UITextField *textField = [UITextField new];
-        textField.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.nickName;
+        textField.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.nick;
         textField.textAlignment = NSTextAlignmentLeft;
         //textField.backgroundColor = [UIColor lightGrayColor];
         textField.delegate = self;
@@ -116,13 +117,8 @@ extern NSString * failUploadNickNameNotifName;
                                                object:self.nickNameTextField];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveUploadNickNameNotification)
-                                                 name:didUploadNickNameNotifName
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveUploadNickNameFailNotification)
-                                                 name:failUploadNickNameNotifName
+                                             selector:@selector(finishUpdateCurrentUserNickName:)
+                                                 name:finishUpdateCurrentUserInformationName
                                                object:nil];
 }
 
@@ -152,9 +148,23 @@ extern NSString * failUploadNickNameNotifName;
 
 - (void)saveButtonIsTapped
 {
-    [[BBTCurrentUserManager sharedCurrentUserManager] uploadNewNickName:self.nickNameTextField.text];
+    //检查是否修改nickName
+    if ([self.nickNameTextField.text isEqual:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.nick]){
+        //没有修改
+        [self didReceiveUploadNickNameNotification];
+        
+    }else{
+        [[BBTCurrentUserManager sharedCurrentUserManager] updateUserInformationThroughPathMethodWith:@{@"nick":self.nickNameTextField.text}];
+    }
 }
-
+- (void)finishUpdateCurrentUserNickName:(NSNotification *)notification{
+    BOOL isError = [notification.userInfo[@"status"] isEqual:@"fail"];
+    if (!isError){
+        [self didReceiveUploadNickNameNotification];
+    }else{
+        [self didReceiveUploadNickNameFailNotification];
+    }
+}
 - (void)didReceiveUploadNickNameNotification
 {
     //Show success HUD

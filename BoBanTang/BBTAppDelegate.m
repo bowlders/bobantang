@@ -52,21 +52,47 @@ static NSString * activityPageDetailsUrlEnd = @"&articleType=schoolInformation";
 extern NSString *kActivityPageAvaliable;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
     [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
     
-    if ((int)[[JNKeychain loadValueForKey:@"appSwitchStatus"] boolValue])       //Automatically fill in
+    NSNumber *staySignedIn = [[NSUserDefaults standardUserDefaults] valueForKey:@"staySignedIn"];
+    if ([staySignedIn isEqual:@1])
     {
-        NSString *savedUserName = [JNKeychain loadValueForKey:@"userName"];
-        NSString *savedPassWord = [JNKeychain loadValueForKey:@"passWord"];
-
-        [BBTCurrentUserManager sharedCurrentUserManager].currentUser = [BBTUser new];
-        [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account =
-        savedUserName;
-        [BBTCurrentUserManager sharedCurrentUserManager].currentUser.password =
-        savedPassWord;
-        [[BBTCurrentUserManager sharedCurrentUserManager] currentUserAuthentication];
+        //有本地保存的账号密码时，我们即认为已经完成登录认证
+        //即便当前没网，也离线保持登录状态
+        //但是由于cookie时间为半小时，虽然感觉不会有用户停留在app半小时以上，但我们还是搞一个循环半小时发一次登录验证
+        //什么你说会不会浪费资源，这个能有校巴浪费？！！！
+        NSDictionary * restoreData = @{
+                                       @"account":[JNKeychain loadValueForKey:@"userName"],
+                                       @"password":[JNKeychain loadValueForKey:@"passWord"],
+                                       @"name":[JNKeychain loadValueForKey:@"accountName"],
+                                       @"nick":[JNKeychain loadValueForKey:@"accountNick"],
+                                       @"sex":[JNKeychain loadValueForKey:@"accountSex"],
+                                       @"grade":[JNKeychain loadValueForKey:@"accountGrade"],
+                                       @"college":[JNKeychain loadValueForKey:@"accountCollege"],
+                                       @"phone":[JNKeychain loadValueForKey:@"accountPhone"],
+                                       @"dormitory":[JNKeychain loadValueForKey:@"accountDormitory"],
+                                       @"qq":[JNKeychain loadValueForKey:@"accountQq"],
+                                       @"avatar":[JNKeychain loadValueForKey:@"accountAvatar"],
+                                       };
+        
+        BBTUser *user = [[BBTUser alloc]initWithDictionary:restoreData];
+        [BBTCurrentUserManager sharedCurrentUserManager].currentUser = user;
+        
+        //先执行一次
+        [BBTCurrentUserManager sharedCurrentUserManager].userIsActive = YES;
+        [[BBTCurrentUserManager sharedCurrentUserManager] performRegularLoginTask];
+        
+        //加入循环
+        NSTimer *loginTime = [NSTimer timerWithTimeInterval:30*60 repeats:YES block:^(NSTimer * _Nonnull timer) {
+            [[BBTCurrentUserManager sharedCurrentUserManager] performRegularLoginTask];
+        }];
+        [[NSRunLoop mainRunLoop] addTimer:loginTime forMode:NSRunLoopCommonModes];
+        
+#pragma mark 我不太清楚下面这个method的具体作用，等弄清楚后看看要不要做修改
         [[BBTCurrentUserManager sharedCurrentUserManager] clubLogin];
     }
+    
     //Set Mapbox Accesstoken
     [[RMConfiguration sharedInstance] setAccessToken:@"pk.eyJ1IjoicHl0cmFkZSIsImEiOiJjaW53eGJxZDExNnNidTJtM3N4OHZkZG9jIn0.XPkApL2UVxIpndilZMOsdQ"];
     

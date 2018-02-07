@@ -11,8 +11,9 @@
 #import "BBTChangeNickNameViewController.h"
 #import "BBTCurrentUserManager.h"
 #import <MBProgressHUD.h>
+#import <UIImageView+WebCache.h>
 
-@interface BBTPersonalInfoEditViewController ()
+@interface BBTPersonalInfoEditViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIImageView * addNewImageView;
 @property (strong, nonatomic) UIImage              * theNewAvatarImage;
@@ -25,10 +26,19 @@ extern NSString * kDidUploadImageNotificationName;
 extern NSString * kFailUploadImageNotificationName;
 extern NSString * didUploadUserLogoURLNotifName;
 extern NSString * failUploadUserLogoURLNotifName;
+extern NSString * finishUpdateCurrentUserInformationName;
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [self addObserver];
+}
+
+- (void)viewDidLoad{
+    BBTUser *currentUser = [BBTCurrentUserManager sharedCurrentUserManager].currentUser;
+    if (currentUser.avatar && ![currentUser.avatar isKindOfClass:[NSNull class]] && ![currentUser.avatar isEqual:@""]){
+        [self.addNewImageView sd_setImageWithURL:[[NSURL alloc]initWithString:currentUser.avatar]];
+    }
+    
 }
 
 - (void)addObserver
@@ -41,14 +51,8 @@ extern NSString * failUploadUserLogoURLNotifName;
                                              selector:@selector(didReceiveImageUploadFailNotif)
                                                  name:kFailUploadImageNotificationName
                                                object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveLogoUploadSucceedNotif)
-                                                 name:didUploadUserLogoURLNotifName
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveLogoUploadFailNotif)
-                                                 name:failUploadUserLogoURLNotifName
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishUpdateCurrentUserAvatarToServerOfBBT:) name:finishUpdateCurrentUserInformationName object:nil];
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -95,13 +99,12 @@ extern NSString * failUploadUserLogoURLNotifName;
                                                           }
                                                           else
                                                           {
-                                                              UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"当前设备无摄像头"
-                                                                                                                  message:nil
-                                                                                                                 delegate:self
-                                                                                                        cancelButtonTitle:@"确定"
-                                                                                                        otherButtonTitles:@"确定", nil];
-                                                              [alertView show];
-                                                          }
+                                                              UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"当前设备无摄像头" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                                                              UIAlertAction *defult = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+                                                              [alertController addAction:defult];
+                                                              [self presentViewController:alertController animated:YES completion:nil];
+                                                              
+                                                               }
                                                       }];
     UIAlertAction *chooseFromGallery = [UIAlertAction actionWithTitle:@"从相册选取"
                                                                 style:UIAlertActionStyleDefault
@@ -151,8 +154,8 @@ extern NSString * failUploadUserLogoURLNotifName;
 
 - (void)didReceiveImageUploadSucceedNotif
 {
-    //Upload current user's logo url
-    [[BBTCurrentUserManager sharedCurrentUserManager] uploadNewLogoURL:[BBTImageUploadManager sharedUploadManager].originalImageUrl];
+    [[BBTCurrentUserManager sharedCurrentUserManager] updateUserInformationThroughPathMethodWith:@{ @"avatar":[BBTImageUploadManager sharedUploadManager].originalImageUrl,
+                                                                                                   }];
 }
 
 - (void)didReceiveImageUploadFailNotif
@@ -161,21 +164,28 @@ extern NSString * failUploadUserLogoURLNotifName;
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 
     //Show failure HUD
-    MBProgressHUD *failureHUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    MBProgressHUD *failureHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     //Set the annular determinate mode to show task progress.
     failureHUD.mode = MBProgressHUDModeText;
     failureHUD.labelText = @"头像上传失败";
     
     //Move to center.
-    CGFloat centerY = 0.5 * (CGRectGetMaxY(self.view.frame) + CGRectGetMinY(self.view.frame));
     failureHUD.xOffset = 0.0f;
-    failureHUD.yOffset = centerY;
+    failureHUD.yOffset = 0.0f;
     
     //Hide after 2 seconds.
     [failureHUD hide:YES afterDelay:2.0f];
 }
 
+- (void)finishUpdateCurrentUserAvatarToServerOfBBT:(NSNotification *)notification{
+    BOOL isError = [notification.userInfo[@"status"]isEqual:@"fail"];
+    if (isError){
+        [self didReceiveLogoUploadFailNotif];
+    }else{
+        [self didReceiveLogoUploadSucceedNotif];
+    }
+}
 //Only when we receive logoUpLoadSucceedNotification can we say we've successfully changed the user's avatar.
 //But whether we receive imageUploadFailNotificaiton or logoUploadFailNotification, each case means we get a failure.
 - (void)didReceiveLogoUploadSucceedNotif

@@ -11,7 +11,7 @@
 #import <QiniuSDK.h>
 #import "RSA.h"
 
-static NSString *getTokenUrl = @"http://api.100steps.net/qiniu/index.php";
+static NSString *getTokenUrl = @"http://apiv2.100steps.net/token";
 static NSString *domain = @"http://o6haukahg.bkt.clouddn.com/";
 static NSString *thumbnailUrlSuffix = @"?imageView2/1/w/200/h/200";
 
@@ -37,13 +37,25 @@ extern NSString *test;
 
 - (void)uploadImageToQiniu:(UIImage *)image
 {
-    NSString *timestamp = [NSString stringWithFormat:@"%d",((int)[[NSDate date] timeIntervalSince1970]) + 10];
-    NSString *parameterString = [jsonString stringByAppendingString:timestamp];
-    NSDictionary *parameter = @{@"data":[RSA encryptString:parameterString publicKey:publicKey]};
+    //NSString *timestamp = [NSString stringWithFormat:@"%d",((int)[[NSDate date] timeIntervalSince1970]) + 10];
+    //NSString *parameterString = [jsonString stringByAppendingString:timestamp];
+    //NSDictionary *parameter = @{@"data":[RSA encryptString:parameterString publicKey:publicKey]};
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];
-    [manager POST:getTokenUrl parameters:parameter progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
+    
+    [manager GET:getTokenUrl parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable responseObject) {
+        
+        if ([responseObject[@"status"]isEqual:@"success"]){
+            [self upload:image withToken:responseObject[@"token"]];
+        }else{
+            [self postFailUploadImageNotification];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [self postFailUploadImageNotification];
+    }];
+    /*
+    [manager :getTokenUrl parameters:parameter progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
         if (responseObject) {
             if (responseObject[@"token"])
@@ -63,7 +75,7 @@ extern NSString *test;
         NSLog(@"ERROR: %@", error);
         [self postFailUploadImageNotification];
     }];
-
+*/
 }
 
 - (void)upload:(UIImage *)image withToken:(NSString *)token

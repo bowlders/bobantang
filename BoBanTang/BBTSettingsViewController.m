@@ -33,8 +33,14 @@
     self.tableView.scrollEnabled = NO;
 
     self.appSwitch.onTintColor = [UIColor BBTAppGlobalBlue];
-    self.appSwitch.on = (BOOL)[[JNKeychain loadValueForKey:@"appSwitchStatus"] boolValue];
-    self.appSwitch.on = true;
+    
+    if([JNKeychain loadValueForKey:@"appSwitchStatus"] == nil){
+        [JNKeychain saveValue:@1 forKey:@"appSwitchStatus"];
+        self.appSwitch.on = YES;
+    }else{
+        self.appSwitch.on = (BOOL)[[JNKeychain loadValueForKey:@"appSwitchStatus"] boolValue];
+    }
+    
 }
 
 
@@ -123,16 +129,13 @@
 
 - (void)logOut
 {
-    BBTUser *emptyUser;
-    [BBTCurrentUserManager sharedCurrentUserManager].currentUser = emptyUser;
-    [BBTCurrentUserManager sharedCurrentUserManager].userIsActive = NO;
+    [[BBTCurrentUserManager sharedCurrentUserManager]logOut];
     
     JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     HUD.indicatorView = nil;
     HUD.textLabel.text = @"您已退出登录";
     [HUD showInView:self.view];
     [HUD dismissAfterDelay:2.0];
-    
     [self disableCellInteraction];
 }
 

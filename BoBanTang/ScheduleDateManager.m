@@ -27,6 +27,7 @@ static ScheduleDateManager *manager;
     });
     return manager;
 }
+
 - (void)fetchCurrentWeek{
     NSString *targetURL = @"http://babel.100steps.net/timetable/";
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -39,17 +40,17 @@ static ScheduleDateManager *manager;
         NSString *tmp = responseObject[@"week"];
         self.currentWeek = [NSString stringWithFormat:@"%d",tmp.intValue];
         NSDictionary *dic2 = @{
-                              @"current":self.currentWeek
-                              };
+                               @"current":self.currentWeek
+                               };
         [dic2 writeToFile:path atomically:NO];
         NSString *account = self.account;
         if (account != nil){
-        [self getTheScheduleWithAccount:account andPassword:nil andType:@"get"];
+            [self getTheScheduleWithAccount:account andPassword:nil andType:@"get"];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSString *account = self.account;
         if (account != nil){
-        [self getTheScheduleWithAccount:account andPassword:nil andType:@"get"];
+            [self getTheScheduleWithAccount:account andPassword:nil andType:@"get"];
         }
     }];
 }
@@ -153,6 +154,7 @@ static ScheduleDateManager *manager;
             [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithFormat:@"The%@ScheduleFailed",type] object:nil];
             return;
         }
+        
         NSArray *courses2 = [[responseObject valueForKey:@"timetable"] valueForKey:@"content"];
         NSLog(@"%@",responseObject);
         self.mutCourseArray = [NSMutableArray arrayWithCapacity:10];
@@ -188,7 +190,7 @@ static ScheduleDateManager *manager;
                         if (beforeNum.integerValue > nowNum.integerValue){
                             before.week = [manager.week stringByAppendingString:[NSString stringWithFormat:@" %@",before.week]];
                         }else{
-                        before.week = [[before.week stringByAppendingString:@" "] stringByAppendingString:manager.week];
+                            before.week = [[before.week stringByAppendingString:@" "] stringByAppendingString:manager.week];
                         }
                         continue;
                     }
@@ -218,12 +220,12 @@ static ScheduleDateManager *manager;
     return result;
 }
 - (void)createLocalTable{
-        const char *sql = "create table if not exists schedule(courseName text,day text,teacherName text,location text,dayTime text,week text,weekStatus text);";
-        char *errorMesg = NULL;
-        int result = sqlite3_exec(_db, sql, NULL, NULL, &errorMesg);
-        if (result != SQLITE_OK){
-            NSLog(@"建表失败,错误信息%s",errorMesg);
-        }
+    const char *sql = "create table if not exists schedule(courseName text,day text,teacherName text,location text,dayTime text,week text,weekStatus text);";
+    char *errorMesg = NULL;
+    int result = sqlite3_exec(_db, sql, NULL, NULL, &errorMesg);
+    if (result != SQLITE_OK){
+        NSLog(@"建表失败,错误信息%s",errorMesg);
+    }
 }
 - (void)writeToDatabase{
     [self get_db];
@@ -232,7 +234,7 @@ static ScheduleDateManager *manager;
     [self insertTable];
 }
 - (void)updateLocalScheduleWithNoti:(NSString *)noti{
-        [self get_db];
+    [self get_db];
     if ([noti isEqualToString:@"ThegetScheduleGet"]){
         [self dropTablewithTableName:@"schedule"];
         [self createLocalTable];
@@ -246,7 +248,7 @@ static ScheduleDateManager *manager;
         [self insertTable];
         NSString *account = self.account;
         if (account != nil){
-        [self updateThePrivateScheduleToServerWithAccount:account];
+            [self updateThePrivateScheduleToServerWithAccount:account];
         }
     }
 }
@@ -289,7 +291,7 @@ static ScheduleDateManager *manager;
                 }
             }else{
                 if (i%2 != 0){
-                   returnStr = [returnStr stringByAppendingString:[NSString stringWithFormat:@"%ld ",(long)i]];
+                    returnStr = [returnStr stringByAppendingString:[NSString stringWithFormat:@"%ld ",(long)i]];
                 }
             }
         }

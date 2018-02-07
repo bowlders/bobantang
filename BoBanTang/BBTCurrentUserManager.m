@@ -3,6 +3,7 @@
 //  BoBanTang
 //
 //  Created by Caesar on 16/2/5.
+//  refactored by Zekang on 18/2/7.
 //  Copyright © 2016年 100steps. All rights reserved.
 //
 
@@ -12,22 +13,25 @@
 
 @implementation BBTCurrentUserManager
 
-static NSString * const checkAccountURL = @"http://218.192.166.167/api/jw2005/checkAccount.php";
-static NSString * const fetchUserDataBaseURL = @"http://218.192.166.167/api/protype.php?table=users&method=get&data=";
-static NSString * const insertNewUserBaseURL = @"http://218.192.166.167/api/protype.php?table=users&method=save&data=";
-static NSString * const modifyUserInfoBaseURL = @"http://218.192.166.167/api/protype.php?table=users&method=modify&data=";
+static NSString * const checkAccountURL = @"http://apiv2.100steps.net/login";
+static NSString * const updateMeURL = @"http://apiv2.100steps.net/me";
+
 static NSString * const fetchUserProfileBaseURL = @"http://community.100steps.net/current/user/";
 static NSString * const clubLoginBaseURL = @"http://community.100steps.net/login";
 
 static NSString * const userNameKey = @"userName";
 static NSString * const passWordKey = @"passWord";
 
-NSString * didUploadNickNameNotifName = @"nickNameSucceed";
-NSString * failUploadNickNameNotifName = @"nickNameFail";
-NSString * didUploadUserLogoURLNotifName = @"logoSucceed";
-NSString * failUploadUserLogoURLNotifName = @"logoFail";
 NSString * kUserAuthentificationFinishNotifName = @"authenticationFinish";
 NSString * kUserClubLoginFinishNotifName = @"clubLoginFinish";
+NSString * finishUpdateCurrentUserInformationName = @"UpdateCurrentUserInformationFinish";
+
+- (BBTUser *)currentUser{
+    if (_currentUser == nil){
+        _currentUser = [BBTUser new];
+    }
+    return _currentUser;
+}
 
 + (instancetype)sharedCurrentUserManager
 {
@@ -39,75 +43,93 @@ NSString * kUserClubLoginFinishNotifName = @"clubLoginFinish";
     return _manager;
 }
 
+- (void)copyToNewUserWithDic:(NSMutableDictionary *)dic{
+    dic[@"password"] = self.currentUser.password;
+   self.currentUser = [[BBTUser alloc] initWithDictionary:dic];
+}
+
 - (void)currentUserAuthentication
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    
-    if (self.currentUser.account == nil){return;}
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
     
     NSDictionary *parameters = @{@"account" : self.currentUser.account,
                                  @"password" : self.currentUser.password};
+    
     [manager POST:checkAccountURL parameters:parameters progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        NSLog(@"checkResult: %@", responseObject);
-        for (NSString *key in [(NSDictionary *)responseObject allKeys])
-        {
-            if ([key isEqualToString:@"name"])
-            {
-                self.userIsActive = YES;
-                self.currentUser.userName = responseObject[@"name"];
-                [self fetchCurrentUserData];
-            }
-            else if ([key isEqualToString:@"err"])
-            {
-                self.userIsActive = NO;
-                [self postUserAuthenticationFinishNotification];
-            }
-        }
-    } failure:^(NSURLSessionTask *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        self.userIsActive = NO;
-        [self postUserAuthenticationFinishNotification];
-    }];
-
-    [manager invalidateSessionCancelingTasks:NO];
-}
-
-- (void)fetchCurrentUserData
-{
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-
-    NSError *error;
-    NSDictionary *parameters = @{@"account" : self.currentUser.account};
-    NSData *data = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:&error];
-    NSString *jsonString = [[NSString alloc] initWithData:data
-                                                 encoding:NSUTF8StringEncoding];
-    NSString *stringCleanPath = [jsonString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *url = [fetchUserDataBaseURL stringByAppendingString:stringCleanPath];
-    
-    [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        if ([(NSArray *)responseObject count])                          //This user already exists in database
-        {
-            BBTUser *user = [[BBTUser alloc] initWithDictionary:responseObject[0]];
+        
+        if (![[responseObject allKeys] containsObject:@"status"]){
+            NSMutableDictionary *responseDictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];
+            [self copyToNewUserWithDic:responseDictionary];
+            self.userIsActive = YES;
+        }else{
+            self.userIsActive = NO;
             
-            self.currentUser = user;
-            [self postUserAuthenticationFinishNotification];
         }
-        else                                                            //This is a new user, add him to database
-        {
-            [self insertNewUserToDataBase];
-            [self postUserAuthenticationFinishNotification];
-        }
+        [self postUserAuthenticationFinishNotification];
     } failure:^(NSURLSessionTask *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
         self.userIsActive = NO;
         [self postUserAuthenticationFinishNotification];
     }];
-    
+
     [manager invalidateSessionCancelingTasks:NO];
 }
+
+- (void)updateUserInformationThroughPathMethodWith:(NSDictionary *) parameters{
+    if (parameters.count < 1){
+        //也算是成功的一种
+        [[NSNotificationCenter defaultCenter] postNotificationName:finishUpdateCurrentUserInformationName object:self userInfo:@{
+                                                                                                                                 @"status":@"succeed"
+                                                                                                                                 }];
+        return;
+    }
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
+    [manager PATCH:updateMeURL parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        //NSLog(@"PATCH--updateUserInformationSuccess!:  %@",responseObject);
+        
+        //如果返回status为error，也不行
+        if ([[(NSDictionary *)responseObject allKeys] containsObject:@"status"]&&[responseObject[@"status"]isEqual:@"error"]){
+            [[NSNotificationCenter defaultCenter] postNotificationName:finishUpdateCurrentUserInformationName object:self userInfo:@{
+                                                                                                                                     @"status":@"fail"
+                                                                                                                                     }];
+            return;
+        }
+        
+        //确认了服务器上的用户信息更新好了后，才进行本地信息的覆写
+        //进行覆写
+        [self copyToNewUserWithDic:[NSMutableDictionary dictionaryWithDictionary:responseObject]];
+        [self writeToLocalDatabase];
+        
+        //广播
+        [[NSNotificationCenter defaultCenter] postNotificationName:finishUpdateCurrentUserInformationName object:self userInfo:@{
+                                                                                                                                 @"status":@"succeed"
+                                                                                                                                 }];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"PATCH--updateUserInformationError!:  %@",error);
+        [[NSNotificationCenter defaultCenter] postNotificationName:finishUpdateCurrentUserInformationName object:self userInfo:@{
+                                                                                                                                 @"status":@"fail"
+                                                                                                                                 }];
+    }];
+    
+}
+
+- (void)performRegularLoginTask{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
+    
+    NSDictionary *parameters = @{@"account" : self.currentUser.account,
+                                 @"password" : self.currentUser.password};
+    [manager POST:checkAccountURL parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable responseObject) {
+        //此处的账号密码必须为正确的
+        if (![[responseObject allKeys]containsObject:@"status"] || ![responseObject[@"status"] isEqual:@"error"]){
+            [self copyToNewUserWithDic:[NSMutableDictionary dictionaryWithDictionary:responseObject]];
+            [self writeToLocalDatabase];
+        }
+    } failure:nil];
+}
+
 
 - (void)clubLogin{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -128,7 +150,7 @@ NSString * kUserClubLoginFinishNotifName = @"clubLoginFinish";
     
     [manager invalidateSessionCancelingTasks:NO];
 }
-
+/*
 - (void)fetchCurrentUserProfile{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
@@ -140,38 +162,14 @@ NSString * kUserClubLoginFinishNotifName = @"clubLoginFinish";
         NSLog(@"Error: %@", error);
     }];
 }
-
-- (void)insertNewUserToDataBase
-{
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    
-    NSError *error;
-    NSDictionary *parameters = @{@"account" : self.currentUser.account,
-                                 @"password" : self.currentUser.password,
-                                 @"userName" : self.currentUser.userName};
-    NSData *data = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:&error];
-    NSString *jsonString = [[NSString alloc] initWithData:data
-                                                 encoding:NSUTF8StringEncoding];
-
-    NSString *stringCleanPath = [jsonString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *url = [insertNewUserBaseURL stringByAppendingString:stringCleanPath];
-
-    [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-    } failure:^(NSURLSessionTask *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        self.userIsActive = NO;
-    }];
-    
-    [manager invalidateSessionCancelingTasks:NO];
-}
+*/
 
 - (void)logOut
 {
     BBTUser *emptyUser = [BBTUser new];
     self.currentUser = emptyUser;
     self.userIsActive = NO;
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"staySignedIn"];
 }
 
 - (void)postUserAuthenticationFinishNotification
@@ -186,8 +184,11 @@ NSString * kUserClubLoginFinishNotifName = @"clubLoginFinish";
 
 - (void)saveCurrentUserInfo
 {
+    //保存账户密码的同时，也进行登录维持的确认
     [JNKeychain saveValue:self.currentUser.account forKey:userNameKey];
     [JNKeychain saveValue:self.currentUser.password forKey:passWordKey];
+    [[NSUserDefaults standardUserDefaults] setValue:@1 forKey:@"staySignedIn"];
+    [self writeToLocalDatabase];
 }
 
 - (NSString *)loadCurrentUserName
@@ -202,95 +203,32 @@ NSString * kUserClubLoginFinishNotifName = @"clubLoginFinish";
 
 - (void)deleteCurrentUserInfo
 {
+    //删除保存的用户信息，同时也将登录维持给移除掉
     [JNKeychain deleteValueForKey:userNameKey];
     [JNKeychain deleteValueForKey:passWordKey];
-}
-
-- (void)uploadNewNickName:(NSString *)nickName
-{
-    //String appended after "data=".
-    NSString *dataString = [NSString stringWithFormat:@"{\"account\":%@}", self.currentUser.account];
-    NSString *URLString1 = [modifyUserInfoBaseURL stringByAppendingString:dataString];
-    //String appended after URL1, %@ of the nickName must be added "", like \"%@\"
-    NSString *setString = [NSString stringWithFormat:@"&set={\"nickName\":\"%@\"}", nickName];
-    NSString *intactURLString = [URLString1 stringByAppendingString:setString];
-    NSString *stringCleanPath = [intactURLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    [JNKeychain deleteValueForKey:@"accountName"];
+    [JNKeychain deleteValueForKey:@"accountNick"];
+    [JNKeychain deleteValueForKey:@"accountSex"];
+    [JNKeychain deleteValueForKey:@"accountGrade"];
+    [JNKeychain deleteValueForKey:@"accountCollege"];
+    [JNKeychain deleteValueForKey:@"accountPhone"];
+    [JNKeychain deleteValueForKey:@"accountDormitory"];
+    [JNKeychain deleteValueForKey:@"accountQq"];
+    [JNKeychain deleteValueForKey:@"accountAvatar"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"staySignedIn"];
     
-    [manager POST:stringCleanPath parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        //NSLog(@"JSON: %@", responseObject);
-        if (responseObject)
-        {
-            if ([(NSNumber *)((NSDictionary *)responseObject[@"status"]) intValue] == 1)
-            {
-                [self pushDidUploadNickNameNotification];
-                self.currentUser.nickName = nickName;                   //Change current user's nickName.
-            }
-            else
-            {
-                [self pushUploadNickNameFailNotification];
-            }
-        }
-    } failure:^(NSURLSessionTask *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        [self pushUploadNickNameFailNotification];
-    }];
-    [manager invalidateSessionCancelingTasks:NO];
 }
 
-- (void)uploadNewLogoURL:(NSString *)url
-{
-    //String appended after "data=".
-    NSString *dataString = [NSString stringWithFormat:@"{\"account\":%@}", self.currentUser.account];
-    NSString *URLString1 = [modifyUserInfoBaseURL stringByAppendingString:dataString];
-    //String appended after URL1.
-    NSString *setString = [NSString stringWithFormat:@"&set={\"userLogo\":\"%@\"}", url];
-    NSString *intactURLString = [URLString1 stringByAppendingString:setString];
-    NSString *stringCleanPath = [intactURLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+- (void)writeToLocalDatabase{
+    [JNKeychain saveValue:self.currentUser.name forKey:@"accountName"];
+    [JNKeychain saveValue:self.currentUser.nick forKey:@"accountNick"];
+    [JNKeychain saveValue:self.currentUser.sex forKey:@"accountSex"];
+    [JNKeychain saveValue:self.currentUser.grade forKey:@"accountGrade"];
+    [JNKeychain saveValue:self.currentUser.college forKey:@"accountCollege"];
+    [JNKeychain saveValue:self.currentUser.phone forKey:@"accountPhone"];
+    [JNKeychain saveValue:self.currentUser.dormitory forKey:@"accountDormitory"];
+    [JNKeychain saveValue:self.currentUser.qq forKey:@"accountQq"];
+    [JNKeychain saveValue:self.currentUser.avatar forKey:@"accountAvatar"];
     
-    [manager POST:stringCleanPath parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        //NSLog(@"JSON: %@", responseObject);
-        if (responseObject)
-        {
-            if ([(NSNumber *)((NSDictionary *)responseObject[@"status"]) intValue] == 1)
-            {
-                [self pushDidUploadUserLogoNotification];
-                //Change current user's userLogo.
-                self.currentUser.userLogo = url;
-            }
-            else
-            {
-                [self pushUploadUserLogoFailNotification];
-            }
-        }
-    } failure:^(NSURLSessionTask *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        [self pushUploadNickNameFailNotification];
-    }];
-    [manager invalidateSessionCancelingTasks:NO];
 }
-
-- (void)pushDidUploadNickNameNotification
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:didUploadNickNameNotifName object:self];
-}
-
-- (void)pushUploadNickNameFailNotification
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:failUploadNickNameNotifName object:self];
-}
-
-- (void)pushDidUploadUserLogoNotification
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:didUploadUserLogoURLNotifName object:self];
-}
-
-- (void)pushUploadUserLogoFailNotification
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:failUploadUserLogoURLNotifName object:self];
-}
-
 @end

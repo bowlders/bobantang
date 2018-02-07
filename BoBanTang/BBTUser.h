@@ -11,18 +11,18 @@
 @interface BBTUser : JSONModel
 
 //In version 3.0, userName and password are from 教务系统, sex, institution, className and nickName can temporarily be ignored.
-@property (assign, nonatomic) NSInteger  ID;
-@property (strong, nonatomic) NSString * account;
-@property (strong, nonatomic) NSString * userName;
-@property (assign, nonatomic) NSInteger  sex;
-@property (strong, nonatomic) NSString * college;
-@property (strong, nonatomic) NSString * className;
-@property (strong, nonatomic) NSString * password;
-@property (strong, nonatomic) NSString * userLogo;
-@property (strong, nonatomic) NSString * nickName;
-@property (strong, nonatomic) NSString * qq;
-@property (strong, nonatomic) NSString * phone;
-@property (strong, nonatomic) NSString * grade;
+@property (strong, nonatomic)NSNumber * ID;
+@property (copy, nonatomic) NSString  * account;
+@property (copy, nonatomic) NSString  * password;
+@property (copy, nonatomic) NSString  * nick;
+@property (copy, nonatomic) NSString  * name;
+@property (strong, nonatomic)NSNumber * sex;
+@property (copy, nonatomic) NSString  * grade;
+@property (copy, nonatomic) NSString  * college;
+@property (copy, nonatomic) NSString  * phone;
+@property (copy, nonatomic) NSString  * dormitory;
+@property (copy, nonatomic) NSString  * qq;
+@property (copy, nonatomic) NSString  * avatar;
 
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;

@@ -20,7 +20,7 @@
 #import <UIImageView+UIActivityIndicatorForSDWebImage.h>
 #import <WSCoachMarksView.h>
 
-@interface BBTMeViewController ()
+@interface BBTMeViewController ()<UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) UIImageView * containerView;
 
@@ -356,6 +356,7 @@ extern NSString * kFeedBackViewDisappearNotifName;
     [self presentViewController:navigationController animated:YES completion:nil];
 }
 
+
 - (void)updateView
 {
     if ([BBTCurrentUserManager sharedCurrentUserManager].userIsActive)
@@ -363,16 +364,16 @@ extern NSString * kFeedBackViewDisappearNotifName;
         self.loginButton.hidden = YES;
         self.nameLabel.hidden = NO;
         self.studentNumberLabel.hidden = NO;
-        self.nameLabel.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.nickName;
+        self.nameLabel.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.nick;
         self.studentNumberLabel.text = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account;
         NSURL *avatarURL;
-        if (![BBTCurrentUserManager sharedCurrentUserManager].currentUser.userLogo || [[BBTCurrentUserManager sharedCurrentUserManager].currentUser.userLogo  isKindOfClass:[NSNull class]])        //The string is null
+        if (![BBTCurrentUserManager sharedCurrentUserManager].currentUser.avatar || [[BBTCurrentUserManager sharedCurrentUserManager].currentUser.avatar  isKindOfClass:[NSNull class]])        //The string is null
         {
             avatarURL = [NSURL URLWithString:@""];
         }
         else
         {
-            avatarURL = [NSURL URLWithString:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.userLogo];
+            avatarURL = [NSURL URLWithString:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.avatar];
         }
         [self.avatarImageView setImageWithURL:avatarURL placeholderImage:[UIImage imageNamed:@"defaultAvatar"] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     }

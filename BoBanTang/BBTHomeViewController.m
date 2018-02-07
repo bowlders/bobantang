@@ -71,7 +71,10 @@ extern NSString * kUserAuthentificationFinishNotifName;
 
 - (void)viewWillAppear:(BOOL)animated{
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.CourseTimetable.hidden = false;
+    self.LoginReminderLabel.hidden = true;
+    self.LoginButton.hidden = true;
+    //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveCampusBusNotification)
@@ -127,14 +130,14 @@ extern NSString * kUserAuthentificationFinishNotifName;
     //NSLog(@"Did receive campus bus notification");
     
     //Hide loading hud
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    //[MBProgressHUD hideHUDForView:self.view animated:YES];
     [self reloadData];
 }
 
 - (void)didReceiveRetriveCampusBusDataFailNotification
 {
     //Hide loading hud
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    //[MBProgressHUD hideHUDForView:self.view animated:YES];
     [self reloadData];
 }
 
