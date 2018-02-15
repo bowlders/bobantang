@@ -13,12 +13,15 @@
 
 @implementation BBTCurrentUserManager
 
+//校园账号登录验证
 static NSString * const checkAccountURL = @"http://apiv2.100steps.net/login";
 static NSString * const updateMeURL = @"http://apiv2.100steps.net/me";
 
+//社团管理登录验证
 static NSString * const fetchUserProfileBaseURL = @"http://community.100steps.net/current/user/";
 static NSString * const clubLoginBaseURL = @"http://community.100steps.net/login";
 
+//验证的key
 static NSString * const userNameKey = @"userName";
 static NSString * const passWordKey = @"passWord";
 
@@ -45,7 +48,7 @@ NSString * finishUpdateCurrentUserInformationName = @"UpdateCurrentUserInformati
 
 - (void)copyToNewUserWithDic:(NSMutableDictionary *)dic{
     dic[@"password"] = self.currentUser.password;
-   self.currentUser = [[BBTUser alloc] initWithDictionary:dic];
+    self.currentUser = [[BBTUser alloc] initWithDictionary:dic];
 }
 
 - (void)currentUserAuthentication
@@ -71,7 +74,7 @@ NSString * finishUpdateCurrentUserInformationName = @"UpdateCurrentUserInformati
         self.userIsActive = NO;
         [self postUserAuthenticationFinishNotification];
     }];
-
+    
     [manager invalidateSessionCancelingTasks:NO];
 }
 
@@ -137,11 +140,12 @@ NSString * finishUpdateCurrentUserInformationName = @"UpdateCurrentUserInformati
     
     NSDictionary *parameters = @{@"login_name" : self.currentUser.account,
                                  @"password" : self.currentUser.password};
+    
     [manager POST:clubLoginBaseURL parameters:parameters progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        NSLog(@"checkResult: %@", responseObject);
+        //NSLog(@"checkResult: %@", responseObject);
         self.clubUserIsActive = true;
         [self postUserClubLoginFinishNotification];
-        //[self fetchCurrentUserProfile];
+        [self fetchCurrentUserProfile];
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
         self.clubUserIsActive = false;
@@ -150,7 +154,7 @@ NSString * finishUpdateCurrentUserInformationName = @"UpdateCurrentUserInformati
     
     [manager invalidateSessionCancelingTasks:NO];
 }
-/*
+
 - (void)fetchCurrentUserProfile{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
@@ -162,7 +166,7 @@ NSString * finishUpdateCurrentUserInformationName = @"UpdateCurrentUserInformati
         NSLog(@"Error: %@", error);
     }];
 }
-*/
+
 
 - (void)logOut
 {

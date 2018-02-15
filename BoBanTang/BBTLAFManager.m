@@ -12,10 +12,13 @@
 #import "BBTLAF.h"
 #import "RSA.h"
 
-static NSString *getLostItemsUrl = @"http://218.192.166.167/api/protype.php?table=lostItems&method=get";
-static NSString *getPickItemsUrl = @"http://218.192.166.167/api/protype.php?table=pickItems&method=get";
-static NSString *postLostItemUrl = @"http://218.192.166.167/api/protype.php?table=lostItems&method=save&data=";
-static NSString *postPickItemUrl = @"http://218.192.166.167/api/protype.php?table=pickItems&method=save&data=";
+static const NSString *getLostAndFoundItemsUrl = @"http://apiv2.100steps.net/lostitems?";
+
+//目前似乎是失物和寻物都在一个数据库......
+static NSString *getLostItemsUrl = @"http://apiv2.100steps.net/lostitems?";
+static NSString *getPickItemsUrl = @"http://apiv2.100steps.net/lostitems?";
+static NSString *postLostItemUrl = @"http://apiv2.100steps.net/lostitems";
+static NSString *postPickItemUrl = @"http://apiv2.100steps.net/lostitems";
 static NSString *deleteLostItemUrl = @"http://218.192.166.167/api/protype.php?table=lostItems&method=delete&data=";
 static NSString *deletePickItemUrl = @"http://218.192.166.167/api/protype.php?table=pickItems&method=delete&data=";
 
@@ -42,59 +45,30 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
     return _manager;
 }
 
+#pragma mark 标记，日后再来修改代码
 - (void)retriveItems:(NSUInteger)type WithConditions:(NSDictionary *)conditions
 {
-    if ((!_itemsCount) || (!_itemArray))
-    {
-        self.reservedArray = [NSMutableArray array];
-    }
     
-    self.itemArray = [NSArray array];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json", nil];
     
-    int __block noMoreItemsCount = 0;
-    int beginningItem = self.itemsCount;
-    
-    NSString *appendingStringOption = [NSString stringWithFormat:@"&option={\"limit\":[%d,6]}", beginningItem];
-    
-    NSString *url;
-    
-    if (!conditions)
-    {
-        if (type == 1) {
-            url = [[getLostItemsUrl stringByAppendingString:appendingStringOption] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-        } else if (type == 0) {
-            url = [[getPickItemsUrl stringByAppendingString:appendingStringOption] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-        }
-    }
-    else
-    {
-        NSString *rowUrl;
-        NSString *stringCleanPath;
-        if (conditions[@"fuzzy"])
+    NSString *newURL = [self appendSearchConditionWithRawUrl:getLostAndFoundItemsUrl andConditon:conditions];
+    [manager GET:newURL parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSMutableArray *origArr = [[NSMutableArray alloc] init];
+        for (NSDictionary *itemsInfo in responseObject)
         {
-            NSString *appendingString = @"{\"fuzzy\":\"title\"}";
+            BBTLAF *item = [[BBTLAF alloc] initWithResponesObject:itemsInfo];
+            [origArr addObject:item];
             
-            if (type == 1) {
-                rowUrl = [[[[getLostItemsUrl stringByAppendingString:@"&option="] stringByAppendingString:appendingString] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]] stringByAppendingString:@"&data="];
-            } else {
-                rowUrl = [[[[getPickItemsUrl stringByAppendingString:@"&option="] stringByAppendingString:appendingString] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]] stringByAppendingString:@"&data="];
-            }
-            
-            stringCleanPath = [self getJSONStringForObject:conditions[@"fuzzy"]];
-            
-        } else {
-            if (type == 1) {
-                rowUrl = [[[getLostItemsUrl stringByAppendingString:appendingStringOption] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]] stringByAppendingString:@"&data="];
-            } else {
-                rowUrl = [[[getPickItemsUrl stringByAppendingString:appendingStringOption] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]] stringByAppendingString:@"&data="];
-            }
-            
-            stringCleanPath = [self getJSONStringForObject:conditions];
+            //[origArr addObject:item];
+            //noMoreItemsCount++;
         }
+        self.itemArray = origArr.copy;
+        [self pushLafNotification];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        url = [rowUrl stringByAppendingString:stringCleanPath];
-    }
-    
+    }];
+    /*
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];
     [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
@@ -129,7 +103,18 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
     }];
     
     [manager invalidateSessionCancelingTasks:NO];
-
+     */
+}
+- (NSString *)appendSearchConditionWithRawUrl:(const NSString *)url andConditon:(NSDictionary *)conditions{
+    NSString *newURL = url.copy;
+    for (NSString *name in [conditions allKeys]) {
+        if (conditions[name]){
+            newURL = [newURL stringByAppendingString:[NSString stringWithFormat:@"%@=%@",name,conditions[name]]];
+        }else{
+            
+        }
+    }
+    return newURL;
 }
 
 - (NSString *)getJSONStringForObject:(id)object
@@ -145,31 +130,20 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
 - (void)postItemDic:(NSDictionary *)itemDic WithType:(NSInteger)type
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
     NSString *url;
     if (type == 1) {
         url = postLostItemUrl;
     } else if (type == 0) {
         url = postPickItemUrl;
     }
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];
-   
-    NSError *error;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:itemDic options:NSJSONWritingPrettyPrinted error:&error];
-    NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSString *stringCleanPath = [jsonString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    NSString *completeUrl = [url stringByAppendingString:stringCleanPath];
-    
-    [manager POST:completeUrl parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+    [manager POST:url parameters:itemDic progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         if (responseObject) {
-            NSLog(@"Succeed: %@", responseObject);
             [self postDidPostItemNotificaion];
         }
     } failure:^(NSURLSessionTask *task, NSError *error) {
-        NSLog(@"Error: %@",error);
         [self postFailPostItemNotification];
     }];
-    
-    [manager invalidateSessionCancelingTasks:NO];
 }
 
 - (void)loadMyPickedItemsWithAccount:(NSString *)account
@@ -180,39 +154,24 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
         [self.myPicked removeAllObjects];
     }
     
-    NSDictionary *condition = @{@"account":account};
-    
-    NSError *error;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:condition options:NSJSONWritingPrettyPrinted error:&error];
-    NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSString *stringCleanPath = [jsonString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    
-    NSString *url = [[getPickItemsUrl stringByAppendingString:@"&data="] stringByAppendingString:stringCleanPath];
-    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];    
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
     
-    [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        if (responseObject)
+    NSString *newURL = [getLostAndFoundItemsUrl stringByAppendingString:[NSString stringWithFormat:@"account=%@",account]];
+    
+    [manager GET:newURL parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        for (NSDictionary *itemsInfo in responseObject)
         {
-            NSLog(@"JSON: %@",responseObject);
-            for (NSDictionary *itemsInfo in responseObject)
-            {
-                BBTLAF *item = [[BBTLAF alloc] initWithResponesObject:itemsInfo];
-                
+            BBTLAF *item = [[BBTLAF alloc] initWithResponesObject:itemsInfo];
+            if ([item.account isEqual:account]){
                 [self.myPicked addObject:item];
             }
-            
-            [self postDidGetPickedItemsNotification];
         }
-    } failure:^(NSURLSessionTask *task, NSError *error) {
-        NSLog(@"Error: %@", error);
+        [self postDidGetPickedItemsNotification];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self postFailLafNotification];
     }];
-    
-    [manager invalidateSessionCancelingTasks:NO];
-    
-}
+   }
 
 - (void)loadMyLostItemsWithAccount:(NSString *)account
 {
@@ -221,42 +180,25 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
     } else {
         [self.myLost removeAllObjects];
     }
-    
-    NSDictionary *condition = @{@"account":account};
-    
-    NSError *error;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:condition options:NSJSONWritingPrettyPrinted error:&error];
-    NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSString *stringCleanPath = [jsonString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    
-    NSString *url = [[getLostItemsUrl stringByAppendingString:@"&data="] stringByAppendingString:stringCleanPath];
-    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];
-    
-    [manager POST:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        if (responseObject)
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
+    NSString *newURL = [getLostAndFoundItemsUrl stringByAppendingString:[NSString stringWithFormat:@"account=%@",account]];
+    [manager GET:newURL parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        for (NSDictionary *itemsInfo in responseObject)
         {
-            NSLog(@"JSON: %@",responseObject);
-            for (NSDictionary *itemsInfo in responseObject)
-            {
-                BBTLAF *item = [[BBTLAF alloc] initWithResponesObject:itemsInfo];
-                
+            BBTLAF *item = [[BBTLAF alloc] initWithResponesObject:itemsInfo];
+            if ([item.account isEqual:account]){
                 [self.myLost addObject:item];
             }
-            
-            [self postDidGetLostItemsNotification];
         }
-    } failure:^(NSURLSessionTask *task, NSError *error) {
-        NSLog(@"Error: %@", error);
+        [self postDidGetLostItemsNotification];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self postFailLafNotification];
     }];
-    
-    [manager invalidateSessionCancelingTasks:NO];
-
+   
 }
 
-- (void)deletePostedItemsWithId:(NSString *)itemID inTable:(NSUInteger)lostOrFound
+- (void)deletePostedItemsWithId:(NSNumber *)itemID inTable:(NSUInteger)lostOrFound
 {
     NSString *url;
     switch (lostOrFound) {
@@ -271,29 +213,20 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
         default: break;
     }
     
-    NSDictionary *itemMark = @{@"ID":itemID};
-    
-    NSError *error;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:itemMark options:NSJSONWritingPrettyPrinted error:&error];
-    NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSString *stringCleanPath = [jsonString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    NSString *completeUrl = [url stringByAppendingString:stringCleanPath];
-    
+    //NSDictionary *itemMark = @{@"ID":itemID};
+    NSString *newURL = [postLostItemUrl stringByAppendingString:[NSString stringWithFormat:@"/%@",itemID]];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
     
-    [manager POST:completeUrl parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        if (responseObject) {
-            NSLog(@"Succeed: %@", responseObject);
-            if (responseObject[@"column"]) {
-                [self postDidDeleteItemNotification];
-            } else {
-                [self postFailDeleteItemNotification];
-            }
+    [manager DELETE:newURL parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"message"] isEqual:@"OK"]){
+            [self postDidDeleteItemNotification];
+        }else{
+            [self postFailDeleteItemNotification];
         }
-    } failure:^(NSURLSessionTask *task, NSError *error) {
-        NSLog(@"Error: %@",error);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self postFailDeleteItemNotification];
+
     }];
 }
 

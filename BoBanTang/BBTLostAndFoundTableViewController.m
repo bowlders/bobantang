@@ -130,7 +130,7 @@ extern NSString * kNoMoreItemsNotificationName;
 
 - (BOOL)didReceiveUserAuthentificaionNotification
 {
-    NSLog(@"User Authentification received");
+    //NSLog(@"User Authentification received");
     return YES;
 }
 
@@ -208,7 +208,7 @@ extern NSString * kNoMoreItemsNotificationName;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [BBTLAFManager sharedLAFManager].itemsCount;
+    return [[BBTLAFManager sharedLAFManager].itemArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -226,15 +226,21 @@ extern NSString * kNoMoreItemsNotificationName;
         [cell configureItemsCells:itemArray[indexPath.row]];
         
         //Asynchronously downloads the thumbnail
-        [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)itemArray[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
-            //NSLog(@"Succeed!");
-            if (cell) {
-                cell.thumbLostImageView.image = image;
-            }
-            [cell setNeedsLayout];
-        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        NSString *urlString = ((BBTLAF *)itemArray[indexPath.row]).thumbURL;
+        if (urlString){
+            [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
+                //NSLog(@"Succeed!");
+                if (cell) {
+                    cell.thumbLostImageView.image = image;
+                }
+                [cell setNeedsLayout];
+            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                cell.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
+            }];
+        }else{
             cell.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
-        }];
+            
+        }
     }
     
     [self.view setNeedsUpdateConstraints];

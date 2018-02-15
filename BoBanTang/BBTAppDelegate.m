@@ -60,7 +60,7 @@ extern NSString *kActivityPageAvaliable;
     {
         //有本地保存的账号密码时，我们即认为已经完成登录认证
         //即便当前没网，也离线保持登录状态
-        //但是由于cookie时间为半小时，虽然感觉不会有用户停留在app半小时以上，但我们还是搞一个循环半小时发一次登录验证
+        //但是由于cookie时间为1小时，虽然感觉不会有用户停留在app1小时以上，但我们还是搞一个循环1小时发一次登录验证
         //什么你说会不会浪费资源，这个能有校巴浪费？！！！
         NSDictionary * restoreData = @{
                                        @"account":[JNKeychain loadValueForKey:@"userName"],
@@ -84,7 +84,7 @@ extern NSString *kActivityPageAvaliable;
         [[BBTCurrentUserManager sharedCurrentUserManager] performRegularLoginTask];
         
         //加入循环
-        NSTimer *loginTime = [NSTimer timerWithTimeInterval:30*60 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        NSTimer *loginTime = [NSTimer timerWithTimeInterval:50*60 repeats:YES block:^(NSTimer * _Nonnull timer) {
             [[BBTCurrentUserManager sharedCurrentUserManager] performRegularLoginTask];
         }];
         [[NSRunLoop mainRunLoop] addTimer:loginTime forMode:NSRunLoopCommonModes];

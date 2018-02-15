@@ -541,12 +541,25 @@ extern NSString *kFailPostItemNotificaionName;
                                                    handler:^(UIAlertAction *action){
                                                        [pickerView dismissViewControllerAnimated:YES completion:nil];
                                                    }];
+    
     UIAlertAction *useCamera = [UIAlertAction actionWithTitle:@"拍照"
                                                         style:UIAlertActionStyleDefault
                                                       handler:^(UIAlertAction *action){
-                                                          pickerContoller.sourceType = UIImagePickerControllerSourceTypeCamera;
-                                                          pickerContoller.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
-                                                          [self presentViewController:pickerContoller animated:YES completion:nil];
+                                                          if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
+                                                          {
+                                                              //Current device has a camera.
+                                                              pickerContoller.sourceType = UIImagePickerControllerSourceTypeCamera;
+                                                              pickerContoller.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+                                                              [self presentViewController:pickerContoller animated:YES completion:nil];
+                                                          }
+                                                          else
+                                                          {
+                                                              UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"当前设备无摄像头" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                                                              UIAlertAction *defult = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+                                                              [alertController addAction:defult];
+                                                              [self presentViewController:alertController animated:YES completion:nil];
+                                                              
+                                                          }
                                                       }];
     UIAlertAction *chooseFromGallery = [UIAlertAction actionWithTitle:@"从相册选取"
                                                                 style:UIAlertActionStyleDefault
@@ -639,8 +652,8 @@ extern NSString *kFailPostItemNotificaionName;
     [self.itemInfoToPost setObject:self.item.title forKey:@"title"];
     [self.itemInfoToPost setObject:self.account forKey:@"account"];
     
-    if (![self.item.details isEqualToString:detailsInitial])[self.itemInfoToPost setObject:self.item.details forKey:@"details"];
-    if (![self.item.otherContact isEqualToString:@""] && !self.item.otherContact)[self.itemInfoToPost setObject:self.item.otherContact forKey:@"otherContact"];
+    if (![self.item.details isEqualToString:detailsInitial])[self.itemInfoToPost setObject:self.item.details forKey:@"detail"];
+    if (![self.item.otherContact isEqualToString:@""] && self.item.otherContact)[self.itemInfoToPost setObject:self.item.otherContact forKey:@"otherContact"];
     
     //Show a HUD
     [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];

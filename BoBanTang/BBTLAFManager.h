@@ -23,6 +23,6 @@
 - (void)postItemDic:(NSDictionary *)itemDic WithType:(NSInteger)type;
 - (void)loadMyPickedItemsWithAccount:(NSString *)account;
 - (void)loadMyLostItemsWithAccount:(NSString *)account;
-- (void)deletePostedItemsWithId:(NSString *)itemID inTable:(NSUInteger)lostOrFound;
+- (void)deletePostedItemsWithId:(NSNumber *)itemID inTable:(NSUInteger)lostOrFound;
 
 @end

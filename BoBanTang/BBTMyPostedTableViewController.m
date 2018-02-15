@@ -62,7 +62,7 @@ extern NSString * kDidGetLostItemsNotificationName;
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
     self.navigationItem.title = @"我的发布";
-        
+    
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self refresh];
     }];
@@ -245,29 +245,34 @@ extern NSString * kDidGetLostItemsNotificationName;
     //Prevent the cell point to a reused cell with wrong contents because the download request is in the background
     cell.thumbLostImageView.image = nil;
     [cell.thumbLostImageView cancelImageDownloadTask];
-
+    
     //The user has both picked and lost items
     if (self.sectionNum == 2)
     {
         if (indexPath.section == 0 && [BBTLAFManager sharedLAFManager].myPicked && [[BBTLAFManager sharedLAFManager].myPicked count] > 0)
         {
             [cell configureItemsCells:[BBTLAFManager sharedLAFManager].myPicked[indexPath.row]];
-            
-            [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)[BBTLAFManager sharedLAFManager].myPicked[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
-                //NSLog(@"Succeed!");
-                if (cell) {
-                    cell.thumbLostImageView.image = image;
-                }
-                [cell setNeedsLayout];
-            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                cell.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
-            }];
+            NSString *thumbURL = ((BBTLAF *)[BBTLAFManager sharedLAFManager].myPicked[indexPath.row]).thumbURL;
+            if (thumbURL){
+                [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
+                    //NSLog(@"Succeed!");
+                    if (cell) {
+                        cell.thumbLostImageView.image = image;
+                    }
+                    [cell setNeedsLayout];
+                } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                    cell.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
+                }];
+            }else{
+                cell.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];;
+            }
             
         }
         else if (indexPath.section == 1 && [BBTLAFManager sharedLAFManager].myLost && [[BBTLAFManager sharedLAFManager].myLost count] > 0) {
             [cell configureItemsCells:[BBTLAFManager sharedLAFManager].myLost[indexPath.row]];
-            
-            [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)[BBTLAFManager sharedLAFManager].myLost[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
+            NSString *thumbURL = ((BBTLAF *)[BBTLAFManager sharedLAFManager].myLost[indexPath.row]).thumbURL;
+            if (thumbURL){
+            [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
                 //NSLog(@"Succeed!");
                 if (cell) {
                     cell.thumbLostImageView.image = image;
@@ -276,6 +281,10 @@ extern NSString * kDidGetLostItemsNotificationName;
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                 cell.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
             }];
+            }else{
+                cell.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
+
+            }
         }
     }
     //The user has either
@@ -285,20 +294,26 @@ extern NSString * kDidGetLostItemsNotificationName;
         {
             if ([[BBTLAFManager sharedLAFManager].myPicked count] > 0) {
                 [cell configureItemsCells:[BBTLAFManager sharedLAFManager].myPicked[indexPath.row]];
-                
-                [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)[BBTLAFManager sharedLAFManager].myPicked[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
-                    //NSLog(@"Succeed!");
-                    if (cell) {
-                        cell.thumbLostImageView.image = image;
-                    }
-                    [cell setNeedsLayout];
-                } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                NSString *thumbURL = ((BBTLAF *)[BBTLAFManager sharedLAFManager].myPicked[indexPath.row]).thumbURL;
+                if (thumbURL){
+                    [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
+                        //NSLog(@"Succeed!");
+                        if (cell) {
+                            cell.thumbLostImageView.image = image;
+                        }
+                        [cell setNeedsLayout];
+                    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                        cell.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
+                    }];
+                }else{
                     cell.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
-                }];
+                    
+                }
             } else {
                 [cell configureItemsCells:[BBTLAFManager sharedLAFManager].myLost[indexPath.row]];
-                
-                [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:((BBTLAF *)[BBTLAFManager sharedLAFManager].myLost[indexPath.row]).thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
+                NSString *thumbURL = ((BBTLAF *)[BBTLAFManager sharedLAFManager].myLost[indexPath.row]).thumbURL;
+                if (thumbURL){
+                [cell.thumbLostImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
                     //NSLog(@"Succeed!");
                     if (cell) {
                         cell.thumbLostImageView.image = image;
@@ -307,11 +322,12 @@ extern NSString * kDidGetLostItemsNotificationName;
                 } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                     cell.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
                 }];
+                }else{
+                    cell.thumbLostImageView.image = [UIImage imageNamed:@"BoBanTang"];
+                }
             }
         }
     }
-    
-    
     [self.view setNeedsUpdateConstraints];
     [self.view updateConstraintsIfNeeded];
     
@@ -405,7 +421,7 @@ extern NSString * kDidGetLostItemsNotificationName;
             controller.lostOrFound = true;
         }
     }
-
+    
 }
 
 

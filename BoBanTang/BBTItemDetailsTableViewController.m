@@ -41,7 +41,7 @@
         self.locationTitle.text = @"拾获地点";
     }
     
-    NSLog(@"campus %@", self.itemDetails.campus);
+    //NSLog(@"campus %@", self.itemDetails.campus);
     
     self.details.text = self.itemDetails.details;
     self.details.numberOfLines = 0;
@@ -58,17 +58,22 @@
     self.contactName.text = self.itemDetails.publisher;
     self.phone.text = self.itemDetails.phone;
     
-    [self.thumbImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.itemDetails.thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
-        self.thumbImage.image = image;
-        [self.view setNeedsLayout];
-        
-        self.thumbImage.userInteractionEnabled = YES;
-        UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-        [self.thumbImage addGestureRecognizer:gesture];
-        
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+    __weak BBTItemDetailsTableViewController *weakSelf = self;
+    if (self.itemDetails.thumbURL){
+        [self.thumbImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.itemDetails.thumbURL]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage * image) {
+            weakSelf.thumbImage.image = image;
+            [weakSelf.view setNeedsLayout];
+            
+            weakSelf.thumbImage.userInteractionEnabled = YES;
+            UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:weakSelf action:@selector(handleTap:)];
+            [weakSelf.thumbImage addGestureRecognizer:gesture];
+            
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+            weakSelf.thumbImage.image = [UIImage imageNamed:@"BoBanTang"];
+        }];
+    }else{
         self.thumbImage.image = [UIImage imageNamed:@"BoBanTang"];
-    }];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

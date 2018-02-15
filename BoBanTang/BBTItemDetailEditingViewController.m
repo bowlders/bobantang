@@ -14,9 +14,9 @@
 
 @interface BBTItemDetailEditingViewController ()
 
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *doneButton;
-@property (strong, nonatomic) IBOutlet UILabel *lengthLabel;
-@property (strong, nonatomic) IBOutlet UITextView *itemDetails;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
+@property (weak, nonatomic) IBOutlet UILabel *lengthLabel;
+@property (weak, nonatomic) IBOutlet UITextView *itemDetails;
 
 @end
 
@@ -42,27 +42,6 @@
     self.lengthLabel.text = [NSString stringWithFormat:@"%lu/80", [self.textToEditing length]];
     self.itemDetails.text = self.textToEditing;
     self.itemDetails.delegate = self;
-    
-    CGFloat statusBarHeight = self.navigationController.navigationBar.frame.origin.y;
-    CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
-    CGFloat innerSpacing = 10.0f;
-    CGFloat lenthLabelY = statusBarHeight + navigationBarHeight + 2 * innerSpacing;
-    CGFloat labelHeight = 20.0f;
-    CGFloat textViewHeight = 200.0f;
-    
-    [self.lengthLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view.mas_top).offset(lenthLabelY);
-        make.height.equalTo(@(labelHeight));
-        make.left.equalTo(self.view.mas_left).offset(innerSpacing);
-        make.right.equalTo(self.view.mas_right).offset(-innerSpacing);
-    }];
-    
-    [self.itemDetails mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.lengthLabel.mas_top).insets(UIEdgeInsetsMake(-100.0, 0.0, 0.0, 0.0));
-        make.height.equalTo(@(textViewHeight));
-        make.left.equalTo(self.view.mas_left).offset(innerSpacing);
-        make.right.equalTo(self.view.mas_right).offset(-innerSpacing);
-    }];
 
     [self.itemDetails becomeFirstResponder];
     
