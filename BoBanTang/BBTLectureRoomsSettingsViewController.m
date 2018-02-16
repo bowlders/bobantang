@@ -299,6 +299,8 @@ static NSString * showResultsSegueIdentifier = @"showResults";
         UINavigationController *navigationController = segue.destinationViewController;
         BBTLectureRoomsTimeTableViewController *controller = (BBTLectureRoomsTimeTableViewController *)navigationController.topViewController;
         controller.delegate = self;
+        //记住曾经选了什么
+        controller.period = self.setConditions.period;
     } else if ([segue.identifier isEqualToString:showResultsSegueIdentifier]) {
         BBTLectureRoomsResultTableViewController *controller = segue.destinationViewController;
         controller.filterConditions = self.setConditions;

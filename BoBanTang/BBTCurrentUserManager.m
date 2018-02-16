@@ -145,7 +145,7 @@ NSString * finishUpdateCurrentUserInformationName = @"UpdateCurrentUserInformati
         //NSLog(@"checkResult: %@", responseObject);
         self.clubUserIsActive = true;
         [self postUserClubLoginFinishNotification];
-        [self fetchCurrentUserProfile];
+        //[self fetchCurrentUserProfile];
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
         self.clubUserIsActive = false;
@@ -158,6 +158,7 @@ NSString * finishUpdateCurrentUserInformationName = @"UpdateCurrentUserInformati
 - (void)fetchCurrentUserProfile{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
     NSString * fetchUserProfileURL = [NSString stringWithFormat:@"%@%ld",fetchUserProfileBaseURL,(long)self.currentUser.ID];
     [manager GET:fetchUserProfileURL parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"JSON: %@", responseObject);

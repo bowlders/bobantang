@@ -14,6 +14,7 @@
 @property (strong, nonatomic) IBOutlet UITableViewCell *afternoonCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell *eveningCell;
 
+
 @end
 
 @implementation BBTLectureRoomsTimeTableViewController
@@ -25,6 +26,18 @@
     [self.navigationController.navigationBar setBarTintColor: [UIColor colorWithRed:0/255.0 green:153.0/255.0 blue:204.0/255.0 alpha:1.0]];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+    
+    if (self.period){
+        if (![self.period containsObject:@"0"]&&![self.period containsObject:@"1"]){
+            self.morningCell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        if (![self.period containsObject:@"2"]&&![self.period containsObject:@"3"]){
+            self.afternoonCell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        if (![self.period containsObject:@"4"]){
+            self.eveningCell.accessoryType = UITableViewCellAccessoryNone;
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {

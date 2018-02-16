@@ -45,7 +45,6 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
     return _manager;
 }
 
-#pragma mark 标记，日后再来修改代码
 - (void)retriveItems:(NSUInteger)type WithConditions:(NSDictionary *)conditions
 {
     

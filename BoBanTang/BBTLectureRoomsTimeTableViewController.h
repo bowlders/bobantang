@@ -18,6 +18,8 @@
 
 @interface BBTLectureRoomsTimeTableViewController : UITableViewController
 
+@property (strong,nonatomic) NSArray *period;
+
 @property (nonatomic, weak) id <BBTLectureRoomsTimeTableViewControllerDelegate> delegate;
 
 @end
