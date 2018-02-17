@@ -46,22 +46,20 @@ NSString * noNewInfoNotifName = @"noMoreInfo";
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     //manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
- 
-    [manager GET:baseGetCampusInfoUrl parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+    
+    NSString *newGetCampusInfoURL = [NSString stringWithFormat:@"%@&skip=%lu",baseGetCampusInfoUrl,self.infoCount];
+    [manager GET:newGetCampusInfoURL parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
         if (responseObject)
         {
-
-            
             for (int i = 0;i < [(NSArray *)responseObject[@"data"] count];i++)
             {
-                BBTCampusInfo *newInfo = [[BBTCampusInfo alloc] initWithDictionary:(NSArray*)responseObject[@"data"][i] error:nil];
-                NSLog(@"JSON: %@", [newInfo.content objectForKey:@"article"]);
-                NSLog(@"%d",newInfo.id);
+                BBTCampusInfo *newInfo = [[BBTCampusInfo alloc] initWithDictionary:responseObject[@"data"][i] error:nil];
+                //NSLog(@"JSON: %@", [newInfo.content objectForKey:@"article"]);
+                //NSLog(@"%d",newInfo.id);
                 [self.infoArray addObject:newInfo];
                 noMoreInfoCount++;
             }
-            
             self.infoCount += [(NSArray *)responseObject[@"data"] count];
             [self pushCampusInfoNotification];
             

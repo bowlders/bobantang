@@ -1,52 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Jbg-eY-9B2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Jbg-eY-9B2">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Info Segmented Controller View Controller-->
-        <scene sceneID="dpm-Ss-Hib">
-            <objects>
-                <viewController id="fis-tY-OjY" customClass="BBTInfoSegmentedControllerViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="7nf-KT-Rtr"/>
-                        <viewControllerLayoutGuide type="bottom" id="xHg-5C-4MA"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="wbp-GZ-aBO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="h9j-GA-BrS">
-                        <nil key="title"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="MrV-FS-Zbd">
-                            <rect key="frame" x="119" y="8" width="137" height="29"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="校内资讯"/>
-                                <segment title="每日一文"/>
-                            </segments>
-                            <connections>
-                                <action selector="valueChanged:" destination="fis-tY-OjY" eventType="valueChanged" id="xxa-Pf-mGg"/>
-                            </connections>
-                        </segmentedControl>
-                    </navigationItem>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="segmentedControl" destination="MrV-FS-Zbd" id="i6E-Qc-N6m"/>
-                        <segue destination="uCJ-Yw-TVu" kind="show" id="ZHK-32-xxM"/>
-                        <segue destination="7ra-dh-P6d" kind="show" id="B1N-b1-cvx"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nje-0W-b8g" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="645.5" y="192.5"/>
-        </scene>
-        <!--Campus Info Table View Controller-->
+        <!--校内资讯-->
         <scene sceneID="yOh-AT-YeM">
             <objects>
                 <tableViewController id="uCJ-Yw-TVu" customClass="BBTCampusInfoTableViewController" sceneMemberID="viewController">
@@ -55,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="Search" id="t8x-Aw-bcb">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="64" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
@@ -67,7 +29,7 @@
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BIU-u0-JJX" id="ExN-3J-D8o">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -80,6 +42,7 @@
                             <outlet property="delegate" destination="uCJ-Yw-TVu" id="OYd-as-Fi3"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="校内资讯" id="Crn-oz-YI4"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="oIG-wJ-rfy" id="Gw7-WL-zwn"/>
                     </connections>
@@ -94,7 +57,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1139.5" y="599.5"/>
+            <point key="canvasLocation" x="790" y="438"/>
         </scene>
         <!--Campus Info View Controller-->
         <scene sceneID="xut-Df-ifY">
@@ -121,83 +84,6 @@
             </objects>
             <point key="canvasLocation" x="1763.5" y="599.5"/>
         </scene>
-        <!--Daily Article View Controller-->
-        <scene sceneID="jhd-Ys-q2o">
-            <objects>
-                <viewController id="7ra-dh-P6d" customClass="BBTDailyArticleViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="feP-sp-xa4"/>
-                        <viewControllerLayoutGuide type="bottom" id="raT-TX-OHW"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="EHA-wB-rVh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NKs-vJ-DDa">
-                                <rect key="frame" x="0.0" y="64" width="375" height="561"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.28958413004875183" green="0.31462949514389038" blue="0.32950475811958313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <toolbarItems/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <segue destination="BvT-s3-QDP" kind="show" identifier="showPreviousArticlesList" id="Ije-9A-1f5"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TnD-D5-JVI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1139.5" y="-232.5"/>
-        </scene>
-        <!--Daily Article Table View Controller-->
-        <scene sceneID="g2H-sc-ISc">
-            <objects>
-                <tableViewController storyboardIdentifier="PreviousArticlesListVC" id="BvT-s3-QDP" customClass="BBTDailyArticleTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="YeM-GN-ecY">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" id="7sF-yX-iqo">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </searchBar>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="articleCell" id="eDo-cX-h5e">
-                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eDo-cX-h5e" id="LK7-kd-0ny">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="7ra-dh-P6d" kind="show" identifier="showArticleDetail" id="zsH-dg-BCF"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="BvT-s3-QDP" id="9db-yT-lEu"/>
-                            <outlet property="delegate" destination="BvT-s3-QDP" id="25u-k8-bJX"/>
-                        </connections>
-                    </tableView>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="Oie-kr-Ee5" id="aL2-V2-vvh"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Z31-7r-W9s" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="Oie-kr-Ee5">
-                    <connections>
-                        <outlet property="delegate" destination="BvT-s3-QDP" id="tkl-25-z1n"/>
-                        <outlet property="searchContentsController" destination="BvT-s3-QDP" id="pBO-o1-LMr"/>
-                        <outlet property="searchResultsDataSource" destination="BvT-s3-QDP" id="Z5Y-aP-zVZ"/>
-                        <outlet property="searchResultsDelegate" destination="BvT-s3-QDP" id="rxC-nI-ZN4"/>
-                    </connections>
-                </searchDisplayController>
-            </objects>
-            <point key="canvasLocation" x="1763.5" y="-232.5"/>
-        </scene>
         <!--资讯-->
         <scene sceneID="8OL-Av-cvp">
             <objects>
@@ -210,19 +96,16 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="fis-tY-OjY" kind="relationship" relationship="rootViewController" id="ucI-Cc-uAR"/>
+                        <segue destination="uCJ-Yw-TVu" kind="relationship" relationship="rootViewController" id="wTC-5X-UmM"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OcI-n6-U8w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-68" y="192"/>
+            <point key="canvasLocation" x="31" y="274"/>
         </scene>
     </scenes>
     <resources>
         <image name="Information" width="24" height="24"/>
         <image name="InformationSelected" width="24" height="24"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="B1N-b1-cvx"/>
-    </inferredMetricsTieBreakers>
 </document>
