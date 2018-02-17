@@ -83,11 +83,12 @@
 		39FE91D81C5A54F50041E46F /* BBTCampusBusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91D71C5A54F50041E46F /* BBTCampusBusManager.m */; };
 		39FE91DD1C5DAA0F0041E46F /* BBTCampusBusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91DC1C5DAA0F0041E46F /* BBTCampusBusViewController.m */; };
 		39FE91E61C5F886C0041E46F /* BBTMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91E51C5F886C0041E46F /* BBTMeViewController.m */; };
+		6788E3962037287900FC85B9 /* BBTScheduleDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6788E3952037287900FC85B9 /* BBTScheduleDate.m */; };
+		6788E3A020372F3900FC85B9 /* BBTScheduleDateLocalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6788E39F20372F3900FC85B9 /* BBTScheduleDateLocalManager.m */; };
 		67A062171F71179600AD366A /* Schedule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67A062161F71179600AD366A /* Schedule.storyboard */; };
 		67A0621A1F71184500AD366A /* SchduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A062191F71184500AD366A /* SchduleViewController.m */; };
 		67A0621E1F71190700AD366A /* TableTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A0621D1F71190700AD366A /* TableTextField.m */; };
 		67A062211F71193900AD366A /* ScheduleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A062201F71193900AD366A /* ScheduleButton.m */; };
-		67A062251F71198000AD366A /* ScheduleDateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A062241F71198000AD366A /* ScheduleDateManager.m */; };
 		67A062281F71199A00AD366A /* OITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A062271F71199A00AD366A /* OITableViewController.m */; };
 		67A0622D1F7119DF00AD366A /* OITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A0622C1F7119DF00AD366A /* OITableViewCell.m */; };
 		67A062311F711A2200AD366A /* OITableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67A062301F711A2200AD366A /* OITableViewCell.xib */; };
@@ -393,6 +394,10 @@
 		39FE91E51C5F886C0041E46F /* BBTMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTMeViewController.m; sourceTree = "<group>"; };
 		48D6888DD2A267EA93C8D8BC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6743A72A1F6E9EB6009BAE42 /* Mapbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mapbox.h; sourceTree = "<group>"; };
+		6788E3942037287900FC85B9 /* BBTScheduleDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTScheduleDate.h; sourceTree = "<group>"; };
+		6788E3952037287900FC85B9 /* BBTScheduleDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTScheduleDate.m; sourceTree = "<group>"; };
+		6788E39E20372F3900FC85B9 /* BBTScheduleDateLocalManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTScheduleDateLocalManager.h; sourceTree = "<group>"; };
+		6788E39F20372F3900FC85B9 /* BBTScheduleDateLocalManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTScheduleDateLocalManager.m; sourceTree = "<group>"; };
 		67A062161F71179600AD366A /* Schedule.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Schedule.storyboard; sourceTree = "<group>"; };
 		67A062191F71184500AD366A /* SchduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchduleViewController.m; sourceTree = "<group>"; };
 		67A0621B1F71185500AD366A /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
@@ -400,8 +405,6 @@
 		67A0621D1F71190700AD366A /* TableTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableTextField.m; sourceTree = "<group>"; };
 		67A0621F1F71193900AD366A /* ScheduleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleButton.h; sourceTree = "<group>"; };
 		67A062201F71193900AD366A /* ScheduleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleButton.m; sourceTree = "<group>"; };
-		67A062231F71198000AD366A /* ScheduleDateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleDateManager.h; sourceTree = "<group>"; };
-		67A062241F71198000AD366A /* ScheduleDateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleDateManager.m; sourceTree = "<group>"; };
 		67A062261F71199A00AD366A /* OITableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OITableViewController.h; sourceTree = "<group>"; };
 		67A062271F71199A00AD366A /* OITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OITableViewController.m; sourceTree = "<group>"; };
 		67A0622B1F7119DF00AD366A /* OITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OITableViewCell.h; sourceTree = "<group>"; };
@@ -1239,8 +1242,10 @@
 		67A062221F71196700AD366A /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
-				67A062231F71198000AD366A /* ScheduleDateManager.h */,
-				67A062241F71198000AD366A /* ScheduleDateManager.m */,
+				6788E3942037287900FC85B9 /* BBTScheduleDate.h */,
+				6788E3952037287900FC85B9 /* BBTScheduleDate.m */,
+				6788E39E20372F3900FC85B9 /* BBTScheduleDateLocalManager.h */,
+				6788E39F20372F3900FC85B9 /* BBTScheduleDateLocalManager.m */,
 			);
 			name = Schedule;
 			sourceTree = "<group>";
@@ -2002,6 +2007,7 @@
 				0DF4EF2B1DE1F9A900B3843F /* BBTActivityPageViewController.h in Sources */,
 				0DF4EF2C1DE1F9A900B3843F /* BBTActivityPageViewController.m in Sources */,
 				A947D9C61BD8E03A000F071B /* main.m in Sources */,
+				6788E3962037287900FC85B9 /* BBTScheduleDate.m in Sources */,
 				AF5412761CC67E03004C0CE8 /* BBTMapViewController.m in Sources */,
 				FC2EAFF11C69A95000B5DC42 /* BBTItemCampusTableViewCell.m in Sources */,
 				AF5412791CC67E2D004C0CE8 /* BBT3DMapViewController.m in Sources */,
@@ -2041,7 +2047,6 @@
 				67A062341F711A7000AD366A /* ManualImportVC.m in Sources */,
 				67A062211F71193900AD366A /* ScheduleButton.m in Sources */,
 				0DD26BC41F6A41CA005DE4E8 /* BBTClubViewController.m in Sources */,
-				67A062251F71198000AD366A /* ScheduleDateManager.m in Sources */,
 				AF5412BC1CC6805D004C0CE8 /* BRSSCUTMapView.m in Sources */,
 				AF5412971CC67FC4004C0CE8 /* BRSUtilities.m in Sources */,
 				395B529A1C7C852B008FD949 /* BBTCollectedCampusInfoManager.m in Sources */,
@@ -2119,6 +2124,7 @@
 				39231B1A1D3E1BBD003FBA9C /* TDBadgedCell.m in Sources */,
 				FC2EB0061C69B1A500B5DC42 /* BBTTextFieldTableViewCell.m in Sources */,
 				FCE609541C7979D9008C331D /* BBTLectureRoomsSettingsViewController.m in Sources */,
+				6788E3A020372F3900FC85B9 /* BBTScheduleDateLocalManager.m in Sources */,
 				395B10D31C55271B00772A38 /* BBTCampusInfoTableViewController.m in Sources */,
 				AF54127F1CC67E9A004C0CE8 /* RMMapView+BBT3DMapView.m in Sources */,
 				39239A351C646FCD008EDBB0 /* BBTCurrentUserManager.m in Sources */,

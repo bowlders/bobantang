@@ -8,25 +8,26 @@
 
 #import "OITableViewController.h"
 #import "OITableViewCell.h"
-#import "ScheduleDateManager.h"
+#import "BBTScheduleDateLocalManager.h"
 
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
 @interface OITableViewController ()
-@property (nonatomic,strong)ScheduleDateManager *manager;
+@property (nonatomic,strong)BBTScheduleDateLocalManager *manager;
 @end
 
 @implementation OITableViewController
-- (ScheduleDateManager *)manager{
+
+- (BBTScheduleDateLocalManager *)manager{
     if (_manager == nil){
-        _manager = [ScheduleDateManager new];
+        _manager = [BBTScheduleDateLocalManager new];
     }
     return _manager;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteOneCell:) name:@"deleteCell" object:nil];
     
     //设置导航栏字体和颜色
     self.navigationItem.title = @"教务导课";
@@ -46,46 +47,53 @@
     [left addTarget:self action:@selector(cancelBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:left];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(findTJGet:) name:@"ThefindTJScheduleGet" object:nil];
-    [self.manager getTheScheduleWithAccount:self.manager.account andPassword:nil andType:@"findTJ"];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteOneCell:) name:@"deleteCell" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(findTJGet:) name:@"ThefindTJScheduleGet" object:nil];
+    
+    [self.manager getTheScheduleWithAccount:nil andPassword:nil andType:@"findTJ"];
 }
+
 - (void)findTJGet:(NSNotification *)noti{
     [self.tableView reloadData];
 }
+
 - (void)completeBtnDidClick:(UIButton *)sender{
-    if (self.manager.mutCourseArray != nil){
-        if ([ScheduleDateManager sharedManager].mutCourseArray != nil){
+    if (self.manager.mutCourses != nil){
+        if ([BBTScheduleDateLocalManager shardLocalManager].mutCourses != nil){
             NSMutableArray *selectWrong = [NSMutableArray array];
             bool isInArray = NO;
             //教务网导课的时候对本地课表进行一一检索，如果发现本地课表已经有这个课了，那么就不进行导入
-            for (ScheduleDateManager *oneManger in self.manager.mutCourseArray) {
-                for (ScheduleDateManager *originManager in [ScheduleDateManager sharedManager].mutCourseArray){
-                    if ([originManager.courseName isEqual:oneManger.courseName] && [originManager.teacherName isEqualToString:oneManger.teacherName] && [originManager.dayTime isEqualToString:oneManger.dayTime] && [originManager.day isEqualToString:oneManger.day] && [originManager.week isEqualToString:oneManger.week]){
+            for (BBTScheduleDate *course in self.manager.mutCourses) {
+                for (BBTScheduleDate *originalCourse in [BBTScheduleDateLocalManager shardLocalManager].mutCourses){
+                    if ([originalCourse.courseName isEqual:course.courseName] && [originalCourse.teacherName isEqualToString:course.teacherName] && [originalCourse.dayTime isEqualToString:course.dayTime] && [originalCourse.day isEqualToString:course.day] && [originalCourse.week isEqualToString:course.week]){
                         isInArray = YES;
                         break;
                     }
                 }
                 if (!isInArray){
-                    [selectWrong addObject:oneManger];
+                    [selectWrong addObject:course];
                 }else{
                     isInArray = NO;
                 }
             }
-            [[ScheduleDateManager sharedManager].mutCourseArray addObjectsFromArray:selectWrong];
+            [[BBTScheduleDateLocalManager shardLocalManager].mutCourses addObjectsFromArray:selectWrong];
         }else{
-            [ScheduleDateManager sharedManager].mutCourseArray = self.manager.mutCourseArray;
+            [BBTScheduleDateLocalManager shardLocalManager].mutCourses = self.manager.mutCourses;
         }
-    [[ScheduleDateManager sharedManager] updateLocalScheduleWithNoti:@"ThefindTJScheduleGet"];
+    [[BBTScheduleDateLocalManager shardLocalManager] updateLocalScheduleWithNoti:@"ThefindTJScheduleGet"];
+        
     if ([self.delegate respondsToSelector:@selector(updateScheduleView)]){
         [self.delegate updateScheduleView];
      }
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 - (void)cancelBtnDidClick:(UIButton *)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 - (UIButton *)createLeftOrRightBtnWithTitle:(NSString *)title{
     UIButton *completeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     completeBtn.frame = CGRectMake(0, 0, 65, 30);
@@ -98,10 +106,6 @@
     completeBtn.showsTouchWhenHighlighted = YES;
     return completeBtn;
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return SCREEN_WIDTH/10.0*3.0;
@@ -112,10 +116,10 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (self.manager.mutCourseArray == nil){
+    if (self.manager.mutCourses == nil){
         return 0;
     }else{
-        return self.manager.mutCourseArray.count;
+        return self.manager.mutCourses.count;
     }
 }
 
@@ -126,7 +130,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:@"OICell"];
     }
     
-     ScheduleDateManager *single = self.manager.mutCourseArray[indexPath.row];
+    BBTScheduleDate *single = self.manager.mutCourses[indexPath.row];
     cell.courseLabel.text = single.courseName;
     cell.timeLabel.text = [NSString stringWithFormat:@"时间 | %@ %@节", single.day,single.dayTime];
     cell.locationLabel.text = [NSString stringWithFormat:@"@%@",single.location];
@@ -138,7 +142,7 @@
     OITableViewCell *cell = (OITableViewCell *)[[sender superview]superview];
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     [self.tableView beginUpdates];
-    [self.manager.mutCourseArray removeObjectAtIndex:indexPath.row];
+    [self.manager.mutCourses removeObjectAtIndex:indexPath.row];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     [self.tableView endUpdates];
 }

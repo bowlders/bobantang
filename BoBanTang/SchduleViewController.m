@@ -10,7 +10,7 @@
 #import <AFHTTPSessionManager.h>
 #import "TableTextField.h"
 #import "ScheduleButton.h"
-#import "ScheduleDateManager.h"
+#import "BBTScheduleDateLocalManager.h"
 #import "OITableViewController.h"
 #import "ManualImportVC.h"
 #import "FloatingWindow.h"
@@ -25,14 +25,13 @@
     CGRect memuFrame0,memuFrame;
     UIScrollView *memuView;
     UIView *backgroundView,*shadowView;
-    NSInteger currentWeek;
+    NSInteger currentShowWeek;
     NSMutableArray *colorArr;
     UIImageView *moreImageView;
     FloatingWindow *floatWindow;
 }
 @property (nonatomic,strong) NSMutableArray *btnArr;
 @property (nonatomic,strong) UIScrollView *scrollView;
-@property (nonatomic,strong) ScheduleDateManager *manager;
 @property (nonatomic,strong) NSArray *topBtnArr;
 @end
 
@@ -87,11 +86,9 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:homeBtn];
 }
 - (void)viewWillAppear:(BOOL)animated{
-    if (self.manager != nil&&self.manager.mutCourseArray == nil){
-        NSString *account = self.manager.account;
-        if (account != nil){
-        [self.manager getTheScheduleWithAccount:account andPassword:nil andType:@"get"];
-        }
+
+    if ([BBTScheduleDateLocalManager shardLocalManager].mutCourses == nil){
+        [[BBTScheduleDateLocalManager shardLocalManager] fetchCurrentWeek];
     }
 }
 
@@ -112,18 +109,14 @@
     [self loadTopTitle];
     
     //先从本地获取当前周,没有本地周数信息的话就默认设置为周一
-    NSString *path = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)lastObject]stringByAppendingPathComponent:@"week.plist"];
-    NSDictionary *dic2 = [NSDictionary dictionaryWithContentsOfFile:path];
-    if (dic2[@"current"]){
-        [self.topTitle setTitle:[NSString stringWithFormat:@"课程表第%@周",dic2[@"current"]] forState:UIControlStateNormal];
-       currentWeek = [(NSString *)dic2[@"current"] integerValue];
-    }else{
-        currentWeek = 1;
-    }
-    
+    BBTScheduleDateLocalManager *localManager = [BBTScheduleDateLocalManager shardLocalManager];
+    currentShowWeek = localManager.currentWeek.integerValue;
+    //NSLog(@"%@",[NSString stringWithFormat:@"课程表第%@周",localManager.currentWeek]);
+    [self.topTitle setTitle:[NSString stringWithFormat:@"课程表第%@周",localManager.currentWeek] forState:UIControlStateNormal];
+     
     //获取本地课表
-    self.manager = [ScheduleDateManager sharedManager];
-    if([self.manager fetchThePrivateScheduleFromDatabase]){
+    localManager.mutCourses = [localManager fetchThePrivateScheduleFromDatabase];
+    if(localManager.mutCourses && localManager.mutCourses.count != 0){
         [self updateNow];
     }
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(dealWithRawRecommendScheduleData:) name:@"ThegetScheduleGet" object:nil];
@@ -131,16 +124,17 @@
     
     //获取服务器上的当前周数，同时，不论失败成功，都会去获取一次服务器上的个人课表,但事件流为：先完成周数的获取，然后再去获取更新课表，最后发送通知
     //这样做的理由是，一、课表展示对周数有依赖。二、为了解决两次请求的等待时间过长，所以先进行本地周数、本地课表的展示，最后获取数据后再刷新，从而给一个较好的用户体验
-    [self.manager fetchCurrentWeek];
+    [[BBTScheduleDateLocalManager shardLocalManager] fetchCurrentWeek];
 }
 
 - (void)dealWithRawRecommendScheduleData:(NSNotification *)noti{
-    [self.manager updateLocalScheduleWithNoti:noti.name];
-    if (self.manager.currentWeek != nil){
-        [self.topTitle setTitle:[NSString stringWithFormat:@"课程表第%@周",self.manager.currentWeek] forState:UIControlStateNormal];
-        currentWeek = self.manager.currentWeek.integerValue;
+    BBTScheduleDateLocalManager *localManger = [BBTScheduleDateLocalManager shardLocalManager];
+    [localManger updateLocalScheduleWithNoti:noti.name];
+    //更新一下最新的当前周数
+    if (localManger.currentWeek != nil){
+        [self.topTitle setTitle:[NSString stringWithFormat:@"课程表第%ld周",(long)localManger.currentWeek.integerValue] forState:UIControlStateNormal];
+        currentShowWeek = localManger.currentWeek.integerValue;
     }
-
     [self updateNow];
 }
 
@@ -220,7 +214,7 @@
 }
 - (void)createRow{
     NSArray *weekArr = [NSArray arrayWithObjects:@"",@"周一",@"周二",@"周三",@"周四",@"周五",@"周六",@"周日",nil];
-    NSInteger weekIndex = [weekArr indexOfObject:[ScheduleDateManager sharedManager].whichDay];
+    NSInteger weekIndex = [weekArr indexOfObject:[BBTScheduleDateLocalManager shardLocalManager].whichDay];
     CGFloat x0 = 0;
     fieldW = SCREEN_WIDTH/8.0+0.4375;
     fieldH = fieldW*97.0/85.0;
@@ -267,36 +261,25 @@
             [button removeFromSuperview];
         }
     }
-    NSMutableArray *mutArr = [NSMutableArray array];
-    for (ScheduleDateManager *singleData in [ScheduleDateManager sharedManager].mutCourseArray) {
-        NSArray *timeArr = [singleData.week componentsSeparatedByString:@" "];
-        BOOL isON = NO;
-        for (NSString *string in timeArr) {
-            if ([string containsString:@"-"]){
-                NSArray<NSString *> *tmp = [string componentsSeparatedByString:@"-"];
-                if(tmp[1].integerValue >= currentWeek && tmp[0].integerValue <= currentWeek){
-                    isON = YES;
-                }
-            }else{
-                if (currentWeek == string.integerValue){
-                    isON = YES;
-                }
-            }
-        }
-        if (isON){
+    
+    NSMutableArray<BBTScheduleDate *> *mutCouses = [self coursesInCurrentWeek];
+    NSMutableArray *mutArr = [NSMutableArray arrayWithCapacity:mutCouses.count];
+    
+    for (BBTScheduleDate *singleData in mutCouses) {
         NSArray *dayArr = [NSArray arrayWithObjects:@"周一",@"周二",@"周三",@"周四",@"周五",@"周六",@"周日",nil];
         NSInteger dayInt = [dayArr indexOfObject:singleData.day]+1;
         NSArray *timeArray = [singleData.dayTime componentsSeparatedByString:@"-"];
         NSInteger beginTime = ((NSString *)timeArray[0]).integerValue;
         NSInteger endTime = ((NSString *)timeArray[1]).integerValue;
+        
         ScheduleButton *button = [self addTopBtnWithRow:beginTime andCol:dayInt andCount:endTime-beginTime+1 andCourseName:[NSString stringWithFormat:@"%@@%@",singleData.courseName,singleData.location]];
         [button addTarget:self action:@selector(topBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
-        button.tag = [[ScheduleDateManager sharedManager].mutCourseArray indexOfObject:singleData];
+        button.tag = [[BBTScheduleDateLocalManager shardLocalManager].mutCourses indexOfObject:singleData];
         [mutArr addObject:button];
-        }
     }
-    self.topBtnArr = mutArr.copy;
+    self.topBtnArr = mutArr;
 }
+
 - (void)topBtnDidClick:(UIButton *)sender{
     UIStoryboard *board = [UIStoryboard storyboardWithName:@"Schedule" bundle:[NSBundle mainBundle]];
     ManualImportVC *manualImportVC = [board instantiateViewControllerWithIdentifier:@"ManualImport"];
@@ -304,10 +287,6 @@
     manualImportVC.tagValue = sender.tag;
     manualImportVC.navigationItem.title = @"详细信息";
     [self.navigationController pushViewController:manualImportVC animated:YES];
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)chooseWeek:(UIButton *)sender {
@@ -346,6 +325,7 @@
         [memuView addSubview:btn];
     }
 }
+
 - (void)tapTheBackground{
     moreImageView.transform = CGAffineTransformMakeRotation(0);
     showWeekChoice = !showWeekChoice;
@@ -354,11 +334,12 @@
         memuView.frame = memuFrame0;
     }];
 }
+
 - (void)memuDidchoose:(UIButton *)btn{
     moreImageView.transform = CGAffineTransformMakeRotation(0);
     [self tapTheBackground];
     [self.topTitle setTitle:btn.titleLabel.text forState:UIControlStateNormal];
-    currentWeek = btn.tag;
+    currentShowWeek = btn.tag;
     
     [self updateNow];
 }
@@ -405,5 +386,31 @@
 - (void)remove{
     [shadowView removeFromSuperview];
     [floatWindow removeFromSuperview];
+}
+- (NSMutableArray<BBTScheduleDate *> *)coursesInCurrentWeek{
+    
+    NSMutableArray<BBTScheduleDate *> * returnCourses = [NSMutableArray array];
+    
+    NSString *weekStatusMark = currentShowWeek%2==0?@"2":@"1";
+    
+    for (BBTScheduleDate *singleCourse in [BBTScheduleDateLocalManager shardLocalManager].mutCourses) {
+        if ([singleCourse.weekStatus isEqual:@"0"]||[singleCourse.weekStatus isEqual:weekStatusMark]){
+            NSArray *timeArr = [singleCourse.week componentsSeparatedByString:@" "];
+            for (NSString *string in timeArr) {
+                if ([string containsString:@"-"]){
+                    NSArray<NSString *> *tmp = [string componentsSeparatedByString:@"-"];
+                    if(tmp[1].integerValue >= currentShowWeek && tmp[0].integerValue <= currentShowWeek){
+                        [returnCourses addObject:singleCourse];
+                    }
+                }else{
+                    if (currentShowWeek == string.integerValue){
+                        [returnCourses addObject:singleCourse];
+                    }
+                }
+            }
+        }
+    }
+    
+    return returnCourses;
 }
 @end

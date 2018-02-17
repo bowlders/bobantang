@@ -8,8 +8,7 @@
 
 #import "ManualImportVC.h"
 #import "ScheduleButton.h"
-#import "ScheduleDateManager.h"
-
+#import "BBTScheduleDateLocalManager.h"
 
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
@@ -42,8 +41,8 @@
     addNum = [NSMutableArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20",@"21",@"22",@"23",@"24",@"25",nil];
     weekArr = [NSArray arrayWithObjects:@"周一",@"周二",@"周三",@"周四",@"周五",@"周六",@"周日",nil];
     
-    beginTimeArr = [NSArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12",nil];
-    endTimeArr = [NSArray arrayWithObjects:@"到1",@"到2",@"到3",@"到4",@"到5",@"到6",@"到7",@"到8",@"到9",@"到10",@"到11",@"到12",nil];
+    beginTimeArr = [NSArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",nil];
+    endTimeArr = [NSArray arrayWithObjects:@"到1",@"到2",@"到3",@"到4",@"到5",@"到6",@"到7",@"到8",@"到9",@"到10",@"到11",nil];
     
     UIButton *right;
     UIButton *left;
@@ -52,7 +51,7 @@
         left = [self createLeftOrRightBtnWithTitle:@"返回"];
         
         //把详细数据加载到页面上
-        ScheduleDateManager * manager = [ScheduleDateManager sharedManager].mutCourseArray[self.tagValue];
+        BBTScheduleDate * manager = [BBTScheduleDateLocalManager shardLocalManager].mutCourses[self.tagValue];
         self.courseName.text = manager.courseName;
         self.teacher.text = manager.teacherName;
         self.classroom.text = manager.location;
@@ -79,9 +78,9 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:left];
 }
 - (void)deleteCourse:(UIButton *)sender{
-    [[ScheduleDateManager sharedManager].mutCourseArray removeObjectAtIndex:self.tagValue];
-    [[ScheduleDateManager sharedManager] writeToDatabase];
-    [[ScheduleDateManager sharedManager] updateThePrivateScheduleToServerWithAccount:[ScheduleDateManager sharedManager].account];
+    [[BBTScheduleDateLocalManager shardLocalManager].mutCourses removeObjectAtIndex:self.tagValue];
+    [[BBTScheduleDateLocalManager shardLocalManager] writeToDatabase];
+    [[BBTScheduleDateLocalManager shardLocalManager] updateThePrivateScheduleToServer];
     
     if ([self.delegate respondsToSelector:@selector(MISetDone)]){
         [self.delegate MISetDone];
@@ -130,16 +129,16 @@
                           @"courseName":self.courseName.text
                           };
     if ([self.navigationItem.title isEqual:@"详细信息"]){
-        ScheduleDateManager *manager = [ScheduleDateManager sharedManager].mutCourseArray[self.tagValue];
+        BBTScheduleDate *manager = [BBTScheduleDateLocalManager shardLocalManager].mutCourses[self.tagValue];
         [manager setValuesForKeysWithDictionary:dic];
-        [[ScheduleDateManager sharedManager] writeToDatabase];
-        [[ScheduleDateManager sharedManager] updateThePrivateScheduleToServerWithAccount:[ScheduleDateManager sharedManager].account];
+        [[BBTScheduleDateLocalManager shardLocalManager] writeToDatabase];
+        [[BBTScheduleDateLocalManager shardLocalManager] updateThePrivateScheduleToServer];
     }else{
-        [[ScheduleDateManager sharedManager] insertOnePieceWithDic:dic];
-        ScheduleDateManager *tmpManager = [ScheduleDateManager new];
+        [[BBTScheduleDateLocalManager shardLocalManager] insertOnePieceWithDic:dic];
+        BBTScheduleDate *tmpManager = [BBTScheduleDate new];
         [tmpManager setValuesForKeysWithDictionary:dic];
-        [[ScheduleDateManager sharedManager].mutCourseArray addObject:tmpManager];
-        [[ScheduleDateManager sharedManager] updateThePrivateScheduleToServerWithAccount:[ScheduleDateManager sharedManager].account];
+        [[BBTScheduleDateLocalManager shardLocalManager].mutCourses addObject:tmpManager];
+        [[BBTScheduleDateLocalManager shardLocalManager] updateThePrivateScheduleToServer];
     }
     if ([self.delegate respondsToSelector:@selector(MISetDone)]){
         [self.delegate MISetDone];
@@ -183,7 +182,7 @@
             
             if (self.tagValue != -1){
                 tmpArr = [NSMutableArray array];
-                ScheduleDateManager *manager = [ScheduleDateManager sharedManager].mutCourseArray[self.tagValue];
+                BBTScheduleDate *manager = [BBTScheduleDateLocalManager shardLocalManager].mutCourses[self.tagValue];
                 NSArray *timeArr = [manager.week componentsSeparatedByString:@" "];
                 for (NSString *string in timeArr) {
                     if ([string containsString:@"-"]){
@@ -200,7 +199,8 @@
             }
             if([tmpArr containsObject:btn.titleLabel.text]){
                     btn.selected = YES;
-                    btn.backgroundColor = [UIColor colorWithRed:70/255.0 green:200/255.0 blue:60/255.0 alpha:1];
+                    btn.backgroundColor = [UIColor colorWithRed:41/255.0 green:180/255.0 blue:220.0/255.0 alpha:1];
+                    //btn.backgroundColor = [UIColor colorWithRed:70/255.0 green:200/255.0 blue:60/255.0 alpha:1];
             }
         }
     }
@@ -278,7 +278,7 @@
 - (void)addNum:(UIButton *)btn{
     btn.selected = !btn.selected;
     if(btn.selected){
-        btn.backgroundColor = [UIColor colorWithRed:70/255.0 green:200/255.0 blue:60/255.0 alpha:1];
+        btn.backgroundColor = [UIColor colorWithRed:41/255.0 green:180/255.0 blue:220.0/255.0 alpha:1];
         [tmpArr addObject:btn.titleLabel.text];
     }else{
         btn.backgroundColor = [UIColor whiteColor];
@@ -416,15 +416,16 @@
 - (UIButton *)createLeftOrRightBtnWithTitle:(NSString *)title{
     UIButton *completeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     completeBtn.frame = CGRectMake(0, 0, 65, 30);
-    completeBtn.backgroundColor = [UIColor whiteColor];
+    completeBtn.backgroundColor = [UIColor clearColor];
     [completeBtn setTitle:title forState:UIControlStateNormal];
-    [completeBtn.titleLabel setFont:[UIFont systemFontOfSize:15.0]];
-    [completeBtn setTitleColor:[UIColor colorWithRed:0/255.0 green:191/255.0 blue:255.0/255.0 alpha:1] forState:UIControlStateNormal];
+    [completeBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0]];
+    [completeBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     completeBtn.layer.cornerRadius = 4;
     completeBtn.layer.masksToBounds = YES;
-    completeBtn.showsTouchWhenHighlighted = YES;
+    //completeBtn.showsTouchWhenHighlighted = YES;
     return completeBtn;
 }
+
 - (BOOL)checkTheLabelText:(NSString *)text{
     if ([text isEqual:@""] || text == nil){
         return NO;

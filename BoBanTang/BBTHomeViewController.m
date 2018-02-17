@@ -16,7 +16,7 @@
 #import <AFNetworking.h>
 #import "UIImageView+WebCache.h"
 #import "ScheduleViewController.h"
-#import "ScheduleDateManager.h"
+#import "BBTScheduleDateLocalManager.h"
 #import "BBTScoresTableViewController.h"
 #import "UIColor+BBTColor.h"
 
@@ -52,7 +52,7 @@ static NSString*getinfo = @"http://community.100steps.net/information?type=3";
 @property (weak, nonatomic) IBOutlet UIButton *LoginButton;
 @property (weak, nonatomic) IBOutlet UILabel *LoginReminderLabel;
 @property (weak, nonatomic) IBOutlet UIStackView *CampusBusStackView;
-@property (strong, nonatomic) NSArray<ScheduleDateManager *> *courseArr;
+@property (strong, nonatomic) NSArray<BBTScheduleDate *> *courseArr;
 @property (weak, nonatomic) IBOutlet UITapGestureRecognizer *TapToSchedule;
 
 - (IBAction)changeDirection:(UIButton *)sender;
@@ -70,10 +70,6 @@ static NSString*getinfo = @"http://community.100steps.net/information?type=3";
 extern NSString * kUserAuthentificationFinishNotifName;
 
 - (void)viewWillAppear:(BOOL)animated{
-    
-    self.CourseTimetable.hidden = false;
-    self.LoginReminderLabel.hidden = true;
-    self.LoginButton.hidden = true;
     //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -85,28 +81,28 @@ extern NSString * kUserAuthentificationFinishNotifName;
                                              selector:@selector(didReceiveRetriveCampusBusDataFailNotification)
                                                  name:retriveCampusBusDataFailNotifName
                                                object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
+    /*[[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveUserAuthenticationNotif)
                                                  name:kUserAuthentificationFinishNotifName
-                                               object:nil];
+                                               object:nil];*/
     [self reloadData];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     
-    //reload一下课表的data
-    self.courseArr = [[ScheduleDateManager sharedManager] getTheCurrentAndNextCoursesWithAccount:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account];
-    [self.CourseTimetable reloadData];
-    
     if ([[BBTCurrentUserManager sharedCurrentUserManager] userIsActive])
     {
-        self.CourseTimetable.hidden = true;
-        self.LoginReminderLabel.hidden = false;
-        self.LoginButton.hidden = true;
-        self.TapToSchedule.enabled = NO;
-    }else{
         self.CourseTimetable.hidden = false;
         self.LoginReminderLabel.hidden = true;
         self.LoginButton.hidden = true;
         self.TapToSchedule.enabled = YES;
+        
+        //reload一下课表的data
+        self.courseArr = [[BBTScheduleDateLocalManager shardLocalManager] getTheCurrentAndNextCoursesWithAccount:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account];
+        [self.CourseTimetable reloadData];
+    }else{
+        self.CourseTimetable.hidden = true;
+        self.LoginReminderLabel.hidden = false;
+        self.LoginButton.hidden = false;
+        self.TapToSchedule.enabled = NO;
     }
 
 }
@@ -119,9 +115,6 @@ extern NSString * kUserAuthentificationFinishNotifName;
     [self.CourseTimetable registerNib:[UINib nibWithNibName:@"BBTCourseTableViewCell" bundle:nil] forCellReuseIdentifier:@"CourseTimetableCellReuseIdentifier"];
     [self loadData];
     // 设置图片
-    
-    //获取本地课表数据
-    self.courseArr = [[ScheduleDateManager sharedManager] getTheCurrentAndNextCoursesWithAccount:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account];
 }
 
 
@@ -140,7 +133,7 @@ extern NSString * kUserAuthentificationFinishNotifName;
     //[MBProgressHUD hideHUDForView:self.view animated:YES];
     [self reloadData];
 }
-
+/*
 -(void)didReceiveUserAuthenticationNotif{
     if (![[BBTCurrentUserManager sharedCurrentUserManager] userIsActive])
     {
@@ -153,7 +146,7 @@ extern NSString * kUserAuthentificationFinishNotifName;
         self.LoginButton.hidden = true;
     }
 }
-
+*/
 bool direction;
 
 - (void)reloadData{
@@ -270,7 +263,7 @@ bool direction;
     NSInteger rowCount = indexPath.row;
     NSInteger courseCount = self.courseArr.count-1 ;
     if (self.courseArr!=nil && rowCount <= courseCount){
-        ScheduleDateManager *oneCourse = self.courseArr[indexPath.row];
+        BBTScheduleDate *oneCourse = self.courseArr[indexPath.row];
         cell.ClassNumberLabel.text = [NSString stringWithFormat:@"第%@节",oneCourse.dayTime];
         cell.TeacherLabel.text = [NSString stringWithFormat:@"任课老师 : %@",oneCourse.teacherName];
         cell.CourseLabel.text = oneCourse.courseName;
@@ -284,22 +277,6 @@ bool direction;
     return cell;
 }
 
-/*
-#pragma mark -- 这个方法，是实现更新首页课表部分的回调block
-- (void)loadScheduleData{
-    __weak BBTHomeViewController *wself = self;
-    [ScheduleDateManager sharedManager].block = ^(ScheduleDateManager *current, ScheduleDateManager *next){
-        //current和next有可能为nil，要在这里更新cell的话，用到self要注意弱引用，所以用wself
-        //[wself.CourseTimetable reloadData];
-        //current.courseName 课程名称
-        //current.dayTime 第几节到第几节
-        //current.teacherName 老师
-        //current.location 地点
-    };
-    //账号也要补齐
-    [[ScheduleDateManager sharedManager] getTheCurrentAndNextCoursesWithAccount:@""];
-}
- */
 
 - (UIPageControl *)pageControl
 {

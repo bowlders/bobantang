@@ -89,7 +89,6 @@ extern NSString *kActivityPageAvaliable;
         }];
         [[NSRunLoop mainRunLoop] addTimer:loginTime forMode:NSRunLoopCommonModes];
         
-#pragma mark 我不太清楚下面这个method的具体作用，等弄清楚后看看要不要做修改
         [[BBTCurrentUserManager sharedCurrentUserManager] clubLogin];
     }
     
