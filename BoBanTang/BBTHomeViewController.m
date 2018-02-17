@@ -21,8 +21,7 @@
 #import "UIColor+BBTColor.h"
 
 static NSString*baseURL = @"http://community.100steps.net/information/activities/head_picture";
-static NSString * getclub = @"http://community.100steps.net/activities";
-static NSString*getinfo = @"http://community.100steps.net/information?type=3";
+static NSString*getURL = @"http://apiv2.100steps.net/banners";
 @interface BBTHomeViewController ()<UIScrollViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIScrollView *_scrollerView;
@@ -37,10 +36,6 @@ static NSString*getinfo = @"http://community.100steps.net/information?type=3";
 @property (strong, nonatomic) IBOutlet UIImageView *picture_3;
 @property (nonatomic, strong) UIPageControl *pageControl;
 @property (strong,nonatomic) NSMutableArray *GetArray;
-@property (strong,nonatomic) NSMutableArray *clubArray;
-@property (strong,nonatomic) NSMutableArray *infoArray;
-@property (strong,nonatomic) NSMutableDictionary *club_all;
-@property (strong,nonatomic) NSMutableDictionary *info_all;
 @property (nonatomic, strong) NSTimer *timer;
 
 
@@ -284,9 +279,9 @@ bool direction;
         // 分页控件
         _pageControl = [[UIPageControl alloc] init];
         // 总页数
-        _pageControl.numberOfPages =(self.clubArray.count+self.infoArray.count);
+        _pageControl.numberOfPages =(self.GetArray.count);
         // 控件尺寸
-        CGSize size = [_pageControl sizeForNumberOfPages:(self.clubArray.count+self.infoArray.count)];
+        CGSize size = [_pageControl sizeForNumberOfPages:(self.GetArray.count)];
         
         _pageControl.bounds = CGRectMake(0, 0, size.width, size.height);
         _pageControl.center = CGPointMake((self._scrollerView.bounds.size.width-size.width-5), self._scrollerView.bounds.size.height-10);
@@ -354,92 +349,40 @@ bool direction;
     [self labelstyle1:self.numberInfo];
     [self labelstyle3:self.infoType];
     
-    AFHTTPSessionManager *manager_2 = [AFHTTPSessionManager manager];
-    [manager_2 GET:getclub parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-        
-    }success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        self.club_all = responseObject;
-        
-        //NSLog(@"%@",self.club_all);
-        //NSLog(@"%@",self.club_all[@"data"][@"introduction"]);
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull   error) {
-        
-        NSLog(@"%@",error);
-        
-    }];
-
     
-    AFHTTPSessionManager *manager_1 = [AFHTTPSessionManager manager];
-    [manager_1 GET:getinfo parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-        
-    }success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        self.info_all = responseObject;
-        //NSLog(@"%@",self.info_all);
-        NSLog(@"%@",[self.info_all[@"data"][0][@"content"] objectForKey:@"article"]);
-        //NSLog(@"%@",self.info_all[@"data"][0][@"id"]);
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull   error) {
-        
-        NSLog(@"%@",error);
-    }];
-
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    [manager GET:baseURL parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    [manager GET:getURL parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     }success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSLog(@"%@",responseObject);
         self.GetArray = responseObject;
-        //NSLog(@"%@",self.GetArray[1][0][@"content"][@"picture"]);
-        //NSLog(@"%lu",(unsigned long)self.GetArray.count);
-        //NSLog(@"%@",self.GetArray[0][0][@"id"]);
+        NSLog(@"%@",self.GetArray[0][@"content"]);
         
-        //分双数组操作
-        self.clubArray = self.GetArray[0];
-        NSLog(@"%@",self.clubArray[0][@"id"]);
-        self.infoArray = self.GetArray[1];
+        NSLog(@"%@",self.GetArray[0][@"id"]);
         
-        for (int i = 0; i < self.clubArray.count; i++)
-       {
-            //头图
-           
-            UIImageView *imaView = [[UIImageView alloc] initWithFrame:CGRectMake((i*self._scrollerView.bounds.size.width),0, self._scrollerView.bounds.size.width, self._scrollerView.bounds.size.height)];
-           
-           //添加tag以及tap手势
-           imaView.tag = i;
-           imaView.userInteractionEnabled = YES;
-           UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
-           [imaView addGestureRecognizer:singleTap];
-           
-            NSString *URL =[NSString stringWithFormat:@"%@", self.clubArray[i][@"content"][@"picture"]];
-            [imaView sd_setImageWithURL:[NSURL URLWithString:URL]];
-            [self._scrollerView addSubview:imaView];
-           //由于头图的标题等都是在scrollervie监听中，进去加载的第一个scroller页面无法加载，所以在此先行加载（暂时未想到更好的方法） 之后记得优化一下！！
-           self.articleInfo.text = [NSString stringWithFormat:@"%@",self.clubArray[0][@"title"]];
-           self.personInfo.text = [NSString stringWithFormat:@"%@",self.clubArray[0][@"content"][@"author"]];
-           self.numberInfo.text =@"776";
-           self.infoType.text = [NSString stringWithFormat:@"活动"];
-        }
-        for (int i = 0 ; i < self.infoArray.count; i++)
+        
+        for (int i = 0; i < self.GetArray.count; i++)
         {
+            //头图
             
-            UIImageView *imaView = [[UIImageView alloc] initWithFrame:CGRectMake(((i+self.clubArray.count)*self._scrollerView.bounds.size.width), 0,self._scrollerView.bounds.size.width,self._scrollerView.bounds.size.height)];
+            UIImageView *imaView = [[UIImageView alloc] initWithFrame:CGRectMake((i*self._scrollerView.bounds.size.width),0, self._scrollerView.bounds.size.width, self._scrollerView.bounds.size.height)];
             
             //添加tag以及tap手势
-            imaView.tag = (i+self.clubArray.count);
+            imaView.tag = i;
             imaView.userInteractionEnabled = YES;
             UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
             [imaView addGestureRecognizer:singleTap];
             
-            NSString *URL =[NSString stringWithFormat:@"%@", self.infoArray[i][@"content"][@"picture"]];
+            NSString *URL =[NSString stringWithFormat:@"%@", self.GetArray[i][@"image"]];
             [imaView sd_setImageWithURL:[NSURL URLWithString:URL]];
             [self._scrollerView addSubview:imaView];
-            
-            
+            //由于头图的标题等都是在scrollervie监听中，进去加载的第一个scroller页面无法加载，所以在此先行加载（暂时未想到更好的方法） 之后记得优化一下！！
+            self.articleInfo.text = [NSString stringWithFormat:@"%@",self.GetArray[0][@"title"]];
+            self.personInfo.text = [NSString stringWithFormat:@"%@",self.GetArray[0][@"publisher"]];
+            self.numberInfo.text =[NSString stringWithFormat:@"%@",self.GetArray[0][@"viewed"]];;
+            self.infoType.text = [NSString stringWithFormat:@"活动"];
         }
         //    NSLog(@"%@", self.scrollView.subviews)
         
@@ -469,7 +412,7 @@ bool direction;
 {
     // 页号发生变化
     // (当前的页数 + 1) % 总页数
-    unsigned long page = (self.pageControl.currentPage + 1) % (self.clubArray.count+self.infoArray.count);
+    unsigned long page = (self.pageControl.currentPage + 1) % (self.GetArray.count);
     self.pageControl.currentPage = page;
     
     //NSLog(@"%ld", (long)self.pageControl.currentPage);
@@ -515,21 +458,14 @@ bool direction;
 -(void)ArrangeData:(UIPageControl *)page
 {
     //NSLog(@"%ld",(long)self.pageControl.currentPage);
-    if((page.currentPage) < (self.clubArray.count))
+    if((page.currentPage) < (self.GetArray.count))
     {
-        self.articleInfo.text = [NSString stringWithFormat:@"%@",self.clubArray[page.currentPage][@"title"]];
-        self.personInfo.text = [NSString stringWithFormat:@"%@",self.clubArray[page.currentPage][@"content"][@"author"]];
-        self.numberInfo.text =@"776";
+        self.articleInfo.text = [NSString stringWithFormat:@"%@",self.GetArray[page.currentPage][@"title"]];
+        self.personInfo.text = [NSString stringWithFormat:@"%@",self.GetArray[page.currentPage][@"publisher"]];
+        self.numberInfo.text =[NSString stringWithFormat:@"%@",self.GetArray[page.currentPage][@"viewed"]];
         self.infoType.text = [NSString stringWithFormat:@"活动"];
         
         
-    }
-    if(!((page.currentPage) < (self.clubArray.count)))
-    {
-        self.articleInfo.text = [NSString stringWithFormat:@"%@",self.infoArray[page.currentPage-self.clubArray.count][@"title"]];
-        self.personInfo.text = [NSString stringWithFormat:@"%@",self.infoArray[page.currentPage-self.clubArray.count][@"content"][@"author"]];
-        self.numberInfo.text = @"527";
-        self.infoType.text = [NSString stringWithFormat:@"资讯"];
     }
 }
 
@@ -537,74 +473,43 @@ bool direction;
 {
     UIView*touchView = gestureRecognizer.view;
     NSLog(@"%ld",(long)touchView.tag);
-    if(touchView.tag < self.clubArray.count)
+    if(touchView.tag < self.GetArray.count)
     {
         //前往self.clubArray[touchView.tag]那个资讯的详情页
         int infoNum = 0;
-        int intString = [[self.clubArray[touchView.tag][@"content"] objectForKey:@"article_id"] intValue];
-        for(int i = 0 ; i <self.clubArray.count ;i++)
+        int intString = [self.GetArray[touchView.tag][@"id"] intValue];
+        
+        for(int i = 0 ; i <self.GetArray.count ;i++)
         {
-            NSLog(@"%@",[self.club_all[@"data"][i][@"content"] objectForKey:@"article"]);
-            int intString_all =[self.club_all[@"data"][i][@"id"] intValue];
+            int intString_all =[self.GetArray[i][@"id"] intValue];
             if(intString_all == intString)
             {
                 infoNum = i;
             }
         }
-
+        
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 50, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-        [webView loadHTMLString:self.club_all[@"data"][infoNum][@"introduction"] baseURL:nil];
+        
+        NSString* detailPage = [NSString stringWithFormat:@"http://apiv2.100steps.net/banners/render/%@",self.GetArray[infoNum][@"id"]];
+        NSLog(@"%@",detailPage);
+        /*
+        [webView loadHTMLString:detailPage baseURL:nil];
+       */
+        NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:detailPage]];
+        
+        
         UIView * littleview = [[UIView alloc] initWithFrame:CGRectMake(0, 0,  [UIScreen mainScreen].bounds.size.width, 50)];
         littleview.backgroundColor = [UIColor colorWithRed:80.0f/255.0f green:234.0f/255.0f blue:255.0f/255.0f alpha:1.0];
         
         UIViewController* InfoView = [[UIViewController alloc]init];
         [InfoView.view addSubview:webView];
+        [webView loadRequest:request];
         [InfoView.view addSubview:littleview];
+        
         UIButton* backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 20, 40, 20)];
         [backButton setTitle:@"返回" forState:UIControlStateNormal];
         backButton.titleLabel.font  = [UIFont systemFontOfSize: 15];
         
-        [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [InfoView.view addSubview:backButton];
-        
-        [backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        UIViewController *topRootViewController = [[UIApplication sharedApplication] keyWindow].rootViewController;
-            // 在这里加一个这个样式的循环
-        while (topRootViewController.presentedViewController)
-        { // 这里固定写法
-            topRootViewController = topRootViewController.presentedViewController; }
-            // 然后再进行present操作
-        [topRootViewController presentViewController:InfoView animated:YES completion:nil];
-        
-        
-          
-        
-    }else{
-        
-       //前往self.infoArray[touchView.tag-self.clubArray.count]那个资讯的详情页
-        int infoNum = 0;
-        int intString = [[self.infoArray[touchView.tag-self.clubArray.count][@"content"] objectForKey:@"article_id"] intValue];
-        for(int i = 0 ; i <self.infoArray.count ;i++)
-        {
-            NSLog(@"%@",[self.info_all[@"data"][i][@"content"] objectForKey:@"article"]);
-            int intString_all =[self.info_all[@"data"][i][@"id"] intValue];
-            if(intString_all == intString)
-            {
-                infoNum = i;
-            }
-        }
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 50, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-        
-        [webView loadHTMLString:self.info_all[@"data"][infoNum][@"content"][@"article"] baseURL:nil];
-        UIView * littleview = [[UIView alloc] initWithFrame:CGRectMake(0, 0,  [UIScreen mainScreen].bounds.size.width, 50)];
-        littleview.backgroundColor = [UIColor colorWithRed:80.0f/255.0f green:234.0f/255.0f blue:255.0f/255.0f alpha:1.0];
-        
-        UIViewController* InfoView = [[UIViewController alloc]init];
-        [InfoView.view addSubview:webView];
-        [InfoView.view addSubview:littleview];
-        UIButton* backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 20, 40, 20)];
-        [backButton setTitle:@"返回" forState:UIControlStateNormal];
-        backButton.titleLabel.font  = [UIFont systemFontOfSize: 15];
         [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [InfoView.view addSubview:backButton];
         
@@ -617,13 +522,15 @@ bool direction;
         // 然后再进行present操作
         [topRootViewController presentViewController:InfoView animated:YES completion:nil];
         
+    }else{
+        NSLog(@"错误");
     }
-        
+    
 }
 - (void)backButtonPressed:(id)sender{
     
-[self dismissViewControllerAnimated:true completion:^{
+    [self dismissViewControllerAnimated:true completion:^{
         //返回后执行的事件；
-}];
+    }];
 }
 @end

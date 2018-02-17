@@ -16,7 +16,7 @@
 
 @implementation BBTCampusBusManager
 
-NSString * baseURLString = @"http://bbt.100steps.net/go/data/";
+NSString * baseURLString = @"bbtwechat.100steps.net:8001";
 //NSString * baseURLString = @"http://127.0.0.1:6767";
 static const float dataRequestInterval = 5.0;               //Seconds
 
