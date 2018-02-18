@@ -13,8 +13,8 @@
 
 @implementation BBTSpecRailway2BusManager
 
-static NSString * directionSouthURLString = @"http://api.100steps.net/bus.php?dir=0";
-static NSString * directionNorthURLString = @"http://api.100steps.net/bus.php?dir=1";
+static NSString * directionSouthURLString = @"http://apiv2.100steps.net/bus/line2/0";
+static NSString * directionNorthURLString = @"http://apiv2.100steps.net/bus/line2/1";
 
 NSString * const busDataNotificationName = @"specBusNotification";
 NSString * const retriveDirectionSouthFailNotifName = @"southSpecBusFailNotif";

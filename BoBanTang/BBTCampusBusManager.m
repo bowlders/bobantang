@@ -16,7 +16,7 @@
 
 @implementation BBTCampusBusManager
 
-NSString * baseURLString = @"http://bbt.100steps.net/go/data/";
+NSString * baseURLString = @"http://bbtwechat.100steps.net:8001/";
 //NSString * baseURLString = @"http://127.0.0.1:6767";
 static const float dataRequestInterval = 5.0;               //Seconds
 
@@ -65,15 +65,16 @@ NSString * const retriveCampusBusDataFailNotifName = @"campusBusFailNotification
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-    [manager POST:baseURLString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+    [manager GET:baseURLString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         //NSLog(@"JSON: %@", responseObject);
         if (responseObject)
         {
-            for (NSString *key in [(NSDictionary *)responseObject allKeys])
+            //NSLog(@"%@",[(NSDictionary *)responseObject allKeys]);
+            for (int i=0;i<4;i=i+1/*NSString *key in [(NSDictionary *)responseObject allKeys]*/)
             {
                 //NSLog(@"obj - %@", responseObject[key]);
                 NSError *error = nil;
-                BBTCampusBus *bus = [[BBTCampusBus alloc] initWithDictionary:responseObject[key] error:&error];
+                BBTCampusBus *bus = [[BBTCampusBus alloc] initWithDictionary:responseObject[i] error:&error];
                 //NSLog(@"bus - %@",bus);
                 [self.campusBusArray addObject:bus];
             }
