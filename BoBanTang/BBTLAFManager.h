@@ -11,7 +11,7 @@
 @interface BBTLAFManager : NSObject
 
 //Singleton LAF Manager
-@property (strong, nonatomic) NSArray *itemArray;  //A list of items used in the controller
+@property (strong, nonatomic) NSMutableArray *itemArray;  //A list of items used in the controller
 @property (strong, nonatomic) NSMutableArray *reservedArray; //Reserve the original data for sorting
 @property (strong, nonatomic) NSMutableArray *myPicked;
 @property (strong, nonatomic) NSMutableArray *myLost;

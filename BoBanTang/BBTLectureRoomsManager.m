@@ -9,7 +9,7 @@
 #import "BBTLectureRoomsManager.h"
 #import <AFNetworking/AFNetworking.h>
 
-static NSString * emptyRoomURL = @"http://218.192.166.167/api/protype.php?table=emptyroom&method=get&data=";
+static NSString * emptyRoomURL = @"http://apiv2.100steps.net/emptyroom";
 NSString * kDidGetEmptyRoomsNotificaionName = @"didGetEmptyRoomsNotificaionName";
 NSString * kFailGetEmptyRoomsNotificaionName = @"failGetEmptyRoomsNotificaionName";
 
@@ -27,14 +27,26 @@ NSString * kFailGetEmptyRoomsNotificaionName = @"failGetEmptyRoomsNotificaionNam
 
 - (void)retriveEmptyRoomsWithConditions:(NSDictionary *)conditions
 {
-    NSError *error;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:conditions options:NSJSONWritingPrettyPrinted error:&error];
-    NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSString *stringCleanPath = [jsonString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    NSString *completeUrl = [emptyRoomURL stringByAppendingString:stringCleanPath];
+    NSMutableString *completeUrl = [NSMutableString stringWithString:[emptyRoomURL stringByAppendingString:@"?"]];
+    
+    for (NSString *key in [conditions allKeys]) {
+        if ([conditions[key] isKindOfClass:[NSArray class]]){
+            NSMutableString *tmpString = [NSMutableString string];
+            for (int i =0; i< [(conditions[key]) count]; i++){
+                [tmpString appendString:conditions[key][i]];
+                if (i != [conditions[key] count]-1){
+                    [tmpString appendString:@"."];
+                }
+            }
+            [completeUrl appendString:[NSString stringWithFormat:@"%@=%@&",key,tmpString]];
+        }else{
+            [completeUrl appendString:[NSString stringWithFormat:@"%@=%@&",key,conditions[key]]];
+        }
+    }
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
+    
     [manager GET:completeUrl parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSLog(@"Rooms are %@", responseObject);
         if (responseObject)

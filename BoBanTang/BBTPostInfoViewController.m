@@ -58,10 +58,10 @@ extern NSString *kFailPostItemNotificaionName;
     
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
-    if ([self.lostOrFound integerValue] == 0) {
+    if ([self.lostOrFound integerValue] == 1) {
         self.navigationItem.title = @"发布招领启事";
     } else {
-        self.navigationItem.title = @"发布失物启示";
+        self.navigationItem.title = @"发布失物启事";
     }
     
     self.account = [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account;
@@ -646,7 +646,7 @@ extern NSString *kFailPostItemNotificaionName;
     [self.itemInfoToPost setObject:self.item.date forKey:@"date"];
     [self.itemInfoToPost setObject:self.item.campus forKey:@"campus"];
     [self.itemInfoToPost setObject:self.item.location forKey:@"location"];
-    [self.itemInfoToPost setObject:self.item.type forKey:@"type"];
+    [self.itemInfoToPost setObject:[NSNumber numberWithInteger:[self.lostOrFound integerValue]] forKey:@"type"];
     [self.itemInfoToPost setObject:self.item.publisher forKey:@"publisher"];
     [self.itemInfoToPost setObject:self.item.phone forKey:@"phone"];
     [self.itemInfoToPost setObject:self.item.title forKey:@"title"];

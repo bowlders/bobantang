@@ -161,7 +161,7 @@ extern NSString * kNoMoreItemsNotificationName;
     UIButton *showBtn = sender;
     
     PopoverView *popoverView = [PopoverView new];
-    popoverView.menuTitles   = @[@"发布招领启事", @"发布寻物启事", @"已发布的消息"];
+    popoverView.menuTitles   = @[@"发布寻物启事", @"发布招领启事", @"已发布的消息"];
     [popoverView showFromView:showBtn selected:^(NSInteger index)
     {
         if ([self didReceiveUserAuthentificaionNotification])
@@ -282,6 +282,7 @@ extern NSString * kNoMoreItemsNotificationName;
 
 - (void)BBTItemFilters:(BBTItemFilterSettingsViewController *)controller didFinishSelectConditions:(NSMutableDictionary *)conditions
 {
+    
     self.conditions = [[NSDictionary alloc] initWithDictionary:conditions];
     [self.tableView.mj_header beginRefreshing];
 }

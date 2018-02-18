@@ -282,7 +282,6 @@ static NSString * showResultsSegueIdentifier = @"showResults";
 {
     self.setConditions.date = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].detailTextLabel.text;
     self.setConditions.buildings = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]].detailTextLabel.text;
-    
     self.conditions = @{@"date":self.setConditions.date,
                         @"period":self.setConditions.period,
                         @"campus":self.setConditions.campus,

@@ -47,23 +47,64 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
 
 - (void)retriveItems:(NSUInteger)type WithConditions:(NSDictionary *)conditions
 {
+    //if ((!self.infoArray) || (!self.infoCount))
+    //{
+    //    self.infoArray = [NSMutableArray array];
+    //}
+    if (!self.itemArray || !self.itemsCount){
+        self.itemArray = [ NSMutableArray arrayWithCapacity:7];
+    }
     
+    NSMutableDictionary *completeConditions = [[NSMutableDictionary alloc]initWithDictionary:conditions];
+    if ([[completeConditions allKeys] containsObject:@"type"]){
+        NSNumber *number = completeConditions[@"type"];
+        NSString *itemType;
+        switch (number.intValue) {
+            case 0:
+                itemType = @"大学城一卡通";
+                break;
+            case 1:
+                itemType = @"校园卡(绿卡)";
+                break;
+            case 2:
+                itemType = @"钱包";
+                break;
+            case 3:
+                itemType = @"钥匙";
+                break;
+            case 4:
+                itemType = @"其它";
+                break;
+            default:
+                itemType = @"";
+                break;
+        }
+        [completeConditions setObject:itemType forKey:@"search"];
+    }
+    [completeConditions setObject:[NSNumber numberWithUnsignedInteger:type] forKey:@"type"];
+
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json", nil];
     
-    NSString *newURL = [self appendSearchConditionWithRawUrl:getLostAndFoundItemsUrl andConditon:conditions];
+    NSString *newURL = [self appendSearchConditionWithRawUrl:getLostAndFoundItemsUrl andConditon:completeConditions];
+    newURL = [newURL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    
+    
+    //用于记录是不是到底了
+    int __block noMoreItemsCount = 0;
+    
     [manager GET:newURL parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSMutableArray *origArr = [[NSMutableArray alloc] init];
         for (NSDictionary *itemsInfo in responseObject)
         {
             BBTLAF *item = [[BBTLAF alloc] initWithResponesObject:itemsInfo];
-            [origArr addObject:item];
-            
-            //[origArr addObject:item];
-            //noMoreItemsCount++;
+            [self.itemArray addObject:item];
+            noMoreItemsCount++;
         }
-        self.itemArray = origArr.copy;
+        self.itemsCount += (int)[responseObject count];
         [self pushLafNotification];
+        if (!noMoreItemsCount){
+            [self pushNoMoreItemsNotification];
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
@@ -108,11 +149,12 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
     NSString *newURL = url.copy;
     for (NSString *name in [conditions allKeys]) {
         if (conditions[name]){
-            newURL = [newURL stringByAppendingString:[NSString stringWithFormat:@"%@=%@",name,conditions[name]]];
+            newURL = [newURL stringByAppendingString:[NSString stringWithFormat:@"%@=%@&",name,conditions[name]]];
         }else{
             
         }
     }
+    newURL = [newURL stringByAppendingString:[NSString stringWithFormat:@"skip=%i&take=7",self.itemsCount]];
     return newURL;
 }
 
@@ -130,12 +172,7 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
-    NSString *url;
-    if (type == 1) {
-        url = postLostItemUrl;
-    } else if (type == 0) {
-        url = postPickItemUrl;
-    }
+    NSString *url = postLostItemUrl;
     [manager POST:url parameters:itemDic progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         if (responseObject) {
             [self postDidPostItemNotificaion];
@@ -156,7 +193,7 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
     
-    NSString *newURL = [getLostAndFoundItemsUrl stringByAppendingString:[NSString stringWithFormat:@"account=%@",account]];
+    NSString *newURL = [getLostAndFoundItemsUrl stringByAppendingString:[NSString stringWithFormat:@"account=%@&type=1",account]];
     
     [manager GET:newURL parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         for (NSDictionary *itemsInfo in responseObject)
@@ -181,7 +218,7 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
     }
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
-    NSString *newURL = [getLostAndFoundItemsUrl stringByAppendingString:[NSString stringWithFormat:@"account=%@",account]];
+    NSString *newURL = [getLostAndFoundItemsUrl stringByAppendingString:[NSString stringWithFormat:@"account=%@&type=0",account]];
     [manager GET:newURL parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         for (NSDictionary *itemsInfo in responseObject)
         {
