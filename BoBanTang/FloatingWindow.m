@@ -44,7 +44,7 @@
         
         //选项3 取消
         cancel = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [cancel setTitle:@"取消" forState:UIControlStateNormal];
+        [cancel setTitle:@"删除所有课程" forState:UIControlStateNormal];
         [cancel addTarget:self action:@selector(importDidClick:) forControlEvents:UIControlEventTouchUpInside];
         [cancel.titleLabel setFont:[UIFont systemFontOfSize:16]];
         [cancel.titleLabel setTintColor:[UIColor colorWithRed:41.0/255.0 green:180.0/255.0 blue:220.0/255.0 alpha:1.0]];

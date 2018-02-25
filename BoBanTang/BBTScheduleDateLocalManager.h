@@ -25,5 +25,5 @@
 - (void)insertOnePieceWithDic:(NSDictionary *)dic;
 - (NSArray *)getTheCurrentAndNextCoursesWithAccount:(NSString *)account;
 - (NSMutableArray<BBTScheduleDate *> *)fetchThePrivateScheduleFromDatabase;
-
+- (void)deleteAllCourses;
 @end

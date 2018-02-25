@@ -196,7 +196,8 @@ extern NSString * kUserClubLoginFinishNotifName;
     [BBTCurrentUserManager sharedCurrentUserManager].currentUser = [BBTUser new];
     [BBTCurrentUserManager sharedCurrentUserManager].currentUser.account = currentUserUserName;
     [BBTCurrentUserManager sharedCurrentUserManager].currentUser.password = currenUserPassWord;
-    [[BBTCurrentUserManager sharedCurrentUserManager] clubLogin];
+    //[[BBTCurrentUserManager sharedCurrentUserManager] clubLogin];
+    [[BBTCurrentUserManager sharedCurrentUserManager] currentUserAuthentication];
 }
 
 - (void)cancelButtonIsTapped

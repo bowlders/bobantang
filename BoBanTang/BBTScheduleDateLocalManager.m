@@ -474,4 +474,11 @@ static BBTScheduleDateLocalManager *manager = nil;
     return isOnArr.copy;
 }
 
+- (void)deleteAllCourses{
+    [self get_db];
+    [self dropTablewithTableName:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.name];
+    [self createLocalTable];
+    [self.mutCourses removeAllObjects];
+    [self updateThePrivateScheduleToServer];
+}
 @end

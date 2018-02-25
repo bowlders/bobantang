@@ -89,7 +89,6 @@ NSString *kDidGetLostItemsNotificationName = @"getLostNotification";
     NSString *newURL = [self appendSearchConditionWithRawUrl:getLostAndFoundItemsUrl andConditon:completeConditions];
     newURL = [newURL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
-    
     //用于记录是不是到底了
     int __block noMoreItemsCount = 0;
     

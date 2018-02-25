@@ -75,6 +75,10 @@ NSString * finishUpdateCurrentUserInformationName = @"UpdateCurrentUserInformati
         [self postUserAuthenticationFinishNotification];
     }];
     
+    if (self.clubUserIsActive == false){
+        [self clubLogin];
+    }
+    
     [manager invalidateSessionCancelingTasks:NO];
 }
 
@@ -175,6 +179,7 @@ NSString * finishUpdateCurrentUserInformationName = @"UpdateCurrentUserInformati
     self.currentUser = emptyUser;
     self.userIsActive = NO;
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"staySignedIn"];
+    self.clubUserIsActive = false;
 }
 
 - (void)postUserAuthenticationFinishNotification

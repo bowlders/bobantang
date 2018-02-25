@@ -33,7 +33,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     //Show loading hud
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSArray *HUDArray = [MBProgressHUD allHUDsForView:self.view];
+    if (HUDArray == nil || [HUDArray count] == 0){
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    }
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveCampusBusNotification)

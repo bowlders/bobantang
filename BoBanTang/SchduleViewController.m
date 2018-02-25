@@ -177,6 +177,17 @@
             manualImportVC.navigationItem.title = @"手动导课";
             manualImportVC.tagValue = -1;
             [wself.navigationController pushViewController:manualImportVC animated:YES];
+        }else if ([btn.titleLabel.text isEqual:@"删除所有课程"]){
+            UIAlertController *deleteController = [UIAlertController alertControllerWithTitle:@"你确定要删除所有课程吗？" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [[BBTScheduleDateLocalManager shardLocalManager] deleteAllCourses];
+                [wself updateNow];
+            }];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+            [deleteController addAction:confirmAction];
+            [deleteController addAction:cancelAction];
+            
+            [wself presentViewController:deleteController animated:YES completion:nil];
         }
         [wself remove];
     };

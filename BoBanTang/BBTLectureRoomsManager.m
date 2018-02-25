@@ -43,11 +43,12 @@ NSString * kFailGetEmptyRoomsNotificaionName = @"failGetEmptyRoomsNotificaionNam
             [completeUrl appendString:[NSString stringWithFormat:@"%@=%@&",key,conditions[key]]];
         }
     }
+    NSString *completeUrlAllowedCharacterSet = [completeUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
     
-    [manager GET:completeUrl parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+    [manager GET:completeUrlAllowedCharacterSet parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSLog(@"Rooms are %@", responseObject);
         if (responseObject)
         {
