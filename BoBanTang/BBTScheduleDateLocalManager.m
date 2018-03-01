@@ -110,6 +110,16 @@ static BBTScheduleDateLocalManager *manager = nil;
                 BBTScheduleDate *scheduleDate = [BBTScheduleDate new];
                 [scheduleDate setValuesForKeysWithDictionary:course];
                 
+                //如果weekStatus为nsnumber，就转成string
+                if ([scheduleDate.weekStatus isKindOfClass:[NSNumber class]]){
+                    scheduleDate.weekStatus = [NSString stringWithFormat:@"%@",scheduleDate.weekStatus];
+                }
+                
+                //如果是"，"逗号，就换成空格
+                if ([scheduleDate.week containsString:@","]){
+                    scheduleDate.week = [scheduleDate.week stringByReplacingOccurrencesOfString:@"," withString:@" "];
+                }
+                
                 //把英文换成中文
                 NSArray *chineseDayArr = [NSArray arrayWithObjects:@"周一",@"周二",@"周三",@"周四",@"周五",@"周六",@"周日",nil];
                 NSArray *EngDayArr = @[@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday",@"Sunday"];
