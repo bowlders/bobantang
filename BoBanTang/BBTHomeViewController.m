@@ -321,7 +321,7 @@ bool direction;
     label.textColor = [UIColor whiteColor];
     label.backgroundColor = [UIColor clearColor];
     label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont fontWithName:@"Arial" size:25];
+    label.font = [UIFont fontWithName:@"Arial" size:19];
     label.numberOfLines = 1;
 }
 -(void)labelstyle3:(UILabel*)label
