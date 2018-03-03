@@ -10,6 +10,7 @@
 #import "BBTCurrentUserManager.h"
 #import <AFNetworking.h>
 #import <JNKeychain.h>
+#import <objc/runtime.h>
 
 @implementation BBTCurrentUserManager
 
@@ -230,6 +231,26 @@ NSString * finishUpdateCurrentUserInformationName = @"UpdateCurrentUserInformati
 }
 
 - (void)writeToLocalDatabase{
+    
+    //如果发现有nsnull，就修改掉
+    unsigned int outCount;
+    objc_property_t *properties = class_copyPropertyList([BBTUser class], &outCount);
+    for (int i = 0; i<outCount; i++)
+    {
+        objc_property_t property = properties[i];
+        const char* char_f =property_getName(property);
+        NSString *propertyName = [NSString stringWithUTF8String:char_f];
+        id propertyValue = [self.currentUser valueForKey:(NSString *)propertyName];
+        if ([propertyValue isKindOfClass:[NSNull class]]){
+            if (![propertyName isEqualToString:@"sex"]){
+                [self.currentUser setValue:@"" forKey:propertyName];
+            }else{
+                //暂时@个0
+                [self.currentUser setValue:@0 forKey:@"sex"];
+            }
+        }
+    }
+    
     [JNKeychain saveValue:self.currentUser.name forKey:@"accountName"];
     [JNKeychain saveValue:self.currentUser.nick forKey:@"accountNick"];
     [JNKeychain saveValue:self.currentUser.sex forKey:@"accountSex"];

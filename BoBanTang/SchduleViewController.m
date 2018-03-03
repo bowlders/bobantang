@@ -83,7 +83,9 @@
     [homeBtn setImage:[UIImage imageNamed:@"whitehome"] forState:UIControlStateNormal];
     [homeBtn setFrame:CGRectMake(0, 0, 26, 26)];
     [homeBtn addTarget:self action:@selector(homeBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:homeBtn];
+    UIView *homeView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 26, 26)];
+    [homeView addSubview:homeBtn];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:homeView];
 }
 - (void)viewWillAppear:(BOOL)animated{
 
@@ -143,7 +145,9 @@
     [btn setImage:[UIImage imageNamed:@"adding"] forState:UIControlStateNormal];
     [btn setFrame:CGRectMake(0, 0, 35.0/1.7, 35.0/1.7)];
     [btn addTarget:self action:@selector(addBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *btnItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
+    UIView *btnView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 35.0/1.7, 35.0/1.7)];
+    [btnView addSubview:btn];
+    UIBarButtonItem *btnItem = [[UIBarButtonItem alloc]initWithCustomView:btnView];
     self.navigationItem.rightBarButtonItem = btnItem;
 }
 

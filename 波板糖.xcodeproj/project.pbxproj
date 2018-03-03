@@ -95,6 +95,7 @@
 		67A062341F711A7000AD366A /* ManualImportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A062331F711A7000AD366A /* ManualImportVC.m */; };
 		67A062371F711A8300AD366A /* FloatingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A062361F711A8300AD366A /* FloatingWindow.m */; };
 		67A0623A1F711ABE00AD366A /* ManualImportTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A062391F711ABE00AD366A /* ManualImportTable.m */; };
+		67A2B168204AE36D00998489 /* UINavigationBar+barLayoutSubviews.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A2B167204AE36D00998489 /* UINavigationBar+barLayoutSubviews.m */; };
 		99BCEEF76C0A51F53BF45309 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA2627D2286FFB656F82101 /* libPods.a */; };
 		A947D9291BD8DADA000F071B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A947D9271BD8DADA000F071B /* Main.storyboard */; };
 		A947D92C1BD8DADA000F071B /* BoBanTang.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A947D92A1BD8DADA000F071B /* BoBanTang.xcdatamodeld */; };
@@ -416,6 +417,8 @@
 		67A062361F711A8300AD366A /* FloatingWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingWindow.m; sourceTree = "<group>"; };
 		67A062381F711ABE00AD366A /* ManualImportTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManualImportTable.h; sourceTree = "<group>"; };
 		67A062391F711ABE00AD366A /* ManualImportTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManualImportTable.m; sourceTree = "<group>"; };
+		67A2B166204AE36D00998489 /* UINavigationBar+barLayoutSubviews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+barLayoutSubviews.h"; sourceTree = "<group>"; };
+		67A2B167204AE36D00998489 /* UINavigationBar+barLayoutSubviews.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+barLayoutSubviews.m"; sourceTree = "<group>"; };
 		A947D91B1BD8DADA000F071B /* 波板糖.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "波板糖.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A947D91F1BD8DADA000F071B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A947D9281BD8DADA000F071B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -1330,6 +1333,8 @@
 				A947D9A51BD8DC34000F071B /* UIColor+BBTColor.m */,
 				395B10DA1C5713EF00772A38 /* UIFont+BBTFont.h */,
 				395B10DB1C5713EF00772A38 /* UIFont+BBTFont.m */,
+				67A2B166204AE36D00998489 /* UINavigationBar+barLayoutSubviews.h */,
+				67A2B167204AE36D00998489 /* UINavigationBar+barLayoutSubviews.m */,
 				A947D92A1BD8DADA000F071B /* BoBanTang.xcdatamodeld */,
 				398231B71BD8ED300043E544 /* Model */,
 				398231B91BD8ED3F0043E544 /* View */,
@@ -1789,7 +1794,7 @@
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = TVT95F65V4;
 						LastSwiftMigration = 0830;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -2127,6 +2132,7 @@
 				6788E3A020372F3900FC85B9 /* BBTScheduleDateLocalManager.m in Sources */,
 				395B10D31C55271B00772A38 /* BBTCampusInfoTableViewController.m in Sources */,
 				AF54127F1CC67E9A004C0CE8 /* RMMapView+BBT3DMapView.m in Sources */,
+				67A2B168204AE36D00998489 /* UINavigationBar+barLayoutSubviews.m in Sources */,
 				39239A351C646FCD008EDBB0 /* BBTCurrentUserManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2271,7 +2277,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "波板糖.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer: liangyu wu (W6A9QC55L7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: liangyu wu (W6A9QC55L7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TVT95F65V4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2320,7 +2327,7 @@
 					../ZipZap,
 				);
 				INFOPLIST_FILE = BoBanTang/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2332,8 +2339,8 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bbt.bobantang;
 				PRODUCT_NAME = "波板糖";
-				PROVISIONING_PROFILE = "554a3e33-839c-4da0-9864-6356fd7080f7";
-				PROVISIONING_PROFILE_SPECIFIER = BBTbobantangDev;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2348,7 +2355,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "波板糖.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: liangyu wu (TVT95F65V4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: liangyu wu (TVT95F65V4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TVT95F65V4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2397,7 +2405,7 @@
 					../ZipZap,
 				);
 				INFOPLIST_FILE = BoBanTang/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2409,8 +2417,8 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bbt.bobantang;
 				PRODUCT_NAME = "波板糖";
-				PROVISIONING_PROFILE = "fb57a484-2986-432c-8a02-0ecd66990639";
-				PROVISIONING_PROFILE_SPECIFIER = BBTbobantang;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
