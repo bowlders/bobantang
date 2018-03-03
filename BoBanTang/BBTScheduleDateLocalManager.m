@@ -94,7 +94,7 @@ static BBTScheduleDateLocalManager *manager = nil;
     [manager POST:tableURL parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //防止服务器崩掉时，把本地数据给清空
         NSString *errorString = [responseObject valueForKey:@"error"];
-        if (errorString != nil || [[responseObject valueForKey:@"timetable"] isKindOfClass:[NSNull class]]) {
+        if (errorString != nil || [[responseObject valueForKey:@"timetable"] isKindOfClass:[NSNull class]] || [responseObject valueForKey:@"timetable"] == nil) {
             //发送失败通知
             [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithFormat:@"The%@ScheduleFailed",type] object:nil];
             return;
