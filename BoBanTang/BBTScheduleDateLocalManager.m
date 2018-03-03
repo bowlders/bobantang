@@ -253,9 +253,10 @@ static BBTScheduleDateLocalManager *manager = nil;
     NSDateFormatter *dateformatter = [[NSDateFormatter alloc]init];
     [dateformatter setDateFormat:@"EEEE"];
     NSString *engDay = [dateformatter stringFromDate:date];
-    NSArray *chineseDayArr = [NSArray arrayWithObjects:@"周一",@"周二",@"周三",@"周四",@"周五",@"周六",@"周日",nil];
-    NSArray *EngDayArr = @[@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday",@"Sunday"];
-    _whichDay = chineseDayArr[[EngDayArr indexOfObject:engDay]];
+//  NSArray *chineseDayArr = [NSArray arrayWithObjects:@"周一",@"周二",@"周三",@"周四",@"周五",@"周六",@"周日", nil];
+//  NSArray *EngDayArr = @[@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday",@"Sunday"];
+//  _whichDay = chineseDayArr[[EngDayArr indexOfObject:engDay]];
+    _whichDay = engDay;
     return _whichDay;
 }
 
