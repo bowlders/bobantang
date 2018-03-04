@@ -249,14 +249,13 @@ static BBTScheduleDateLocalManager *manager = nil;
 }
 
 - (NSString *)whichDay{
-    NSDate *date = [NSDate date];
-    NSDateFormatter *dateformatter = [[NSDateFormatter alloc]init];
-    [dateformatter setDateFormat:@"EEEE"];
-    NSString *engDay = [dateformatter stringFromDate:date];
-//  NSArray *chineseDayArr = [NSArray arrayWithObjects:@"周一",@"周二",@"周三",@"周四",@"周五",@"周六",@"周日", nil];
-//  NSArray *EngDayArr = @[@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday",@"Sunday"];
-//  _whichDay = chineseDayArr[[EngDayArr indexOfObject:engDay]];
-    _whichDay = engDay;
+    NSArray *weekdays = [NSArray arrayWithObjects: [NSNull null], @"周日", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六", nil];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSTimeZone *timeZone = [[NSTimeZone alloc] initWithName:@"Asia/Shanghai"];
+    [calendar setTimeZone: timeZone];
+    NSCalendarUnit calendarUnit = NSCalendarUnitWeekday;
+    NSDateComponents *theComponents = [calendar components:calendarUnit fromDate:[NSDate date]];
+    _whichDay = [weekdays objectAtIndex:theComponents.weekday];
     return _whichDay;
 }
 
