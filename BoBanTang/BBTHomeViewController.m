@@ -39,6 +39,8 @@ static NSString*getURL = @"http://apiv2.100steps.net/banners";
 @property (nonatomic, strong) NSTimer *timer;
 
 
+@property (weak, nonatomic) IBOutlet UILabel *courseIndicatorLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *CurrnetStationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *NextStationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *DestinationLabel;
@@ -92,7 +94,19 @@ extern NSString * kUserAuthentificationFinishNotifName;
         
         //reload一下课表的data
         self.courseArr = [[BBTScheduleDateLocalManager shardLocalManager] getTheCurrentAndNextCoursesWithAccount:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account];
+        
+        self.courseIndicatorLabel.hidden = true;
+        self.CourseTimetable.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        
+        if (self.courseArr.count == 0){
+            
+            self.courseIndicatorLabel.hidden = false;
+            self.CourseTimetable.separatorStyle = UITableViewCellSeparatorStyleNone;
+            
+        }
+        
         [self.CourseTimetable reloadData];
+        
     }else{
         self.CourseTimetable.hidden = true;
         self.LoginReminderLabel.hidden = false;
@@ -128,20 +142,7 @@ extern NSString * kUserAuthentificationFinishNotifName;
     //[MBProgressHUD hideHUDForView:self.view animated:YES];
     [self reloadData];
 }
-/*
--(void)didReceiveUserAuthenticationNotif{
-    if (![[BBTCurrentUserManager sharedCurrentUserManager] userIsActive])
-    {
-        self.CourseTimetable.hidden = true;
-        self.LoginReminderLabel.hidden = false;
-        self.LoginButton.hidden = true;
-    }else{
-        self.CourseTimetable.hidden = false;
-        self.LoginReminderLabel.hidden = true;
-        self.LoginButton.hidden = true;
-    }
-}
-*/
+
 bool direction;
 
 - (void)reloadData{

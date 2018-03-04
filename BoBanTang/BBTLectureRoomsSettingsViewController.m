@@ -32,6 +32,7 @@ static NSString * showResultsSegueIdentifier = @"showResults";
 @property (strong, nonatomic) BBTLectureRooms    * setConditions;
 @property (strong, nonatomic) NSArray            * rooms;
 @property (strong, nonatomic) NSString           * timeToShow;
+
 - (IBAction)BackToHome:(UIButton *)sender;
 
 @end
