@@ -9,10 +9,10 @@
 #import "NSDictionary+BBTDictionary.h"
 
 @implementation NSDictionary (BBTDictionary)
-
+/*
 - (NSMutableArray *)currentSpecRailwayBusArray
 {
     return self[@"d"];
 }
-
+*/
 @end

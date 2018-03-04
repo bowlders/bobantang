@@ -10,6 +10,6 @@
 
 @interface NSDictionary (BBTDictionary)
 
-- (NSMutableArray *)currentSpecRailwayBusArray;
+//- (NSMutableArray *)currentSpecRailwayBusArray;
 
 @end
