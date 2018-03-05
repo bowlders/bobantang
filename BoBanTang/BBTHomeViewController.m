@@ -19,6 +19,7 @@
 #import "BBTScheduleDateLocalManager.h"
 #import "BBTScoresTableViewController.h"
 #import "UIColor+BBTColor.h"
+#import "BBTversionManager.h"
 
 static NSString*baseURL = @"http://community.100steps.net/information/activities/head_picture";
 static NSString*getURL = @"http://apiv2.100steps.net/banners";
@@ -65,6 +66,7 @@ static NSString*getURL = @"http://apiv2.100steps.net/banners";
 @implementation BBTHomeViewController
 
 extern NSString * kUserAuthentificationFinishNotifName;
+NSString * versionUpdateNotificationName = @"versionUpdateNotification";
 
 - (void)viewWillAppear:(BOOL)animated{
     //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -78,10 +80,12 @@ extern NSString * kUserAuthentificationFinishNotifName;
                                              selector:@selector(didReceiveRetriveCampusBusDataFailNotification)
                                                  name:retriveCampusBusDataFailNotifName
                                                object:nil];
+   
     /*[[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveUserAuthenticationNotif)
                                                  name:kUserAuthentificationFinishNotifName
                                                object:nil];*/
+    
     [self reloadData];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     
@@ -115,9 +119,17 @@ extern NSString * kUserAuthentificationFinishNotifName;
     }
 
 }
-
+- (void)viewWillDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:campusBusNotificationName object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:retriveCampusBusDataFailNotifName object:nil];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveVersionUpdateNotification) name:versionUpdateNotificationName object:nil];
+    //检查更新
+    [[BBTversionManager sharedManager] checkCurrentVersion];
     
     self.CourseTimetable.dataSource = self;
     self.CourseTimetable.delegate = self;
@@ -141,6 +153,56 @@ extern NSString * kUserAuthentificationFinishNotifName;
     //Hide loading hud
     //[MBProgressHUD hideHUDForView:self.view animated:YES];
     [self reloadData];
+}
+
+- (void)didReceiveVersionUpdateNotification{
+    
+    //BBTversionManager *currentVersionManager = [BBTversionManager sharedManager];
+    BBTVersionUpdateType versionUpdateType = [BBTversionManager sharedManager].versionUpdateType;
+    NSURL *bbtAppURL = [NSURL URLWithString:@"itms-apps://itunes.apple.com/cn/app/%E6%B3%A2%E6%9D%BF%E7%B3%96/id625954338?mt=8"];
+#pragma mark 还有版本比较要完成
+    if (versionUpdateType == BBTNormal){
+        UIAlertController *normalUpdateAlert = [UIAlertController alertControllerWithTitle:@"更新提示" message:@"检查到新版的波板糖啦，是否立即更新？" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *updateAction = [UIAlertAction actionWithTitle:@"更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            [[UIApplication sharedApplication] openURL:bbtAppURL options:@{} completionHandler:nil];
+            
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        
+        [normalUpdateAlert addAction:updateAction];
+        [normalUpdateAlert addAction:cancelAction];
+        
+        [self presentViewController:normalUpdateAlert animated:YES completion:nil];
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:versionUpdateNotificationName object:nil];
+        
+    }else if (versionUpdateType == BBTCritical){
+        
+        UIAlertController *criticalUpdateAlert = [UIAlertController alertControllerWithTitle:@"更新提示" message:@"发现新版本，强烈建议您更新到最新版本，否则会影响您的正常使用" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *updateAction = [UIAlertAction actionWithTitle:@"更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            [[UIApplication sharedApplication] openURL:bbtAppURL options:@{} completionHandler:nil];
+        }];
+        
+        [criticalUpdateAlert addAction:updateAction];
+        
+        [self presentViewController:criticalUpdateAlert animated:YES completion:nil];
+    }else if (versionUpdateType == BBTInfo){
+        
+        UIAlertController *infoAlert = [UIAlertController alertControllerWithTitle:[BBTversionManager sharedManager].title message:[BBTversionManager sharedManager].content preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+        
+        [infoAlert addAction:confirmAction];
+        
+        [self presentViewController:infoAlert animated:YES completion:nil];
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:versionUpdateNotificationName object:nil];
+    }
+    
 }
 
 bool direction;

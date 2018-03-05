@@ -83,6 +83,7 @@
 		39FE91D81C5A54F50041E46F /* BBTCampusBusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91D71C5A54F50041E46F /* BBTCampusBusManager.m */; };
 		39FE91DD1C5DAA0F0041E46F /* BBTCampusBusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91DC1C5DAA0F0041E46F /* BBTCampusBusViewController.m */; };
 		39FE91E61C5F886C0041E46F /* BBTMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FE91E51C5F886C0041E46F /* BBTMeViewController.m */; };
+		674AED7E204D6CAE00752B49 /* BBTversionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 674AED7D204D6CAE00752B49 /* BBTversionManager.m */; };
 		6788E3962037287900FC85B9 /* BBTScheduleDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6788E3952037287900FC85B9 /* BBTScheduleDate.m */; };
 		6788E3A020372F3900FC85B9 /* BBTScheduleDateLocalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6788E39F20372F3900FC85B9 /* BBTScheduleDateLocalManager.m */; };
 		67A062171F71179600AD366A /* Schedule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67A062161F71179600AD366A /* Schedule.storyboard */; };
@@ -395,6 +396,8 @@
 		39FE91E51C5F886C0041E46F /* BBTMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTMeViewController.m; sourceTree = "<group>"; };
 		48D6888DD2A267EA93C8D8BC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6743A72A1F6E9EB6009BAE42 /* Mapbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mapbox.h; sourceTree = "<group>"; };
+		674AED7C204D6CAE00752B49 /* BBTversionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBTversionManager.h; sourceTree = "<group>"; };
+		674AED7D204D6CAE00752B49 /* BBTversionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBTversionManager.m; sourceTree = "<group>"; };
 		6788E3942037287900FC85B9 /* BBTScheduleDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTScheduleDate.h; sourceTree = "<group>"; };
 		6788E3952037287900FC85B9 /* BBTScheduleDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTScheduleDate.m; sourceTree = "<group>"; };
 		6788E39E20372F3900FC85B9 /* BBTScheduleDateLocalManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTScheduleDateLocalManager.h; sourceTree = "<group>"; };
@@ -666,6 +669,7 @@
 		0DD26BB51F682117005DE4E8 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				674AED73204D6C6300752B49 /* Version */,
 				FCD0A2711C00066F0024D78F /* Tools */,
 				391F32401BF72194004843C3 /* Go */,
 			);
@@ -1221,6 +1225,15 @@
 				39B595441C0AF9D90015B673 /* Reveal.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		674AED73204D6C6300752B49 /* Version */ = {
+			isa = PBXGroup;
+			children = (
+				674AED7C204D6CAE00752B49 /* BBTversionManager.h */,
+				674AED7D204D6CAE00752B49 /* BBTversionManager.m */,
+			);
+			name = Version;
 			sourceTree = "<group>";
 		};
 		67A0620B1F71166100AD366A /* Schedule */ = {
@@ -2124,6 +2137,7 @@
 				39FE91E61C5F886C0041E46F /* BBTMeViewController.m in Sources */,
 				39239A321C635BAB008EDBB0 /* BBTUser.m in Sources */,
 				FC80D45C1C6244A200A80EDA /* BBTItemDetailsTableViewController.m in Sources */,
+				674AED7E204D6CAE00752B49 /* BBTversionManager.m in Sources */,
 				AF3298861CE78C9D00F587BF /* BBTRouteManagerView.m in Sources */,
 				FC80D4591C62109000A80EDA /* BBTLafItemsTableViewCell.m in Sources */,
 				39231B1A1D3E1BBD003FBA9C /* TDBadgedCell.m in Sources */,
