@@ -36,16 +36,26 @@
     //设置右按钮
     UIButton *right = [UIButton buttonWithType:UIButtonTypeCustom];
     [right setImage:[UIImage imageNamed:@"donev"] forState:UIControlStateNormal];
-    [right setFrame:CGRectMake(0, 0, 47.0/2.0, 34.0/2.0)];
     [right addTarget:self action:@selector(completeBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:right];
+    [right setFrame:CGRectMake(0, 0, 47.0/2.0, 34.0/2.0)];
+    
+    UIView *rightView = [[UIView alloc] init];
+    [rightView addSubview:right];
+    [rightView setFrame:CGRectMake(0, 0, 47.0/2.0, 34.0/2.0)];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightView];
     
     //设置左按钮
     UIButton *left = [UIButton buttonWithType:UIButtonTypeCustom];
     [left setImage:[UIImage imageNamed:@"cancelx"] forState:UIControlStateNormal];
     [left setFrame:CGRectMake(0, 0, 35.0/2.0, 35.0/2.0)];
     [left addTarget:self action:@selector(cancelBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:left];
+    
+    UIView *leftView = [[UIView alloc] init];
+    [leftView addSubview:left];
+    [leftView setFrame:CGRectMake(0, 0, 35.0/2.0, 35.0/2.0)];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:leftView];
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteOneCell:) name:@"deleteCell" object:nil];

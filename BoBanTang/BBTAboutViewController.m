@@ -57,7 +57,7 @@
         label.clipsToBounds = YES;
         label.textAlignment = NSTextAlignmentCenter;
         label.adjustsFontSizeToFitWidth = NO;
-        label.text = @"V3.0 Blueberry";
+        label.text = @"V4.0 Donut";
         label.font = [UIFont BBTProductDetailLabelFont];
         label.alpha = 1.0;
         label;
@@ -85,7 +85,7 @@
         label.clipsToBounds = YES;
         label.textAlignment = NSTextAlignmentCenter;
         label.adjustsFontSizeToFitWidth = YES;
-        label.text = @"Copyright © 2016 100steps Student Innovation Centre. All rights reserved.";
+        label.text = @"Copyright © 2018 100steps Student Innovation Centre. All rights reserved.";
         label.font = [UIFont BBTCopyRightLabelFont];
         label.textColor = [UIColor grayColor];
         label.alpha = 1.0;

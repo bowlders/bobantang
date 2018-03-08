@@ -66,7 +66,7 @@ static NSString*getURL = @"http://apiv2.100steps.net/banners";
 @implementation BBTHomeViewController
 
 extern NSString * kUserAuthentificationFinishNotifName;
-NSString * versionUpdateNotificationName = @"versionUpdateNotification";
+extern NSString * versionUpdateNotificationName;
 
 - (void)viewWillAppear:(BOOL)animated{
     //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -157,16 +157,15 @@ NSString * versionUpdateNotificationName = @"versionUpdateNotification";
 
 - (void)didReceiveVersionUpdateNotification{
     
-    //BBTversionManager *currentVersionManager = [BBTversionManager sharedManager];
+    BBTversionManager *currentVersionManager = [BBTversionManager sharedManager];
     BBTVersionUpdateType versionUpdateType = [BBTversionManager sharedManager].versionUpdateType;
-    NSURL *bbtAppURL = [NSURL URLWithString:@"itms-apps://itunes.apple.com/cn/app/%E6%B3%A2%E6%9D%BF%E7%B3%96/id625954338?mt=8"];
-#pragma mark 还有版本比较要完成
+    
     if (versionUpdateType == BBTNormal){
-        UIAlertController *normalUpdateAlert = [UIAlertController alertControllerWithTitle:@"更新提示" message:@"检查到新版的波板糖啦，是否立即更新？" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *normalUpdateAlert = [UIAlertController alertControllerWithTitle:currentVersionManager.title message:currentVersionManager.content preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *updateAction = [UIAlertAction actionWithTitle:@"更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
-            [[UIApplication sharedApplication] openURL:bbtAppURL options:@{} completionHandler:nil];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:currentVersionManager.bbtAppURL] options:@{} completionHandler:nil];
             
         }];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
@@ -180,11 +179,11 @@ NSString * versionUpdateNotificationName = @"versionUpdateNotification";
         
     }else if (versionUpdateType == BBTCritical){
         
-        UIAlertController *criticalUpdateAlert = [UIAlertController alertControllerWithTitle:@"更新提示" message:@"发现新版本，强烈建议您更新到最新版本，否则会影响您的正常使用" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *criticalUpdateAlert = [UIAlertController alertControllerWithTitle:currentVersionManager.title message:currentVersionManager.content preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *updateAction = [UIAlertAction actionWithTitle:@"更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
-            [[UIApplication sharedApplication] openURL:bbtAppURL options:@{} completionHandler:nil];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:currentVersionManager.bbtAppURL] options:@{} completionHandler:nil];
         }];
         
         [criticalUpdateAlert addAction:updateAction];
@@ -192,7 +191,7 @@ NSString * versionUpdateNotificationName = @"versionUpdateNotification";
         [self presentViewController:criticalUpdateAlert animated:YES completion:nil];
     }else if (versionUpdateType == BBTInfo){
         
-        UIAlertController *infoAlert = [UIAlertController alertControllerWithTitle:[BBTversionManager sharedManager].title message:[BBTversionManager sharedManager].content preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *infoAlert = [UIAlertController alertControllerWithTitle:currentVersionManager.title message:currentVersionManager.content preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
         
@@ -554,7 +553,6 @@ bool direction;
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 50, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
         
         NSString* detailPage = [NSString stringWithFormat:@"http://apiv2.100steps.net/banners/render/%@",self.GetArray[infoNum][@"id"]];
-        NSLog(@"%@",detailPage);
         /*
         [webView loadHTMLString:detailPage baseURL:nil];
        */

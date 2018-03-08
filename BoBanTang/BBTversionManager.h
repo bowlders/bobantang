@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString *versionUpdateNotificationName = @"versionUpdateNotification";
+
 @interface BBTversionManager : NSObject
+
 
 typedef enum: NSInteger{
     BBTNormal = 0,
@@ -19,6 +22,8 @@ typedef enum: NSInteger{
 @property (nonatomic,strong) NSString *currentVersion;
 @property (nonatomic,strong) NSString *serverVersion;
 @property (nonatomic,strong) NSString *bbtAppURL;
+//@property (nonatomic) BOOL userHasRead;
+
 
 @property (nonatomic) BBTVersionUpdateType versionUpdateType;
 @property (nonatomic,strong) NSString *title;
@@ -26,5 +31,6 @@ typedef enum: NSInteger{
 
 + (instancetype)sharedManager;
 - (void)checkCurrentVersion;
+//- (void)userAlreadyReadNoti;
 
 @end

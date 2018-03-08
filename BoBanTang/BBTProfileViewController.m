@@ -55,7 +55,7 @@
 
 - (IBAction)editBtnIsTapped:(UIButton *)sender {
     if(self.sexTextField.enabled == NO){
-        self.sexTextField.enabled = YES;
+        //self.sexTextField.enabled = YES;
         self.gradeTextField.enabled = YES;
         self.collegeTextField.enabled = YES;
         self.phoneTextField.enabled = YES;

@@ -16,7 +16,7 @@
 //app的url
 NSString *appStoreURL = @"https://itunes.apple.com/lookup?id=625954338";
 NSString *URLForVersionOnServer = @"http://apiv2.100steps.net/update/ios/latest";
-static NSString *versionUpdateNotificationName = @"versionUpdateNotification";
+NSString *userHasReadName = @"userHasRead";
 
 @interface BBTversionManager ()
 
@@ -42,6 +42,17 @@ static NSString *versionUpdateNotificationName = @"versionUpdateNotification";
              @"info":[NSNumber numberWithInteger:BBTInfo]
              };
 }
+/*
+- (BOOL)userHasRead{
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:userHasReadName]){
+        NSNumber *hasRead = [[NSUserDefaults standardUserDefaults] valueForKey:userHasReadName];
+        _userHasRead = hasRead.boolValue;
+    }else{
+        _userHasRead = NO;
+    }
+    return _userHasRead;
+}
+ */
 
 - (void)checkCurrentVersion{
     
@@ -56,21 +67,32 @@ static NSString *versionUpdateNotificationName = @"versionUpdateNotification";
             NSString *currentVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
             self.currentVersion = currentVersion;
             
-            //获取服务器的app版本
+            //获取服务器的信息
             self.serverVersion = responseObject[@"version"];
-            
-            //获取升级type
             self.versionUpdateType = self.versionUpdateDictionary[responseObject[@"type"]].integerValue;
-            
-            //配置属性
             self.bbtAppURL = responseObject[@"url"];
             self.title = responseObject[@"title"];
             self.content = responseObject[@"content"];
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:versionUpdateNotificationName object:nil];
+            //对比版本信息，看看有无发通知的必要
+            NSArray<NSString *> *currentVersionNumber = [self.currentVersion componentsSeparatedByString:@"."];
+            NSArray<NSString *> *serverVersionNumber = [self.serverVersion componentsSeparatedByString:@"."];
+            if ((serverVersionNumber[0].intValue > currentVersionNumber[0].intValue) ||
+                
+                (serverVersionNumber[0].intValue == currentVersionNumber[0].intValue && serverVersionNumber[1].intValue > currentVersionNumber[1].intValue) ||
+                
+                (serverVersionNumber[0].intValue == currentVersionNumber[0].intValue && serverVersionNumber[1].intValue == currentVersionNumber[1].intValue && serverVersionNumber[2].intValue > currentVersionNumber[2].intValue)
+                
+                ){
+                [[NSNotificationCenter defaultCenter] postNotificationName:versionUpdateNotificationName object:nil];
+            }
         }
     } failure:nil];
     
+}
+
+- (void)userAlreadyReadNoti{
+    [[NSUserDefaults standardUserDefaults] setValue:@1 forKey:userHasReadName];
 }
 
 @end
