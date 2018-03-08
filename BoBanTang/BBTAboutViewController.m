@@ -57,7 +57,11 @@
         label.clipsToBounds = YES;
         label.textAlignment = NSTextAlignmentCenter;
         label.adjustsFontSizeToFitWidth = NO;
-        label.text = @"V4.0 Donut";
+        
+        NSDictionary *infoDic = [[NSBundle mainBundle]infoDictionary];
+        NSString *currentVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
+        
+        label.text = [NSString stringWithFormat:@"V%@ Donut",currentVersion];
         label.font = [UIFont BBTProductDetailLabelFont];
         label.alpha = 1.0;
         label;

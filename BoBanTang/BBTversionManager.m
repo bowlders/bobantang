@@ -77,13 +77,16 @@ NSString *userHasReadName = @"userHasRead";
             //对比版本信息，看看有无发通知的必要
             NSArray<NSString *> *currentVersionNumber = [self.currentVersion componentsSeparatedByString:@"."];
             NSArray<NSString *> *serverVersionNumber = [self.serverVersion componentsSeparatedByString:@"."];
-            if ((serverVersionNumber[0].intValue > currentVersionNumber[0].intValue) ||
-                
-                (serverVersionNumber[0].intValue == currentVersionNumber[0].intValue && serverVersionNumber[1].intValue > currentVersionNumber[1].intValue) ||
-                
-                (serverVersionNumber[0].intValue == currentVersionNumber[0].intValue && serverVersionNumber[1].intValue == currentVersionNumber[1].intValue && serverVersionNumber[2].intValue > currentVersionNumber[2].intValue)
-                
-                ){
+            
+            int currentVersionInt = 0,serverVersionInt = 0;
+            
+            unsigned long numberCount = currentVersionNumber.count;
+            for (int i = 0; i < numberCount; i++){
+                currentVersionInt += pow(10,numberCount-i-1)*currentVersionNumber[i].intValue;
+                serverVersionInt += pow(10, numberCount-i-1)*serverVersionNumber[i].intValue;
+            }
+           
+            if (serverVersionInt > currentVersionInt){
                 [[NSNotificationCenter defaultCenter] postNotificationName:versionUpdateNotificationName object:nil];
             }
         }
