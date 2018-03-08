@@ -12,7 +12,7 @@
 #import "BBTCampusInfo.h"
 
 static NSString * baseGetCampusInfoUrl = @"http://community.100steps.net/information?type=3";  //Base Url used to get data
-static NSString * baseInsertCampusInfoUrl = @"";                                  //Url used to insert data
+//static NSString * baseInsertCampusInfoUrl = @"";                                  //Url used to insert data
 
 NSString * campusInfoNotificationName = @"infoNotification";
 NSString * noNewInfoNotifName = @"noMoreInfo";
@@ -49,7 +49,7 @@ NSString * noNewInfoNotifName = @"noMoreInfo";
     
     NSString *newGetCampusInfoURL = [NSString stringWithFormat:@"%@&skip=%lu",baseGetCampusInfoUrl,self.infoCount];
     [manager GET:newGetCampusInfoURL parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
+        //NSLog(@"JSON: %@", responseObject);
         if (responseObject)
         {
             for (int i = 0;i < [(NSArray *)responseObject[@"data"] count];i++)

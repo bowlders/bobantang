@@ -418,11 +418,11 @@ bool direction;
         
     }success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        NSLog(@"%@",responseObject);
+        //NSLog(@"%@",responseObject);
         self.GetArray = responseObject;
-        NSLog(@"%@",self.GetArray[0][@"content"]);
+        //NSLog(@"%@",self.GetArray[0][@"content"]);
         
-        NSLog(@"%@",self.GetArray[0][@"id"]);
+        //NSLog(@"%@",self.GetArray[0][@"id"]);
         
         
         for (int i = 0; i < self.GetArray.count; i++)
