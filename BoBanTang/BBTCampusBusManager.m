@@ -52,9 +52,9 @@ NSString * const retriveCampusBusDataFailNotifName = @"campusBusFailNotification
 {
     if (!_stationNameArray)
     {
-        _stationNameArray = @[@"北二总站", @"卫生所站", @"北湖站", @"北门站",
-                             @"修理厂站", @"西秀村站", @"西五站", @"人文馆站",
-                             @"27号楼站",@"百步梯站", @"中山像站",@"南门总站"];
+        _stationNameArray = @[@"南门总站", @"中山像站",@"百步梯站",
+                              @"27号楼站", @"人文馆站", @"西五站", @"西秀村站",
+                              @"修理厂站", @"北门站", @"北湖站", @"卫生所站",@"北二总站"];
     }
     return _stationNameArray;
 }
