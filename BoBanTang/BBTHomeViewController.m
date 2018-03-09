@@ -19,6 +19,7 @@
 #import "BBTScheduleDateLocalManager.h"
 #import "BBTScoresTableViewController.h"
 #import "UIColor+BBTColor.h"
+#import "BBTversionManager.h"
 
 static NSString*baseURL = @"http://community.100steps.net/information/activities/head_picture";
 static NSString*getURL = @"http://apiv2.100steps.net/banners";
@@ -38,6 +39,8 @@ static NSString*getURL = @"http://apiv2.100steps.net/banners";
 @property (strong,nonatomic) NSMutableArray *GetArray;
 @property (nonatomic, strong) NSTimer *timer;
 
+
+@property (weak, nonatomic) IBOutlet UILabel *courseIndicatorLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *CurrnetStationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *NextStationLabel;
@@ -63,6 +66,7 @@ static NSString*getURL = @"http://apiv2.100steps.net/banners";
 @implementation BBTHomeViewController
 
 extern NSString * kUserAuthentificationFinishNotifName;
+extern NSString * versionUpdateNotificationName;
 
 - (void)viewWillAppear:(BOOL)animated{
     //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -76,10 +80,12 @@ extern NSString * kUserAuthentificationFinishNotifName;
                                              selector:@selector(didReceiveRetriveCampusBusDataFailNotification)
                                                  name:retriveCampusBusDataFailNotifName
                                                object:nil];
+   
     /*[[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveUserAuthenticationNotif)
                                                  name:kUserAuthentificationFinishNotifName
                                                object:nil];*/
+    
     [self reloadData];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     
@@ -92,7 +98,19 @@ extern NSString * kUserAuthentificationFinishNotifName;
         
         //reload一下课表的data
         self.courseArr = [[BBTScheduleDateLocalManager shardLocalManager] getTheCurrentAndNextCoursesWithAccount:[BBTCurrentUserManager sharedCurrentUserManager].currentUser.account];
+        
+        self.courseIndicatorLabel.hidden = true;
+        self.CourseTimetable.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        
+        if (self.courseArr.count == 0){
+            
+            self.courseIndicatorLabel.hidden = false;
+            self.CourseTimetable.separatorStyle = UITableViewCellSeparatorStyleNone;
+            
+        }
+        
         [self.CourseTimetable reloadData];
+        
     }else{
         self.CourseTimetable.hidden = true;
         self.LoginReminderLabel.hidden = false;
@@ -101,9 +119,17 @@ extern NSString * kUserAuthentificationFinishNotifName;
     }
 
 }
-
+- (void)viewWillDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:campusBusNotificationName object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:retriveCampusBusDataFailNotifName object:nil];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveVersionUpdateNotification) name:versionUpdateNotificationName object:nil];
+    //检查更新
+    [[BBTversionManager sharedManager] checkCurrentVersion];
     
     self.CourseTimetable.dataSource = self;
     self.CourseTimetable.delegate = self;
@@ -128,20 +154,56 @@ extern NSString * kUserAuthentificationFinishNotifName;
     //[MBProgressHUD hideHUDForView:self.view animated:YES];
     [self reloadData];
 }
-/*
--(void)didReceiveUserAuthenticationNotif{
-    if (![[BBTCurrentUserManager sharedCurrentUserManager] userIsActive])
-    {
-        self.CourseTimetable.hidden = true;
-        self.LoginReminderLabel.hidden = false;
-        self.LoginButton.hidden = true;
-    }else{
-        self.CourseTimetable.hidden = false;
-        self.LoginReminderLabel.hidden = true;
-        self.LoginButton.hidden = true;
+
+- (void)didReceiveVersionUpdateNotification{
+    
+    BBTversionManager *currentVersionManager = [BBTversionManager sharedManager];
+    BBTVersionUpdateType versionUpdateType = [BBTversionManager sharedManager].versionUpdateType;
+    
+    if (versionUpdateType == BBTNormal){
+        UIAlertController *normalUpdateAlert = [UIAlertController alertControllerWithTitle:currentVersionManager.title message:currentVersionManager.content preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *updateAction = [UIAlertAction actionWithTitle:@"更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:currentVersionManager.bbtAppURL] options:@{} completionHandler:nil];
+            
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        
+        [normalUpdateAlert addAction:updateAction];
+        [normalUpdateAlert addAction:cancelAction];
+        
+        [self presentViewController:normalUpdateAlert animated:YES completion:nil];
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:versionUpdateNotificationName object:nil];
+        
+    }else if (versionUpdateType == BBTCritical){
+        
+        UIAlertController *criticalUpdateAlert = [UIAlertController alertControllerWithTitle:currentVersionManager.title message:currentVersionManager.content preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *updateAction = [UIAlertAction actionWithTitle:@"更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:currentVersionManager.bbtAppURL] options:@{} completionHandler:nil];
+        }];
+        
+        [criticalUpdateAlert addAction:updateAction];
+        
+        [self presentViewController:criticalUpdateAlert animated:YES completion:nil];
+    }else if (versionUpdateType == BBTInfo){
+        
+        UIAlertController *infoAlert = [UIAlertController alertControllerWithTitle:currentVersionManager.title message:currentVersionManager.content preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+        
+        [infoAlert addAction:confirmAction];
+        
+        [self presentViewController:infoAlert animated:YES completion:nil];
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:versionUpdateNotificationName object:nil];
     }
+    
 }
-*/
+
 bool direction;
 
 - (void)reloadData{
@@ -356,11 +418,11 @@ bool direction;
         
     }success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        NSLog(@"%@",responseObject);
+        //NSLog(@"%@",responseObject);
         self.GetArray = responseObject;
-        NSLog(@"%@",self.GetArray[0][@"content"]);
+        //NSLog(@"%@",self.GetArray[0][@"content"]);
         
-        NSLog(@"%@",self.GetArray[0][@"id"]);
+        //NSLog(@"%@",self.GetArray[0][@"id"]);
         
         
         for (int i = 0; i < self.GetArray.count; i++)
@@ -491,7 +553,6 @@ bool direction;
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 50, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
         
         NSString* detailPage = [NSString stringWithFormat:@"http://apiv2.100steps.net/banners/render/%@",self.GetArray[infoNum][@"id"]];
-        NSLog(@"%@",detailPage);
         /*
         [webView loadHTMLString:detailPage baseURL:nil];
        */

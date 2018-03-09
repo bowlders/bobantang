@@ -16,6 +16,7 @@
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
 #import <UserNotifications/UserNotifications.h>
+#import "BBTversionManager.h"
 
 //腾讯开放平台（对应QQ和QQ空间）SDK头文件
 #import <TencentOpenAPI/TencentOAuth.h>
@@ -52,6 +53,13 @@ static NSString * activityPageDetailsUrlEnd = @"&articleType=schoolInformation";
 extern NSString *kActivityPageAvaliable;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    //避免滚动视图顶部出现20的空白以及push或者pop的时候页面有一个上移或者下移的异常动画的问题
+    /*
+    if (@available(iOS 11.0, *)){
+        [[UIScrollView appearance] setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
+    }
+    */
     
     [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
     
@@ -311,6 +319,8 @@ extern NSString *kActivityPageAvaliable;
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    //强制更新
+    [[BBTversionManager sharedManager] checkCurrentVersion];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

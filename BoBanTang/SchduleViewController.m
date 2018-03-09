@@ -72,7 +72,7 @@
     CGFloat labelWidth = _topTitle.titleLabel.bounds.size.width;
     CGFloat labelHeight = _topTitle.titleLabel.bounds.size.height;
     moreImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"more"]];
-    [moreImageView setFrame:CGRectMake(labelWidth+6, labelHeight/4.0*1.5, 15.294, 7.647)];
+    [moreImageView setFrame:CGRectMake(labelWidth+6, labelHeight/4.0*2, 15.294, 7.647)];
     [_topTitle addSubview:moreImageView];
     
     self.navigationItem.titleView = self.topTitle;

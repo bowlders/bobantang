@@ -28,7 +28,7 @@
 
 @implementation BBTCampusInfoViewController
 
-NSString * campusInfoURLFront = @"http://babel.100steps.net/news/index.php?ID=";
+NSString * campusInfoURLFront = @"http://community.100steps.net/information/render/";
 NSString * campusInfoURLEnd = @"&articleType=schoolInformation";
 
 extern NSString * kUserAuthentificationFinishNotifName;
@@ -120,7 +120,11 @@ extern NSString * checkIfHasCollectedGivenInfoFailNotifName;
     {
         //NSString *idString = [NSString stringWithFormat:@"%d", self.info.id];
         //NSString *urlString1 = [campusInfoURLFront stringByAppendingString:idString];
-        [self.webView loadHTMLString:[self.info.content objectForKey:@"article"] baseURL:nil];
+        //[self.webView loadHTMLString:[self.info.content objectForKey:@"article"] baseURL:nil];
+        
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%d",campusInfoURLFront,self.info.id]]];
+        [self.webView loadRequest:request];
+        
         /*NSString *urlString = [NSString stringWithFormat:@"%@",[self.info.content objectForKey:@"article"]];
         NSLog(@"%@",urlString);
         NSString *cleanedUrlString = [urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];

@@ -16,6 +16,6 @@ typedef enum : NSUInteger {
 @interface BBTSpecRailway2Bus : JSONModel
 
 @property (readwrite, nonatomic) NSUInteger stationSeq;                           //Count from the first station ( whose index is 0 ), so the same station has different indexes if direction is different
-@property (readwrite, nonatomic) BBTSpecHasDeparted adflag;                       //Whether the bus has departed the current station
+//@property (readwrite, nonatomic) BBTSpecHasDeparted adflag;                       //Whether the bus has departed the current station
 
 @end

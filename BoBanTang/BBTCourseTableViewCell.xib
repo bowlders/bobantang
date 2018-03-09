@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_0" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CourseTimetableCellReuseIdentifier" rowHeight="69" id="KGk-i7-Jjw" customClass="BBTCourseTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CourseTimetableCellReuseIdentifier" rowHeight="64" id="KGk-i7-Jjw" customClass="BBTCourseTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="272" height="64"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                <rect key="frame" x="0.0" y="0.0" width="272" height="63.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZBF-pQ-vNb">
-                        <rect key="frame" x="20" y="8" width="55" height="21"/>
+                        <rect key="frame" x="25" y="11" width="55" height="21"/>
                         <color key="backgroundColor" red="0.92149084806442261" green="0.92162007093429565" blue="0.92145007848739624" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <attributedString key="attributedText">
                             <fragment content="第1-2节">
@@ -38,7 +39,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="任课老师：XXX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhh-aF-vjq">
-                        <rect key="frame" x="20" y="44.5" width="137" height="18"/>
+                        <rect key="frame" x="25" y="37" width="137" height="18"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="137" id="C2N-nc-cDX"/>
                         </constraints>
@@ -47,7 +48,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Feb-kv-rdE">
-                        <rect key="frame" x="90" y="8" width="180" height="21"/>
+                        <rect key="frame" x="95" y="11" width="180" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="180" id="uzp-2T-V46"/>
                         </constraints>
@@ -62,7 +63,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地点：34201" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fR-LO-f6t">
-                        <rect key="frame" x="165" y="44.5" width="147" height="18"/>
+                        <rect key="frame" x="170" y="37" width="86" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.39996373653411865" green="0.4000239372253418" blue="0.3999447226524353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -75,7 +76,7 @@
                     <constraint firstAttribute="bottomMargin" secondItem="vhh-aF-vjq" secondAttribute="bottom" constant="-2" id="ILs-Vz-wpX"/>
                     <constraint firstItem="vhh-aF-vjq" firstAttribute="leading" secondItem="ZBF-pQ-vNb" secondAttribute="leading" id="N2O-vw-X1z"/>
                     <constraint firstItem="9fR-LO-f6t" firstAttribute="baseline" secondItem="vhh-aF-vjq" secondAttribute="baseline" id="U6X-dH-fQx"/>
-                    <constraint firstItem="ZBF-pQ-vNb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="12" id="YuV-i4-8ci"/>
+                    <constraint firstItem="ZBF-pQ-vNb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="9" id="YuV-i4-8ci"/>
                     <constraint firstAttribute="trailingMargin" secondItem="9fR-LO-f6t" secondAttribute="trailing" id="aON-VW-ztP"/>
                     <constraint firstItem="9fR-LO-f6t" firstAttribute="leading" secondItem="vhh-aF-vjq" secondAttribute="trailing" constant="8" symbolic="YES" id="n9s-PN-D52"/>
                 </constraints>
@@ -86,7 +87,7 @@
                 <outlet property="CourseLabel" destination="Feb-kv-rdE" id="elf-MS-Z5Z"/>
                 <outlet property="TeacherLabel" destination="vhh-aF-vjq" id="YPG-Tt-WUi"/>
             </connections>
-            <point key="canvasLocation" x="-79" y="154.5"/>
+            <point key="canvasLocation" x="-103" y="152"/>
         </tableViewCell>
     </objects>
 </document>
